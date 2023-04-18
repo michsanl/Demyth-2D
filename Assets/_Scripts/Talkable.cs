@@ -9,7 +9,7 @@ public class Talkable : Interactable
     [SerializeField] private DialogueSystemTrigger dialogueSystemTrigger;
 
 
-    public override void Interact()
+    public override void Talk()
     {
         dialogueSystemTrigger.OnUse();
         Debug.Log("Interact with NPC");

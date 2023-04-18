@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
  
+
+// script nyolong 
+// biar kalo mau buat class Singleton/Peristance tinggal inherit 
+
 public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static T Instance { get; private set; }

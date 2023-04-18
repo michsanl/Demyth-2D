@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public FirstLevelState State;
+    public GameState State;
 
     [SerializeField] private Transform mainMenuUI;
     [SerializeField] private Transform loadingUI;
@@ -14,23 +14,24 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         loadingUI.gameObject.SetActive(false);
-        SetState(FirstLevelState.Play);
+        SetState(GameState.Play);
     }
 
-    public void SetState(FirstLevelState newState) {
+    public void SetState(GameState newState) 
+    {
         
         State = newState;
         switch (State)
         {
-            case FirstLevelState.MainMenu:
+            case GameState.MainMenu:
                 HandleMainMenu();
                 break;
-            case FirstLevelState.Play:
+            case GameState.Play:
                 HandlePlay();
                 break;
-            case FirstLevelState.Pause:
+            case GameState.Pause:
                 break;
-            case FirstLevelState.ExitLevel:
+            case GameState.ExitLevel:
                 HandleExitLevel();
                 break;
             default:
@@ -55,12 +56,13 @@ public class GameManager : Singleton<GameManager>
 
     public void PlayButton()
     {
-        SetState(FirstLevelState.Play);
+        SetState(GameState.Play);
     }
     
 }
 
-public enum FirstLevelState {
+public enum GameState 
+{
     MainMenu,
     Pause,
     Play,

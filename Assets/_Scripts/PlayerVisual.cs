@@ -9,7 +9,8 @@ public class PlayerVisual : MonoBehaviour
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
     [SerializeField] private Animator animator;
 
-    private void Start() {
+    private void Start() 
+    {
         // player.OnTurningRight += Player_OnTurningRight;
         // player.OnTurningLeft += Player_OnTurningLeft;
         player.OnMove += Player_OnMove;
@@ -21,26 +22,23 @@ public class PlayerVisual : MonoBehaviour
         }
     }
 
+    // ngatur madep kanan kiri
     private void Player_OnMovementInputPressed(object sender, Player.OnMovementInputPressedEventArgs e)
     {
         Vector3 localScale = transform.localScale;
         Vector3 newScale = new Vector3(e.inputVectorX, localScale.y, localScale.z);
         transform.localScale = newScale;
-
-        // float newLocalScaleX = Math.Abs(transform.localScale.x) * e.inputVectorX;
-        // Vector3 newLocalScale = new Vector3(newLocalScaleX, transform.localScale.y, transform.localScale.z);
-        // transform.localScale = newLocalScale;
     }
 
-    private void Player_OnTurningRight(object sender, EventArgs e)
-    {
-        transform.localScale = new Vector3(1,1,1);
-    }
+    // private void Player_OnTurningRight(object sender, EventArgs e)
+    // {
+    //     transform.localScale = new Vector3(1,1,1);
+    // }
 
-    private void Player_OnTurningLeft(object sender, EventArgs e)
-    {
-        transform.localScale = new Vector3(-1,1,1);
-    }
+    // private void Player_OnTurningLeft(object sender, EventArgs e)
+    // {
+    //     transform.localScale = new Vector3(-1,1,1);
+    // }
 
     private void Player_OnMove(object sender, EventArgs e)
     {
@@ -48,7 +46,7 @@ public class PlayerVisual : MonoBehaviour
     }
 
     
-
+    // nge save posisi madep si player
     private void OnApplicationQuit() {
         temporarySaveDataSO.level01.playerDirection = transform.localScale;
     }
