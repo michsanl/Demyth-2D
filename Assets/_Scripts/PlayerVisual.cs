@@ -7,12 +7,9 @@ public class PlayerVisual : MonoBehaviour
 {
     [SerializeField] private Player player; 
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
-
-    private Animator animator;
+    [SerializeField] private Animator animator;
 
     private void Start() {
-        animator = GetComponent<Animator>();
-
         // player.OnTurningRight += Player_OnTurningRight;
         // player.OnTurningLeft += Player_OnTurningLeft;
         player.OnMove += Player_OnMove;
@@ -47,7 +44,7 @@ public class PlayerVisual : MonoBehaviour
 
     private void Player_OnMove(object sender, EventArgs e)
     {
-        //animator.SetTrigger("Dash");
+        animator.SetTrigger("Dash");
     }
 
     
