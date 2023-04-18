@@ -34,19 +34,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (actionDelay >= 0)
-        {
-            actionDelay -= Time.deltaTime;
-        }
-
-        if (actionDelay <= 0)
-        {
-            isBusy = false;
-        } else 
-        {
-            isBusy = true;
-        }
-
         if (GameManager.Instance.State == FirstLevelState.Play)
         {
             if (!isBusy)
@@ -58,9 +45,9 @@ public class Player : MonoBehaviour
 
     private void HandlePlayerAction()
     {
-        Vector2 inputVector = gameInput.GetMovementVector();
-
-        if (inputVector == Vector2.zero)
+        Vector2 inputVector = gameInput.GetMovementVectorPassThrough();
+        
+        if (Math.Abs(inputVector.x)  == Math.Abs(inputVector.y))
         {  
            return; 
         }
@@ -77,42 +64,48 @@ public class Player : MonoBehaviour
 
         if (!Physics2D.Raycast(transform.position, playerDir, scanDistance, osbtacleLayerMask))
         {
-            Move();
+            StartCoroutine(Move());
         } else 
         {
-            TryInteract();
-            TryPush();
+            StartCoroutine(TryInteract());
+            StartCoroutine(TryPush());
         }
     }
 
-    private void Move() {
-        actionDelay = .25f;
+    private IEnumerator Move() {
+        isBusy = true;
         moveTarget = transform.position + playerDir;
         OnMove?.Invoke(this,EventArgs.Empty);
         transform.DOMove(moveTarget, moveDuration).SetEase(Ease.OutExpo);
+        yield return Helper.GetWait(actionDelay);
+        isBusy = false;
     }
 
-    private void TryInteract() {
-        actionDelay = .25f;
+    private IEnumerator TryInteract() {
+        isBusy = true;
         RaycastHit2D raycasthit = Physics2D.Raycast(transform.position, playerDir, scanDistance, interactLayerMask);
         if (raycasthit != false)
         {
             if (raycasthit.transform.TryGetComponent (out Interactable interactable)) {
                 interactable.Interact();
+                yield return Helper.GetWait(actionDelay);
             }
         }
+        isBusy = false;
     }
 
-    private void TryPush() 
+    private IEnumerator TryPush() 
     {
-        actionDelay = .25f;
+        isBusy = true;
         RaycastHit2D raycasthit = Physics2D.Raycast(transform.position, playerDir, scanDistance, interactLayerMask);
         if (raycasthit != false)
         {
             if (raycasthit.transform.TryGetComponent (out Interactable interactable)) {
                 interactable.Push(playerDir, moveDuration);
+                yield return Helper.GetWait(actionDelay);
             }
         }
+        isBusy = false;
     }
 
     public void OnApplicationQuit() {
