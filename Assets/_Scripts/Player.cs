@@ -109,7 +109,6 @@ public class Player : MonoBehaviour
             {
                 talkable.Talk();
                 yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-                Debug.Log("Talk is executed");
             }
 
             if (raycasthit.transform.TryGetComponent(out LevelChanger levelChanger)) 
