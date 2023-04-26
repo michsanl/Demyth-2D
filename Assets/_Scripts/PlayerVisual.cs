@@ -11,8 +11,7 @@ public class PlayerVisual : MonoBehaviour
 
     private void Start() 
     {
-        // player.OnTurningRight += Player_OnTurningRight;
-        // player.OnTurningLeft += Player_OnTurningLeft;
+        player.OnPush += Player_OnPush;
         player.OnMove += Player_OnMove;
         player.OnMovementInputPressed += Player_OnMovementInputPressed;
 
@@ -20,6 +19,19 @@ public class PlayerVisual : MonoBehaviour
         {
             transform.localScale = temporarySaveDataSO.level01.playerDirection;
         }
+        
+        // player.OnTurningRight += Player_OnTurningRight;
+        // player.OnTurningLeft += Player_OnTurningLeft;
+    }
+
+    private void Player_OnPush(object sender, EventArgs e)
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    private void Player_OnMove(object sender, EventArgs e)
+    {
+        animator.SetTrigger("Dash");
     }
 
     // ngatur madep kanan kiri
@@ -28,6 +40,11 @@ public class PlayerVisual : MonoBehaviour
         Vector3 localScale = transform.localScale;
         Vector3 newScale = new Vector3(e.inputVectorX, localScale.y, localScale.z);
         transform.localScale = newScale;
+    }
+    
+    // nge save posisi madep si player
+    private void OnApplicationQuit() {
+        temporarySaveDataSO.level01.playerDirection = transform.localScale;
     }
 
     // private void Player_OnTurningRight(object sender, EventArgs e)
@@ -39,15 +56,4 @@ public class PlayerVisual : MonoBehaviour
     // {
     //     transform.localScale = new Vector3(-1,1,1);
     // }
-
-    private void Player_OnMove(object sender, EventArgs e)
-    {
-        animator.SetTrigger("Dash");
-    }
-
-    
-    // nge save posisi madep si player
-    private void OnApplicationQuit() {
-        temporarySaveDataSO.level01.playerDirection = transform.localScale;
-    }
 }

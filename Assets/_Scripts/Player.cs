@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 public class Player : MonoBehaviour
 {
     public event EventHandler OnMove;
+    public event EventHandler OnPush;
     public event EventHandler<OnMovementInputPressedEventArgs> OnMovementInputPressed;
     public class OnMovementInputPressedEventArgs
     {
@@ -95,10 +96,24 @@ public class Player : MonoBehaviour
         RaycastHit2D raycasthit = Physics2D.Raycast(transform.position, playerDir, scanDistance, interactLayerMask);
         if (raycasthit != false)
         {
-            if (raycasthit.transform.TryGetComponent(out Interactable interactable)) 
+            if (raycasthit.transform.TryGetComponent(out Pushable pushable)) 
             {
-                interactable.Talk();
-                interactable.Push(playerDir, moveDuration);
+                pushable.Push(playerDir, moveDuration);
+
+                OnPush?.Invoke(this,EventArgs.Empty); // trigger animasi push
+
+                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
+            }
+
+            if (raycasthit.transform.TryGetComponent(out Talkable talkable)) 
+            {
+                talkable.Talk();
+                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
+            }
+
+            if (raycasthit.transform.TryGetComponent(out LevelChanger levelChanger)) 
+            {
+                levelChanger.ChangeLevel();
                 yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
             }
         }
