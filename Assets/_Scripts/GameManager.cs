@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private Transform mainMenuUI;
     [SerializeField] private Transform loadingUI;
+    [SerializeField] private GameObject[] levelPrefabArray;
     
     private void Start()
     {
@@ -50,8 +51,10 @@ public class GameManager : Singleton<GameManager>
     }
     private void HandleExitLevel()
     {
+        levelPrefabArray[0].gameObject.SetActive(false);
         loadingUI.gameObject.SetActive(true);
-        SceneManager.LoadScene(1);
+        levelPrefabArray[1].gameObject.SetActive(true);
+        SetState(GameState.Play);
     }
 
     public void PlayButton()
