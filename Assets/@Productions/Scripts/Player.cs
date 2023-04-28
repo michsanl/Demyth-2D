@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     [SerializeField] private MovementController movementController;
 
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
-    [SerializeField] private LayerMask interactLayerMask;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour
     private float scanDistance = 1f;
     private bool isBusy = false;
     private Vector3 playerDir;
-    private Vector3 moveTarget;
 
     private void Start() 
     {
@@ -46,14 +44,14 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); // get InputAction WASD value vector2 
+        Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); 
         
-        if (Math.Abs(inputVector.x)  == Math.Abs(inputVector.y))
+        if (Math.Abs(inputVector.x) == Math.Abs(inputVector.y)) // biar gabisa gerak diagonal
         {  
            return;
         }
 
-        if (inputVector.x != 0)  // ngatur madep kanan kiri
+        if (inputVector.y == 0)  // ngatur madep kanan kiri
         {
             OnMovementInputPressed?.Invoke(this, new OnMovementInputPressedEventArgs
             {
@@ -72,7 +70,6 @@ public class Player : MonoBehaviour
             }
         } else
         {
-            // kalo player ga nabrak wall NPC atau box, boleh move
             StartCoroutine(HandleMovement());
         }
     }
@@ -83,7 +80,7 @@ public class Player : MonoBehaviour
 
         movementController.Move(playerDir, moveDuration);
         OnMove?.Invoke(this,EventArgs.Empty); // trigger animasi dash
-        yield return Helper.GetWait(actionDelay);
+        yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBusy = false;
     }
@@ -96,18 +93,16 @@ public class Player : MonoBehaviour
         {
             case InteractableType.Talkable:
                 interactable.Interact();
-                yield return Helper.GetWait(actionDelay);
+                yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             case InteractableType.Pushable:
                 interactable.Interact(playerDir);
-
                 OnPush?.Invoke(this,EventArgs.Empty); // trigger animasi push
-
-                yield return Helper.GetWait(actionDelay);
+                yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             case InteractableType.LevelChanger:
                 interactable.Interact();
-                yield return Helper.GetWait(actionDelay);
+                yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             default:
                 break;
