@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
     [SerializeField] private LayerMask interactLayerMask;
-    [SerializeField] private LayerMask osbtacleLayerMask;
+    [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
 
@@ -34,23 +34,23 @@ public class Player : MonoBehaviour
         transform.position = temporarySaveDataSO.level01.playerSpawnPosition; // load posisi terakhir
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        StartCoroutine(HandlePlayerAction());
+        HandlePlayerAction();
     }
 
-    private IEnumerator HandlePlayerAction()
+    private void HandlePlayerAction()
     {
         if (GameManager.Instance.State != GameState.Play || isBusy)
         {
-            yield break;
+            return;
         }
 
         Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); // get InputAction WASD value vector2 
         
         if (Math.Abs(inputVector.x)  == Math.Abs(inputVector.y))
         {  
-           yield break; 
+           return;
         }
 
         if (inputVector.x != 0)  // ngatur madep kanan kiri
@@ -63,52 +63,56 @@ public class Player : MonoBehaviour
 
         playerDir = inputVector;
 
-        // raycast ke depan, target layer mask nya = wall, NPC, box
-        if (!Physics2D.Raycast(transform.position, playerDir, scanDistance, osbtacleLayerMask))
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, playerDir, scanDistance, movementBlockerLayerMask);
+        if (raycastHit)
+        {
+            if (raycastHit.transform.TryGetComponent(out Interactable interactable))
+            {
+                StartCoroutine(HandleInteract(interactable));
+            }
+        } else
         {
             // kalo player ga nabrak wall NPC atau box, boleh move
-            isBusy = true;
-
-            movementController.Move(playerDir, moveDuration);
-            OnMove?.Invoke(this,EventArgs.Empty); // trigger animasi dash
-            yield return Helper.GetWait(actionDelay);
-
-            isBusy = false;
-        } else 
-        {
-            // kalo nabrak wall NPC sama box, raycast ke Interactable(box & NPC) lalu interact
-            StartCoroutine(TryInteract());
+            StartCoroutine(HandleMovement());
         }
     }
 
-    // raycast ke arah depan, layer target nya = box & NPC
-    // kalo kena, ngecall fungsi Talk sama Push dari class Interactable
-    private IEnumerator TryInteract() {
+    private IEnumerator HandleMovement()
+    {
         isBusy = true;
-        RaycastHit2D raycasthit = Physics2D.Raycast(transform.position, playerDir, scanDistance, interactLayerMask);
-        if (raycasthit != false)
+
+        movementController.Move(playerDir, moveDuration);
+        OnMove?.Invoke(this,EventArgs.Empty); // trigger animasi dash
+        yield return Helper.GetWait(actionDelay);
+
+        isBusy = false;
+    }
+
+    private IEnumerator HandleInteract(Interactable interactable)
+    {
+        isBusy = true;
+        
+        switch (interactable.interactableType)
         {
-            if (raycasthit.transform.TryGetComponent(out Pushable pushable)) 
-            {
-                pushable.Push(playerDir, moveDuration);
+            case InteractableType.Talkable:
+                interactable.Interact();
+                yield return Helper.GetWait(actionDelay);
+                break;
+            case InteractableType.Pushable:
+                interactable.Interact(playerDir);
 
                 OnPush?.Invoke(this,EventArgs.Empty); // trigger animasi push
 
-                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-            }
-
-            if (raycasthit.transform.TryGetComponent(out Talkable talkable)) 
-            {
-                talkable.Talk();
-                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-            }
-
-            if (raycasthit.transform.TryGetComponent(out LevelChanger levelChanger)) 
-            {
-                levelChanger.ChangeLevel();
-                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-            }
+                yield return Helper.GetWait(actionDelay);
+                break;
+            case InteractableType.LevelChanger:
+                interactable.Interact();
+                yield return Helper.GetWait(actionDelay);
+                break;
+            default:
+                break;
         }
+
         isBusy = false;
     }
 
