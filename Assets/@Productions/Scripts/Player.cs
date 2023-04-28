@@ -9,14 +9,10 @@ public class Player : MonoBehaviour
 {
     public event EventHandler OnMove;
     public event EventHandler OnPush;
-    public event EventHandler<OnMovementInputPressedEventArgs> OnMovementInputPressed;
-    public class OnMovementInputPressedEventArgs
-    {
-        public float inputVectorX;
-    }
 
     [SerializeField] private GameInput gameInput;
     [SerializeField] private MovementController movementController;
+    [SerializeField] private LookOrientation lookOrientation;
 
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
     [SerializeField] private LayerMask movementBlockerLayerMask;
@@ -51,15 +47,8 @@ public class Player : MonoBehaviour
            return;
         }
 
-        if (inputVector.y == 0)  // ngatur madep kanan kiri
-        {
-            OnMovementInputPressed?.Invoke(this, new OnMovementInputPressedEventArgs
-            {
-                inputVectorX = inputVector.x
-            });
-        }
-
         playerDir = inputVector;
+        lookOrientation.SetFacingDirection(playerDir);
 
         RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, playerDir, scanDistance, movementBlockerLayerMask);
         if (raycastHit)
