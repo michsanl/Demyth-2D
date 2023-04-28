@@ -6,7 +6,7 @@ using UnityEngine;
 // script nyolong 
 // biar kalo mau buat class Singleton/Peristance tinggal inherit 
 
-public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class MyStaticInstance<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static T Instance { get; private set; }
     protected virtual void Awake() => Instance = this as T;
@@ -18,7 +18,7 @@ public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
     }
 }
 
-public abstract class Singleton<T> : StaticInstance<T> where T : MonoBehaviour
+public abstract class MySingleton<T> : MyStaticInstance<T> where T : MonoBehaviour
 {
     protected override void Awake()
     {
@@ -27,7 +27,7 @@ public abstract class Singleton<T> : StaticInstance<T> where T : MonoBehaviour
     }
 }
 
-public abstract class PersistanceSingleton<T> : Singleton<T> where T : MonoBehaviour
+public abstract class MyPersistanceSingleton<T> : MySingleton<T> where T : MonoBehaviour
 {
     protected override void Awake()
     {

@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] private GameInput gameInput;
+    [SerializeField] private MovementController movementController;
+
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
     [SerializeField] private LayerMask interactLayerMask;
     [SerializeField] private LayerMask osbtacleLayerMask;
@@ -34,23 +36,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.State == GameState.Play) // kalo game state nya lagi Mainmenu atau pause etc, ga bisa action
-        {
-            if (!isBusy) // ngatur action delay, biar move/interact ga ke spam tiap frame
-            {
-                HandlePlayerAction();
-            }
-        }
+        StartCoroutine(HandlePlayerAction());
     }
 
-    // 
-    private void HandlePlayerAction()
+    private IEnumerator HandlePlayerAction()
     {
+        if (GameManager.Instance.State != GameState.Play || isBusy)
+        {
+            yield break;   
+        }
+
         Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); // get InputAction WASD value vector2 
         
         if (Math.Abs(inputVector.x)  == Math.Abs(inputVector.y)) // logic sementaraga biar ga bisa gerak diagonal
         {  
-           return; 
+           yield break; 
         }
 
         if (inputVector.x != 0)  // ngatur madep kanan kiri
@@ -67,26 +67,18 @@ public class Player : MonoBehaviour
         if (!Physics2D.Raycast(transform.position, playerDir, scanDistance, osbtacleLayerMask))
         {
             // kalo player ga nabrak wall NPC atau box, boleh move
-            StartCoroutine(Move());
+            isBusy = true;
+
+            movementController.Move(playerDir, moveDuration);
+            OnMove?.Invoke(this,EventArgs.Empty); // trigger animasi dash
+            yield return Helper.GetWait(actionDelay);
+
+            isBusy = false;
         } else 
         {
             // kalo nabrak wall NPC sama box, raycast ke Interactable(box & NPC) lalu interact
             StartCoroutine(TryInteract());
         }
-    }
-
-    // grid movement
-    private IEnumerator Move() 
-    {
-        isBusy = true;
-
-        OnMove?.Invoke(this,EventArgs.Empty); // trigger animasi dash
-
-        moveTarget = transform.position + playerDir;
-        transform.DOMove(moveTarget, moveDuration).SetEase(Ease.OutExpo);
-
-        yield return Helper.GetWait(actionDelay);  // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-        isBusy = false;
     }
 
     // raycast ke arah depan, layer target nya = box & NPC
@@ -121,13 +113,13 @@ public class Player : MonoBehaviour
     }
 
     // biar posisi terakhir player nya ke save
-    public void OnApplicationQuit() {
-        if (moveTarget != Vector3.zero) {
-            temporarySaveDataSO.level01.playerSpawnPosition = moveTarget;
-        } else {
-            temporarySaveDataSO.level01.playerSpawnPosition = transform.position;
-        }
-    }
+    // public void OnApplicationQuit() {
+    //     if (moveTarget != Vector3.zero) {
+    //         temporarySaveDataSO.level01.playerSpawnPosition = moveTarget;
+    //     } else {
+    //         temporarySaveDataSO.level01.playerSpawnPosition = transform.position;
+    //     }
+    // }
     
 
     
