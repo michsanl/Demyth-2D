@@ -5,10 +5,12 @@ using DG.Tweening;
 
 public class Pushable : Interactable
 {
-    public override void Push(Vector3 direction, float pushDuration)
+    public override void Interact(Vector3 direction)
     {
-        Vector3 finalDirection = transform.position + direction;
+        Vector3 targetLocation = transform.position + direction;
+        float pushDuration = .2f;
+
+        transform.DOMove(targetLocation, pushDuration).SetEase(Ease.OutExpo);
         Debug.Log("Kicking box");
-        transform.DOMove(finalDirection, pushDuration).SetEase(Ease.OutExpo);
     }
 }

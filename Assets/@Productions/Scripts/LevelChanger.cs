@@ -6,11 +6,10 @@ public class LevelChanger : Interactable
 {
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
 
-    public override void ChangeLevel() 
+    public override void Interact(Vector3 direction) 
     {
         if (temporarySaveDataSO.level01.isNextLevelUnlocked == true) 
         {
-            GameManager.Instance.SetState(GameState.ExitLevel);
             Debug.Log("Going to next level");
         } else 
         {

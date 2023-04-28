@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class MovementController : MonoBehaviour
 {
-    private bool isMoving;
-
     public void Move(Vector3 playerDir,  float moveDuration) 
     {
         Vector3 moveTarget = transform.position + playerDir;

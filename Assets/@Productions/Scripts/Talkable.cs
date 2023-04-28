@@ -9,15 +9,9 @@ public class Talkable : Interactable
     [SerializeField] private DialogueSystemTrigger dialogueSystemTrigger;
 
 
-    public override void Talk()
+    public override void Interact(Vector3 direction)
     {
         dialogueSystemTrigger.OnUse();
         Debug.Log("Interact with NPC");
     }
-
-    // public override void Push(Vector3 direction, float moveDuration)
-    // {
-    //     Vector3 finalDirection = transform.position + direction;
-    //     transform.DOMove(finalDirection, moveDuration).SetEase(Ease.OutExpo);
-    // }
 }

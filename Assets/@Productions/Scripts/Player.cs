@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         transform.position = temporarySaveDataSO.level01.playerSpawnPosition; // load posisi terakhir
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         StartCoroutine(HandlePlayerAction());
     }
@@ -43,12 +43,12 @@ public class Player : MonoBehaviour
     {
         if (GameManager.Instance.State != GameState.Play || isBusy)
         {
-            yield break;   
+            yield break;
         }
 
         Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); // get InputAction WASD value vector2 
         
-        if (Math.Abs(inputVector.x)  == Math.Abs(inputVector.y)) // logic sementaraga biar ga bisa gerak diagonal
+        if (Math.Abs(inputVector.x)  == Math.Abs(inputVector.y))
         {  
            yield break; 
         }
@@ -120,7 +120,5 @@ public class Player : MonoBehaviour
     //         temporarySaveDataSO.level01.playerSpawnPosition = transform.position;
     //     }
     // }
-    
 
-    
 }
