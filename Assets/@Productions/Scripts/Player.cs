@@ -16,16 +16,16 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] private GameInput gameInput;
+    [SerializeField] private MovementController movementController;
+
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
-    [SerializeField] private LayerMask interactLayerMask;
-    [SerializeField] private LayerMask osbtacleLayerMask;
+    [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
 
     private float scanDistance = 1f;
     private bool isBusy = false;
     private Vector3 playerDir;
-    private Vector3 moveTarget;
 
     private void Start() 
     {
@@ -34,26 +34,24 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.State == GameState.Play) // kalo game state nya lagi Mainmenu atau pause etc, ga bisa action
-        {
-            if (!isBusy) // ngatur action delay, biar move/interact ga ke spam tiap frame
-            {
-                HandlePlayerAction();
-            }
-        }
+        HandlePlayerAction();
     }
 
-    // 
     private void HandlePlayerAction()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); // get InputAction WASD value vector2 
-        
-        if (Math.Abs(inputVector.x)  == Math.Abs(inputVector.y)) // logic sementaraga biar ga bisa gerak diagonal
-        {  
-           return; 
+        if (GameManager.Instance.State != GameState.Play || isBusy)
+        {
+            return;
         }
 
-        if (inputVector.x != 0)  // ngatur madep kanan kiri
+        Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); 
+        
+        if (Math.Abs(inputVector.x) == Math.Abs(inputVector.y)) // biar gabisa gerak diagonal
+        {  
+           return;
+        }
+
+        if (inputVector.y == 0)  // ngatur madep kanan kiri
         {
             OnMovementInputPressed?.Invoke(this, new OnMovementInputPressedEventArgs
             {
@@ -63,72 +61,63 @@ public class Player : MonoBehaviour
 
         playerDir = inputVector;
 
-        // raycast ke depan, target layer mask nya = wall, NPC, box
-        if (!Physics2D.Raycast(transform.position, playerDir, scanDistance, osbtacleLayerMask))
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, playerDir, scanDistance, movementBlockerLayerMask);
+        if (raycastHit)
         {
-            // kalo player ga nabrak wall NPC atau box, boleh move
-            StartCoroutine(Move());
-        } else 
+            if (raycastHit.transform.TryGetComponent(out Interactable interactable))
+            {
+                StartCoroutine(HandleInteract(interactable));
+            }
+        } else
         {
-            // kalo nabrak wall NPC sama box, raycast ke Interactable(box & NPC) lalu interact
-            StartCoroutine(TryInteract());
+            StartCoroutine(HandleMovement());
         }
     }
 
-    // grid movement
-    private IEnumerator Move() 
+    private IEnumerator HandleMovement()
     {
         isBusy = true;
 
+        movementController.Move(playerDir, moveDuration);
         OnMove?.Invoke(this,EventArgs.Empty); // trigger animasi dash
+        yield return Helper.GetWaitForSeconds(actionDelay);
 
-        moveTarget = transform.position + playerDir;
-        transform.DOMove(moveTarget, moveDuration).SetEase(Ease.OutExpo);
-
-        yield return Helper.GetWait(actionDelay);  // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
         isBusy = false;
     }
 
-    // raycast ke arah depan, layer target nya = box & NPC
-    // kalo kena, ngecall fungsi Talk sama Push dari class Interactable
-    private IEnumerator TryInteract() {
+    private IEnumerator HandleInteract(Interactable interactable)
+    {
         isBusy = true;
-        RaycastHit2D raycasthit = Physics2D.Raycast(transform.position, playerDir, scanDistance, interactLayerMask);
-        if (raycasthit != false)
+        
+        switch (interactable.interactableType)
         {
-            if (raycasthit.transform.TryGetComponent(out Pushable pushable)) 
-            {
-                pushable.Push(playerDir, moveDuration);
-
+            case InteractableType.Talkable:
+                interactable.Interact();
+                yield return Helper.GetWaitForSeconds(actionDelay);
+                break;
+            case InteractableType.Pushable:
+                interactable.Interact(playerDir);
                 OnPush?.Invoke(this,EventArgs.Empty); // trigger animasi push
-
-                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-            }
-
-            if (raycasthit.transform.TryGetComponent(out Talkable talkable)) 
-            {
-                talkable.Talk();
-                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-            }
-
-            if (raycasthit.transform.TryGetComponent(out LevelChanger levelChanger)) 
-            {
-                levelChanger.ChangeLevel();
-                yield return Helper.GetWait(actionDelay); // non allocating WaitForSeconds semoga jadi ga bloodware, buat action delay
-            }
+                yield return Helper.GetWaitForSeconds(actionDelay);
+                break;
+            case InteractableType.LevelChanger:
+                interactable.Interact();
+                yield return Helper.GetWaitForSeconds(actionDelay);
+                break;
+            default:
+                break;
         }
+
         isBusy = false;
     }
 
     // biar posisi terakhir player nya ke save
-    public void OnApplicationQuit() {
-        if (moveTarget != Vector3.zero) {
-            temporarySaveDataSO.level01.playerSpawnPosition = moveTarget;
-        } else {
-            temporarySaveDataSO.level01.playerSpawnPosition = transform.position;
-        }
-    }
-    
+    // public void OnApplicationQuit() {
+    //     if (moveTarget != Vector3.zero) {
+    //         temporarySaveDataSO.level01.playerSpawnPosition = moveTarget;
+    //     } else {
+    //         temporarySaveDataSO.level01.playerSpawnPosition = transform.position;
+    //     }
+    // }
 
-    
 }
