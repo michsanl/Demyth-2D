@@ -7,16 +7,10 @@ using System.Threading.Tasks;
 
 public class Player : MonoBehaviour
 {
-    public event EventHandler OnMove;
-    public event EventHandler OnPush;
-    public event EventHandler<OnMovementInputPressedEventArgs> OnMovementInputPressed;
-    public class OnMovementInputPressedEventArgs
-    {
-        public float inputVectorX;
-    }
-
     [SerializeField] private GameInput gameInput;
     [SerializeField] private MovementController movementController;
+    [SerializeField] private LookOrientation lookOrientation;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
     [SerializeField] private LayerMask movementBlockerLayerMask;
@@ -51,15 +45,8 @@ public class Player : MonoBehaviour
            return;
         }
 
-        if (inputVector.y == 0)  // ngatur madep kanan kiri
-        {
-            OnMovementInputPressed?.Invoke(this, new OnMovementInputPressedEventArgs
-            {
-                inputVectorX = inputVector.x
-            });
-        }
-
         playerDir = inputVector;
+        lookOrientation.SetFacingDirection(playerDir);
 
         RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, playerDir, scanDistance, movementBlockerLayerMask);
         if (raycastHit)
@@ -79,7 +66,7 @@ public class Player : MonoBehaviour
         isBusy = true;
 
         movementController.Move(playerDir, moveDuration);
-        OnMove?.Invoke(this,EventArgs.Empty); // trigger animasi dash
+        animator.SetTrigger("Dash");
         yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBusy = false;
@@ -97,7 +84,7 @@ public class Player : MonoBehaviour
                 break;
             case InteractableType.Pushable:
                 interactable.Interact(playerDir);
-                OnPush?.Invoke(this,EventArgs.Empty); // trigger animasi push
+                animator.SetTrigger("Attack");
                 yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             case InteractableType.LevelChanger:
