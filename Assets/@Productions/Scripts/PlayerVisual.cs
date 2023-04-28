@@ -11,8 +11,8 @@ public class PlayerVisual : MonoBehaviour
 
     private void Start() 
     {
-        player.OnPush += Player_OnPush;
-        player.OnMove += Player_OnMove;
+        // player.OnPush += Player_OnPush;
+        // player.OnMove += Player_OnMove;
         // player.OnMovementInputPressed += Player_OnMovementInputPressed;
 
         if (temporarySaveDataSO.level01.playerDirection != Vector3.zero)
