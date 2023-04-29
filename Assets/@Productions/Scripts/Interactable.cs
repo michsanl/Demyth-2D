@@ -6,17 +6,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public InteractableType interactableType;
-
-    public virtual void Talk() 
-    {
-    }
-    public virtual void Push(Vector3 direction, float pushDuration) 
-    {
-    }
-    public virtual void ChangeLevel()
-    {
-    }
-
+    
     public virtual void Interact(Vector3 direction = default(Vector3))
     {
     }
@@ -24,5 +14,5 @@ public class Interactable : MonoBehaviour
 
 public enum InteractableType
 {
-    Talkable, Pushable, LevelChanger,
+    Talk, Push, ChangeLevel, Damage,
 }

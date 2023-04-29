@@ -78,16 +78,21 @@ public class Player : MonoBehaviour
         
         switch (interactable.interactableType)
         {
-            case InteractableType.Talkable:
+            case InteractableType.Talk:
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
-            case InteractableType.Pushable:
+            case InteractableType.Push:
                 interactable.Interact(playerDir);
                 animator.SetTrigger("Attack");
                 yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
-            case InteractableType.LevelChanger:
+            case InteractableType.Damage:
+                interactable.Interact(playerDir);
+                animator.SetTrigger("Attack");
+                yield return Helper.GetWaitForSeconds(actionDelay);
+                break;
+            case InteractableType.ChangeLevel:
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
