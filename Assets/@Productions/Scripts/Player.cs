@@ -34,12 +34,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.State == GameState.Play) // kalo game state nya lagi Mainmenu atau pause etc, ga bisa action
+        if (!isBusy) // ngatur action delay, biar move/interact ga ke spam tiap frame
         {
-            if (!isBusy) // ngatur action delay, biar move/interact ga ke spam tiap frame
-            {
-                HandlePlayerAction();
-            }
+            HandlePlayerAction();
         }
     }
 
