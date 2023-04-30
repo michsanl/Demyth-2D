@@ -13,11 +13,22 @@ public struct LevelSetting
 
 public class Level : MonoBehaviour
 {
+    public string LevelName => gameObject.name;
+    public Vector3 StarterPosition => starterPoint.position;
+
+    public LevelSetting[] LevelSetting => settings;
+
     [SerializeField]
     private LevelSetting[] settings;
 
     [SerializeField]
     private Transform starterPoint;
+
+    [Button]
+    public void MoveToNextLevel(Level target)
+    {
+        GetComponentInParent<LevelManager>().ChangeLevel(this, target);
+    }
 
     #region DEBUG HELPER
     private void OnDrawGizmos()
