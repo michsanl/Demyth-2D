@@ -7,23 +7,25 @@ using System.Threading.Tasks;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameInput gameInput;
-    [SerializeField] private MovementController movementController;
-    [SerializeField] private LookOrientation lookOrientation;
     [SerializeField] private Animator animator;
-
-    [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
 
+    private PlayerInputActions playerInputActions;
+    private MovementController movementController;
+    private LookOrientation lookOrientation;
     private float scanDistance = 1f;
     private bool isBusy = false;
     private Vector3 playerDir;
 
-    private void Start() 
+    private void Awake() 
     {
-        transform.position = temporarySaveDataSO.level01.playerSpawnPosition; // load posisi terakhir
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Enable();
+
+        movementController = GetComponent<MovementController>();
+        lookOrientation = GetComponent<LookOrientation>();
     }
 
     private void Update()
@@ -33,12 +35,12 @@ public class Player : MonoBehaviour
 
     private void HandlePlayerAction()
     {
-        if (GameManager.Instance.State != GameState.Play || isBusy)
+        if (isBusy)
         {
             return;
         }
 
-        Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); 
+        Vector2 inputVector = playerInputActions.Player.MovePassThrough.ReadValue<Vector2>();
         
         if (Math.Abs(inputVector.x) == Math.Abs(inputVector.y)) // biar gabisa gerak diagonal
         {  
