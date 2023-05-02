@@ -49,15 +49,15 @@ public class Player : MonoBehaviour
 
         playerDir = inputVector;
         lookOrientation.SetFacingDirection(playerDir);
-
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, playerDir, scanDistance, movementBlockerLayerMask);
-        if (raycastHit)
+        
+        if (Helper.CheckTargetDirection(transform.position, playerDir, movementBlockerLayerMask, out Interactable interactable))
         {
-            if (raycastHit.transform.TryGetComponent(out Interactable interactable))
+            if (interactable != null)
             {
                 StartCoroutine(HandleInteract(interactable));
             }
-        } else
+        } 
+        else
         {
             StartCoroutine(HandleMovement());
         }
@@ -80,27 +80,19 @@ public class Player : MonoBehaviour
         
         switch (interactable.interactableType)
         {
-            case InteractableType.Talk:
-                interactable.Interact();
-                yield return Helper.GetWaitForSeconds(actionDelay);
-                break;
             case InteractableType.Push:
-                interactable.Interact(playerDir);
                 animator.SetTrigger("Attack");
-                yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             case InteractableType.Damage:
-                interactable.Interact(playerDir);
                 animator.SetTrigger("Attack");
-                yield return Helper.GetWaitForSeconds(actionDelay);
-                break;
-            case InteractableType.ChangeLevel:
-                interactable.Interact();
-                yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             default:
                 break;
         }
+
+        interactable.Interact(playerDir);
+
+        yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBusy = false;
     }

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 426225192504292295}
   - component: {fileID: 1538411941623662623}
   - component: {fileID: 2550479280664009900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   animator: {fileID: 3143619101154623906}
   movementBlockerLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   actionDelay: 0.25
   moveDuration: 0.2
 --- !u!114 &1922922143
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 3143619101154623905}
   - component: {fileID: 3143619101154623906}
   - component: {fileID: 3143619101154623907}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spine Mecanim GameObject (Ara chibi)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3143619101428999586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
