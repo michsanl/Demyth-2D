@@ -1,10 +1,11 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace CustomTools.Core
 {
-    public class CoreScene : CoreBehaviour
+    public class CoreScene : MonoBehaviour
     {
 		// PUBLIC MEMBERS
 
@@ -16,12 +17,12 @@ namespace CustomTools.Core
 
 		[SerializeField]
 		private bool _selfInitialize = true;
-		[SerializeField]
+		[SerializeField, ReadOnly]
 		private SceneContext _context;
 
 		private bool _isInitialized;
 
-		[SerializeField]
+		[SerializeField, ReadOnly]
 		private List<SceneService> _services = new List<SceneService>();
 
 		// PUBLIC METHODS
