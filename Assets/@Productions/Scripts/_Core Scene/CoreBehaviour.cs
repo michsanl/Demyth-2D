@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CustomTools.Core
 {
-    public abstract class CoreBehaviour : MonoBehaviour
+    public abstract class CoreBehaviour : MonoBehaviour, IContextBehaviour
     {
         // PUBLIC MEMBERS
 
@@ -68,6 +68,8 @@ namespace CustomTools.Core
                 return _cachedTransform;
             }
         }
+
+        public SceneContext Context { get; set; }
 
         // PRIVATE MEMBERS
 

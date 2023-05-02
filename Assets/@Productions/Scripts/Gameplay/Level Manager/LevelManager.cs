@@ -1,16 +1,22 @@
 using CustomExtensions;
+using CustomTools.Core;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : SceneService
 {
     [SerializeField]
     private List<Level> levels = new List<Level>();
 
     public Transform _player;
+
+    public IEnumerator SetupLevel()
+    {
+        yield return new WaitForEndOfFrame();
+    }
 
     public void ChangeLevel(Level levelFrom, Level levelTo)
     {

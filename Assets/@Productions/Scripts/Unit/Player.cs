@@ -4,8 +4,9 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 using System.Threading.Tasks;
+using CustomTools.Core;
 
-public class Player : MonoBehaviour
+public class Player : CoreBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask movementBlockerLayerMask;
