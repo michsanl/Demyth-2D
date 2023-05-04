@@ -1,33 +1,58 @@
+using CustomTools.Core;
 using Demyth.Gameplay;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public struct LevelSetting
+public class LevelSetting
 {
-    public Level OtherLevel;
-    public Transform EnterPoint;
+    [ValueDropdown(nameof(LevelName))]
+    public string ID;
+    public Gate Gate;
+
+#if UNITY_EDITOR
+    private IEnumerable<string> LevelName()
+    {
+        string levelPath = "Assets/@Productions/Prefabs/Level Map";
+        string[] guids = UnityEditor.AssetDatabase.FindAssets("", new[] { levelPath });
+        return guids
+            .Select(x => UnityEditor.AssetDatabase.GUIDToAssetPath(x))
+            .Select(y => UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(y).name);
+    }
+#endif
 }
 
-public class Level : MonoBehaviour
+public class Level : CoreBehaviour
 {
-    public string LevelName => gameObject.name;
+    public string ID => gameObject.name;
     public Vector3 StarterPosition => starterPoint.position;
-
     public LevelSetting[] LevelSetting => settings;
 
     [SerializeField]
     private LevelSetting[] settings;
-
     [SerializeField]
     private Transform starterPoint;
 
-    [Button]
-    public void MoveToNextLevel(Level target)
+    private void Awake()
     {
-        GetComponentInParent<LevelManager>().ChangeLevel(this, target);
+        foreach (var setting in settings)
+        {
+            setting.Gate.SetupGate(this);
+        }
+    }
+
+    public Vector2 GetLevelPoint(string levelID)
+    {
+        var setting = settings.FirstOrDefault(level => level.ID == levelID);
+        return setting == null ? StarterPosition : setting.Gate.EnterPoint;
+    }
+
+    public void MoveToNextLevel(string levelID)
+    {
+        Context.LevelManager.ChangeLevel(ID, levelID);
     }
 
     #region DEBUG HELPER

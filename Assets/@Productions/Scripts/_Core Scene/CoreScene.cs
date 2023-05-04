@@ -17,7 +17,7 @@ namespace CustomTools.Core
 
 		[SerializeField]
 		private bool _selfInitialize = true;
-		[SerializeField, ReadOnly]
+		[SerializeField]
 		private SceneContext _context;
 
 		private bool _isInitialized;

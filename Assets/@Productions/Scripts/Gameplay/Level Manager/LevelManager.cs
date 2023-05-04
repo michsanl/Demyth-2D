@@ -8,25 +8,36 @@ using UnityEngine;
 
 public class LevelManager : SceneService
 {
+    public Level CurrentLevel { get; private set; }
+
     [SerializeField]
     private List<Level> levels = new List<Level>();
 
-    public Transform _player;
+    protected override void OnInitialize()
+    {
+        GetLevelOnChild();
+        foreach (var level in levels)
+        {
+            level.Context = Context;
+        }
+    }
 
     public IEnumerator SetupLevel()
     {
         yield return new WaitForEndOfFrame();
     }
 
-    public void ChangeLevel(Level levelFrom, Level levelTo)
+    public void ChangeLevel(string previousLevelID, string nextLevelID)
     {
-        var setting = levelTo.LevelSetting.FirstOrDefault(x => x.OtherLevel == levelFrom);
-        if (setting.EnterPoint == null) return;
+        var nextLevel = GetLevelByID(nextLevelID);
+        var previousLevel = GetLevelByID(previousLevelID);
+        
+        var previousLevelPoint = nextLevel.GetLevelPoint(previousLevelID);
+        MovePlayerToPosition(previousLevelPoint);
 
-        MovePlayerToPosition(setting.EnterPoint.position);
-
-        levelFrom.gameObject.SetActive(false);
-        levelTo.gameObject.SetActive(true);
+        previousLevel.SetActive(false);
+        nextLevel.SetActive(true);
+        CurrentLevel = nextLevel;
     }
 
     public void SetLevel(Level level)
@@ -42,10 +53,15 @@ public class LevelManager : SceneService
         MovePlayerToPosition(level.StarterPosition);
     }
 
+    private Level GetLevelByID(string id)
+    {
+        return levels.FirstOrDefault(x => x.ID == id);
+    }
+
     private void MovePlayerToPosition(Vector3 point)
     {
-        if (_player == null) return;
-        _player.position = point;
+        if (Context.Player == null) return;
+        Context.Player.transform.position = point;
     }
 
 #if UNITY_EDITOR
@@ -53,16 +69,15 @@ public class LevelManager : SceneService
     [Title("Editor Helper")]
     [SerializeField, ValueDropdown("LevelList")]
     private string debugLevelID;
-    private IEnumerable<string> LevelList => levels.Select(x => x.LevelName);
+    private IEnumerable<string> LevelList => levels.Select(x => x.ID);
     [Button]
     private void DebugOpenLevel()
     {
-        var level = levels.FirstOrDefault(x => x.LevelName == debugLevelID);
+        var level = levels.FirstOrDefault(x => x.ID == debugLevelID);
         if (level == null) return;
 
         SetLevel(level);
     }
-
 
     [Button]
     private void GetLevelOnChild()

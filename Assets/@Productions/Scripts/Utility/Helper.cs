@@ -18,13 +18,20 @@ public static class Helper
 
     public static bool CheckTargetDirection<T>(Vector2 origin, Vector2 dir, LayerMask layer, out T targetComponent)
     {
-        RaycastHit2D hit = Physics2D.Raycast(origin, dir, 1f, layer);
+        RaycastHit2D[] hit = Physics2D.RaycastAll(origin, dir, 1f, layer);
         
         targetComponent = default(T);
-        if (hit)
-            targetComponent = hit.collider.GetComponent<T>();
+        if (hit.Length > 0)
+        {
+            for (int i = 0; i < hit.Length; i++)
+            {
+                targetComponent = hit[i].collider.GetComponent<T>();
+                if (targetComponent != null)
+                    break;
+            }
+        }
 
-        return hit;
+        return hit.Length > 0;
     }
 
     public static void MoveToPosition(Transform transform, Vector3 target, float duration)
