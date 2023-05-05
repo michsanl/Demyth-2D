@@ -5,9 +5,12 @@ using System;
 using DG.Tweening;
 using System.Threading.Tasks;
 using CustomTools.Core;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 public class Player : CoreBehaviour
 {
+    [SerializeField] private Light2D senter;
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
@@ -18,11 +21,13 @@ public class Player : CoreBehaviour
     private LookOrientation lookOrientation;
     private float scanDistance = 1f;
     private bool isBusy = false;
+    private bool isSenterEnabled;
     private Vector3 playerDir;
 
     private void Awake() 
     {
         playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Senter.performed += OnSenterPerformed;
         playerInputActions.Player.Enable();
 
         movementController = GetComponent<MovementController>();
@@ -96,6 +101,12 @@ public class Player : CoreBehaviour
         yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBusy = false;
+    }
+    
+    private void OnSenterPerformed(InputAction.CallbackContext context)
+    {
+        isSenterEnabled = !isSenterEnabled;
+        senter.enabled = isSenterEnabled;
     }
 
     // biar posisi terakhir player nya ke save
