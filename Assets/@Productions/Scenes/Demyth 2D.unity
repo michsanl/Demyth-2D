@@ -1222,6 +1222,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableType: 1
+  movementBlockerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,14 +2645,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 989718384392511431, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 989718384392511431, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
-      objectReference: {fileID: 0}
     - target: {fileID: 6361526827687298559, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -2697,38 +2692,6 @@ PrefabInstance:
     - target: {fileID: 6361526827687399647, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
       propertyPath: m_Name
       value: Dialogue Manager Demyth 2D
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827687399647, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: initialDatabase
-      value: 
-      objectReference: {fileID: 11400000, guid: 5d8f4e5b8b205a24e960282d50971ab9, type: 2}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.dialogueUI
-      value: 
-      objectReference: {fileID: 8384304967820226969, guid: da492a5609042544abf4b4cd140aecab, type: 3}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.subtitleSettings.continueButton
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.inputSettings.alwaysForceResponseMenu
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.subtitleSettings.allowPCSubtitleReminders
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.subtitleSettings.showPCSubtitlesDuringLine
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.subtitleSettings.skipPCSubtitleAfterResponseMenu
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}

@@ -4,26 +4,34 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 using System.Threading.Tasks;
+using CustomTools.Core;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : CoreBehaviour
 {
-    [SerializeField] private GameInput gameInput;
-    [SerializeField] private MovementController movementController;
-    [SerializeField] private LookOrientation lookOrientation;
+    [SerializeField] private Light2D senter;
     [SerializeField] private Animator animator;
-
-    [SerializeField] private TemporarySaveDataSO temporarySaveDataSO;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
 
+    private PlayerInputActions playerInputActions;
+    private MovementController movementController;
+    private LookOrientation lookOrientation;
     private float scanDistance = 1f;
     private bool isBusy = false;
+    private bool isSenterEnabled;
     private Vector3 playerDir;
 
-    private void Start() 
+    private void Awake() 
     {
-        transform.position = temporarySaveDataSO.level01.playerSpawnPosition; // load posisi terakhir
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Senter.performed += OnSenterPerformed;
+        playerInputActions.Player.Enable();
+
+        movementController = GetComponent<MovementController>();
+        lookOrientation = GetComponent<LookOrientation>();
     }
 
     private void Update()
@@ -33,12 +41,12 @@ public class Player : MonoBehaviour
 
     private void HandlePlayerAction()
     {
-        if (GameManager.Instance.State != GameState.Play || isBusy)
+        if (isBusy)
         {
             return;
         }
 
-        Vector2 inputVector = gameInput.GetMovementVectorPassThrough(); 
+        Vector2 inputVector = playerInputActions.Player.MovePassThrough.ReadValue<Vector2>();
         
         if (Math.Abs(inputVector.x) == Math.Abs(inputVector.y)) // biar gabisa gerak diagonal
         {  
@@ -47,15 +55,15 @@ public class Player : MonoBehaviour
 
         playerDir = inputVector;
         lookOrientation.SetFacingDirection(playerDir);
-
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, playerDir, scanDistance, movementBlockerLayerMask);
-        if (raycastHit)
+        
+        if (Helper.CheckTargetDirection(transform.position, playerDir, movementBlockerLayerMask, out Interactable interactable))
         {
-            if (raycastHit.transform.TryGetComponent(out Interactable interactable))
+            if (interactable != null)
             {
                 StartCoroutine(HandleInteract(interactable));
             }
-        } else
+        } 
+        else
         {
             StartCoroutine(HandleMovement());
         }
@@ -78,29 +86,27 @@ public class Player : MonoBehaviour
         
         switch (interactable.interactableType)
         {
-            case InteractableType.Talk:
-                interactable.Interact();
-                yield return Helper.GetWaitForSeconds(actionDelay);
-                break;
             case InteractableType.Push:
-                interactable.Interact(playerDir);
                 animator.SetTrigger("Attack");
-                yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             case InteractableType.Damage:
-                interactable.Interact(playerDir);
                 animator.SetTrigger("Attack");
-                yield return Helper.GetWaitForSeconds(actionDelay);
-                break;
-            case InteractableType.ChangeLevel:
-                interactable.Interact();
-                yield return Helper.GetWaitForSeconds(actionDelay);
                 break;
             default:
                 break;
         }
 
+        interactable.Interact(playerDir);
+
+        yield return Helper.GetWaitForSeconds(actionDelay);
+
         isBusy = false;
+    }
+    
+    private void OnSenterPerformed(InputAction.CallbackContext context)
+    {
+        isSenterEnabled = !isSenterEnabled;
+        senter.enabled = isSenterEnabled;
     }
 
     // biar posisi terakhir player nya ke save

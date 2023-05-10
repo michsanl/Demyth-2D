@@ -1,10 +1,11 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace CustomTools.Core
 {
-    public class CoreScene : CoreBehaviour
+    public class CoreScene : MonoBehaviour
     {
 		// PUBLIC MEMBERS
 
@@ -21,7 +22,7 @@ namespace CustomTools.Core
 
 		private bool _isInitialized;
 
-		[SerializeField]
+		[SerializeField, ReadOnly]
 		private List<SceneService> _services = new List<SceneService>();
 
 		// PUBLIC METHODS
@@ -128,7 +129,7 @@ namespace CustomTools.Core
 			if (_selfInitialize == true && IsActive == false)
 			{
 				// UI cannot be initialized in Awake, Canvas elements need to Awake first
-				AddService(_context.UI);
+				// AddService(_context.UI);
 
 				yield return Activate();
 			}
@@ -169,7 +170,7 @@ namespace CustomTools.Core
 
 		protected virtual void CollectServices()
 		{
-			var services = GetComponentsInChildren<SceneService>(true);
+			var services = FindObjectsOfType<SceneService>(true);
 
 			foreach (var service in services)
 			{
@@ -239,7 +240,7 @@ namespace CustomTools.Core
 
 			if (_services.Contains(service) == true)
 			{
-				Debug.LogError($"Service {service.gameObject.name} already added.");
+				Debug.LogWarning($"Service {service.gameObject.name} already added.");
 				return;
 			}
 

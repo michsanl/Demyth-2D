@@ -7,8 +7,11 @@ namespace CustomTools.Core
     [System.Serializable]
     public class SceneContext
     {
-
-        //Menu
+        [Title("Scene UI")]
         public SceneUI UI;
+
+        [Title("Gameplay")]
+        public LevelManager LevelManager;
+        public Player Player;
     }
 }
