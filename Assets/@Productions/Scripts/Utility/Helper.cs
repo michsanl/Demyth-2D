@@ -18,7 +18,9 @@ public static class Helper
 
     public static bool CheckTargetDirection<T>(Vector2 origin, Vector2 dir, LayerMask layer, out T targetComponent)
     {
-        RaycastHit2D[] hit = Physics2D.RaycastAll(origin, dir, 1f, layer);
+	var newOrigin = origin + dir * .6f;
+
+        RaycastHit2D[] hit = Physics2D.RaycastAll(newOrigin, dir, .1f, layer);
         
         targetComponent = default(T);
         if (hit.Length > 0)
