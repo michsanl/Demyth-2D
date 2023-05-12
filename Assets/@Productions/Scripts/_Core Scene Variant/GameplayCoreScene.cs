@@ -22,7 +22,9 @@ namespace CustomTools.Core
 
         private IEnumerator SpawnPlayer()
         {
-            var player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            var starterPoint = Context.LevelManager.CurrentLevel.StarterPosition;
+
+            var player = Instantiate(playerPrefab, starterPoint, Quaternion.identity);
             //TODO : initiate player
             Context.Player = player;
             player.Context = Context;

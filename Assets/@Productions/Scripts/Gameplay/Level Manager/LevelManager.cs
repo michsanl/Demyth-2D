@@ -20,6 +20,7 @@ public class LevelManager : SceneService
         {
             level.Context = Context;
         }
+        CurrentLevel = GetLevelByID(debugLevelID);
     }
 
     public IEnumerator SetupLevel()
