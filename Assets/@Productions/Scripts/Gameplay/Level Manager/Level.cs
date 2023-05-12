@@ -59,7 +59,7 @@ public class Level : CoreBehaviour
     private void OnDrawGizmos()
     {
         Color color = Color.white;
-        color.a = 0.1f;
+        color.a = 0.5f;
         Gizmos.color = color;
         DebugDrawLine();
     }
