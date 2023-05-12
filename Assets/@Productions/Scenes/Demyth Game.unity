@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2853056097991955560, guid: 9664054ca2f8c3047a5854feddadac63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955561, guid: 9664054ca2f8c3047a5854feddadac63, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -490,6 +494,10 @@ PrefabInstance:
     - target: {fileID: 2853056098817570089, guid: 9664054ca2f8c3047a5854feddadac63, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.413
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178142742614792840, guid: 9664054ca2f8c3047a5854feddadac63, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9664054ca2f8c3047a5854feddadac63, type: 3}
@@ -775,8 +783,8 @@ Camera:
   m_GameObject: {fileID: 1517738839}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.039215688, g: 0.054901965, b: 0.121568635, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -944,7 +952,7 @@ MonoBehaviour:
   levels:
   - {fileID: 640118430}
   - {fileID: 2003712160}
-  debugLevelID: Level 1
+  debugLevelID: Level 2
 --- !u!4 &1774737882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2853056097991955561, guid: 9664054ca2f8c3047a5854feddadac63, type: 3}
@@ -957,13 +965,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1590701348}
     m_Modifications:
+    - target: {fileID: 1573342881223651492, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302608360557988297, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611500862878043918, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955560, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_Name
       value: Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955560, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955561, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_RootOrder
@@ -1010,6 +1030,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2853056098817570084, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853056099205404991, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: interactableType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192137745935237837, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279439021341226732, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012963394781268162, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634660577719408396, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
