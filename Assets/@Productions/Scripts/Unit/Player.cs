@@ -19,6 +19,7 @@ public class Player : CoreBehaviour
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;
+    private Health health;
     private bool isBusy = false;
     private bool isSenterEnabled;
     private Vector3 playerDir;
@@ -27,10 +28,12 @@ public class Player : CoreBehaviour
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Senter.performed += OnSenterPerformed;
+        playerInputActions.Player.HealthPotion.performed += OnHealthPotionPerformed;
         playerInputActions.Player.Enable();
 
         movementController = GetComponent<MovementController>();
         lookOrientation = GetComponent<LookOrientation>();
+        health = GetComponent<Health>();
     }
 
     private void Update()
@@ -106,6 +109,26 @@ public class Player : CoreBehaviour
     {
         isSenterEnabled = !isSenterEnabled;
         senterGameObject.SetActive(isSenterEnabled);
+    }
+
+    private void OnHealthPotionPerformed(InputAction.CallbackContext context)
+    {
+        if (isBusy)
+        {
+            return;
+        }
+        StartCoroutine(HealSelf());
+    }
+
+    private IEnumerator HealSelf()
+    {
+        isBusy = true;
+
+        health.Heal(1);
+
+        yield return Helper.GetWaitForSeconds(actionDelay);
+
+        isBusy = false;
     }
 
     // biar posisi terakhir player nya ke save
