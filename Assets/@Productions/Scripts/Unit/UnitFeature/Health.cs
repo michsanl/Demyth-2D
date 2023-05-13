@@ -46,6 +46,11 @@ public class Health : MonoBehaviour
         CurrentHP--;
     }
 
+    public void Heal(int healAmount)
+    {
+        CurrentHP++;
+    }
+
     private void Death()
     {
         //Dead
