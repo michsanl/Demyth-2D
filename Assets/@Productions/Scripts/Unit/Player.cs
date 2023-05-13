@@ -22,6 +22,8 @@ public class Player : CoreBehaviour
     private Health health;
     private bool isBusy = false;
     private bool isSenterEnabled;
+    private bool isSenterUnlocked = true;
+    private bool isHealthPotionUnlocked = true;
     private Vector3 playerDir;
 
     private void Awake() 
@@ -107,12 +109,20 @@ public class Player : CoreBehaviour
     
     private void OnSenterPerformed(InputAction.CallbackContext context)
     {
+        if (!isSenterUnlocked)
+        {
+            return;
+        }
         isSenterEnabled = !isSenterEnabled;
         senterGameObject.SetActive(isSenterEnabled);
     }
 
     private void OnHealthPotionPerformed(InputAction.CallbackContext context)
     {
+        if (!isHealthPotionUnlocked)
+        {
+            return;
+        }
         if (isBusy)
         {
             return;
