@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 
 public class Player : CoreBehaviour
 {
-    [SerializeField] private Light2D senter;
+    [SerializeField] private GameObject senterGameObject;
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
@@ -19,7 +19,6 @@ public class Player : CoreBehaviour
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;
-    private float scanDistance = 1f;
     private bool isBusy = false;
     private bool isSenterEnabled;
     private Vector3 playerDir;
@@ -106,7 +105,7 @@ public class Player : CoreBehaviour
     private void OnSenterPerformed(InputAction.CallbackContext context)
     {
         isSenterEnabled = !isSenterEnabled;
-        senter.enabled = isSenterEnabled;
+        senterGameObject.SetActive(isSenterEnabled);
     }
 
     // biar posisi terakhir player nya ke save
