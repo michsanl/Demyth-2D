@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 
 public class Player : CoreBehaviour
 {
-    [SerializeField] private Light2D senter;
+    [SerializeField] private GameObject senterGameObject;
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
@@ -19,19 +19,23 @@ public class Player : CoreBehaviour
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;
-    private float scanDistance = 1f;
+    private Health health;
     private bool isBusy = false;
     private bool isSenterEnabled;
+    private bool isSenterUnlocked = true;
+    private bool isHealthPotionUnlocked = true;
     private Vector3 playerDir;
 
     private void Awake() 
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Senter.performed += OnSenterPerformed;
+        playerInputActions.Player.HealthPotion.performed += OnHealthPotionPerformed;
         playerInputActions.Player.Enable();
 
         movementController = GetComponent<MovementController>();
         lookOrientation = GetComponent<LookOrientation>();
+        health = GetComponent<Health>();
     }
 
     private void Update()
@@ -105,8 +109,36 @@ public class Player : CoreBehaviour
     
     private void OnSenterPerformed(InputAction.CallbackContext context)
     {
+        if (!isSenterUnlocked)
+        {
+            return;
+        }
         isSenterEnabled = !isSenterEnabled;
-        senter.enabled = isSenterEnabled;
+        senterGameObject.SetActive(isSenterEnabled);
+    }
+
+    private void OnHealthPotionPerformed(InputAction.CallbackContext context)
+    {
+        if (!isHealthPotionUnlocked)
+        {
+            return;
+        }
+        if (isBusy)
+        {
+            return;
+        }
+        StartCoroutine(HealSelf());
+    }
+
+    private IEnumerator HealSelf()
+    {
+        isBusy = true;
+
+        health.Heal(1);
+
+        yield return Helper.GetWaitForSeconds(actionDelay);
+
+        isBusy = false;
     }
 
     // biar posisi terakhir player nya ke save
