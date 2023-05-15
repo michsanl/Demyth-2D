@@ -50,6 +50,9 @@ MonoBehaviour:
   movementBlockerLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  size: {x: 3, y: 1}
+  castOriginOffsetX: 1
+  castOriginOffsetY: 0
 --- !u!61 &1581017933277813790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -74,7 +77,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1581017933590361359
 GameObject:
