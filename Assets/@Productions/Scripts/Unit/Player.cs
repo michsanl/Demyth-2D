@@ -115,6 +115,7 @@ public class Player : CoreBehaviour
         }
         isSenterEnabled = !isSenterEnabled;
         senterGameObject.SetActive(isSenterEnabled);
+        Context.HUDUI.SetActiveSenterImage(isSenterEnabled);
     }
 
     private void OnHealthPotionPerformed(InputAction.CallbackContext context)
