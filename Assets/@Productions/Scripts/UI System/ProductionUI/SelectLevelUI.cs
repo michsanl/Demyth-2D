@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UISystem
 {
-    public class MainMenuUI : UIPageView
+    public class SelectLevelUI : UIPageView
     {
 
         protected override void OnOpen()
@@ -17,21 +17,16 @@ namespace UISystem
             Canvas.enabled = false;
         }
 
-        public void ButtonPlay()
+        public void ButtonBack()
         {
             Close();
-            Open<SelectLevelUI>();
+            Open<MainMenuUI>();
         }
 
-        public void ButtonOption()
+        public void ButtonGoToLevel(string levelID)
         {
             Close();
-            Open<OptionsUI>();
-        }
-
-        public void ButtonQuit()
-        {
-            Application.Quit();
+            Open<HUDUI>();
         }
     }
 }
