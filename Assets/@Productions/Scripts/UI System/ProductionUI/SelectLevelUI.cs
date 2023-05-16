@@ -26,7 +26,8 @@ namespace UISystem
         public void ButtonGoToLevel(string levelID)
         {
             Close();
-            Open<HUDUI>();
+            //Open<HUDUI>();
+            SceneUI.Context.HUDUI.Open();
         }
     }
 }

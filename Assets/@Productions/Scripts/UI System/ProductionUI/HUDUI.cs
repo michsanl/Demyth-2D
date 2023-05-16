@@ -1,31 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace UISystem
+using CustomTools.Core;
+
+public class HUDUI : SceneService
 {
-    public class HUDUI : UIPageView
+    private Animator animator;
+
+    protected override void OnInitialize()
     {
-        private Animator animator;
+        animator = GetComponent<Animator>();
+    }
 
-        protected override void OnInitialize()
-        {
-            animator = GetComponent<Animator>();
-        }
+    public void Open()
+    {
+        animator.Play("HUD_Open");
+    }
 
-        private void Start()
-        {
-            animator.Play("HUD_Closed");
-        }
-
-        protected override void OnOpen()
-        {
-            Canvas.enabled = true;
-            animator.Play("HUD_Open");
-        }
-
-        protected override void OnClosed()
-        {
-            animator.Play("HUD_Close");
-        }
+    public void Close()
+    {
+        animator.Play("HUD_Close");
     }
 }
