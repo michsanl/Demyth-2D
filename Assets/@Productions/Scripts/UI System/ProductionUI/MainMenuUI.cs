@@ -17,7 +17,15 @@ namespace UISystem
             Canvas.enabled = false;
         }
 
-        public void ButtonPlay()
+        public void ButtonNewGame()
+        {
+            Close();
+
+            SceneUI.Context.HUDUI.Open();
+            // Go to level 1
+        }
+
+        public void ButtonContinue()
         {
             Close();
             Open<SelectLevelUI>();
