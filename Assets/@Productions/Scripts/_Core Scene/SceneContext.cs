@@ -9,6 +9,7 @@ namespace CustomTools.Core
     {
         [Title("Scene UI")]
         public SceneUI UI;
+        public HUDUI HUDUI;
 
         [Title("Gameplay")]
         public LevelManager LevelManager;

@@ -54,7 +54,7 @@ public class LevelManager : SceneService
         MovePlayerToPosition(level.StarterPosition);
     }
 
-    private Level GetLevelByID(string id)
+    public Level GetLevelByID(string id)
     {
         return levels.FirstOrDefault(x => x.ID == id);
     }
