@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CustomTools.Core;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
+using UISystem;
 
 public class Player : CoreBehaviour
 {
@@ -26,11 +27,15 @@ public class Player : CoreBehaviour
     private bool isHealthPotionUnlocked = true;
     private Vector3 playerDir;
 
+    public bool isGamePaused;
+
     private void Awake() 
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Senter.performed += OnSenterPerformed;
         playerInputActions.Player.HealthPotion.performed += OnHealthPotionPerformed;
+        playerInputActions.Player.Pause.performed += OnPausePerformed;
+
         playerInputActions.Player.Enable();
 
         movementController = GetComponent<MovementController>();
@@ -40,22 +45,21 @@ public class Player : CoreBehaviour
 
     private void Update()
     {
+
         HandlePlayerAction();
     }
 
     private void HandlePlayerAction()
     {
-        if (isBusy)
-        {
+        if (isGamePaused)
             return;
-        }
+        if (isBusy)
+            return;
 
         Vector2 inputVector = playerInputActions.Player.MovePassThrough.ReadValue<Vector2>();
         
         if (Math.Abs(inputVector.x) == Math.Abs(inputVector.y)) // biar gabisa gerak diagonal
-        {  
-           return;
-        }
+            return;
 
         playerDir = inputVector;
         lookOrientation.SetFacingDirection(playerDir);
@@ -118,6 +122,25 @@ public class Player : CoreBehaviour
         Context.HUDUI.SetActiveSenterImage(isSenterEnabled);
     }
 
+    private void OnPausePerformed(InputAction.CallbackContext context)
+    {
+        ToggleGamePause();
+        Context.UI.Toggle<PauseUI>();
+    }
+
+    public void ToggleGamePause()
+    {
+        isGamePaused = !isGamePaused;
+        if (isGamePaused)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
     private void OnHealthPotionPerformed(InputAction.CallbackContext context)
     {
         if (!isHealthPotionUnlocked)
@@ -141,14 +164,5 @@ public class Player : CoreBehaviour
 
         isBusy = false;
     }
-
-    // biar posisi terakhir player nya ke save
-    // public void OnApplicationQuit() {
-    //     if (moveTarget != Vector3.zero) {
-    //         temporarySaveDataSO.level01.playerSpawnPosition = moveTarget;
-    //     } else {
-    //         temporarySaveDataSO.level01.playerSpawnPosition = transform.position;
-    //     }
-    // }
 
 }
