@@ -62,6 +62,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9456a498-554b-4a1b-8fc6-6fcbab6f8107"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -251,6 +260,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""HealthPotion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""541228ee-f741-4108-93d9-03b4c29c32bd"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -263,6 +283,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_MovePassThrough = m_Player.FindAction("MovePassThrough", throwIfNotFound: true);
         m_Player_Senter = m_Player.FindAction("Senter", throwIfNotFound: true);
         m_Player_HealthPotion = m_Player.FindAction("HealthPotion", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +347,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MovePassThrough;
     private readonly InputAction m_Player_Senter;
     private readonly InputAction m_Player_HealthPotion;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -334,6 +356,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @MovePassThrough => m_Wrapper.m_Player_MovePassThrough;
         public InputAction @Senter => m_Wrapper.m_Player_Senter;
         public InputAction @HealthPotion => m_Wrapper.m_Player_HealthPotion;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -355,6 +378,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @HealthPotion.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHealthPotion;
                 @HealthPotion.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHealthPotion;
                 @HealthPotion.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHealthPotion;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -371,6 +397,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @HealthPotion.started += instance.OnHealthPotion;
                 @HealthPotion.performed += instance.OnHealthPotion;
                 @HealthPotion.canceled += instance.OnHealthPotion;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -381,5 +410,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnMovePassThrough(InputAction.CallbackContext context);
         void OnSenter(InputAction.CallbackContext context);
         void OnHealthPotion(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
