@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using DG.Tweening;
-using System.Threading.Tasks;
 using CustomTools.Core;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using UISystem;
 
@@ -24,8 +21,9 @@ public class Player : CoreBehaviour
     private bool isBusy = false;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
+    private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
-    private Vector3 playerDir;
+    private Vector2 playerDir;
 
     public bool isGamePaused;
 
@@ -45,7 +43,6 @@ public class Player : CoreBehaviour
 
     private void Update()
     {
-
         HandlePlayerAction();
     }
 
@@ -56,12 +53,13 @@ public class Player : CoreBehaviour
         if (isBusy)
             return;
 
-        Vector2 inputVector = playerInputActions.Player.MovePassThrough.ReadValue<Vector2>();
-        
-        if (Math.Abs(inputVector.x) == Math.Abs(inputVector.y)) // biar gabisa gerak diagonal
-            return;
+        playerDir = playerInputActions.Player.MovePassThrough.ReadValue<Vector2>();
 
-        playerDir = inputVector;
+        if (playerDir == Vector2.zero)
+            return;
+        if (IsDirectionDiagonal(playerDir))
+            return;
+        
         lookOrientation.SetFacingDirection(playerDir);
         
         if (Helper.CheckTargetDirection(transform.position, playerDir, movementBlockerLayerMask, out Interactable interactable))
@@ -75,6 +73,11 @@ public class Player : CoreBehaviour
         {
             StartCoroutine(HandleMovement());
         }
+    }
+
+    private bool IsDirectionDiagonal(Vector2 direction)
+    {
+        return direction.x != 0 && direction.y != 0;
     }
 
     private IEnumerator HandleMovement()
@@ -114,55 +117,51 @@ public class Player : CoreBehaviour
     private void OnSenterPerformed(InputAction.CallbackContext context)
     {
         if (!isSenterUnlocked)
-        {
             return;
-        }
+
+        ToggleSenter();
+
+        Context.HUDUI.SetActiveSenterImage(isSenterEnabled);
+    }
+
+    private void ToggleSenter()
+    {
         isSenterEnabled = !isSenterEnabled;
         senterGameObject.SetActive(isSenterEnabled);
-        Context.HUDUI.SetActiveSenterImage(isSenterEnabled);
     }
 
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
         ToggleGamePause();
+
         Context.UI.Toggle<PauseUI>();
     }
 
     public void ToggleGamePause()
     {
         isGamePaused = !isGamePaused;
-        if (isGamePaused)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
+        Time.timeScale = isGamePaused ? 0f : 1f;
     }
 
     private void OnHealthPotionPerformed(InputAction.CallbackContext context)
     {
         if (!isHealthPotionUnlocked)
-        {
             return;
-        }
-        if (isBusy)
-        {
+        if (isHealthPotionOnCooldown)
             return;
-        }
+
         StartCoroutine(HealSelf());
     }
 
     private IEnumerator HealSelf()
     {
-        isBusy = true;
+        isHealthPotionOnCooldown = true;
 
         health.Heal(1);
 
         yield return Helper.GetWaitForSeconds(actionDelay);
 
-        isBusy = false;
+        isHealthPotionOnCooldown = false;
     }
 
 }
