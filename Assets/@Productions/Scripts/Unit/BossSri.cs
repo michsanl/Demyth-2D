@@ -7,6 +7,10 @@ using System;
 
 public class BossSri : SceneService
 {
+    [SerializeField] private float startDelay;
+    [SerializeField] private float exitDelay;
+    [SerializeField] private float moveDuration;
+
     [SerializeField] private Animator animator;
 
     private LookOrientation lookOrientation;
@@ -14,12 +18,12 @@ public class BossSri : SceneService
     private bool isBusy;
     private bool isIntroPlayed;
 
-    protected override void OnInitialize()
+    private void Awake()
     {
         lookOrientation = GetComponent<LookOrientation>();
     }
 
-    protected override void OnActivate()
+    private void Start()
     {
         StartCoroutine(PlayIntroAnimation());
     }
@@ -36,24 +40,46 @@ public class BossSri : SceneService
 
     private void HandleAction()
     {
-        if (IsPlayerAbove())
+        // if (IsPlayerAbove())
+        // {
+        //     if (IsPlayerToRight())
+        //     {
+        //         StartCoroutine(PlayUpRightSlash());
+        //     } else
+        //     {
+        //         StartCoroutine(PlayUpLeftSlash());
+        //     }
+        // } else
+        // {
+        //     if (IsPlayerToRight())
+        //     {
+        //         StartCoroutine(PlayDownRightSlash());
+        //     } else
+        //     {
+        //         StartCoroutine(PlayDownLeftSlash());
+        //     }
+        // }
+        float targetPosition = Mathf.Round(Context.Player.transform.position.x);
+        
+        if (targetPosition == transform.position.x)
         {
-            if (IsPlayerToRight())
+            if (IsPlayerAbove())
             {
-                StartCoroutine(PlayUpRightSlash());
-            } else
-            {
-                StartCoroutine(PlayUpLeftSlash());
+                StartCoroutine(PlayUpSlash());
             }
-        } else
+            if (!IsPlayerAbove())
+            {
+                StartCoroutine(PlayDownSlash());
+            }
+        }
+
+        if (IsPlayerToRight())
         {
-            if (IsPlayerToRight())
-            {
-                StartCoroutine(PlayDownRightSlash());
-            } else
-            {
-                StartCoroutine(PlayDownLeftSlash());
-            }
+            StartCoroutine(PlayRightSlash(targetPosition));
+        } 
+        if (IsPlayerToLeft())
+        {
+            StartCoroutine(PlayLeftSlash(targetPosition));
         }
     }
 
@@ -65,6 +91,11 @@ public class BossSri : SceneService
     private bool IsPlayerToRight()
     {
         return transform.position.x < Context.Player.transform.position.x;
+    }
+
+    private bool IsPlayerToLeft()
+    {
+        return transform.position.x > Context.Player.transform.position.x;
     }
 
 
@@ -79,6 +110,57 @@ public class BossSri : SceneService
         isBusy = false;
     }
 
+    private IEnumerator PlayRightSlash(float targetPosition)
+    {
+        isBusy = true;
+
+        lookOrientation.SetFacingDirection(Vector2.right);
+        animator.Play("Horizontal_Slash_Fast");
+        yield return Helper.GetWaitForSeconds(startDelay);
+        transform.DOMoveX(targetPosition, moveDuration).SetEase(Ease.OutExpo);
+        yield return Helper.GetWaitForSeconds(exitDelay);
+
+        isBusy = false;
+    }
+
+    private IEnumerator PlayLeftSlash(float targetPosition)
+    {
+        isBusy = true;
+
+        lookOrientation.SetFacingDirection(Vector2.left);
+        animator.Play("Horizontal_Slash_Fast");
+        yield return Helper.GetWaitForSeconds(startDelay);
+        transform.DOMoveX(targetPosition, moveDuration).SetEase(Ease.OutExpo);
+        yield return Helper.GetWaitForSeconds(exitDelay);
+
+        isBusy = false;
+    }
+
+    private IEnumerator PlayUpSlash()
+    {
+        isBusy = true;
+
+        animator.Play("Up_Slash_Normal");
+        yield return Helper.GetWaitForSeconds(.7f);
+        transform.DOMoveY(2, .3f).SetEase(Ease.OutExpo);
+        yield return Helper.GetWaitForSeconds(.5f);
+
+        isBusy = false;
+    }
+
+    private IEnumerator PlayDownSlash()
+    {
+        isBusy = true;
+
+        animator.Play("Down_Slash_Normal");
+        yield return Helper.GetWaitForSeconds(.7f);
+        transform.DOMoveY(-4, .3f).SetEase(Ease.OutExpo);
+        yield return Helper.GetWaitForSeconds(.5f);
+
+        isBusy = false;
+    }
+
+#region Type1
     private IEnumerator PlayUpRightSlash()
     {
         isBusy = true;
@@ -138,4 +220,7 @@ public class BossSri : SceneService
 
         isBusy = false;
     }
+#endregion
+
+
 }
