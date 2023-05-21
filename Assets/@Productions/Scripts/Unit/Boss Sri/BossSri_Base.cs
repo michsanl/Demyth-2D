@@ -10,11 +10,17 @@ public class BossSri_Base : SceneService
 {
     [SerializeField] protected Animator animator;
     [SerializeField] protected LookOrientation lookOrientation;
-    [SerializeField] protected AudioSource audioVertical;
-    [SerializeField] protected AudioSource audioHorizontal;
+    [SerializeField] private AudioClipSriSO audioClipSriSO;
+
+    private AudioManager audioManager;
 
     protected bool isBusy;
     protected bool isIntroPlayed;
+
+    protected override void OnActivate()
+    {
+        audioManager = Context.AudioManager;
+    }
 
 #region PlayerToBossPositionInfo
     protected bool IsPlayerAbove()
@@ -70,7 +76,7 @@ public class BossSri_Base : SceneService
         float backSwing = 1.267f;
 
         animator.Play("Horizontal Slash");
-        audioHorizontal.Play();
+        audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
@@ -90,7 +96,7 @@ public class BossSri_Base : SceneService
         float backSwing = 1.267f;
 
         animator.Play("Horizontal Slash");
-        audioHorizontal.Play();
+        audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
@@ -108,7 +114,7 @@ public class BossSri_Base : SceneService
         float backSwing = 1.1f;
 
         animator.Play("Up Slash");
-        audioVertical.Play();
+        audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
@@ -126,7 +132,7 @@ public class BossSri_Base : SceneService
         float backSwing = 1.1f;
 
         animator.Play("Down Slash");
-        audioVertical.Play();
+        audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
