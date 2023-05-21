@@ -14,5 +14,8 @@ namespace CustomTools.Core
         [Title("Gameplay")]
         public LevelManager LevelManager;
         public Player Player;
+
+        [Title("Scene UI")]
+        public AudioManager AudioManager;
     }
 }

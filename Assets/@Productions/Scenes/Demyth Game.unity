@@ -876,6 +876,7 @@ MonoBehaviour:
     HUDUI: {fileID: 0}
     LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    AudioManager: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   _defaultViews:
@@ -1085,6 +1086,7 @@ MonoBehaviour:
     HUDUI: {fileID: 0}
     LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    AudioManager: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   levels:
@@ -1187,6 +1189,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 708720891042517943, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
   m_PrefabInstance: {fileID: 543316240}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2007419813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6198851195413231969, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+  m_PrefabInstance: {fileID: 6198851195608150724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dadd4f87d4a1ee0448b06bf53b9d05b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2034759382 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1275323380287492344, guid: a1eebd354b2f7bd4092c82f09433e813, type: 3}
@@ -1756,6 +1769,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
+--- !u!1001 &6198851195608150724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6198851195413231968, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198851195413231970, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d20d5c2e9197e3942a368a7116858fb0, type: 3}
 --- !u!1001 &7146482867054046213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1984,6 +2054,10 @@ PrefabInstance:
       propertyPath: _context.HUDUI
       value: 
       objectReference: {fileID: 428263499}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.AudioManager
+      value: 
+      objectReference: {fileID: 2007419813}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.LevelManager
       value: 
