@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7673398050621169836}
   - component: {fileID: 7673398050621169838}
   - component: {fileID: 2983901580718662968}
+  - component: {fileID: 1414708338211201270}
   - component: {fileID: 7673398050621169833}
   m_Layer: 0
   m_Name: NPC Boss Sri
@@ -66,9 +67,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ea3ae7e2222e6e4c8d8be330ad1d338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  startDelay: 0.4
+  exitDelay: 0.7
+  moveDuration: 0.3
+  animator: {fileID: 7673398052024204807}
+--- !u!114 &1414708338211201270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11061ad1105168489fda1b800194808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
