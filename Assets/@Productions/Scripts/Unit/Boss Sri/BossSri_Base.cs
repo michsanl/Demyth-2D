@@ -15,6 +15,7 @@ public class BossSri_Base : SceneService
     private AudioManager audioManager;
 
     protected bool isBusy;
+    protected bool isMoving;
     protected bool isIntroPlayed;
 
     protected int INTRO = Animator.StringToHash("Intro");
@@ -62,6 +63,21 @@ public class BossSri_Base : SceneService
         return transform.position.y == Context.Player.transform.position.y;
     }
 #endregion
+
+    protected IEnumerator PlayMove(Vector2 direction)
+    {
+        isMoving = true;
+
+        Vector2 moveTargetPosition = (Vector2)transform.position + direction;
+        float moveDuration = .25f;
+        float actionDelay = 1f;
+
+        transform.DOMove(moveTargetPosition, moveDuration).SetEase(Ease.OutExpo);
+        yield return Helper.GetWaitForSeconds(actionDelay);
+
+        isMoving = false;
+    }
+
 
     protected IEnumerator PlayIntro()
     {
@@ -156,6 +172,7 @@ public class BossSri_Base : SceneService
 
         float animationDuration = 4.1f;
         animator.Play(NAIL_AOE);
+        audioManager.PlaySound(audioClipSriSO.NailAOE);
         yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;
@@ -167,6 +184,7 @@ public class BossSri_Base : SceneService
 
         float animationDuration = 2.5f;
         animator.Play(SPIN_CLAW);
+        audioManager.PlaySound(audioClipSriSO.SpinClaw);
         yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;
@@ -178,6 +196,7 @@ public class BossSri_Base : SceneService
 
         float animationDuration = 2.0667f;
         animator.Play(FIRE_BALL);
+        // audioManager.PlaySound(audioClipSriSO.Fireball);
         yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;
@@ -189,6 +208,7 @@ public class BossSri_Base : SceneService
 
         float animationDuration = 1.8f;
         animator.Play(NAIL_SUMMON_1);
+        audioManager.PlaySound(audioClipSriSO.NailSummon);
         yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;

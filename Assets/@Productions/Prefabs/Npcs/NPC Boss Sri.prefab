@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398050621169836}
+  - component: {fileID: 6415920876462455349}
   - component: {fileID: 8000941282146611189}
-  - component: {fileID: 7673398050621169838}
-  - component: {fileID: 2983901580718662968}
-  - component: {fileID: 1414708338211201270}
   - component: {fileID: 7673398050621169833}
-  m_Layer: 0
+  - component: {fileID: 9182001827861331906}
+  - component: {fileID: 5108067734571236107}
+  - component: {fileID: 4916652800471147435}
+  m_Layer: 6
   m_Name: NPC Boss Sri
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +38,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8000941282146611189
+--- !u!114 &6415920876462455349
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,6 +46,31 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7673398050621169837}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f59bcbc39b9ed248a319d1d13ef60bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  animator: {fileID: 7673398052024204807}
+  lookOrientation: {fileID: 7673398050621169833}
+  audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
+  isCombatMode: 1
+--- !u!114 &8000941282146611189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85f593d081b2e8440872f0f0fc5917b9, type: 3}
   m_Name: 
@@ -61,81 +87,8 @@ MonoBehaviour:
   animator: {fileID: 7673398052024204807}
   lookOrientation: {fileID: 7673398050621169833}
   audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
---- !u!114 &7673398050621169838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8202085f1ef49d4682a02cce4983d62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
-    Player: {fileID: 0}
-    AudioManager: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  startDelay: 0.4
-  exitDelay: 0.7
-  moveDuration: 0.3
-  animator: {fileID: 7673398052024204807}
---- !u!114 &2983901580718662968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ea3ae7e2222e6e4c8d8be330ad1d338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
-    Player: {fileID: 0}
-    AudioManager: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  startDelay: 0.4
-  exitDelay: 0.7
-  moveDuration: 0.3
-  animator: {fileID: 7673398052024204807}
---- !u!114 &1414708338211201270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11061ad1105168489fda1b800194808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
-    Player: {fileID: 0}
-    AudioManager: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  startDelay: 0.4
-  exitDelay: 0.7
-  moveDuration: 0.3
-  animator: {fileID: 7673398052024204807}
+  playMovingAbility: 0
+  playStaticAbility: 0
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +102,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 7673398051580542024}
+--- !u!114 &9182001827861331906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  currentHealth: 0
+  status: 0
+--- !u!114 &5108067734571236107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6a42bbc1965fd54e81f6abc3402c3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableType: 3
+--- !u!61 &4916652800471147435
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7673398051580542025
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398051580542024}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +201,7 @@ GameObject:
   - component: {fileID: 7673398052024204806}
   - component: {fileID: 7673398052024204807}
   - component: {fileID: 7673398052024204804}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spine Mecanim GameObject (SriSpine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
