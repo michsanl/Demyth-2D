@@ -17,6 +17,15 @@ public class BossSri_Base : SceneService
     protected bool isBusy;
     protected bool isIntroPlayed;
 
+    protected int INTRO = Animator.StringToHash("Intro");
+    protected int UP_SLASH = Animator.StringToHash("Up_Slash");
+    protected int DOWN_SLASH = Animator.StringToHash("Down_Slash");
+    protected int HORIZONTAL_SLASH = Animator.StringToHash("Horizontal_Slash");
+    protected int NAIL_AOE = Animator.StringToHash("Nail_AOE");
+    protected int SPIN_CLAW = Animator.StringToHash("Spin_Claw");
+    protected int FIRE_BALL = Animator.StringToHash("Fire_Ball");
+    protected int NAIL_SUMMON_1 = Animator.StringToHash("Nail_Summon_1");
+
     protected override void OnActivate()
     {
         audioManager = Context.AudioManager;
@@ -58,7 +67,7 @@ public class BossSri_Base : SceneService
     {
         isBusy = true;
 
-        animator.Play("Intro");
+        animator.Play(INTRO);
         yield return Helper.GetWaitForSeconds(4.1f);
         isIntroPlayed = true;
 
@@ -75,7 +84,7 @@ public class BossSri_Base : SceneService
         float swing = .233f;
         float backSwing = 1.267f;
 
-        animator.Play("Horizontal Slash");
+        animator.Play(HORIZONTAL_SLASH);
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
@@ -95,7 +104,7 @@ public class BossSri_Base : SceneService
         float swing = .233f;
         float backSwing = 1.267f;
 
-        animator.Play("Horizontal Slash");
+        animator.Play(HORIZONTAL_SLASH);
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
@@ -113,7 +122,7 @@ public class BossSri_Base : SceneService
         float swing = .233f;
         float backSwing = 1.1f;
 
-        animator.Play("Up Slash");
+        animator.Play(UP_SLASH);
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
@@ -131,12 +140,56 @@ public class BossSri_Base : SceneService
         float swing = .233f;
         float backSwing = 1.1f;
 
-        animator.Play("Down Slash");
+        animator.Play(DOWN_SLASH);
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         yield return Helper.GetWaitForSeconds(backSwing);
+
+        isBusy = false;
+    }
+
+    protected IEnumerator PlayNailAOE()
+    {
+        isBusy = true;
+
+        float animationDuration = 4.1f;
+        animator.Play(NAIL_AOE);
+        yield return Helper.GetWaitForSeconds(animationDuration);
+
+        isBusy = false;
+    }
+
+    protected IEnumerator PlaySpinClaw()
+    {
+        isBusy = true;
+
+        float animationDuration = 2.5f;
+        animator.Play(SPIN_CLAW);
+        yield return Helper.GetWaitForSeconds(animationDuration);
+
+        isBusy = false;
+    }
+
+    protected IEnumerator PlayFireBall()
+    {
+        isBusy = true;
+
+        float animationDuration = 2.0667f;
+        animator.Play(FIRE_BALL);
+        yield return Helper.GetWaitForSeconds(animationDuration);
+
+        isBusy = false;
+    }
+
+    protected IEnumerator PlayNailSummon1()
+    {
+        isBusy = true;
+
+        float animationDuration = 1.8f;
+        animator.Play(NAIL_SUMMON_1);
+        yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;
     }

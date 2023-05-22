@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSri : BossSri_Base
+public class BossSri_Testing : BossSri_Base
 {
 
     protected bool isOn;
