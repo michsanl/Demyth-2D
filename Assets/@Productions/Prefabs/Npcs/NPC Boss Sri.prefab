@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7673398050621169836}
   - component: {fileID: 6415920876462455349}
+  - component: {fileID: 4728018448867636637}
   - component: {fileID: 8000941282146611189}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
@@ -63,6 +64,31 @@ MonoBehaviour:
   lookOrientation: {fileID: 7673398050621169833}
   audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
   isCombatMode: 1
+--- !u!114 &4728018448867636637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9207428f95c321e4eab847d446f95917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  animator: {fileID: 7673398052024204807}
+  lookOrientation: {fileID: 7673398050621169833}
+  audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
+  isCombatMode: 0
 --- !u!114 &8000941282146611189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +96,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85f593d081b2e8440872f0f0fc5917b9, type: 3}
   m_Name: 

@@ -62,6 +62,11 @@ public class BossSri_Base : SceneService
     {
         return transform.position.y == Context.Player.transform.position.y;
     }
+
+    protected bool IsPlayerNearby()
+    {
+        return Vector2.Distance(transform.position, Context.Player.transform.position) < 1.5f;
+    }
 #endregion
 
     protected IEnumerator PlayMove(Vector2 direction)
