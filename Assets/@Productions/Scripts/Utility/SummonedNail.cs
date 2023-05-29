@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SummonedNail : MonoBehaviour
 {
-    [SerializeField] private GameObject colliderGameObject;
-    [SerializeField] private float timer;
-    [SerializeField] private float summonDelay;
+    [SerializeField] private GameObject nailModel;
+    [SerializeField] private GameObject anticipationModel;
+    [SerializeField] private float destroyTimer;
+    [SerializeField] private float summonDelayTimer;
 
     private void Start() 
     {
@@ -15,9 +16,11 @@ public class SummonedNail : MonoBehaviour
 
     public IEnumerator DestroyMe()
     {
-        yield return Helper.GetWaitForSeconds(summonDelay);
-        colliderGameObject.SetActive(true);
-        yield return Helper.GetWaitForSeconds(timer-summonDelay);
+        yield return Helper.GetWaitForSeconds(summonDelayTimer);
+        anticipationModel.SetActive(false);
+        nailModel.SetActive(true);
+        
+        yield return Helper.GetWaitForSeconds(destroyTimer);
         Destroy(gameObject);
     }
 }
