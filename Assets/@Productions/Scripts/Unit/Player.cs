@@ -13,13 +13,14 @@ public class Player : CoreBehaviour
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
+    [SerializeField] private float attackDuration;
 
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;
     private Health health;
     private bool isBusy;
-    private bool isMoving;
+    private bool isStunned;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionOnCooldown;
@@ -52,6 +53,8 @@ public class Player : CoreBehaviour
     private void HandlePlayerAction()
     {
         if (isGamePaused)
+            return;
+        if (isStunned)
             return;
         if (isBusy)
             return;
@@ -105,7 +108,9 @@ public class Player : CoreBehaviour
         {
             case InteractableType.Push:
                 animator.SetTrigger("Attack");
-                break;
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
             case InteractableType.Damage:
                 animator.SetTrigger("Attack");
                 break;
@@ -122,12 +127,12 @@ public class Player : CoreBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        StartCoroutine(KnockedBack());
+        StartCoroutine(SelfKnockBack());
     }
 
-    public IEnumerator KnockedBack()
+    public IEnumerator SelfKnockBack()
     {
-        isBusy = true;
+        isStunned = true;
 
         Vector2 oppositeDir = GetOppositeDir(lastPlayerDir);
 
@@ -141,7 +146,20 @@ public class Player : CoreBehaviour
             yield return Helper.GetWaitForSeconds(actionDelay);
         }
 
-        isBusy = false;
+        isStunned = false;
+    }
+
+    public IEnumerator KnockBack(Vector2 dir)
+    {
+        isStunned = true;
+        
+        if (!Helper.CheckTargetDirection(transform.position, dir, movementBlockerLayerMask, out Interactable interactable))
+        {
+            movementController.Move(dir, moveDuration);
+            yield return Helper.GetWaitForSeconds(actionDelay);
+        }
+
+        isStunned = false;
     }
 
     public Vector2 GetOppositeDir(Vector2 vector)

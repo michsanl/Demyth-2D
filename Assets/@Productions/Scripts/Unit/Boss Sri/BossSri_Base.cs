@@ -10,12 +10,17 @@ public class BossSri_Base : SceneService
 {
     [SerializeField] private GameObject groundNail_1; 
 
+    [SerializeField] private GameObject horizontalSlashCollider;
+    [SerializeField] private GameObject verticalSlashCollider;
+    [SerializeField] private GameObject spinNailCollider;
+    [SerializeField] private GameObject nailAOECollider;
+
     [SerializeField] protected Animator animator;
-    [SerializeField] protected LookOrientation lookOrientation;
     [SerializeField] private AudioClipSriSO audioClipSriSO;
 
-    private AudioManager audioManager;
 
+    protected AudioManager audioManager;
+    protected LookOrientation lookOrientation;
     protected bool isBusy;
     protected bool isMoving;
     protected bool isIntroPlayed;
@@ -28,6 +33,11 @@ public class BossSri_Base : SceneService
     protected int SPIN_CLAW = Animator.StringToHash("Spin_Claw");
     protected int FIRE_BALL = Animator.StringToHash("Fire_Ball");
     protected int NAIL_SUMMON_1 = Animator.StringToHash("Nail_Summon_1");
+
+    protected override void OnInitialize()
+    {
+        lookOrientation = GetComponent<LookOrientation>();
+    }
 
     protected override void OnActivate()
     {
@@ -110,9 +120,13 @@ public class BossSri_Base : SceneService
         animator.Play(HORIZONTAL_SLASH);
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
+        horizontalSlashCollider.SetActive(true);
+
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         yield return Helper.GetWaitForSeconds(backSwing);
+
+        horizontalSlashCollider.SetActive(false);
 
         isBusy = false;
     }
@@ -130,9 +144,13 @@ public class BossSri_Base : SceneService
         animator.Play(HORIZONTAL_SLASH);
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
+        horizontalSlashCollider.SetActive(true);
+
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         yield return Helper.GetWaitForSeconds(backSwing);
+
+        horizontalSlashCollider.SetActive(false);
 
         isBusy = false;
     }
@@ -148,9 +166,13 @@ public class BossSri_Base : SceneService
         animator.Play(UP_SLASH);
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
+        verticalSlashCollider.SetActive(true);
+
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         yield return Helper.GetWaitForSeconds(backSwing);
+
+        verticalSlashCollider.SetActive(false);
 
         isBusy = false;
     }
@@ -166,9 +188,13 @@ public class BossSri_Base : SceneService
         animator.Play(DOWN_SLASH);
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
+        verticalSlashCollider.SetActive(true);
+
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         yield return Helper.GetWaitForSeconds(backSwing);
+
+        verticalSlashCollider.SetActive(false);
 
         isBusy = false;
     }
@@ -178,9 +204,14 @@ public class BossSri_Base : SceneService
         isBusy = true;
 
         float animationDuration = 4.1f;
+
         animator.Play(NAIL_AOE);
         audioManager.PlaySound(audioClipSriSO.NailAOE);
+        nailAOECollider.SetActive(true);
+
         yield return Helper.GetWaitForSeconds(animationDuration);
+
+        nailAOECollider.SetActive(false);
 
         isBusy = false;
     }
@@ -189,10 +220,21 @@ public class BossSri_Base : SceneService
     {
         isBusy = true;
 
-        float animationDuration = 2.5f;
+        //float animationDuration = 2.5f;
+        float frontSwing = 1f;
+        float swing = 1f;
+        float backSwing = .5f;
+
         animator.Play(SPIN_CLAW);
         audioManager.PlaySound(audioClipSriSO.SpinClaw);
-        yield return Helper.GetWaitForSeconds(animationDuration);
+
+        yield return Helper.GetWaitForSeconds(frontSwing);
+        
+        spinNailCollider.SetActive(true);
+        yield return Helper.GetWaitForSeconds(swing);
+        spinNailCollider.SetActive(false);
+        
+        yield return Helper.GetWaitForSeconds(backSwing);
 
         isBusy = false;
     }

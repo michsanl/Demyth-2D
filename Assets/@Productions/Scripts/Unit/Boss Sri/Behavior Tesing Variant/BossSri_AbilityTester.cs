@@ -15,7 +15,7 @@ public class BossSri_AbilityTester : BossSri_Base
         NailSummon,
         FireBall,
         SpinClaw,
-        Slash,
+        SlashInCircle,
     }
 
     protected override void OnActivate()
@@ -51,7 +51,7 @@ public class BossSri_AbilityTester : BossSri_Base
             case Ability.SpinClaw:
                 StartCoroutine(PlaySpinClaw());
                 break;
-            case Ability.Slash:
+            case Ability.SlashInCircle:
                 PlayMovingAbility();
                 break;
             default:

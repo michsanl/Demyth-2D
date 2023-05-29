@@ -37,7 +37,7 @@ public class BossSri_TypeC : BossSri_Base
 
         if (IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,2);
+            int randomIndex = UnityEngine.Random.Range(0,3);
             if (randomIndex == 0)
             {
                 StartCoroutine(PlayNailAOE());
