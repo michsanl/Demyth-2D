@@ -67,9 +67,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398050621169836}
+  - component: {fileID: 8000941282146611189}
   - component: {fileID: 6415920876462455349}
   - component: {fileID: 4728018448867636637}
-  - component: {fileID: 8000941282146611189}
+  - component: {fileID: 8342994096919207792}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
   - component: {fileID: 5108067734571236107}
@@ -98,6 +99,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8000941282146611189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f593d081b2e8440872f0f0fc5917b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  groundNail_1: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
+  animator: {fileID: 7673398052024204807}
+  lookOrientation: {fileID: 7673398050621169833}
+  audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
+  activate: 0
+  ability: 0
 --- !u!114 &6415920876462455349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +178,7 @@ MonoBehaviour:
   lookOrientation: {fileID: 7673398050621169833}
   audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
   isCombatMode: 0
---- !u!114 &8000941282146611189
+--- !u!114 &8342994096919207792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7673398050621169837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f593d081b2e8440872f0f0fc5917b9, type: 3}
+  m_Script: {fileID: 11500000, guid: a037a68584c3fcc4bb96d83e32eb32ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
@@ -175,8 +203,7 @@ MonoBehaviour:
   animator: {fileID: 7673398052024204807}
   lookOrientation: {fileID: 7673398050621169833}
   audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
-  activate: 0
-  ability: 0
+  isCombatMode: 0
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0

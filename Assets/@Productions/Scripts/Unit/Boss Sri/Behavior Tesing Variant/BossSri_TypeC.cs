@@ -60,10 +60,20 @@ public class BossSri_TypeC : BossSri_Base
             return;
         }
 
-
-        if (isMoving)
+        if (!IsPlayerNearby())
+        {
+            int randomIndex = UnityEngine.Random.Range(0,3);
+            if (randomIndex == 0)
+            {
+                HandleMovement();
+            } 
+            else
+            {
+                StartCoroutine(PlayNailSummon1());
+            }
             return;
-        HandleMovement();
+        }
+        
     }
 
     private int GetRandomIndexFromList(List<IEnumerator> abilityList)
@@ -100,6 +110,9 @@ public class BossSri_TypeC : BossSri_Base
 
     private void HandleMovement()
     {
+        if (isMoving)
+            return;
+
         int i = UnityEngine.Random.Range(0,2);
         movementActionPoolArray[i]?.Invoke();
     }
