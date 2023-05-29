@@ -218,7 +218,11 @@ public class BossSri_Base : SceneService
         animator.Play(NAIL_SUMMON_1);
         audioManager.PlaySound(audioClipSriSO.NailSummon);
 
-        Instantiate(groundNail_1, Context.Player.transform.position, Quaternion.identity);
+        Vector2 playerPosition = Context.Player.transform.position;
+        playerPosition.x = Mathf.Round(playerPosition.x);
+        playerPosition.y = Mathf.Round(playerPosition.y);
+
+        Instantiate(groundNail_1, playerPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);
 

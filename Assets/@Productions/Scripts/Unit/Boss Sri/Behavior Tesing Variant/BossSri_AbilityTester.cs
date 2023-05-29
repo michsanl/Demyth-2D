@@ -5,6 +5,7 @@ using System;
 
 public class BossSri_AbilityTester : BossSri_Base
 {
+    [SerializeField] private bool activate;
     private int count;
 
     public Ability ability;
@@ -25,7 +26,9 @@ public class BossSri_AbilityTester : BossSri_Base
     protected override void OnTick()
     {
         base.OnTick();
-        
+
+        if (!activate)
+            return;
         if (isBusy)
             return;
 

@@ -18,12 +18,15 @@ public class Player : CoreBehaviour
     private MovementController movementController;
     private LookOrientation lookOrientation;
     private Health health;
-    private bool isBusy = false;
+    private bool isBusy;
+    private bool isMoving;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
     private Vector2 playerDir;
+    private Vector2 lastPlayerDir = Vector2.down;
+    public Vector2 lastPlayerPosition;
 
     public bool isGamePaused;
 
@@ -67,12 +70,15 @@ public class Player : CoreBehaviour
             if (interactable != null)
             {
                 StartCoroutine(HandleInteract(interactable));
+                lastPlayerPosition = (Vector2)transform.position + playerDir;
             }
         } 
         else
         {
             StartCoroutine(HandleMovement());
         }
+
+        lastPlayerDir = playerDir;
     }
 
     private bool IsDirectionDiagonal(Vector2 direction)
@@ -112,6 +118,35 @@ public class Player : CoreBehaviour
         yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBusy = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        StartCoroutine(KnockedBack());
+    }
+
+    public IEnumerator KnockedBack()
+    {
+        isBusy = true;
+
+        Vector2 oppositeDir = GetOppositeDir(lastPlayerDir);
+
+        if (!Helper.CheckTargetDirection(transform.position, oppositeDir, movementBlockerLayerMask, out Interactable interactable))
+        {
+            movementController.Move(oppositeDir, moveDuration);
+            yield return Helper.GetWaitForSeconds(actionDelay);
+        } else
+        {
+            movementController.Move(lastPlayerDir, moveDuration);
+            yield return Helper.GetWaitForSeconds(actionDelay);
+        }
+
+        isBusy = false;
+    }
+
+    public Vector2 GetOppositeDir(Vector2 vector)
+    {
+        return new Vector2(vector.x * -1, vector.y * -1);
     }
     
     private void OnSenterPerformed(InputAction.CallbackContext context)
