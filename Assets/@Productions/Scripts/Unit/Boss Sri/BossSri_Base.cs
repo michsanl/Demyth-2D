@@ -8,6 +8,8 @@ using Sirenix.OdinInspector;
 
 public class BossSri_Base : SceneService
 {
+    [SerializeField] private GameObject groundNail_1; 
+
     [SerializeField] protected Animator animator;
     [SerializeField] protected LookOrientation lookOrientation;
     [SerializeField] private AudioClipSriSO audioClipSriSO;
@@ -212,8 +214,12 @@ public class BossSri_Base : SceneService
         isBusy = true;
 
         float animationDuration = 1.8f;
+
         animator.Play(NAIL_SUMMON_1);
         audioManager.PlaySound(audioClipSriSO.NailSummon);
+
+        Instantiate(groundNail_1, Context.Player.transform.position, Quaternion.identity);
+
         yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;

@@ -3,65 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BossSri_Testing : BossSri_Base
+public class BossSri_AbilityTester : BossSri_Base
 {
-    [SerializeField] private bool playMovingAbility;
-    [SerializeField] private bool playStaticAbility;
+    private int count;
 
-    protected bool isOn;
-    protected int count;
+    public Ability ability;
+    public enum Ability
+    {
+        NailAOE,
+        NailSummon,
+        FireBall,
+        SpinClaw,
+        Slash,
+    }
 
     protected override void OnActivate()
     {
         base.OnActivate();
     }
 
-    private void Update()
+    protected override void OnTick()
     {
+        base.OnTick();
+        
         if (isBusy)
             return;
 
-        if (playStaticAbility)
-        {
-            PlayStaticAbility();
-            return;
-        }
-
-        if (playMovingAbility)
-        {
-            PlayMovingAbility();
-            return;
-        }
-
-        // LoopPlayTwoAbility();
+        HandlePlayAbility();
     }
 
-    private void PlayStaticAbility()
+    private void HandlePlayAbility()
     {
-        if (count == 4)
+        switch (ability)
         {
-            count = 0;
-        }
-
-        switch (count)
-        {
-            case 0:
+            case Ability.NailAOE:
                 StartCoroutine(PlayNailAOE());
                 break;
-            case 1:
+            case Ability.FireBall:
                 StartCoroutine(PlayFireBall());
                 break;
-            case 2:
+            case Ability.NailSummon:
                 StartCoroutine(PlayNailSummon1());
                 break;
-            case 3:
+            case Ability.SpinClaw:
                 StartCoroutine(PlaySpinClaw());
+                break;
+            case Ability.Slash:
+                PlayMovingAbility();
                 break;
             default:
                 break;
         }
-
-        count++;
     }
 
     private void PlayMovingAbility()
@@ -90,21 +82,5 @@ public class BossSri_Testing : BossSri_Base
         }
 
         count++;
-    }
-
-    private void LoopPlayTwoAbility()
-    {
-        if (!isOn)
-        {
-            // StartCoroutine(PlayRightSlash(2f));
-            StartCoroutine(PlayNailAOE());
-            isOn = !isOn;
-        }
-        else
-        {
-            // StartCoroutine(PlayLeftSlash(-4f));
-            StartCoroutine(PlaySpinClaw());
-            isOn = !isOn;
-        }
     }
 }

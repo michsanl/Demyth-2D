@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BossSri_TypeB : BossSri_Base
+public class BossSri_TypeC : BossSri_Base
 {
     [SerializeField] private bool isCombatMode;
 
@@ -43,7 +43,7 @@ public class BossSri_TypeB : BossSri_Base
                 StartCoroutine(PlayNailAOE());
             } else
             {
-                StartCoroutine(PlayNailSummon1());
+                StartCoroutine(PlaySpinClaw());
             }
             return;
         }
