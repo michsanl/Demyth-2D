@@ -8,13 +8,16 @@ using Sirenix.OdinInspector;
 
 public class BossSri_Base : SceneService
 {
+    [Title("Summoned Object")]
     [SerializeField] private GameObject groundNail_1; 
 
+    [Title("Attack Ability Collider")]
     [SerializeField] private GameObject horizontalSlashCollider;
     [SerializeField] private GameObject verticalSlashCollider;
     [SerializeField] private GameObject spinNailCollider;
     [SerializeField] private GameObject nailAOECollider;
 
+    [Title("Other Component")]
     [SerializeField] protected Animator animator;
     [SerializeField] private AudioClipSriSO audioClipSriSO;
 
@@ -37,10 +40,6 @@ public class BossSri_Base : SceneService
     protected override void OnInitialize()
     {
         lookOrientation = GetComponent<LookOrientation>();
-    }
-
-    protected override void OnActivate()
-    {
         audioManager = Context.AudioManager;
     }
 

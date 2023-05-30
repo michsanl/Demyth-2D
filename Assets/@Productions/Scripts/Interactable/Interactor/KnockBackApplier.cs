@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerKnockBackerOnCollision : MonoBehaviour
+public class KnockBackApplier : MonoBehaviour
 {
     public KnockBackDirection knockBackDirection;
     public enum KnockBackDirection { Up, Down, Left, Right }
-
-    private float stunDuration = .2f;
 
     private void OnCollisionEnter2D(Collision2D other) 
     {

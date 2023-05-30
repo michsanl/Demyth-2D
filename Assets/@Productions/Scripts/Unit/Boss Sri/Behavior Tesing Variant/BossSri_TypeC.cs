@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
 
 public class BossSri_TypeC : BossSri_Base
 {
+    [Title("Settings")]
     [SerializeField] private bool isCombatMode;
 
     private Action[] movementActionPoolArray;
@@ -60,18 +62,10 @@ public class BossSri_TypeC : BossSri_Base
             return;
         }
 
+
         if (!IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,3);
-            if (randomIndex == 0)
-            {
-                HandleMovement();
-            } 
-            else
-            {
-                StartCoroutine(PlayNailSummon1());
-            }
-            return;
+            StartCoroutine(PlayNailSummon1());
         }
         
     }

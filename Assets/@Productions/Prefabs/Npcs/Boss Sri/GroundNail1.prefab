@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8370259742860121527}
   - component: {fileID: 4218912572217788043}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Anticipation Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,6 +204,8 @@ GameObject:
   - component: {fileID: 8359658581239274869}
   - component: {fileID: 8359658581239274870}
   - component: {fileID: 8298259412067870837}
+  - component: {fileID: 968503591569274925}
+  - component: {fileID: 6308747164483423854}
   m_Layer: 11
   m_Name: GroundNail1 Model
   m_TagString: Untagged
@@ -309,7 +311,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -323,5 +325,30 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &968503591569274925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359658581239274864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6308747164483423854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359658581239274864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackDirection: 0

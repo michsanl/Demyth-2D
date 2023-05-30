@@ -2,26 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
 
 public class BossSri_AbilityTester : BossSri_Base
 {
+    [Title("Settings")]
     [SerializeField] private bool activate;
-    private int count;
 
     public Ability ability;
     public enum Ability
-    {
-        NailAOE,
-        NailSummon,
-        FireBall,
-        SpinClaw,
-        SlashInCircle,
-    }
+    { NailAOE, NailSummon, FireBall, SpinClaw, SlashInCircle, }
 
-    protected override void OnActivate()
-    {
-        base.OnActivate();
-    }
+    private int count;
 
     protected override void OnTick()
     {

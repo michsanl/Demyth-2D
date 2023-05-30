@@ -108,12 +108,13 @@ public class Player : CoreBehaviour
         {
             case InteractableType.Push:
                 animator.SetTrigger("Attack");
+                break;
+            case InteractableType.Damage:
+                animator.SetTrigger("Attack");
+                interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
-            case InteractableType.Damage:
-                animator.SetTrigger("Attack");
-                break;
             default:
                 break;
         }
@@ -125,12 +126,7 @@ public class Player : CoreBehaviour
         isBusy = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        StartCoroutine(SelfKnockBack());
-    }
-
-    public IEnumerator SelfKnockBack()
+    public IEnumerator KnockBackByLastDir()
     {
         isStunned = true;
 

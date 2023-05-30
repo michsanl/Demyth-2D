@@ -2046,18 +2046,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 627097469063807432, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1913797996073665184, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5046936418714109480, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2106,24 +2094,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC Boss Sri
       objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169837, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7673398052024204801, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8000941282146611189, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
-      propertyPath: ability
-      value: 3
+    - target: {fileID: 9182001827861331906, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 8000941282146611189, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
-      propertyPath: activate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8342994096919207792, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
-      propertyPath: isCombatMode
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 627097469063807432, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
 --- !u!1001 &8487284319024847092
 PrefabInstance:
