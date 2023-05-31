@@ -14,20 +14,19 @@ public class Player : CoreBehaviour
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
     [SerializeField] private float attackDuration;
+    [SerializeField] private float screenShakeDuration;
 
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;
     private Health health;
+    private Vector2 playerDir;
     private bool isBusy;
     private bool isStunned;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
-    private Vector2 playerDir;
-    private Vector2 lastPlayerDir = Vector2.down;
-    public Vector2 lastPlayerPosition;
 
     public bool isGamePaused;
 
@@ -44,7 +43,7 @@ public class Player : CoreBehaviour
         lookOrientation = GetComponent<LookOrientation>();
         health = GetComponent<Health>();
     }
-
+    
     private void Update()
     {
         HandlePlayerAction();
@@ -73,20 +72,12 @@ public class Player : CoreBehaviour
             if (interactable != null)
             {
                 StartCoroutine(HandleInteract(interactable));
-                lastPlayerPosition = (Vector2)transform.position + playerDir;
             }
         } 
         else
         {
             StartCoroutine(HandleMovement());
         }
-
-        lastPlayerDir = playerDir;
-    }
-
-    private bool IsDirectionDiagonal(Vector2 direction)
-    {
-        return direction.x != 0 && direction.y != 0;
     }
 
     private IEnumerator HandleMovement()
@@ -125,43 +116,6 @@ public class Player : CoreBehaviour
 
         isBusy = false;
     }
-
-    public IEnumerator KnockBackByLastDir()
-    {
-        isStunned = true;
-
-        Vector2 oppositeDir = GetOppositeDir(lastPlayerDir);
-
-        if (!Helper.CheckTargetDirection(transform.position, oppositeDir, movementBlockerLayerMask, out Interactable interactable))
-        {
-            movementController.Move(oppositeDir, moveDuration);
-            yield return Helper.GetWaitForSeconds(actionDelay);
-        } else
-        {
-            movementController.Move(lastPlayerDir, moveDuration);
-            yield return Helper.GetWaitForSeconds(actionDelay);
-        }
-
-        isStunned = false;
-    }
-
-    public IEnumerator KnockBack(Vector2 dir)
-    {
-        isStunned = true;
-        
-        if (!Helper.CheckTargetDirection(transform.position, dir, movementBlockerLayerMask, out Interactable interactable))
-        {
-            movementController.Move(dir, moveDuration);
-            yield return Helper.GetWaitForSeconds(actionDelay);
-        }
-
-        isStunned = false;
-    }
-
-    public Vector2 GetOppositeDir(Vector2 vector)
-    {
-        return new Vector2(vector.x * -1, vector.y * -1);
-    }
     
     private void OnSenterPerformed(InputAction.CallbackContext context)
     {
@@ -173,23 +127,11 @@ public class Player : CoreBehaviour
         Context.HUDUI.SetActiveSenterImage(isSenterEnabled);
     }
 
-    private void ToggleSenter()
-    {
-        isSenterEnabled = !isSenterEnabled;
-        senterGameObject.SetActive(isSenterEnabled);
-    }
-
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
         ToggleGamePause();
 
         Context.UI.Toggle<PauseUI>();
-    }
-
-    public void ToggleGamePause()
-    {
-        isGamePaused = !isGamePaused;
-        Time.timeScale = isGamePaused ? 0f : 1f;
     }
 
     private void OnHealthPotionPerformed(InputAction.CallbackContext context)
@@ -198,8 +140,27 @@ public class Player : CoreBehaviour
             return;
         if (isHealthPotionOnCooldown)
             return;
-
+        
         StartCoroutine(HealSelf());
+    }
+
+    private void ToggleSenter()
+    {
+        isSenterEnabled = !isSenterEnabled;
+        senterGameObject.SetActive(isSenterEnabled);
+    }
+
+    public void ToggleGamePause()
+    {
+        isGamePaused = !isGamePaused;
+        if (isGamePaused)
+        {
+            Time.timeScale = 0f;
+            Context.VCamCameraShake.gameObject.SetActive(false);
+        } else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private IEnumerator HealSelf()
@@ -211,6 +172,60 @@ public class Player : CoreBehaviour
         yield return Helper.GetWaitForSeconds(actionDelay);
 
         isHealthPotionOnCooldown = false;
+    }
+
+    private IEnumerator PlayCameraShake()
+    {
+        GameObject cameraShakeGO = Context.VCamCameraShake.gameObject;
+        
+        Time.timeScale = 0;
+        cameraShakeGO.SetActive(true);
+
+        yield return new  WaitForSecondsRealtime(screenShakeDuration);
+
+        if (!isGamePaused)
+        {
+            Time.timeScale = 1;
+        }
+        cameraShakeGO.SetActive(false);
+    }
+
+    private IEnumerator HandleKnockBack(Vector2 dir)
+    {
+        if (!Helper.CheckTargetDirection(transform.position, dir, movementBlockerLayerMask, out Interactable interactable))
+        {
+            movementController.Move(dir, moveDuration);
+            yield return Helper.GetWaitForSeconds(actionDelay);
+        }
+    }
+
+    public IEnumerator AttackPlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
+    {
+        isStunned = true;
+        
+        health.TakeDamage(1);
+
+        if (enableCameraShake)
+        {
+            yield return StartCoroutine(PlayCameraShake());
+        }
+
+        if (enableKnockback)
+        {
+            yield return StartCoroutine(HandleKnockBack(knockBackDir));
+        }
+
+        isStunned = false;
+    }
+    
+    private bool IsDirectionDiagonal(Vector2 direction)
+    {
+        return direction.x != 0 && direction.y != 0;
+    }
+    
+    public Vector2 GetOppositeVector2Dir(Vector2 vector)
+    {
+        return new Vector2(vector.x * -1, vector.y * -1);
     }
 
 }

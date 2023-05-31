@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6864914396846490018}
   - component: {fileID: 6885581617377772388}
-  - component: {fileID: 1821944893913702085}
+  - component: {fileID: 4476030615438792885}
   m_Layer: 11
   m_Name: Top Collider
   m_TagString: Untagged
@@ -59,7 +59,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1821944893913702085
+--- !u!114 &4476030615438792885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,11 +68,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3250784612388217148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 1
-  DOTInterval: 1
+  enableDOTOnStay: 1
+  DOTInterval: 1.025
+  enableCameraShake: 1
+  enableKnockBack: 0
+  knockBackDirection: 0
 --- !u!1 &3314831482500278176
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,9 +85,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339151071044580125}
-  - component: {fileID: 2040094992628008039}
   - component: {fileID: 3338668344094876222}
-  - component: {fileID: 6508748740683944218}
+  - component: {fileID: 8478845546267803454}
   m_Layer: 11
   m_Name: Top Collider
   m_TagString: Untagged
@@ -107,19 +109,6 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2040094992628008039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3314831482500278176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockBackDirection: 0
 --- !u!61 &3338668344094876222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +135,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1.0001001}
   m_EdgeRadius: 0
---- !u!114 &6508748740683944218
+--- !u!114 &8478845546267803454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,11 +144,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3314831482500278176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 0
+  enableDOTOnStay: 0
   DOTInterval: 0
+  enableCameraShake: 1
+  enableKnockBack: 1
+  knockBackDirection: 0
 --- !u!1 &3541331978584162769
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,9 +161,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 996001179404929736}
-  - component: {fileID: 7609393446427452436}
   - component: {fileID: 4773157836827086144}
-  - component: {fileID: 4566911890210673493}
+  - component: {fileID: 1411772462796028247}
   m_Layer: 11
   m_Name: Horizontal Slash Collider
   m_TagString: Untagged
@@ -194,19 +185,6 @@ Transform:
   m_Father: {fileID: 7673398050621169836}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7609393446427452436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3541331978584162769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockBackDirection: 0
 --- !u!61 &4773157836827086144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -233,7 +211,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4566911890210673493
+--- !u!114 &1411772462796028247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,11 +220,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3541331978584162769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 0
+  enableDOTOnStay: 0
   DOTInterval: 0
+  enableCameraShake: 1
+  enableKnockBack: 1
+  knockBackDirection: 1
 --- !u!1 &4574950767016202372
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,9 +237,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3005782497906060897}
-  - component: {fileID: 9188689899133621571}
   - component: {fileID: 1280199901425004216}
-  - component: {fileID: 9079900232237063077}
+  - component: {fileID: 1613914357452901592}
   m_Layer: 11
   m_Name: Vertical Slash Collider
   m_TagString: Untagged
@@ -281,19 +261,6 @@ Transform:
   m_Father: {fileID: 7673398050621169836}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9188689899133621571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4574950767016202372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockBackDirection: 2
 --- !u!61 &1280199901425004216
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -320,7 +287,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9079900232237063077
+--- !u!114 &1613914357452901592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,11 +296,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4574950767016202372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 0
+  enableDOTOnStay: 0
   DOTInterval: 0
+  enableCameraShake: 1
+  enableKnockBack: 1
+  knockBackDirection: 3
 --- !u!1 &5076036818896507623
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,9 +313,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7057051794937172322}
-  - component: {fileID: 2347430562140498741}
   - component: {fileID: 4458670330319021234}
-  - component: {fileID: 6977715816897204566}
+  - component: {fileID: 5741633864989214801}
   m_Layer: 11
   m_Name: RIght Collider
   m_TagString: Untagged
@@ -368,19 +337,6 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2347430562140498741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5076036818896507623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockBackDirection: 3
 --- !u!61 &4458670330319021234
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -407,7 +363,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6977715816897204566
+--- !u!114 &5741633864989214801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,11 +372,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5076036818896507623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 0
+  enableDOTOnStay: 0
   DOTInterval: 0
+  enableCameraShake: 1
+  enableKnockBack: 1
+  knockBackDirection: 3
 --- !u!1 &5215676311051618195
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,9 +389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6066905539364272980}
-  - component: {fileID: 5426479152815773770}
-  - component: {fileID: 3425234679568006507}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Spin Nail Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,45 +415,6 @@ Transform:
   m_Father: {fileID: 7673398050621169836}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5426479152815773770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5215676311051618195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockBackDirection: 0
---- !u!61 &3425234679568006507
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5215676311051618195}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3}
-  m_EdgeRadius: 0
 --- !u!1 &6206227978528789694
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8341413351334608767}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Nail AOE Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,9 +458,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 861721894484705633}
-  - component: {fileID: 1867876100971537228}
   - component: {fileID: 8494448167455462383}
-  - component: {fileID: 3880313122965653401}
+  - component: {fileID: 9155713932608072064}
   m_Layer: 11
   m_Name: Left Collider
   m_TagString: Untagged
@@ -565,19 +482,6 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1867876100971537228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6424691801300074887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockBackDirection: 2
 --- !u!61 &8494448167455462383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -604,7 +508,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3880313122965653401
+--- !u!114 &9155713932608072064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -613,11 +517,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6424691801300074887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 0
+  enableDOTOnStay: 0
   DOTInterval: 0
+  enableCameraShake: 1
+  enableKnockBack: 1
+  knockBackDirection: 2
 --- !u!1 &6866683646100466991
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1698707931177541750}
   - component: {fileID: 666467876767825409}
-  - component: {fileID: 1447642593041493617}
+  - component: {fileID: 2305271626618506723}
   m_Layer: 11
   m_Name: Middle Collider
   m_TagString: Untagged
@@ -677,7 +584,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7, y: 2}
   m_EdgeRadius: 0
---- !u!114 &1447642593041493617
+--- !u!114 &2305271626618506723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -686,11 +593,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6866683646100466991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 1
-  DOTInterval: 1
+  enableDOTOnStay: 1
+  DOTInterval: 1.025
+  enableCameraShake: 1
+  enableKnockBack: 0
+  knockBackDirection: 0
 --- !u!1 &7673398050621169837
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +662,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     Player: {fileID: 0}
     AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   groundNail_1: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
@@ -782,6 +693,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     Player: {fileID: 0}
     AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   groundNail_1: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
@@ -1046,7 +958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7462086921528148279}
   - component: {fileID: 1569234114123955754}
-  - component: {fileID: 7541331163039984986}
+  - component: {fileID: 5855654957964302469}
   m_Layer: 11
   m_Name: Bottom Collider
   m_TagString: Untagged
@@ -1095,7 +1007,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7541331163039984986
+--- !u!114 &5855654957964302469
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1104,11 +1016,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8623921822258695217}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 1
-  DOTInterval: 1
+  enableDOTOnStay: 1
+  DOTInterval: 1.025
+  enableCameraShake: 1
+  enableKnockBack: 0
+  knockBackDirection: 0
 --- !u!1 &8733879415814981996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,9 +1033,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4927504240958208586}
-  - component: {fileID: 3922632647523434826}
   - component: {fileID: 4313800512110476258}
-  - component: {fileID: 4655594858290770526}
+  - component: {fileID: 1142014359423117777}
   m_Layer: 11
   m_Name: Bottom Collider
   m_TagString: Untagged
@@ -1143,19 +1057,6 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3922632647523434826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8733879415814981996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a9a570f38872d41a7e6c20f11590b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockBackDirection: 1
 --- !u!61 &4313800512110476258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1182,7 +1083,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4655594858290770526
+--- !u!114 &1142014359423117777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1191,8 +1092,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8733879415814981996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c76642b94c5f14ea60138808e3dacf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDOTOnStay: 0
+  enableDOTOnStay: 0
   DOTInterval: 0
+  enableCameraShake: 1
+  enableKnockBack: 1
+  knockBackDirection: 1
