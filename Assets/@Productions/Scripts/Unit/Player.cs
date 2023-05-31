@@ -5,22 +5,27 @@ using System;
 using CustomTools.Core;
 using UnityEngine.InputSystem;
 using UISystem;
+using Sirenix.OdinInspector;
 
 public class Player : CoreBehaviour
 {
-    [SerializeField] private GameObject senterGameObject;
-    [SerializeField] private Animator animator;
-    [SerializeField] private LayerMask movementBlockerLayerMask;
+    [Title("Settings")]
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float screenShakeDuration;
+    [SerializeField] private LayerMask movementBlockerLayerMask;
+    
+    [Title("External Component")]
+    [SerializeField] private GameObject senterGameObject;
+    [SerializeField] private Animator animator;
 
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;
     private Health health;
     private Vector2 playerDir;
+    private Vector2 moveTargetPosition;
     private bool isBusy;
     private bool isStunned;
     private bool isSenterEnabled;
@@ -28,7 +33,8 @@ public class Player : CoreBehaviour
     private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
 
-    public bool isGamePaused;
+    public bool IsGamePaused => isGamePaused;
+    private bool isGamePaused;
 
     private void Awake() 
     {
@@ -76,6 +82,7 @@ public class Player : CoreBehaviour
         } 
         else
         {
+            moveTargetPosition = (Vector2)transform.position + playerDir;
             StartCoroutine(HandleMovement());
         }
     }
@@ -84,7 +91,7 @@ public class Player : CoreBehaviour
     {
         isBusy = true;
 
-        movementController.Move(playerDir, moveDuration);
+        Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
         yield return Helper.GetWaitForSeconds(actionDelay);
 
@@ -192,9 +199,10 @@ public class Player : CoreBehaviour
 
     private IEnumerator HandleKnockBack(Vector2 dir)
     {
-        if (!Helper.CheckTargetDirection(transform.position, dir, movementBlockerLayerMask, out Interactable interactable))
+        if (!Helper.CheckTargetDirection(moveTargetPosition, dir, movementBlockerLayerMask, out Interactable interactable))
         {
-            movementController.Move(dir, moveDuration);
+            moveTargetPosition = moveTargetPosition + dir;
+            Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
             yield return Helper.GetWaitForSeconds(actionDelay);
         }
 

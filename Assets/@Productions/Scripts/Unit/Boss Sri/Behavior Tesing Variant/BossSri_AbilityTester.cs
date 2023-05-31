@@ -9,7 +9,8 @@ public class BossSri_AbilityTester : BossSri_Base
     [Title("Settings")]
     [SerializeField] private bool activate;
 
-    public Ability ability;
+    [EnumToggleButtons]
+    public Ability loopAbility;
     public enum Ability
     { NailAOE, NailSummon, FireBall, SpinClaw, SlashInCircle, }
 
@@ -29,7 +30,7 @@ public class BossSri_AbilityTester : BossSri_Base
 
     private void HandlePlayAbility()
     {
-        switch (ability)
+        switch (loopAbility)
         {
             case Ability.NailAOE:
                 StartCoroutine(PlayNailAOE());
