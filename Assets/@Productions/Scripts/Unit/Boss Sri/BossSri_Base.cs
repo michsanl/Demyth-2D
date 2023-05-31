@@ -21,9 +21,9 @@ public class BossSri_Base : SceneService
     [SerializeField] protected Animator animator;
     [SerializeField] private AudioClipSriSO audioClipSriSO;
 
-
     protected AudioManager audioManager;
     protected LookOrientation lookOrientation;
+    protected MovementController movementController;
     protected bool isBusy;
     protected bool isMoving;
     protected bool isIntroPlayed;
@@ -40,6 +40,7 @@ public class BossSri_Base : SceneService
     protected override void OnInitialize()
     {
         lookOrientation = GetComponent<LookOrientation>();
+        movementController = GetComponent<MovementController>();
         audioManager = Context.AudioManager;
     }
 
@@ -85,6 +86,8 @@ public class BossSri_Base : SceneService
         isMoving = true;
 
         Vector2 moveTargetPosition = (Vector2)transform.position + direction;
+        moveTargetPosition = GetRoundedVector(moveTargetPosition);
+
         float moveDuration = .25f;
         float actionDelay = 1f;
 
@@ -111,6 +114,8 @@ public class BossSri_Base : SceneService
         isBusy = true;
 
         lookOrientation.SetFacingDirection(Vector2.right);
+        
+        targetPosition = Mathf.Round(targetPosition);
 
         float frontSwing = .833f;
         float swing = .233f;
@@ -136,6 +141,8 @@ public class BossSri_Base : SceneService
 
         lookOrientation.SetFacingDirection(Vector2.left);
         
+        targetPosition = Mathf.Round(targetPosition);
+        
         float frontSwing = .833f;
         float swing = .233f;
         float backSwing = 1.267f;
@@ -157,6 +164,8 @@ public class BossSri_Base : SceneService
     protected IEnumerator PlayUpSlash(float targetPosition)
     {
         isBusy = true;
+        
+        targetPosition = Mathf.Round(targetPosition);
 
         float frontSwing = .6f;
         float swing = .233f;
@@ -179,6 +188,8 @@ public class BossSri_Base : SceneService
     protected IEnumerator PlayDownSlash(float targetPosition)
     {
         isBusy = true;
+        
+        targetPosition = Mathf.Round(targetPosition);
 
         float frontSwing = .6f;
         float swing = .233f;
@@ -202,15 +213,21 @@ public class BossSri_Base : SceneService
     {
         isBusy = true;
 
-        float animationDuration = 4.1f;
+        // float animationDuration = 4.1f;
+        float frontSwing = .7f;
+        float swing = 3.133f;
+        float backSwing = .266f;
 
         animator.Play(NAIL_AOE);
         audioManager.PlaySound(audioClipSriSO.NailAOE);
+
+        yield return Helper.GetWaitForSeconds(frontSwing);
+        
         nailAOECollider.SetActive(true);
-
-        yield return Helper.GetWaitForSeconds(animationDuration);
-
+        yield return Helper.GetWaitForSeconds(swing);
         nailAOECollider.SetActive(false);
+        
+        yield return Helper.GetWaitForSeconds(backSwing);
 
         isBusy = false;
     }
@@ -259,15 +276,21 @@ public class BossSri_Base : SceneService
         animator.Play(NAIL_SUMMON_1);
         audioManager.PlaySound(audioClipSriSO.NailSummon);
 
-        Vector2 playerPosition = Context.Player.transform.position;
-        playerPosition.x = Mathf.Round(playerPosition.x);
-        playerPosition.y = Mathf.Round(playerPosition.y);
+        Vector2 playerPosition = GetRoundedVector(Context.Player.transform.position);
 
         Instantiate(groundNail_1, playerPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;
+    }
+
+    private Vector2 GetRoundedVector(Vector2 vector)
+    {
+        vector.x = Mathf.Round(vector.x);
+        vector.y = Mathf.Round(vector.y);
+
+        return vector;
     }
 
 }

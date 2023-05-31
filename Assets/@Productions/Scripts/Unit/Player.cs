@@ -197,6 +197,8 @@ public class Player : CoreBehaviour
             movementController.Move(dir, moveDuration);
             yield return Helper.GetWaitForSeconds(actionDelay);
         }
+
+        isStunned = false;
     }
 
     public IEnumerator AttackPlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
