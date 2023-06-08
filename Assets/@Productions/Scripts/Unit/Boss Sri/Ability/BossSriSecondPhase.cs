@@ -2,28 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
 
-public class BossSri_TypeA : BossSri_Base
+public class BossSriSecondPhase : BossSriAbility
 {
-    [SerializeField] private bool isCombatMode;
+    public bool IsBehaviorActive
+    {
+        get => isBehaviorActive;
+        set 
+        {
+            isBehaviorActive = value;
+            
+            if (isBehaviorActive == true)
+            {
+                Debug.Log("Second phase is active");
+            }
+        }
+    }
+    
 
-    private Action[] movementAction;
+    private bool isBehaviorActive;
+    private Action[] movementActionPoolArray;
+    private List<IEnumerator> abilityPoolList;
 
-    // private void Start() 
-    // {
-    //     movementAction = new Action[] {HorizontalMovement, VerticalMovement};
-    // }
-
-    // private void Update() 
-    // {
-    //     HandleAction();
-    // }
 
     protected override void OnActivate()
     {
         base.OnActivate();
 
-        movementAction = new Action[] {HorizontalMovement, VerticalMovement};
+        movementActionPoolArray = new Action[] {HorizontalMovement, VerticalMovement};
+        abilityPoolList = new List<IEnumerator>() {PlaySpinClaw(), PlayNailAOE()};
     }
 
     protected override void OnTick()
@@ -35,28 +43,48 @@ public class BossSri_TypeA : BossSri_Base
 
     private void HandleAction()
     {
-        if (!isCombatMode)
+        if (!isBehaviorActive)
             return;
-
         if (isBusy)
             return;
+
+
+        if (IsPlayerNearby())
+        {
+            int randomIndex = UnityEngine.Random.Range(0,3);
+            if (randomIndex == 0)
+            {
+                StartCoroutine(PlayNailAOE());
+            } else
+            {
+                StartCoroutine(PlaySpinClaw());
+            }
+            return;
+        }
+
 
         if (IsPlayerAtSamePosY())
         {
             PlayHorizontalAbility();
             return;
         }
-
         if (IsPlayerAtSamePosX())
         {
             PlayVerticalAbility();
             return;
         }
 
-        if (isMoving)
-            return;
 
-        HandleMovement();
+        if (!IsPlayerNearby())
+        {
+            StartCoroutine(PlayNailSummon1());
+        }
+        
+    }
+
+    private int GetRandomIndexFromList(List<IEnumerator> abilityList)
+    {
+        return UnityEngine.Random.Range(0, abilityList.Count);
     }
 
     private void PlayVerticalAbility()
@@ -88,8 +116,11 @@ public class BossSri_TypeA : BossSri_Base
 
     private void HandleMovement()
     {
+        if (isMoving)
+            return;
+
         int i = UnityEngine.Random.Range(0,2);
-        movementAction[i]?.Invoke();
+        movementActionPoolArray[i]?.Invoke();
     }
 
     private void HorizontalMovement()

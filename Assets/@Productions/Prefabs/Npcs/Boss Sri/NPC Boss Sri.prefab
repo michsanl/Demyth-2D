@@ -610,8 +610,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398050621169836}
-  - component: {fileID: 8000941282146611189}
+  - component: {fileID: 2667805903520648675}
   - component: {fileID: 8342994096919207792}
+  - component: {fileID: 7946923981365305903}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
   - component: {fileID: 5108067734571236107}
@@ -643,7 +644,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8000941282146611189
+--- !u!114 &2667805903520648675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -652,7 +653,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7673398050621169837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f593d081b2e8440872f0f0fc5917b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a4b2df3019e9ea409a6a796e1e7463c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
@@ -665,15 +666,6 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  groundNail_1: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
-  horizontalSlashCollider: {fileID: 3541331978584162769}
-  verticalSlashCollider: {fileID: 4574950767016202372}
-  spinNailCollider: {fileID: 5215676311051618195}
-  nailAOECollider: {fileID: 6206227978528789694}
-  animator: {fileID: 7673398052024204807}
-  audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
-  activate: 0
-  ability: 0
 --- !u!114 &8342994096919207792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +695,35 @@ MonoBehaviour:
   nailAOECollider: {fileID: 6206227978528789694}
   animator: {fileID: 7673398052024204807}
   audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
-  isCombatMode: 1
+--- !u!114 &7946923981365305903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86cb7ba5ef16e984a99ca5a26c8af105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  groundNail_1: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
+  horizontalSlashCollider: {fileID: 3541331978584162769}
+  verticalSlashCollider: {fileID: 4574950767016202372}
+  spinNailCollider: {fileID: 5215676311051618195}
+  nailAOECollider: {fileID: 6206227978528789694}
+  animator: {fileID: 7673398052024204807}
+  audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 20
   currentHealth: 0
   status: 0
 --- !u!114 &5108067734571236107

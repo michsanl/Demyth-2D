@@ -2,13 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
 
-public class BossSri_TypeB : BossSri_Base
+public class BossSriFirstPhase : BossSriAbility
 {
-    [SerializeField] private bool isCombatMode;
+    public bool IsBehaviorActive
+    {
+        get => isBehaviorActive;
+        set 
+        {
+            isBehaviorActive = value;
 
+            if (isBehaviorActive == true)
+            {
+                Debug.Log("First phase is active");
+            }
+        }
+    }
+
+
+    private bool isBehaviorActive;
     private Action[] movementActionPoolArray;
-
     private List<IEnumerator> abilityPoolList;
 
 
@@ -29,7 +43,7 @@ public class BossSri_TypeB : BossSri_Base
 
     private void HandleAction()
     {
-        if (!isCombatMode)
+        if (!isBehaviorActive)
             return;
         if (isBusy)
             return;
@@ -37,13 +51,13 @@ public class BossSri_TypeB : BossSri_Base
 
         if (IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,2);
+            int randomIndex = UnityEngine.Random.Range(0,3);
             if (randomIndex == 0)
             {
                 StartCoroutine(PlayNailAOE());
             } else
             {
-                StartCoroutine(PlayNailSummon1());
+                StartCoroutine(PlaySpinClaw());
             }
             return;
         }
@@ -61,9 +75,11 @@ public class BossSri_TypeB : BossSri_Base
         }
 
 
-        if (isMoving)
-            return;
-        HandleMovement();
+        if (!IsPlayerNearby())
+        {
+            StartCoroutine(PlayNailSummon1());
+        }
+        
     }
 
     private int GetRandomIndexFromList(List<IEnumerator> abilityList)
@@ -100,6 +116,9 @@ public class BossSri_TypeB : BossSri_Base
 
     private void HandleMovement()
     {
+        if (isMoving)
+            return;
+
         int i = UnityEngine.Random.Range(0,2);
         movementActionPoolArray[i]?.Invoke();
     }

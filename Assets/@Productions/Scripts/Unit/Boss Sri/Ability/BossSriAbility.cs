@@ -6,7 +6,7 @@ using CustomTools.Core;
 using System;
 using Sirenix.OdinInspector;
 
-public class BossSri_Base : SceneService
+public class BossSriAbility : SceneService
 {
     [Title("Summoned Object")]
     [SerializeField] private GameObject groundNail_1; 

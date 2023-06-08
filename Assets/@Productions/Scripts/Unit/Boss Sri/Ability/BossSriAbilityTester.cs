@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 
-public class BossSri_AbilityTester : BossSri_Base
+public class BossSriAbilityTester : BossSriAbility
 {
     [Title("Settings")]
     [SerializeField] private bool activate;
