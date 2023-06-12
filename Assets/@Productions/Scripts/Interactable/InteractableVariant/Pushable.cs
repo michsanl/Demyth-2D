@@ -6,25 +6,35 @@ using DG.Tweening;
 public class Pushable : Interactable
 {
     [SerializeField] private LayerMask movementBlockerLayerMask;
-    [SerializeField] private Vector2 size;
-    [SerializeField] private int castOriginOffsetX;
-    [SerializeField] private int castOriginOffsetY;
+    [SerializeField] private int raycastOriginOffsetX;
+    [SerializeField] private int raycastOriginOffsetY;
+
+    private BoxCollider2D boxCollider;
+
+    private void Awake() 
+    {
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
 
     public override void Interact(Vector3 direction)
     {
-        var targetLocation = transform.position + direction;
-
         var raycastOrigin = transform.position + GetRaycastOriginOffset(direction);
+        if (Helper.CheckTargetDirection(raycastOrigin, direction, boxCollider.size, movementBlockerLayerMask, out Interactable interactable))
+            return;
+            
+        Move(direction);
+    }
 
-        if (Helper.CheckTargetDirection(raycastOrigin, direction, size, movementBlockerLayerMask, out Interactable interactable)) return;
-
-        Helper.MoveToPosition(transform, targetLocation, 0.2f);        
+    private void Move(Vector3 direction)
+    {
+        var moveTargetLocation = transform.position + direction;
+        Helper.MoveToPosition(transform, moveTargetLocation, 0.2f);
     }
 
     private Vector3 GetRaycastOriginOffset(Vector3 direction)
     {
-        direction.x = direction.x * castOriginOffsetX;
-        direction.y = direction.y * castOriginOffsetY;
+        direction.x = direction.x * raycastOriginOffsetX;
+        direction.y = direction.y * raycastOriginOffsetY;
         return direction;
     }
 }

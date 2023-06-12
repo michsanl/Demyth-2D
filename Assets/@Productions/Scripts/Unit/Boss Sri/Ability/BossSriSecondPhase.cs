@@ -48,20 +48,23 @@ public class BossSriSecondPhase : BossSriAbility
         if (isBusy)
             return;
 
+        SetFacingDirection();
+
+        PlayTeleportAtRandomChance();
 
         if (IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,3);
+            int randomIndex = UnityEngine.Random.Range(0, 3);
             if (randomIndex == 0)
             {
-                StartCoroutine(PlayNailAOE());
-            } else
+                StartCoroutine(PlayNailAOEShootingNail());
+            }
+            else
             {
-                StartCoroutine(PlaySpinClaw());
+                StartCoroutine(PlayNailAOEShootingNail());
             }
             return;
         }
-
 
         if (IsPlayerAtSamePosY())
         {
@@ -77,9 +80,18 @@ public class BossSriSecondPhase : BossSriAbility
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayNailSummon1());
+            StartCoroutine(PlayNailSummon(groundNailPenta));
         }
-        
+
+    }
+
+    private void PlayTeleportAtRandomChance()
+    {
+        if (UnityEngine.Random.Range(0, 3) == 0)
+        {
+            PlayTeleport();
+            SetFacingDirection();
+        }
     }
 
     private int GetRandomIndexFromList(List<IEnumerator> abilityList)
@@ -125,7 +137,7 @@ public class BossSriSecondPhase : BossSriAbility
 
     private void HorizontalMovement()
     {
-        SetFacingDirection();
+        //SetFacingDirection();
 
         if (IsPlayerToRight())
         {
@@ -141,7 +153,7 @@ public class BossSriSecondPhase : BossSriAbility
 
     private void VerticalMovement()
     {
-        SetFacingDirection();
+        //SetFacingDirection();
 
         if (IsPlayerAbove())
         {

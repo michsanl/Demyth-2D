@@ -9,7 +9,9 @@ using Sirenix.OdinInspector;
 public class BossSriAbility : SceneService
 {
     [Title("Summoned Object")]
-    [SerializeField] private GameObject groundNail_1; 
+    [SerializeField] protected GameObject groundNailSingle;
+    [SerializeField] protected GameObject groundNailPenta;
+    [SerializeField] protected NailProjectile nailProjectile;
 
     [Title("Attack Ability Collider")]
     [SerializeField] private GameObject horizontalSlashCollider;
@@ -109,11 +111,33 @@ public class BossSriAbility : SceneService
         isBusy = false;
     }
 
+    protected void PlayTeleport()
+    {
+        Vector3 playerPosition = Context.Player.MoveTargetPosition;
+        int randomIndex = UnityEngine.Random.Range(0, 4);
+        switch (randomIndex)
+        {
+            case 0:
+                playerPosition.x = playerPosition.x + 2;
+                break;
+            case 1:
+                playerPosition.x = playerPosition.x - 2;
+                break;
+            case 2:
+                playerPosition.y = playerPosition.y + 2;
+                break;
+            case 3:
+                playerPosition.y = playerPosition.y - 2;
+                break;
+        }
+        transform.position = playerPosition;
+    }
+
     protected IEnumerator PlayRightSlash(float targetPosition)
     {
         isBusy = true;
 
-        lookOrientation.SetFacingDirection(Vector2.right);
+        //lookOrientation.SetFacingDirection(Vector2.right);
         
         targetPosition = Mathf.Round(targetPosition);
 
@@ -139,7 +163,7 @@ public class BossSriAbility : SceneService
     {
         isBusy = true;
 
-        lookOrientation.SetFacingDirection(Vector2.left);
+        //lookOrientation.SetFacingDirection(Vector2.left);
         
         targetPosition = Mathf.Round(targetPosition);
         
@@ -267,7 +291,7 @@ public class BossSriAbility : SceneService
         isBusy = false;
     }
 
-    protected IEnumerator PlayNailSummon1()
+    protected IEnumerator PlayNailSummon(GameObject nailGameObject)
     {
         isBusy = true;
 
@@ -278,11 +302,54 @@ public class BossSriAbility : SceneService
 
         Vector2 playerPosition = GetRoundedVector(Context.Player.transform.position);
 
-        Instantiate(groundNail_1, playerPosition, Quaternion.identity);
+        Instantiate(nailGameObject, playerPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);
 
         isBusy = false;
+    }
+
+    protected IEnumerator PlayNailAOEShootingNail()
+    {
+        isBusy = true;
+
+        // float animationDuration = 4.1f;
+        float frontSwing = .7f;
+        float swing = 3.133f;
+        float backSwing = .266f;
+
+        animator.Play(NAIL_AOE);
+        audioManager.PlaySound(audioClipSriSO.NailAOE);
+
+        yield return Helper.GetWaitForSeconds(frontSwing);
+        
+        nailAOECollider.SetActive(true);
+        StartCoroutine(SpawnNailProjectile());
+        yield return Helper.GetWaitForSeconds(swing);
+        nailAOECollider.SetActive(false);
+        
+        yield return Helper.GetWaitForSeconds(backSwing);
+
+        isBusy = false;
+    }
+
+    protected IEnumerator SpawnNailProjectile()
+    {
+        var origin = transform.position + Vector3.up * .5f;
+        var nailProjectile = Instantiate(this.nailProjectile, origin, Quaternion.identity);
+        nailProjectile.Setup(Vector3.down);
+        yield return Helper.GetWaitForSeconds(1f);
+        
+        nailProjectile = Instantiate(this.nailProjectile, origin, Quaternion.identity);
+        nailProjectile.Setup(Vector3.right);
+        yield return Helper.GetWaitForSeconds(1f);
+        
+        nailProjectile = Instantiate(this.nailProjectile, origin, Quaternion.identity);
+        nailProjectile.Setup(Vector3.up);
+        yield return Helper.GetWaitForSeconds(1f);
+        
+        nailProjectile = Instantiate(this.nailProjectile, origin, Quaternion.identity);
+        nailProjectile.Setup(Vector3.left);
     }
 
     private Vector2 GetRoundedVector(Vector2 vector)

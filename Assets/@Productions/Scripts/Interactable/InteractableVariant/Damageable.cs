@@ -17,7 +17,5 @@ public class Damageable : Interactable
         if (health == null) return;
         
         health.TakeDamage(1);
-
-        Debug.Log(gameObject.name + " take damage!");
     }
 }

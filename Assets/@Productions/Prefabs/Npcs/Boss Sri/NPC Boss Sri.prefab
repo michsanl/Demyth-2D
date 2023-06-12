@@ -688,7 +688,9 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  groundNail_1: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
+  groundNailSingle: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
+  groundNailPenta: {fileID: 8359658580717493761, guid: 514adf55f962fc04f80d4bc012fc9af8, type: 3}
+  nailProjectile: {fileID: 7557021420076409908, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
   horizontalSlashCollider: {fileID: 3541331978584162769}
   verticalSlashCollider: {fileID: 4574950767016202372}
   spinNailCollider: {fileID: 5215676311051618195}
@@ -717,7 +719,9 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  groundNail_1: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
+  groundNailSingle: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
+  groundNailPenta: {fileID: 8359658580717493761, guid: b552fcf0a2927764b817a9d8b7ffcdd3, type: 3}
+  nailProjectile: {fileID: 7557021420076409908, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
   horizontalSlashCollider: {fileID: 3541331978584162769}
   verticalSlashCollider: {fileID: 4574950767016202372}
   spinNailCollider: {fileID: 5215676311051618195}
@@ -749,7 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 11
   currentHealth: 0
   status: 0
 --- !u!114 &5108067734571236107

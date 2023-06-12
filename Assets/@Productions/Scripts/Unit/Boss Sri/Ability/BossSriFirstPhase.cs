@@ -48,6 +48,7 @@ public class BossSriFirstPhase : BossSriAbility
         if (isBusy)
             return;
 
+        SetFacingDirection();
 
         if (IsPlayerNearby())
         {
@@ -77,7 +78,7 @@ public class BossSriFirstPhase : BossSriAbility
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayNailSummon1());
+            StartCoroutine(PlayNailSummon(groundNailSingle));
         }
         
     }
@@ -125,7 +126,7 @@ public class BossSriFirstPhase : BossSriAbility
 
     private void HorizontalMovement()
     {
-        SetFacingDirection();
+        //SetFacingDirection();
 
         if (IsPlayerToRight())
         {
@@ -141,7 +142,7 @@ public class BossSriFirstPhase : BossSriAbility
 
     private void VerticalMovement()
     {
-        SetFacingDirection();
+        //SetFacingDirection();
 
         if (IsPlayerAbove())
         {

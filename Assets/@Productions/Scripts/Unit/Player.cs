@@ -20,6 +20,8 @@ public class Player : CoreBehaviour
     [SerializeField] private GameObject senterGameObject;
     [SerializeField] private Animator animator;
 
+    public Vector2 MoveTargetPosition => moveTargetPosition; 
+
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;

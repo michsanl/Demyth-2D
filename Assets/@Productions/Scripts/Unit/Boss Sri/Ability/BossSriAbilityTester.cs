@@ -39,7 +39,7 @@ public class BossSriAbilityTester : BossSriAbility
                 StartCoroutine(PlayFireBall());
                 break;
             case Ability.NailSummon:
-                StartCoroutine(PlayNailSummon1());
+                StartCoroutine(PlayNailSummon(groundNailSingle));
                 break;
             case Ability.SpinClaw:
                 StartCoroutine(PlaySpinClaw());
