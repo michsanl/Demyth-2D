@@ -80,7 +80,16 @@ public class BossSriSecondPhase : BossSriAbility
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayNailSummon(groundNailPenta));
+            int randomIndex = UnityEngine.Random.Range(0, 3);
+            if (randomIndex == 0)
+            {
+                StartCoroutine(PlayNailSummon(groundNailPenta));
+            }
+            else
+            {
+                StartCoroutine(PlayFireBall());
+            }
+            
         }
 
     }

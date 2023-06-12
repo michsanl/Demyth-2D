@@ -6,15 +6,18 @@ using System;
 
 public class BossSri : SceneService
 {
+    [SerializeField] private bool playAbilityTester;
 
     private BossSriFirstPhase bossSriFirstPhase;
     private BossSriSecondPhase bossSriSecondPhase;
+    private BossSriAbilityTester bossSriAbilityTester;
     private Health health;
 
     protected override void OnInitialize()
     {
         bossSriFirstPhase = GetComponent<BossSriFirstPhase>();
         bossSriSecondPhase = GetComponent<BossSriSecondPhase>();
+        bossSriAbilityTester = GetComponent<BossSriAbilityTester>();
         health = GetComponent<Health>();
     }
 
@@ -22,7 +25,14 @@ public class BossSri : SceneService
     {
         health.OnAfterTakeDamage += Health_OnTakeDamage;
 
-        StartFirstPhase();
+        if (playAbilityTester)
+        {
+            bossSriAbilityTester.ActivateTester = true;
+        }
+        else
+        {
+            StartFirstPhase();
+        }
     }
 
     private void Health_OnTakeDamage()

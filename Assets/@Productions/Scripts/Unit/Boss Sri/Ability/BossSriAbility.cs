@@ -11,6 +11,7 @@ public class BossSriAbility : SceneService
     [Title("Summoned Object")]
     [SerializeField] protected GameObject groundNailSingle;
     [SerializeField] protected GameObject groundNailPenta;
+    [SerializeField] protected GameObject FireBallProjectile;
     [SerializeField] protected NailProjectile nailProjectile;
 
     [Title("Attack Ability Collider")]
@@ -285,6 +286,10 @@ public class BossSriAbility : SceneService
 
         float animationDuration = 2.0667f;
         animator.Play(FIRE_BALL);
+
+        var fireBallOrigin = transform.position + Vector3.up * .5f;
+        var fireBall = Instantiate(FireBallProjectile, fireBallOrigin, Quaternion.identity);
+
         // audioManager.PlaySound(audioClipSriSO.Fireball);
         yield return Helper.GetWaitForSeconds(animationDuration);
 

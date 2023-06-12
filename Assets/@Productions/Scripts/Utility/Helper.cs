@@ -16,6 +16,15 @@ public static class Helper
         return WaitDictionary[time];
     }
 
+    public static float GetAngleFromFectorFloat(Vector3 dir)
+    {
+        dir = dir.normalized;
+        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (n < 0) n += 360;
+
+        return n;
+    }
+
     public static bool CheckTargetDirection<T>(Vector2 origin, Vector2 dir, LayerMask layer, out T targetComponent)
     {
 	    var originWithOffset = origin + dir;

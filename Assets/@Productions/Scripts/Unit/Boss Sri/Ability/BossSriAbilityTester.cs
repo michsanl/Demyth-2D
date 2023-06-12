@@ -6,21 +6,28 @@ using Sirenix.OdinInspector;
 
 public class BossSriAbilityTester : BossSriAbility
 {
-    [Title("Settings")]
-    [SerializeField] private bool activate;
-
     [EnumToggleButtons]
     public Ability loopAbility;
     public enum Ability
     { NailAOE, NailSummon, FireBall, SpinClaw, SlashInCircle, }
 
+    public bool ActivateTester
+    {
+        get => activateTester;
+        set 
+        {
+            activateTester = value;
+        }
+    }
+
+    private bool activateTester;
     private int count;
 
     protected override void OnTick()
     {
         base.OnTick();
 
-        if (!activate)
+        if (!activateTester)
             return;
         if (isBusy)
             return;

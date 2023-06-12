@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 2667805903520648675}
   - component: {fileID: 8342994096919207792}
   - component: {fileID: 7946923981365305903}
+  - component: {fileID: 7331647590519911969}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
   - component: {fileID: 5108067734571236107}
@@ -666,6 +667,7 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
+  playAbilityTester: 0
 --- !u!114 &8342994096919207792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,6 +692,7 @@ MonoBehaviour:
   _isActive: 0
   groundNailSingle: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
   groundNailPenta: {fileID: 8359658580717493761, guid: 514adf55f962fc04f80d4bc012fc9af8, type: 3}
+  FireBallProjectile: {fileID: 0}
   nailProjectile: {fileID: 7557021420076409908, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
   horizontalSlashCollider: {fileID: 3541331978584162769}
   verticalSlashCollider: {fileID: 4574950767016202372}
@@ -721,6 +724,7 @@ MonoBehaviour:
   _isActive: 0
   groundNailSingle: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
   groundNailPenta: {fileID: 8359658580717493761, guid: b552fcf0a2927764b817a9d8b7ffcdd3, type: 3}
+  FireBallProjectile: {fileID: 0}
   nailProjectile: {fileID: 7557021420076409908, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
   horizontalSlashCollider: {fileID: 3541331978584162769}
   verticalSlashCollider: {fileID: 4574950767016202372}
@@ -728,6 +732,40 @@ MonoBehaviour:
   nailAOECollider: {fileID: 6206227978528789694}
   animator: {fileID: 7673398052024204807}
   audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
+--- !u!114 &7331647590519911969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f593d081b2e8440872f0f0fc5917b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  groundNailSingle: {fileID: 8359658580717493761, guid: d3105be9f8108e74f9a39389ff337d61, type: 3}
+  groundNailPenta: {fileID: 8359658580717493761, guid: b552fcf0a2927764b817a9d8b7ffcdd3, type: 3}
+  FireBallProjectile: {fileID: 1436042891738576300, guid: ee31fe01da0934048bf95f88e645267f, type: 3}
+  nailProjectile: {fileID: 7557021420076409908, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
+  horizontalSlashCollider: {fileID: 3541331978584162769}
+  verticalSlashCollider: {fileID: 4574950767016202372}
+  spinNailCollider: {fileID: 5215676311051618195}
+  nailAOECollider: {fileID: 6206227978528789694}
+  animator: {fileID: 7673398052024204807}
+  audioClipSriSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
+  activate: 0
+  loopAbility: 2
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0
