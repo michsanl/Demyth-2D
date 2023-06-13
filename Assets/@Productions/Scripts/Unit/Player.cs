@@ -14,6 +14,7 @@ public class Player : CoreBehaviour
     [SerializeField] private float moveDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float screenShakeDuration;
+    [SerializeField] private float invulnerableDuration;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     
     [Title("External Component")]
@@ -30,6 +31,7 @@ public class Player : CoreBehaviour
     private Vector2 moveTargetPosition;
     private bool isBusy;
     private bool isStunned;
+    private bool isTakeDamageCooldown;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionOnCooldown;
@@ -211,8 +213,13 @@ public class Player : CoreBehaviour
         isStunned = false;
     }
 
-    public IEnumerator AttackPlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
+    public IEnumerator DamagePlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
     {
+        if (isTakeDamageCooldown)
+            yield break;
+
+        StartCoroutine(StartTakeDamageCooldown());
+
         isStunned = true;
         
         health.TakeDamage(1);
@@ -228,6 +235,15 @@ public class Player : CoreBehaviour
         }
 
         isStunned = false;
+    }
+
+    private IEnumerator StartTakeDamageCooldown()
+    {
+        isTakeDamageCooldown = true;
+
+        yield return Helper.GetWaitForSeconds(invulnerableDuration);
+
+        isTakeDamageCooldown = false;
     }
     
     private bool IsDirectionDiagonal(Vector2 direction)

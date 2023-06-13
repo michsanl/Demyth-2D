@@ -5,11 +5,6 @@ using Sirenix.OdinInspector;
 
 public class AttackPlayer : MonoBehaviour
 {
-    [Title("DOT Settings")]
-    [SerializeField] private bool enableDOTOnStay;
-    [ShowIf("enableDOTOnStay")]
-    [SerializeField] private float DOTInterval;
-
     [Title("CameraShake Settings")]
     [SerializeField] private bool enableCameraShake = true;
 
@@ -20,29 +15,15 @@ public class AttackPlayer : MonoBehaviour
     public enum KnockBackDirection { Up, Down, Left, Right }
 
     private Player player;
-    private float timer;
-    private bool isApplyingDOT;
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        timer = DOTInterval;
         player = other.collider.GetComponent<Player>();
-
-        StartCoroutine(player.AttackPlayer(enableCameraShake, enableKnockBack, GetKnockBackDirection()));
     }
 
     private void OnCollisionStay2D(Collision2D other) 
     {
-        if (!enableDOTOnStay)
-            return;
-
-        timer -= Time.deltaTime;
-
-        if (timer <= 0)
-        {
-            StartCoroutine(player.AttackPlayer(enableCameraShake, enableKnockBack, GetKnockBackDirection()));
-            timer = DOTInterval;
-        }
+        StartCoroutine(player.DamagePlayer(enableCameraShake, enableKnockBack, GetKnockBackDirection()));
     }
 
     private Vector2 GetKnockBackDirection()

@@ -73,12 +73,12 @@ public class BossSriAbility : SceneService
 
     protected bool IsPlayerAtSamePosX()
     {
-        return transform.position.x == Context.Player.transform.position.x;
+        return Mathf.Approximately(transform.position.x, Context.Player.transform.position.x) ;
     }
 
     protected bool IsPlayerAtSamePosY()
     {
-        return transform.position.y == Context.Player.transform.position.y;
+        return Mathf.Approximately(transform.position.y, Context.Player.transform.position.y);
     }
 
     protected bool IsPlayerNearby()
@@ -143,7 +143,7 @@ public class BossSriAbility : SceneService
 
         //lookOrientation.SetFacingDirection(Vector2.right);
         
-        targetPosition = Mathf.Round(targetPosition);
+        targetPosition = Mathf.Clamp(Mathf.Round(targetPosition), -6, 6);
 
         float frontSwing = .833f;
         float swing = .233f;
@@ -156,9 +156,9 @@ public class BossSriAbility : SceneService
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
+        horizontalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
 
-        horizontalSlashCollider.SetActive(false);
 
         isBusy = false;
     }
@@ -169,7 +169,7 @@ public class BossSriAbility : SceneService
 
         //lookOrientation.SetFacingDirection(Vector2.left);
         
-        targetPosition = Mathf.Round(targetPosition);
+        targetPosition = Mathf.Clamp(Mathf.Round(targetPosition), -6, 6);
         
         float frontSwing = .833f;
         float swing = .233f;
@@ -182,9 +182,9 @@ public class BossSriAbility : SceneService
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
+        horizontalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
 
-        horizontalSlashCollider.SetActive(false);
 
         isBusy = false;
     }
@@ -193,7 +193,7 @@ public class BossSriAbility : SceneService
     {
         isBusy = true;
         
-        targetPosition = Mathf.Round(targetPosition);
+        targetPosition = Mathf.Clamp(Mathf.Round(targetPosition), -4, 2);
 
         float frontSwing = .6f;
         float swing = .233f;
@@ -206,9 +206,8 @@ public class BossSriAbility : SceneService
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
-        yield return Helper.GetWaitForSeconds(backSwing);
-
         verticalSlashCollider.SetActive(false);
+        yield return Helper.GetWaitForSeconds(backSwing);
 
         isBusy = false;
     }
@@ -217,7 +216,7 @@ public class BossSriAbility : SceneService
     {
         isBusy = true;
         
-        targetPosition = Mathf.Round(targetPosition);
+        targetPosition = Mathf.Clamp(Mathf.Round(targetPosition), -4, 2);
 
         float frontSwing = .6f;
         float swing = .233f;
@@ -230,9 +229,9 @@ public class BossSriAbility : SceneService
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
+        verticalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
 
-        verticalSlashCollider.SetActive(false);
 
         isBusy = false;
     }
