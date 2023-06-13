@@ -6,7 +6,7 @@ using System;
 
 public class BossSri : SceneService
 {
-    [SerializeField] private bool playAbilityTester;
+    [SerializeField] private bool activateAbilityTester;
 
     private BossSriFirstPhase bossSriFirstPhase;
     private BossSriSecondPhase bossSriSecondPhase;
@@ -25,7 +25,7 @@ public class BossSri : SceneService
     {
         health.OnAfterTakeDamage += Health_OnTakeDamage;
 
-        if (playAbilityTester)
+        if (activateAbilityTester)
         {
             bossSriAbilityTester.ActivateTester = true;
         }
@@ -39,19 +39,22 @@ public class BossSri : SceneService
     {
         if (health.CurrentHP == 10)
         {
+            if (activateAbilityTester)
+                return;
+
             StartSecondPhase();
         }
     }
 
     private void StartFirstPhase()
     {
-        bossSriFirstPhase.IsBehaviorActive = true;
-        bossSriSecondPhase.IsBehaviorActive = false;
+        bossSriFirstPhase.ActivateFirstPhase = true;
+        bossSriSecondPhase.ActivateSecondPhase = false;
     }
 
     private void StartSecondPhase()
     {
-        bossSriFirstPhase.IsBehaviorActive = false;
-        bossSriSecondPhase.IsBehaviorActive = true;
+        bossSriFirstPhase.ActivateFirstPhase = false;
+        bossSriSecondPhase.ActivateSecondPhase = true;
     }
 }

@@ -6,14 +6,14 @@ using Sirenix.OdinInspector;
 
 public class BossSriSecondPhase : BossSriAbility
 {
-    public bool IsBehaviorActive
+    public bool ActivateSecondPhase
     {
-        get => isBehaviorActive;
+        get => activateSecondPhase;
         set 
         {
-            isBehaviorActive = value;
+            activateSecondPhase = value;
             
-            if (isBehaviorActive == true)
+            if (activateSecondPhase == true)
             {
                 Debug.Log("Second phase is active");
             }
@@ -21,7 +21,7 @@ public class BossSriSecondPhase : BossSriAbility
     }
     
 
-    private bool isBehaviorActive;
+    private bool activateSecondPhase;
     private Action[] movementActionPoolArray;
     private List<IEnumerator> abilityPoolList;
 
@@ -43,7 +43,7 @@ public class BossSriSecondPhase : BossSriAbility
 
     private void HandleAction()
     {
-        if (!isBehaviorActive)
+        if (!activateSecondPhase)
             return;
         if (isBusy)
             return;

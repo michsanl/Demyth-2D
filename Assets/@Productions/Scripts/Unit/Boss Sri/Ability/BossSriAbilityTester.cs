@@ -9,7 +9,7 @@ public class BossSriAbilityTester : BossSriAbility
     [EnumToggleButtons]
     public Ability loopAbility;
     public enum Ability
-    { NailAOE, NailSummon, FireBall, SpinClaw, SlashInCircle, }
+    { NailAOE, NailSummon, NailSummonPenta, FireBall, SpinClaw, SlashInCircle, }
 
     public bool ActivateTester
     {
@@ -32,6 +32,8 @@ public class BossSriAbilityTester : BossSriAbility
         if (isBusy)
             return;
 
+        SetFacingDirection();
+
         HandlePlayAbility();
     }
 
@@ -47,6 +49,9 @@ public class BossSriAbilityTester : BossSriAbility
                 break;
             case Ability.NailSummon:
                 StartCoroutine(PlayNailSummon(groundNailSingle));
+                break;
+            case Ability.NailSummonPenta:
+                StartCoroutine(PlayNailSummon(groundNailPenta));
                 break;
             case Ability.SpinClaw:
                 StartCoroutine(PlaySpinClaw());
@@ -85,5 +90,18 @@ public class BossSriAbilityTester : BossSriAbility
         }
 
         count++;
+    }
+
+    private void SetFacingDirection()
+    {
+        if (IsPlayerToRight())
+        {
+            lookOrientation.SetFacingDirection(Vector2.right);
+        }
+
+        if (IsPlayerToLeft())
+        {
+            lookOrientation.SetFacingDirection(Vector2.left);
+        }
     }
 }

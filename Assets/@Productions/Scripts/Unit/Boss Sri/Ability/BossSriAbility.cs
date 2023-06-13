@@ -14,6 +14,9 @@ public class BossSriAbility : SceneService
     [SerializeField] protected GameObject FireBallProjectile;
     [SerializeField] protected NailProjectile nailProjectile;
 
+    [Title("Summon Spawn Point")]
+    [SerializeField] protected Transform fireBallSpawnPoint;
+
     [Title("Attack Ability Collider")]
     [SerializeField] private GameObject horizontalSlashCollider;
     [SerializeField] private GameObject verticalSlashCollider;
@@ -287,8 +290,7 @@ public class BossSriAbility : SceneService
         float animationDuration = 2.0667f;
         animator.Play(FIRE_BALL);
 
-        var fireBallOrigin = transform.position + Vector3.up * .5f;
-        var fireBall = Instantiate(FireBallProjectile, fireBallOrigin, Quaternion.identity);
+        var fireBall = Instantiate(FireBallProjectile, fireBallSpawnPoint.position, Quaternion.identity);
 
         // audioManager.PlaySound(audioClipSriSO.Fireball);
         yield return Helper.GetWaitForSeconds(animationDuration);

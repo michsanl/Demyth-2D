@@ -8,6 +8,9 @@ public class FireBallProjectile : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float lifeSpanDuration;
+    [SerializeField] private float homingDuration;
+    [SerializeField] private float idleDuration;
+
 
     private Player player;
 
@@ -21,14 +24,29 @@ public class FireBallProjectile : MonoBehaviour
         Destroy(gameObject, lifeSpanDuration);
     }
 
-    private void Update() 
+    private void Update()
     {
-        var dir = player.transform.position - transform.position;
+        idleDuration -= Time.deltaTime;
+        if (idleDuration > 0)
+            return;
 
-        transform.up = Vector3.MoveTowards(transform.up, dir, rotationSpeed * Time.deltaTime);
+        homingDuration -= Time.deltaTime;
+        if (homingDuration > 0)
+        {
+            ChangeDirTowardsPlayer();
+        }
 
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.up, moveSpeed * Time.deltaTime);
+        MoveTowardsDir();
     }
 
+    private void ChangeDirTowardsPlayer()
+    {
+        var dir = player.transform.position - transform.position;
+        transform.up = Vector3.MoveTowards(transform.up, dir, rotationSpeed * Time.deltaTime);
+    }
 
+    private void MoveTowardsDir()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.up, moveSpeed * Time.deltaTime);
+    }
 }
