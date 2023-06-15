@@ -11,7 +11,7 @@ public class BossSriAbility : SceneService
     [Title("Summoned Object")]
     [SerializeField] protected GameObject groundNailSingle;
     [SerializeField] protected GameObject groundNailPenta;
-    [SerializeField] protected GameObject FireBallProjectile;
+    [SerializeField] protected GameObject fireBallProjectile;
     [SerializeField] protected NailProjectile nailProjectile;
 
     [Title("Summon Spawn Point")]
@@ -152,9 +152,8 @@ public class BossSriAbility : SceneService
         animator.Play(HORIZONTAL_SLASH);
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
-        horizontalSlashCollider.SetActive(true);
-
         yield return Helper.GetWaitForSeconds(frontSwing);
+        horizontalSlashCollider.SetActive(true);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         horizontalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
@@ -178,9 +177,8 @@ public class BossSriAbility : SceneService
         animator.Play(HORIZONTAL_SLASH);
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
-        horizontalSlashCollider.SetActive(true);
-
         yield return Helper.GetWaitForSeconds(frontSwing);
+        horizontalSlashCollider.SetActive(true);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         horizontalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
@@ -202,9 +200,8 @@ public class BossSriAbility : SceneService
         animator.Play(UP_SLASH);
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
-        verticalSlashCollider.SetActive(true);
-
         yield return Helper.GetWaitForSeconds(frontSwing);
+        verticalSlashCollider.SetActive(true);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         verticalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
@@ -225,9 +222,8 @@ public class BossSriAbility : SceneService
         animator.Play(DOWN_SLASH);
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
-        verticalSlashCollider.SetActive(true);
-
         yield return Helper.GetWaitForSeconds(frontSwing);
+        verticalSlashCollider.SetActive(true);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
         verticalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
@@ -289,7 +285,7 @@ public class BossSriAbility : SceneService
         float animationDuration = 2.0667f;
         animator.Play(FIRE_BALL);
 
-        var fireBall = Instantiate(FireBallProjectile, fireBallSpawnPoint.position, Quaternion.identity);
+        var fireBall = Instantiate(fireBallProjectile, fireBallSpawnPoint.position, Quaternion.identity);
 
         // audioManager.PlaySound(audioClipSriSO.Fireball);
         yield return Helper.GetWaitForSeconds(animationDuration);

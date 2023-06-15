@@ -6,6 +6,8 @@ using CustomTools.Core;
 using UnityEngine.InputSystem;
 using UISystem;
 using Sirenix.OdinInspector;
+using Spine;
+using Spine.Unity;
 
 public class Player : CoreBehaviour
 {
@@ -20,12 +22,17 @@ public class Player : CoreBehaviour
     [Title("External Component")]
     [SerializeField] private GameObject senterGameObject;
     [SerializeField] private Animator animator;
+    [SerializeField] private Material originalMaterial;
+    [SerializeField] private Material flashingMaterial;
+    
 
     public Vector2 MoveTargetPosition => moveTargetPosition; 
 
     private PlayerInputActions playerInputActions;
     private MovementController movementController;
     private LookOrientation lookOrientation;
+    private MeshRenderer spineMeshRenderer;
+    private SkeletonAnimation skeletonAnimation;
     private Health health;
     private Vector2 playerDir;
     private Vector2 moveTargetPosition;
@@ -52,6 +59,8 @@ public class Player : CoreBehaviour
         movementController = GetComponent<MovementController>();
         lookOrientation = GetComponent<LookOrientation>();
         health = GetComponent<Health>();
+        spineMeshRenderer = animator.GetComponent<MeshRenderer>();
+        skeletonAnimation = animator.GetComponent<SkeletonAnimation>();
     }
     
     private void Update()
@@ -229,12 +238,46 @@ public class Player : CoreBehaviour
             yield return StartCoroutine(PlayCameraShake());
         }
 
+        StartCoroutine(FlashEffectOnTakeDamage());
+
         if (enableKnockback)
         {
             yield return StartCoroutine(HandleKnockBack(knockBackDir));
         }
 
         isStunned = false;
+    }
+
+    private IEnumerator FlashEffectOnTakeDamage()
+    {
+        MaterialPropertyBlock mpbNew = new MaterialPropertyBlock();
+        mpbNew.SetColor("_RendererColor", Color.gray * .5f);
+        // mpbNew.SetColor("_RendererColor", Color.red);
+
+        MaterialPropertyBlock mpbVanilla = new MaterialPropertyBlock();
+        mpbVanilla.Clear();
+
+        for (int i = 0; i < 5; i++)
+        {
+            yield return Helper.GetWaitForSeconds(.15f);
+            spineMeshRenderer.SetPropertyBlock(mpbNew);
+
+            yield return Helper.GetWaitForSeconds(.1f);
+            spineMeshRenderer.SetPropertyBlock(mpbVanilla);
+        }
+    }
+
+    private IEnumerator FlashEffectMaterialSwap()
+    {
+
+        if (originalMaterial == null)
+            originalMaterial = skeletonAnimation.SkeletonDataAsset.atlasAssets[0].PrimaryMaterial;
+
+        skeletonAnimation.CustomMaterialOverride[originalMaterial] = flashingMaterial; 
+
+        yield return Helper.GetWaitForSeconds(1f);
+
+        skeletonAnimation.CustomMaterialOverride.Remove(originalMaterial);
     }
 
     private IEnumerator StartTakeDamageCooldown()

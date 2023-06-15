@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000007bd92156
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -692,17 +692,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 853262875032896984, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 853262875032896984, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 853262875032896984, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: 1445058939
+      objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: flashingMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 498b497d73d9caf47a9e6d02f3dfd8ca, type: 2}
+    - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: spineMeshRenderer
+      value: 
+      objectReference: {fileID: 1914333062}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.y
@@ -743,6 +763,18 @@ PrefabInstance:
     - target: {fileID: 3143619101154623904, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143619101154623905, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143619101154623905, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712916346127714324, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321983681366ef744898eb289741b047, type: 3}
@@ -1040,11 +1072,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1081,6 +1113,10 @@ PrefabInstance:
     - target: {fileID: 7673398050621169837, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
       propertyPath: m_Name
       value: NPC Boss Sri
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169837, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7673398052024204801, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
       propertyPath: m_Mesh
@@ -1708,6 +1744,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 708720891042517943, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
   m_PrefabInstance: {fileID: 543316240}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1914333062 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3143619101154623905, guid: 321983681366ef744898eb289741b047, type: 3}
+  m_PrefabInstance: {fileID: 892082783}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2007419813 stripped
 MonoBehaviour:
