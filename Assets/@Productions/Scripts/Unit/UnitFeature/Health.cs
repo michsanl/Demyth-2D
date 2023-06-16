@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
 
 public class Health : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     private HealthStatus status = HealthStatus.Normal;
 
+    public Action OnAfterTakeDamage;
+
     private void Start()
     {
         ResetHealthToMaximum();
@@ -44,6 +47,8 @@ public class Health : MonoBehaviour
         if (status == HealthStatus.Invulnerable) return;
 
         CurrentHP--;
+
+        OnAfterTakeDamage?.Invoke();
     }
 
     public void Heal(int healAmount)

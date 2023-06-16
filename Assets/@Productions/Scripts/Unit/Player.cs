@@ -5,27 +5,45 @@ using System;
 using CustomTools.Core;
 using UnityEngine.InputSystem;
 using UISystem;
+using Sirenix.OdinInspector;
+using Spine;
+using Spine.Unity;
 
 public class Player : CoreBehaviour
 {
-    [SerializeField] private GameObject senterGameObject;
-    [SerializeField] private Animator animator;
-    [SerializeField] private LayerMask movementBlockerLayerMask;
+    [Title("Settings")]
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
+    [SerializeField] private float attackDuration;
+    [SerializeField] private LayerMask movementBlockerLayerMask;
+    
+    [Title("Components")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject senterGameObject;
+    
+#region Public Fields
+    
+    public Vector2 MoveTargetPosition => moveTargetPosition; 
+    public bool IsGamePaused => isGamePaused;
+
+#endregion
 
     private PlayerInputActions playerInputActions;
-    private MovementController movementController;
+    private CameraShakeController cameraShakeController;
+    private FlashEffectController flashEffectController;
     private LookOrientation lookOrientation;
+    private MeshRenderer spineMeshRenderer;
     private Health health;
-    private bool isBusy = false;
+    private Vector2 playerDir;
+    private Vector2 moveTargetPosition;
+    private bool isBusy;
+    private bool isKnocked;
+    private bool isTakeDamageOnCooldown;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
-    private Vector2 playerDir;
-
-    public bool isGamePaused;
+    private bool isGamePaused;
 
     private void Awake() 
     {
@@ -36,9 +54,11 @@ public class Player : CoreBehaviour
 
         playerInputActions.Player.Enable();
 
-        movementController = GetComponent<MovementController>();
+        cameraShakeController = GetComponent<CameraShakeController>();
+        flashEffectController = GetComponent<FlashEffectController>();
         lookOrientation = GetComponent<LookOrientation>();
         health = GetComponent<Health>();
+        spineMeshRenderer = animator.GetComponent<MeshRenderer>();
     }
 
     private void Update()
@@ -48,7 +68,9 @@ public class Player : CoreBehaviour
 
     private void HandlePlayerAction()
     {
-        if (isGamePaused)
+        if (Time.deltaTime == 0)
+            return;
+        if (isKnocked)
             return;
         if (isBusy)
             return;
@@ -71,20 +93,16 @@ public class Player : CoreBehaviour
         } 
         else
         {
+            moveTargetPosition = (Vector2)transform.position + playerDir;
             StartCoroutine(HandleMovement());
         }
-    }
-
-    private bool IsDirectionDiagonal(Vector2 direction)
-    {
-        return direction.x != 0 && direction.y != 0;
     }
 
     private IEnumerator HandleMovement()
     {
         isBusy = true;
 
-        movementController.Move(playerDir, moveDuration);
+        Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
         yield return Helper.GetWaitForSeconds(actionDelay);
 
@@ -102,7 +120,10 @@ public class Player : CoreBehaviour
                 break;
             case InteractableType.Damage:
                 animator.SetTrigger("Attack");
-                break;
+                interactable.Interact();
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
             default:
                 break;
         }
@@ -124,23 +145,11 @@ public class Player : CoreBehaviour
         Context.HUDUI.SetActiveSenterImage(isSenterEnabled);
     }
 
-    private void ToggleSenter()
-    {
-        isSenterEnabled = !isSenterEnabled;
-        senterGameObject.SetActive(isSenterEnabled);
-    }
-
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
         ToggleGamePause();
 
         Context.UI.Toggle<PauseUI>();
-    }
-
-    public void ToggleGamePause()
-    {
-        isGamePaused = !isGamePaused;
-        Time.timeScale = isGamePaused ? 0f : 1f;
     }
 
     private void OnHealthPotionPerformed(InputAction.CallbackContext context)
@@ -149,8 +158,27 @@ public class Player : CoreBehaviour
             return;
         if (isHealthPotionOnCooldown)
             return;
-
+        
         StartCoroutine(HealSelf());
+    }
+
+    private void ToggleSenter()
+    {
+        isSenterEnabled = !isSenterEnabled;
+        senterGameObject.SetActive(isSenterEnabled);
+    }
+
+    public void ToggleGamePause()
+    {
+        isGamePaused = !isGamePaused;
+        if (isGamePaused)
+        {
+            Time.timeScale = 0f;
+            Context.VCamCameraShake.gameObject.SetActive(false);
+        } else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private IEnumerator HealSelf()
@@ -164,4 +192,47 @@ public class Player : CoreBehaviour
         isHealthPotionOnCooldown = false;
     }
 
+    public IEnumerator DamagePlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
+    {
+        if (isTakeDamageOnCooldown)
+            yield break;
+        
+        health.TakeDamage(1);
+
+        if (enableCameraShake)
+            yield return StartCoroutine(cameraShakeController.PlayCameraShake());
+
+        StartCoroutine(HandleFlashEffectOnHit());
+
+        if (enableKnockback)
+            yield return StartCoroutine(HandleKnockBack(knockBackDir));
+    }
+
+    private IEnumerator HandleFlashEffectOnHit()
+    {
+        isTakeDamageOnCooldown = true;
+
+        yield return StartCoroutine(flashEffectController.PlayFlashEffect());
+
+        isTakeDamageOnCooldown = false;
+    }
+
+    private IEnumerator HandleKnockBack(Vector2 dir)
+    {
+        isKnocked = true;
+
+        if (!Helper.CheckTargetDirection(moveTargetPosition, dir, movementBlockerLayerMask, out Interactable interactable))
+        {
+            moveTargetPosition = moveTargetPosition + dir;
+            Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
+            yield return Helper.GetWaitForSeconds(actionDelay);
+        }
+        
+        isKnocked = false;
+    }
+    
+    private bool IsDirectionDiagonal(Vector2 direction)
+    {
+        return direction.x != 0 && direction.y != 0;
+    }
 }

@@ -22,7 +22,7 @@ namespace UISystem
             Close();
 
             Player player = SceneUI.Context.Player;
-            if (player.isGamePaused)
+            if (player.IsGamePaused)
             {
                 SceneUI.Context.Player.ToggleGamePause();
             }
