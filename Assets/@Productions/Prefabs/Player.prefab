@@ -91,7 +91,8 @@ GameObject:
   - component: {fileID: 3143619101027616307}
   - component: {fileID: 3143619101027616306}
   - component: {fileID: 1538411941623662623}
-  - component: {fileID: 1922922143}
+  - component: {fileID: 4608673986508498265}
+  - component: {fileID: 854613596650216529}
   - component: {fileID: 426225192504292295}
   - component: {fileID: 2550479280664009900}
   - component: {fileID: 1428590096357084507}
@@ -135,13 +136,11 @@ MonoBehaviour:
   actionDelay: 0.25
   moveDuration: 0.245
   attackDuration: 0.5
-  screenShakeDuration: 0.4
-  invulnerableDuration: 1
   movementBlockerLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  senterGameObject: {fileID: 6712916346127714324}
   animator: {fileID: 3143619101154623906}
+  senterGameObject: {fileID: 6712916346127714324}
 --- !u!114 &1538411941623662623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +156,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   status: 0
---- !u!114 &1922922143
+--- !u!114 &4608673986508498265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,9 +165,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 3143619101027616268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb7b4b24eb0af34ebce2683c6c1e226, type: 3}
+  m_Script: {fileID: 11500000, guid: 2aed76b1db70b4345b2cfc384cde505f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  screenShakeDuration: 0.4
+--- !u!114 &854613596650216529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143619101027616268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23853d2458b2f245ab1589efb802b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spineMeshRenderer: {fileID: 3143619101154623905}
+  flashNewColorDuration: 0.1
+  flashNormalColorDuration: 0.2
+  flashCycleCount: 4
 --- !u!114 &426225192504292295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +499,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000007bd92156
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

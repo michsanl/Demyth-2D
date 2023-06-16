@@ -18,8 +18,10 @@ public class BossSriAbility : SceneService
     [SerializeField] protected Transform fireBallSpawnPoint;
 
     [Title("Attack Ability Collider")]
-    [SerializeField] private GameObject horizontalSlashCollider;
-    [SerializeField] private GameObject verticalSlashCollider;
+    [SerializeField] private GameObject upSlashCollider;
+    [SerializeField] private GameObject downSlashCollider;
+    [SerializeField] private GameObject rightSlashCollider;
+    [SerializeField] private GameObject leftSlashCollider;
     [SerializeField] private GameObject spinNailCollider;
     [SerializeField] private GameObject nailAOECollider;
 
@@ -153,11 +155,10 @@ public class BossSriAbility : SceneService
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
-        horizontalSlashCollider.SetActive(true);
+        rightSlashCollider.SetActive(true);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
-        horizontalSlashCollider.SetActive(false);
+        rightSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
-
 
         isBusy = false;
     }
@@ -178,9 +179,9 @@ public class BossSriAbility : SceneService
         audioManager.PlaySound(audioClipSriSO.HorizontalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
-        horizontalSlashCollider.SetActive(true);
+        leftSlashCollider.SetActive(true);
         yield return transform.DOMoveX(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
-        horizontalSlashCollider.SetActive(false);
+        leftSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
 
 
@@ -201,9 +202,9 @@ public class BossSriAbility : SceneService
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
-        verticalSlashCollider.SetActive(true);
+        upSlashCollider.SetActive(true);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
-        verticalSlashCollider.SetActive(false);
+        upSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
 
         isBusy = false;
@@ -223,9 +224,9 @@ public class BossSriAbility : SceneService
         audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
-        verticalSlashCollider.SetActive(true);
+        downSlashCollider.SetActive(true);
         yield return transform.DOMoveY(targetPosition, swing).SetEase(Ease.OutExpo).WaitForCompletion();
-        verticalSlashCollider.SetActive(false);
+        downSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwing);
 
 
@@ -245,8 +246,8 @@ public class BossSriAbility : SceneService
         audioManager.PlaySound(audioClipSriSO.NailAOE);
 
         yield return Helper.GetWaitForSeconds(frontSwing);
-        
-        nailAOECollider.SetActive(true);
+
+        StartCoroutine(SetActiveColliderWithDelay(nailAOECollider, .2f));
         yield return Helper.GetWaitForSeconds(swing);
         nailAOECollider.SetActive(false);
         
@@ -325,7 +326,7 @@ public class BossSriAbility : SceneService
 
         yield return Helper.GetWaitForSeconds(frontSwing);
         
-        nailAOECollider.SetActive(true);
+        StartCoroutine(SetActiveColliderWithDelay(nailAOECollider, .2f));
         StartCoroutine(SpawnNailProjectile());
         yield return Helper.GetWaitForSeconds(swing);
         nailAOECollider.SetActive(false);
@@ -361,5 +362,12 @@ public class BossSriAbility : SceneService
 
         return vector;
     }
+
+    private IEnumerator SetActiveColliderWithDelay(GameObject colliderGameObject, float delayTime)
+    {
+        yield return Helper.GetWaitForSeconds(delayTime);
+        nailAOECollider.SetActive(true);
+    }
+    
 
 }

@@ -15,36 +15,34 @@ public class Player : CoreBehaviour
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
     [SerializeField] private float attackDuration;
-    [SerializeField] private float screenShakeDuration;
-    [SerializeField] private float invulnerableDuration;
     [SerializeField] private LayerMask movementBlockerLayerMask;
     
-    [Title("External Component")]
-    [SerializeField] private GameObject senterGameObject;
+    [Title("Components")]
     [SerializeField] private Animator animator;
-    [SerializeField] private Material originalMaterial;
-    [SerializeField] private Material flashingMaterial;
+    [SerializeField] private GameObject senterGameObject;
     
-
+#region Public Fields
+    
     public Vector2 MoveTargetPosition => moveTargetPosition; 
+    public bool IsGamePaused => isGamePaused;
+
+#endregion
 
     private PlayerInputActions playerInputActions;
-    private MovementController movementController;
+    private CameraShakeController cameraShakeController;
+    private FlashEffectController flashEffectController;
     private LookOrientation lookOrientation;
     private MeshRenderer spineMeshRenderer;
-    private SkeletonAnimation skeletonAnimation;
     private Health health;
     private Vector2 playerDir;
     private Vector2 moveTargetPosition;
     private bool isBusy;
-    private bool isStunned;
-    private bool isTakeDamageCooldown;
+    private bool isKnocked;
+    private bool isTakeDamageOnCooldown;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
-
-    public bool IsGamePaused => isGamePaused;
     private bool isGamePaused;
 
     private void Awake() 
@@ -56,13 +54,13 @@ public class Player : CoreBehaviour
 
         playerInputActions.Player.Enable();
 
-        movementController = GetComponent<MovementController>();
+        cameraShakeController = GetComponent<CameraShakeController>();
+        flashEffectController = GetComponent<FlashEffectController>();
         lookOrientation = GetComponent<LookOrientation>();
         health = GetComponent<Health>();
         spineMeshRenderer = animator.GetComponent<MeshRenderer>();
-        skeletonAnimation = animator.GetComponent<SkeletonAnimation>();
     }
-    
+
     private void Update()
     {
         HandlePlayerAction();
@@ -70,9 +68,9 @@ public class Player : CoreBehaviour
 
     private void HandlePlayerAction()
     {
-        if (isGamePaused)
+        if (Time.deltaTime == 0)
             return;
-        if (isStunned)
+        if (isKnocked)
             return;
         if (isBusy)
             return;
@@ -194,109 +192,47 @@ public class Player : CoreBehaviour
         isHealthPotionOnCooldown = false;
     }
 
-    private IEnumerator PlayCameraShake()
+    public IEnumerator DamagePlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
     {
-        GameObject cameraShakeGO = Context.VCamCameraShake.gameObject;
+        if (isTakeDamageOnCooldown)
+            yield break;
         
-        Time.timeScale = 0;
-        cameraShakeGO.SetActive(true);
+        health.TakeDamage(1);
 
-        yield return new  WaitForSecondsRealtime(screenShakeDuration);
+        if (enableCameraShake)
+            yield return StartCoroutine(cameraShakeController.PlayCameraShake());
 
-        if (!isGamePaused)
-        {
-            Time.timeScale = 1;
-        }
-        cameraShakeGO.SetActive(false);
+        StartCoroutine(HandleFlashEffectOnHit());
+
+        if (enableKnockback)
+            yield return StartCoroutine(HandleKnockBack(knockBackDir));
+    }
+
+    private IEnumerator HandleFlashEffectOnHit()
+    {
+        isTakeDamageOnCooldown = true;
+
+        yield return StartCoroutine(flashEffectController.PlayFlashEffect());
+
+        isTakeDamageOnCooldown = false;
     }
 
     private IEnumerator HandleKnockBack(Vector2 dir)
     {
+        isKnocked = true;
+
         if (!Helper.CheckTargetDirection(moveTargetPosition, dir, movementBlockerLayerMask, out Interactable interactable))
         {
             moveTargetPosition = moveTargetPosition + dir;
             Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
             yield return Helper.GetWaitForSeconds(actionDelay);
         }
-
-        isStunned = false;
-    }
-
-    public IEnumerator DamagePlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
-    {
-        if (isTakeDamageCooldown)
-            yield break;
-
-        StartCoroutine(StartTakeDamageCooldown());
-
-        isStunned = true;
         
-        health.TakeDamage(1);
-
-        if (enableCameraShake)
-        {
-            yield return StartCoroutine(PlayCameraShake());
-        }
-
-        StartCoroutine(FlashEffectOnTakeDamage());
-
-        if (enableKnockback)
-        {
-            yield return StartCoroutine(HandleKnockBack(knockBackDir));
-        }
-
-        isStunned = false;
-    }
-
-    private IEnumerator FlashEffectOnTakeDamage()
-    {
-        MaterialPropertyBlock mpbNew = new MaterialPropertyBlock();
-        mpbNew.SetColor("_RendererColor", Color.gray * .5f);
-        // mpbNew.SetColor("_RendererColor", Color.red);
-
-        MaterialPropertyBlock mpbVanilla = new MaterialPropertyBlock();
-        mpbVanilla.Clear();
-
-        for (int i = 0; i < 5; i++)
-        {
-            yield return Helper.GetWaitForSeconds(.15f);
-            spineMeshRenderer.SetPropertyBlock(mpbNew);
-
-            yield return Helper.GetWaitForSeconds(.1f);
-            spineMeshRenderer.SetPropertyBlock(mpbVanilla);
-        }
-    }
-
-    private IEnumerator FlashEffectMaterialSwap()
-    {
-
-        if (originalMaterial == null)
-            originalMaterial = skeletonAnimation.SkeletonDataAsset.atlasAssets[0].PrimaryMaterial;
-
-        skeletonAnimation.CustomMaterialOverride[originalMaterial] = flashingMaterial; 
-
-        yield return Helper.GetWaitForSeconds(1f);
-
-        skeletonAnimation.CustomMaterialOverride.Remove(originalMaterial);
-    }
-
-    private IEnumerator StartTakeDamageCooldown()
-    {
-        isTakeDamageCooldown = true;
-
-        yield return Helper.GetWaitForSeconds(invulnerableDuration);
-
-        isTakeDamageCooldown = false;
+        isKnocked = false;
     }
     
     private bool IsDirectionDiagonal(Vector2 direction)
     {
         return direction.x != 0 && direction.y != 0;
     }
-    
-    public Vector2 GetOppositeVector2Dir(Vector2 vector)
-    {
-        return new Vector2(vector.x * -1, vector.y * -1);
-    }
-
 }
