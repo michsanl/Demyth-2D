@@ -24,10 +24,13 @@ namespace CustomTools.Core
         {
             var starterPoint = Context.LevelManager.CurrentLevel.StarterPosition;
 
-            var player = Instantiate(playerPrefab, starterPoint, Quaternion.identity);
-            //TODO : initiate player
-            Context.Player = player;
-            player.Context = Context;
+            // var player = Instantiate(playerPrefab, starterPoint, Quaternion.identity);
+            // //TODO : initiate player
+            // Context.Player = player;
+            // player.Context = Context;
+
+            Context.Player.Context = Context;
+            Context.Player.transform.position = starterPoint;
 
             yield return new WaitForSeconds(1f);
 

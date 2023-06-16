@@ -14,5 +14,11 @@ namespace CustomTools.Core
         [Title("Gameplay")]
         public LevelManager LevelManager;
         public Player Player;
+
+        [Title("Audio")]
+        public AudioManager AudioManager;
+
+        [Title("Audio")]
+        public GameObject VCamCameraShake;
     }
 }

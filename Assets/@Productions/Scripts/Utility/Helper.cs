@@ -16,6 +16,15 @@ public static class Helper
         return WaitDictionary[time];
     }
 
+    public static float GetAngleFromFectorFloat(Vector3 dir)
+    {
+        dir = dir.normalized;
+        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (n < 0) n += 360;
+
+        return n;
+    }
+
     public static bool CheckTargetDirection<T>(Vector2 origin, Vector2 dir, LayerMask layer, out T targetComponent)
     {
 	    var originWithOffset = origin + dir;
@@ -35,13 +44,11 @@ public static class Helper
 
         return hit.Length > 0;
     }
-
-    public static bool CheckTargetDirection<T>(Vector2 origin, Vector2 dir, Vector2 size, LayerMask layer, out T targetComponent)
+    public static bool CheckTargetDirection<T>(Vector2 raycastOrigin, Vector2 dir, Vector2 objectSize, LayerMask layer, out T targetComponent)
     {
-        var originWithOffset = origin + dir;
-        var shrinkSize = size * 0.9f;
+        var finalRaycastOrigin = raycastOrigin + dir;
 
-        RaycastHit2D[] hit = GetRaycasthitBasedOnSize(originWithOffset, shrinkSize, dir, layer);
+        RaycastHit2D[] hit = GetRaycastHitScaleOnObjectSize(finalRaycastOrigin, objectSize, dir, layer);
 
         targetComponent = default(T);
         if (hit.Length > 0)
@@ -57,19 +64,29 @@ public static class Helper
         return hit.Length > 0;
     }
 
-    private static RaycastHit2D[] GetRaycasthitBasedOnSize(Vector2 origin, Vector2 size, Vector2 dir, LayerMask layer)
+    private static RaycastHit2D[] GetRaycastHitScaleOnObjectSize(Vector2 origin, Vector2 objectSize, Vector2 dir, LayerMask layer)
     {
         RaycastHit2D[] hit;
+        
+        float shrinkMultiplier = .9f;
 
-        if (dir.x != 0)
+        if (IsDirHorizontal(dir))
         {
-            hit = size.y > 1 ? Physics2D.BoxCastAll(origin, new Vector2(.9f, size.y), 0f, dir.normalized, 0f, layer) : Physics2D.LinecastAll(origin, origin, layer);
-        } else
+            Vector2 boxCastSize = new Vector2(1f, objectSize.y) * shrinkMultiplier;
+            hit = Physics2D.BoxCastAll(origin, boxCastSize, 0f, dir.normalized, 0f, layer);
+        }
+        else
         {
-            hit = size.x > 1 ? Physics2D.BoxCastAll(origin, new Vector2(size.x, .9f), 0f, dir.normalized, 0f, layer) : Physics2D.LinecastAll(origin, origin, layer);
+            Vector2 boxCastSize = new Vector2(objectSize.x, 1f) * shrinkMultiplier;
+            hit = Physics2D.BoxCastAll(origin, boxCastSize, 0f, dir.normalized, 0f, layer);
         }
 
         return hit;
+    }
+
+    private static bool IsDirHorizontal(Vector2 dir)
+    {
+        return dir.x != 0;
     }
 
     public static void MoveToPosition(Transform transform, Vector3 target, float duration)
