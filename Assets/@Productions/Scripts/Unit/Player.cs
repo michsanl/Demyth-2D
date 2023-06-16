@@ -197,6 +197,7 @@ public class Player : CoreBehaviour
         if (isTakeDamageOnCooldown)
             yield break;
         
+        animator.SetTrigger("OnHit");
         health.TakeDamage(1);
 
         if (enableCameraShake)

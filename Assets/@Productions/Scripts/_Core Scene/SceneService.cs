@@ -7,7 +7,7 @@ namespace CustomTools.Core
     public class SceneService : CoreBehaviour
     {
         // PUBLIC MEMBERS
-        public SceneContext Context       => _context;
+        // public SceneContext Context       => _context;
         public CoreScene Scene      => _scene;
         public bool         IsActive      => _isActive;
         public bool         IsInitialized => _isInitialized;
@@ -32,6 +32,7 @@ namespace CustomTools.Core
 
             _scene = scene;
             _context = context;
+            Context = context; // modified
 
             OnInitialize();
 
