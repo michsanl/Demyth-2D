@@ -10,7 +10,9 @@ public class PetraAbilityJumpSlam : MonoBehaviour
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
+    [SerializeField] private float jumpPower;
     [SerializeField] private float colliderDelayTime;
+    [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
@@ -24,13 +26,12 @@ public class PetraAbilityJumpSlam : MonoBehaviour
         // audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
-
-        transform.position = targetPosition;
+        
         StartCoroutine(SetActiveColliderWithDelay(jumpSlamCollider, colliderDelayTime));
-        yield return Helper.GetWaitForSeconds(swingDuration);
+        yield return transform.DOJump(targetPosition, jumpPower, 1, swingDuration).SetEase(animationCurve).WaitForCompletion();
 
-        jumpSlamCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+        jumpSlamCollider.SetActive(false);
     }
 
     private IEnumerator SetActiveColliderWithDelay(GameObject colliderGameObject, float delayTime)
