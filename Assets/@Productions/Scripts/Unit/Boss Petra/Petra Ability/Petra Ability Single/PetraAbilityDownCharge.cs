@@ -20,7 +20,7 @@ public class PetraAbilityDownCharge : MonoBehaviour
 
     public IEnumerator DownCharge(float targetPosition)
     {
-        var finalTargetPosition = Mathf.Clamp(Mathf.RoundToInt(targetPosition), -4, 2);
+        var finalTargetPosition = Mathf.Clamp(Mathf.RoundToInt(targetPosition), -4, 3);
 
         animator.Play(DOWN_CHARGE);
         // audioManager.PlaySound(audioClipSriSO.VerticalSlash);

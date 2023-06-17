@@ -22,7 +22,7 @@ public class PetraAbilityUpCharge : MonoBehaviour
 
     public IEnumerator UpCharge(float targetYPosition)
     {
-        var finalTargetPosition = Mathf.Clamp(Mathf.RoundToInt(targetYPosition), -4, 2);
+        var finalTargetPosition = Mathf.Clamp(Mathf.RoundToInt(targetYPosition), -4, 3);
 
         animator.Play(UP_CHARGE);
         // audioManager.PlaySound(audioClipSriSO.VerticalSlash);

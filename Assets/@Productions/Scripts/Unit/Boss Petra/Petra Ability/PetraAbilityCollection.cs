@@ -6,16 +6,9 @@ using Sirenix.OdinInspector;
 
 public class PetraAbilityCollection : SceneService
 {
-    [SerializeField] private bool enableAbilityTester;
-    
-    [ShowIf("enableAbilityTester")]
-    [EnumToggleButtons]
-    public Ability loopAbility;
-    public enum Ability
-    { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
     
     protected bool isBusy;
-
+    
     private PetraAbilityUpCharge abilityUpCharge;
     private PetraAbilityDownCharge abilityDownCharge;
     private PetraAbilityHorizontalCharge abilityHorizontalCharge;
@@ -23,7 +16,6 @@ public class PetraAbilityCollection : SceneService
     private PetraAbilityChargeAttack abilityChargeAttack;
     private PetraAbilityBasicSlam abilityBasicSlam;
     private PetraAbilityJumpSlam abilityJumpSlam;
-
     private LookOrientation lookOrientation;
 
     protected override void OnActivate()
@@ -37,47 +29,6 @@ public class PetraAbilityCollection : SceneService
         abilityJumpSlam = GetComponent<PetraAbilityJumpSlam>();
 
         lookOrientation = GetComponent<LookOrientation>();
-    }
-
-    protected override void OnTick()
-    {
-        if (!enableAbilityTester)
-            return;
-        if (isBusy)
-            return;
-
-        SetFacingDirection();
-        HandlePlayAbility();
-    }
-
-    private void HandlePlayAbility()
-    {
-        switch (loopAbility)
-        {
-            case Ability.UpCharge:
-                StartCoroutine(PlayAbilityUpCharge(transform.position.y));
-                break;
-            case Ability.DownCharge:
-                StartCoroutine(PlayAbilityDownCharge(transform.position.y));
-                break;
-            case Ability.HorizontalCharge:
-                StartCoroutine(PlayAbilityHorizontalCharge(transform.position.x));
-                break;
-            case Ability.SpinAttack:
-                StartCoroutine(PlayAbilitySpinAttack());
-                break;
-            case Ability.ChargeAttack:
-                StartCoroutine(PlayAbilityChargeAttack());
-                break;
-            case Ability.BasicSlam:
-                StartCoroutine(PlayAbilityBasicSlam());
-                break;
-            case Ability.JumpSlam:
-                StartCoroutine(PlayAbilityJumpSlam(Context.Player.MoveTargetPosition));
-                break;
-            default:
-                break;
-        }
     }
 
 #region Ability Collection
