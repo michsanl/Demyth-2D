@@ -6,37 +6,43 @@ using Sirenix.OdinInspector;
 
 public class PetraAbilityJumpSlam : MonoBehaviour
 {
-    [Title("Parameter Settings")]
+    [Title("Animation Timeline")]
+    [SerializeField] private float animationDuration;
+    [Space]
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
+    
+    [Title("Jump Parameter")]
     [SerializeField] private float jumpPower;
-    [SerializeField] private float colliderDelayTime;
-    [SerializeField] private AnimationCurve animationCurve;
+    [SerializeField] private AnimationCurve jumpCurve;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject jumpSlamCollider;
     
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
-    
+
     public IEnumerator JumpSlam(Vector2 targetPosition)
     {
+        StartCoroutine(SetCollider());
+        StartCoroutine(JumpToLocation(targetPosition));
+
         animator.Play(JUMP_SLAM);
-        // audioManager.PlaySound(audioClipSriSO.VerticalSlash);
+        yield return Helper.GetWaitForSeconds(animationDuration);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
-        
-        StartCoroutine(SetActiveColliderWithDelay(jumpSlamCollider, colliderDelayTime));
-        yield return transform.DOJump(targetPosition, jumpPower, 1, swingDuration).SetEase(animationCurve).WaitForCompletion();
-
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
         jumpSlamCollider.SetActive(false);
     }
 
-    private IEnumerator SetActiveColliderWithDelay(GameObject colliderGameObject, float delayTime)
+    private IEnumerator JumpToLocation(Vector3 targetPosition)
     {
-        yield return Helper.GetWaitForSeconds(delayTime);
-        colliderGameObject.SetActive(true);
+        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return transform.DOJump(targetPosition, jumpPower, 1, swingDuration).SetEase(jumpCurve).WaitForCompletion();
+    }
+
+    private IEnumerator SetCollider()
+    {
+        yield return Helper.GetWaitForSeconds(frontSwingDuration + swingDuration);
+        jumpSlamCollider.SetActive(true);
     }
 }

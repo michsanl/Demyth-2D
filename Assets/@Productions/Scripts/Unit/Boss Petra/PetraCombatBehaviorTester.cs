@@ -14,8 +14,7 @@ public class PetraCombatBehaviorTester : MonoBehaviour
     
     private PetraAbilityTester abilityTester;
     private PetraPhaseOne phaseOne;
-    [ReadOnly]
-    public CombatBehavior selectedCombatBehavior;
+    private CombatBehavior selectedCombatBehavior;
 
     private void Awake() 
     {
