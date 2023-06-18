@@ -1910,7 +1910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1947,10 +1947,6 @@ PrefabInstance:
     - target: {fileID: 7673398050621169837, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_Name
       value: NPC Boss Petra
-      objectReference: {fileID: 0}
-    - target: {fileID: 9095863072912426184, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: loopAbility
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
@@ -2792,6 +2788,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3278702919810002102, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4087
+      objectReference: {fileID: 0}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.UI
       value: 
