@@ -14,16 +14,17 @@ public class PetraAbilityBasicSlam : MonoBehaviour
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject basicSlamCollider;
+    [SerializeField] private GameObject groundCoffin;
     
     private int BASIC_SLAM = Animator.StringToHash("Basic_Slam");
     
-    public IEnumerator BasicSlam()
+    public IEnumerator BasicSlam(Vector2 targetPosition)
     {
         animator.Play(BASIC_SLAM);
-        // audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         basicSlamCollider.SetActive(true);
+        Instantiate(groundCoffin, targetPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(swingDuration);
         basicSlamCollider.SetActive(false);

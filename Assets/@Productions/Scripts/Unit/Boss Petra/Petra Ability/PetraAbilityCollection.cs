@@ -68,10 +68,10 @@ public class PetraAbilityCollection : SceneService
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityBasicSlam()
+    protected IEnumerator PlayAbilityBasicSlam(Vector2 targetPosition)
     {
         isBusy = true;
-        yield return StartCoroutine(abilityBasicSlam.BasicSlam());
+        yield return StartCoroutine(abilityBasicSlam.BasicSlam(targetPosition));
         isBusy = false;
     }
     

@@ -39,7 +39,7 @@ public class PetraPhaseOne : PetraAbilityCollection
             int randomIndex = UnityEngine.Random.Range(0,3);
             if (randomIndex == 0)
             {
-                StartCoroutine(PlayAbilityBasicSlam());
+                StartCoroutine(PlayAbilityBasicSlam(Context.Player.MoveTargetPosition));
             } 
             else
             {

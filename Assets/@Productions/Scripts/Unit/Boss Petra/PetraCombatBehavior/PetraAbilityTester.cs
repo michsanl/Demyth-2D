@@ -49,7 +49,7 @@ public class PetraAbilityTester : PetraAbilityCollection
                 StartCoroutine(PlayAbilityChargeAttack());
                 break;
             case Ability.BasicSlam:
-                StartCoroutine(PlayAbilityBasicSlam());
+                StartCoroutine(PlayAbilityBasicSlam(Context.Player.MoveTargetPosition));
                 break;
             case Ability.JumpSlam:
                 StartCoroutine(PlayAbilityJumpSlam(Context.Player.MoveTargetPosition));
