@@ -18,7 +18,7 @@ public class PetraAbilityCollection : SceneService
     private PetraAbilityJumpSlam abilityJumpSlam;
     private LookOrientation lookOrientation;
 
-    protected override void OnActivate()
+    protected void Awake()
     {
         abilityUpCharge = GetComponent<PetraAbilityUpCharge>();
         abilityDownCharge = GetComponent<PetraAbilityDownCharge>();

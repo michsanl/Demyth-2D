@@ -14,12 +14,14 @@ public class PetraCombatBehaviorTester : MonoBehaviour
     
     private PetraAbilityTester abilityTester;
     private PetraPhaseOne phaseOne;
+    private PetraPhaseTwo phaseTwo;
     private CombatBehavior selectedCombatBehavior;
 
     private void Awake() 
     {
         abilityTester = GetComponent<PetraAbilityTester>();
         phaseOne = GetComponent<PetraPhaseOne>();
+        phaseTwo = GetComponent<PetraPhaseTwo>();
         ChangeBehavior();
     }
 
@@ -40,14 +42,17 @@ public class PetraCombatBehaviorTester : MonoBehaviour
             case CombatBehavior.AbilityTester:
                 abilityTester.EnableAbilityTester = true;
                 phaseOne.EnableFirstPhase = false;
+                phaseTwo.EnableSecondPhase = false;
                 break;
             case CombatBehavior.PhaseOne:
                 abilityTester.EnableAbilityTester = false;
                 phaseOne.EnableFirstPhase = true;
+                phaseTwo.EnableSecondPhase = false;
                 break;
             case CombatBehavior.PhaseTwo:
                 abilityTester.EnableAbilityTester = false;
                 phaseOne.EnableFirstPhase = false;
+                phaseTwo.EnableSecondPhase = true;
                 break;
             
             default:

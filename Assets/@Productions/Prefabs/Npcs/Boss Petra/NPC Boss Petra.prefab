@@ -1002,6 +1002,7 @@ GameObject:
   - component: {fileID: 7735775073953674051}
   - component: {fileID: 9095863072912426184}
   - component: {fileID: 2867520102546455625}
+  - component: {fileID: 6855481323534840444}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
   - component: {fileID: 5108067734571236107}
@@ -1048,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04f86d0384b9ee4e9d83f56fd8a1e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatBehavior: 0
+  combatBehavior: 2
 --- !u!114 &9095863072912426184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1083,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a604abe58e9535e40beb97495910ecd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+--- !u!114 &6855481323534840444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4c40f39f92d364c9db9221889a2b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
@@ -1201,8 +1224,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animator: {fileID: 4912183497154396725}
-  upChargeCollider: {fileID: 982308991402775369}
-  downChargeCollider: {fileID: 0}
+  upChargeCollider: {fileID: 63136838630826701}
+  downChargeCollider: {fileID: 63136838630826701}
 --- !u!114 &6810417198705036191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,7 +1266,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animator: {fileID: 4912183497154396725}
-  downChargeCollider: {fileID: 4574950767016202372}
+  downChargeCollider: {fileID: 63136838630826701}
 --- !u!114 &4890675639416213877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,8 +1307,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animator: {fileID: 4912183497154396725}
-  rightChargeCollider: {fileID: 3541331978584162769}
-  leftChargeCollider: {fileID: 3541331978584162769}
+  rightChargeCollider: {fileID: 63136838630826701}
+  leftChargeCollider: {fileID: 63136838630826701}
 --- !u!114 &7334106073476141854
 MonoBehaviour:
   m_ObjectHideFlags: 0

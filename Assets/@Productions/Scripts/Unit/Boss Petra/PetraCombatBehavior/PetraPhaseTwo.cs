@@ -4,24 +4,31 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 
-public class PetraPhaseOne : PetraAbilityCollection
+public class PetraPhaseTwo : PetraAbilityCollection
 {
-    public bool EnableFirstPhase
+    public bool EnableSecondPhase
     {
-        get => enableFirstPhase;
+        get => enableSecondPhase;
         set 
         {
-            enableFirstPhase = value;
-            if (enableFirstPhase == true)
-                Debug.Log("First phase is active");
+            enableSecondPhase = value;
+            if (enableSecondPhase == true)
+                Debug.Log("Second phase is active");
         }
     }
 
-    private bool enableFirstPhase;
+    private IEnumerator[] playerNearbyMovesetArray;
+
+    private bool enableSecondPhase;
+
+    protected override void OnActivate()
+    {
+        playerNearbyMovesetArray = new IEnumerator[] { PlayAbilitySpinAttack(), PlayAbilityChargeAttack() };
+    }
 
     protected override void OnTick()
     {
-        if (!enableFirstPhase)
+        if (!enableSecondPhase)
             return;
 
         HandleAction();
@@ -36,7 +43,14 @@ public class PetraPhaseOne : PetraAbilityCollection
 
         if (IsPlayerNearby())
         {
-            StartCoroutine(PlayAbilitySpinAttack());
+            int randomIndex = UnityEngine.Random.Range(0,3);
+            if (randomIndex == 0)
+            {
+                StartCoroutine(PlayAbilitySpinAttack());
+            } else
+            {
+                StartCoroutine(PlayAbilityChargeAttack());
+            }
             return;
         }
 
@@ -55,10 +69,17 @@ public class PetraPhaseOne : PetraAbilityCollection
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayAbilityBasicSlam(Context.Player.MoveTargetPosition));
+            int randomIndex = UnityEngine.Random.Range(0,3);
+            Vector2 playerLastPosition = Context.Player.MoveTargetPosition;
+            if (randomIndex == 0)
+            {
+                StartCoroutine(PlayAbilityJumpSlam(playerLastPosition));
+            } else
+            {;
+                StartCoroutine(PlayAbilityBasicSlam(playerLastPosition));
+            }
             return;
         }
-        
     }
 
     private void PlayVerticalAbility()
