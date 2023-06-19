@@ -93,9 +93,16 @@ public class Player : CoreBehaviour
         } 
         else
         {
-            moveTargetPosition = (Vector2)transform.position + playerDir;
+            SetMoveTargetPosition();
             StartCoroutine(HandleMovement());
         }
+    }
+
+    private void SetMoveTargetPosition()
+    {
+        moveTargetPosition = (Vector2)transform.position + playerDir;
+        moveTargetPosition.x = Mathf.RoundToInt(moveTargetPosition.x);
+        moveTargetPosition.y = Mathf.RoundToInt(moveTargetPosition.y);
     }
 
     private IEnumerator HandleMovement()
