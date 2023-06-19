@@ -299,15 +299,16 @@ public class BossSriAbility : SceneService
         isBusy = true;
 
         float animationDuration = 1.8f;
+        float frontSwing = .8f;
+        Vector2 playerPosition = GetRoundedVector(Context.Player.MoveTargetPosition);
 
         animator.Play(NAIL_SUMMON_1);
         audioManager.PlaySound(audioClipSriSO.NailSummon);
 
-        Vector2 playerPosition = GetRoundedVector(Context.Player.transform.position);
-
+        yield return Helper.GetWaitForSeconds(frontSwing);
         Instantiate(nailGameObject, playerPosition, Quaternion.identity);
 
-        yield return Helper.GetWaitForSeconds(animationDuration);
+        yield return Helper.GetWaitForSeconds(animationDuration - frontSwing);
 
         isBusy = false;
     }
