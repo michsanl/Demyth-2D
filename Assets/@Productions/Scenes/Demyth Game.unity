@@ -859,6 +859,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5769574275846061963, guid: 3cbc408dc969c6f48b92b3f93e940ad2, type: 3}
   m_PrefabInstance: {fileID: 161486468}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &661229186
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2667805903520648675, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: activateAbilityTester
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331647590519911969, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: loopAbility
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331647590519911969, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: groundNailSingle
+      value: 
+      objectReference: {fileID: 3975585011897390249, guid: dbfcb9b44ca4f8a489e5c4cf60a17a7f, type: 3}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169837, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_Name
+      value: NPC Boss Sri
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398052024204801, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 152cbb712d03d3d4085a53d4beba93f3, type: 3}
 --- !u!1 &857429216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,75 +1962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf32e68fa5e9074ea543fbee5bdfd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &2059826524
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2877365730248291971, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7673398050621169837, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_Name
-      value: NPC Boss Petra
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735775073953674051, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: combatBehavior
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9095863072912426184, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: loopAbility
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
 --- !u!1001 &2067748194
 PrefabInstance:
   m_ObjectHideFlags: 0
