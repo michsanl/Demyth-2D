@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3975585011897390250}
-  - component: {fileID: 3975585011897390251}
+  - component: {fileID: 449008501976421847}
   m_Layer: 11
   m_Name: Ground Coffin Single
   m_TagString: Untagged
@@ -232,7 +232,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3975585011897390251
+--- !u!114 &449008501976421847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,12 +241,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3975585011897390249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92bc87ff84b35ac489be4c12b541ebb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 880a63be2a7c58448b37b2a72ac07863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpawnDelay: 0.1
-  destroySelfDelay: 1.25
   colliderSpawnDelay: 0.0833
+  destroySelfDelay: 1.25
   groundCoffinModelArray:
   - {fileID: 3975585013025071505}
   - {fileID: 2043537636635439728}

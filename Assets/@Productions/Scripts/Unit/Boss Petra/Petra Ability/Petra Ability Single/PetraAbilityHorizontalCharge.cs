@@ -14,30 +14,22 @@ public class PetraAbilityHorizontalCharge : MonoBehaviour
     
     [Title("Components")]
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject rightChargeCollider;
-    [SerializeField] private GameObject leftChargeCollider;
+    [SerializeField] private GameObject horizontalChargeCollider;
     
     private int HORIZONTAL_CHARGE = Animator.StringToHash("Side_charge");
 
     public IEnumerator HorizontalCharge(float targetXPosition)
     {
         var finalTargetPosition = Mathf.Clamp(Mathf.RoundToInt(targetXPosition), -6, 6);
-        var collider = IsTargetPositionOnRight(targetXPosition) ? rightChargeCollider : leftChargeCollider;
 
         animator.Play(HORIZONTAL_CHARGE);
-        // audioMHorizontal_CHARGEanager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
-        collider.SetActive(true);
+        horizontalChargeCollider.SetActive(true);
 
         yield return transform.DOMoveX(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
-        collider.SetActive(false);
+        horizontalChargeCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
-    }
-
-    private bool IsTargetPositionOnRight(float targetXPosition)
-    {
-        return targetXPosition > transform.position.x;
     }
 }

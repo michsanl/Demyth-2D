@@ -16,7 +16,6 @@ public class PetraAbilityUpCharge : MonoBehaviour
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject upChargeCollider;
-    [SerializeField] private GameObject downChargeCollider;
     
     private int UP_CHARGE = Animator.StringToHash("Up_charge");
 
