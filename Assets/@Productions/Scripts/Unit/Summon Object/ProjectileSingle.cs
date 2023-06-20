@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class NailProjectile : MonoBehaviour
+public class ProjectileSingle : MonoBehaviour
 {
-    
     [SerializeField] private float moveSpeed;
 
     private Vector3 shootDir;

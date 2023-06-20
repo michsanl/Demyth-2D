@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomTools.Core;
 
-public class FireBallProjectile : MonoBehaviour
+public class ProjectileHomingSingle : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float lifeSpanDuration;
     [SerializeField] private float homingDuration;
     [SerializeField] private float idleDuration;
-
 
     private Player player;
 

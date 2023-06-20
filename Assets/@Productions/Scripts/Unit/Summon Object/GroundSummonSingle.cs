@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundSummonSingle : MonoBehaviour
 {
-    [SerializeField] private float maxSpawnDelay = 0.1f;
+    [SerializeField] private float maxRandomSpawnDelay = 0.1f;
     [SerializeField] private float colliderSpawnDelay;
     [SerializeField] private float destroySelfDelay;
     [Space]
@@ -18,7 +18,7 @@ public class GroundSummonSingle : MonoBehaviour
 
     private IEnumerator SummonRoutine()
     {
-        var randomRoutineDelay = Random.Range(0, maxSpawnDelay);
+        var randomRoutineDelay = Random.Range(0, maxRandomSpawnDelay);
         yield return Helper.GetWaitForSeconds(randomRoutineDelay);
 
         SpawnRandomModel();
