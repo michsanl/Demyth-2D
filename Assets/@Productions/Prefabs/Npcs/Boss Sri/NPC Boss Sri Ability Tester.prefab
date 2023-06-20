@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8252086221089060956
+--- !u!1001 &1647650701582454559
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169837, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: m_Name
-      value: NPC Boss Sri
+      value: NPC Boss Sri Ability Tester
       objectReference: {fileID: 0}
     - target: {fileID: 7673398052024204801, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: m_Mesh
@@ -61,21 +61,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
---- !u!1 &1799239098777180401 stripped
+--- !u!1 &8980392381699190706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7673398050621169837, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
-  m_PrefabInstance: {fileID: 8252086221089060956}
+  m_PrefabInstance: {fileID: 1647650701582454559}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6734256505628022338
+--- !u!114 &6503048339641922229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799239098777180401}
+  m_GameObject: {fileID: 8980392381699190706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d123d407bcdbcd64c86273058f9c9381, type: 3}
+  m_Script: {fileID: 11500000, guid: 22673db9e71484447b42b00b64714842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
@@ -88,27 +88,5 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  activateFirstPhase: 0
---- !u!114 &398237277778078234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799239098777180401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d508992e52e25d48adb06bb3fc903d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
-    Player: {fileID: 0}
-    AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  activateSecondPhase: 0
+  loopAbility: 0
+  enableAbilityTester: 1

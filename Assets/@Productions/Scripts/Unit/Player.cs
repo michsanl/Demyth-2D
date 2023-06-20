@@ -23,7 +23,7 @@ public class Player : CoreBehaviour
     
 #region Public Fields
     
-    public Vector2 MoveTargetPosition => moveTargetPosition; 
+    public Vector2 LastMoveTargetPosition => lastMoveTargetPosition; 
     public bool IsGamePaused => isGamePaused;
 
 #endregion
@@ -35,7 +35,7 @@ public class Player : CoreBehaviour
     private MeshRenderer spineMeshRenderer;
     private Health health;
     private Vector2 playerDir;
-    private Vector2 moveTargetPosition;
+    private Vector2 lastMoveTargetPosition;
     private bool isBusy;
     private bool isKnocked;
     private bool isTakeDamageOnCooldown;
@@ -100,16 +100,16 @@ public class Player : CoreBehaviour
 
     private void SetMoveTargetPosition()
     {
-        moveTargetPosition = (Vector2)transform.position + playerDir;
-        moveTargetPosition.x = Mathf.RoundToInt(moveTargetPosition.x);
-        moveTargetPosition.y = Mathf.RoundToInt(moveTargetPosition.y);
+        lastMoveTargetPosition = (Vector2)transform.position + playerDir;
+        lastMoveTargetPosition.x = Mathf.RoundToInt(lastMoveTargetPosition.x);
+        lastMoveTargetPosition.y = Mathf.RoundToInt(lastMoveTargetPosition.y);
     }
 
     private IEnumerator HandleMovement()
     {
         isBusy = true;
 
-        Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
+        Helper.MoveToPosition(transform, lastMoveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
         yield return Helper.GetWaitForSeconds(actionDelay);
 
@@ -229,10 +229,10 @@ public class Player : CoreBehaviour
     {
         isKnocked = true;
 
-        if (!Helper.CheckTargetDirection(moveTargetPosition, dir, movementBlockerLayerMask, out Interactable interactable))
+        if (!Helper.CheckTargetDirection(lastMoveTargetPosition, dir, movementBlockerLayerMask, out Interactable interactable))
         {
-            moveTargetPosition = moveTargetPosition + dir;
-            Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
+            lastMoveTargetPosition = lastMoveTargetPosition + dir;
+            Helper.MoveToPosition(transform, lastMoveTargetPosition, moveDuration);
             yield return Helper.GetWaitForSeconds(actionDelay);
         }
         

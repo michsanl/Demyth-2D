@@ -70,7 +70,7 @@ public class PetraPhaseTwo : PetraAbilityCollection
         if (!IsPlayerNearby())
         {
             int randomIndex = UnityEngine.Random.Range(0,3);
-            Vector2 playerLastPosition = Context.Player.MoveTargetPosition;
+            Vector2 playerLastPosition = Context.Player.LastMoveTargetPosition;
             if (randomIndex == 0)
             {
                 StartCoroutine(PlayAbilityJumpSlam(playerLastPosition));

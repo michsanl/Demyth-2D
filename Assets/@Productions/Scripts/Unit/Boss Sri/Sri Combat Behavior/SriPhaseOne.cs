@@ -4,31 +4,30 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 
-public class PetraPhaseOne : PetraAbilityCollection
+public class SriPhaseOne : SriAbilityCollection
 {
-    public bool EnableFirstPhase
+    public bool ActivateFirstPhase
     {
-        get => enableFirstPhase;
+        get => activateFirstPhase;
         set 
         {
-            enableFirstPhase = value;
-            if (enableFirstPhase == true)
+            activateFirstPhase = value;
+            if (activateFirstPhase == true)
                 Debug.Log("First phase is active");
         }
     }
 
-    private bool enableFirstPhase;
+    [SerializeField] private bool activateFirstPhase;
 
     protected override void OnTick()
     {
-        if (!enableFirstPhase)
-            return;
-
         HandleAction();
     }
 
     private void HandleAction()
     {
+        if (!activateFirstPhase)
+            return;
         if (isBusy)
             return;
 
@@ -36,7 +35,14 @@ public class PetraPhaseOne : PetraAbilityCollection
 
         if (IsPlayerNearby())
         {
-            StartCoroutine(PlayAbilitySpinAttack());
+            int randomIndex = UnityEngine.Random.Range(0,3);
+            if (randomIndex == 0)
+            {
+                StartCoroutine(PlayAbilityNailAOE());
+            } else
+            {
+                StartCoroutine(PlayAbilitySpinClaw());
+            }
             return;
         }
 
@@ -55,21 +61,25 @@ public class PetraPhaseOne : PetraAbilityCollection
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayAbilityBasicSlam(Context.Player.LastMoveTargetPosition));
-            return;
+            StartCoroutine(PlayAbilityNailSummon());
         }
         
+    }
+
+    private int GetRandomIndexFromList(List<IEnumerator> abilityList)
+    {
+        return UnityEngine.Random.Range(0, abilityList.Count);
     }
 
     private void PlayVerticalAbility()
     {
         if (IsPlayerAbove())
         {
-            StartCoroutine(PlayAbilityUpCharge(Context.Player.transform.position.y + 1f));
+            StartCoroutine(PlayAbilityUpSlash());
             return;
         } else
         {
-            StartCoroutine(PlayAbilityDownCharge(Context.Player.transform.position.y - 1f));
+            StartCoroutine(PlayAbilityDownSlash());
             return;
         }
     }
@@ -78,11 +88,11 @@ public class PetraPhaseOne : PetraAbilityCollection
     {
         if (IsPlayerToRight())
         {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x + 1f));
+            StartCoroutine(PlayAbilityHorizontalSlash());
             return;
         } else
         {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x - 1f));
+            StartCoroutine(PlayAbilityHorizontalSlash());
             return;
         }
     }
