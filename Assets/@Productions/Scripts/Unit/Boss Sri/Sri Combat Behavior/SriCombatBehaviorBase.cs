@@ -68,7 +68,14 @@ public class SriCombatBehaviorBase : SceneService
     public IEnumerator PlayAbilityNailAOE()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityNailAOE.NailAOE());
+        yield return StartCoroutine(abilityNailAOE.NailAOE(false));
+        isBusy = false;
+    }
+
+    public IEnumerator PlayAbilityNailAOEWithProjectile()
+    {
+        isBusy = true;
+        yield return StartCoroutine(abilityNailAOE.NailAOE(true));
         isBusy = false;
     }
 

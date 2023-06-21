@@ -14,11 +14,14 @@ public class SriAbilityNailAOE : MonoBehaviour
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject nailAOECollider;
+    [SerializeField] private GameObject nailProjectile;
     
     protected int NAIL_AOE = Animator.StringToHash("Nail_AOE");
 
-    public IEnumerator NailAOE()
+    public IEnumerator NailAOE(bool summonProjectile)
     {
+        if (summonProjectile)
+            Instantiate(nailProjectile, transform.position, Quaternion.identity);
 
         animator.Play(NAIL_AOE);
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
