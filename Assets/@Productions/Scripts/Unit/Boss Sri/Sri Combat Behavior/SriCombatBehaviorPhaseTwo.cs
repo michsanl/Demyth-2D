@@ -4,31 +4,17 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 
-public class SriPhaseTwo : SriAbilityCollection
+public class SriCombatBehaviorPhaseTwo : SriCombatBehaviorBase
 {
-    public bool ActivateSecondPhase
-    {
-        get => activateSecondPhase;
-        set 
-        {
-            activateSecondPhase = value;
-            if (activateSecondPhase == true)
-                Debug.Log("Second phase is active");
-        }
-    }
-    
-    [SerializeField] private  bool activateSecondPhase;
 
     protected override void OnTick()
     {
-        base.OnTick();
-
-        HandleAction();
+        CombatBehaviorRoutine();
     }
 
-    private void HandleAction()
+    private void CombatBehaviorRoutine()
     {
-        if (!activateSecondPhase)
+        if (!isBehaviorActive)
             return;
         if (isBusy)
             return;

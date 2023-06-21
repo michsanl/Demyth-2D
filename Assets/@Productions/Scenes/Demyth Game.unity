@@ -555,75 +555,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &421077511
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 398237277778078234, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: activateSecondPhase
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239097374148189, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180401, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_Name
-      value: NPC Boss Sri
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734256505628022338, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: activateFirstPhase
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
 --- !u!224 &428263496 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4715767938073440419, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
@@ -1838,6 +1769,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1696591483
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1799239097374148189, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239098777180401, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
+      propertyPath: m_Name
+      value: NPC Boss Sri
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
 --- !u!114 &1770570078 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9198917061170249396, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class SriAbilityTester : SriAbilityCollection
+public class SriAbilityTester : SriCombatBehaviorBase
 {
     [EnumToggleButtons]
     public Ability loopAbility;

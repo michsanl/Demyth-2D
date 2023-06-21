@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CustomTools.Core;
+using System;
 using Sirenix.OdinInspector;
 
-public class SriAbilityCollection : SceneService
+public class SriCombatBehaviorBase : SceneService
 {
+    protected bool isBehaviorActive;
     protected bool isBusy;
     
     private SriAbilityUpSlash abilityUpSlash;
@@ -35,56 +37,56 @@ public class SriAbilityCollection : SceneService
 
 #region Ability Collection
 
-    protected IEnumerator PlayAbilityUpSlash()
+    public IEnumerator PlayAbilityUpSlash()
     {
         isBusy = true;
         yield return StartCoroutine(abilityUpSlash.UpSlash(Context.Player));
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityDownSlash()
+    public IEnumerator PlayAbilityDownSlash()
     {
         isBusy = true;
         yield return StartCoroutine(abilityDownSlash.DownSlash(Context.Player));
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityHorizontalSlash()
+    public IEnumerator PlayAbilityHorizontalSlash()
     {
         isBusy = true;
         yield return StartCoroutine(abilityHorizontalSlash.HorizontalSlash(Context.Player));
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilitySpinClaw()
+    public IEnumerator PlayAbilitySpinClaw()
     {
         isBusy = true;
         yield return StartCoroutine(abilitySpinClaw.SpinClaw());
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityNailAOE()
+    public IEnumerator PlayAbilityNailAOE()
     {
         isBusy = true;
         yield return StartCoroutine(abilityNailAOE.NailAOE());
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityNailSummon()
+    public IEnumerator PlayAbilityNailSummon()
     {
         isBusy = true;
         yield return StartCoroutine(abilityNailSummon.NailSummon(Context.Player));
         isBusy = false;
     }
     
-    protected IEnumerator PlayAbilityFireBall()
+    public IEnumerator PlayAbilityFireBall()
     {
         isBusy = true;
         yield return StartCoroutine(abilityFireBall.FireBall());
         isBusy = false;
     }
     
-    protected void PlayAbilityTeleport()
+    public void PlayAbilityTeleport()
     {
         abilityTeleport.Teleport(Context.Player);
     }
@@ -139,6 +141,11 @@ public class SriAbilityCollection : SceneService
         {
             lookOrientation.SetFacingDirection(Vector2.left);
         }
+    }
+
+    public void SetIsActive(bool boolState)
+    {
+        isBehaviorActive = boolState;
     }
 
 }
