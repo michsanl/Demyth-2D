@@ -55,7 +55,7 @@ public class PetraPhaseOne : PetraAbilityCollection
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayAbilityBasicSlam(Context.Player.MoveTargetPosition));
+            StartCoroutine(PlayAbilityBasicSlam(Context.Player.LastMoveTargetPosition));
             return;
         }
         
