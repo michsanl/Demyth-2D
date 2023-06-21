@@ -16,13 +16,13 @@ public class SriAbilityNailSummon : MonoBehaviour
     [SerializeField] private GameObject nailSummonCollider;
     [SerializeField] private GameObject groundNail;
     
-    protected int NAIL_SUMMON_1 = Animator.StringToHash("Nail_Summon_1");
+    protected int NAIL_SUMMON_SINGLE = Animator.StringToHash("Nail_Summon_Single");
 
     public IEnumerator NailSummon(Player player)
     {
         var targetPosition = player.LastMoveTargetPosition;
 
-        animator.Play(NAIL_SUMMON_1);
+        animator.Play(NAIL_SUMMON_SINGLE);
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         nailSummonCollider.SetActive(true);
         Instantiate(groundNail, targetPosition, Quaternion.identity);
