@@ -21,7 +21,12 @@ public class SriCombatBehaviorPhaseTwo : SriCombatBehaviorBase
 
         SetFacingDirection();
 
-        PlayTeleportAtRandomChance();
+        if (UnityEngine.Random.Range(0, 2) == 0)
+        {
+            StartCoroutine(PlayAbilityTeleport());
+            SetFacingDirection();
+            return;
+        }
 
         if (IsPlayerNearby())
         {
@@ -69,7 +74,7 @@ public class SriCombatBehaviorPhaseTwo : SriCombatBehaviorBase
     {
         if (UnityEngine.Random.Range(0, 3) == 0)
         {
-            PlayAbilityTeleport();
+            StartCoroutine(PlayAbilityTeleport());
             SetFacingDirection();
         }
     }

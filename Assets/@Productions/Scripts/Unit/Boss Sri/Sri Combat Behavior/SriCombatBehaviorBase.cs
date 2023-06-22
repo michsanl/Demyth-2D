@@ -93,9 +93,11 @@ public class SriCombatBehaviorBase : SceneService
         isBusy = false;
     }
     
-    public void PlayAbilityTeleport()
+    public IEnumerator PlayAbilityTeleport()
     {
-        abilityTeleport.Teleport(Context.Player);
+        isBusy = true;
+        yield return StartCoroutine(abilityTeleport.Teleport());
+        isBusy = false;
     }
 
 #endregion

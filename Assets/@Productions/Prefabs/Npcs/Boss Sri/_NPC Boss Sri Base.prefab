@@ -1344,6 +1344,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a456a439d1a4554f9ac43ac7cc36971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  teleportStartDuration: 0.3
+  teleportEndDuration: 0.4
+  animator: {fileID: 7673398052024204807}
 --- !u!1 &7673398051580542025
 GameObject:
   m_ObjectHideFlags: 0

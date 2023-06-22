@@ -1,12 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomTools.Core;
 
-public class SriAbilityTeleport : MonoBehaviour
+public class SriAbilityTeleport : SceneService
 {
-    public void Teleport(Player player)
+    [SerializeField] private float teleportStartDuration;
+    [SerializeField] private float teleportEndDuration;
+    [SerializeField] private Animator animator;
+    
+    private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
+    private int TELEPORT_END = Animator.StringToHash("Teleport_End");
+
+    public IEnumerator Teleport()
     {
-        var targetPosition = player.LastMoveTargetPosition;
+        animator.Play(TELEPORT_START);
+        yield return Helper.GetWaitForSeconds(teleportStartDuration);
+
+        var playerPosition = Context.Player.LastMoveTargetPosition;
+        var teleportTargetPosition = GetTeleportTargetPosition(playerPosition);
+        transform.position = teleportTargetPosition;
+
+        animator.Play(TELEPORT_END);
+        yield return Helper.GetWaitForSeconds(teleportEndDuration);
+    }
+
+    private static Vector2 GetTeleportTargetPosition(Vector2 targetPosition)
+    {
         int randomIndex = UnityEngine.Random.Range(0, 4);
 
         switch (randomIndex)
@@ -24,6 +44,7 @@ public class SriAbilityTeleport : MonoBehaviour
                 targetPosition.y = targetPosition.y - 2;
                 break;
         }
-        transform.position = targetPosition;
+
+        return targetPosition;
     }
 }
