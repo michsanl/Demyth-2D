@@ -17,16 +17,16 @@ public class SriAbilityTeleport : SceneService
         animator.Play(TELEPORT_START);
         yield return Helper.GetWaitForSeconds(teleportStartDuration);
 
-        var playerPosition = Context.Player.LastMoveTargetPosition;
-        var teleportTargetPosition = GetTeleportTargetPosition(playerPosition);
+        var teleportTargetPosition = GetTeleportTargetPosition();
         transform.position = teleportTargetPosition;
 
         animator.Play(TELEPORT_END);
         yield return Helper.GetWaitForSeconds(teleportEndDuration);
     }
 
-    private static Vector2 GetTeleportTargetPosition(Vector2 targetPosition)
+    private Vector2 GetTeleportTargetPosition()
     {
+        Vector3 targetPosition = Context.Player.LastMoveTargetPosition;
         int randomIndex = UnityEngine.Random.Range(0, 4);
 
         switch (randomIndex)
@@ -45,6 +45,13 @@ public class SriAbilityTeleport : SceneService
                 break;
         }
 
-        return targetPosition;
+        if (targetPosition == transform.position)
+        {
+            return GetTeleportTargetPosition();
+        }
+        else
+        {
+            return targetPosition; 
+        }
     }
 }
