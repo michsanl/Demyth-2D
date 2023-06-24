@@ -61,6 +61,11 @@ public class Player : CoreBehaviour
         spineMeshRenderer = animator.GetComponent<MeshRenderer>();
     }
 
+    private void Start() 
+    {
+        
+    }
+
     private void Update()
     {
         HandlePlayerAction();
@@ -75,7 +80,7 @@ public class Player : CoreBehaviour
         if (isBusy)
             return;
 
-        playerDir = playerInputActions.Player.MovePassThrough.ReadValue<Vector2>();
+        playerDir = playerInputActions.Player.Move.ReadValue<Vector2>();
 
         if (playerDir == Vector2.zero)
             return;
