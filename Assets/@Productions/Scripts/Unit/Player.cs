@@ -209,7 +209,9 @@ public class Player : CoreBehaviour
         if (isTakeDamageOnCooldown)
             yield break;
 
-        StartCoroutine(HandleOnHit());
+        isTakeDamageOnCooldown = true;
+
+        StartCoroutine(TakingDamage());
 
         if (enableCameraShake)
             yield return StartCoroutine(cameraShakeController.PlayCameraShake());
@@ -217,10 +219,10 @@ public class Player : CoreBehaviour
         StartCoroutine(HandleFlashEffectOnHit());
 
         if (enableKnockback)
-            yield return StartCoroutine(HandleKnockBack(knockBackDir));
+            StartCoroutine(HandleKnockBack(knockBackDir));
     }
 
-    private IEnumerator HandleOnHit()
+    private IEnumerator TakingDamage()
     {
         isBeingHit = true;
         
@@ -233,10 +235,7 @@ public class Player : CoreBehaviour
 
     private IEnumerator HandleFlashEffectOnHit()
     {
-        isTakeDamageOnCooldown = true;
-
         yield return StartCoroutine(flashEffectController.PlayFlashEffect());
-
         isTakeDamageOnCooldown = false;
     }
 
