@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using CustomTools.Core;
 
-public class SriAbilitySpinClaw : MonoBehaviour
+public class SriAbilitySpinClaw : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -19,8 +20,11 @@ public class SriAbilitySpinClaw : MonoBehaviour
 
     public IEnumerator SpinClaw()
     {
+        var audioManager = Context.AudioManager;
 
         animator.Play(SPIN_CLAW);
+        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.SpinClaw, transform.position);
+
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinClawCollider.SetActive(true);
         yield return Helper.GetWaitForSeconds(swingDuration);

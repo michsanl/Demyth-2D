@@ -23,7 +23,10 @@ public class SriAbilityNailSummon : SceneService
 
     public IEnumerator NailSummon(Player player)
     {
+        var audioManager = Context.AudioManager;
+
         animator.Play(NAIL_SUMMON_SINGLE);
+        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailSummon, transform.position);
         StartCoroutine(HandleSpawnGroundNail());
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
