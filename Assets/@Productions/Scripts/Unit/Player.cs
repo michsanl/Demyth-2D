@@ -235,7 +235,10 @@ public class Player : CoreBehaviour
 
     private IEnumerator HandleFlashEffectOnHit()
     {
+        isTakeDamageOnCooldown = true;
+
         yield return StartCoroutine(flashEffectController.PlayFlashEffect());
+        
         isTakeDamageOnCooldown = false;
     }
 
