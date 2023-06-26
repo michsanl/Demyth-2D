@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundSummonSingle : MonoBehaviour
+public class GroundSummon : MonoBehaviour
 {
     [SerializeField] private float maxRandomSpawnDelay = 0.1f;
     [SerializeField] private float colliderSpawnDelay;

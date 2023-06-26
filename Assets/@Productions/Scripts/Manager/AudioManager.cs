@@ -6,9 +6,11 @@ using System;
 
 public class AudioManager : CoreBehaviour
 {
-    [SerializeField] private AudioSource musicSource, soundSource;
 
-    public AudioClipSriSO SriAudioSource;
+    public AudioClipSriSO SriAudioSource => sriAudioSource;
+
+    [SerializeField] private AudioSource musicSource, soundSource;
+    [SerializeField] private AudioClipSriSO sriAudioSource;
 
     public void PlayMusic(AudioClip clip)
     {
@@ -18,5 +20,10 @@ public class AudioManager : CoreBehaviour
     public void PlaySound(AudioClip clip)
     {
         soundSource.PlayOneShot(clip);
+    }
+
+    public void PlayClipAtPoint(AudioClip audioClip, Vector3 position, float volume = 1f)
+    {
+        AudioSource.PlayClipAtPoint(audioClip, position, volume);
     }
 }

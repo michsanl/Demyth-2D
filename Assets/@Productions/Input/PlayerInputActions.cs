@@ -37,15 +37,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""MovePassThrough"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""a864db0d-7d74-4020-b07f-d67497e0c5db"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Senter"",
                     ""type"": ""Button"",
                     ""id"": ""1745a3d4-015c-4238-9e59-799b80bf601d"",
@@ -130,116 +121,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""1dffec28-d683-4369-8bf4-248c735a07c9"",
-                    ""path"": ""2DVector(mode=1)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""ca578442-e7f5-4340-a2ab-4980009865f4"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""6a637c9b-0cfa-43f0-afef-933835535caa"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""1abae94c-e2fd-499c-9e19-2ccd2569d35f"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""fafdead8-a1cc-4196-999a-8268742a8138"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""ArrowKeys"",
-                    ""id"": ""0961a9f8-349e-4ef4-9aef-a1575e66cd37"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""86646451-ec90-42ca-90e8-af017f763d5c"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""4c239e32-b797-46dd-9d03-e3602d81c210"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""a48a52bf-a887-499b-b514-bb87dc8b222d"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""ba9bc36f-fd3b-48f2-95c7-6bc97133f012"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovePassThrough"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""52fa522e-23c8-4a02-9a86-9787a75ee77b"",
                     ""path"": ""<Keyboard>/z"",
@@ -280,7 +161,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_MovePassThrough = m_Player.FindAction("MovePassThrough", throwIfNotFound: true);
         m_Player_Senter = m_Player.FindAction("Senter", throwIfNotFound: true);
         m_Player_HealthPotion = m_Player.FindAction("HealthPotion", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
@@ -344,7 +224,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_MovePassThrough;
     private readonly InputAction m_Player_Senter;
     private readonly InputAction m_Player_HealthPotion;
     private readonly InputAction m_Player_Pause;
@@ -353,7 +232,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @MovePassThrough => m_Wrapper.m_Player_MovePassThrough;
         public InputAction @Senter => m_Wrapper.m_Player_Senter;
         public InputAction @HealthPotion => m_Wrapper.m_Player_HealthPotion;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
@@ -369,9 +247,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @MovePassThrough.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovePassThrough;
-                @MovePassThrough.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovePassThrough;
-                @MovePassThrough.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovePassThrough;
                 @Senter.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSenter;
                 @Senter.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSenter;
                 @Senter.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSenter;
@@ -388,9 +263,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @MovePassThrough.started += instance.OnMovePassThrough;
-                @MovePassThrough.performed += instance.OnMovePassThrough;
-                @MovePassThrough.canceled += instance.OnMovePassThrough;
                 @Senter.started += instance.OnSenter;
                 @Senter.performed += instance.OnSenter;
                 @Senter.canceled += instance.OnSenter;
@@ -407,7 +279,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnMovePassThrough(InputAction.CallbackContext context);
         void OnSenter(InputAction.CallbackContext context);
         void OnHealthPotion(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);

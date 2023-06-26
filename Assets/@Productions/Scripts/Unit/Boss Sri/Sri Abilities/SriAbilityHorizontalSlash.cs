@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
+using CustomTools.Core;
 
-public class SriAbilityHorizontalSlash : MonoBehaviour
+public class SriAbilityHorizontalSlash : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -23,11 +24,14 @@ public class SriAbilityHorizontalSlash : MonoBehaviour
 
     public IEnumerator HorizontalSlash(Player player)
     {
+        var audioManager = Context.AudioManager;
         float playerXPosition = player.transform.position.x;
         float targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerXPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(HORIZONTAL_SLASH);
+        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.HorizontalSlash, transform.position);
+
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         horizontalSlashCollider.SetActive(true);
         yield return transform.DOMoveX(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();

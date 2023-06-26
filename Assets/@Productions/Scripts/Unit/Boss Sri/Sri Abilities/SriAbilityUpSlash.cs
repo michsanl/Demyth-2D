@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
+using CustomTools.Core;
 
-public class SriAbilityUpSlash : MonoBehaviour
+public class SriAbilityUpSlash : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -23,11 +24,14 @@ public class SriAbilityUpSlash : MonoBehaviour
 
     public IEnumerator UpSlash(Player player)
     {
+        var audioManager = Context.AudioManager;
         var playerYPosition = player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(UP_SLASH);
+        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.VerticalSlash, transform.position);
+
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         upSlashCollider.SetActive(true);
         yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
