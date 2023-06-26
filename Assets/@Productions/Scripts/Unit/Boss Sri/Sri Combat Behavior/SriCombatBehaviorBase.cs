@@ -7,7 +7,6 @@ using Sirenix.OdinInspector;
 
 public class SriCombatBehaviorBase : SceneService
 {
-    protected bool isBehaviorActive;
     protected bool isBusy;
     
     private SriAbilityUpSlash abilityUpSlash;
@@ -22,7 +21,7 @@ public class SriCombatBehaviorBase : SceneService
     private LookOrientation lookOrientation;
     protected Health health;
 
-    protected void Awake()
+    protected override void OnInitialize()
     {
         abilityUpSlash = GetComponent<SriAbilityUpSlash>();
         abilityDownSlash = GetComponent<SriAbilityDownSlash>();
@@ -152,11 +151,6 @@ public class SriCombatBehaviorBase : SceneService
         {
             lookOrientation.SetFacingDirection(Vector2.left);
         }
-    }
-
-    public void SetIsActive(bool boolState)
-    {
-        isBehaviorActive = boolState;
     }
 
 }

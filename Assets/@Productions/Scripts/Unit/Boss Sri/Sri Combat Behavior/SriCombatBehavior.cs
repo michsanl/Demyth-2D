@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 
 public class SriCombatBehavior : SriCombatBehaviorBase
 {
-
+    [SerializeField] private bool isCombatMode;
     private bool isFirstPhase;
     private bool isSecondPhase;
 
@@ -20,6 +20,8 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
     protected override void OnTick()
     {
+        if (!isCombatMode)
+            return;
         if (isFirstPhase)
             FirstPhaseRoutine();
         if (isSecondPhase)
