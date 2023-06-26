@@ -35,8 +35,8 @@ namespace UISystem
 
             SceneUI.Context.HUDUI.Close();
 
-            var levelDestination = SceneUI.Context.LevelManager.GetLevelByID("Level 1");
-            SceneUI.Context.LevelManager.SetLevel(levelDestination);
+            var levelDestination = SceneUI.Context.LevelManager.GetLevelByID("Level Main Menu");
+            SceneUI.Context.LevelManager.ChangeLevel(levelDestination);
 
             SceneUI.Context.Player.ToggleGamePause();
         }

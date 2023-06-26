@@ -30,7 +30,7 @@ namespace UISystem
             SceneUI.Context.HUDUI.Open();
 
             var levelDestination = SceneUI.Context.LevelManager.GetLevelByID(levelID);
-            SceneUI.Context.LevelManager.SetLevel(levelDestination);
+            SceneUI.Context.LevelManager.ChangeLevel(levelDestination);
         }
     }
 }

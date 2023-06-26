@@ -159,6 +159,9 @@ public class Player : CoreBehaviour
 
     private void OnPausePerformed(InputAction.CallbackContext context)
     {
+        if (Context.LevelManager.CurrentLevel.ID == "Level Main Menu")
+            return;
+
         ToggleGamePause();
 
         Context.UI.Toggle<PauseUI>();
