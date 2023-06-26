@@ -269,6 +269,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
+    - target: {fileID: 8989853664337860567, guid: b2e090e935ac0e441855adce42313e48, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4087
+      objectReference: {fileID: 0}
     - target: {fileID: 8989853664337860569, guid: b2e090e935ac0e441855adce42313e48, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -584,7 +588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629032, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629033, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_RootOrder
@@ -650,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7690388824701275371, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 8304051085190717958, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -685,7 +693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 708720891042517942, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 708720891042517943, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
       propertyPath: m_RootOrder
@@ -1703,7 +1711,7 @@ MonoBehaviour:
   - {fileID: 1770570078}
   - {fileID: 562907946}
   - {fileID: 201276002}
-  debugLevelID: Level 3
+  debugLevelID: Level 7
 --- !u!114 &1597973324 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4528761650541678481, guid: 02168b9acfdadcf44bdc0b5261325794, type: 3}
