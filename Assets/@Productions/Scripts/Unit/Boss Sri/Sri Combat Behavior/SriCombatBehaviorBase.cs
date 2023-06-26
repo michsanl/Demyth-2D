@@ -20,6 +20,7 @@ public class SriCombatBehaviorBase : SceneService
     private SriAbilityTeleport abilityTeleport;
 
     private LookOrientation lookOrientation;
+    protected Health health;
 
     protected void Awake()
     {
@@ -33,6 +34,7 @@ public class SriCombatBehaviorBase : SceneService
         abilityTeleport = GetComponent<SriAbilityTeleport>();
 
         lookOrientation = GetComponent<LookOrientation>();
+        health = GetComponent<Health>();
     }
 
 #region Ability Collection
