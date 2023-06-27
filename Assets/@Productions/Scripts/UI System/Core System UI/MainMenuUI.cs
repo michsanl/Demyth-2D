@@ -21,8 +21,6 @@ namespace UISystem
         {
             Close();
 
-            SceneUI.Context.HUDUI.Open();
-
             // Go to level 1
 
             var levelDestination = SceneUI.Context.LevelManager.GetLevelByID("Level 1");

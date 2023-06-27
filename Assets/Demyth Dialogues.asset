@@ -760,9 +760,6 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive(Kamar, true);
 
-          AnimatorPlay (HUD_Dialogue_Open,
-          HUD)@0.2;
-
           SetPortrait(Lati, pic=8);
 
           SetPanel(Ara,
@@ -3598,9 +3595,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'Continue();
-
-          AnimatorPlay (HUD_Close, HUD);'
+        value: Continue();
         type: 0
         typeString: 
       - title: id
@@ -4162,9 +4157,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'Continue();
-
-          AnimatorPlay (HUD_Close, HUD);'
+        value: Continue();
         type: 0
         typeString: 
       - title: id
@@ -4191,8 +4184,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 35.925488}
-    canvasZoom: 0.58000046
+    canvasScrollPosition: {x: 55.26177, y: 1284.9456}
+    canvasZoom: 0.67000043
   syncInfo:
     syncActors: 0
     syncItems: 0

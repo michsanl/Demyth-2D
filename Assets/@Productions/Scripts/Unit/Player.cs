@@ -9,7 +9,7 @@ using Sirenix.OdinInspector;
 using Spine;
 using Spine.Unity;
 
-public class Player : CoreBehaviour
+public class Player : SceneService
 {
     [Title("Settings")]
     [SerializeField] private float actionDelay;
@@ -24,11 +24,9 @@ public class Player : CoreBehaviour
 #region Public Fields
     
     public Vector2 LastMoveTargetPosition => lastMoveTargetPosition; 
-    public bool IsGamePaused => isGamePaused;
 
 #endregion
 
-    private PlayerInputActions playerInputActions;
     private CameraShakeController cameraShakeController;
     private FlashEffectController flashEffectController;
     private LookOrientation lookOrientation;
@@ -43,16 +41,10 @@ public class Player : CoreBehaviour
     private bool isSenterUnlocked = true;
     private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
-    private bool isGamePaused;
 
-    private void Awake() 
+    protected override void OnInitialize()
     {
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Senter.performed += OnSenterPerformed;
-        playerInputActions.Player.HealthPotion.performed += OnHealthPotionPerformed;
-        playerInputActions.Player.Pause.performed += OnPausePerformed;
-
-        playerInputActions.Player.Enable();
+        base.OnInitialize();
 
         cameraShakeController = GetComponent<CameraShakeController>();
         flashEffectController = GetComponent<FlashEffectController>();
@@ -61,13 +53,18 @@ public class Player : CoreBehaviour
         spineMeshRenderer = animator.GetComponent<MeshRenderer>();
     }
 
-    private void Start() 
+    protected override void OnActivate()
     {
-        
+        base.OnActivate();
+
+        Context.gameInput.OnSenterPerformed += GameInput_OnSenterPerformed;
+        Context.gameInput.OnHealthPotionPerformed += GameInput_OnHealthPotionPerformed;
     }
 
-    private void Update()
+    protected override void OnTick()
     {
+        base.OnTick();
+
         HandlePlayerAction();
     }
 
@@ -80,7 +77,7 @@ public class Player : CoreBehaviour
         if (isBusy)
             return;
 
-        playerDir = playerInputActions.Player.Move.ReadValue<Vector2>();
+        playerDir = Context.gameInput.GetMovementVector();
 
         if (playerDir == Vector2.zero)
             return;
@@ -146,29 +143,20 @@ public class Player : CoreBehaviour
 
         isBusy = false;
     }
-    
-    private void OnSenterPerformed(InputAction.CallbackContext context)
+
+    private void GameInput_OnSenterPerformed()
     {
+        if (Time.deltaTime == 0)
+            return;
         if (!isSenterUnlocked)
             return;
-
         ToggleSenter();
-
-        Context.HUDUI.SetActiveSenterImage(isSenterEnabled);
     }
 
-    private void OnPausePerformed(InputAction.CallbackContext context)
+    private void GameInput_OnHealthPotionPerformed()
     {
-        if (Context.LevelManager.CurrentLevel.ID == "Level Main Menu")
+        if (Time.deltaTime == 0)
             return;
-
-        ToggleGamePause();
-
-        Context.UI.Toggle<PauseUI>();
-    }
-
-    private void OnHealthPotionPerformed(InputAction.CallbackContext context)
-    {
         if (!isHealthPotionUnlocked)
             return;
         if (isHealthPotionOnCooldown)
@@ -181,19 +169,6 @@ public class Player : CoreBehaviour
     {
         isSenterEnabled = !isSenterEnabled;
         senterGameObject.SetActive(isSenterEnabled);
-    }
-
-    public void ToggleGamePause()
-    {
-        isGamePaused = !isGamePaused;
-        if (isGamePaused)
-        {
-            Time.timeScale = 0f;
-            Context.VCamCameraShake.gameObject.SetActive(false);
-        } else
-        {
-            Time.timeScale = 1f;
-        }
     }
 
     private IEnumerator HealSelf()

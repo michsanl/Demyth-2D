@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using CustomTools.Core;
 
-public class GameInput : MonoBehaviour
+public class GameInput : SceneService
 {
     public Action OnSenterPerformed;
     public Action OnHealthPotionPerformed;
@@ -12,8 +13,10 @@ public class GameInput : MonoBehaviour
 
     private PlayerInputActions playerInputActions;
 
-    private void Awake() 
+    protected override void OnInitialize()
     {
+        base.OnInitialize();
+
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Senter.performed += PlayerInputAction_OnSenterPerformed;
         playerInputActions.Player.HealthPotion.performed += PlayerInputAction_OnHealthPotionPerformed;

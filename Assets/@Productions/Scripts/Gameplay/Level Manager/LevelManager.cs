@@ -5,9 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 public class LevelManager : SceneService
 {
+    public Action OnLevelChanged;
     public Level CurrentLevel { get; private set; }
 
     [SerializeField]
@@ -66,21 +68,8 @@ public class LevelManager : SceneService
         }
         
         targetLevel.SetActive(true);
-        SetPlayer(targetLevel);
         CurrentLevel = targetLevel;
-    }
-
-    private void SetPlayer(Level level)
-    {
-        if (level.ID == "Level Main Menu")
-        {
-            Context.Player.gameObject.SetActive(false);
-        }
-        else
-        {
-            Context.Player.gameObject.SetActive(true);
-            SetPlayerPosition(level.StarterPosition);
-        }
+        OnLevelChanged?.Invoke();
     }
 
     private void SetPlayerPosition(Vector3 levelStarterPosition)

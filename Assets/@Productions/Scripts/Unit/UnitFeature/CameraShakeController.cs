@@ -24,7 +24,7 @@ public class CameraShakeController : SceneService
 
         yield return new WaitForSecondsRealtime(screenShakeDuration);
 
-        if (!player.IsGamePaused)
+        if (!Context.gameManager.IsGamePaused)
         {
             Time.timeScale = 1;
         }

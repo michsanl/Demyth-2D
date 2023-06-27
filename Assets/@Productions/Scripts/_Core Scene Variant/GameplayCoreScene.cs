@@ -8,18 +8,27 @@ namespace CustomTools.Core
 {
     public class GameplayCoreScene : CoreScene
     {
+        
         [Title("Gamplay Core Scene")]
-        [SerializeField]
-        private Player playerPrefab;
+        [SerializeField] private Player playerPrefab;
+
+        protected override void OnInitialize()
+        {
+            base.OnInitialize();
+        }
 
         protected override IEnumerator OnActivate()
         {
             yield return base.OnActivate();
-            
-            // yield return SpawnPlayer();
+
             SetPlayerContext();
-            SetLevelOnGameStart();
-            // TODO : Prepare Level            
+            SpawnPlayerOnLevelStartingPosition();
+        }
+
+        private void SpawnPlayerOnLevelStartingPosition()
+        {
+            var starterPoint = Context.LevelManager.CurrentLevel.StarterPosition;
+            Context.Player.transform.position = starterPoint;
         }
 
         private IEnumerator SpawnPlayer()
@@ -45,11 +54,7 @@ namespace CustomTools.Core
             Context.Player.Context = Context;
         }
 
-        private void SetLevelOnGameStart()
-        {
-            var levelDestination = Context.LevelManager.GetLevelByID("Level Main Menu");
-            if (levelDestination != null)
-                Context.LevelManager.ChangeLevel(levelDestination);
-        }
     }
+
+    
 }
