@@ -61,6 +61,11 @@ public class Health : MonoBehaviour
         //Dead
         gameObject.SetActive(false);
     }
+
+    public bool IsHealthFull()
+    {
+        return currentHealth == maxHealth;
+    }
 }
 
 public enum HealthStatus

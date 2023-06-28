@@ -7,7 +7,6 @@ using Sirenix.OdinInspector;
 
 public class SriCombatBehaviorBase : SceneService
 {
-    protected bool isBehaviorActive;
     protected bool isBusy;
     
     private SriAbilityUpSlash abilityUpSlash;
@@ -20,8 +19,9 @@ public class SriCombatBehaviorBase : SceneService
     private SriAbilityTeleport abilityTeleport;
 
     private LookOrientation lookOrientation;
+    protected Health health;
 
-    protected void Awake()
+    protected override void OnInitialize()
     {
         abilityUpSlash = GetComponent<SriAbilityUpSlash>();
         abilityDownSlash = GetComponent<SriAbilityDownSlash>();
@@ -33,6 +33,7 @@ public class SriCombatBehaviorBase : SceneService
         abilityTeleport = GetComponent<SriAbilityTeleport>();
 
         lookOrientation = GetComponent<LookOrientation>();
+        health = GetComponent<Health>();
     }
 
 #region Ability Collection
@@ -93,9 +94,11 @@ public class SriCombatBehaviorBase : SceneService
         isBusy = false;
     }
     
-    public void PlayAbilityTeleport()
+    public IEnumerator PlayAbilityTeleport()
     {
-        abilityTeleport.Teleport(Context.Player);
+        isBusy = true;
+        yield return StartCoroutine(abilityTeleport.Teleport());
+        isBusy = false;
     }
 
 #endregion
@@ -148,11 +151,6 @@ public class SriCombatBehaviorBase : SceneService
         {
             lookOrientation.SetFacingDirection(Vector2.left);
         }
-    }
-
-    public void SetIsActive(bool boolState)
-    {
-        isBehaviorActive = boolState;
     }
 
 }

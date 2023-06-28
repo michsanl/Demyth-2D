@@ -12,8 +12,12 @@ namespace CustomTools.Core
         public HUDUI HUDUI;
 
         [Title("Gameplay")]
-        public LevelManager LevelManager;
         public Player Player;
+
+        [Title("Control System")]
+        public GameManager gameManager;
+        public GameInput gameInput;
+        public LevelManager LevelManager;
 
         [Title("Audio")]
         public AudioManager AudioManager;

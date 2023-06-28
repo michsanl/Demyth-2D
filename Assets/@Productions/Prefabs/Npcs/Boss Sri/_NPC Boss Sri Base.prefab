@@ -1297,6 +1297,7 @@ MonoBehaviour:
   backSwingDuration: 0.266
   animator: {fileID: 7673398052024204807}
   nailAOECollider: {fileID: 6206227978528789694}
+  nailProjectile: {fileID: 5018207761852412869, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
 --- !u!114 &9063897031078261396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,9 +1310,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b573418791a1f234a9ee31b860efd3d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.633
-  swingDuration: 0.4
-  backSwingDuration: 0.767
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  frontSwingDuration: 0.6666
+  swingDuration: 0.625
+  backSwingDuration: 0.7754
+  nailPositionAcquireDelay: 0.3334
   animator: {fileID: 7673398052024204807}
   nailSummonCollider: {fileID: 4032442696168136119}
   groundNail: {fileID: 3975585011897390249, guid: dbfcb9b44ca4f8a489e5c4cf60a17a7f, type: 3}
@@ -1343,6 +1355,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a456a439d1a4554f9ac43ac7cc36971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    LevelManager: {fileID: 0}
+    Player: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  teleportStartDuration: 0.3
+  teleportEndDuration: 0.4
+  animator: {fileID: 7673398052024204807}
 --- !u!1 &7673398051580542025
 GameObject:
   m_ObjectHideFlags: 0

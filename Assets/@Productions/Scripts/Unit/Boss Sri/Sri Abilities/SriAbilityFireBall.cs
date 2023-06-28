@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using CustomTools.Core;
 
-public class SriAbilityFireBall : MonoBehaviour
+public class SriAbilityFireBall : SceneService
 {
     [Title("Parameter Settings")]
     // [SerializeField] private float frontSwingDuration;
@@ -21,7 +22,11 @@ public class SriAbilityFireBall : MonoBehaviour
 
     public IEnumerator FireBall()
     {
+        var audioManager = Context.AudioManager;
+
         animator.Play(FIRE_BALL);
+        // audioManager.PlayClipAtPoint(audioManager.SriAudioSource.Fireball, transform.position);
+
         Instantiate(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
         yield return Helper.GetWaitForSeconds(animationDuration);
     }

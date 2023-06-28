@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using CustomTools.Core;
 
-public class SriAbilityNailAOE : MonoBehaviour
+public class SriAbilityNailAOE : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -20,10 +21,14 @@ public class SriAbilityNailAOE : MonoBehaviour
 
     public IEnumerator NailAOE(bool summonProjectile)
     {
+        var audioManager = Context.AudioManager;
+
         if (summonProjectile)
             Instantiate(nailProjectile, transform.position, Quaternion.identity);
 
         animator.Play(NAIL_AOE);
+        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailAOE, transform.position);
+
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         nailAOECollider.SetActive(true);
         yield return Helper.GetWaitForSeconds(swingDuration);

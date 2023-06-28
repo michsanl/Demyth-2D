@@ -5,9 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 public class LevelManager : SceneService
 {
+    public Action OnLevelChanged;
     public Level CurrentLevel { get; private set; }
 
     [SerializeField]
@@ -28,19 +30,6 @@ public class LevelManager : SceneService
         yield return new WaitForEndOfFrame();
     }
 
-    public void ChangeLevel(string previousLevelID, string nextLevelID)
-    {
-        var nextLevel = GetLevelByID(nextLevelID);
-        var previousLevel = GetLevelByID(previousLevelID);
-        
-        var previousLevelPoint = nextLevel.GetLevelPoint(previousLevelID);
-        MovePlayerToPosition(previousLevelPoint);
-
-        previousLevel.SetActive(false);
-        nextLevel.SetActive(true);
-        CurrentLevel = nextLevel;
-    }
-
     public void SetLevel(Level level)
     {
         foreach (var mapLevel in levels)
@@ -51,7 +40,6 @@ public class LevelManager : SceneService
         if (level == null) return;
 
         level.SetActive(true);
-        MovePlayerToPosition(level.StarterPosition);
     }
 
     public Level GetLevelByID(string id)
@@ -59,10 +47,34 @@ public class LevelManager : SceneService
         return levels.FirstOrDefault(x => x.ID == id);
     }
 
-    private void MovePlayerToPosition(Vector3 point)
+    public void ChangeLevel(string previousLevelID, string nextLevelID)
     {
-        if (Context.Player == null) return;
-        Context.Player.transform.position = point;
+        var nextLevel = GetLevelByID(nextLevelID);
+        var previousLevel = GetLevelByID(previousLevelID);
+        
+        var previousLevelPoint = nextLevel.GetLevelPoint(previousLevelID);
+        SetPlayerPosition(previousLevelPoint);
+
+        previousLevel.SetActive(false);
+        nextLevel.SetActive(true);
+        CurrentLevel = nextLevel;
+    }
+
+    public void ChangeLevel(Level targetLevel)
+    {
+        foreach (var mapLevel in levels)
+        {
+            mapLevel.SetActive(mapLevel == targetLevel);            
+        }
+        
+        targetLevel.SetActive(true);
+        CurrentLevel = targetLevel;
+        OnLevelChanged?.Invoke();
+    }
+
+    private void SetPlayerPosition(Vector3 levelStarterPosition)
+    {
+        Context.Player.transform.position = levelStarterPosition;
     }
 
 #if UNITY_EDITOR

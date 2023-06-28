@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using CustomTools.Core;
 
-public class SriAbilityDownSlash : MonoBehaviour
+public class SriAbilityDownSlash : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -22,11 +23,14 @@ public class SriAbilityDownSlash : MonoBehaviour
 
     public IEnumerator DownSlash(Player player)
     {
+        var audioManager = Context.AudioManager;
         var playerYPosition = player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(DOWN_SLASH);
+        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.VerticalSlash, transform.position);
+
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         downSlashCollider.SetActive(true);
         yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();

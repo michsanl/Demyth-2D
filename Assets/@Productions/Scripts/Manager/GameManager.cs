@@ -3,71 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using CustomTools.Core;
 
-public class GameManager : MySingleton<GameManager>
+public class GameManager : SceneService
 {
-    public GameState State;
+    public event EventHandler OnGamePaused;
+    public event EventHandler OnGameUnpaused;
+    public bool IsGamePaused => isGamePaused;
 
-    [SerializeField] private Transform mainMenuUI;
-    [SerializeField] private Transform loadingUI;
-    [SerializeField] private GameObject[] levelPrefabArray;
-    
-    private void Start()
+    private bool isGamePaused;
+
+    protected override void OnActivate()
     {
-        loadingUI.gameObject.SetActive(false);
-        SetState(GameState.Play);
+        base.OnActivate();
+
+        Context.gameInput.OnPausePerformed += GameInput_OnPausePerformed;
     }
 
-    public void SetState(GameState newState) 
+    private void GameInput_OnPausePerformed()
     {
-        
-        State = newState;
-        switch (State)
+        TogglePauseGame();
+    }
+
+    public void TogglePauseGame()
+    {
+        isGamePaused = !isGamePaused;
+        if (isGamePaused)
         {
-            case GameState.MainMenu:
-                HandleMainMenu();
-                break;
-            case GameState.Play:
-                HandlePlay();
-                break;
-            case GameState.Pause:
-                break;
-            case GameState.ExitLevel:
-                HandleExitLevel();
-                break;
-            default:
-                break;
+            Time.timeScale = 0f;
+            Context.VCamCameraShake.gameObject.SetActive(false);
+            OnGamePaused?.Invoke(this, EventArgs.Empty);
+        } else
+        {
+            Time.timeScale = 1f;
+            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }
     }
 
 
-    private void HandleMainMenu()
-    {
-        mainMenuUI.gameObject.SetActive(true);
-    }
-    private void HandlePlay()
-    {
-        mainMenuUI.gameObject.SetActive(false);
-    }
-    private void HandleExitLevel()
-    {
-        levelPrefabArray[0].gameObject.SetActive(false);
-        loadingUI.gameObject.SetActive(true);
-        levelPrefabArray[1].gameObject.SetActive(true);
-        SetState(GameState.Play);
-    }
-
-    public void PlayButton()
-    {
-        SetState(GameState.Play);
-    }
     
-}
-
-public enum GameState 
-{
-    MainMenu,
-    Pause,
-    Play,
-    ExitLevel,
 }

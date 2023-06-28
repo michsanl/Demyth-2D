@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3143619101027616307}
   - component: {fileID: 3143619101027616306}
+  - component: {fileID: 1719733396858741420}
   - component: {fileID: 1538411941623662623}
   - component: {fileID: 4608673986508498265}
   - component: {fileID: 854613596650216529}
@@ -133,6 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7e28f2122297b4fa193e4768a22ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   actionDelay: 0.25
   moveDuration: 0.245
   attackDuration: 0.5
@@ -141,6 +154,20 @@ MonoBehaviour:
     m_Bits: 64
   animator: {fileID: 3143619101154623906}
   senterGameObject: {fileID: 6712916346127714324}
+--- !u!114 &1719733396858741420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143619101027616268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544ac43213f06a544999d6c9cdf94c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPotionAmount: 2
+  currentPotionAmount: 2
 --- !u!114 &1538411941623662623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +199,10 @@ MonoBehaviour:
   _context:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0

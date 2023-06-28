@@ -599,8 +599,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 213, y: 0}
-    canvasZoom: 1
+    canvasScrollPosition: {x: 13.081951, y: 0}
+    canvasZoom: 0.58000034
   - id: 2
     fields:
     - title: Title
@@ -708,7 +708,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 420.58817
+        x: 418.86404
         y: 82.02019
         width: 160
         height: 30
@@ -759,9 +759,6 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Sequence
         value: 'SetActive(Kamar, true);
-
-          AnimatorPlay (HUD_Dialogue_Open,
-          HUD)@0.2;
 
           SetPortrait(Lati, pic=8);
 
@@ -956,7 +953,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 227.27748
+        x: 229.00163
         y: 304.1043
         width: 160
         height: 30
@@ -3598,9 +3595,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'Continue();
-
-          AnimatorPlay (HUD_Close, HUD);'
+        value: Continue();
         type: 0
         typeString: 
       - title: id
@@ -4162,9 +4157,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'Continue();
-
-          AnimatorPlay (HUD_Close, HUD);'
+        value: Continue();
         type: 0
         typeString: 
       - title: id
@@ -4191,8 +4184,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 1132.8763}
-    canvasZoom: 0.73000026
+    canvasScrollPosition: {x: 55.26177, y: 1284.9456}
+    canvasZoom: 0.67000043
   syncInfo:
     syncActors: 0
     syncItems: 0
