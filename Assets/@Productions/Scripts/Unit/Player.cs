@@ -170,7 +170,7 @@ public class Player : SceneService
     {
         isSenterEnabled = !isSenterEnabled;
         senterGameObject.SetActive(isSenterEnabled);
-        
+
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 

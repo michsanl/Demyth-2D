@@ -19,11 +19,16 @@ public class HUDUI : SceneService
     {
         animator = GetComponent<Animator>();
 
+        Open();
+    }
+
+    protected override void OnActivate()
+    {
+        base.OnActivate();
+
         Context.Player.OnSenterToggle += Player_OnSenterToggle;
         DialogueManager.instance.conversationStarted += DialogueManager_ConversationStarted;
         DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
-
-        Open();
     }
 
     private void Player_OnSenterToggle(bool senterState)
