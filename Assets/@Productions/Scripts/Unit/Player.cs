@@ -31,6 +31,7 @@ public class Player : SceneService
     private CameraShakeController cameraShakeController;
     private FlashEffectController flashEffectController;
     private LookOrientation lookOrientation;
+    private HealthPotion healthPotion;
     private MeshRenderer spineMeshRenderer;
     private Health health;
     private Vector2 playerDir;
@@ -40,7 +41,6 @@ public class Player : SceneService
     private bool isTakeDamageOnCooldown;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
-    private bool isHealthPotionOnCooldown;
     private bool isHealthPotionUnlocked = true;
 
     protected override void OnInitialize()
@@ -50,6 +50,7 @@ public class Player : SceneService
         cameraShakeController = GetComponent<CameraShakeController>();
         flashEffectController = GetComponent<FlashEffectController>();
         lookOrientation = GetComponent<LookOrientation>();
+        healthPotion = GetComponent<HealthPotion>();
         health = GetComponent<Health>();
         spineMeshRenderer = animator.GetComponent<MeshRenderer>();
     }
@@ -160,10 +161,7 @@ public class Player : SceneService
             return;
         if (!isHealthPotionUnlocked)
             return;
-        if (isHealthPotionOnCooldown)
-            return;
-        
-        StartCoroutine(HealSelf());
+        healthPotion.UsePotion();
     }
 
     private void ToggleSenter()
@@ -172,17 +170,6 @@ public class Player : SceneService
         senterGameObject.SetActive(isSenterEnabled);
 
         OnSenterToggle?.Invoke(isSenterEnabled);
-    }
-
-    private IEnumerator HealSelf()
-    {
-        isHealthPotionOnCooldown = true;
-
-        health.Heal(1);
-
-        yield return Helper.GetWaitForSeconds(actionDelay);
-
-        isHealthPotionOnCooldown = false;
     }
 
     public IEnumerator DamagePlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)

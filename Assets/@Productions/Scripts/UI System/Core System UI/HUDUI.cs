@@ -9,10 +9,11 @@ using PixelCrushers.DialogueSystem;
 public class HUDUI : SceneService
 {
     [SerializeField] private Image healthPointImage;
-    [SerializeField] private Image healthPotionImage;
+    [SerializeField] private Image healthPotionEmptyImage;
     [SerializeField] private Image senterLightOnImage;
 
     private Animator animator;
+    private HealthPotion playerHealthPotion;
     private bool isOpen;
 
     protected override void OnInitialize()
@@ -25,10 +26,25 @@ public class HUDUI : SceneService
     protected override void OnActivate()
     {
         base.OnActivate();
+        
+        playerHealthPotion = Context.Player.GetComponent<HealthPotion>();
 
+        playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
         Context.Player.OnSenterToggle += Player_OnSenterToggle;
         DialogueManager.instance.conversationStarted += DialogueManager_ConversationStarted;
         DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
+    }
+
+    private void PlayerHealthPotion_OnUsePotion(int healthPotionAmount)
+    {
+        if (healthPotionAmount == 0)
+        {
+            healthPotionEmptyImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            healthPotionEmptyImage.gameObject.SetActive(false);
+        }
     }
 
     private void Player_OnSenterToggle(bool senterState)
