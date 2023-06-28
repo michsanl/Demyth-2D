@@ -19,7 +19,6 @@ public class HUDUI : SceneService
     {
         animator = GetComponent<Animator>();
 
-        Context.LevelManager.OnLevelChanged += LevelManager_OnLevelChanged;
         DialogueManager.instance.conversationStarted += DialogueManager_ConversationStarted;
         DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
 
@@ -34,18 +33,6 @@ public class HUDUI : SceneService
     private void DialogueManager_ConversationEnded(Transform t)
     {
         Open();
-    }
-
-    private void LevelManager_OnLevelChanged()
-    {
-        // if (Context.LevelManager.CurrentLevel.ID != "Level Main Menu")
-        // {
-        //     Open();
-        // }
-        // else
-        // {
-        //     Close();
-        // }
     }
 
     public void Open()
