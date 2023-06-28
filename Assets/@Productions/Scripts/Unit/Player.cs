@@ -23,6 +23,7 @@ public class Player : SceneService
     
 #region Public Fields
     
+    public Action<bool> OnSenterToggle;
     public Vector2 LastMoveTargetPosition => lastMoveTargetPosition; 
 
 #endregion
@@ -169,6 +170,8 @@ public class Player : SceneService
     {
         isSenterEnabled = !isSenterEnabled;
         senterGameObject.SetActive(isSenterEnabled);
+        
+        OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
     private IEnumerator HealSelf()

@@ -25,6 +25,15 @@ public class GameInput : SceneService
         playerInputActions.Player.Enable();
     }
 
+    // private void OnDestroy() 
+    // {
+    //     // playerInputActions.Player.Senter.performed -= PlayerInputAction_OnSenterPerformed;
+    //     // playerInputActions.Player.HealthPotion.performed -= PlayerInputAction_OnHealthPotionPerformed;
+    //     // playerInputActions.Player.Pause.performed -= PlayerInputAction_OnPausePerformed;
+        
+    //     // playerInputActions.Dispose();
+    // }
+
     private void PlayerInputAction_OnSenterPerformed(InputAction.CallbackContext context)
     {
         OnSenterPerformed?.Invoke();

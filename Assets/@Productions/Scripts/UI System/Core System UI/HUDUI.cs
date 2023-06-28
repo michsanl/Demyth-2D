@@ -10,7 +10,7 @@ public class HUDUI : SceneService
 {
     [SerializeField] private Image healthPointImage;
     [SerializeField] private Image healthPotionImage;
-    [SerializeField] private Image senterImage;
+    [SerializeField] private Image senterLightOnImage;
 
     private Animator animator;
     private bool isOpen;
@@ -19,10 +19,16 @@ public class HUDUI : SceneService
     {
         animator = GetComponent<Animator>();
 
+        Context.Player.OnSenterToggle += Player_OnSenterToggle;
         DialogueManager.instance.conversationStarted += DialogueManager_ConversationStarted;
         DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
 
         Open();
+    }
+
+    private void Player_OnSenterToggle(bool senterState)
+    {
+        senterLightOnImage.gameObject.SetActive(senterState);
     }
 
     private void DialogueManager_ConversationStarted(Transform t)
@@ -51,10 +57,5 @@ public class HUDUI : SceneService
 
         animator.Play("HUD_Close");
         isOpen = false;
-    }
-
-    public void SetActiveSenterImage(bool state)
-    {
-        senterImage.gameObject.SetActive(state);
     }
 }
