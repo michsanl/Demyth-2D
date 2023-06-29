@@ -35,6 +35,16 @@ public class HUDUI : SceneService
         DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
     }
 
+    private void DialogueManager_ConversationStarted(Transform t)
+    {
+        Close();
+    }
+
+    private void DialogueManager_ConversationEnded(Transform t)
+    {
+        Open();
+    }
+
     private void PlayerHealthPotion_OnUsePotion(int healthPotionAmount)
     {
         if (healthPotionAmount == 0)
@@ -50,16 +60,6 @@ public class HUDUI : SceneService
     private void Player_OnSenterToggle(bool senterState)
     {
         senterLightOnImage.gameObject.SetActive(senterState);
-    }
-
-    private void DialogueManager_ConversationStarted(Transform t)
-    {
-        Close();
-    }
-
-    private void DialogueManager_ConversationEnded(Transform t)
-    {
-        Open();
     }
 
     public void Open()
