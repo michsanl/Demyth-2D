@@ -66,7 +66,7 @@ public class Level : CoreBehaviour
     private void DebugDrawLine()
     {
         int width = 17;
-        int height = 10;
+        int height = 30;
         Vector3 originGridPosition = transform.position + Vector3.up * 0.5f;
         Vector3 centerPosition = originGridPosition + new Vector3(-width / 2f, -height / 2f, 0);
         for (int i = 0; i < width; i++)
