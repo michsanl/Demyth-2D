@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04f86d0384b9ee4e9d83f56fd8a1e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatBehavior: 2
+  combatBehavior: 0
 --- !u!114 &9095863072912426184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,13 +1066,15 @@ MonoBehaviour:
   _context:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  loopAbility: 4
+  loopAbility: 3
 --- !u!114 &2867520102546455625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,8 +1091,10 @@ MonoBehaviour:
   _context:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
@@ -1111,8 +1115,10 @@ MonoBehaviour:
   _context:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
