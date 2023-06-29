@@ -638,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629032, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629033, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_RootOrder
@@ -1037,6 +1037,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 184740833474959564, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: conversation
+      value: Level_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 184740833474959564, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: selectedDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
     - target: {fileID: 1837428258277959910, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1087,7 +1095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1837428258277959911, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660014677286460974, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4909195939113329196, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_Mesh
@@ -1769,7 +1781,7 @@ MonoBehaviour:
   - {fileID: 1770570078}
   - {fileID: 562907946}
   - {fileID: 201276002}
-  debugLevelID: Level 7
+  debugLevelID: Level 2
 --- !u!1 &1653471099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,6 +2273,10 @@ PrefabInstance:
       propertyPath: m_BlockingMask.m_Bits
       value: 4087
       objectReference: {fileID: 0}
+    - target: {fileID: 3278702919810002106, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: initialDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.UI
       value: 

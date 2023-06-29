@@ -171,12 +171,12 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 165426, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
+    spritePortrait: {fileID: -1800541845, guid: 29105510ca953194d95186c31ac138c0, type: 3}
     alternatePortraits: []
     spritePortraits:
-    - {fileID: 22400912, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
-    - {fileID: 22424574, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
-    - {fileID: 0}
+    - {fileID: 787998094, guid: 29105510ca953194d95186c31ac138c0, type: 3}
+    - {fileID: 787998094, guid: 29105510ca953194d95186c31ac138c0, type: 3}
+    - {fileID: 787998094, guid: 29105510ca953194d95186c31ac138c0, type: 3}
   - id: 7
     fields:
     - title: Name
@@ -196,10 +196,10 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 170186, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
+    spritePortrait: {fileID: 1938332620, guid: 4754e12ca31b3144481f16c81bf9fbf4, type: 3}
     alternatePortraits: []
     spritePortraits:
-    - {fileID: 144020, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
+    - {fileID: 1938332620, guid: 4754e12ca31b3144481f16c81bf9fbf4, type: 3}
   - id: 8
     fields:
     - title: Name
@@ -5048,12 +5048,10 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive(Kamar, true);
 
-          AnimatorPlay (HUD_Open, HUD)@0.2;
+          SetPortrait(Lati, pic=8);
 
-          SetPortrait(Lati,
-          pic=8);
-
-          SetPanel(Ara, 4)'
+          SetPanel(Ara,
+          4)'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5370,7 +5368,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5488,8 +5486,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 826.4945
-        y: 254.29825
+        x: 829.7732
+        y: 259.21628
         width: 160
         height: 30
     - id: 7
@@ -5644,7 +5642,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 743.47736
+        x: 745.1167
         y: 317.518
         width: 160
         height: 30
@@ -5694,7 +5692,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5934,7 +5932,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6332,7 +6330,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetPortrait(Lati, pic=2);
 
-          SetPortrait(Player, pic=2)'
+          SetPortrait(Ara, pic=2)'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6488,7 +6486,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6645,7 +6643,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6886,7 +6884,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -7043,7 +7041,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -8076,7 +8074,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2);
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -8233,7 +8231,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2);
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -8389,7 +8387,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=1);
+        value: SetPortrait(Ara, pic=1)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -8477,8 +8475,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 115.48308, y: 48.337887}
-    canvasZoom: 0.58000046
+    canvasScrollPosition: {x: 84.484535, y: 421.9155}
+    canvasZoom: 0.40000033
   - id: 9
     fields:
     - title: Title
