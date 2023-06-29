@@ -196,10 +196,17 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 1938332620, guid: 4754e12ca31b3144481f16c81bf9fbf4, type: 3}
+    spritePortrait: {fileID: -182941042, guid: 3b29dc33657f9a945bd9f45d2930058f, type: 3}
     alternatePortraits: []
     spritePortraits:
-    - {fileID: 1938332620, guid: 4754e12ca31b3144481f16c81bf9fbf4, type: 3}
+    - {fileID: 1664976108, guid: 3b29dc33657f9a945bd9f45d2930058f, type: 3}
+    - {fileID: -75837115, guid: 3b29dc33657f9a945bd9f45d2930058f, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - id: 8
     fields:
     - title: Name
@@ -5290,7 +5297,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2)
+        value: SetPortrait(Ara, pic=2)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5565,7 +5572,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 533.89386
-        y: 321.59885
+        y: 332.50793
         width: 160
         height: 30
     - id: 8
@@ -7197,7 +7204,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2);
+        value: SetPortrait(Ara, pic=2);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -7275,7 +7282,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=1)
+        value: SetPortrait(Ara, pic=1)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -7511,7 +7518,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=2);
+        value: SetPortrait(Ara, pic=2);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -7667,7 +7674,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Player, pic=1);
+        value: SetPortrait(Ara, pic=1);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -7820,10 +7827,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'AnimatorPlay (HUD_Open, HUD)@0.2;
-
-          SetPortrait(Player,
-          pic=2);'
+        value: SetPortrait(Ara, pic=2);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -7884,7 +7888,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -8000,7 +8004,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetPortrait(Lati, pic=6);
 
-          SetPortrait(Player, pic=2)'
+          SetPortrait(Ara, pic=2)'
         type: 0
         typeString: 
       conversationID: 8
@@ -8448,7 +8452,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -8475,8 +8479,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 84.484535, y: 421.9155}
-    canvasZoom: 0.40000033
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.4600004
   - id: 9
     fields:
     - title: Title
@@ -8570,7 +8574,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetPanel  (Player, 3);
+        value: 'SetPanel  (Ara, 3);
 
           SetPanel  (Lati, 0);'
         type: 0
@@ -8813,7 +8817,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPanel (Player, 2);
+        value: SetPanel (Ara, 2);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -8919,7 +8923,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 572.2377
+        x: 575.5443
         y: 242.32489
         width: 160
         height: 30
@@ -9342,7 +9346,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -9369,8 +9373,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 136.5221, y: 36.321556}
-    canvasZoom: 0.8200005
+    canvasScrollPosition: {x: 0, y: 97.21097}
+    canvasZoom: 0.4900007
   - id: 10
     fields:
     - title: Title
@@ -10534,7 +10538,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 598.37744
-        y: 655.7986
+        y: 657.9725
         width: 160
         height: 30
     - id: 14
@@ -10904,7 +10908,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'HidePanel (4);
 
-          SetPanel (Player, 4);
+          SetPanel (Ara, 4);
 
           SetPanel
           (Maria, 0);'
@@ -13945,7 +13949,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 696.5136
+        x: 698.5544
         y: 2425.455
         width: 160
         height: 30
@@ -14305,7 +14309,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -14513,7 +14517,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -14540,8 +14544,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 615.9366}
-    canvasZoom: 0.48999998
+    canvasScrollPosition: {x: 457.89566, y: 2127.0586}
+    canvasZoom: 0.49
   - id: 11
     fields:
     - title: Title
@@ -15400,7 +15404,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -18458,7 +18462,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -18748,7 +18752,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetPanel  (Player, 3);
+        value: 'SetPanel  (Ara, 3);
 
           SetPanel  (Lati, 0);
 
@@ -21253,7 +21257,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -22153,7 +22157,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetPanel  (Player, 3);
+        value: 'SetPanel  (Ara, 3);
 
           SetPanel  (Lati, 0);
 
@@ -23722,7 +23726,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -24068,7 +24072,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetPanel  (Player, 3);
+        value: 'SetPanel  (Ara, 3);
 
           SetPanel  (Lati, 0);
 
@@ -25185,7 +25189,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -25790,7 +25794,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -26394,7 +26398,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -26496,7 +26500,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetPanel  (Player, 3);
+        value: 'SetPanel  (Ara, 3);
 
           SetPanel  (Lati, 0);
 
@@ -27894,7 +27898,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -28062,7 +28066,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetPanel  (Player, 3);
+        value: 'SetPanel  (Ara, 3);
 
           SetPanel  (Lati, 0);
 
@@ -28997,7 +29001,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: 
       - title: id
@@ -29099,7 +29103,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetPanel  (Player, 3);
+        value: 'SetPanel  (Ara, 3);
 
           SetPanel  (Lati, 2);
 
@@ -29773,7 +29777,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -31996,7 +32000,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'Continue();
 
-          AnimatorPlay (HUD_Close, HUD);'
+'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
