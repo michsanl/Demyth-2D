@@ -1913,10 +1913,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1083057257689935216, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1083057257689935217, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1961,14 +1957,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4392421521696458734, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6728531317641564729, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
-      propertyPath: m_Mesh
+    - target: {fileID: 5748588445734383452, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: cameraGO
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1653471099}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
 --- !u!114 &1805576880 stripped
@@ -2084,6 +2076,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1590701348}
     m_Modifications:
+    - target: {fileID: 277965222, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: cameraGO
+      value: 
+      objectReference: {fileID: 1653471099}
     - target: {fileID: 5805886074711020472, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_Name
       value: Level 5
