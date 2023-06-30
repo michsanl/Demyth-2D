@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Cinemachine;
 
 namespace Demyth.Gameplay
 {
@@ -12,6 +13,14 @@ namespace Demyth.Gameplay
         public Vector3 EnterPoint => transform.position;
         [SerializeField, ValueDropdown(nameof(LevelName))]
         private string targetLevel;
+        [SerializeField] private bool moveCameraOnLevelChange;
+        [SerializeField, ShowIf("moveCameraOnLevelChange")]
+        private CameraMoveDirection cameraMoveDirection;
+        [SerializeField, ShowIf("moveCameraOnLevelChange")]
+        private GameObject cameraGO;
+
+        private enum CameraMoveDirection { Up, Down };
+
         private Level _level;
 
         public void SetupGate(Level level)
@@ -22,6 +31,19 @@ namespace Demyth.Gameplay
         public override void Interact(Vector3 direction = default)
         {
             _level.MoveToNextLevel(targetLevel);
+            MoveCamera();
+        }
+
+        private void MoveCamera()
+        {
+            if (!moveCameraOnLevelChange)
+                return;
+
+            if (cameraMoveDirection == CameraMoveDirection.Up)
+                cameraGO.transform.position += Vector3.up * 10f; 
+                
+            if (cameraMoveDirection == CameraMoveDirection.Down)
+                cameraGO.transform.position += Vector3.down * 10f;
         }
 
 #if UNITY_EDITOR
