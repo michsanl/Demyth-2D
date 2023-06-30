@@ -17,6 +17,7 @@ public class PetraAbilityCollection : SceneService
     private PetraAbilityBasicSlam abilityBasicSlam;
     private PetraAbilityJumpSlam abilityJumpSlam;
     private LookOrientation lookOrientation;
+    protected Health health;
 
     protected void Awake()
     {
@@ -29,6 +30,7 @@ public class PetraAbilityCollection : SceneService
         abilityJumpSlam = GetComponent<PetraAbilityJumpSlam>();
 
         lookOrientation = GetComponent<LookOrientation>();
+        health = GetComponent<Health>();
     }
 
 #region Ability Collection
