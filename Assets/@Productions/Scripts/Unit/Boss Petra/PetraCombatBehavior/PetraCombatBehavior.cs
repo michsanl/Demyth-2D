@@ -8,8 +8,7 @@ public class PetraCombatBehavior : PetraAbilityCollection
 {
     [SerializeField] private bool activateCombatMode;
     [EnumToggleButtons] public CombatMode SelectCombatMode;
-    [Space]
-    [EnumToggleButtons] public Ability LoopAbility;
+    [EnumToggleButtons, Space] public Ability LoopAbility;
     
     public enum Ability 
     { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
@@ -78,7 +77,7 @@ public class PetraCombatBehavior : PetraAbilityCollection
 
         if (IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,3);
+            int randomIndex = UnityEngine.Random.Range(0,2);
             if (randomIndex == 0)
             {
                 StartCoroutine(PlayAbilitySpinAttack());
@@ -104,16 +103,42 @@ public class PetraCombatBehavior : PetraAbilityCollection
 
         if (!IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,3);
-            if (randomIndex == 0)
+            int random = GetRandomNumber(1, 3, 3);
+            if (random == 1)
             {
                 StartCoroutine(PlayAbilityJumpSlam());
-            } else
-            {;
+            } 
+            if (random == 2)
+            {
                 StartCoroutine(PlayAbilityBasicSlam());
             }
             return;
         }
+    }
+
+    private int lastRandomResult;
+    private int consecutiveCount;
+
+    private int GetRandomNumber(int min, int max, int consecutiveLimit)
+    {
+        int random = UnityEngine.Random.Range(min, max);
+        if (random == lastRandomResult)
+        {
+            consecutiveCount++;
+        }
+        else
+        {
+            consecutiveCount = 0;
+        }
+        if (consecutiveCount > consecutiveLimit)
+        {
+            while (random == lastRandomResult)
+            {
+                random = UnityEngine.Random.Range(min, max);
+            }
+        }
+        lastRandomResult = random;
+        return random;
     }
 
     private void AbilityLoopRoutine()
