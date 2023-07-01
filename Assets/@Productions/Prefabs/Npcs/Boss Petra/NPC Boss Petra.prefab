@@ -999,10 +999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398050621169836}
-  - component: {fileID: 7735775073953674051}
-  - component: {fileID: 9095863072912426184}
-  - component: {fileID: 2867520102546455625}
-  - component: {fileID: 6855481323534840444}
+  - component: {fileID: 1138521342322003525}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
   - component: {fileID: 5108067734571236107}
@@ -1037,7 +1034,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7735775073953674051
+--- !u!114 &1138521342322003525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1046,20 +1043,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7673398050621169837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04f86d0384b9ee4e9d83f56fd8a1e50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combatBehavior: 0
---- !u!114 &9095863072912426184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa9ce1baf9ef7d4a9f591f79606305a, type: 3}
+  m_Script: {fileID: 11500000, guid: 20183e4ee57d1284f96c20d731d23452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
@@ -1074,55 +1058,9 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  loopAbility: 3
---- !u!114 &2867520102546455625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a604abe58e9535e40beb97495910ecd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
---- !u!114 &6855481323534840444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb4c40f39f92d364c9db9221889a2b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
+  activateCombatMode: 1
+  SelectCombatMode: 1
+  LoopAbility: 3
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0

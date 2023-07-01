@@ -6,26 +6,33 @@ using Sirenix.OdinInspector;
 
 public class PetraCombatBehavior : PetraAbilityCollection
 {
-    [SerializeField] private bool isCombatMode;
-    private bool isFirstPhase;
-    private bool isSecondPhase;
-
-    protected override void OnActivate()
-    {
-        base.OnActivate();
-
-        health.OnAfterTakeDamage += Health_OnAfterTakeDamage;
-        ActivatePhaseOne();
-    }
+    [SerializeField] private bool activateCombatMode;
+    [EnumToggleButtons] public CombatMode SelectCombatMode;
+    [Space]
+    [EnumToggleButtons] public Ability LoopAbility;
+    
+    public enum Ability 
+    { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
+    public enum CombatMode 
+    { FirstPhase, SecondPhase, AbilityLoop }
 
     protected override void OnTick()
     {
-        if (!isCombatMode)
+        if (!activateCombatMode)
             return;
-        if (isFirstPhase)
-            FirstPhaseRoutine();
-        if (isSecondPhase)
-            SecondPhaseRoutine();
+        
+        switch (SelectCombatMode)
+        {
+            case CombatMode.FirstPhase:
+                FirstPhaseRoutine();
+                break;
+            case CombatMode.SecondPhase:
+                SecondPhaseRoutine();
+                break;
+            case CombatMode.AbilityLoop:
+                AbilityLoopRoutine();
+                break;
+        }
     }
 
     private void FirstPhaseRoutine()
@@ -44,12 +51,12 @@ public class PetraCombatBehavior : PetraAbilityCollection
 
         if (IsPlayerAtSamePosY())
         {
-            PlayHorizontalAbility();
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         }
         if (IsPlayerAtSamePosX())
         {
-            PlayVerticalAbility();
+            PlayVerticalCharge();
             return;
         }
 
@@ -85,12 +92,12 @@ public class PetraCombatBehavior : PetraAbilityCollection
 
         if (IsPlayerAtSamePosY())
         {
-            PlayHorizontalAbility();
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         }
         if (IsPlayerAtSamePosX())
         {
-            PlayVerticalAbility();
+            PlayVerticalCharge();
             return;
         }
 
@@ -107,41 +114,44 @@ public class PetraCombatBehavior : PetraAbilityCollection
             }
             return;
         }
-
     }
 
-    private void Health_OnAfterTakeDamage()
+    private void AbilityLoopRoutine()
     {
-        if (health.CurrentHP <= 10)
+        if (isBusy)
+            return;
+
+        SetFacingDirection();
+
+        switch (LoopAbility)
         {
-            ActivatePhaseTwo();
+            case Ability.UpCharge:
+                StartCoroutine(PlayAbilityUpCharge());
+                break;
+            case Ability.DownCharge:
+                StartCoroutine(PlayAbilityDownCharge());
+                break;
+            case Ability.HorizontalCharge:
+                StartCoroutine(PlayAbilityHorizontalCharge());
+                break;
+            case Ability.SpinAttack:
+                StartCoroutine(PlayAbilitySpinAttack());
+                break;
+            case Ability.ChargeAttack:
+                StartCoroutine(PlayAbilityChargeAttack());
+                break;
+            case Ability.BasicSlam:
+                StartCoroutine(PlayAbilityBasicSlam());
+                break;
+            case Ability.JumpSlam:
+                StartCoroutine(PlayAbilityJumpSlam());
+                break;
+            default:
+                break;
         }
     }
 
-    private void ActivatePhaseOne()
-    {
-        isFirstPhase = true;
-        isSecondPhase = false;
-    }
-
-    private void ActivatePhaseTwo()
-    {
-        isFirstPhase = false;
-        isSecondPhase = true;
-    }
-
-    private void TurnOffCombatMode()
-    {
-        isFirstPhase = false;
-        isSecondPhase = false;
-    }
-
-    private int GetRandomIndexFromList(List<IEnumerator> abilityList)
-    {
-        return UnityEngine.Random.Range(0, abilityList.Count);
-    }
-
-    private void PlayVerticalAbility()
+    private void PlayVerticalCharge()
     {
         if (IsPlayerAbove())
         {
@@ -150,19 +160,6 @@ public class PetraCombatBehavior : PetraAbilityCollection
         } else
         {
             StartCoroutine(PlayAbilityDownCharge());
-            return;
-        }
-    }
-
-    private void PlayHorizontalAbility()
-    {
-        if (IsPlayerToRight())
-        {
-            StartCoroutine(PlayAbilityHorizontalCharge());
-            return;
-        } else
-        {
-            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         }
     }
