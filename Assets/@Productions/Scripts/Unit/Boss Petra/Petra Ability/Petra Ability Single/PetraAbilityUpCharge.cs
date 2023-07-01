@@ -4,13 +4,16 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
+using CustomTools.Core;
 
-public class PetraAbilityUpCharge : MonoBehaviour
+public class PetraAbilityUpCharge : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
+    [SerializeField] private int topArenaBorder;
+    [SerializeField] private int bottomArenaBorder;
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
@@ -19,12 +22,13 @@ public class PetraAbilityUpCharge : MonoBehaviour
     
     private int UP_CHARGE = Animator.StringToHash("Up_charge");
 
-    public IEnumerator UpCharge(float targetYPosition)
+    public IEnumerator UpCharge()
     {
-        var finalTargetPosition = Mathf.Clamp(Mathf.RoundToInt(targetYPosition), -4, 3);
+        var playerYPosition = Context.Player.transform.position.y;
+        var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
+        int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(UP_CHARGE);
-        // audioManager.PlaySound(audioClipSriSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         upChargeCollider.SetActive(true);
@@ -33,5 +37,15 @@ public class PetraAbilityUpCharge : MonoBehaviour
         upChargeCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private float GetPositionWithIncrement(float playerYPosition)
+    {
+        return playerYPosition + 2;
+    }
+
+    private float ClampValueToBattleArenaBorder(float value)
+    {
+        return Mathf.Clamp(value, bottomArenaBorder, topArenaBorder);
     }
 }

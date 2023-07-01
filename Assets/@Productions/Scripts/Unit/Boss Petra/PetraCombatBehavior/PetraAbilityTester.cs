@@ -34,13 +34,13 @@ public class PetraAbilityTester : PetraAbilityCollection
         switch (loopAbility)
         {
             case Ability.UpCharge:
-                StartCoroutine(PlayAbilityUpCharge(transform.position.y));
+                StartCoroutine(PlayAbilityUpCharge());
                 break;
             case Ability.DownCharge:
-                StartCoroutine(PlayAbilityDownCharge(transform.position.y));
+                StartCoroutine(PlayAbilityDownCharge());
                 break;
             case Ability.HorizontalCharge:
-                StartCoroutine(PlayAbilityHorizontalCharge(transform.position.x));
+                StartCoroutine(PlayAbilityHorizontalCharge());
                 break;
             case Ability.SpinAttack:
                 StartCoroutine(PlayAbilitySpinAttack());
@@ -49,10 +49,10 @@ public class PetraAbilityTester : PetraAbilityCollection
                 StartCoroutine(PlayAbilityChargeAttack());
                 break;
             case Ability.BasicSlam:
-                StartCoroutine(PlayAbilityBasicSlam(Context.Player.LastMoveTargetPosition));
+                StartCoroutine(PlayAbilityBasicSlam());
                 break;
             case Ability.JumpSlam:
-                StartCoroutine(PlayAbilityJumpSlam(Context.Player.LastMoveTargetPosition));
+                StartCoroutine(PlayAbilityJumpSlam());
                 break;
             default:
                 break;

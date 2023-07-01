@@ -35,24 +35,24 @@ public class PetraAbilityCollection : SceneService
 
 #region Ability Collection
 
-    protected IEnumerator PlayAbilityUpCharge(float targetYPosition)
+    protected IEnumerator PlayAbilityUpCharge()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityUpCharge.UpCharge(targetYPosition));
+        yield return StartCoroutine(abilityUpCharge.UpCharge());
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityDownCharge(float targetYPosition)
+    protected IEnumerator PlayAbilityDownCharge()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityDownCharge.DownCharge(targetYPosition));
+        yield return StartCoroutine(abilityDownCharge.DownCharge());
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityHorizontalCharge(float targetXPosition)
+    protected IEnumerator PlayAbilityHorizontalCharge()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityHorizontalCharge.HorizontalCharge(targetXPosition));
+        yield return StartCoroutine(abilityHorizontalCharge.HorizontalCharge());
         isBusy = false;
     }
 
@@ -70,17 +70,17 @@ public class PetraAbilityCollection : SceneService
         isBusy = false;
     }
 
-    protected IEnumerator PlayAbilityBasicSlam(Vector2 targetPosition)
+    protected IEnumerator PlayAbilityBasicSlam()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityBasicSlam.BasicSlam(targetPosition));
+        yield return StartCoroutine(abilityBasicSlam.BasicSlam());
         isBusy = false;
     }
     
-    protected IEnumerator PlayAbilityJumpSlam(Vector2 targetPosition)
+    protected IEnumerator PlayAbilityJumpSlam()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityJumpSlam.JumpSlam(targetPosition));
+        yield return StartCoroutine(abilityJumpSlam.JumpSlam());
         isBusy = false;
     }
 

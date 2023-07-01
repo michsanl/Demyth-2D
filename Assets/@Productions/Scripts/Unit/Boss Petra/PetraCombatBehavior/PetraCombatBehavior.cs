@@ -6,26 +6,32 @@ using Sirenix.OdinInspector;
 
 public class PetraCombatBehavior : PetraAbilityCollection
 {
-    [SerializeField] private bool isCombatMode;
-    private bool isFirstPhase;
-    private bool isSecondPhase;
-
-    protected override void OnActivate()
-    {
-        base.OnActivate();
-
-        health.OnAfterTakeDamage += Health_OnAfterTakeDamage;
-        ActivatePhaseOne();
-    }
+    [SerializeField] private bool activateCombatMode;
+    [EnumToggleButtons] public CombatMode SelectCombatMode;
+    [EnumToggleButtons, Space] public Ability LoopAbility;
+    
+    public enum Ability 
+    { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
+    public enum CombatMode 
+    { FirstPhase, SecondPhase, AbilityLoop }
 
     protected override void OnTick()
     {
-        if (!isCombatMode)
+        if (!activateCombatMode)
             return;
-        if (isFirstPhase)
-            FirstPhaseRoutine();
-        if (isSecondPhase)
-            SecondPhaseRoutine();
+        
+        switch (SelectCombatMode)
+        {
+            case CombatMode.FirstPhase:
+                FirstPhaseRoutine();
+                break;
+            case CombatMode.SecondPhase:
+                SecondPhaseRoutine();
+                break;
+            case CombatMode.AbilityLoop:
+                AbilityLoopRoutine();
+                break;
+        }
     }
 
     private void FirstPhaseRoutine()
@@ -44,19 +50,19 @@ public class PetraCombatBehavior : PetraAbilityCollection
 
         if (IsPlayerAtSamePosY())
         {
-            PlayHorizontalAbility();
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         }
         if (IsPlayerAtSamePosX())
         {
-            PlayVerticalAbility();
+            PlayVerticalCharge();
             return;
         }
 
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayAbilityBasicSlam(Context.Player.LastMoveTargetPosition));
+            StartCoroutine(PlayAbilityBasicSlam());
             return;
         }
         
@@ -71,7 +77,7 @@ public class PetraCombatBehavior : PetraAbilityCollection
 
         if (IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,3);
+            int randomIndex = UnityEngine.Random.Range(0,2);
             if (randomIndex == 0)
             {
                 StartCoroutine(PlayAbilitySpinAttack());
@@ -85,85 +91,100 @@ public class PetraCombatBehavior : PetraAbilityCollection
 
         if (IsPlayerAtSamePosY())
         {
-            PlayHorizontalAbility();
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         }
         if (IsPlayerAtSamePosX())
         {
-            PlayVerticalAbility();
+            PlayVerticalCharge();
             return;
         }
 
 
         if (!IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,3);
-            Vector2 playerLastPosition = Context.Player.LastMoveTargetPosition;
-            if (randomIndex == 0)
+            int random = GetRandomNumber(1, 3, 3);
+            if (random == 1)
             {
-                StartCoroutine(PlayAbilityJumpSlam(playerLastPosition));
-            } else
-            {;
-                StartCoroutine(PlayAbilityBasicSlam(playerLastPosition));
+                StartCoroutine(PlayAbilityJumpSlam());
+            } 
+            if (random == 2)
+            {
+                StartCoroutine(PlayAbilityBasicSlam());
             }
             return;
         }
-
     }
 
-    private void Health_OnAfterTakeDamage()
+    private int lastRandomResult;
+    private int consecutiveCount;
+
+    private int GetRandomNumber(int min, int max, int consecutiveLimit)
     {
-        if (health.CurrentHP <= 10)
+        int random = UnityEngine.Random.Range(min, max);
+        if (random == lastRandomResult)
         {
-            ActivatePhaseTwo();
+            consecutiveCount++;
+        }
+        else
+        {
+            consecutiveCount = 0;
+        }
+        if (consecutiveCount > consecutiveLimit)
+        {
+            while (random == lastRandomResult)
+            {
+                random = UnityEngine.Random.Range(min, max);
+            }
+        }
+        lastRandomResult = random;
+        return random;
+    }
+
+    private void AbilityLoopRoutine()
+    {
+        if (isBusy)
+            return;
+
+        SetFacingDirection();
+
+        switch (LoopAbility)
+        {
+            case Ability.UpCharge:
+                StartCoroutine(PlayAbilityUpCharge());
+                break;
+            case Ability.DownCharge:
+                StartCoroutine(PlayAbilityDownCharge());
+                break;
+            case Ability.HorizontalCharge:
+                StartCoroutine(PlayAbilityHorizontalCharge());
+                break;
+            case Ability.SpinAttack:
+                StartCoroutine(PlayAbilitySpinAttack());
+                break;
+            case Ability.ChargeAttack:
+                StartCoroutine(PlayAbilityChargeAttack());
+                break;
+            case Ability.BasicSlam:
+                StartCoroutine(PlayAbilityBasicSlam());
+                break;
+            case Ability.JumpSlam:
+                StartCoroutine(PlayAbilityJumpSlam());
+                break;
+            default:
+                break;
         }
     }
 
-    private void ActivatePhaseOne()
-    {
-        isFirstPhase = true;
-        isSecondPhase = false;
-    }
-
-    private void ActivatePhaseTwo()
-    {
-        isFirstPhase = false;
-        isSecondPhase = true;
-    }
-
-    private void TurnOffCombatMode()
-    {
-        isFirstPhase = false;
-        isSecondPhase = false;
-    }
-
-    private int GetRandomIndexFromList(List<IEnumerator> abilityList)
-    {
-        return UnityEngine.Random.Range(0, abilityList.Count);
-    }
-
-    private void PlayVerticalAbility()
+    private void PlayVerticalCharge()
     {
         if (IsPlayerAbove())
         {
-            StartCoroutine(PlayAbilityUpCharge(Context.Player.transform.position.y + 1f));
+            StartCoroutine(PlayAbilityUpCharge());
             return;
         } else
         {
-            StartCoroutine(PlayAbilityDownCharge(Context.Player.transform.position.y - 1f));
-            return;
-        }
-    }
-
-    private void PlayHorizontalAbility()
-    {
-        if (IsPlayerToRight())
-        {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x + 1f));
-            return;
-        } else
-        {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x - 1f));
+            StartCoroutine(PlayAbilityDownCharge());
             return;
         }
     }
