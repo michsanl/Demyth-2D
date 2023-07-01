@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using CustomTools.Core;
 
-public class PetraAbilityJumpSlam : MonoBehaviour
+public class PetraAbilityJumpSlam : SceneService
 {
     [Title("Animation Timeline")]
     [SerializeField] private float animationDuration;
@@ -23,8 +24,10 @@ public class PetraAbilityJumpSlam : MonoBehaviour
     
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpSlam(Vector2 targetPosition)
+    public IEnumerator JumpSlam()
     {
+        var targetPosition = Context.Player.LastMoveTargetPosition;
+
         StartCoroutine(SetCollider());
         StartCoroutine(JumpToLocation(targetPosition));
 

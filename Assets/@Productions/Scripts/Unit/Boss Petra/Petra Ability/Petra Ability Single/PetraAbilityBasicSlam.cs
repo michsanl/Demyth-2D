@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using CustomTools.Core;
 
-public class PetraAbilityBasicSlam : MonoBehaviour
+public class PetraAbilityBasicSlam : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -18,13 +19,15 @@ public class PetraAbilityBasicSlam : MonoBehaviour
     
     private int BASIC_SLAM = Animator.StringToHash("Basic_Slam");
     
-    public IEnumerator BasicSlam(Vector2 targetPosition)
+    public IEnumerator BasicSlam()
     {
+        var coffinSpawnPosition = Context.Player.LastMoveTargetPosition;
+
         animator.Play(BASIC_SLAM);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         basicSlamCollider.SetActive(true);
-        Instantiate(groundCoffin, targetPosition, Quaternion.identity);
+        Instantiate(groundCoffin, coffinSpawnPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(swingDuration);
         basicSlamCollider.SetActive(false);

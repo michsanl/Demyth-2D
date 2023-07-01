@@ -638,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629032, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629033, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_RootOrder
@@ -695,6 +695,10 @@ PrefabInstance:
     - target: {fileID: 3242437584245047792, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3940973508138643993, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+      propertyPath: isCombatMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4129298926380640318, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: cameraGO
@@ -1801,7 +1805,7 @@ MonoBehaviour:
   - {fileID: 1770570078}
   - {fileID: 562907946}
   - {fileID: 201276002}
-  debugLevelID: Level 7
+  debugLevelID: Level 4
 --- !u!1 &1653471099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,7 +1926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083057257689935216, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1083057257689935217, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_RootOrder
@@ -1967,6 +1971,10 @@ PrefabInstance:
     - target: {fileID: 1083057257689935217, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687761555146752869, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: combatBehavior
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5748588445734383452, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: cameraGO

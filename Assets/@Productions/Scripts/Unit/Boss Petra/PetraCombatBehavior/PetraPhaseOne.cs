@@ -55,7 +55,7 @@ public class PetraPhaseOne : PetraAbilityCollection
 
         if (!IsPlayerNearby())
         {
-            StartCoroutine(PlayAbilityBasicSlam(Context.Player.LastMoveTargetPosition));
+            StartCoroutine(PlayAbilityBasicSlam());
             return;
         }
         
@@ -65,11 +65,11 @@ public class PetraPhaseOne : PetraAbilityCollection
     {
         if (IsPlayerAbove())
         {
-            StartCoroutine(PlayAbilityUpCharge(Context.Player.transform.position.y + 1f));
+            StartCoroutine(PlayAbilityUpCharge());
             return;
         } else
         {
-            StartCoroutine(PlayAbilityDownCharge(Context.Player.transform.position.y - 1f));
+            StartCoroutine(PlayAbilityDownCharge());
             return;
         }
     }
@@ -78,11 +78,11 @@ public class PetraPhaseOne : PetraAbilityCollection
     {
         if (IsPlayerToRight())
         {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x + 1f));
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         } else
         {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x - 1f));
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         }
     }

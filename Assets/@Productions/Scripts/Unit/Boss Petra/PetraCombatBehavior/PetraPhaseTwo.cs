@@ -70,13 +70,12 @@ public class PetraPhaseTwo : PetraAbilityCollection
         if (!IsPlayerNearby())
         {
             int randomIndex = UnityEngine.Random.Range(0,3);
-            Vector2 playerLastPosition = Context.Player.LastMoveTargetPosition;
             if (randomIndex == 0)
             {
-                StartCoroutine(PlayAbilityJumpSlam(playerLastPosition));
+                StartCoroutine(PlayAbilityJumpSlam());
             } else
             {;
-                StartCoroutine(PlayAbilityBasicSlam(playerLastPosition));
+                StartCoroutine(PlayAbilityBasicSlam());
             }
             return;
         }
@@ -86,11 +85,11 @@ public class PetraPhaseTwo : PetraAbilityCollection
     {
         if (IsPlayerAbove())
         {
-            StartCoroutine(PlayAbilityUpCharge(Context.Player.transform.position.y + 1f));
+            StartCoroutine(PlayAbilityUpCharge());
             return;
         } else
         {
-            StartCoroutine(PlayAbilityDownCharge(Context.Player.transform.position.y - 1f));
+            StartCoroutine(PlayAbilityDownCharge());
             return;
         }
     }
@@ -99,11 +98,11 @@ public class PetraPhaseTwo : PetraAbilityCollection
     {
         if (IsPlayerToRight())
         {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x + 1f));
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         } else
         {
-            StartCoroutine(PlayAbilityHorizontalCharge(Context.Player.transform.position.x - 1f));
+            StartCoroutine(PlayAbilityHorizontalCharge());
             return;
         }
     }
