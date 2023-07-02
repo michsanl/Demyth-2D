@@ -244,9 +244,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a63be2a7c58448b37b2a72ac07863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpawnDelay: 0.2
+  maxRandomSpawnDelay: 0.1
   colliderSpawnDelay: 0.0833
   destroySelfDelay: 1.25
+  topBorder: 2
+  bottomBorder: -4
+  rightBorder: 6
+  leftBorder: -6
   colliderGameObject: {fileID: 3975585011641887085}
   groundCoffinModelArray:
   - {fileID: 3975585013025071505}

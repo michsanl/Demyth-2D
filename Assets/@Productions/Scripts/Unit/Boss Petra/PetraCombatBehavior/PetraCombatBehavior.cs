@@ -14,6 +14,9 @@ public class PetraCombatBehavior : PetraAbilityCollection
     { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
     public enum CombatMode 
     { FirstPhase, SecondPhase, AbilityLoop }
+    
+    private int lastRandomResult;
+    private int consecutiveCount;
 
     protected override void OnTick()
     {
@@ -115,9 +118,6 @@ public class PetraCombatBehavior : PetraAbilityCollection
             return;
         }
     }
-
-    private int lastRandomResult;
-    private int consecutiveCount;
 
     private int GetRandomNumber(int min, int max, int consecutiveLimit)
     {
