@@ -84,6 +84,13 @@ public class PetraAbilityCollection : SceneService
         isBusy = false;
     }
 
+    protected IEnumerator PlayAbility(IEnumerator ability)
+    {
+        isBusy = true;
+        yield return StartCoroutine(ability);
+        isBusy = false;
+    }
+
 #endregion
 
 #region PlayerToBossPositionInfo

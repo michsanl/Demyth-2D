@@ -12,8 +12,7 @@ public class PetraAbilityUpCharge : SceneService
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
-    [SerializeField] private int topArenaBorder;
-    [SerializeField] private int bottomArenaBorder;
+    [SerializeField] private LayerMask moveBlockLayerMask;
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
@@ -24,8 +23,9 @@ public class PetraAbilityUpCharge : SceneService
 
     public IEnumerator UpCharge()
     {
-        var playerYPosition = Context.Player.transform.position.y;
-        var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
+        var targetPosition = Context.Player.transform.position.y;
+        targetPosition = SetPositionToBehindPlayer(targetPosition);
+        targetPosition = ClampToMoveBlocker(targetPosition);
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(UP_CHARGE);
@@ -39,13 +39,19 @@ public class PetraAbilityUpCharge : SceneService
         yield return Helper.GetWaitForSeconds(backSwingDuration);
     }
 
-    private float GetPositionWithIncrement(float playerYPosition)
+    private float SetPositionToBehindPlayer(float playerYPosition)
     {
         return playerYPosition + 2;
     }
 
-    private float ClampValueToBattleArenaBorder(float value)
+    private float ClampToMoveBlocker(float value)
     {
-        return Mathf.Clamp(value, bottomArenaBorder, topArenaBorder);
+        return Mathf.Clamp(value, transform.position.y, GetClampMaxValue());
+    }
+
+    private float GetClampMaxValue()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up, Vector2.up, Mathf.Infinity, moveBlockLayerMask);
+        return hit.point.y - .5f;
     }
 }
