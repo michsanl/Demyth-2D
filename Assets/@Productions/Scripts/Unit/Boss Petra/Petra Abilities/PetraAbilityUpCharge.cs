@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using System;
 using CustomTools.Core;
 
-public class PetraAbilityDownCharge : SceneService
+public class PetraAbilityUpCharge : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -16,42 +17,41 @@ public class PetraAbilityDownCharge : SceneService
     
     [Title("Components")]
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject downChargeCollider;
+    [SerializeField] private GameObject upChargeCollider;
     
-    private int DOWN_CHARGE = Animator.StringToHash("Down_charge");
+    private int UP_CHARGE = Animator.StringToHash("Up_charge");
 
-    public IEnumerator DownCharge()
+    public IEnumerator UpCharge()
     {
         var targetPosition = Context.Player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
         targetPosition = ClampToMoveBlocker(targetPosition);
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.Play(DOWN_CHARGE);
+        animator.Play(UP_CHARGE);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
-        downChargeCollider.SetActive(true);
+        upChargeCollider.SetActive(true);
 
         yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
-        downChargeCollider.SetActive(false);
-        
+        upChargeCollider.SetActive(false);
+
         yield return Helper.GetWaitForSeconds(backSwingDuration);
     }
 
     private float SetPositionToBehindPlayer(float playerYPosition)
     {
-        return playerYPosition - 2;
+        return playerYPosition + 2f;
     }
 
     private float ClampToMoveBlocker(float value)
     {
-        return Mathf.Clamp(value, GetClampMinValue(), transform.position.y);
+        return Mathf.Clamp(value, transform.position.y, GetClampMaxValue());
     }
 
-    private float GetClampMinValue()
+    private float GetClampMaxValue()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.down, Vector2.down, Mathf.Infinity, moveBlockLayerMask);
-        return hit.point.y + .5f;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up, Vector2.up, Mathf.Infinity, moveBlockLayerMask);
+        return hit.point.y - .5f;
     }
-
 }

@@ -48,12 +48,12 @@ public class PetraAbilityHorizontalCharge : SceneService
 
     private float SetPositionToPlayerRight(float targetPosition)
     {
-        return targetPosition + 2;
+        return targetPosition + 2f;
     }
 
     private float SetPositionToPlayerLeft(float targetPosition)
     {
-        return targetPosition - 2;
+        return targetPosition - 2f;
     }
 
     private float RightClampToMoveBlocker(float value)
