@@ -4,9 +4,8 @@ using UnityEngine;
 using CustomTools.Core;
 using Sirenix.OdinInspector;
 
-public class PetraAbilityCollection : SceneService
+public class PetraCombatBehaviorBase : SceneService
 {
-    
     protected bool isBusy;
     
     private PetraAbilityUpCharge abilityUpCharge;

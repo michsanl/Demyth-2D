@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 
-public class PetraCombatBehavior : PetraAbilityCollection
+public class PetraCombatBehavior : PetraCombatBehaviorBase
 {
     [SerializeField] private bool activateCombatMode;
     [EnumToggleButtons] public CombatMode SelectCombatMode;

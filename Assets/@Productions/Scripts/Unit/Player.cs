@@ -23,6 +23,7 @@ public class Player : SceneService
     
 #region Public Fields
     
+    public Action OnMove;
     public Action<bool> OnSenterToggle;
     public Vector2 LastMoveTargetPosition => lastMoveTargetPosition; 
 
@@ -115,6 +116,7 @@ public class Player : SceneService
 
         Helper.MoveToPosition(transform, lastMoveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
+        OnMove?.Invoke();
         yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBusy = false;
