@@ -22,7 +22,7 @@ namespace CustomTools.Core
             yield return base.OnActivate();
 
             SetPlayerContext();
-            SpawnPlayerOnLevelStartingPosition();
+            // SpawnPlayerOnLevelStartingPosition();
         }
 
         private void SpawnPlayerOnLevelStartingPosition()

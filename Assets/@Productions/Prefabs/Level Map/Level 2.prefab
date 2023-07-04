@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableType: 4
   targetLevel: Level 3
+  moveCameraOnLevelChange: 0
+  cameraMoveDirection: 0
+  cameraGO: {fileID: 0}
 --- !u!61 &419883616
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -535,8 +538,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202322414460477779, guid: 080727c0a15c307489c53f81dd48c412, type: 3}
       propertyPath: conversation
-      value: Level 1
+      value: Level_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2202322414460477779, guid: 080727c0a15c307489c53f81dd48c412, type: 3}
+      propertyPath: selectedDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
     - target: {fileID: 2202322414460477780, guid: 080727c0a15c307489c53f81dd48c412, type: 3}
       propertyPath: m_Name
       value: NPC Maria
@@ -751,7 +758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955560, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955561, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_RootOrder
@@ -851,7 +858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100788082880979617, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
