@@ -6,35 +6,40 @@ using Sirenix.OdinInspector;
 
 public class SriCombatBehavior : SriCombatBehaviorBase
 {
-    [SerializeField] private bool isCombatMode;
-    private bool isFirstPhase;
-    private bool isSecondPhase;
+    [SerializeField] private bool activateCombatMode;
+    [EnumToggleButtons] public CombatMode SelectCombatMode;
+    [EnumToggleButtons, Space] public Ability LoopAbility;
 
-    protected override void OnActivate()
-    {
-        base.OnActivate();
-
-        health.OnAfterTakeDamage += Health_OnAfterTakeDamage;
-        ActivatePhaseOne();
-    }
+    public enum Ability
+    { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall }
+    public enum CombatMode 
+    { FirstPhase, SecondPhase, AbilityLoop }
 
     protected override void OnTick()
     {
-        if (!isCombatMode)
+        if (!activateCombatMode)
             return;
-        if (isFirstPhase)
-            FirstPhaseRoutine();
-        if (isSecondPhase)
-            SecondPhaseRoutine();
-    }
-
-    private void FirstPhaseRoutine()
-    {
         if (isBusy)
             return;
 
         SetFacingDirection();
+        
+        switch (SelectCombatMode)
+        {
+            case CombatMode.FirstPhase:
+                FirstPhaseRoutine();
+                break;
+            case CombatMode.SecondPhase:
+                SecondPhaseRoutine();
+                break;
+            case CombatMode.AbilityLoop:
+                AbilityLoopRoutine();
+                break;
+        }
+    }
 
+    private void FirstPhaseRoutine()
+    {
         if (IsPlayerNearby())
         {
             int randomIndex = UnityEngine.Random.Range(0,3);
@@ -51,7 +56,7 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
         if (IsPlayerAtSamePosY())
         {
-            PlayHorizontalAbility();
+            StartCoroutine(PlayAbilityHorizontalSlash());
             return;
         }
         if (IsPlayerAtSamePosX())
@@ -70,11 +75,6 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
     private void SecondPhaseRoutine()
     {
-        if (isBusy)
-            return;
-
-        SetFacingDirection();
-
         if (UnityEngine.Random.Range(0, 2) == 0)
         {
             StartCoroutine(PlayAbilityTeleport());
@@ -119,35 +119,37 @@ public class SriCombatBehavior : SriCombatBehaviorBase
             {
                 StartCoroutine(PlayAbilityFireBall());
             }
-            
         }
-
     }
 
-    private void Health_OnAfterTakeDamage()
+    private void AbilityLoopRoutine()
     {
-        if (health.CurrentHP <= 10)
+        switch (LoopAbility)
         {
-            ActivatePhaseTwo();
+            case Ability.UpSlash:
+                StartCoroutine(PlayAbilityUpSlash());
+                break;
+            case Ability.DownSlash:
+                StartCoroutine(PlayAbilityDownSlash());
+                break;
+            case Ability.HorizontalSlash:
+                StartCoroutine(PlayAbilityHorizontalSlash());
+                break;
+            case Ability.SpinClaw:
+                StartCoroutine(PlayAbilitySpinClaw());
+                break;
+            case Ability.NailAOE:
+                StartCoroutine(PlayAbilityNailAOE());
+                break;
+            case Ability.NailSummon:
+                StartCoroutine(PlayAbilityNailSummon());
+                break;
+            case Ability.FireBall:
+                StartCoroutine(PlayAbilityFireBall());
+                break;
+            default:
+                break;
         }
-    }
-
-    private void ActivatePhaseOne()
-    {
-        isFirstPhase = true;
-        isSecondPhase = false;
-    }
-
-    private void ActivatePhaseTwo()
-    {
-        isFirstPhase = false;
-        isSecondPhase = true;
-    }
-
-    private void TurnOffCombatMode()
-    {
-        isFirstPhase = false;
-        isSecondPhase = false;
     }
 
     private int GetRandomIndexFromList(List<IEnumerator> abilityList)
@@ -164,19 +166,6 @@ public class SriCombatBehavior : SriCombatBehaviorBase
         } else
         {
             StartCoroutine(PlayAbilityDownSlash());
-            return;
-        }
-    }
-
-    private void PlayHorizontalAbility()
-    {
-        if (IsPlayerToRight())
-        {
-            StartCoroutine(PlayAbilityHorizontalSlash());
-            return;
-        } else
-        {
-            StartCoroutine(PlayAbilityHorizontalSlash());
             return;
         }
     }

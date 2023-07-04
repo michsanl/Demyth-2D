@@ -27,6 +27,9 @@ namespace CustomTools.Core
 
         private void SpawnPlayerOnLevelStartingPosition()
         {
+            if (Context.LevelManager == null)
+                return;
+
             var starterPoint = Context.LevelManager.CurrentLevel.StarterPosition;
             Context.Player.transform.position = starterPoint;
         }

@@ -542,17 +542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6608a126dd9aea7429f517725c5a2a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &541040220 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4149344975414354020, guid: 62a90109637534a46a704f5c4b1cf3a0, type: 3}
-  m_PrefabInstance: {fileID: 1364434998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7572670cd270eac4c95a90283dee8546, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &541040221 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1634480723337629033, guid: 62a90109637534a46a704f5c4b1cf3a0, type: 3}
@@ -668,75 +657,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &722200083
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1799239097374148189, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180400, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180401, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_Name
-      value: NPC Boss Sri
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799239098777180401, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734256505628022338, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
-      propertyPath: isCombatMode
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d5a858bf78476e443825d7e439ad1902, type: 3}
 --- !u!1 &857429216
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +811,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81b0eac3fa025334989a03bf9eb76c24, type: 3}
+--- !u!1001 &1125444340
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2509427054774182828, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: activateCombatMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398050621169837, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_Name
+      value: _NPC Boss Sri Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673398052024204801, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
 --- !u!1 &1184233863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1512,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1590701348}
-  - component: {fileID: 1590701349}
   m_Layer: 0
   m_Name: Maps
   m_TagString: Untagged
@@ -1551,33 +1535,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1590701349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590701347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5f9a6fafbe11a44a36a5861b802bc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  levels:
-  - {fileID: 541040220}
-  debugLevelID: Sri Boss Fight Tester
 --- !u!1 &1653471099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,7 +1845,7 @@ PrefabInstance:
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.LevelManager
       value: 
-      objectReference: {fileID: 1590701349}
+      objectReference: {fileID: 0}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.VCamCameraShake
       value: 

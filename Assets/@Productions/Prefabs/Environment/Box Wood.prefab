@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1581017933277813791}
   - component: {fileID: 1581017933277813790}
   m_Layer: 6
-  m_Name: Box 3
+  m_Name: Box Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   movementBlockerLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  raycastOriginOffsetX: 1
+  raycastOriginOffsetX: 0
   raycastOriginOffsetY: 0
 --- !u!61 &1581017933277813790
 BoxCollider2D:
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1581017933590361359
 GameObject:
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bf0a361de9ea0f74f8ec672fd009d4c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d00efb356690ed4c8f2ce2f1fd6db30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

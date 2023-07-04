@@ -1031,6 +1031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398050621169836}
+  - component: {fileID: 2509427054774182828}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
   - component: {fileID: 5108067734571236107}
@@ -1067,6 +1068,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2509427054774182828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d123d407bcdbcd64c86273058f9c9381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  activateCombatMode: 0
+  SelectCombatMode: 0
+  LoopAbility: 0
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,6 +1174,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184917109d39d4343aaa74778e01fac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   frontSwingDuration: 0.6
   swingDuration: 0.233
   backSwingDuration: 1.1
@@ -1189,6 +1229,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67144bffefb3a334e9ae448a50515223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   frontSwingDuration: 0.6
   swingDuration: 0.233
   backSwingDuration: 1.1
@@ -1232,6 +1284,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2912020970d082144818854da66de4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   frontSwingDuration: 0.833
   swingDuration: 0.233
   backSwingDuration: 1.267
@@ -1275,6 +1339,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f19609144a3bcf4185c812bb3536bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   frontSwingDuration: 1
   swingDuration: 1
   backSwingDuration: 0.5
@@ -1292,6 +1368,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b7bf21cb7a36947823c60897adb4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   frontSwingDuration: 0.7
   swingDuration: 3.133
   backSwingDuration: 0.266
@@ -1314,8 +1402,10 @@ MonoBehaviour:
   _context:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
@@ -1339,6 +1429,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912f994e46e04484fbce419d3a84fe0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   animationDuration: 2.0667
   animator: {fileID: 7673398052024204807}
   fireBallProjectile: {fileID: 1436042891738576300, guid: ee31fe01da0934048bf95f88e645267f, type: 3}
@@ -1359,8 +1461,10 @@ MonoBehaviour:
   _context:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
-    LevelManager: {fileID: 0}
     Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
