@@ -11,7 +11,7 @@ public class SriCombatBehavior : SriCombatBehaviorBase
     [EnumToggleButtons, Space] public Ability LoopAbility;
 
     public enum Ability
-    { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall }
+    { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave }
     public enum CombatMode 
     { FirstPhase, SecondPhase, AbilityLoop }
 
@@ -146,6 +146,9 @@ public class SriCombatBehavior : SriCombatBehaviorBase
                 break;
             case Ability.FireBall:
                 StartCoroutine(PlayAbilityFireBall());
+                break;
+            case Ability.HorizontalNailWave:
+                StartCoroutine(PlayAbilityHorizontalNailWave());
                 break;
             default:
                 break;

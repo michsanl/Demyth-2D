@@ -17,6 +17,7 @@ public class SriCombatBehaviorBase : SceneService
     private SriAbilityNailSummon abilityNailSummon;
     private SriAbilityFireBall abilityFireBall;
     private SriAbilityTeleport abilityTeleport;
+    private SriAbilityHorizontalNailWave abilityHorizontalNailWave;
 
     private LookOrientation lookOrientation;
     protected Health health;
@@ -31,6 +32,7 @@ public class SriCombatBehaviorBase : SceneService
         abilityNailSummon = GetComponent<SriAbilityNailSummon>();
         abilityFireBall = GetComponent<SriAbilityFireBall>();
         abilityTeleport = GetComponent<SriAbilityTeleport>();
+        abilityHorizontalNailWave = GetComponent<SriAbilityHorizontalNailWave>();
 
         lookOrientation = GetComponent<LookOrientation>();
         health = GetComponent<Health>();
@@ -91,6 +93,13 @@ public class SriCombatBehaviorBase : SceneService
     {
         isBusy = true;
         yield return StartCoroutine(abilityFireBall.FireBall());
+        isBusy = false;
+    }
+
+    public IEnumerator PlayAbilityHorizontalNailWave()
+    {
+        isBusy = true;
+        yield return StartCoroutine(abilityHorizontalNailWave.HorizontalNailWaveSummon());
         isBusy = false;
     }
     
