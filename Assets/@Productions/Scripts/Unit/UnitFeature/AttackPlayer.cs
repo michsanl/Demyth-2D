@@ -16,12 +16,13 @@ public class AttackPlayer : MonoBehaviour
 
     private Player player;
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter(Collision other) 
     {
         player = other.collider.GetComponent<Player>();
+        StartCoroutine(player.DamagePlayer(enableCameraShake, enableKnockBack, GetKnockBackDirection()));
     }
 
-    private void OnCollisionStay2D(Collision2D other) 
+    private void OnCollisionStay(Collision other) 
     {
         StartCoroutine(player.DamagePlayer(enableCameraShake, enableKnockBack, GetKnockBackDirection()));
     }
