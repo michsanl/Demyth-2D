@@ -35,4 +35,9 @@ public class TuyulMoveTrigger : MonoBehaviour
     {
         tuyulMovement.StartCoroutine(tuyulMovement.Flee(moveDir));
     }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        tuyulMovement.StartCoroutine(tuyulMovement.Flee(moveDir));
+    }
 }
