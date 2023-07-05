@@ -10,7 +10,7 @@ public class CameraMoveTrigger : MonoBehaviour
     [SerializeField] private Vector3 targetPosition;
     [SerializeField] private float moveDuration;
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnCollisionEnter(Collision other) 
     {
         cameraGO.transform.DOMove(targetPosition, moveDuration).SetEase(Ease.OutExpo);
     }

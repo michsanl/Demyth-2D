@@ -654,7 +654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629032, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1634480723337629033, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_RootOrder
@@ -1833,7 +1833,7 @@ MonoBehaviour:
   - {fileID: 1770570078}
   - {fileID: 562907946}
   - {fileID: 201276002}
-  debugLevelID: Level 5
+  debugLevelID: Level 7
 --- !u!1 &1653471099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,9 +1936,17 @@ PrefabInstance:
       propertyPath: cameraGO
       value: 
       objectReference: {fileID: 1653471099}
+    - target: {fileID: 607385590276264818, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1083057257689935216, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_Name
       value: Level 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083057257689935216, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1083057257689935217, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_RootOrder
@@ -1984,10 +1992,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3728164614762096071, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: cameraGO
+      value: 
+      objectReference: {fileID: 1653471099}
+    - target: {fileID: 5599984462064553951, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: cameraGO
+      value: 
+      objectReference: {fileID: 1653471099}
     - target: {fileID: 5748588445734383452, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: cameraGO
       value: 
       objectReference: {fileID: 1653471099}
+    - target: {fileID: 7635943837088204453, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
 --- !u!114 &1805576880 stripped
@@ -2047,7 +2067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5805886074711020472, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5805886074711020473, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_RootOrder
