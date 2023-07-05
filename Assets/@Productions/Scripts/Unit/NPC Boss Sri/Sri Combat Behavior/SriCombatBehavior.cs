@@ -11,7 +11,8 @@ public class SriCombatBehavior : SriCombatBehaviorBase
     [EnumToggleButtons, Space] public Ability LoopAbility;
 
     public enum Ability
-    { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave }
+    { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
+    VerticalNailWave }
     public enum CombatMode 
     { FirstPhase, SecondPhase, AbilityLoop }
 
@@ -30,7 +31,8 @@ public class SriCombatBehavior : SriCombatBehaviorBase
                 FirstPhaseRoutine();
                 break;
             case CombatMode.SecondPhase:
-                SecondPhaseRoutine();
+                // SecondPhaseRoutine();
+                NewSecondPhaseRoutine();
                 break;
             case CombatMode.AbilityLoop:
                 AbilityLoopRoutine();
@@ -122,6 +124,25 @@ public class SriCombatBehavior : SriCombatBehaviorBase
         }
     }
 
+    private void NewSecondPhaseRoutine()
+    {
+        if (UnityEngine.Random.Range(0, 4) != 0)
+        {
+            StartCoroutine(PlayAbilityTeleport());
+            SetFacingDirection();
+            return;
+        }
+
+        if (UnityEngine.Random.Range(0, 2) == 0)
+        {
+            StartCoroutine(PlayAbilityHorizontalNailWave());
+        }
+        else
+        {
+            StartCoroutine(PlayAbilityVerticalNailWave());
+        }
+    }
+
     private void AbilityLoopRoutine()
     {
         switch (LoopAbility)
@@ -150,16 +171,14 @@ public class SriCombatBehavior : SriCombatBehaviorBase
             case Ability.HorizontalNailWave:
                 StartCoroutine(PlayAbilityHorizontalNailWave());
                 break;
+            case Ability.VerticalNailWave:
+                StartCoroutine(PlayAbilityVerticalNailWave());
+                break;
             default:
                 break;
         }
     }
-
-    private int GetRandomIndexFromList(List<IEnumerator> abilityList)
-    {
-        return UnityEngine.Random.Range(0, abilityList.Count);
-    }
-
+    
     private void PlayVerticalAbility()
     {
         if (IsPlayerAbove())

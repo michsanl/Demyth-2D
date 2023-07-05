@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 3405044038447964315}
   - component: {fileID: 5123269579123714668}
   - component: {fileID: 6735911753235969152}
+  - component: {fileID: 8446042306020832353}
   m_Layer: 6
   m_Name: NPC Boss Sri
   m_TagString: Untagged
@@ -1184,11 +1185,36 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  frontSwingDuration: 0.7
-  swingDuration: 3.133
-  backSwingDuration: 0.266
+  animationDuration: 4.5
   animator: {fileID: 7673398052024204807}
   horizontalNailWave: {fileID: 3047413229281473511, guid: a372cb5a5d078b14e88cbbbbd0ece7e6, type: 3}
+--- !u!114 &8446042306020832353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a532f25682d45a4aab0665585addb61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  animationDuratoin: 4.5
+  animator: {fileID: 7673398052024204807}
+  verticalNailWave: {fileID: 3047413229281473511, guid: a3a81a6a1b4e54c41a57657661fb20a0, type: 3}
 --- !u!1 &7673398051580542025
 GameObject:
   m_ObjectHideFlags: 0
