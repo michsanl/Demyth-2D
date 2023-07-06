@@ -5,10 +5,17 @@ using Sirenix.OdinInspector;
 
 public class GroundSummon : MonoBehaviour
 {
-    [SerializeField] private float maxRandomSpawnDelay = 0.1f;
     [SerializeField] private float colliderSpawnDelay;
     [SerializeField] private float destroySelfDelay;
-    [Title("Arena Size"), Space]
+
+    [Title("Randomized Spawn")]
+    [SerializeField] private bool useRandomizedSpawnDelay;
+    [ShowIf("useRandomizedSpawnDelay")]
+    [SerializeField] private float minRandomSpawnDelay;
+    [ShowIf("useRandomizedSpawnDelay")]
+    [SerializeField] private float maxRandomSpawnDelay = 0.1f;
+
+    [Title("Combat Arena Size")]
     [SerializeField] private int topBorder;
     [SerializeField] private int bottomBorder;
     [SerializeField] private int rightBorder;
@@ -31,9 +38,12 @@ public class GroundSummon : MonoBehaviour
 
     private IEnumerator SummonRoutine()
     {
-        yield return StartCoroutine(GetRandomizedSpawnDelay());
+        if (useRandomizedSpawnDelay)
+            yield return StartCoroutine(RandomizedSpawnDelay());
+
         DisplayRandomModel();
         StartCoroutine(SpawnColliderWithDelay());
+
         Destroy(gameObject, destroySelfDelay);
     }
     
@@ -45,15 +55,15 @@ public class GroundSummon : MonoBehaviour
         return positionY > topBorder || positionY < bottomBorder || positionX > rightBorder || positionX < leftBorder;
     }
 
-    private IEnumerator GetRandomizedSpawnDelay()
+    private IEnumerator RandomizedSpawnDelay()
     {
-        var randomRoutineDelay = Random.Range(0, maxRandomSpawnDelay);
-        yield return Helper.GetWaitForSeconds(randomRoutineDelay);
+        var delayTime = Random.Range(minRandomSpawnDelay, maxRandomSpawnDelay);
+        yield return Helper.GetWaitForSeconds(delayTime);
     }
 
     private void DisplayRandomModel()
     {
-        var randomIndex = Random.Range(0,3);
+        var randomIndex = Random.Range(0, groundCoffinModelArray.Length);
         groundCoffinModelArray[randomIndex].SetActive(true);
     }
 

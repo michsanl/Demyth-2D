@@ -352,9 +352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a63be2a7c58448b37b2a72ac07863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderSpawnDelay: 0.5
+  destroySelfDelay: 1.5
+  useRandomizedSpawnDelay: 0
+  minRandomSpawnDelay: 0
   maxRandomSpawnDelay: 0
-  colliderSpawnDelay: 0.0833
-  destroySelfDelay: 1.25
   topBorder: 3
   bottomBorder: -4
   rightBorder: 6

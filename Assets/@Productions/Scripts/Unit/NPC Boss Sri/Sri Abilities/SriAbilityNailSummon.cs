@@ -11,8 +11,7 @@ public class SriAbilityNailSummon : SceneService
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
-    [InfoBox("Value cannot exceed FrontSwingDuration", InfoMessageType.Warning)]
-    [SerializeField] private float nailPositionAcquireDelay;
+    [SerializeField] private float nailSpawnDelay;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
@@ -40,9 +39,9 @@ public class SriAbilityNailSummon : SceneService
 
     private IEnumerator HandleSpawnGroundNail()
     {
-        yield return Helper.GetWaitForSeconds(nailPositionAcquireDelay);
+        yield return Helper.GetWaitForSeconds(nailSpawnDelay);
+        
         Vector2 spawnPosition = Context.Player.LastMoveTargetPosition;
-        yield return Helper.GetWaitForSeconds(frontSwingDuration - nailPositionAcquireDelay);
         Instantiate(groundNail, spawnPosition, Quaternion.identity);
     }
 }
