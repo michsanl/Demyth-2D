@@ -23,7 +23,6 @@ public class Player : SceneService
     
 #region Public Fields
     
-    public Action OnMove;
     public Action<bool> OnSenterToggle;
     public Vector2 LastMoveTargetPosition => lastMoveTargetPosition; 
 
@@ -39,7 +38,7 @@ public class Player : SceneService
     private Vector2 lastMoveTargetPosition;
     private bool isBusy;
     private bool isBeingHit;
-    private bool isTakeDamageOnCooldown;
+    private bool isInvulnerable;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionUnlocked = true;
@@ -116,7 +115,6 @@ public class Player : SceneService
 
         Helper.MoveToPosition(transform, lastMoveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
-        OnMove?.Invoke();
         yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBusy = false;
@@ -176,20 +174,26 @@ public class Player : SceneService
 
     public IEnumerator DamagePlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
     {
-        if (isTakeDamageOnCooldown)
+        if (isInvulnerable)
             yield break;
-
-        isTakeDamageOnCooldown = true;
+        isInvulnerable = true; // Prevents bug
 
         StartCoroutine(TakingDamage());
-
         if (enableCameraShake)
             yield return StartCoroutine(cameraShakeController.PlayCameraShake());
 
-        StartCoroutine(HandleFlashEffectOnHit());
-
         if (enableKnockback)
             StartCoroutine(HandleKnockBack(knockBackDir));
+        StartCoroutine(HandleInvulnerable());
+    }
+
+    private IEnumerator HandleInvulnerable()
+    {
+        isInvulnerable = true;
+
+        yield return StartCoroutine(flashEffectController.PlayFlashEffect());
+        
+        isInvulnerable = false;
     }
 
     private IEnumerator TakingDamage()
@@ -201,15 +205,6 @@ public class Player : SceneService
         yield return Helper.GetWaitForSeconds(actionDelay);
 
         isBeingHit = false;
-    }
-
-    private IEnumerator HandleFlashEffectOnHit()
-    {
-        isTakeDamageOnCooldown = true;
-
-        yield return StartCoroutine(flashEffectController.PlayFlashEffect());
-        
-        isTakeDamageOnCooldown = false;
     }
 
     private IEnumerator HandleKnockBack(Vector2 dir)
