@@ -391,7 +391,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2509427054774182828, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: LoopAbility
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2509427054774182828, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: SelectCombatMode
@@ -399,8 +399,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2509427054774182828, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: activateCombatMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6735911753235969152, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: animationDuration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735911753235969152, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: horizontalNailWave
+      value: 
+      objectReference: {fileID: 3047413229281473511, guid: a372cb5a5d078b14e88cbbbbd0ece7e6, type: 3}
     - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -453,6 +461,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8446042306020832353, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: verticalNailWave
+      value: 
+      objectReference: {fileID: 3047413229281473511, guid: a3a81a6a1b4e54c41a57657661fb20a0, type: 3}
     - target: {fileID: 9182001827861331906, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: maxHealth
       value: 50

@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 3047413229281473509}
   - component: {fileID: 3047413229281473510}
   m_Layer: 0
-  m_Name: Horizontal Nail Wave
+  m_Name: Flying Nail Wave - Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,8 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119de584aaaee3347b2d5ba4553c56b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveSpawnInterval: 1.5
-  waveParentArray:
+  spawnInterval: 1.5
+  destroyTimerOnComplete: 2
+  gameObjectsToSpawnArray:
   - {fileID: 3047413229979625461}
   - {fileID: 3047413230454489620}
   - {fileID: 1290123066462771108}

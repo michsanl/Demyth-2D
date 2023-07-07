@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 
-public class NailProjectile : MonoBehaviour
+public class FlyingNail : MonoBehaviour
 {
 
     [SerializeField] private float moveDistanceX;

@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963776110055381085}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 963776110257269167}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!95 &963776110055381056
 Animator:
   serializedVersion: 4
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 2118616196}
   - component: {fileID: 2118616197}
   m_Layer: 0
-  m_Name: Nail Projectile Up
+  m_Name: Flying Nail -Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e5b453deae8fa24eae5fdf93a275eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistanceX: 0
-  moveDistanceY: 12
+  moveDistanceX: -16
+  moveDistanceY: 0
   moveDuration: 0.3
   moveDelay: 0.8
   destroyTime: 1.5
@@ -185,7 +185,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.65, y: 2.630384, z: 0}
+  m_Size: {x: 2.630384, y: 0.65, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2118616197
 MonoBehaviour:
