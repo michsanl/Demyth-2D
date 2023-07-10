@@ -13,8 +13,8 @@ public class SriAbilityHorizontalNailWave : SceneService
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject horizontalNailWave;
-    [SerializeField] private GameObject nailFence;
-    
+
+    private GameObject spawnedNailGO;
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 
     public IEnumerator HorizontalNailWaveSummon()
@@ -23,9 +23,13 @@ public class SriAbilityHorizontalNailWave : SceneService
 
         animator.Play(NAIL_WAVE);
         // audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailSummon, transform.position);
-        Instantiate(horizontalNailWave, Vector3.zero, Quaternion.identity);
-        Instantiate(nailFence, transform.position, Quaternion.identity);
+        spawnedNailGO = Instantiate(horizontalNailWave, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);
+    }
+
+    public GameObject GetNailGameObject()
+    {
+        return spawnedNailGO;
     }
 }

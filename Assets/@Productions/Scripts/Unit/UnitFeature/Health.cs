@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     private HealthStatus status = HealthStatus.Normal;
 
-    public Action OnAfterTakeDamage;
+    public Action OnTakeDamage;
 
     private void Start()
     {
@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
 
         CurrentHP--;
 
-        OnAfterTakeDamage?.Invoke();
+        OnTakeDamage?.Invoke();
     }
 
     public void Heal(int healAmount)

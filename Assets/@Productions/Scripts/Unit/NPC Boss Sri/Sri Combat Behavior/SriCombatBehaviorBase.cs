@@ -9,19 +9,20 @@ public class SriCombatBehaviorBase : SceneService
 {
     protected bool isBusy;
     
-    private SriAbilityUpSlash abilityUpSlash;
-    private SriAbilityDownSlash abilityDownSlash;
-    private SriAbilityHorizontalSlash abilityHorizontalSlash;
-    private SriAbilitySpinClaw abilitySpinClaw;
-    private SriAbilityNailAOE abilityNailAOE;
-    private SriAbilityNailSummon abilityNailSummon;
-    private SriAbilityFireBall abilityFireBall;
-    private SriAbilityTeleport abilityTeleport;
-    private SriAbilityHorizontalNailWave abilityHorizontalNailWave;
-    private SriAbilityVerticalNailWave abilityVerticalNailWave;
-
-    private LookOrientation lookOrientation;
+    protected SriAbilityUpSlash abilityUpSlash;
+    protected SriAbilityDownSlash abilityDownSlash;
+    protected SriAbilityHorizontalSlash abilityHorizontalSlash;
+    protected SriAbilitySpinClaw abilitySpinClaw;
+    protected SriAbilityNailAOE abilityNailAOE;
+    protected SriAbilityNailSummon abilityNailSummon;
+    protected SriAbilityFireBall abilityFireBall;
+    protected SriAbilityTeleport abilityTeleport;
+    protected SriAbilityHorizontalNailWave abilityHorizontalNailWave;
+    protected SriAbilityVerticalNailWave abilityVerticalNailWave;
+    protected LookOrientation lookOrientation;
     protected Health health;
+
+    protected Coroutine activeCoroutine;
 
     protected override void OnInitialize()
     {
@@ -45,77 +46,77 @@ public class SriCombatBehaviorBase : SceneService
     public IEnumerator PlayAbilityUpSlash()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityUpSlash.UpSlash(Context.Player));
+        yield return activeCoroutine = StartCoroutine(abilityUpSlash.UpSlash(Context.Player));
         isBusy = false;
     }
 
     public IEnumerator PlayAbilityDownSlash()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityDownSlash.DownSlash(Context.Player));
+        yield return activeCoroutine = StartCoroutine(abilityDownSlash.DownSlash(Context.Player));
         isBusy = false;
     }
 
     public IEnumerator PlayAbilityHorizontalSlash()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityHorizontalSlash.HorizontalSlash(Context.Player));
+        yield return activeCoroutine = StartCoroutine(abilityHorizontalSlash.HorizontalSlash(Context.Player));
         isBusy = false;
     }
 
     public IEnumerator PlayAbilitySpinClaw()
     {
         isBusy = true;
-        yield return StartCoroutine(abilitySpinClaw.SpinClaw());
+        yield return activeCoroutine = StartCoroutine(abilitySpinClaw.SpinClaw());
         isBusy = false;
     }
 
     public IEnumerator PlayAbilityNailAOE()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityNailAOE.NailAOE(false));
+        yield return activeCoroutine = StartCoroutine(abilityNailAOE.NailAOE(false));
         isBusy = false;
     }
 
     public IEnumerator PlayAbilityNailAOEWithProjectile()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityNailAOE.NailAOE(true));
+        yield return activeCoroutine = StartCoroutine(abilityNailAOE.NailAOE(true));
         isBusy = false;
     }
 
     public IEnumerator PlayAbilityNailSummon()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityNailSummon.NailSummon(Context.Player));
+        yield return activeCoroutine = StartCoroutine(abilityNailSummon.NailSummon(Context.Player));
         isBusy = false;
     }
     
     public IEnumerator PlayAbilityFireBall()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityFireBall.FireBall());
+        yield return activeCoroutine = StartCoroutine(abilityFireBall.FireBall());
         isBusy = false;
     }
 
     public IEnumerator PlayAbilityHorizontalNailWave()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityHorizontalNailWave.HorizontalNailWaveSummon());
+        yield return activeCoroutine = StartCoroutine(abilityHorizontalNailWave.HorizontalNailWaveSummon());
         isBusy = false;
     }
 
     public IEnumerator PlayAbilityVerticalNailWave()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityVerticalNailWave.PlayAbility());
+        yield return activeCoroutine = StartCoroutine(abilityVerticalNailWave.PlayAbility());
         isBusy = false;
     }
     
     public IEnumerator PlayAbilityTeleport()
     {
         isBusy = true;
-        yield return StartCoroutine(abilityTeleport.Teleport());
+        yield return activeCoroutine = StartCoroutine(abilityTeleport.Teleport());
         isBusy = false;
     }
 

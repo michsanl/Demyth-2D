@@ -782,8 +782,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   activateCombatMode: 0
-  SelectCombatMode: 0
-  LoopAbility: 0
+  SelectCombatMode: 2
+  LoopAbility: 7
 --- !u!61 &7556223372400055050
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 11
+  maxHealth: 50
   currentHealth: 0
   status: 0
 --- !u!114 &5108067734571236107
@@ -1185,10 +1185,9 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  animationDuration: 6
+  animationDuration: 4.1
   animator: {fileID: 7673398052024204807}
-  horizontalNailWave: {fileID: 3047413229281473511, guid: a372cb5a5d078b14e88cbbbbd0ece7e6, type: 3}
-  nailFence: {fileID: 5837298225165073024, guid: ef9fb1adbcd8c8d43b411e6b7e9bc173, type: 3}
+  horizontalNailWave: {fileID: 3047413229281473511, guid: 3779b8f7bbefe1c4c8d6ca390a2b1799, type: 3}
 --- !u!114 &8446042306020832353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,9 +1212,9 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  animationDuratoin: 6
+  animationDuratoin: 4.1
   animator: {fileID: 7673398052024204807}
-  verticalNailWave: {fileID: 3047413229281473511, guid: a3a81a6a1b4e54c41a57657661fb20a0, type: 3}
+  verticalNailWave: {fileID: 3047413229281473511, guid: b6b67d69af50a154ca81abecef007de1, type: 3}
 --- !u!1 &7673398051580542025
 GameObject:
   m_ObjectHideFlags: 0
