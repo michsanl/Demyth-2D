@@ -390,8 +390,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2509427054774182828, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: LoopAbility
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509427054774182828, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
+      propertyPath: SelectCombatMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509427054774182828, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: activateCombatMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: m_RootOrder
@@ -403,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 10fd2565dd32fdd48a6818d0521a9db8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -798,6 +806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -808,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.z

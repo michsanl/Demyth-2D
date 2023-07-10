@@ -118,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
+  anticipationDuration: 0.125
+  attackDuration: 0.25
 --- !u!1 &2043537636635439728
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,8 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
+  anticipationDuration: 0.125
+  attackDuration: 0.25
 --- !u!1 &3975585011152093771
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 3975585011897390250}
   - component: {fileID: 449008501976421847}
   m_Layer: 0
-  m_Name: Ground Nail
+  m_Name: Ground Nail - 0.5s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,12 +382,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a63be2a7c58448b37b2a72ac07863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderSpawnDelay: 0.5
-  destroySelfDelay: 1.5
+  colliderSpawnDelay: 0.125
+  destroySelfDelay: 0.5
   useRandomizedSpawnDelay: 0
   minRandomSpawnDelay: 0
   maxRandomSpawnDelay: 0
-  topBorder: 3
+  topBorder: 2
   bottomBorder: -4
   rightBorder: 6
   leftBorder: -6
@@ -396,8 +396,6 @@ MonoBehaviour:
   - {fileID: 3975585013025071505}
   - {fileID: 2043537636635439728}
   - {fileID: 6270471600297573761}
-  - {fileID: 7872645079453387188}
-  - {fileID: 1617341561462718148}
   - {fileID: 4857659156259181891}
 --- !u!1 &3975585011916006985
 GameObject:
@@ -578,8 +576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
+  anticipationDuration: 0.125
+  attackDuration: 0.25
 --- !u!1 &4857659156259181891
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,8 +696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
+  anticipationDuration: 0.125
+  attackDuration: 0.25
 --- !u!1 &6270471600297573761
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,8 +816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
+  anticipationDuration: 0.125
+  attackDuration: 0.25
 --- !u!1 &7872645079453387188
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,5 +936,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
+  anticipationDuration: 0.125
+  attackDuration: 0.25
