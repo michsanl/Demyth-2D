@@ -12,7 +12,7 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
     public enum Ability
     { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
-    VerticalNailWave, WaveOutNailWave }
+    VerticalNailWave, WaveOutNailWave, Teleport }
     public enum CombatMode 
     { FirstPhase, SecondPhase, NewSecondPhase, AbilityLoop }
 
@@ -30,39 +30,9 @@ public class SriCombatBehavior : SriCombatBehaviorBase
         healthDecreaseCount++;
     }
 
-    private IEnumerator TeleportMultipleTimes()
-    {
-        isBusy = true;
-
-        int teleportCount = UnityEngine.Random.Range(1, 3);
-        for (int i = 0; i < teleportCount; i++)
-        {
-            yield return StartCoroutine(abilityTeleport.Teleport());            
-            SetFacingDirection();
-        }
-
-        if (abilityHorizontalNailWave.GetNailGameObject() != null)
-        {
-            Destroy(abilityHorizontalNailWave.GetNailGameObject());
-        }
-
-        isBusy = false;
-    }
-
     protected override void OnTick()
     {
         if (!activateCombatMode)
-            return;
-        if (healthDecreaseCount >= 3)
-        {
-            if (activeCoroutine != null)
-                StopCoroutine(activeCoroutine);
-                
-            StartCoroutine(TeleportMultipleTimes());
-            healthDecreaseCount = 0;
-            return;
-        }
-        if (isBusy)
             return;
 
         SetFacingDirection();
@@ -76,7 +46,7 @@ public class SriCombatBehavior : SriCombatBehaviorBase
                 SecondPhaseRoutine();
                 break;
             case CombatMode.NewSecondPhase:
-                StartCoroutine(NewSecondPhaseRoutine());
+                NewSecondPhaseRoutine();
                 break;
             case CombatMode.AbilityLoop:
                 AbilityLoopRoutine();
@@ -86,6 +56,9 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
     private void FirstPhaseRoutine()
     {
+        if (isBusy)
+            return;
+
         if (IsPlayerNearby())
         {
             int randomIndex = UnityEngine.Random.Range(0,3);
@@ -121,6 +94,9 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
     private void SecondPhaseRoutine()
     {
+        if (isBusy)
+            return;
+
         if (UnityEngine.Random.Range(0, 2) == 0)
         {
             StartCoroutine(PlayAbilityTeleport());
@@ -168,33 +144,29 @@ public class SriCombatBehavior : SriCombatBehaviorBase
         }
     }
 
-    private IEnumerator NewSecondPhaseRoutine()
+    private void NewSecondPhaseRoutine()
     {
-        isBusy = true;
-
-        int teleportCount =  UnityEngine.Random.Range(1, 3);
-        for (int i = 0; i < teleportCount; i++)
+        if (healthDecreaseCount >= 3)
         {
-            yield return StartCoroutine(PlayAbilityTeleport());
-            SetFacingDirection();
-        }
+            StopCurrentAbility();
 
-        if (UnityEngine.Random.Range(0, 2) == 0)
-        {
-            yield return StartCoroutine(PlayAbilityHorizontalNailWave());
-        }
-        else
-        {
-            yield return StartCoroutine(PlayAbilityVerticalNailWave());
-        }
+            primaryActiveCoroutine = StartCoroutine(PlayAbilityWaveOutNailWave());
 
-        yield return StartCoroutine(PlayAbilityTeleport());
-        SetFacingDirection();
-        FirstPhaseRoutine();
+            healthDecreaseCount = 0;
+            return;
+        }
+        if (isBusy)
+            return;
+
+        healthDecreaseCount = 0;
+        primaryActiveCoroutine = StartCoroutine(TeleportIntoNailWaveVariant());
     }
 
     private void AbilityLoopRoutine()
     {
+        if (isBusy)
+            return;
+
         switch (LoopAbility)
         {
             case Ability.UpSlash:
@@ -227,12 +199,51 @@ public class SriCombatBehavior : SriCombatBehaviorBase
             case Ability.WaveOutNailWave:
                 StartCoroutine(PlayAbilityWaveOutNailWave());
                 break;
+            case Ability.Teleport:
+                StartCoroutine(PlayAbilityTeleport());
+                break;
             default:
                 break;
         }
     }
     
+    private void StopCurrentAbility()
+    {
+        if (primaryActiveCoroutine != null)
+            StopCoroutine(primaryActiveCoroutine);
+        if (secondaryActiveCoroutine != null)
+            StopCoroutine(secondaryActiveCoroutine);
+    }
 
+    protected IEnumerator TeleportIntoNailWaveVariant()
+    {
+        isBusy = true;
+
+        int teleportCount = UnityEngine.Random.Range(1, 3);
+        for (int i = 0; i < teleportCount; i++)
+        {
+            yield return secondaryActiveCoroutine = StartCoroutine(abilityTeleport.Teleport());            
+            SetFacingDirection();
+        }
+
+        int randomNumber = UnityEngine.Random.Range(0, 3);
+        switch (randomNumber)
+        {
+            case 0:
+                yield return secondaryActiveCoroutine = StartCoroutine(abilityHorizontalNailWave.PlayAbility());
+                break;
+            case 1:
+                yield return secondaryActiveCoroutine = StartCoroutine(abilityVerticalNailWave.PlayAbility());
+                break;
+            case 2:
+                yield return secondaryActiveCoroutine = StartCoroutine(abilityWaveOutNailWave.PlayAbility());
+                break;
+            default:
+                break;
+        }
+
+        isBusy = false;
+    }
 
     private void PlayVerticalAbility()
     {

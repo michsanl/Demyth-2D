@@ -17,7 +17,7 @@ public class SriAbilityHorizontalNailWave : SceneService
     private GameObject spawnedNailGO;
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator HorizontalNailWaveSummon()
+    public IEnumerator PlayAbility()
     {
         var audioManager = Context.AudioManager;
 
