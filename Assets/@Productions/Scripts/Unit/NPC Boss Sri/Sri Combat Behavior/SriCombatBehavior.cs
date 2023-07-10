@@ -12,7 +12,7 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
     public enum Ability
     { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
-    VerticalNailWave }
+    VerticalNailWave, WaveOutNailWave }
     public enum CombatMode 
     { FirstPhase, SecondPhase, NewSecondPhase, AbilityLoop }
 
@@ -223,6 +223,9 @@ public class SriCombatBehavior : SriCombatBehaviorBase
                 break;
             case Ability.VerticalNailWave:
                 StartCoroutine(PlayAbilityVerticalNailWave());
+                break;
+            case Ability.WaveOutNailWave:
+                StartCoroutine(PlayAbilityWaveOutNailWave());
                 break;
             default:
                 break;
