@@ -22,8 +22,10 @@ public class FlashEffectController : MonoBehaviour
     [ReadOnly]
     public float FlashEffectDuration;
 
+    private Player player;
     private MaterialPropertyBlock mpbNormal;
     private MaterialPropertyBlock mpbNew;
+    private Coroutine activeFlashEffectCoroutine;
 
     private void Awake() 
     {
@@ -34,9 +36,38 @@ public class FlashEffectController : MonoBehaviour
 
         mpbNew.SetColor("_RendererColor", newColor);
         mpbNew.SetColor("_Color", newColor);
+
+        player = GetComponent<Player>();
+    }
+
+    private void Start() {
+        player.OnInvulnerableVisualStart += Player_OnInvulnerableStart;
+        player.OnInvulnerableVisualEnd += Player_OnInvulnerableEnd;
+    }
+
+    private void Player_OnInvulnerableStart()
+    {
+        activeFlashEffectCoroutine = StartCoroutine(PlayEndlessFlashEffect());
+    }
+
+    private void Player_OnInvulnerableEnd()
+    {
+        StopCoroutine(activeFlashEffectCoroutine);
+        spineMeshRenderer.SetPropertyBlock(mpbNormal);
     }
 
     public IEnumerator PlayFlashEffect()
+    {
+        for (int i = 0; i < cycleAmount; i++)
+        {
+            spineMeshRenderer.SetPropertyBlock(mpbNew);
+            yield return Helper.GetWaitForSeconds(newColorDuration);
+            spineMeshRenderer.SetPropertyBlock(mpbNormal);
+            yield return Helper.GetWaitForSeconds(normalColorDuration);
+        }
+    }
+
+    private IEnumerator PlayEndlessFlashEffect()
     {
         for (int i = 0; i < cycleAmount; i++)
         {

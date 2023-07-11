@@ -15,7 +15,8 @@ public class Player : SceneService
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
     [SerializeField] private float attackDuration;
-    [SerializeField] private LayerMask movementBlockerLayerMask;
+    [SerializeField] private float invulnerableDuration = 1f;
+    [SerializeField] private LayerMask moveBlockMask;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
@@ -23,8 +24,10 @@ public class Player : SceneService
     
 #region Public Fields
     
+    public Action OnInvulnerableVisualStart;
+    public Action OnInvulnerableVisualEnd;
     public Action<bool> OnSenterToggle;
-    public Vector2 LastMoveTargetPosition => lastMoveTargetPosition; 
+    public Vector2 LastMoveTargetPosition => moveTargetPosition; 
 
 #endregion
 
@@ -35,9 +38,11 @@ public class Player : SceneService
     private MeshRenderer spineMeshRenderer;
     private Health health;
     private Vector2 playerDir;
-    private Vector2 lastMoveTargetPosition;
+    private Vector2 moveTargetPosition;
+    private Vector3 lastPositionBeforeMove;
     private bool isBusy;
     private bool isBeingHit;
+    private bool isKnocked;
     private bool isInvulnerable;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
@@ -74,7 +79,7 @@ public class Player : SceneService
     {
         if (Time.deltaTime == 0)
             return;
-        if (isBeingHit)
+        if (isKnocked)
             return;
         if (isBusy)
             return;
@@ -88,7 +93,7 @@ public class Player : SceneService
         
         lookOrientation.SetFacingDirection(playerDir);
         
-        if (Helper.CheckTargetDirection(transform.position, playerDir, movementBlockerLayerMask, out Interactable interactable))
+        if (Helper.CheckTargetDirection(transform.position, playerDir, moveBlockMask, out Interactable interactable))
         {
             if (interactable != null)
             {
@@ -104,16 +109,16 @@ public class Player : SceneService
 
     private void SetMoveTargetPosition()
     {
-        lastMoveTargetPosition = (Vector2)transform.position + playerDir;
-        lastMoveTargetPosition.x = Mathf.RoundToInt(lastMoveTargetPosition.x);
-        lastMoveTargetPosition.y = Mathf.RoundToInt(lastMoveTargetPosition.y);
+        moveTargetPosition = (Vector2)transform.position + playerDir;
+        moveTargetPosition.x = Mathf.RoundToInt(moveTargetPosition.x);
+        moveTargetPosition.y = Mathf.RoundToInt(moveTargetPosition.y);
     }
 
     private IEnumerator HandleMovement()
     {
         isBusy = true;
 
-        Helper.MoveToPosition(transform, lastMoveTargetPosition, moveDuration);
+        Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
         yield return Helper.GetWaitForSeconds(actionDelay);
 
@@ -172,49 +177,50 @@ public class Player : SceneService
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
-    public IEnumerator DamagePlayer(bool enableCameraShake, bool enableKnockback, Vector2 knockBackDir)
+    public void TakeDamage()
     {
         if (isInvulnerable)
-            yield break;
-        isInvulnerable = true; // Prevents bug
+            return;
 
-        StartCoroutine(TakingDamage());
-        if (enableCameraShake)
-            yield return StartCoroutine(cameraShakeController.PlayCameraShake());
-
-        if (enableKnockback)
-            StartCoroutine(HandleKnockBack(knockBackDir));
-        StartCoroutine(HandleInvulnerable());
+        StartCoroutine(TakeDamageRoutine());
     }
 
-    private IEnumerator HandleInvulnerable()
+    private IEnumerator TakeDamageRoutine()
     {
         isInvulnerable = true;
 
-        yield return StartCoroutine(flashEffectController.PlayFlashEffect());
+        animator.SetTrigger("OnHit");
+        health.TakeDamage(1);
+
+        yield return StartCoroutine(cameraShakeController.PlayCameraShake());
         
+        OnInvulnerableVisualStart?.Invoke();
+        yield return Helper.GetWaitForSeconds(invulnerableDuration);
+        OnInvulnerableVisualEnd?.Invoke();
+
         isInvulnerable = false;
     }
 
-    private IEnumerator TakingDamage()
+    public void KnockBack(Vector2 dir)
     {
-        isBeingHit = true;
-        
-        animator.SetTrigger("OnHit");
-        health.TakeDamage(1);
-        yield return Helper.GetWaitForSeconds(actionDelay);
+        if (isKnocked)
+            return;
 
-        isBeingHit = false;
+        StartCoroutine(HandleKnockBack(dir));
     }
 
     private IEnumerator HandleKnockBack(Vector2 dir)
     {
-        if (!Helper.CheckTargetDirection(lastMoveTargetPosition, dir, movementBlockerLayerMask, out Interactable interactable))
+        isKnocked = true;
+
+        if (!Helper.CheckTargetDirection(moveTargetPosition, dir, moveBlockMask, out Interactable interactable))
         {
-            lastMoveTargetPosition = lastMoveTargetPosition + dir;
-            Helper.MoveToPosition(transform, lastMoveTargetPosition, moveDuration);
+            moveTargetPosition = moveTargetPosition + dir;
+            Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
             yield return Helper.GetWaitForSeconds(actionDelay);
         }
+
+        isKnocked = false;
     }
     
     private bool IsDirectionDiagonal(Vector2 direction)

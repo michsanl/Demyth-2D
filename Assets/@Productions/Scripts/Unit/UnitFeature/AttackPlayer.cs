@@ -5,9 +5,6 @@ using Sirenix.OdinInspector;
 
 public class AttackPlayer : MonoBehaviour
 {
-    [Title("CameraShake Settings")]
-    [SerializeField] private bool enableCameraShake = true;
-
     [Title("KnockBack Settings")]
     [SerializeField] private bool enableKnockBack = true;
     [ShowIf("enableKnockBack")]
@@ -19,12 +16,13 @@ public class AttackPlayer : MonoBehaviour
     private void OnCollisionEnter(Collision other) 
     {
         player = other.collider.GetComponent<Player>();
-        StartCoroutine(player.DamagePlayer(enableCameraShake, enableKnockBack, GetKnockBackDirection()));
     }
 
     private void OnCollisionStay(Collision other) 
     {
-        StartCoroutine(player.DamagePlayer(enableCameraShake, enableKnockBack, GetKnockBackDirection()));
+        if (enableKnockBack)
+            player.KnockBack(GetKnockBackDirection());
+        player.TakeDamage();
     }
 
     private Vector2 GetKnockBackDirection()
