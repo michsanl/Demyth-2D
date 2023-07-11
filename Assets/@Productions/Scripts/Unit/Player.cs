@@ -17,6 +17,7 @@ public class Player : SceneService
     [SerializeField] private float attackDuration;
     [SerializeField] private float invulnerableDuration = 1f;
     [SerializeField] private LayerMask moveBlockMask;
+    [SerializeField] private LayerMask damagePlayerMask;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
@@ -39,9 +40,8 @@ public class Player : SceneService
     private Health health;
     private Vector2 playerDir;
     private Vector2 moveTargetPosition;
-    private Vector3 lastPositionBeforeMove;
+    private Vector2 lastPlayerDir;
     private bool isBusy;
-    private bool isBeingHit;
     private bool isKnocked;
     private bool isInvulnerable;
     private bool isSenterEnabled;
@@ -102,6 +102,7 @@ public class Player : SceneService
         } 
         else
         {
+            lastPlayerDir = playerDir;
             SetMoveTargetPosition();
             StartCoroutine(HandleMovement());
         }
@@ -201,26 +202,31 @@ public class Player : SceneService
         isInvulnerable = false;
     }
 
-    public void KnockBack(Vector2 dir)
+    public void TriggerKnockBack(Vector2 targetPosition)
     {
+        if (targetPosition == Vector2.zero)
+            return;
         if (isKnocked)
             return;
 
-        StartCoroutine(HandleKnockBack(dir));
+        StartCoroutine(HandleKnockBack(targetPosition));
     }
 
-    private IEnumerator HandleKnockBack(Vector2 dir)
+    private IEnumerator HandleKnockBack(Vector2 targetPosition)
     {
         isKnocked = true;
 
-        if (!Helper.CheckTargetDirection(moveTargetPosition, dir, moveBlockMask, out Interactable interactable))
-        {
-            moveTargetPosition = moveTargetPosition + dir;
-            Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
-            yield return Helper.GetWaitForSeconds(actionDelay);
-        }
+        Helper.MoveToPosition(transform, targetPosition, moveDuration);
+        yield return Helper.GetWaitForSeconds(actionDelay);
 
         isKnocked = false;
+    }
+
+    private Vector2 GetOppositeDirection(Vector2 dir)
+    {
+        dir.x = Mathf.RoundToInt(dir.x * -1f); 
+        dir.y = Mathf.RoundToInt(dir.y * -1f);
+        return dir;
     }
     
     private bool IsDirectionDiagonal(Vector2 direction)

@@ -444,9 +444,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
   enableKnockBack: 1
+  knockBackType: 1
   knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &6298036190802501657
 BoxCollider:
   m_ObjectHideFlags: 0
