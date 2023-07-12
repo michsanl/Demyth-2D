@@ -34,8 +34,6 @@ public class SriCombatBehavior : SriCombatBehaviorBase
     {
         if (!activateCombatMode)
             return;
-
-        SetFacingDirection();
         
         switch (SelectCombatMode)
         {
@@ -58,6 +56,8 @@ public class SriCombatBehavior : SriCombatBehaviorBase
     {
         if (isBusy)
             return;
+            
+        SetFacingDirection();
 
         if (IsPlayerNearby())
         {
@@ -96,6 +96,8 @@ public class SriCombatBehavior : SriCombatBehaviorBase
     {
         if (isBusy)
             return;
+            
+        SetFacingDirection();
 
         if (UnityEngine.Random.Range(0, 2) == 0)
         {
@@ -146,6 +148,8 @@ public class SriCombatBehavior : SriCombatBehaviorBase
 
     private void NewSecondPhaseRoutine()
     {
+        SetFacingDirection();
+
         if (healthDecreaseCount >= 3)
         {
             StopCurrentAbility();
@@ -166,6 +170,8 @@ public class SriCombatBehavior : SriCombatBehaviorBase
     {
         if (isBusy)
             return;
+        
+        SetFacingDirection();
 
         switch (LoopAbility)
         {

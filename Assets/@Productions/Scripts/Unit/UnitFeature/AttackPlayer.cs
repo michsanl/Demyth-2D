@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Linq;
+using CustomTools.Core;
 
-public class AttackPlayer : MonoBehaviour
+public class AttackPlayer : SceneService
 {
     [Title("KnockBack Settings")]
     [SerializeField] private bool enableKnockBack = true;
@@ -17,7 +18,7 @@ public class AttackPlayer : MonoBehaviour
     [SerializeField] private LayerMask moveBlockMask;
     [SerializeField] private LayerMask damagePlayerMask;
 
-    public enum KnockBackType { Directive, Auto, Horizontal, Vertical };
+    public enum KnockBackType { Directive, Auto, Horizontal, Vertical, HrzSlash, VrtSlash };
     public enum KnockBackDirection { Up, Down, Left, Right }
 
     private Vector2[] verticalDirArray = new Vector2[2] { Vector2.up, Vector2.down };
@@ -37,20 +38,28 @@ public class AttackPlayer : MonoBehaviour
             switch (knockBackType)
             {
                 case KnockBackType.Auto:
-                    knockBackDir = GetAutoKnockBackDir(dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(knockBackDir);
+                    knockBackDir = GetKnockBackAllDir(transform.position, dirToPlayer);
+                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
                     break;
                 case KnockBackType.Directive:
                     knockBackDir = GetDirectiveKnockBackDir();
-                    knockBackTargetPosition = GetKnockBackPosition(knockBackDir);
+                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
                     break;
                 case KnockBackType.Horizontal:
-                    knockBackDir = GetHorizontalKnockBackDir(dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(knockBackDir);
+                    knockBackDir = GetKnockBackHorizontalDir(transform.position, dirToPlayer);
+                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
                     break;
                 case KnockBackType.Vertical:
-                    knockBackDir = GetVerticalKnockBackDir(dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(knockBackDir);
+                    knockBackDir = GetKnockBackVerticalDir(transform.position, dirToPlayer);
+                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
+                    break;
+                case KnockBackType.HrzSlash:
+                    knockBackDir = GetKnockBackHorizontalDir(Context.Player.transform.position, dirToPlayer);
+                    knockBackTargetPosition = GetKnockBackPosition(Context.Player.transform.position, knockBackDir);
+                    break;
+                case KnockBackType.VrtSlash:
+                    knockBackDir = GetKnockBackVerticalDir(Context.Player.transform.position, dirToPlayer);
+                    knockBackTargetPosition = GetKnockBackPosition(Context.Player.transform.position, knockBackDir);
                     break;
                 default:
                     break;
@@ -60,28 +69,28 @@ public class AttackPlayer : MonoBehaviour
 
     private void OnCollisionStay(Collision other) 
     {
-        player.TakeDamage();
-
         if (enableKnockBack)
             player.TriggerKnockBack(knockBackTargetPosition);
+
+        player.TakeDamage();
     }
 
-    private Vector2 GetKnockBackPosition(Vector2 knockBackDir)
+    private Vector2 GetKnockBackPosition(Vector3 knockBackOrigin, Vector2 knockBackDir)
     {
-        return new Vector2( Mathf.RoundToInt(knockBackDir.x + transform.position.x), 
-            Mathf.RoundToInt(knockBackDir.y + transform.position.y));
+        return new Vector2( Mathf.RoundToInt(knockBackDir.x + knockBackOrigin.x), 
+            Mathf.RoundToInt(knockBackDir.y + knockBackOrigin.y));
     }
 
-    private Vector2 GetVerticalKnockBackDir(Vector2 direction)
+    private Vector2 GetKnockBackVerticalDir(Vector3 knockBackOrigin, Vector2 direction)
     {
         if (!verticalDirArray.Contains(direction))
-            direction = Vector2.up;
+            direction = UnityEngine.Random.Range(0, 2) == 0 ? Vector2.up : Vector2.down;
 
         int checkDiretionLoopCount = 2;
         for (int i = 0; i < checkDiretionLoopCount; i++)
         {
-            var noMoveBlockerAhead = !Helper.CheckTargetDirection(transform.position, direction, moveBlockMask, out Interactable interactable);
-            var noDamagingPlayerAhead = !Physics.Raycast(transform.position, direction, 1f, damagePlayerMask); 
+            var noMoveBlockerAhead = !Helper.CheckTargetDirection(knockBackOrigin, direction, moveBlockMask, out Interactable interactable);
+            var noDamagingPlayerAhead = !Physics.Raycast(knockBackOrigin, direction, 1f, damagePlayerMask); 
 
             if (noMoveBlockerAhead && noDamagingPlayerAhead)
             {
@@ -92,16 +101,16 @@ public class AttackPlayer : MonoBehaviour
         return Vector2.zero;
     }
 
-    private Vector2 GetHorizontalKnockBackDir(Vector2 direction)
+    private Vector2 GetKnockBackHorizontalDir(Vector3 knockBackOrigin, Vector2 direction)
     {
         if (!horizontalDirArray.Contains(direction))
-            direction = Vector2.right;
+            direction = UnityEngine.Random.Range(0, 2) == 0 ? Vector2.right : Vector2.left;
 
         int checkDiretionLoopCount = 2;
         for (int i = 0; i < checkDiretionLoopCount; i++)
         {
-            var noMoveBlockerAhead = !Helper.CheckTargetDirection(transform.position, direction, moveBlockMask, out Interactable interactable);
-            var noDamagingPlayerAhead = !Physics.Raycast(transform.position, direction, 1f, damagePlayerMask); 
+            var noMoveBlockerAhead = !Helper.CheckTargetDirection(knockBackOrigin, direction, moveBlockMask, out Interactable interactable);
+            var noDamagingPlayerAhead = !Physics.Raycast(knockBackOrigin, direction, 1f, damagePlayerMask); 
 
             if (noMoveBlockerAhead && noDamagingPlayerAhead)
             {
@@ -112,7 +121,7 @@ public class AttackPlayer : MonoBehaviour
         return Vector2.zero;
     }
 
-    private Vector2 GetAutoKnockBackDir(Vector2 direction)
+    private Vector2 GetKnockBackAllDir(Vector3 knockBackOrigin, Vector2 direction)
     {
         if (direction == Vector2.zero)
             direction = Vector2.up;
@@ -120,8 +129,8 @@ public class AttackPlayer : MonoBehaviour
         int checkDiretionLoopCount = 4;
         for (int i = 0; i < checkDiretionLoopCount; i++)
         {
-            var noMoveBlockerAhead = !Helper.CheckTargetDirection(transform.position, direction, moveBlockMask, out Interactable interactable);
-            var noDamagingPlayerAhead = !Physics.Raycast(transform.position, direction, 1f, damagePlayerMask); 
+            var noMoveBlockerAhead = !Helper.CheckTargetDirection(knockBackOrigin, direction, moveBlockMask, out Interactable interactable);
+            var noDamagingPlayerAhead = !Physics.Raycast(knockBackOrigin, direction, 1f, damagePlayerMask); 
 
             if (noMoveBlockerAhead && noDamagingPlayerAhead)
             {
@@ -134,18 +143,34 @@ public class AttackPlayer : MonoBehaviour
 
     private Vector2 GetDirectiveKnockBackDir()
     {
+        Vector2 direction;
+
         switch (knockBackDirection)
         {
             case KnockBackDirection.Up:
-                return Vector2.up;
+                direction = Vector2.up;
+                break;
             case KnockBackDirection.Down:
-                return Vector2.down;
+                direction = Vector2.down;
+                break;
             case KnockBackDirection.Left:
-                return Vector2.left;
+                direction = Vector2.left;
+                break;
             case KnockBackDirection.Right:
-                return Vector2.right;
+                direction = Vector2.right;
+                break;
             default:
-                return Vector2.zero;
+                direction = Vector2.zero;
+                break;
+        }
+
+        if (!Helper.CheckTargetDirection(transform.position, direction, moveBlockMask, out Interactable interactable))
+        {
+            return direction;
+        }
+        else
+        {
+            return Vector2.zero;
         }
     }
 

@@ -103,16 +103,17 @@ public class Player : SceneService
         else
         {
             lastPlayerDir = playerDir;
-            SetMoveTargetPosition();
+            moveTargetPosition = GetMoveTargetPosition();
             StartCoroutine(HandleMovement());
         }
     }
 
-    private void SetMoveTargetPosition()
+    private Vector2 GetMoveTargetPosition()
     {
-        moveTargetPosition = (Vector2)transform.position + playerDir;
+        var moveTargetPosition = (Vector2)transform.position + playerDir;
         moveTargetPosition.x = Mathf.RoundToInt(moveTargetPosition.x);
         moveTargetPosition.y = Mathf.RoundToInt(moveTargetPosition.y);
+        return moveTargetPosition;
     }
 
     private IEnumerator HandleMovement()
@@ -204,9 +205,11 @@ public class Player : SceneService
 
     public void TriggerKnockBack(Vector2 targetPosition)
     {
-        if (targetPosition == Vector2.zero)
+        if (isInvulnerable)
             return;
         if (isKnocked)
+            return;
+        if (targetPosition == Vector2.zero)
             return;
 
         StartCoroutine(HandleKnockBack(targetPosition));
@@ -216,6 +219,7 @@ public class Player : SceneService
     {
         isKnocked = true;
 
+        moveTargetPosition = targetPosition;
         Helper.MoveToPosition(transform, targetPosition, moveDuration);
         yield return Helper.GetWaitForSeconds(actionDelay);
 
