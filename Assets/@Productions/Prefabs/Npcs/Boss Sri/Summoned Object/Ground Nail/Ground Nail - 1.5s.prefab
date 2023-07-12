@@ -444,8 +444,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
-  knockBackType: 1
+  knockBackOrigin: 0
+  knockBackType: 0
   knockBackDirection: 0
   moveBlockMask:
     serializedVersion: 2

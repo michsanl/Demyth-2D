@@ -455,14 +455,15 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   enableKnockBack: 1
-  knockBackType: 1
+  knockBackOrigin: 0
+  knockBackType: 0
   knockBackDirection: 0
   moveBlockMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   damagePlayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!65 &6298036190802501657
 BoxCollider:
   m_ObjectHideFlags: 0

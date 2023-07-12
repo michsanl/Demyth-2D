@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1910156107344050206
+--- !u!1 &1099938523839547377
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,75 +8,237 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5029280215361376329}
-  - component: {fileID: 2588520190611312909}
-  - component: {fileID: 1026568298613473915}
-  - component: {fileID: 8758981729898973564}
-  m_Layer: 6
-  m_Name: 1x1 Knock Down Collider
+  - component: {fileID: 5946625171944893212}
+  - component: {fileID: 5430028127531931034}
+  - component: {fileID: 1894419131004632951}
+  m_Layer: 11
+  m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &5029280215361376329
+  m_IsActive: 1
+--- !u!4 &5946625171944893212
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910156107344050206}
+  m_GameObject: {fileID: 1099938523839547377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4035538333459172009}
+  m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2588520190611312909
+--- !u!114 &5430028127531931034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910156107344050206}
+  m_GameObject: {fileID: 1099938523839547377}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
-  knockBackDirection: 1
---- !u!54 &1026568298613473915
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910156107344050206}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 1
---- !u!65 &8758981729898973564
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &1894419131004632951
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910156107344050206}
+  m_GameObject: {fileID: 1099938523839547377}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1795829322231095519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9015068034513849921}
+  - component: {fileID: 8625300338647017604}
+  - component: {fileID: 3206873850754831953}
+  m_Layer: 11
+  m_Name: Collider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9015068034513849921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795829322231095519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066905539364272980}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8625300338647017604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795829322231095519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  enableKnockBack: 1
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &3206873850754831953
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795829322231095519}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2621478967917180866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3523970617938751789}
+  - component: {fileID: 2234131448089816306}
+  - component: {fileID: 2108525769551776216}
+  m_Layer: 11
+  m_Name: Collider (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3523970617938751789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621478967917180866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066905539364272980}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2234131448089816306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621478967917180866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  enableKnockBack: 1
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &2108525769551776216
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621478967917180866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2906600543523919839
 GameObject:
@@ -91,7 +253,7 @@ GameObject:
   - component: {fileID: 8988222877750932096}
   - component: {fileID: 8711829485131478448}
   m_Layer: 6
-  m_Name: 1x1 Knock Right Collider
+  m_Name: 1x1 Horizontal Knock Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +272,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4035538333459172009}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1212262667023932286
 MonoBehaviour:
@@ -124,9 +286,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
+  knockBackOrigin: 1
+  knockBackType: 1
   knockBackDirection: 3
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!54 &8988222877750932096
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -168,7 +349,7 @@ GameObject:
   - component: {fileID: 8478845546267803454}
   - component: {fileID: 8192991233920695436}
   m_Layer: 11
-  m_Name: Top Collider
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3314831482500278176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -201,9 +382,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
+  knockBackOrigin: 0
+  knockBackType: 0
   knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &8192991233920695436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -215,8 +415,88 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3387550342931518756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5002164833262674413}
+  - component: {fileID: 8273127800461537325}
+  - component: {fileID: 5768086047377196438}
+  m_Layer: 11
+  m_Name: Collider (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5002164833262674413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3387550342931518756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066905539364272980}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8273127800461537325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3387550342931518756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  enableKnockBack: 1
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &5768086047377196438
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3387550342931518756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3394045014038967453
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,9 +542,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 0
+  knockBackOrigin: 0
+  knockBackType: 1
   knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &2383275137166533048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -277,6 +576,86 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4034483119295860988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093782453238309169}
+  - component: {fileID: 2269613035439344996}
+  - component: {fileID: 860825017673831724}
+  m_Layer: 11
+  m_Name: Collider (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093782453238309169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4034483119295860988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066905539364272980}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2269613035439344996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4034483119295860988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  enableKnockBack: 1
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &860825017673831724
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4034483119295860988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4152772934057147649
 GameObject:
@@ -291,7 +670,7 @@ GameObject:
   - component: {fileID: 192730501102384007}
   - component: {fileID: 3440938676272871307}
   m_Layer: 6
-  m_Name: 1x1 Knock Left Collider
+  m_Name: 1x1 All Knock Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +689,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4035538333459172009}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1316269792801312283
 MonoBehaviour:
@@ -324,9 +703,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
+  knockBackOrigin: 1
+  knockBackType: 0
   knockBackDirection: 2
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!54 &192730501102384007
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -356,67 +754,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5076036818896507623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7057051794937172322}
-  - component: {fileID: 5741633864989214801}
-  - component: {fileID: 311911790447869217}
-  m_Layer: 11
-  m_Name: RIght Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7057051794937172322
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5076036818896507623}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6066905539364272980}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5741633864989214801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5076036818896507623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableCameraShake: 1
-  enableKnockBack: 1
-  knockBackDirection: 3
---- !u!65 &311911790447869217
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5076036818896507623}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0}
-  m_Center: {x: 1, y: 0, z: 0}
 --- !u!1 &5215676311051618195
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,14 +783,18 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1339151071044580125}
-  - {fileID: 4927504240958208586}
-  - {fileID: 861721894484705633}
-  - {fileID: 7057051794937172322}
-  - {fileID: 5911529956329451339}
+  - {fileID: 9015068034513849921}
+  - {fileID: 8616175670885172389}
+  - {fileID: 5946625171944893212}
+  - {fileID: 4574070990449887823}
+  - {fileID: 5002164833262674413}
+  - {fileID: 3523970617938751789}
+  - {fileID: 4707557654921670823}
+  - {fileID: 2093782453238309169}
   m_Father: {fileID: 4035538333459172009}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6424691801300074887
+--- !u!1 &5702417594691422889
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -461,59 +802,78 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 861721894484705633}
-  - component: {fileID: 9155713932608072064}
-  - component: {fileID: 6401858118634725891}
+  - component: {fileID: 8616175670885172389}
+  - component: {fileID: 2231996107153810838}
+  - component: {fileID: 2555504586037775686}
   m_Layer: 11
-  m_Name: Left Collider
+  m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &861721894484705633
+--- !u!4 &8616175670885172389
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6424691801300074887}
+  m_GameObject: {fileID: 5702417594691422889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9155713932608072064
+--- !u!114 &2231996107153810838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6424691801300074887}
+  m_GameObject: {fileID: 5702417594691422889}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
-  knockBackDirection: 2
---- !u!65 &6401858118634725891
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &2555504586037775686
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6424691801300074887}
+  m_GameObject: {fileID: 5702417594691422889}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0}
-  m_Center: {x: -1, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6631251182860402330
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +887,7 @@ GameObject:
   - component: {fileID: 2310419747884847953}
   - component: {fileID: 5999263334239562857}
   m_Layer: 6
-  m_Name: 1x1 Knock Up Collider
+  m_Name: 1x1 Vertical Knock Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,9 +920,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
+  knockBackOrigin: 1
+  knockBackType: 2
   knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!54 &2310419747884847953
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -591,6 +970,86 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6800158576869532696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4574070990449887823}
+  - component: {fileID: 8500467932143325838}
+  - component: {fileID: 7889742666343755253}
+  m_Layer: 11
+  m_Name: Collider (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4574070990449887823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800158576869532696}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066905539364272980}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8500467932143325838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800158576869532696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  enableKnockBack: 1
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &7889742666343755253
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800158576869532696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7364735162317351814
 GameObject:
@@ -767,7 +1226,7 @@ Transform:
   m_Children:
   - {fileID: 7673398051580542024}
   m_Father: {fileID: 7673398050621169836}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7673398050621169837
 GameObject:
@@ -809,8 +1268,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4035538333459172009}
   - {fileID: 2035042749252718171}
+  - {fileID: 4035538333459172009}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -838,9 +1297,9 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  activateCombatMode: 1
-  SelectCombatMode: 1
-  LoopAbility: 3
+  activateCombatMode: 0
+  SelectCombatMode: 0
+  LoopAbility: 0
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +1325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 11
+  maxHealth: 50
   currentHealth: 0
   status: 0
 --- !u!114 &5108067734571236107
@@ -1019,7 +1478,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animator: {fileID: 4912183497154396725}
-  downChargeCollider: {fileID: 4152772934057147649}
+  downChargeCollider: {fileID: 2906600543523919839}
 --- !u!114 &4890675639416213877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,7 +1653,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animator: {fileID: 4912183497154396725}
-  jumpSlamCollider: {fileID: 6631251182860402330}
+  jumpSlamCollider: {fileID: 4152772934057147649}
 --- !u!1 &7673398051580542025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,131 +1717,88 @@ Transform:
   - {fileID: 6066905539364272980}
   - {fileID: 1742974252090745982}
   - {fileID: 2758474263609331416}
-  - {fileID: 5029280215361376329}
   - {fileID: 875247444357935368}
   - {fileID: 194392507544977982}
   m_Father: {fileID: 7673398050621169836}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8675035643445768098
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5911529956329451339}
-  - component: {fileID: 2769201953932967856}
-  - component: {fileID: 5412463364766767358}
-  m_Layer: 11
-  m_Name: Center Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5911529956329451339
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675035643445768098}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6066905539364272980}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2769201953932967856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675035643445768098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableCameraShake: 1
-  enableKnockBack: 1
-  knockBackDirection: 0
---- !u!65 &5412463364766767358
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8675035643445768098}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &8733879415814981996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4927504240958208586}
-  - component: {fileID: 1142014359423117777}
-  - component: {fileID: 2295245942057562128}
-  m_Layer: 11
-  m_Name: Bottom Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4927504240958208586
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8733879415814981996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1142014359423117777
+--- !u!1 &8713059183853069673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4707557654921670823}
+  - component: {fileID: 8431936350268214667}
+  - component: {fileID: 5446034547960783244}
+  m_Layer: 11
+  m_Name: Collider (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4707557654921670823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713059183853069673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6066905539364272980}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8431936350268214667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8733879415814981996}
+  m_GameObject: {fileID: 8713059183853069673}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
   enableKnockBack: 1
-  knockBackDirection: 1
---- !u!65 &2295245942057562128
+  knockBackOrigin: 0
+  knockBackType: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!65 &5446034547960783244
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8733879415814981996}
+  m_GameObject: {fileID: 8713059183853069673}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 0}
-  m_Center: {x: 0, y: -1, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

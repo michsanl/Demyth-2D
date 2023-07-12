@@ -10,21 +10,21 @@ public class AttackPlayer : SceneService
     [Title("KnockBack Settings")]
     [SerializeField] private bool enableKnockBack = true;
     [ShowIf("enableKnockBack")]
+    public KnockBackOrigin knockBackOrigin;
+    [ShowIf("enableKnockBack")]
     public KnockBackType knockBackType;
-    [ShowIf("knockBackType", KnockBackType.Directive)]
+    [ShowIf("knockBackType", KnockBackType.SelectedDir)]
     public KnockBackDirection knockBackDirection;
 
     [Title("Layer Mask Input")]
     [SerializeField] private LayerMask moveBlockMask;
     [SerializeField] private LayerMask damagePlayerMask;
 
-    public enum KnockBackType { Directive, Auto, Horizontal, Vertical, HrzSlash, VrtSlash };
+    public enum KnockBackType { AllDir, HorizontalDir, VerticalDir, SelectedDir };
     public enum KnockBackDirection { Up, Down, Left, Right }
+    public enum KnockBackOrigin { ThisObject, Player }
 
-    private Vector2[] verticalDirArray = new Vector2[2] { Vector2.up, Vector2.down };
-    private Vector2[] horizontalDirArray = new Vector2[2] { Vector2.right, Vector2.left };
     private Player player;
-    private Vector2 dirToPlayer;
     private Vector2 knockBackDir;
     private Vector2 knockBackTargetPosition;
 
@@ -37,35 +37,26 @@ public class AttackPlayer : SceneService
     private void OnCollisionEnter(Collision other) 
     {
         player = other.collider.GetComponent<Player>();
-        dirToPlayer = (other.transform.position - transform.position).normalized;
 
         if (enableKnockBack)
         {
             switch (knockBackType)
             {
-                case KnockBackType.Auto:
-                    knockBackDir = GetKnockBackAllDir(transform.position, dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
+                case KnockBackType.AllDir:
+                    knockBackDir = GetAllKnockBackDir();
+                    knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
-                case KnockBackType.Directive:
-                    knockBackDir = GetDirectiveKnockBackDir();
-                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
+                case KnockBackType.SelectedDir:
+                    knockBackDir = GetSelectedKnockBackDir();
+                    knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
-                case KnockBackType.Horizontal:
-                    knockBackDir = GetKnockBackHorizontalDir(transform.position, dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
+                case KnockBackType.HorizontalDir:
+                    knockBackDir = GetHorizontalKnockBackDir();
+                    knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
-                case KnockBackType.Vertical:
-                    knockBackDir = GetKnockBackVerticalDir(transform.position, dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(transform.position, knockBackDir);
-                    break;
-                case KnockBackType.HrzSlash:
-                    knockBackDir = GetKnockBackHorizontalDir(Context.Player.transform.position, dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(Context.Player.transform.position, knockBackDir);
-                    break;
-                case KnockBackType.VrtSlash:
-                    knockBackDir = GetKnockBackVerticalDir(Context.Player.transform.position, dirToPlayer);
-                    knockBackTargetPosition = GetKnockBackPosition(Context.Player.transform.position, knockBackDir);
+                case KnockBackType.VerticalDir:
+                    knockBackDir = GetVerticalKnockBackDir();
+                    knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
                 default:
                     break;
@@ -73,105 +64,123 @@ public class AttackPlayer : SceneService
         }
     }
 
-    private Vector2 GetKnockBackPosition(Vector3 knockBackOrigin, Vector2 knockBackDir)
+    private Vector2 GetAllKnockBackDir()
     {
+        Vector3 knockBackOrigin = GetKnockBackOrigin();
+        Vector2 knockBackDir = GetDirectionToPlayer();
+
+        if (knockBackDir == Vector2.zero)
+            knockBackDir = GetOppositeDirection(player.LastPlayerDir);
+
+        int loopCount = 4;
+        for (int i = 0; i < loopCount; i++)
+        {
+            if (!IsDirectionBlocked(knockBackDir, knockBackOrigin))
+                return knockBackDir;
+            
+            knockBackDir = Vector2.Perpendicular(knockBackDir);
+        }
+        return Vector2.zero;
+    }
+
+    private Vector2 GetVerticalKnockBackDir()
+    {
+        Vector3 knockBackOrigin = GetKnockBackOrigin();
+        Vector2 knockBackDir = GetInitialVerticalKnockBackDir();
+
+        int loopCount = 2;
+        for (int i = 0; i < loopCount; i++)
+        {
+            if (!IsDirectionBlocked(knockBackDir, knockBackOrigin))
+                return knockBackDir;
+
+            knockBackDir = GetOppositeDirection(knockBackDir);
+        }
+        return Vector2.zero;
+    }
+
+    private Vector2 GetHorizontalKnockBackDir()
+    {
+        Vector3 knockBackOrigin = GetKnockBackOrigin();
+        Vector2 knockBackDir = GetInitialHorizontalKnockBackDir();
+
+        int loopCount = 2;
+        for (int i = 0; i < loopCount; i++)
+        {
+            if (!IsDirectionBlocked(knockBackDir, knockBackOrigin))
+                return knockBackDir;
+
+            knockBackDir = GetOppositeDirection(knockBackDir);
+        }
+        return Vector2.zero;
+    }
+
+    private Vector2 GetSelectedKnockBackDir()
+    {
+        Vector2 selectedDir = GetSelectedDir();
+
+        return IsDirectionBlocked(selectedDir, transform.position) ? Vector2.zero : selectedDir;
+    }
+
+    private Vector3 GetDirectionToPlayer()
+    {
+        return (player.transform.position - transform.position).normalized;
+    }
+
+    private Vector2 GetInitialVerticalKnockBackDir()
+    {
+        if (player.transform.position.y > transform.position.y)
+            return Vector2.up;
+        if (player.transform.position.y < transform.position.y)
+            return Vector2.down;
+        return UnityEngine.Random.Range(0, 2) == 0 ? Vector2.up : Vector2.down;
+    }
+
+    private Vector2 GetInitialHorizontalKnockBackDir()
+    {
+        if (player.transform.position.x > transform.position.x)
+            return Vector2.right;
+        if (player.transform.position.x < transform.position.x)
+            return Vector2.left;
+        return UnityEngine.Random.Range(0, 2) == 0 ? Vector2.right : Vector2.left;
+    }
+
+    private Vector2 GetSelectedDir()
+    {
+        switch (knockBackDirection)
+        {
+            case KnockBackDirection.Up:
+                return Vector2.up;
+            case KnockBackDirection.Down:
+                return Vector2.down;
+            case KnockBackDirection.Left:
+                return Vector2.left;
+            case KnockBackDirection.Right:
+                return Vector2.right;
+            default:
+                return Vector2.zero;
+        }
+    }
+
+    private Vector3 GetKnockBackOrigin()
+    {
+        return knockBackOrigin == KnockBackOrigin.ThisObject ? transform.position : player.LastMoveTargetPosition;
+    }
+
+    private Vector2 GetKnockBackTargetPosition(Vector2 knockBackDir)
+    {
+        Vector3 knockBackOrigin = GetKnockBackOrigin();
+
         return new Vector2( Mathf.RoundToInt(knockBackDir.x + knockBackOrigin.x), 
             Mathf.RoundToInt(knockBackDir.y + knockBackOrigin.y));
     }
 
-    private Vector2 GetKnockBackVerticalDir(Vector3 knockBackOrigin, Vector2 direction)
+    private bool IsDirectionBlocked(Vector2 knockBackDir, Vector3 knockBackOrigin)
     {
-        if (!verticalDirArray.Contains(direction))
-            direction = UnityEngine.Random.Range(0, 2) == 0 ? Vector2.up : Vector2.down;
+        var moveBlockerAhead = Helper.CheckTargetDirection(knockBackOrigin, knockBackDir, moveBlockMask, out Interactable interactable);
+        var damagingPlayerAhead = Physics.Raycast(knockBackOrigin, knockBackDir, 1f, damagePlayerMask); 
 
-        int checkDiretionLoopCount = 2;
-        for (int i = 0; i < checkDiretionLoopCount; i++)
-        {
-            var noMoveBlockerAhead = !Helper.CheckTargetDirection(knockBackOrigin, direction, moveBlockMask, out Interactable interactable);
-            var noDamagingPlayerAhead = !Physics.Raycast(knockBackOrigin, direction, 1f, damagePlayerMask); 
-
-            if (noMoveBlockerAhead && noDamagingPlayerAhead)
-            {
-                return direction;
-            }
-            direction = GetOppositeDirection(direction);
-        }
-        return Vector2.zero;
-    }
-
-    private Vector2 GetKnockBackHorizontalDir(Vector3 knockBackOrigin, Vector2 direction)
-    {
-        if (!horizontalDirArray.Contains(direction))
-            direction = UnityEngine.Random.Range(0, 2) == 0 ? Vector2.right : Vector2.left;
-
-        int checkDiretionLoopCount = 2;
-        for (int i = 0; i < checkDiretionLoopCount; i++)
-        {
-            var noMoveBlockerAhead = !Helper.CheckTargetDirection(knockBackOrigin, direction, moveBlockMask, out Interactable interactable);
-            var noDamagingPlayerAhead = !Physics.Raycast(knockBackOrigin, direction, 1f, damagePlayerMask); 
-
-            if (noMoveBlockerAhead && noDamagingPlayerAhead)
-            {
-                return direction;
-            }
-            direction = GetOppositeDirection(direction);
-        }
-        return Vector2.zero;
-    }
-
-    private Vector2 GetKnockBackAllDir(Vector3 knockBackOrigin, Vector2 direction)
-    {
-        if (direction == Vector2.zero)
-        {
-            direction = player.LastPlayerDir;
-        }
-
-        int checkDiretionLoopCount = 4;
-        for (int i = 0; i < checkDiretionLoopCount; i++)
-        {
-            var noMoveBlockerAhead = !Helper.CheckTargetDirection(knockBackOrigin, direction, moveBlockMask, out Interactable interactable);
-            var noDamagingPlayerAhead = !Physics.Raycast(knockBackOrigin, direction, 1f, damagePlayerMask); 
-
-            if (noMoveBlockerAhead && noDamagingPlayerAhead)
-            {
-                return direction;
-            }
-            Vector2.Perpendicular(direction);
-        }
-        return Vector2.zero;
-    }
-
-    private Vector2 GetDirectiveKnockBackDir()
-    {
-        Vector2 direction;
-
-        switch (knockBackDirection)
-        {
-            case KnockBackDirection.Up:
-                direction = Vector2.up;
-                break;
-            case KnockBackDirection.Down:
-                direction = Vector2.down;
-                break;
-            case KnockBackDirection.Left:
-                direction = Vector2.left;
-                break;
-            case KnockBackDirection.Right:
-                direction = Vector2.right;
-                break;
-            default:
-                direction = Vector2.zero;
-                break;
-        }
-
-        if (!Helper.CheckTargetDirection(transform.position, direction, moveBlockMask, out Interactable interactable))
-        {
-            return direction;
-        }
-        else
-        {
-            return Vector2.zero;
-        }
+        return moveBlockerAhead || damagingPlayerAhead ? true : false;
     }
 
     private Vector2 GetOppositeDirection(Vector2 dir)

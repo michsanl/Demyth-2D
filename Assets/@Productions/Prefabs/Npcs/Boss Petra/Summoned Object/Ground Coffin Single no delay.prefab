@@ -121,7 +121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3975585011152093772
 Transform:
   m_ObjectHideFlags: 0
@@ -244,9 +244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a63be2a7c58448b37b2a72ac07863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRandomSpawnDelay: 0.1
   colliderSpawnDelay: 0.0833
   destroySelfDelay: 1.25
+  useRandomizedSpawnDelay: 0
+  minRandomSpawnDelay: 0
+  maxRandomSpawnDelay: 0.1
   topBorder: 2
   bottomBorder: -4
   rightBorder: 6
@@ -301,9 +303,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2c42cfa35d0a74bbdd8aecea4fb53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableCameraShake: 1
-  enableKnockBack: 0
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  enableKnockBack: 1
+  knockBackOrigin: 0
+  knockBackType: 0
   knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &1093564055611812540
 BoxCollider:
   m_ObjectHideFlags: 0

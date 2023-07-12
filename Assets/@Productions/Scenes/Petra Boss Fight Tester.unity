@@ -172,13 +172,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1138521342322003525, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
+      propertyPath: activateCombatMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2877365730248291971, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078929448484905812, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_RootOrder
@@ -227,10 +227,6 @@ PrefabInstance:
     - target: {fileID: 7673398050621169837, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_Name
       value: NPC Boss Petra
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735775073953674051, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
-      propertyPath: combatBehavior
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
@@ -721,7 +717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1185,7 +1181,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1401,7 +1397,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1629,7 +1625,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
