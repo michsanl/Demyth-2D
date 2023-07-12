@@ -69,10 +69,10 @@ public class AttackPlayer : SceneService
 
     private void OnCollisionStay(Collision other) 
     {
-        if (enableKnockBack)
-            player.TriggerKnockBack(knockBackTargetPosition);
+        // if (enableKnockBack)
+        //     player.TriggerKnockBack(knockBackTargetPosition);
 
-        player.TakeDamage();
+        player.TakeDamage(enableKnockBack, knockBackTargetPosition);
     }
 
     private Vector2 GetKnockBackPosition(Vector3 knockBackOrigin, Vector2 knockBackDir)
@@ -124,7 +124,9 @@ public class AttackPlayer : SceneService
     private Vector2 GetKnockBackAllDir(Vector3 knockBackOrigin, Vector2 direction)
     {
         if (direction == Vector2.zero)
-            direction = Vector2.up;
+        {
+            direction = player.LastPlayerDir;
+        }
 
         int checkDiretionLoopCount = 4;
         for (int i = 0; i < checkDiretionLoopCount; i++)

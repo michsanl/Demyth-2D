@@ -28,7 +28,8 @@ public class Player : SceneService
     public Action OnInvulnerableVisualStart;
     public Action OnInvulnerableVisualEnd;
     public Action<bool> OnSenterToggle;
-    public Vector2 LastMoveTargetPosition => moveTargetPosition; 
+    public Vector2 LastMoveTargetPosition => moveTargetPosition;
+    public Vector2 LastPlayerDir => lastPlayerDir; 
 
 #endregion
 
@@ -66,6 +67,8 @@ public class Player : SceneService
 
         Context.gameInput.OnSenterPerformed += GameInput_OnSenterPerformed;
         Context.gameInput.OnHealthPotionPerformed += GameInput_OnHealthPotionPerformed;
+
+        moveTargetPosition = transform.position;
     }
 
     protected override void OnTick()
@@ -179,15 +182,15 @@ public class Player : SceneService
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(bool knockBackPlayer, Vector2 position)
     {
         if (isInvulnerable)
             return;
 
-        StartCoroutine(TakeDamageRoutine());
+        StartCoroutine(TakeDamageRoutine(knockBackPlayer, position));
     }
 
-    private IEnumerator TakeDamageRoutine()
+    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 position)
     {
         isInvulnerable = true;
 
@@ -195,6 +198,9 @@ public class Player : SceneService
         health.TakeDamage(1);
 
         yield return StartCoroutine(cameraShakeController.PlayCameraShake());
+
+        if (knockBackPlayer)
+            StartCoroutine(HandleKnockBack(position));
         
         OnInvulnerableVisualStart?.Invoke();
         yield return Helper.GetWaitForSeconds(invulnerableDuration);
