@@ -28,6 +28,12 @@ public class AttackPlayer : SceneService
     private Vector2 knockBackDir;
     private Vector2 knockBackTargetPosition;
 
+    private void OnCollisionStay(Collision other) 
+    {
+        if (player != null)
+            player.TakeDamage(enableKnockBack, knockBackTargetPosition);
+    }
+
     private void OnCollisionEnter(Collision other) 
     {
         player = other.collider.GetComponent<Player>();
@@ -65,14 +71,6 @@ public class AttackPlayer : SceneService
                     break;
             }
         }
-    }
-
-    private void OnCollisionStay(Collision other) 
-    {
-        // if (enableKnockBack)
-        //     player.TriggerKnockBack(knockBackTargetPosition);
-
-        player.TakeDamage(enableKnockBack, knockBackTargetPosition);
     }
 
     private Vector2 GetKnockBackPosition(Vector3 knockBackOrigin, Vector2 knockBackDir)
