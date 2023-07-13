@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using CustomTools.Core;
-using UnityEngine.InputSystem;
-using UISystem;
 using Sirenix.OdinInspector;
-using Spine;
-using Spine.Unity;
 
 public class Player : SceneService
 {
@@ -15,7 +11,7 @@ public class Player : SceneService
     [SerializeField] private float actionDelay;
     [SerializeField] private float moveDuration;
     [SerializeField] private float attackDuration;
-    [SerializeField] private float invulnerableDuration = 1f;
+    [SerializeField] private float takeDamageCooldown = 1f;
     [SerializeField] private LayerMask moveBlockMask;
     [SerializeField] private LayerMask damagePlayerMask;
     
@@ -29,7 +25,7 @@ public class Player : SceneService
     public Action OnInvulnerableVisualEnd;
     public Action<bool> OnSenterToggle;
     public Vector2 LastMoveTargetPosition => moveTargetPosition;
-    public Vector2 LastPlayerDir => lastPlayerDir; 
+    public Vector2 PlayerDir => playerDir; 
 
 #endregion
 
@@ -37,14 +33,12 @@ public class Player : SceneService
     private FlashEffectController flashEffectController;
     private LookOrientation lookOrientation;
     private HealthPotion healthPotion;
-    private MeshRenderer spineMeshRenderer;
     private Health health;
     private Vector2 playerDir;
     private Vector2 moveTargetPosition;
-    private Vector2 lastPlayerDir;
     private bool isBusy;
     private bool isKnocked;
-    private bool isInvulnerable;
+    private bool isTakeDamageOnCooldown;
     private bool isSenterEnabled;
     private bool isSenterUnlocked = true;
     private bool isHealthPotionUnlocked = true;
@@ -58,7 +52,6 @@ public class Player : SceneService
         lookOrientation = GetComponent<LookOrientation>();
         healthPotion = GetComponent<HealthPotion>();
         health = GetComponent<Health>();
-        spineMeshRenderer = animator.GetComponent<MeshRenderer>();
     }
 
     protected override void OnActivate()
@@ -87,13 +80,14 @@ public class Player : SceneService
         if (isBusy)
             return;
 
-        playerDir = Context.gameInput.GetMovementVector();
+        Vector2 inputVector = Context.gameInput.GetMovementVector();
 
-        if (playerDir == Vector2.zero)
+        if (inputVector == Vector2.zero)
             return;
-        if (IsDirectionDiagonal(playerDir))
+        if (IsInputVectorDiagonal(inputVector))
             return;
-        
+
+        playerDir = inputVector;
         lookOrientation.SetFacingDirection(playerDir);
         
         if (Helper.CheckTargetDirection(transform.position, playerDir, moveBlockMask, out Interactable interactable))
@@ -105,7 +99,6 @@ public class Player : SceneService
         } 
         else
         {
-            lastPlayerDir = playerDir;
             moveTargetPosition = GetMoveTargetPosition();
             StartCoroutine(HandleMovement());
         }
@@ -182,17 +175,19 @@ public class Player : SceneService
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
-    public void TakeDamage(bool knockBackPlayer, Vector2 position)
+    public void TakeDamage(bool enableKnockBack, Vector2 position)
     {
-        if (isInvulnerable)
+        if (isTakeDamageOnCooldown)
             return;
+        if (enableKnockBack)
+            isKnocked = true;
 
-        StartCoroutine(TakeDamageRoutine(knockBackPlayer, position));
+        StartCoroutine(TakeDamageRoutine(enableKnockBack, position));
     }
 
     private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 position)
     {
-        isInvulnerable = true;
+        isTakeDamageOnCooldown = true;
 
         animator.SetTrigger("OnHit");
         health.TakeDamage(1);
@@ -203,22 +198,10 @@ public class Player : SceneService
             StartCoroutine(HandleKnockBack(position));
         
         OnInvulnerableVisualStart?.Invoke();
-        yield return Helper.GetWaitForSeconds(invulnerableDuration);
+        yield return Helper.GetWaitForSeconds(takeDamageCooldown);
         OnInvulnerableVisualEnd?.Invoke();
 
-        isInvulnerable = false;
-    }
-
-    public void TriggerKnockBack(Vector2 targetPosition)
-    {
-        if (isInvulnerable)
-            return;
-        if (isKnocked)
-            return;
-        if (targetPosition == Vector2.zero)
-            return;
-
-        StartCoroutine(HandleKnockBack(targetPosition));
+        isTakeDamageOnCooldown = false;
     }
 
     private IEnumerator HandleKnockBack(Vector2 targetPosition)
@@ -239,7 +222,7 @@ public class Player : SceneService
         return dir;
     }
     
-    private bool IsDirectionDiagonal(Vector2 direction)
+    private bool IsInputVectorDiagonal(Vector2 direction)
     {
         return direction.x != 0 && direction.y != 0;
     }

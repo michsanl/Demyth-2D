@@ -70,7 +70,7 @@ public class AttackPlayer : SceneService
         Vector2 knockBackDir = GetDirectionToPlayer();
 
         if (knockBackDir == Vector2.zero)
-            knockBackDir = GetOppositeDirection(player.LastPlayerDir);
+            knockBackDir = player.PlayerDir;
 
         int loopCount = 4;
         for (int i = 0; i < loopCount; i++)
