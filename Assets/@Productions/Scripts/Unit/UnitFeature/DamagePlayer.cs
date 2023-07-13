@@ -5,26 +5,27 @@ using Sirenix.OdinInspector;
 using System.Linq;
 using CustomTools.Core;
 
-public class AttackPlayer : SceneService
+public class DamagePlayer : SceneService
 {
     [Title("KnockBack Settings")]
     [SerializeField] private bool enableKnockBack = true;
     [ShowIf("enableKnockBack")]
-    public KnockBackOrigin knockBackOrigin;
+    public KnockBackSource knockBackSource;
     [ShowIf("enableKnockBack")]
-    public KnockBackType knockBackType;
-    [ShowIf("knockBackType", KnockBackType.SelectedDir)]
+    public KnockBackOrientation knockBackOrientation;
+    [ShowIf("knockBackOrientation", KnockBackOrientation.SelectedDir)]
     public KnockBackDirection knockBackDirection;
 
     [Title("Layer Mask Input")]
     [SerializeField] private LayerMask moveBlockMask;
     [SerializeField] private LayerMask damagePlayerMask;
 
-    public enum KnockBackType { AllDir, HorizontalDir, VerticalDir, SelectedDir };
+    public enum KnockBackOrientation { AllDir, HorizontalDir, VerticalDir, SelectedDir };
     public enum KnockBackDirection { Up, Down, Left, Right }
-    public enum KnockBackOrigin { ThisObject, Player }
+    public enum KnockBackSource { ThisObject, Player }
 
     private Player player;
+    private Vector3 knockBackOrigin;
     private Vector2 knockBackDir;
     private Vector2 knockBackTargetPosition;
 
@@ -37,24 +38,25 @@ public class AttackPlayer : SceneService
     private void OnCollisionEnter(Collision other) 
     {
         player = other.collider.GetComponent<Player>();
+        knockBackOrigin = GetKnockBackOrigin();
 
         if (enableKnockBack)
         {
-            switch (knockBackType)
+            switch (knockBackOrientation)
             {
-                case KnockBackType.AllDir:
+                case KnockBackOrientation.AllDir:
                     knockBackDir = GetAllKnockBackDir();
                     knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
-                case KnockBackType.SelectedDir:
+                case KnockBackOrientation.SelectedDir:
                     knockBackDir = GetSelectedKnockBackDir();
                     knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
-                case KnockBackType.HorizontalDir:
+                case KnockBackOrientation.HorizontalDir:
                     knockBackDir = GetHorizontalKnockBackDir();
                     knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
-                case KnockBackType.VerticalDir:
+                case KnockBackOrientation.VerticalDir:
                     knockBackDir = GetVerticalKnockBackDir();
                     knockBackTargetPosition = GetKnockBackTargetPosition(knockBackDir);
                     break;
@@ -66,7 +68,6 @@ public class AttackPlayer : SceneService
 
     private Vector2 GetAllKnockBackDir()
     {
-        Vector3 knockBackOrigin = GetKnockBackOrigin();
         Vector2 knockBackDir = GetDirectionToPlayer();
 
         if (knockBackDir == Vector2.zero)
@@ -85,7 +86,6 @@ public class AttackPlayer : SceneService
 
     private Vector2 GetVerticalKnockBackDir()
     {
-        Vector3 knockBackOrigin = GetKnockBackOrigin();
         Vector2 knockBackDir = GetInitialVerticalKnockBackDir();
 
         int loopCount = 2;
@@ -101,7 +101,6 @@ public class AttackPlayer : SceneService
 
     private Vector2 GetHorizontalKnockBackDir()
     {
-        Vector3 knockBackOrigin = GetKnockBackOrigin();
         Vector2 knockBackDir = GetInitialHorizontalKnockBackDir();
 
         int loopCount = 2;
@@ -164,7 +163,7 @@ public class AttackPlayer : SceneService
 
     private Vector3 GetKnockBackOrigin()
     {
-        return knockBackOrigin == KnockBackOrigin.ThisObject ? transform.position : player.LastMoveTargetPosition;
+        return knockBackSource == KnockBackSource.ThisObject ? transform.position : player.LastMoveTargetPosition;
     }
 
     private Vector2 GetKnockBackTargetPosition(Vector2 knockBackDir)
