@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1618228155830257493}
   - component: {fileID: 4488644700605989721}
   - component: {fileID: 6537887575375681265}
-  - component: {fileID: 8072424444930782613}
+  - component: {fileID: 3123295628107583337}
   m_Layer: 0
   m_Name: Ground Coffin 2 Model
   m_TagString: Untagged
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8072424444930782613
+--- !u!114 &3123295628107583337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,11 +115,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2043537636635439728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9348a757508f6ad48ba1a0c54a7f2cd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.125
-  attackDuration: 1
 --- !u!1 &3975585011152093771
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,15 +257,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a63be2a7c58448b37b2a72ac07863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderSpawnDelay: 0.125
-  destroySelfDelay: 1.25
+  anticipationDuration: 0.125
+  attackDuration: 1
+  recoveryDuration: 0.125
+  TotalDuration: 1.25
   useRandomizedSpawnDelay: 0
   minRandomSpawnDelay: 0
   maxRandomSpawnDelay: 0.1
-  topBorder: 2
-  bottomBorder: -4
-  rightBorder: 6
-  leftBorder: -6
   colliderGameObject: {fileID: 3975585011641887085}
   groundCoffinModelArray:
   - {fileID: 3975585013025071505}
@@ -364,7 +360,7 @@ GameObject:
   - component: {fileID: 3975585013025071506}
   - component: {fileID: 3975585013025071508}
   - component: {fileID: 3975585013025071507}
-  - component: {fileID: 6213059817390375264}
+  - component: {fileID: 4761489721996658765}
   m_Layer: 0
   m_Name: Ground Coffin 1 Model
   m_TagString: Untagged
@@ -459,7 +455,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6213059817390375264
+--- !u!114 &4761489721996658765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,11 +464,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3975585013025071505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9348a757508f6ad48ba1a0c54a7f2cd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.125
-  attackDuration: 1
 --- !u!1 &6270471600297573761
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +478,7 @@ GameObject:
   - component: {fileID: 2300599321833825727}
   - component: {fileID: 5020457228960770144}
   - component: {fileID: 2897178050224481588}
-  - component: {fileID: 7284771147601913420}
+  - component: {fileID: 736600965700732166}
   m_Layer: 0
   m_Name: Ground Coffin 3 Model
   m_TagString: Untagged
@@ -579,7 +573,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7284771147601913420
+--- !u!114 &736600965700732166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -588,8 +582,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6270471600297573761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9348a757508f6ad48ba1a0c54a7f2cd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.125
-  attackDuration: 1

@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8424883089082538260}
-  - component: {fileID: 2070896699210129074}
+  - component: {fileID: 375644485051954971}
   m_Layer: 0
   m_Name: Ground Coffin - Double Wave
   m_TagString: Untagged
@@ -69,7 +69,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2070896699210129074
+--- !u!114 &375644485051954971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,12 +78,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2362403029706079944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b228cc639396d478eaa6a787899c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 119de584aaaee3347b2d5ba4553c56b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroySelfDelay: 2
-  secondWaveDelay: 0.4
-  secondWave: {fileID: 2232701174721633135}
+  spawnInterval: 0.4
+  destroyTimerOnComplete: 2
+  gameObjectsToSpawnArray:
+  - {fileID: 3553949760359340838}
+  - {fileID: 2232701174721633135}
 --- !u!1 &3553949760359340838
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1918410458668914459
 Transform:
   m_ObjectHideFlags: 0

@@ -118,8 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
 --- !u!1 &2043537636635439728
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,8 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
 --- !u!1 &3975585011152093771
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,15 +378,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 880a63be2a7c58448b37b2a72ac07863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderSpawnDelay: 0.5
-  destroySelfDelay: 1.5
+  anticipationDuration: 0.5
+  attackDuration: 0.875
+  recoveryDuration: 0.125
+  TotalDuration: 1.5
   useRandomizedSpawnDelay: 0
   minRandomSpawnDelay: 0
   maxRandomSpawnDelay: 0
-  topBorder: 3
-  bottomBorder: -4
-  rightBorder: 6
-  leftBorder: -6
   colliderGameObject: {fileID: 3975585011641887085}
   groundCoffinModelArray:
   - {fileID: 3975585013025071505}
@@ -457,8 +451,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   enableKnockBack: 1
-  knockBackOrigin: 0
-  knockBackType: 0
+  knockBackSource: 0
+  knockBackOrientation: 0
   knockBackDirection: 0
   moveBlockMask:
     serializedVersion: 2
@@ -597,8 +591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
 --- !u!1 &4857659156259181891
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,8 +709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
 --- !u!1 &6270471600297573761
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,8 +827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875
 --- !u!1 &7872645079453387188
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,5 +945,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b89ac6a8316d740bd3def5816c9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anticipationDuration: 0.5
-  attackDuration: 0.875

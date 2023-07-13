@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Nail_Out
+  m_Name: Ground_Summon_Out
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -59,7 +59,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Nail_Attack
+  m_Name: Ground_Summon_Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -111,16 +111,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 4800937354641497669}
-    m_Position: {x: 230, y: 30, z: 0}
+    m_Position: {x: 350, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -339089157591231002}
-    m_Position: {x: 530, y: 30, z: 0}
+    m_Position: {x: 350, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -45172758057497513}
-    m_Position: {x: 370, y: 110, z: 0}
+    m_Position: {x: 350, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -252758159486804148}
-    m_Position: {x: 187.1134, y: 196.61081, z: 0}
+    m_Position: {x: 30, y: 190, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -138,7 +138,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Nail_In
+  m_Name: Ground_Summon_In
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

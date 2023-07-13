@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Nail_In
+  m_Name: Ground_Summon_In
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -33,7 +33,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Nail_Out
+  m_Name: Ground_Summon_Out
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -107,7 +107,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground_Nail_Attack
+  m_Name: Ground_Summon_Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -137,16 +137,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5269894853535164244}
-    m_Position: {x: 570, y: 20, z: 0}
+    m_Position: {x: 390, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5272760322932056919}
-    m_Position: {x: 260, y: 20, z: 0}
+    m_Position: {x: 390, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2195964597347298237}
-    m_Position: {x: 410, y: 110, z: 0}
+    m_Position: {x: 390, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -944741051812805660}
-    m_Position: {x: 157.73193, y: 199.0593, z: 0}
+    m_Position: {x: 10, y: 190, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
