@@ -190,7 +190,7 @@ public class Player : SceneService
         isTakeDamageOnCooldown = true;
 
         animator.SetTrigger("OnHit");
-        health.TakeDamage(1);
+        health.TakeDamage();
 
         yield return StartCoroutine(cameraShakeController.PlayCameraShake());
 

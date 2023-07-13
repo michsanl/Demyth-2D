@@ -90,8 +90,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3143619101027616307}
   - component: {fileID: 3143619101027616306}
-  - component: {fileID: 1719733396858741420}
   - component: {fileID: 1538411941623662623}
+  - component: {fileID: 1289367315621703064}
+  - component: {fileID: 1719733396858741420}
   - component: {fileID: 4608673986508498265}
   - component: {fileID: 854613596650216529}
   - component: {fileID: 426225192504292295}
@@ -149,7 +150,7 @@ MonoBehaviour:
   actionDelay: 0.25
   moveDuration: 0.245
   attackDuration: 0.5
-  invulnerableDuration: 1
+  takeDamageCooldown: 1
   moveBlockMask:
     serializedVersion: 2
     m_Bits: 64
@@ -158,20 +159,6 @@ MonoBehaviour:
     m_Bits: 2048
   animator: {fileID: 3143619101154623906}
   senterGameObject: {fileID: 6712916346127714324}
---- !u!114 &1719733396858741420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3143619101027616268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544ac43213f06a544999d6c9cdf94c5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxPotionAmount: 2
-  currentPotionAmount: 2
 --- !u!114 &1538411941623662623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +174,34 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   status: 0
+--- !u!114 &1289367315621703064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143619101027616268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2359b432ed3e144db692549067a5d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxShield: 2
+  currentShield: 0
+--- !u!114 &1719733396858741420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143619101027616268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544ac43213f06a544999d6c9cdf94c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPotionAmount: 2
+  currentPotionAmount: 2
 --- !u!114 &4608673986508498265
 MonoBehaviour:
   m_ObjectHideFlags: 0
