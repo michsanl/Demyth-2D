@@ -8,12 +8,13 @@ public class Shield : MonoBehaviour
 {
     [Header("Shield Attribute")]
     [SerializeField] private int maxShield = 5;
-    [SerializeField, ReadOnly] private int currentShield;
+    [SerializeField] private float shieldRegenSpeed = 0.25f;
+    [SerializeField, ReadOnly] private float currentShield;
 
     public int MaxShield => maxShield;
-    public int CurrentShield 
+    public float CurrentShield 
     { 
-        get => currentShield;
+        get => Mathf.Clamp(currentShield, 0, maxShield);
         set
         {
             currentShield = Mathf.Clamp(value, 0, maxShield);
@@ -27,6 +28,21 @@ public class Shield : MonoBehaviour
         ResetShieldToMaximum();
     }
 
+    private void Update()
+    {
+        ShieldRegeneration();
+    }
+
+    private void ShieldRegeneration()
+    {
+        if (currentShield < maxShield)
+        {
+            currentShield += Time.deltaTime * shieldRegenSpeed;
+
+            OnShieldAmountChanged?.Invoke();
+        }
+    }
+
     [Button("Reset Shield", ButtonSizes.Medium)]
     public void ResetShieldToMaximum()
     {
@@ -37,7 +53,7 @@ public class Shield : MonoBehaviour
 
     public bool TryShieldTakeDamage()
     {
-        if (currentShield <= 0)
+        if (currentShield < 1)
         {
             return false;
         }

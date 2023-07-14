@@ -370,8 +370,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2509427054774182828, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
+      propertyPath: LoopAbility
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509427054774182828, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: SelectCombatMode
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2509427054774182828, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: activateCombatMode
@@ -778,10 +782,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1538411941623662623, guid: 321983681366ef744898eb289741b047, type: 3}
-      propertyPath: maxHealth
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name
       value: Player

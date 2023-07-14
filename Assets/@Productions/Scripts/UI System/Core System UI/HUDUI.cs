@@ -94,7 +94,9 @@ public class HUDUI : SceneService
         var newShieldPositionY = shieldAmountRatio * barPositionRange + minimumShieldPositionY;
 
         Vector3 targetPosition = new Vector3 (shieldPositionX, newShieldPositionY, 0);
+        shieldBarTransform.DOKill();
         shieldBarTransform.DOLocalMove(targetPosition, barChangeDuration).SetEase(Ease.OutExpo);
+        // shieldBarTransform.localPosition = targetPosition;
     }
 
     private void Player_OnSenterToggle(bool senterState)

@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 10
   currentHealth: 0
   status: 0
 --- !u!114 &1289367315621703064
@@ -186,7 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2359b432ed3e144db692549067a5d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShield: 2
+  maxShield: 1
+  shieldRegenSpeed: 0.25
   currentShield: 0
 --- !u!114 &1719733396858741420
 MonoBehaviour:
