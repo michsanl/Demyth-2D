@@ -33,6 +33,8 @@ public class SriCombatBehaviorNew : SceneService
     private LookOrientation lookOrientation;
     private Health health;
 
+    private int meleeAbilityCounter;
+
     protected override void OnInitialize()
     {
         upSlashAbility = GetComponent<SriAbilityUpSlash>();
@@ -53,6 +55,7 @@ public class SriCombatBehaviorNew : SceneService
     protected override void OnActivate()
     {
         health.OnTakeDamage += Health_OnTakeDamage;
+        health.OnDeath += Health_OnDeath;
 
         if (activateCombatBehaviorOnStart)
             ChangeCombatBehavior();
@@ -62,23 +65,20 @@ public class SriCombatBehaviorNew : SceneService
     {
         if (health.CurrentHP == changePhaseHPThreshold)
         {
+            StopCurrentAbility();
             StartPhaseTwo();
         }
     }
 
-    private void StartPhaseTwo()
+    private void Health_OnDeath()
     {
-        StopAllCoroutines();
-        DeactivateAllAttackCollider();
-
-        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
+        StopCurrentAbility();
     }
 
     [Button("Change Combat Behavior", ButtonSizes.Medium)]
     private void ChangeCombatBehavior()
     {
-        StopAllCoroutines();
-        DeactivateAllAttackCollider();
+        StopCurrentAbility();
 
         switch (SelectCombatMode)
         {
@@ -104,19 +104,22 @@ public class SriCombatBehaviorNew : SceneService
         yield return StartCoroutine(ability);
         StartCoroutine(LoopCombatBehavior(getAbility));
     }
+
+    private void IncreaseMeleeAbilityCounter()
+    {
+        meleeAbilityCounter++;
+        if (meleeAbilityCounter > 2)
+        {
+            meleeAbilityCounter = 0;
+        }
+    }
     
     private IEnumerator GetFirstPhaseAbility()
     {
         if (IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0,3);
-            if (randomIndex == 0)
-            {
-                return nailAOEAbility.NailAOE();
-            } else
-            {
-                return spinClawAbility.SpinClaw();
-            }
+            IncreaseMeleeAbilityCounter();
+            return meleeAbilityCounter == 0 ? nailAOEAbility.NailAOE() : spinClawAbility.SpinClaw();
         }
 
         if (IsPlayerInlineHorizontally())
@@ -126,20 +129,14 @@ public class SriCombatBehaviorNew : SceneService
 
         if (IsPlayerInlineVertically())
         {
-            if (IsPlayerAbove())
-            {
-                return upSlashAbility.UpSlash();
-            }
-            else
-            {
-                return downSlashAbility.DownSlash();
-            }
+            return IsPlayerAbove() ? upSlashAbility.UpSlash() : downSlashAbility.DownSlash();
         }
 
         if (!IsPlayerNearby())
         {
             return nailSummonAbility.NailSummon();
         }
+
         return null;
     }
 
@@ -152,17 +149,9 @@ public class SriCombatBehaviorNew : SceneService
 
         if (IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0, 3);
-            if (randomIndex == 0)
-            {
-                return spinClawAbility.SpinClaw();
-            }
-            else
-            {
-                return nailAOEAbility.NailAOE();
-            }
+            IncreaseMeleeAbilityCounter();
+            return meleeAbilityCounter == 0 ? spinClawAbility.SpinClaw() : nailAOEAbility.NailAOE();
         }
-
 
         if (IsPlayerInlineHorizontally())
         {
@@ -171,29 +160,15 @@ public class SriCombatBehaviorNew : SceneService
 
         if (IsPlayerInlineVertically())
         {
-            if (IsPlayerAbove())
-            {
-                return upSlashAbility.UpSlash();
-            }
-            else
-            {
-                return downSlashAbility.DownSlash();
-            }
+            return IsPlayerAbove() ? upSlashAbility.UpSlash() : downSlashAbility.DownSlash();
         }
-
 
         if (!IsPlayerNearby())
         {
             int randomIndex = UnityEngine.Random.Range(0, 3);
-            if (randomIndex == 0)
-            {
-                return nailSummonAbility.NailSummon();
-            }
-            else
-            {
-                return fireBallAbility.FireBall();
-            }
+            return randomIndex == 0 ? fireBallAbility.FireBall() : nailSummonAbility.NailSummon();
         }
+
         return null;
     }
 
@@ -256,6 +231,17 @@ public class SriCombatBehaviorNew : SceneService
         }
     }
 
+    private void StartPhaseTwo()
+    {
+        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
+    }
+
+    private void StopCurrentAbility()
+    {
+        StopAllCoroutines();
+        DeactivateAllAttackCollider();
+    }
+
     private void DeactivateAllAttackCollider()
     {
         foreach (GameObject collider in attackColliderArray)
@@ -276,7 +262,6 @@ public class SriCombatBehaviorNew : SceneService
             lookOrientation.SetFacingDirection(Vector2.left);
         }
     }
-
 
 #region Position to Player Checker
 

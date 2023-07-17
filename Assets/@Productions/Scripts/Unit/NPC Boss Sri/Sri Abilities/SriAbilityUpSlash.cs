@@ -12,14 +12,14 @@ public class SriAbilityUpSlash : SceneService
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
-    [SerializeField] private int topArenaBorder;
-    [SerializeField] private int bottomArenaBorder;
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject upSlashCollider;
     
+    private int topArenaBorder = 2;
+    private int bottomArenaBorder = -4;
     private int UP_SLASH = Animator.StringToHash("Up_Slash");
 
     public IEnumerator UpSlash()

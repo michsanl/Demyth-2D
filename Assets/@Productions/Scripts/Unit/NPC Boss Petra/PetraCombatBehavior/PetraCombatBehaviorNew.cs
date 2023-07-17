@@ -60,7 +60,7 @@ public class PetraCombatBehaviorNew : SceneService
         if (health.CurrentHP == changePhaseHPThreshold)
         {
             StopCurrentAbility();
-            StartCoroutine(ChangePhase());
+            StartCoroutine(StartPhaseTwo());
         }
     }
 
@@ -176,7 +176,7 @@ public class PetraCombatBehaviorNew : SceneService
         }
     }
 
-    private IEnumerator ChangePhase()
+    private IEnumerator StartPhaseTwo()
     {
         yield return jumpGroundSlamAbility.JumpGroundSlam();
         yield return Helper.GetWaitForSeconds(timeVarianceCompensationDelay);

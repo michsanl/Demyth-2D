@@ -12,14 +12,14 @@ public class SriAbilityHorizontalSlash : SceneService
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
-    [SerializeField] private int rightArenaBorder;
-    [SerializeField] private int leftArenaBorder;
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject horizontalSlashCollider;
     
+    private int rightArenaBorder = 6;
+    private int leftArenaBorder = -6;
     protected int HORIZONTAL_SLASH = Animator.StringToHash("Horizontal_Slash");
 
     public IEnumerator HorizontalSlash()
