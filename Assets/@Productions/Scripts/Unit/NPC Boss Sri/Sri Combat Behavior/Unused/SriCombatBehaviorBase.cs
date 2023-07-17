@@ -9,36 +9,36 @@ public class SriCombatBehaviorBase : SceneService
 {
     protected bool isBusy;
     
-    protected SriAbilityUpSlash abilityUpSlash;
-    protected SriAbilityDownSlash abilityDownSlash;
-    protected SriAbilityHorizontalSlash abilityHorizontalSlash;
-    protected SriAbilitySpinClaw abilitySpinClaw;
-    protected SriAbilityNailAOE abilityNailAOE;
-    protected SriAbilityNailSummon abilityNailSummon;
-    protected SriAbilityFireBall abilityFireBall;
-    protected SriAbilityTeleport abilityTeleport;
-    protected SriAbilityHorizontalNailWave abilityHorizontalNailWave;
-    protected SriAbilityVerticalNailWave abilityVerticalNailWave;
-    protected SriAbilityWaveOutNailWave abilityWaveOutNailWave;
+    protected SriAbilityUpSlash upSlashAbility;
+    protected SriAbilityDownSlash downSlashAbility;
+    protected SriAbilityHorizontalSlash horizontalSlashAbility;
+    protected SriAbilitySpinClaw spinClawAbility;
+    protected SriAbilityNailAOE nailAOEAbility;
+    protected SriAbilityNailSummon nailSummonAbility;
+    protected SriAbilityFireBall fireBallAbility;
+    protected SriAbilityTeleport teleportAbility;
+    protected SriAbilityHorizontalNailWave horizontalNailWaveAbility;
+    protected SriAbilityVerticalNailWave verticalNailWaveAbility;
+    protected SriAbilityWaveOutNailWave waveOutNailWaveAbility;
     protected LookOrientation lookOrientation;
     protected Health health;
 
-    protected Coroutine primaryActiveCoroutine;
-    protected Coroutine secondaryActiveCoroutine;
+    protected Coroutine abilityPlayerCoroutine;
+    protected Coroutine abilityCoroutine;
 
     protected override void OnInitialize()
     {
-        abilityUpSlash = GetComponent<SriAbilityUpSlash>();
-        abilityDownSlash = GetComponent<SriAbilityDownSlash>();
-        abilityHorizontalSlash = GetComponent<SriAbilityHorizontalSlash>();
-        abilitySpinClaw = GetComponent<SriAbilitySpinClaw>();
-        abilityNailAOE = GetComponent<SriAbilityNailAOE>();
-        abilityNailSummon = GetComponent<SriAbilityNailSummon>();
-        abilityFireBall = GetComponent<SriAbilityFireBall>();
-        abilityTeleport = GetComponent<SriAbilityTeleport>();
-        abilityHorizontalNailWave = GetComponent<SriAbilityHorizontalNailWave>();
-        abilityVerticalNailWave = GetComponent<SriAbilityVerticalNailWave>();
-        abilityWaveOutNailWave = GetComponent<SriAbilityWaveOutNailWave>();
+        upSlashAbility = GetComponent<SriAbilityUpSlash>();
+        downSlashAbility = GetComponent<SriAbilityDownSlash>();
+        horizontalSlashAbility = GetComponent<SriAbilityHorizontalSlash>();
+        spinClawAbility = GetComponent<SriAbilitySpinClaw>();
+        nailAOEAbility = GetComponent<SriAbilityNailAOE>();
+        nailSummonAbility = GetComponent<SriAbilityNailSummon>();
+        fireBallAbility = GetComponent<SriAbilityFireBall>();
+        teleportAbility = GetComponent<SriAbilityTeleport>();
+        horizontalNailWaveAbility = GetComponent<SriAbilityHorizontalNailWave>();
+        verticalNailWaveAbility = GetComponent<SriAbilityVerticalNailWave>();
+        waveOutNailWaveAbility = GetComponent<SriAbilityWaveOutNailWave>();
 
         lookOrientation = GetComponent<LookOrientation>();
         health = GetComponent<Health>();
@@ -49,84 +49,84 @@ public class SriCombatBehaviorBase : SceneService
     protected IEnumerator PlayAbilityUpSlash()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityUpSlash.UpSlash(Context.Player));
+        yield return abilityCoroutine = StartCoroutine(upSlashAbility.UpSlash());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilityDownSlash()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityDownSlash.DownSlash(Context.Player));
+        yield return abilityCoroutine = StartCoroutine(downSlashAbility.DownSlash());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilityHorizontalSlash()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityHorizontalSlash.HorizontalSlash(Context.Player));
+        yield return abilityCoroutine = StartCoroutine(horizontalSlashAbility.HorizontalSlash());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilitySpinClaw()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilitySpinClaw.SpinClaw());
+        yield return abilityCoroutine = StartCoroutine(spinClawAbility.SpinClaw());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilityNailAOE()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityNailAOE.NailAOE(false));
-        isBusy = false;
-    }
-
-    protected IEnumerator PlayAbilityNailAOEWithProjectile()
-    {
-        isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityNailAOE.NailAOE(true));
+        yield return abilityCoroutine = StartCoroutine(nailAOEAbility.NailAOE());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilityNailSummon()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityNailSummon.NailSummon(Context.Player));
+        yield return abilityCoroutine = StartCoroutine(nailSummonAbility.NailSummon());
         isBusy = false;
     }
     
     protected IEnumerator PlayAbilityFireBall()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityFireBall.FireBall());
+        yield return abilityCoroutine = StartCoroutine(fireBallAbility.FireBall());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilityHorizontalNailWave()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityHorizontalNailWave.PlayAbility());
+        yield return abilityCoroutine = StartCoroutine(horizontalNailWaveAbility.HorizontalNailWave());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilityVerticalNailWave()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityVerticalNailWave.PlayAbility());
+        yield return abilityCoroutine = StartCoroutine(verticalNailWaveAbility.VerticalNailWave());
         isBusy = false;
     }
 
     protected IEnumerator PlayAbilityWaveOutNailWave()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityWaveOutNailWave.PlayAbility());
+        yield return abilityCoroutine = StartCoroutine(waveOutNailWaveAbility.WaveOutNailWave());
         isBusy = false;
     }
     
     protected IEnumerator PlayAbilityTeleport()
     {
         isBusy = true;
-        yield return secondaryActiveCoroutine = StartCoroutine(abilityTeleport.Teleport());
+        yield return abilityCoroutine = StartCoroutine(teleportAbility.Teleport());
+        isBusy = false;
+    }
+
+    protected IEnumerator PlayAbility(IEnumerator ability)
+    {
+        isBusy = true;
+        yield return abilityCoroutine = StartCoroutine(ability);
         isBusy = false;
     }
 
@@ -137,12 +137,14 @@ public class SriCombatBehaviorBase : SceneService
         int teleportCount = UnityEngine.Random.Range(1, 3);
         for (int i = 0; i < teleportCount; i++)
         {
-            yield return StartCoroutine(abilityTeleport.Teleport());            
+            yield return StartCoroutine(teleportAbility.Teleport());            
             SetFacingDirection();
         }
 
         isBusy = false;
     }
+
+
 
 #endregion
 
@@ -167,12 +169,12 @@ public class SriCombatBehaviorBase : SceneService
         return transform.position.x > Context.Player.transform.position.x;
     }
 
-    protected bool IsPlayerAtSamePosX()
+    protected bool IsPlayerInlineVertically()
     {
         return Mathf.Approximately(transform.position.x, Context.Player.transform.position.x) ;
     }
 
-    protected bool IsPlayerAtSamePosY()
+    protected bool IsPlayerInlineHorizontally()
     {
         return Mathf.Approximately(transform.position.y, Context.Player.transform.position.y);
     }

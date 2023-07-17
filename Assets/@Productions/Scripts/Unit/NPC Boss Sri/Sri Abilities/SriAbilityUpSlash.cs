@@ -22,10 +22,10 @@ public class SriAbilityUpSlash : SceneService
     
     private int UP_SLASH = Animator.StringToHash("Up_Slash");
 
-    public IEnumerator UpSlash(Player player)
+    public IEnumerator UpSlash()
     {
         var audioManager = Context.AudioManager;
-        var playerYPosition = player.transform.position.y;
+        var playerYPosition = Context.Player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 

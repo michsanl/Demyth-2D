@@ -1266,10 +1266,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398050621169836}
-  - component: {fileID: 2509427054774182828}
+  - component: {fileID: 278691031}
   - component: {fileID: 7556223372400055050}
-  - component: {fileID: 7673398050621169833}
   - component: {fileID: 9182001827861331906}
+  - component: {fileID: 7673398050621169833}
   - component: {fileID: 5108067734571236107}
   - component: {fileID: 526264895740656670}
   - component: {fileID: 5501169018158549933}
@@ -1307,7 +1307,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2509427054774182828
+--- !u!114 &278691031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7673398050621169837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d123d407bcdbcd64c86273058f9c9381, type: 3}
+  m_Script: {fileID: 11500000, guid: 492e82d58bab214459724da156b97ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
@@ -1331,9 +1331,17 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  activateCombatMode: 0
+  startCombatBehaviorOnStart: 0
+  changePhaseHPThreshold: 10
   SelectCombatMode: 0
   LoopAbility: 0
+  attackColliderArray:
+  - {fileID: 982308991402775369}
+  - {fileID: 4574950767016202372}
+  - {fileID: 9198151067170226575}
+  - {fileID: 8946307553033440143}
+  - {fileID: 1934800817761677944}
+  - {fileID: 6206227978528789694}
 --- !u!61 &7556223372400055050
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1360,6 +1368,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &9182001827861331906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 0
+  status: 0
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,21 +1396,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 8924511062091846518}
---- !u!114 &9182001827861331906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  currentHealth: 0
-  status: 0
 --- !u!114 &5108067734571236107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1427,7 +1435,7 @@ MonoBehaviour:
   _isActive: 0
   frontSwingDuration: 0.6
   swingDuration: 0.233
-  backSwingDuration: 1.1
+  backSwingDuration: 1.15
   topArenaBorder: 2
   bottomArenaBorder: -4
   animationCurve:
@@ -1482,7 +1490,7 @@ MonoBehaviour:
   _isActive: 0
   frontSwingDuration: 0.6
   swingDuration: 0.233
-  backSwingDuration: 1.1
+  backSwingDuration: 1.15
   topArenaBorder: 2
   bottomArenaBorder: -4
   animationCurve:
@@ -1537,7 +1545,7 @@ MonoBehaviour:
   _isActive: 0
   frontSwingDuration: 0.833
   swingDuration: 0.233
-  backSwingDuration: 1.267
+  backSwingDuration: 1.317
   rightArenaBorder: 6
   leftArenaBorder: -6
   animationCurve:
@@ -1592,7 +1600,7 @@ MonoBehaviour:
   _isActive: 0
   frontSwingDuration: 1
   swingDuration: 1
-  backSwingDuration: 0.5
+  backSwingDuration: 0.55
   animator: {fileID: 7673398052024204807}
   spinClawCollider: {fileID: 8946307553033440143}
 --- !u!114 &6147623236395122227
@@ -1621,7 +1629,7 @@ MonoBehaviour:
   _isActive: 0
   frontSwingDuration: 0.7
   swingDuration: 3.133
-  backSwingDuration: 0.266
+  backSwingDuration: 0.316
   animator: {fileID: 7673398052024204807}
   nailAOECollider: {fileID: 6206227978528789694}
   nailProjectile: {fileID: 5018207761852412869, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
@@ -1651,7 +1659,7 @@ MonoBehaviour:
   _isActive: 0
   frontSwingDuration: 0.6666
   swingDuration: 0.625
-  backSwingDuration: 0.7754
+  backSwingDuration: 0.8254
   nailSpawnDelay: 0
   animator: {fileID: 7673398052024204807}
   nailSummonCollider: {fileID: 218241469}
@@ -1680,7 +1688,7 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  animationDuration: 2.0667
+  animationDuration: 2.117
   animator: {fileID: 7673398052024204807}
   fireBallProjectile: {fileID: 1436042891738576300, guid: ee31fe01da0934048bf95f88e645267f, type: 3}
   fireBallSpawnPosition: {fileID: 4007197789071535468}
@@ -1709,7 +1717,7 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   teleportStartDuration: 0.3
-  teleportEndDuration: 0.4
+  teleportEndDuration: 0.45
   animator: {fileID: 7673398052024204807}
 --- !u!114 &6735911753235969152
 MonoBehaviour:
@@ -1735,7 +1743,7 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  animationDuration: 4.1
+  animationDuration: 4.2
   animator: {fileID: 7673398052024204807}
   horizontalNailWave: {fileID: 3047413229281473511, guid: 3779b8f7bbefe1c4c8d6ca390a2b1799, type: 3}
 --- !u!114 &8446042306020832353
@@ -1762,7 +1770,7 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  animationDuration: 4.1
+  animationDuration: 4.2
   animator: {fileID: 7673398052024204807}
   verticalNailWave: {fileID: 3047413229281473511, guid: b6b67d69af50a154ca81abecef007de1, type: 3}
 --- !u!114 &7328659846407141457
@@ -1789,7 +1797,7 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  animationDuration: 4.1
+  animationDuration: 4.2
   nailSpawnDelay: 0.5
   animator: {fileID: 7673398052024204807}
   waveOutNailWave: {fileID: 3047413229281473511, guid: df906e5e643869c42a035ef2c02591db, type: 3}

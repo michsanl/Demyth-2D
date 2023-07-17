@@ -21,10 +21,10 @@ public class SriAbilityDownSlash : SceneService
     
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
 
-    public IEnumerator DownSlash(Player player)
+    public IEnumerator DownSlash()
     {
         var audioManager = Context.AudioManager;
-        var playerYPosition = player.transform.position.y;
+        var playerYPosition = Context.Player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 

@@ -20,7 +20,7 @@ public class SriAbilityWaveOutNailWave : SceneService
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator PlayAbility()
+    public IEnumerator WaveOutNailWave()
     {
         var audioManager = Context.AudioManager;
 

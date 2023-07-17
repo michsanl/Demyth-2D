@@ -40,16 +40,16 @@ public class SriAbilityTeleport : SceneService
         switch (randomIndex)
         {
             case 0:
-                targetPosition.x = targetPosition.x + 2;
+                targetPosition.x = targetPosition.x + GetPositionOffset();
                 break;
             case 1:
-                targetPosition.x = targetPosition.x - 2;
+                targetPosition.x = targetPosition.x - GetPositionOffset();
                 break;
             case 2:
-                targetPosition.y = targetPosition.y + 2;
+                targetPosition.y = targetPosition.y + GetPositionOffset();
                 break;
             case 3:
-                targetPosition.y = targetPosition.y - 2;
+                targetPosition.y = targetPosition.y - GetPositionOffset();
                 break;
         }
 
@@ -61,6 +61,11 @@ public class SriAbilityTeleport : SceneService
         {
             return targetPosition;
         }
+    }
+
+    private int GetPositionOffset()
+    {
+        return UnityEngine.Random.Range(2, 4);
     }
 
     private bool IsTargetPositionSamePlace(Vector3 targetPosition)

@@ -16,11 +16,10 @@ public class SriAbilityVerticalNailWave : SceneService
     
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator PlayAbility()
+    public IEnumerator VerticalNailWave()
     {
-        var audioManager = Context.AudioManager;
-
         animator.Play(NAIL_WAVE);
+        var audioManager = Context.AudioManager;
         // audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailSummon, transform.position);
         Instantiate(verticalNailWave, Vector3.zero, Quaternion.identity);
 

@@ -22,10 +22,10 @@ public class SriAbilityHorizontalSlash : SceneService
     
     protected int HORIZONTAL_SLASH = Animator.StringToHash("Horizontal_Slash");
 
-    public IEnumerator HorizontalSlash(Player player)
+    public IEnumerator HorizontalSlash()
     {
         var audioManager = Context.AudioManager;
-        float playerXPosition = player.transform.position.x;
+        float playerXPosition = Context.Player.transform.position.x;
         float targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerXPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 

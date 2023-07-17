@@ -19,12 +19,9 @@ public class SriAbilityNailAOE : SceneService
     
     protected int NAIL_AOE = Animator.StringToHash("Nail_AOE");
 
-    public IEnumerator NailAOE(bool summonProjectile)
+    public IEnumerator NailAOE()
     {
         var audioManager = Context.AudioManager;
-
-        if (summonProjectile)
-            Instantiate(nailProjectile, transform.position, Quaternion.identity);
 
         animator.Play(NAIL_AOE);
         audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailAOE, transform.position);

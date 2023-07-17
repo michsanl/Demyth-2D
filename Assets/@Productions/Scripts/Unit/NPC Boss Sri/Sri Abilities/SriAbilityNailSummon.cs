@@ -20,13 +20,15 @@ public class SriAbilityNailSummon : SceneService
     
     protected int NAIL_SUMMON_SINGLE = Animator.StringToHash("Nail_Summon_Single");
 
-    public IEnumerator NailSummon(Player player)
+    public IEnumerator NailSummon()
     {
         var audioManager = Context.AudioManager;
 
-        animator.Play(NAIL_SUMMON_SINGLE);
+        animator.CrossFade(NAIL_SUMMON_SINGLE, .1f, 0);
         audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailSummon, transform.position);
-        StartCoroutine(HandleSpawnGroundNail());
+        
+        Vector2 spawnPosition = Context.Player.LastMoveTargetPosition;
+        Instantiate(groundNail, spawnPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         nailSummonCollider.SetActive(true);
