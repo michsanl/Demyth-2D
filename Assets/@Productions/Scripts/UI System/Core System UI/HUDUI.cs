@@ -5,20 +5,46 @@ using CustomTools.Core;
 using UnityEngine.UI;
 using System;
 using PixelCrushers.DialogueSystem;
+using DG.Tweening;
+using Sirenix.OdinInspector;
 
 public class HUDUI : SceneService
 {
-    [SerializeField] private Image healthPointImage;
+    [Title("Health/Shield Bar Parameter")]
+    [SerializeField] private float barChangeDuration;
+    [SerializeField] private float barPositionRange = 219;
+
+    [Title("Components")]
+    [SerializeField] private Transform healthBarTransform;
+    [SerializeField] private Transform shieldBarTransform;
     [SerializeField] private Image healthPotionEmptyImage;
     [SerializeField] private Image senterLightOnImage;
 
     private Animator animator;
     private HealthPotion playerHealthPotion;
+    private Health playerHealth;
+    private Shield playerShield;
     private bool isOpen;
+
+    private float healthPositionX;
+    private float minimumHealthPositionY;
+    private float shieldPositionX;
+    private float minimumShieldPositionY;
 
     protected override void OnInitialize()
     {
+        base.OnInitialize();
+
+        playerHealthPotion = Context.Player.GetComponent<HealthPotion>();
+        playerHealth = Context.Player.GetComponent<Health>();
+        playerShield = Context.Player.GetComponent<Shield>();
         animator = GetComponent<Animator>();
+
+        GetHealthBarPosition();
+        GetShieldBarPosition();
+
+        playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
+        playerShield.OnShieldAmountChanged += PlayerShield_OnShieldAmountChanged;
 
         Open();
     }
@@ -26,8 +52,6 @@ public class HUDUI : SceneService
     protected override void OnActivate()
     {
         base.OnActivate();
-        
-        playerHealthPotion = Context.Player.GetComponent<HealthPotion>();
 
         playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
         Context.Player.OnSenterToggle += Player_OnSenterToggle;
@@ -45,6 +69,41 @@ public class HUDUI : SceneService
         Open();
     }
 
+    private void PlayerHealth_OnHealthChanged()
+    {
+        UpdateHelathBar();
+    }
+
+    private void PlayerShield_OnShieldAmountChanged()
+    {
+        UpdateShieldBar();
+    }
+
+    private void UpdateHelathBar()
+    {
+        var healthAmountRatio = (float)playerHealth.CurrentHP / playerHealth.MaxHP;
+        var newHealthPositionY = healthAmountRatio * barPositionRange + minimumHealthPositionY;
+
+        Vector3 targetPosition = new Vector3 (healthPositionX, newHealthPositionY, 0);
+        healthBarTransform.DOLocalMove(targetPosition, barChangeDuration).SetEase(Ease.OutExpo);
+    }
+
+    private void UpdateShieldBar()
+    {
+        var shieldAmountRatio = (float)playerShield.CurrentShield / playerShield.MaxShield;
+        var newShieldPositionY = shieldAmountRatio * barPositionRange + minimumShieldPositionY;
+
+        Vector3 targetPosition = new Vector3 (shieldPositionX, newShieldPositionY, 0);
+        shieldBarTransform.DOKill();
+        shieldBarTransform.DOLocalMove(targetPosition, barChangeDuration).SetEase(Ease.OutExpo);
+        // shieldBarTransform.localPosition = targetPosition;
+    }
+
+    private void Player_OnSenterToggle(bool senterState)
+    {
+        senterLightOnImage.gameObject.SetActive(senterState);
+    }
+
     private void PlayerHealthPotion_OnUsePotion(int healthPotionAmount)
     {
         if (healthPotionAmount == 0)
@@ -57,9 +116,16 @@ public class HUDUI : SceneService
         }
     }
 
-    private void Player_OnSenterToggle(bool senterState)
+    private void GetShieldBarPosition()
     {
-        senterLightOnImage.gameObject.SetActive(senterState);
+        shieldPositionX = shieldBarTransform.localPosition.x;
+        minimumShieldPositionY = shieldBarTransform.localPosition.y;
+    }
+
+    private void GetHealthBarPosition()
+    {
+        healthPositionX = healthBarTransform.localPosition.x;
+        minimumHealthPositionY = healthBarTransform.localPosition.y;
     }
 
     public void Open()

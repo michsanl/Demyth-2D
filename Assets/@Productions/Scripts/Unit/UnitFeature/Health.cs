@@ -11,17 +11,15 @@ public class Health : MonoBehaviour
     private int maxHealth = 5;
     [SerializeField, ReadOnly]
     private int currentHealth;
+
+    public int MaxHP => maxHealth;
     public int CurrentHP 
     { 
         get => currentHealth;
         set
         {
             currentHealth = Mathf.Clamp(value, 0, maxHealth);
-
-            if (value <= 0)
-            {
-                Death();
-            }
+            if (value <= 0) OnDeath?.Invoke();
         }
     }
 
@@ -29,7 +27,16 @@ public class Health : MonoBehaviour
     [SerializeField]
     private HealthStatus status = HealthStatus.Normal;
 
-    public Action OnAfterTakeDamage;
+    public Action OnTakeDamage;
+    public Action OnHealthChanged;
+    public Action OnDeath;
+
+    private Shield shield;
+
+    private void Awake() 
+    {
+        shield = GetComponent<Shield>();
+    }
 
     private void Start()
     {
@@ -40,26 +47,36 @@ public class Health : MonoBehaviour
     public void ResetHealthToMaximum()
     {
         CurrentHP = maxHealth;
+
+        OnHealthChanged?.Invoke();
     }
 
-    public void TakeDamage(int hitDamage)
+    public void TakeDamage()
     {
-        if (status == HealthStatus.Invulnerable) return;
+        if (status == HealthStatus.Invulnerable) 
+            return;
+        if (shield != null)
+        {
+            if (shield.TryShieldTakeDamage())
+                return;
+        }
 
         CurrentHP--;
 
-        OnAfterTakeDamage?.Invoke();
+        OnHealthChanged?.Invoke();
+        OnTakeDamage?.Invoke();
     }
 
     public void Heal(int healAmount)
     {
         CurrentHP++;
+
+        OnHealthChanged?.Invoke();
     }
 
     private void Death()
     {
-        //Dead
-        gameObject.SetActive(false);
+        OnDeath?.Invoke();
     }
 
     public bool IsHealthFull()

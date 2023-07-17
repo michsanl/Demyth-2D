@@ -9,6 +9,14 @@ public class SriAbilityTeleport : SceneService
     [SerializeField] private float teleportEndDuration;
     [SerializeField] private Animator animator;
     
+    private int topBorder = 2;
+    private int bottomBorder = -4;
+    private int rightBorder = 6;
+    private int leftBorder = -6;
+    private Vector3[] pillarPositionArray = new Vector3[] 
+    { 
+        new Vector3(5,1,0), new Vector3(-5,1,0), new Vector3(5,-1,0), new Vector3(-5,-1,0)
+    };
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
 
@@ -32,26 +40,54 @@ public class SriAbilityTeleport : SceneService
         switch (randomIndex)
         {
             case 0:
-                targetPosition.x = targetPosition.x + 2;
+                targetPosition.x = targetPosition.x + GetPositionOffset();
                 break;
             case 1:
-                targetPosition.x = targetPosition.x - 2;
+                targetPosition.x = targetPosition.x - GetPositionOffset();
                 break;
             case 2:
-                targetPosition.y = targetPosition.y + 2;
+                targetPosition.y = targetPosition.y + GetPositionOffset();
                 break;
             case 3:
-                targetPosition.y = targetPosition.y - 2;
+                targetPosition.y = targetPosition.y - GetPositionOffset();
                 break;
         }
 
-        if (targetPosition == transform.position)
+        if (IsTargetPositionSamePlace(targetPosition) || IsOutOfBounds(targetPosition))
         {
             return GetTeleportTargetPosition();
         }
         else
         {
-            return targetPosition; 
+            return targetPosition;
         }
+    }
+
+    private int GetPositionOffset()
+    {
+        return UnityEngine.Random.Range(2, 4);
+    }
+
+    private bool IsTargetPositionSamePlace(Vector3 targetPosition)
+    {
+        return targetPosition == transform.position;
+    }
+
+    private bool IsOutOfBounds(Vector3 targetPosition)
+    {
+        float positionY = targetPosition.y;
+        float positionX = targetPosition.x;
+
+        return positionY > topBorder || positionY < bottomBorder || positionX > rightBorder || positionX < leftBorder;
+    }
+
+    private bool IsTargetPillarPosition(Vector3 targetPosition)
+    {
+        foreach (var pillarPosition in pillarPositionArray)
+        {
+            if (targetPosition == pillarPosition)
+                return true;
+        }
+        return false;
     }
 }

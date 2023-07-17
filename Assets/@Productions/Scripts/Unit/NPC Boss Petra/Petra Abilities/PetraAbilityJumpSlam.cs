@@ -8,8 +8,6 @@ using CustomTools.Core;
 public class PetraAbilityJumpSlam : SceneService
 {
     [Title("Animation Timeline")]
-    [SerializeField] private float animationDuration;
-    [Space]
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
@@ -21,31 +19,22 @@ public class PetraAbilityJumpSlam : SceneService
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject jumpSlamCollider;
-    
+
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
     public IEnumerator JumpSlam()
     {
-        var targetPosition = Context.Player.LastMoveTargetPosition;
-
-        StartCoroutine(SetCollider());
-        StartCoroutine(JumpToLocation(targetPosition));
-
         animator.Play(JUMP_SLAM);
-        yield return Helper.GetWaitForSeconds(animationDuration);
+        Vector3 targetPosition = Context.Player.LastMoveTargetPosition;
+        
+        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+
+        yield return transform.DOJump(targetPosition, jumpPower, 1, swingDuration).SetEase(jumpCurve).WaitForCompletion();
+
+        jumpSlamCollider.SetActive(true);
+
+        yield return Helper.GetWaitForSeconds(backSwingDuration);
 
         jumpSlamCollider.SetActive(false);
-    }
-
-    private IEnumerator JumpToLocation(Vector3 targetPosition)
-    {
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
-        yield return transform.DOJump(targetPosition, jumpPower, 1, swingDuration).SetEase(jumpCurve).WaitForCompletion();
-    }
-
-    private IEnumerator SetCollider()
-    {
-        yield return Helper.GetWaitForSeconds(frontSwingDuration + swingDuration);
-        jumpSlamCollider.SetActive(true);
     }
 }

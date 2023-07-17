@@ -22,11 +22,14 @@ namespace CustomTools.Core
             yield return base.OnActivate();
 
             SetPlayerContext();
-            SpawnPlayerOnLevelStartingPosition();
+            // SpawnPlayerOnLevelStartingPosition();
         }
 
         private void SpawnPlayerOnLevelStartingPosition()
         {
+            if (Context.LevelManager == null)
+                return;
+
             var starterPoint = Context.LevelManager.CurrentLevel.StarterPosition;
             Context.Player.transform.position = starterPoint;
         }

@@ -16,6 +16,6 @@ public class Damageable : Interactable
     {
         if (health == null) return;
         
-        health.TakeDamage(1);
+        health.TakeDamage();
     }
 }
