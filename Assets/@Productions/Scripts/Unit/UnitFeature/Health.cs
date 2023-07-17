@@ -19,11 +19,7 @@ public class Health : MonoBehaviour
         set
         {
             currentHealth = Mathf.Clamp(value, 0, maxHealth);
-
-            if (value <= 0)
-            {
-                Death();
-            }
+            if (value <= 0) OnDeath?.Invoke();
         }
     }
 
@@ -33,6 +29,7 @@ public class Health : MonoBehaviour
 
     public Action OnTakeDamage;
     public Action OnHealthChanged;
+    public Action OnDeath;
 
     private Shield shield;
 
@@ -79,8 +76,7 @@ public class Health : MonoBehaviour
 
     private void Death()
     {
-        //Dead
-        gameObject.SetActive(false);
+        OnDeath?.Invoke();
     }
 
     public bool IsHealthFull()

@@ -1237,9 +1237,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398050621169836}
-  - component: {fileID: 1138521342322003525}
-  - component: {fileID: 7673398050621169833}
+  - component: {fileID: 2020845691378895225}
   - component: {fileID: 9182001827861331906}
+  - component: {fileID: 7673398050621169833}
   - component: {fileID: 5108067734571236107}
   - component: {fileID: 4916652800471147435}
   - component: {fileID: 619706147197714977}
@@ -1249,6 +1249,7 @@ GameObject:
   - component: {fileID: 6108068965076743681}
   - component: {fileID: 5643614448671995387}
   - component: {fileID: 7757723810402338686}
+  - component: {fileID: 6918455945304980616}
   m_Layer: 6
   m_Name: NPC Boss Petra
   m_TagString: Untagged
@@ -1273,7 +1274,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1138521342322003525
+--- !u!114 &2020845691378895225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1282,7 +1283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7673398050621169837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20183e4ee57d1284f96c20d731d23452, type: 3}
+  m_Script: {fileID: 11500000, guid: 6004192283ef3b14c90cdcc08955ba02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _scene: {fileID: 0}
@@ -1297,22 +1298,16 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  activateCombatMode: 0
-  SelectCombatMode: 0
+  activateCombatBehaviorOnStart: 0
+  changePhaseHPThreshold: 25
+  SelectedCombatMode: 0
   LoopAbility: 0
---- !u!114 &7673398050621169833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e58e6f4ba525804880f6ea79a464627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 2035042749252718171}
+  attackColliderArray:
+  - {fileID: 5215676311051618195}
+  - {fileID: 3394045014038967453}
+  - {fileID: 6631251182860402330}
+  - {fileID: 2906600543523919839}
+  - {fileID: 4152772934057147649}
 --- !u!114 &9182001827861331906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,6 +1323,19 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   status: 0
+--- !u!114 &7673398050621169833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e58e6f4ba525804880f6ea79a464627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 2035042749252718171}
 --- !u!114 &5108067734571236107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1623,7 +1631,6 @@ MonoBehaviour:
     VCamCameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  animationDuration: 1.71
   frontSwingDuration: 0.41
   swingDuration: 0.3
   backSwingDuration: 1
@@ -1654,6 +1661,61 @@ MonoBehaviour:
     m_RotationOrder: 4
   animator: {fileID: 4912183497154396725}
   jumpSlamCollider: {fileID: 4152772934057147649}
+--- !u!114 &6918455945304980616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398050621169837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c142f94cf54e142a1917c7e1278580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    gameManager: {fileID: 0}
+    gameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    VCamCameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  frontSwingDuration: 0.41
+  swingDuration: 0.3
+  backSwingDuration: 1
+  jumpPower: 1
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animator: {fileID: 4912183497154396725}
+  jumpSlamCollider: {fileID: 4152772934057147649}
+  groundSlamCoffin: {fileID: 2362403029706079944, guid: c74aff0a4a88cf34d89f400b792b9eeb, type: 3}
 --- !u!1 &7673398051580542025
 GameObject:
   m_ObjectHideFlags: 0

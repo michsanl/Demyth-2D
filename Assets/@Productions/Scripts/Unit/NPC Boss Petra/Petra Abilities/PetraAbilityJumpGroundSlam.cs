@@ -5,7 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 
-public class PetraAbilityJumpSlam : SceneService
+public class PetraAbilityJumpGroundSlam : SceneService
 {
     [Title("Animation Timeline")]
     [SerializeField] private float frontSwingDuration;
@@ -19,19 +19,21 @@ public class PetraAbilityJumpSlam : SceneService
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject jumpSlamCollider;
+    [SerializeField] private GameObject groundSlamCoffin;    
 
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpSlam()
+    public IEnumerator JumpGroundSlam()
     {
         animator.Play(JUMP_SLAM);
-        Vector3 targetPosition = Context.Player.LastMoveTargetPosition;
+        Vector3 jumpTargetPosition = new Vector3(0, -1, 0);
         
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
 
-        yield return transform.DOJump(targetPosition, jumpPower, 1, swingDuration).SetEase(jumpCurve).WaitForCompletion();
+        yield return transform.DOJump(jumpTargetPosition, jumpPower, 1, swingDuration).SetEase(jumpCurve).WaitForCompletion();
 
         jumpSlamCollider.SetActive(true);
+        Instantiate(groundSlamCoffin, transform.position, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
 

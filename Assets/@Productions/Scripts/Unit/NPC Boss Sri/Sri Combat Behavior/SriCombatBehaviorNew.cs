@@ -7,7 +7,7 @@ using CustomTools.Core;
 
 public class SriCombatBehaviorNew : SceneService
 {
-    [SerializeField] private bool startCombatBehaviorOnStart;
+    [SerializeField] private bool activateCombatBehaviorOnStart;
     [SerializeField] private int changePhaseHPThreshold;
     [EnumToggleButtons] public CombatMode SelectCombatMode;
     [EnumToggleButtons, Space] public Ability LoopAbility;
@@ -54,7 +54,7 @@ public class SriCombatBehaviorNew : SceneService
     {
         health.OnTakeDamage += Health_OnTakeDamage;
 
-        if (startCombatBehaviorOnStart)
+        if (activateCombatBehaviorOnStart)
             ChangeCombatBehavior();
     }
 
