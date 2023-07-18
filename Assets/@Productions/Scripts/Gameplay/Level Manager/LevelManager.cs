@@ -9,46 +9,42 @@ using System;
 
 public class LevelManager : SceneService
 {
-    public Action OnOpenMainMenu;
-    public Action OnLevelChanged;
+    public bool IsMainMenuOpen { get; private set; }
     public Level CurrentLevel { get; private set; }
+    public Level MainMenuLevel => mainMenuLevel;
 
-    [SerializeField]
-    private List<Level> levels = new List<Level>();
-
+    [SerializeField] private Level mainMenuLevel;
+    [SerializeField] private List<Level> levels = new List<Level>();
+    
     protected override void OnInitialize()
     {
         GetLevelOnChild();
+        SetLevelContext();
+
+        SetLevel(mainMenuLevel);
+        CurrentLevel = mainMenuLevel;
+    }
+
+    public void SetLevel(Level targetLevel)
+    {
         foreach (var level in levels)
         {
-            level.Context = Context;
+            level.SetActive(level == targetLevel);            
         }
-        CurrentLevel = GetLevelByID(debugLevelID);
-    }
+        CurrentLevel = targetLevel;
 
-    public IEnumerator SetupLevel()
-    {
-        yield return new WaitForEndOfFrame();
-    }
-
-    public void SetLevel(Level level)
-    {
-        foreach (var mapLevel in levels)
+        if (targetLevel == mainMenuLevel)
         {
-            mapLevel.SetActive(mapLevel == level);            
+            IsMainMenuOpen = true;
         }
-
-        if (level == null) return;
-
-        level.SetActive(true);
+        else
+        {
+            IsMainMenuOpen = false;
+            SetPlayerPosition(targetLevel.StarterPosition);
+        }
     }
 
-    public Level GetLevelByID(string id)
-    {
-        return levels.FirstOrDefault(x => x.ID == id);
-    }
-
-    public void ChangeLevel(string previousLevelID, string nextLevelID)
+    public void ChangeLevelByGate(string previousLevelID, string nextLevelID)
     {
         var nextLevel = GetLevelByID(nextLevelID);
         var previousLevel = GetLevelByID(previousLevelID);
@@ -62,33 +58,22 @@ public class LevelManager : SceneService
         CurrentLevel = nextLevel;
     }
 
-    public void OpenMainMenuLevel()
+    public Level GetLevelByID(string id)
     {
-        Level mainMenuLevel = GetLevelByID("Level Main Menu");
+        return levels.FirstOrDefault(x => x.ID == id);
+    }
+
+    private void SetPlayerPosition(Vector3 targetPosition)
+    {
+        Context.Player.transform.position = targetPosition;
+    }
+
+    private void SetLevelContext()
+    {
         foreach (var level in levels)
         {
-            level.SetActive(level == mainMenuLevel);            
+            level.Context = Context;
         }
-        CurrentLevel = mainMenuLevel;
-        Context.Player.gameObject.SetActive(false);
-
-        OnOpenMainMenu?.Invoke();
-    }
-
-    public void ChangeLevel(Level targetLevel)
-    {
-        foreach (var mapLevel in levels)
-        {
-            mapLevel.SetActive(mapLevel == targetLevel);            
-        }
-        CurrentLevel = targetLevel;
-
-        OnLevelChanged?.Invoke();
-    }
-
-    private void SetPlayerPosition(Vector3 levelStarterPosition)
-    {
-        Context.Player.transform.position = levelStarterPosition;
     }
 
 #if UNITY_EDITOR
@@ -100,10 +85,13 @@ public class LevelManager : SceneService
     [Button]
     private void DebugOpenLevel()
     {
-        var level = levels.FirstOrDefault(x => x.ID == debugLevelID);
-        if (level == null) return;
-
-        SetLevel(level);
+        var targetLevel = levels.FirstOrDefault(x => x.ID == debugLevelID);
+        if (targetLevel == null) return;
+        
+        foreach (var level in levels)
+        {
+            level.SetActive(level == targetLevel);            
+        }
     }
 
     [Button]

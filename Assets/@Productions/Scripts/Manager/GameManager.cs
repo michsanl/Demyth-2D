@@ -9,20 +9,14 @@ using DG.Tweening;
 
 public class GameManager : SceneService
 {
-    public Action OnGameStart;
-    public Action OnOpenMainMenu;
     public Action OnGamePaused;
     public Action OnGameUnpaused;
     public bool IsGamePaused => isGamePaused;
 
-
-
     private bool isGamePaused;
-    private bool isMainMenuOpen = true;
 
     protected override void OnInitialize()
     {
-
     }
 
     protected override void OnActivate()
@@ -35,31 +29,9 @@ public class GameManager : SceneService
         TogglePauseGame();
     }
 
-    public void StartGame(string levelID)
-    {
-        Context.LevelManager.CurrentLevel.MoveToNextLevel(levelID);
-        Context.UI.Close<MainMenuUI>();
-        isMainMenuOpen = false;
-        Context.Player.ActivatePlayer();
-
-        OnGameStart?.Invoke();
-    }
-
-    public void GoToMainMenu()
-    {
-        Context.LevelManager.OpenMainMenuLevel();
-        Context.UI.Open<MainMenuUI>();
-        isMainMenuOpen = true;
-
-        OnOpenMainMenu?.Invoke();
-
-        Context.CameraNormal.transform.DOKill();
-        Context.CameraNormal.transform.localPosition = Vector3.zero;
-    }
-
     public void TogglePauseGame()
     {
-        if (isMainMenuOpen)
+        if (Context.LevelManager.IsMainMenuOpen)
             return;
 
         isGamePaused = !isGamePaused;

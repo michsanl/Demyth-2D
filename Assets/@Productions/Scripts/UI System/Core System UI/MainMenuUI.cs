@@ -22,7 +22,27 @@ namespace UISystem
 
         public void ButtonNewGame()
         {
-            SceneUI.Context.GameManager.StartGame("Level 1");
+            Close();
+
+            Level firstLevel = SceneUI.Context.LevelManager.GetLevelByID("Level 1");
+            SceneUI.Context.LevelManager.SetLevel(firstLevel);
+            SceneUI.Context.HUDUI.Open();
+
+            SceneUI.Context.Player.ActivatePlayer();
+        }
+
+        public void ButtonGoToLevel(string levelID)
+        {
+            Close();
+
+            Level targetLevel = SceneUI.Context.LevelManager.GetLevelByID(levelID);
+            SceneUI.Context.LevelManager.SetLevel(targetLevel);
+            SceneUI.Context.HUDUI.Open();
+
+            SceneUI.Context.Player.ActivatePlayer();
+
+            mainButtonParent.SetActive(true);
+            selectLevelButtonParent.SetActive(false);
         }
 
         public void ButtonContinue()
@@ -33,21 +53,12 @@ namespace UISystem
 
         public void ButtonOption()
         {
-            Close();
-            Open<OptionsUI>();
+
         }
 
         public void ButtonQuit()
         {
             Application.Quit();
-        }
-
-        public void ButtonGoToLevel(string levelID)
-        {
-            SceneUI.Context.GameManager.StartGame(levelID);
-
-            mainButtonParent.SetActive(true);
-            selectLevelButtonParent.SetActive(false);
         }
     }
 }

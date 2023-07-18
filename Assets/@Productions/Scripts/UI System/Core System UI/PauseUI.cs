@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
-using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace UISystem
 {
@@ -45,10 +45,20 @@ namespace UISystem
         public void ButtonGoToMainMenu()
         {
             Close();
+            SceneUI.Context.HUDUI.Close();
 
             DialogueManager.StopAllConversations();
             SceneUI.Context.GameManager.TogglePauseGame();
-            SceneUI.Context.GameManager.GoToMainMenu();
+
+            Level mainMenuLevel = SceneUI.Context.LevelManager.MainMenuLevel;
+            SceneUI.Context.LevelManager.SetLevel(mainMenuLevel);
+
+            Open<MainMenuUI>();
+
+            SceneUI.Context.Player.gameObject.SetActive(false);
+ 
+            SceneUI.Context.CameraNormal.transform.DOKill();
+            SceneUI.Context.CameraNormal.transform.localPosition = Vector3.zero;
         }
 
         public void ButtonOptions()

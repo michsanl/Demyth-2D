@@ -53,20 +53,8 @@ public class HUDUI : SceneService
 
         playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
         Context.Player.OnSenterToggle += Player_OnSenterToggle;
-        Context.GameManager.OnGameStart += GameManager_OnStartNewGame;
-        Context.GameManager.OnOpenMainMenu += GameManager_OnOpenMainMenu;
         DialogueManager.instance.conversationStarted += DialogueManager_ConversationStarted;
         DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
-    }
-
-    private void GameManager_OnStartNewGame()
-    {
-        Open();
-    }
-
-    private void GameManager_OnOpenMainMenu()
-    {
-        Close();
     }
 
     private void DialogueManager_ConversationStarted(Transform t)
