@@ -11,20 +11,18 @@ namespace UISystem
     {
         protected override void OnInitialize()
         {
-            base.OnInitialize();
-
-            SceneUI.Context.gameManager.OnGamePaused += GameManager_OnGamePaused;
-            SceneUI.Context.gameManager.OnGameUnpaused += GameManager_OnGameUnpaused;
+            SceneUI.Context.GameManager.OnGamePaused += GameManager_OnGamePaused;
+            SceneUI.Context.GameManager.OnGameUnpaused += GameManager_OnGameUnPaused;
         }
 
-        private void GameManager_OnGamePaused(object sender, EventArgs e)
+        private void GameManager_OnGamePaused()
         {
-            Canvas.enabled = true;
+            Open();
         }
 
-        private void GameManager_OnGameUnpaused(object sender, EventArgs e)
+        private void GameManager_OnGameUnPaused()
         {
-            Canvas.enabled = false;
+            Close();
         }
 
         protected override void OnOpen()
@@ -41,7 +39,7 @@ namespace UISystem
         {
             Close();
             
-            SceneUI.Context.gameManager.TogglePauseGame();
+            SceneUI.Context.GameManager.TogglePauseGame();
         }
 
         public void ButtonGoToMainMenu()
@@ -49,8 +47,8 @@ namespace UISystem
             Close();
 
             DialogueManager.StopAllConversations();
-            SceneUI.Context.gameManager.TogglePauseGame();
-            SceneManager.LoadScene(0);
+            SceneUI.Context.GameManager.TogglePauseGame();
+            SceneUI.Context.GameManager.GoToMainMenu();
         }
 
         public void ButtonOptions()

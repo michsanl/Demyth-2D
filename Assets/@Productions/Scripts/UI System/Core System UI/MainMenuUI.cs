@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace UISystem
 {
     public class MainMenuUI : UIPageView
     {
+        [SerializeField] private GameObject mainButtonParent;
+        [SerializeField] private GameObject selectLevelButtonParent;
 
         protected override void OnOpen()
         {
@@ -19,18 +22,13 @@ namespace UISystem
 
         public void ButtonNewGame()
         {
-            Close();
-
-            // Go to level 1
-
-            var levelDestination = SceneUI.Context.LevelManager.GetLevelByID("Level 1");
-            SceneUI.Context.LevelManager.ChangeLevel(levelDestination);
+            SceneUI.Context.GameManager.StartGame("Level 1");
         }
 
         public void ButtonContinue()
         {
-            Close();
-            Open<SelectLevelUI>();
+            mainButtonParent.SetActive(false);
+            selectLevelButtonParent.SetActive(true);
         }
 
         public void ButtonOption()
@@ -42,6 +40,14 @@ namespace UISystem
         public void ButtonQuit()
         {
             Application.Quit();
+        }
+
+        public void ButtonGoToLevel(string levelID)
+        {
+            SceneUI.Context.GameManager.StartGame(levelID);
+
+            mainButtonParent.SetActive(true);
+            selectLevelButtonParent.SetActive(false);
         }
     }
 }

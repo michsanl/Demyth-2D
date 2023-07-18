@@ -9,6 +9,7 @@ using System;
 
 public class LevelManager : SceneService
 {
+    public Action OnOpenMainMenu;
     public Action OnLevelChanged;
     public Level CurrentLevel { get; private set; }
 
@@ -57,7 +58,21 @@ public class LevelManager : SceneService
 
         previousLevel.SetActive(false);
         nextLevel.SetActive(true);
+
         CurrentLevel = nextLevel;
+    }
+
+    public void OpenMainMenuLevel()
+    {
+        Level mainMenuLevel = GetLevelByID("Level Main Menu");
+        foreach (var level in levels)
+        {
+            level.SetActive(level == mainMenuLevel);            
+        }
+        CurrentLevel = mainMenuLevel;
+        Context.Player.gameObject.SetActive(false);
+
+        OnOpenMainMenu?.Invoke();
     }
 
     public void ChangeLevel(Level targetLevel)
@@ -66,9 +81,8 @@ public class LevelManager : SceneService
         {
             mapLevel.SetActive(mapLevel == targetLevel);            
         }
-        
-        targetLevel.SetActive(true);
         CurrentLevel = targetLevel;
+
         OnLevelChanged?.Invoke();
     }
 
