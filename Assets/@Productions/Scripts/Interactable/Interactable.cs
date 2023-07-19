@@ -14,5 +14,5 @@ public class Interactable : MonoBehaviour
 
 public enum InteractableType
 {
-    Talk, Push, ChangeLevel, Damage, Gate
+    Talk, Push, ChangeLevel, Damage, Gate, PillarLight
 }
