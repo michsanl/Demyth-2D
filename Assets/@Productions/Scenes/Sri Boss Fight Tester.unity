@@ -370,6 +370,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 278691031, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
+      propertyPath: SelectCombatMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 278691031, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: activateCombatBehaviorOnStart
       value: 1
       objectReference: {fileID: 0}
@@ -424,6 +428,10 @@ PrefabInstance:
     - target: {fileID: 7673398052024204801, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182001827861331906, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
+      propertyPath: maxHealth
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
@@ -1686,6 +1694,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
+    - target: {fileID: 4715767938073440416, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
+      propertyPath: openHUDOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4715767938073440419, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

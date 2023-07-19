@@ -66,7 +66,7 @@ public class SriCombatBehaviorNew : SceneService
         if (health.CurrentHP == changePhaseHPThreshold)
         {
             StopCurrentAbility();
-            StartPhaseTwo();
+            StartCoroutine(StartPhaseTwo());
         }
     }
 
@@ -231,9 +231,10 @@ public class SriCombatBehaviorNew : SceneService
         }
     }
 
-    private void StartPhaseTwo()
+    private IEnumerator StartPhaseTwo()
     {
-        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
+        yield return StartCoroutine(waveOutNailWaveAbility.WaveOutNailWave());
+        StartCoroutine(LoopCombatBehavior(GetNewSecondPhaseAbility));
     }
 
     private void StopCurrentAbility()

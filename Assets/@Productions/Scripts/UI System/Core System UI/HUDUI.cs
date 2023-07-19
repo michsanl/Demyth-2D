@@ -10,6 +10,8 @@ using Sirenix.OdinInspector;
 
 public class HUDUI : SceneService
 {
+    [SerializeField] private bool openHUDOnStart;
+
     [Title("Health/Shield Bar Parameter")]
     [SerializeField] private float barChangeDuration;
     [SerializeField] private float barPositionRange = 219;
@@ -55,6 +57,9 @@ public class HUDUI : SceneService
         Context.Player.OnSenterToggle += Player_OnSenterToggle;
         DialogueManager.instance.conversationStarted += DialogueManager_ConversationStarted;
         DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
+
+        if (openHUDOnStart)
+            Open();
     }
 
     private void DialogueManager_ConversationStarted(Transform t)

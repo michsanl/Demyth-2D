@@ -140,23 +140,20 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  actionDelay: 0.25
-  moveDuration: 0.245
+  actionDuration: 0.25
   attackDuration: 0.5
   takeDamageCooldown: 1
   moveBlockMask:
     serializedVersion: 2
     m_Bits: 64
-  damagePlayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
   animator: {fileID: 3143619101154623906}
   senterGameObject: {fileID: 6712916346127714324}
 --- !u!114 &1538411941623662623
@@ -220,11 +217,12 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   screenShakeDuration: 0.4
