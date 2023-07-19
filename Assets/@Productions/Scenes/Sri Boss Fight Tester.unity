@@ -1345,11 +1345,12 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   _defaultViews: []
@@ -1856,9 +1857,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 44250935}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.GameInput
+      value: 
+      objectReference: {fileID: 306838576}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.gameInput
       value: 
       objectReference: {fileID: 306838576}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.CameraShake
+      value: 
+      objectReference: {fileID: 1468853390}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.GameManager
+      value: 
+      objectReference: {fileID: 1583871545}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.gameManager
       value: 
@@ -1867,6 +1880,10 @@ PrefabInstance:
       propertyPath: _context.AudioManager
       value: 
       objectReference: {fileID: 2007419813}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.CameraNormal
+      value: 
+      objectReference: {fileID: 1653471099}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.LevelManager
       value: 
