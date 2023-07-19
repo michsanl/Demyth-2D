@@ -20,16 +20,11 @@ namespace UISystem
         public void ButtonBack()
         {
             Close();
-            Open<MainMenuUI>();
         }
 
         public void ButtonGoToLevel(string levelID)
         {
             Close();
-            //Open<HUDUI>();
-
-            var levelDestination = SceneUI.Context.LevelManager.GetLevelByID(levelID);
-            SceneUI.Context.LevelManager.ChangeLevel(levelDestination);
         }
     }
 }

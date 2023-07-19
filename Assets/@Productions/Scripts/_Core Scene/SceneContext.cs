@@ -15,14 +15,15 @@ namespace CustomTools.Core
         public Player Player;
 
         [Title("Control System")]
-        public GameManager gameManager;
-        public GameInput gameInput;
+        public GameManager GameManager;
+        public GameInput GameInput;
         public LevelManager LevelManager;
 
         [Title("Audio")]
         public AudioManager AudioManager;
 
-        [Title("Audio")]
-        public GameObject VCamCameraShake;
+        [Title("Camera")]
+        public GameObject CameraNormal;
+        public GameObject CameraShake;
     }
 }

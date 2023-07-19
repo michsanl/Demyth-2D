@@ -32,7 +32,7 @@ public class PetraCombatBehaviorNew : SceneService
     private int consecutiveCount;
     private float timeVarianceCompensationDelay = 0.05f;
 
-    protected void Awake()
+    protected override void OnInitialize()
     {
         upChargeAbility = GetComponent<PetraAbilityUpCharge>();
         downChargeAbility = GetComponent<PetraAbilityDownCharge>();

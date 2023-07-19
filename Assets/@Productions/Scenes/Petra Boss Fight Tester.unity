@@ -178,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2020845691378895225, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: LoopAbility
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2020845691378895225, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: SelectedCombatMode
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2020845691378895225, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: changePhaseHPThreshold
@@ -246,17 +246,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
---- !u!114 &203083026 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2322856980602470524, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
-  m_PrefabInstance: {fileID: 1445061710}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7572670cd270eac4c95a90283dee8546, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &203083027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1083057257689935217, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
@@ -1172,18 +1161,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1590701348}
     m_Modifications:
-    - target: {fileID: 87175361614641795, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 87175361614641795, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 20ad2d83f8ca857488dfe9ca2579179c, type: 2}
-    - target: {fileID: 87175361614641795, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2a6135874efa14249b3e3f0aa60cb6b9, type: 2}
     - target: {fileID: 1083057257689935216, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
       propertyPath: m_Name
       value: Petra Boss Fight Tester
@@ -1231,10 +1208,6 @@ PrefabInstance:
     - target: {fileID: 1083057257689935217, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6962628830457933652, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a95a1b1604b05f3409e5296984c8aedd, type: 3}
@@ -1429,11 +1402,12 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   _defaultViews: []
@@ -1631,7 +1605,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1590701348}
-  - component: {fileID: 1590701349}
   m_Layer: 0
   m_Name: Maps
   m_TagString: Untagged
@@ -1655,33 +1628,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1590701349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590701347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b5f9a6fafbe11a44a36a5861b802bc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  levels:
-  - {fileID: 203083026}
-  debugLevelID: Petra Boss Fight Tester
 --- !u!1 &1653471099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,9 +1929,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 44250935}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.GameInput
+      value: 
+      objectReference: {fileID: 1317952463}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.gameInput
       value: 
       objectReference: {fileID: 1317952463}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.CameraShake
+      value: 
+      objectReference: {fileID: 1468853390}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.GameManager
+      value: 
+      objectReference: {fileID: 1277617176}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.gameManager
       value: 
@@ -1995,9 +1953,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2007419813}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.CameraNormal
+      value: 
+      objectReference: {fileID: 1653471099}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.LevelManager
       value: 
-      objectReference: {fileID: 1590701349}
+      objectReference: {fileID: 0}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.VCamCameraShake
       value: 

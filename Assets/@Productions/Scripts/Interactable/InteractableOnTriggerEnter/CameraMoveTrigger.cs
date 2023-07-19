@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using CustomTools.Core;
+using System;
 
-public class CameraMoveTrigger : MonoBehaviour
+public class CameraMoveTrigger : SceneService
 {
-    [SerializeField] private GameObject cameraGO;
-    [SerializeField] private Vector3 targetPosition;
+    [SerializeField] private int targetPositionY;
     [SerializeField] private float moveDuration;
 
     private void OnCollisionEnter(Collision other) 
     {
-        cameraGO.transform.DOMove(targetPosition, moveDuration).SetEase(Ease.OutExpo);
+        Context.CameraNormal.transform.DOLocalMoveY(targetPositionY, moveDuration).SetEase(Ease.OutExpo);
     }
 }

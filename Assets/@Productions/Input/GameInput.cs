@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using CustomTools.Core;
+using PixelCrushers.DialogueSystem;
 
 public class GameInput : SceneService
 {
@@ -21,18 +22,21 @@ public class GameInput : SceneService
         playerInputActions.Player.Senter.performed += PlayerInputAction_OnSenterPerformed;
         playerInputActions.Player.HealthPotion.performed += PlayerInputAction_OnHealthPotionPerformed;
         playerInputActions.Player.Pause.performed += PlayerInputAction_OnPausePerformed;
+        DialogueManager.Instance.conversationStarted += DialogueManager_OnConversationStarted;
+        DialogueManager.Instance.conversationEnded += DialogueManager_OnConversationEnded;
 
         playerInputActions.Player.Enable();
     }
 
-    // private void OnDestroy() 
-    // {
-    //     // playerInputActions.Player.Senter.performed -= PlayerInputAction_OnSenterPerformed;
-    //     // playerInputActions.Player.HealthPotion.performed -= PlayerInputAction_OnHealthPotionPerformed;
-    //     // playerInputActions.Player.Pause.performed -= PlayerInputAction_OnPausePerformed;
-        
-    //     // playerInputActions.Dispose();
-    // }
+    private void DialogueManager_OnConversationStarted(Transform t)
+    {
+        playerInputActions.Player.Disable();
+    }
+
+    private void DialogueManager_OnConversationEnded(Transform t)
+    {
+        playerInputActions.Player.Enable();
+    }
 
     private void PlayerInputAction_OnSenterPerformed(InputAction.CallbackContext context)
     {
