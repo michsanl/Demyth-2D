@@ -58,8 +58,8 @@ public class Player : SceneService
     {
         base.OnActivate();
 
-        Context.gameInput.OnSenterPerformed += GameInput_OnSenterPerformed;
-        Context.gameInput.OnHealthPotionPerformed += GameInput_OnHealthPotionPerformed;
+        Context.GameInput.OnSenterPerformed += GameInput_OnSenterPerformed;
+        Context.GameInput.OnHealthPotionPerformed += GameInput_OnHealthPotionPerformed;
 
         moveTargetPosition = transform.position;
     }
@@ -75,12 +75,14 @@ public class Player : SceneService
     {
         if (Time.deltaTime == 0)
             return;
+        if (!isActiveAndEnabled)
+            return;
         if (isKnocked)
             return;
         if (isBusy)
             return;
 
-        Vector2 inputVector = Context.gameInput.GetMovementVector();
+        Vector2 inputVector = Context.GameInput.GetMovementVector();
 
         if (inputVector == Vector2.zero)
             return;
@@ -153,6 +155,8 @@ public class Player : SceneService
     {
         if (Time.deltaTime == 0)
             return;
+        if (!isActiveAndEnabled)
+            return;
         if (!isSenterUnlocked)
             return;
         ToggleSenter();
@@ -161,6 +165,8 @@ public class Player : SceneService
     private void GameInput_OnHealthPotionPerformed()
     {
         if (Time.deltaTime == 0)
+            return;
+        if (!isActiveAndEnabled)
             return;
         if (!isHealthPotionUnlocked)
             return;
@@ -213,6 +219,13 @@ public class Player : SceneService
         Helper.MoveToPosition(transform, targetPosition, moveDuration);
         yield return Helper.GetWaitForSeconds(actionDelay);
 
+        isKnocked = false;
+    }
+
+    public void ActivatePlayer()
+    {
+        gameObject.SetActive(true);
+        isBusy = false;
         isKnocked = false;
     }
 

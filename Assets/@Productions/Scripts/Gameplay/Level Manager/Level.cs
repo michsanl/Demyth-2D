@@ -52,7 +52,7 @@ public class Level : CoreBehaviour
 
     public void MoveToNextLevel(string levelID)
     {
-        Context.LevelManager.ChangeLevel(ID, levelID);
+        Context.LevelManager.ChangeLevelByGate(ID, levelID);
     }
 
     #region DEBUG HELPER

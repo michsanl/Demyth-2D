@@ -178,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2020845691378895225, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: LoopAbility
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2020845691378895225, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: SelectedCombatMode
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2020845691378895225, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: changePhaseHPThreshold
@@ -1413,8 +1413,8 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
@@ -1656,8 +1656,8 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     VCamCameraShake: {fileID: 0}
@@ -1967,9 +1967,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 44250935}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.GameInput
+      value: 
+      objectReference: {fileID: 1317952463}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.gameInput
       value: 
       objectReference: {fileID: 1317952463}
+    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
+      propertyPath: _context.GameManager
+      value: 
+      objectReference: {fileID: 1277617176}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.gameManager
       value: 

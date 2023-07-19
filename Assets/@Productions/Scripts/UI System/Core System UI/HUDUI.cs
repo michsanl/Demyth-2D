@@ -45,8 +45,6 @@ public class HUDUI : SceneService
 
         playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
         playerShield.OnShieldAmountChanged += PlayerShield_OnShieldAmountChanged;
-
-        Open();
     }
 
     protected override void OnActivate()

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
-using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace UISystem
 {
@@ -11,20 +11,18 @@ namespace UISystem
     {
         protected override void OnInitialize()
         {
-            base.OnInitialize();
-
-            SceneUI.Context.gameManager.OnGamePaused += GameManager_OnGamePaused;
-            SceneUI.Context.gameManager.OnGameUnpaused += GameManager_OnGameUnpaused;
+            SceneUI.Context.GameManager.OnGamePaused += GameManager_OnGamePaused;
+            SceneUI.Context.GameManager.OnGameUnpaused += GameManager_OnGameUnPaused;
         }
 
-        private void GameManager_OnGamePaused(object sender, EventArgs e)
+        private void GameManager_OnGamePaused()
         {
-            Canvas.enabled = true;
+            Open();
         }
 
-        private void GameManager_OnGameUnpaused(object sender, EventArgs e)
+        private void GameManager_OnGameUnPaused()
         {
-            Canvas.enabled = false;
+            Close();
         }
 
         protected override void OnOpen()
@@ -41,16 +39,26 @@ namespace UISystem
         {
             Close();
             
-            SceneUI.Context.gameManager.TogglePauseGame();
+            SceneUI.Context.GameManager.TogglePauseGame();
         }
 
         public void ButtonGoToMainMenu()
         {
             Close();
+            SceneUI.Context.HUDUI.Close();
 
             DialogueManager.StopAllConversations();
-            SceneUI.Context.gameManager.TogglePauseGame();
-            SceneManager.LoadScene(0);
+            SceneUI.Context.GameManager.TogglePauseGame();
+
+            Level mainMenuLevel = SceneUI.Context.LevelManager.MainMenuLevel;
+            SceneUI.Context.LevelManager.SetLevel(mainMenuLevel);
+
+            Open<MainMenuUI>();
+
+            SceneUI.Context.Player.gameObject.SetActive(false);
+ 
+            SceneUI.Context.CameraNormal.transform.DOKill();
+            SceneUI.Context.CameraNormal.transform.localPosition = Vector3.zero;
         }
 
         public void ButtonOptions()

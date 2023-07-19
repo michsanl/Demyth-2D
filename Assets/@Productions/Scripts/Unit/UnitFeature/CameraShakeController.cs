@@ -14,7 +14,7 @@ public class CameraShakeController : SceneService
     protected override void OnActivate()
     {
         player = Context.Player;
-        cameraShakeGO = Context.VCamCameraShake;
+        cameraShakeGO = Context.CameraShake;
     }
 
     public IEnumerator PlayCameraShake()
@@ -24,7 +24,7 @@ public class CameraShakeController : SceneService
 
         yield return new WaitForSecondsRealtime(screenShakeDuration);
 
-        if (!Context.gameManager.IsGamePaused)
+        if (!Context.GameManager.IsGamePaused)
         {
             Time.timeScale = 1;
         }
