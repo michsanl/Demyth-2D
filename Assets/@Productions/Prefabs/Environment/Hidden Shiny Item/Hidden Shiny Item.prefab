@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6429237052383729501}
   - component: {fileID: 6429237052383729500}
   - component: {fileID: 6429237052383729502}
-  m_Layer: 10
+  - component: {fileID: 1677763850040318392}
+  m_Layer: 6
   m_Name: Pickable Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a1c98b4241b5f419d2d233475fa144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableType: 6
+  dialogueSystemTrigger: {fileID: 1677763850040318392}
   mainGameObject: {fileID: 6429237052861685366}
 --- !u!61 &6429237052383729502
 BoxCollider2D:
@@ -72,6 +75,79 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1677763850040318392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6429237052383729507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 32
+  condition:
+    luaConditions: []
+    questConditions: []
+    acceptedTags: []
+    acceptedGameObjects: []
+    luaWizardIndex: -1
+    lastEvaluationValue: 0
+  setQuestState: 1
+  questName: 
+  questState: 0
+  setQuestEntryState: 0
+  questEntryNumber: 1
+  questEntryState: 0
+  setAnotherQuestEntryState: 0
+  anotherQuestEntryNumber: 1
+  anotherQuestEntryState: 0
+  luaCode: 
+  sequence: 
+  sequenceSpeaker: {fileID: 0}
+  sequenceListener: {fileID: 0}
+  waitOneFrameOnStartOrEnable: 1
+  alertMessage: 
+  textTable: {fileID: 0}
+  alertDuration: 0
+  sendMessages: []
+  barkSource: 0
+  barkConversation: 
+  barkText: 
+  barkTextSequence: 
+  barker: {fileID: 0}
+  barkTarget: {fileID: 0}
+  barkOrder: 0
+  allowBarksDuringConversations: 0
+  skipBarkIfNoValidEntries: 0
+  cacheBarkLines: 0
+  conversation: Level_1
+  conversationConversant: {fileID: 0}
+  conversationActor: {fileID: 0}
+  startConversationEntryID: -1
+  startConversationEntryTitle: 
+  exclusive: 0
+  replace: 0
+  skipIfNoValidEntries: 0
+  preventRestartOnSameFrameEnded: 0
+  stopConversationOnTriggerExit: 0
+  stopConversationIfTooFar: 0
+  maxConversationDistance: 5
+  monitorConversationDistanceFrequency: 1
+  showCursorDuringConversation: 0
+  pauseGameDuringConversation: 0
+  setActiveActions: []
+  setEnabledActions: []
+  setAnimatorStateActions: []
+  onExecute:
+    m_PersistentCalls:
+      m_Calls: []
+  useConversationTitlePicker: 1
+  useBarkTitlePicker: 1
+  useQuestNamePicker: 1
+  selectedDatabase: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
 --- !u!1 &6429237052839309933
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +160,7 @@ GameObject:
   - component: {fileID: 6429237052839309928}
   - component: {fileID: 6429237052839309935}
   m_Layer: 0
-  m_Name: Model
+  m_Name: Shine Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518a951ce50569243a687589c9f39a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightEffectGameObject: {fileID: 6429237052383729507}
+  pickupableGameOBject: {fileID: 6429237052383729507}
   animator: {fileID: 6429237052839309928}
 --- !u!65 &1727764306780834689
 BoxCollider:

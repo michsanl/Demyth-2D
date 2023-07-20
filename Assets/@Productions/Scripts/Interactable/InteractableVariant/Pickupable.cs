@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
-using DG.Tweening;
 
-public class Talkable : Interactable
+public class Pickupable : Interactable
 {
     [SerializeField] private DialogueSystemTrigger dialogueSystemTrigger;
+    [SerializeField] private GameObject mainGameObject;
 
-    public override void Interact(Vector3 direction)
+    public override void Interact(Vector3 direction = default)
     {
         dialogueSystemTrigger.OnUse();
+        Destroy(mainGameObject, 0.25f);
     }
+    
 }
