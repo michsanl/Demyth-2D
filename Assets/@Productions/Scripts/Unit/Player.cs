@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using CustomTools.Core;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 public class Player : SceneService
 {
@@ -88,6 +89,7 @@ public class Player : SceneService
             return;
 
         playerDir = inputVector;
+        moveTargetPosition = GetMoveTargetPosition();
         lookOrientation.SetFacingDirection(playerDir);
         
         if (Helper.CheckTargetDirection(transform.position, playerDir, moveBlockMask, out Interactable interactable))
@@ -99,7 +101,6 @@ public class Player : SceneService
         } 
         else
         {
-            moveTargetPosition = GetMoveTargetPosition();
             StartCoroutine(HandleMovement());
         }
     }
@@ -116,7 +117,6 @@ public class Player : SceneService
     {
         isBusy = true;
 
-        // Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
         Helper.MoveToPosition(transform, moveTargetPosition, actionDuration);
         yield return Helper.GetWaitForSeconds(actionDuration);
@@ -133,17 +133,21 @@ public class Player : SceneService
             case InteractableType.Push:
                 animator.SetTrigger("Attack");
                 break;
+            case InteractableType.Damage:
+                animator.SetTrigger("Attack");
+                interactable.Interact();
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
             case InteractableType.PillarLight:
                 animator.SetTrigger("Attack");
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
-            case InteractableType.Damage:
-                animator.SetTrigger("Attack");
+            case InteractableType.HiddenItem:
                 interactable.Interact();
-                yield return Helper.GetWaitForSeconds(attackDuration);
-                isBusy = false;
+                yield return StartCoroutine(HandleMovement());
                 yield break;
             default:
                 break;
@@ -163,7 +167,7 @@ public class Player : SceneService
             return;
         if (!isSenterUnlocked)
             return;
-        ToggleSenter();
+        StartCoroutine(ToggleSenter());
     }
 
     private void GameInput_OnHealthPotionPerformed()
@@ -177,10 +181,23 @@ public class Player : SceneService
         healthPotion.UsePotion();
     }
 
-    private void ToggleSenter()
+    private IEnumerator ToggleSenter()
     {
-        isSenterEnabled = !isSenterEnabled;
-        senterGameObject.SetActive(isSenterEnabled);
+        if (senterGameObject.activeInHierarchy)
+        {
+            senterGameObject.transform.localPosition = new Vector3(100, 100, 0);
+            // yield return senterGameObject.transform.DOMoveX(100f, 0f).WaitForCompletion();
+            yield return Helper.GetWaitForSeconds(0.05f);
+            senterGameObject.SetActive(false);
+            isSenterEnabled = false;
+        }
+        else
+        {
+            senterGameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
+            yield return Helper.GetWaitForSeconds(0.05f);
+            senterGameObject.SetActive(true);
+            isSenterEnabled = true;
+        }
 
         OnSenterToggle?.Invoke(isSenterEnabled);
     }

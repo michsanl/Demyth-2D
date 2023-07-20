@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ProximityShine : MonoBehaviour
+public class ShinyHiddenItem : MonoBehaviour
 {
+    [SerializeField] private GameObject pickupableGameOBject;
     [SerializeField] private Animator animator;
-
-    public Action OnShineOn;
-    public Action OnShineOff;
 
     private void OnCollisionEnter(Collision other) 
     {
-        OnShineOn?.Invoke();
         animator.SetBool("Shine", true);
+        pickupableGameOBject.SetActive(true);
     }
 
     private void OnCollisionExit(Collision other) 
     {
         animator.SetBool("Shine", false);
-        OnShineOn?.Invoke();
+        pickupableGameOBject.SetActive(false);
     }
 
 }

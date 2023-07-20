@@ -48,8 +48,14 @@ MonoBehaviour:
   _selfInitialize: 1
   _context:
     UI: {fileID: 0}
-    LevelManager: {fileID: 0}
+    HUDUI: {fileID: 0}
     Player: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShake: {fileID: 0}
   _services: []
   playerPrefab: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
 --- !u!1001 &8487284318543859425
@@ -107,6 +113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Manager Demyth 2D
       objectReference: {fileID: 0}
+    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
+      propertyPath: initialDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
 --- !u!4 &3278702919819954974 stripped
