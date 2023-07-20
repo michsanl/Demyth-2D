@@ -8,12 +8,10 @@ using Sirenix.OdinInspector;
 public class Player : SceneService
 {
     [Title("Settings")]
-    [SerializeField] private float actionDelay;
-    [SerializeField] private float moveDuration;
+    [SerializeField] private float actionDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
     [SerializeField] private LayerMask moveBlockMask;
-    [SerializeField] private LayerMask damagePlayerMask;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
@@ -118,9 +116,10 @@ public class Player : SceneService
     {
         isBusy = true;
 
-        Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
+        // Helper.MoveToPosition(transform, moveTargetPosition, moveDuration);
         animator.SetTrigger("Dash");
-        yield return Helper.GetWaitForSeconds(actionDelay);
+        Helper.MoveToPosition(transform, moveTargetPosition, actionDuration);
+        yield return Helper.GetWaitForSeconds(actionDuration);
 
         isBusy = false;
     }
@@ -134,6 +133,12 @@ public class Player : SceneService
             case InteractableType.Push:
                 animator.SetTrigger("Attack");
                 break;
+            case InteractableType.PillarLight:
+                animator.SetTrigger("Attack");
+                interactable.Interact();
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
             case InteractableType.Damage:
                 animator.SetTrigger("Attack");
                 interactable.Interact();
@@ -143,10 +148,9 @@ public class Player : SceneService
             default:
                 break;
         }
-
         interactable.Interact(playerDir);
 
-        yield return Helper.GetWaitForSeconds(actionDelay);
+        yield return Helper.GetWaitForSeconds(actionDuration);
 
         isBusy = false;
     }
@@ -216,8 +220,8 @@ public class Player : SceneService
         isKnocked = true;
 
         moveTargetPosition = targetPosition;
-        Helper.MoveToPosition(transform, targetPosition, moveDuration);
-        yield return Helper.GetWaitForSeconds(actionDelay);
+        Helper.MoveToPosition(transform, targetPosition, actionDuration);
+        yield return Helper.GetWaitForSeconds(actionDuration);
 
         isKnocked = false;
     }

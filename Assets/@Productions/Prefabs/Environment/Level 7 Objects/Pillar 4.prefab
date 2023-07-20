@@ -30,8 +30,8 @@ Transform:
   m_LocalScale: {x: 1.1872, y: 1.1872, z: 1.1872}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4969346425133806241}
-  m_RootOrder: 2
+  m_Father: {fileID: 2142250095629813157}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &612599371
 SpriteRenderer:
@@ -134,8 +134,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4969346425133806241}
-  m_RootOrder: 1
+  m_Father: {fileID: 2142250095629813157}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1749689581
 MonoBehaviour:
@@ -245,8 +245,8 @@ Transform:
   m_LocalScale: {x: 0.34592998, y: 0.34592998, z: 0.34592998}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4969346425133806241}
-  m_RootOrder: 3
+  m_Father: {fileID: 2142250095629813157}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3923672386097180778
 SpriteRenderer:
@@ -320,6 +320,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2718913438842429109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142250095629813157}
+  m_Layer: 6
+  m_Name: Light Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2142250095629813157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718913438842429109}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1749689580}
+  - {fileID: 612599369}
+  - {fileID: 985430183421337283}
+  m_Father: {fileID: 4969346425133806241}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3688417425900261211
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +365,7 @@ GameObject:
   - component: {fileID: 885959303748127103}
   - component: {fileID: 6330894934316139274}
   m_Layer: 6
-  m_Name: Model
+  m_Name: Pillar Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,6 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4969346425133806241}
   - component: {fileID: 3119521335989624484}
+  - component: {fileID: 3909287881042768069}
   m_Layer: 6
   m_Name: Pillar 4
   m_TagString: Untagged
@@ -434,9 +469,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 885959303748127103}
-  - {fileID: 1749689580}
-  - {fileID: 612599369}
-  - {fileID: 985430183421337283}
+  - {fileID: 2142250095629813157}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -466,3 +499,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3909287881042768069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8276271681894783296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c7502cce4b82a4792307f8a3ee1118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableType: 5
+  lightModel: {fileID: 2718913438842429109}

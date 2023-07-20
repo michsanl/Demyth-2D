@@ -31,13 +31,8 @@ public class TuyulMoveTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        tuyulMovement.StartCoroutine(tuyulMovement.Flee(moveDir));
-    }
-
     private void OnCollisionEnter(Collision other) 
     {
-        tuyulMovement.StartCoroutine(tuyulMovement.Flee(moveDir));
+        tuyulMovement.Flee(moveDir);
     }
 }
