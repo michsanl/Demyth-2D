@@ -17,7 +17,7 @@ public class SriCombatBehaviorNew : SceneService
     { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
     VerticalNailWave, WaveOutNailWave, Teleport }
     public enum CombatMode 
-    { FirstPhase, SecondPhase, NewSecondPhase, AbilityLoop }
+    { FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
 
     private SriAbilityUpSlash upSlashAbility;
     private SriAbilityDownSlash downSlashAbility;
@@ -34,6 +34,7 @@ public class SriCombatBehaviorNew : SceneService
     private Health health;
 
     private int meleeAbilityCounter;
+    private int rangeAbilityCount;
 
     protected override void OnInitialize()
     {
@@ -88,8 +89,8 @@ public class SriCombatBehaviorNew : SceneService
             case CombatMode.SecondPhase:
                 StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
                 break;
-            case CombatMode.NewSecondPhase:
-                StartCoroutine(LoopCombatBehavior(GetNewSecondPhaseAbility));
+            case CombatMode.OldFirstPhase:
+                StartCoroutine(LoopCombatBehavior(GetOldFirstPhaseAbility));
                 break;
             case CombatMode.AbilityLoop:
                 StartCoroutine(LoopCombatBehavior(GetAbilityTesterAbility));
@@ -114,7 +115,7 @@ public class SriCombatBehaviorNew : SceneService
         }
     }
     
-    private IEnumerator GetFirstPhaseAbility()
+    private IEnumerator GetOldFirstPhaseAbility()
     {
         if (IsPlayerNearby())
         {
@@ -140,7 +141,7 @@ public class SriCombatBehaviorNew : SceneService
         return null;
     }
 
-    private IEnumerator GetSecondPhaseAbility()
+    private IEnumerator GetFirstPhaseAbility()
     {
         if (UnityEngine.Random.Range(0, 2) == 0)
         {
@@ -149,30 +150,40 @@ public class SriCombatBehaviorNew : SceneService
 
         if (IsPlayerNearby())
         {
+            rangeAbilityCount = 0;
             IncreaseMeleeAbilityCounter();
             return meleeAbilityCounter == 0 ? spinClawAbility.SpinClaw() : nailAOEAbility.NailAOE();
         }
 
         if (IsPlayerInlineHorizontally())
         {
+            rangeAbilityCount = 0;
             return horizontalSlashAbility.HorizontalSlash();
         }
 
         if (IsPlayerInlineVertically())
         {
+            rangeAbilityCount = 0;
             return IsPlayerAbove() ? upSlashAbility.UpSlash() : downSlashAbility.DownSlash();
         }
 
         if (!IsPlayerNearby())
         {
-            int randomIndex = UnityEngine.Random.Range(0, 3);
+            rangeAbilityCount++;
+            if (rangeAbilityCount > 5)
+            {
+                rangeAbilityCount = 0;
+                return teleportAbility.Teleport();
+            }
+
+            int randomIndex = UnityEngine.Random.Range(0, 2);
             return randomIndex == 0 ? fireBallAbility.FireBall() : nailSummonAbility.NailSummon();
         }
 
         return null;
     }
 
-    private IEnumerator GetNewSecondPhaseAbility()
+    private IEnumerator GetSecondPhaseAbility()
     {
         return TeleportIntoNailWaveVariant();
     }
@@ -234,7 +245,7 @@ public class SriCombatBehaviorNew : SceneService
     private IEnumerator StartPhaseTwo()
     {
         yield return StartCoroutine(waveOutNailWaveAbility.WaveOutNailWave());
-        StartCoroutine(LoopCombatBehavior(GetNewSecondPhaseAbility));
+        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
     }
 
     private void StopCurrentAbility()
