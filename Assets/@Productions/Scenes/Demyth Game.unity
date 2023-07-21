@@ -676,10 +676,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 3
       objectReference: {fileID: 0}
-    - target: {fileID: 708720891042517942, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 708720891042517943, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2569,22 +2565,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3278702919810002102, guid: 57321b37e41f347489709222dc052402, type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 4087
-      objectReference: {fileID: 0}
-    - target: {fileID: 3278702919810002106, guid: 57321b37e41f347489709222dc052402, type: 3}
-      propertyPath: initialDatabase
-      value: 
-      objectReference: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
-    - target: {fileID: 3278702919810002106, guid: 57321b37e41f347489709222dc052402, type: 3}
-      propertyPath: displaySettings.inputSettings.cancel.key
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3278702919810002106, guid: 57321b37e41f347489709222dc052402, type: 3}
-      propertyPath: displaySettings.inputSettings.cancelConversation.key
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.UI
       value: 
@@ -2602,19 +2582,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 203752252}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
-      propertyPath: _context.gameInput
-      value: 
-      objectReference: {fileID: 203752252}
-    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.CameraShake
       value: 
       objectReference: {fileID: 1468853390}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: _context.GameManager
-      value: 
-      objectReference: {fileID: 704051583}
-    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
-      propertyPath: _context.gameManager
       value: 
       objectReference: {fileID: 704051583}
     - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
@@ -2629,10 +2601,6 @@ PrefabInstance:
       propertyPath: _context.LevelManager
       value: 
       objectReference: {fileID: 1590701349}
-    - target: {fileID: 8487284319203689936, guid: 57321b37e41f347489709222dc052402, type: 3}
-      propertyPath: _context.VCamCameraShake
-      value: 
-      objectReference: {fileID: 1468853390}
     - target: {fileID: 8487284319203689942, guid: 57321b37e41f347489709222dc052402, type: 3}
       propertyPath: m_Name
       value: Gameplay Core Scene

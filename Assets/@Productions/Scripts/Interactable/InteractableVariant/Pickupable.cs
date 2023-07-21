@@ -11,7 +11,6 @@ public class Pickupable : Interactable
     public override void Interact(Vector3 direction = default)
     {
         dialogueSystemTrigger.OnUse();
-        Destroy(mainGameObject, 0.25f);
     }
     
 }
