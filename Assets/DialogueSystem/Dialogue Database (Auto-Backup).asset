@@ -524,7 +524,7 @@ MonoBehaviour:
     - title: Name
       value: Potion
       type: 0
-      typeString: 
+      typeString: CustomFieldType_Text
     - title: Pictures
       value: '[]'
       type: 3
@@ -532,8 +532,54 @@ MonoBehaviour:
     - title: Description
       value: 
       type: 0
-      typeString: 
+      typeString: CustomFieldType_Text
     - title: Is Item
+      value: True
+      type: 2
+      typeString: CustomFieldType_Boolean
+  - id: 5
+    fields:
+    - title: Name
+      value: Sparkling Hidden Item
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: Collect 5 hidden item to unlock level 7
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Success Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Failure Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: State
+      value: unassigned
+      type: 0
+      typeString: CustomFieldType_QuestState
+    - title: Is Item
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Entry Count
+      value: 1
+      type: 1
+      typeString: CustomFieldType_Number
+    - title: Entry 1 State
+      value: active
+      type: 0
+      typeString: 
+    - title: Entry 1
+      value: '[var=HiddenItem.NumCollected]/5 Collected'
+      type: 0
+      typeString: 
+    - title: Trackable
       value: True
       type: 2
       typeString: CustomFieldType_Boolean
@@ -735,6 +781,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 21
+    fields:
+    - title: Name
+      value: HiddenItem.NumCollected
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: 0
+      type: 1
+      typeString: CustomFieldType_Number
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   conversations:
   - id: 1
     fields:
@@ -27990,8 +28050,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 395.35724, y: 475.00778}
-    canvasZoom: 0.76000005
+    canvasScrollPosition: {x: 238.23947, y: 663.7288}
+    canvasZoom: 0.70000005
   - id: 19
     fields:
     - title: Title
@@ -28658,7 +28718,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 700
-        y: 459
+        y: 457.36072
         width: 160
         height: 30
     - id: 10
@@ -29027,8 +29087,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.46000028
+    canvasScrollPosition: {x: 158.93181, y: 404.9887}
+    canvasZoom: 0.61000025
   - id: 20
     fields:
     - title: Title
