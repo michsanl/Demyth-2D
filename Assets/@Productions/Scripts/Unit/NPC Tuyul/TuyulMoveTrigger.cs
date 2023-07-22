@@ -8,7 +8,7 @@ public class TuyulMoveTrigger : MonoBehaviour
     public Direction direction;
     public enum Direction { Up, Down, Right, Left }
 
-    [SerializeField] private TuyulMovement tuyulMovement;
+    [SerializeField] private TuyulFleeMovement tuyulMovement;
 
     private Vector3 moveDir;
 

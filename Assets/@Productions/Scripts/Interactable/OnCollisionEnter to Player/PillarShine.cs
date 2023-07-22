@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PillarProximityShine : MonoBehaviour
+public class PillarShine : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
