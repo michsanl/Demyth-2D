@@ -5,7 +5,7 @@ using DG.Tweening;
 using CustomTools.Core;
 using System;
 
-public class TuyulMovement : MonoBehaviour
+public class TuyulFleeMovement : MonoBehaviour
 {
     [SerializeField] private float moveDuration = 0.2f;
     [SerializeField] private Animator animator;

@@ -27,9 +27,10 @@ public static class Helper
 
     public static bool CheckTargetDirection<T>(Vector2 origin, Vector2 dir, LayerMask layer, out T targetComponent)
     {
-	    var originWithOffset = origin + dir;
+	    var finalOrigin = origin + dir;
 
-        RaycastHit2D[] hit = Physics2D.RaycastAll(originWithOffset, dir, .1f, layer);
+        // RaycastHit2D[] hit = Physics2D.RaycastAll(finalOrigin, dir, .1f, layer);
+        RaycastHit2D[] hit = Physics2D.BoxCastAll(finalOrigin, new Vector2(0.9f, 0.9f), 0f, dir, 0f, layer);
         
         targetComponent = default(T);
         if (hit.Length > 0)

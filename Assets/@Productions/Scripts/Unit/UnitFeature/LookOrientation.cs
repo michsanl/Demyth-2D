@@ -6,11 +6,12 @@ public class LookOrientation : MonoBehaviour
 {
     [SerializeField]
     private Transform model;
-    private float xScale;
+    private float xScale = 1f;
 
     private void Start()
     {
-        if (model == null) return;
+        if (model == null) 
+            return;
         xScale = model.localScale.x;
     }
 

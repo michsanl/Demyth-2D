@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ShinyHiddenItem : MonoBehaviour
+public class HiddenItemShine : MonoBehaviour
 {
     [SerializeField] private GameObject pickupableGameOBject;
     [SerializeField] private Animator animator;
