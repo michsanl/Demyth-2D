@@ -1228,10 +1228,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1590701348}
     m_Modifications:
-    - target: {fileID: 184740833323663907, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1837428258277959910, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1279,14 +1275,6 @@ PrefabInstance:
     - target: {fileID: 1837428258277959911, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
       propertyPath: m_Name
       value: Level 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3520266472876536421, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5628429930494401387, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e64b3952203b2d9478bcddecf368b106, type: 3}
@@ -2049,7 +2037,7 @@ MonoBehaviour:
   - {fileID: 1770570078}
   - {fileID: 562907946}
   - {fileID: 201276002}
-  debugLevelID: Level 2
+  debugLevelID: Level 5
 --- !u!1 &1653471099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,6 +2229,14 @@ PrefabInstance:
       propertyPath: cameraGO
       value: 
       objectReference: {fileID: 1653471099}
+    - target: {fileID: 3158959932504552361, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348345864430777008, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5805886074711020472, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_Name
       value: Level 5

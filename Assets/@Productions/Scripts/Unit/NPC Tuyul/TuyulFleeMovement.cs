@@ -5,7 +5,7 @@ using DG.Tweening;
 using CustomTools.Core;
 using System;
 
-public class TuyulFleeMovement : MonoBehaviour
+public class TuyulFleeMovement : SceneService
 {
     [SerializeField] private float moveDuration = 0.2f;
     [SerializeField] private Animator animator;
@@ -14,10 +14,34 @@ public class TuyulFleeMovement : MonoBehaviour
 
     private LookOrientation lookOrientation;
     private bool isBusy;
+    private bool isShocked;
+    private float mockInterval = 1.5f;
 
     private void Awake() 
     {
         lookOrientation = GetComponent<LookOrientation>();
+    }
+    
+    private void Update()
+    {
+        MockingLoop();
+    }
+
+    private void MockingLoop()
+    {
+        if (isShocked)
+            return;
+
+        mockInterval -= Time.deltaTime;
+        if (mockInterval <= 0)
+        {
+            if (isBusy)
+                return;
+
+            animator.SetTrigger("Mock");
+            lookOrientation.SetFacingDirection(GetDirToPlayer());
+            mockInterval = 3f;
+        }
     }
 
     public void Flee(Vector3 directionToPlayer)
@@ -45,7 +69,9 @@ public class TuyulFleeMovement : MonoBehaviour
         }
         // cant flee
         // set panic animation
+        isShocked = true;
         lookOrientation.SetFacingDirection(dirToPlayer);
+        animator.SetTrigger("Shock");
     }
 
     private bool IsFleePathAvailable(Vector3 dirToCheck)
@@ -62,9 +88,11 @@ public class TuyulFleeMovement : MonoBehaviour
     {
         isBusy = true;
 
-        animator.SetTrigger("Dash");
+        // animator.SetTrigger("Dash");
+        animator.Play("Dash");
         transform.DOMove(GetMoveTargetPositionRounded(moveDir), moveDuration);
         yield return Helper.GetWaitForSeconds(moveDuration);
+        mockInterval = 1f;
 
         isBusy = false;
     }
@@ -75,6 +103,18 @@ public class TuyulFleeMovement : MonoBehaviour
         moveTargetPosition.x = Mathf.RoundToInt(moveTargetPosition.x);
         moveTargetPosition.y = Mathf.RoundToInt(moveTargetPosition.y);
         return moveTargetPosition;
+    }
+
+    private Vector2 GetDirToPlayer()
+    {
+        if (Context.Player.transform.position.x >= transform.position.x)
+        {
+            return Vector2.right;
+        }
+        else
+        {
+            return Vector2.left;
+        }
     }
 
 }
