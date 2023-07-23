@@ -12,6 +12,7 @@ public class PetraCombatBehaviorNew : SceneService
     [SerializeField, EnumToggleButtons] private CombatMode SelectedCombatMode;
     [SerializeField, EnumToggleButtons] private Ability LoopAbility;
     [SerializeField] private GameObject[] attackColliderArray;
+    [SerializeField] private Animator animator;
     
     private enum Ability 
     { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
@@ -67,6 +68,7 @@ public class PetraCombatBehaviorNew : SceneService
     private void Health_OnDeath()
     {
         StopCurrentAbility();
+        animator.Play("Defeated");
     }
 
     private IEnumerator LoopCombatBehavior(Func<IEnumerator> getAbility)
