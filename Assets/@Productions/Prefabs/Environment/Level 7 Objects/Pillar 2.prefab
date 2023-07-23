@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableType: 5
+  hitToActivate: 6
   lightModel: {fileID: 1305386415486962254}
 --- !u!1 &1305386415486962254
 GameObject:
@@ -523,9 +524,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5560980901614097809}
-  - component: {fileID: 5685785984262364033}
   - component: {fileID: 5605341558149346375}
   - component: {fileID: 1400309499777950125}
+  - component: {fileID: 249969379424065913}
   m_Layer: 12
   m_Name: Shine Trigger
   m_TagString: Untagged
@@ -549,19 +550,6 @@ Transform:
   m_Father: {fileID: 3380669727509308899}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5685785984262364033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5108334114511613402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 518a951ce50569243a687589c9f39a9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4930833893823119662}
 --- !u!54 &5605341558149346375
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -591,6 +579,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &249969379424065913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108334114511613402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664ce2f1508fc434aa59959843ca91d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4930833893823119662}
 --- !u!1 &6728306754527075948
 GameObject:
   m_ObjectHideFlags: 0
