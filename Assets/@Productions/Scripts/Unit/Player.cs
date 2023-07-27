@@ -13,9 +13,11 @@ public class Player : SceneService
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
     [SerializeField] private LayerMask moveBlockMask;
+    [SerializeField] private GameObject hitEffect;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator damagedAnimator;
     [SerializeField] private GameObject senterGameObject;
     
 #region Public Fields
@@ -96,7 +98,7 @@ public class Player : SceneService
         {
             if (interactable != null)
             {
-                StartCoroutine(HandleInteract(interactable));
+                StartCoroutine(HandleInteract(interactable, moveTargetPosition));
             }
         } 
         else
@@ -124,7 +126,7 @@ public class Player : SceneService
         isBusy = false;
     }
 
-    private IEnumerator HandleInteract(Interactable interactable)
+    private IEnumerator HandleInteract(Interactable interactable, Vector2 moveTargetPosition)
     {
         isBusy = true;
         
@@ -136,6 +138,7 @@ public class Player : SceneService
             case InteractableType.Damage:
                 animator.SetTrigger("Attack");
                 interactable.Interact();
+                Instantiate(hitEffect, moveTargetPosition, Quaternion.identity);
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
@@ -202,17 +205,17 @@ public class Player : SceneService
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
-    public void TakeDamage(bool enableKnockBack, Vector2 position)
+    public void TakeDamage(bool enableKnockBack, Vector2 knockbackTargetPosition)
     {
         if (isTakeDamageOnCooldown)
             return;
         if (enableKnockBack)
             isKnocked = true;
 
-        StartCoroutine(TakeDamageRoutine(enableKnockBack, position));
+        StartCoroutine(TakeDamageRoutine(enableKnockBack, knockbackTargetPosition));
     }
 
-    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 position)
+    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 knockbackTargetPosition)
     {
         isTakeDamageOnCooldown = true;
 
@@ -222,8 +225,10 @@ public class Player : SceneService
 
         health.TakeDamage();
 
+        damagedAnimator.Play("Ara_Damaged");
+
         if (knockBackPlayer)
-            StartCoroutine(HandleKnockBack(position));
+            StartCoroutine(HandleKnockBack(knockbackTargetPosition));
         
         OnInvulnerableVisualStart?.Invoke();
         yield return Helper.GetWaitForSeconds(takeDamageCooldown);
