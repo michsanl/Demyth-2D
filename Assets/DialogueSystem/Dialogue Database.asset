@@ -185,6 +185,8 @@ MonoBehaviour:
     - {fileID: 1636173765, guid: 29105510ca953194d95186c31ac138c0, type: 3}
     - {fileID: 1500397354, guid: 29105510ca953194d95186c31ac138c0, type: 3}
     - {fileID: 2117665310, guid: 29105510ca953194d95186c31ac138c0, type: 3}
+    - {fileID: -1882457568, guid: b5d1bbe0e17921048b58429c0d2b68c3, type: 3}
+    - {fileID: -280161357, guid: b5d1bbe0e17921048b58429c0d2b68c3, type: 3}
   - id: 7
     fields:
     - title: Name
@@ -391,6 +393,28 @@ MonoBehaviour:
       value: Ara
       type: 0
       typeString: 
+    portrait: {fileID: 0}
+    spritePortrait: {fileID: 0}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 17
+    fields:
+    - title: Name
+      value: Papers
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
@@ -5107,7 +5131,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=2]
+        value: 'Ara
+
 
           Hmm.. What is that..'
         type: 0
@@ -5127,10 +5152,7 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive(Kamar, true);
 
-          SetPortrait(Lati, pic=8);
-
-          SetPanel(Ara,
-          4)'
+          SetPanel(Ara, 3)'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5189,7 +5211,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=2]
+        value: '???
+
 
           ....'
         type: 0
@@ -5207,7 +5230,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SetPortrait(Lati, pic=8);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5272,7 +5295,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=3]Ara
+        value: '[pic=2]Ara
 
 
           Oi'
@@ -5291,7 +5314,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SetPanel(Ara, 4)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5369,7 +5392,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Ara, pic=2)
+        value: SetPanel(Ara, 4)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5447,7 +5470,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Ara, pic=2)
+        value: SetPortrait(Ara, pic=1)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5481,8 +5504,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 448.21655
-        y: 254.29819
+        x: 446.86304
+        y: 257.5169
         width: 160
         height: 30
     - id: 6
@@ -5596,7 +5619,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=3]Ara
+        value: '[pic=2]Ara
 
 
           Oiii'
@@ -5721,8 +5744,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 745.1167
-        y: 317.518
+        x: 745.92316
+        y: 331.22766
         width: 160
         height: 30
     - id: 11
@@ -5771,7 +5794,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Ara, pic=2)
+        value: SetPortrait(Ara, pic=1)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -5805,8 +5828,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 535.2096
-        y: 374.097
+        x: 536.0161
+        y: 379.74216
         width: 160
         height: 30
     - id: 12
@@ -5836,7 +5859,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=3]Ara
+        value: '[pic=2]Ara
 
 
           Oyyy'
@@ -5992,7 +6015,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=9]???
+        value: '???
 
 
           Ah! What is it?!'
@@ -6011,7 +6034,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Ara, pic=2)
+        value: 'SetPortrait(Lati, pic=9);
+
+          SetPortrait(Ara, pic=1)'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6245,7 +6270,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Lati, pic=4);
+        value: SetPortrait(Lati, pic=3)
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6310,10 +6335,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=3]Ara
+        value: '[pic=2]Ara
 
 
-          What are you doing here?'
+          What are you doing in my room?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -6407,9 +6432,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetPortrait(Lati, pic=2);
+        value: 'SetPortrait(Ara, pic=1);
 
-          SetPortrait(Ara, pic=2)'
+          SetPortrait(Lati, pic=3);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6427,7 +6452,7 @@ MonoBehaviour:
       - originConversationID: 8
         originDialogueID: 20
         destinationConversationID: 8
-        destinationDialogueID: 21
+        destinationDialogueID: 51
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -6439,162 +6464,6 @@ MonoBehaviour:
         serializedVersion: 2
         x: 328.4021
         y: 579.5565
-        width: 160
-        height: 30
-    - id: 21
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Pictures
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 7
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[pic=3]Ara
-
-
-          Your room? I''m sure this is my room'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Parenthetical
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Audio Files
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Video File
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: SetPortrait(Lati, pic=1);
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 8
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 8
-        originDialogueID: 21
-        destinationConversationID: 8
-        destinationDialogueID: 22
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 328.4021
-        y: 629.5565
-        width: 160
-        height: 30
-    - id: 22
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Pictures
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 7
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[pic=2]???
-
-
-          You''re sure? look again..'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Parenthetical
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Audio Files
-        value: '[]'
-        type: 3
-        typeString: CustomFieldType_Files
-      - title: Video File
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: SetPortrait(Ara, pic=2)
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 8
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 8
-        originDialogueID: 22
-        destinationConversationID: 8
-        destinationDialogueID: 23
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 328.4021
-        y: 679.5565
         width: 160
         height: 30
     - id: 23
@@ -6624,10 +6493,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=3]Ara
+        value: '[pic=14]Ara
 
 
-          ... Now I''m sure this is not my room..'
+          Ah.. You''re right'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -6643,7 +6512,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Lati, pic=1);
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6672,7 +6541,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 328.4021
-        y: 731.98615
+        y: 728.32764
         width: 160
         height: 30
     - id: 24
@@ -6702,11 +6571,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=4]???
+        value: '???
 
 
-          See, wait.. you can see me, why aren''t you
-          scared?!'
+          See, wait.. you can see me, why aren''t you scared?!'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -6722,7 +6590,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Ara, pic=2)
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6757,7 +6625,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 327.08633
-        y: 779.5565
+        y: 781.68414
         width: 160
         height: 30
     - id: 25
@@ -6783,14 +6651,15 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: Not my first time
+        value: That's  <i>cute</i>
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=3]Ara
 
 
-          It''s already the seventh time this month'
+          Nice try, but you can add a bit more.. Oomph
+          to it'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -6806,7 +6675,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Lati, pic=1);
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -6946,8 +6815,7 @@ MonoBehaviour:
         value: '[pic=4]???
 
 
-          Seventh time? This is the fist time I see
-          you'
+          Are you.. Making fun of me?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7025,8 +6893,7 @@ MonoBehaviour:
         value: '[pic=3]Ara
 
 
-          Well.. I think what I experienced has always
-          been different as well'
+          Well I''m having fun'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7104,7 +6971,7 @@ MonoBehaviour:
         value: '[pic=4]???
 
 
-          Who even are you..?'
+          Well I''m not'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7182,7 +7049,8 @@ MonoBehaviour:
         value: '[pic=3]Ara
 
 
-          I''m Ara, what is your name Miss?'
+          Who don''t we start over then, I''m Ara and
+          you are?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7416,8 +7284,7 @@ MonoBehaviour:
         value: '[pic=2]Ara
 
 
-          Oh yeah we haven''t got to know each other
-          yet, name''s Ara and you are Miss?'
+          Name is Ara btw, and you are?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -7462,7 +7329,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 625.692
-        y: 1051.0503
+        y: 1057.4333
         width: 160
         height: 30
     - id: 36
@@ -8040,7 +7907,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 626.8124
+        x: 625.74854
         y: 951.5825
         width: 160
         height: 30
@@ -8550,9 +8417,125 @@ MonoBehaviour:
         y: 1395.4675
         width: 160
         height: 30
+    - id: 51
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=13]Ara
+
+
+          Hmm....?'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 8
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 8
+        originDialogueID: 51
+        destinationConversationID: 8
+        destinationDialogueID: 52
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 328.4021
+        y: 629.5565
+        width: 160
+        height: 30
+    - id: 52
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=4]Ara
+
+
+          ....'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 8
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 8
+        originDialogueID: 52
+        destinationConversationID: 8
+        destinationDialogueID: 23
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 328.4021
+        y: 679.5565
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.4600004
+    canvasScrollPosition: {x: 0, y: 732.97766}
+    canvasZoom: 0.94
   - id: 9
     fields:
     - title: Title
@@ -14615,8 +14598,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 96.291626, y: 0}
-    canvasZoom: 0.42999998
+    canvasScrollPosition: {x: 8.289963, y: 0}
+    canvasZoom: 0.48999998
   - id: 11
     fields:
     - title: Title
