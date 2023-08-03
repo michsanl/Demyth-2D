@@ -21,8 +21,10 @@ public class PetraAbilityBasicSlam : SceneService
     
     public IEnumerator BasicSlam()
     {
+        var audioManager = Context.AudioManager;
         var coffinSpawnPosition = Context.Player.LastMoveTargetPosition;
         animator.Play(BASIC_SLAM);
+        audioManager.PlaySound(audioManager.PetraAudioSource.BasicSlam);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         Instantiate(groundCoffin, coffinSpawnPosition, Quaternion.identity);

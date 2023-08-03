@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using CustomTools.Core;
 
-public class TuyulPatrolMovement : MonoBehaviour
+public class TuyulPatrolMovement : SceneService
 {
     [SerializeField] private float moveIntervalDelay; 
     [SerializeField] private float moveDuration;
@@ -20,6 +21,8 @@ public class TuyulPatrolMovement : MonoBehaviour
     {
         Vector2 moveDir = GetMoveDir();
 
+        yield return Helper.GetWaitForSeconds(moveIntervalDelay);
+
         if (IsMovePathBlocked(moveDir))
         {
             yield return Helper.GetWaitForSeconds(moveIntervalDelay);
@@ -29,8 +32,6 @@ public class TuyulPatrolMovement : MonoBehaviour
             SetFacingDirection(moveDir);
             yield return StartCoroutine(Move(moveDir));
         }
-
-        yield return Helper.GetWaitForSeconds(moveIntervalDelay);
 
         StartCoroutine(PatrolMovementLoop());
     }
@@ -70,6 +71,8 @@ public class TuyulPatrolMovement : MonoBehaviour
     private IEnumerator Move(Vector3 moveDir)
     {
         animator.SetTrigger("Dash");
+        Context.AudioManager.PlaySound(Context.AudioManager.TuyulDash);
+
         Vector2 moveTargetPosition = GetRoundedMoveTargetPosition(moveDir);
         yield return transform.DOMove(moveTargetPosition, moveDuration).WaitForCompletion();
     }

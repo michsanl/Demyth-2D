@@ -28,6 +28,8 @@ public class PetraAbilityDownCharge : SceneService
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(DOWN_CHARGE);
+        var audioManager = Context.AudioManager;
+        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         downChargeCollider.SetActive(true);

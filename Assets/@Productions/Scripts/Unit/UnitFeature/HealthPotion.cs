@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using CustomTools.Core;
 
-public class HealthPotion : MonoBehaviour
+public class HealthPotion : SceneService
 {
     [Header("Potion Attribute")]
     [SerializeField]
@@ -19,12 +20,12 @@ public class HealthPotion : MonoBehaviour
 
     private Health health;
 
-    private void Awake() 
+    protected override void OnInitialize()
     {
         health = GetComponent<Health>();
     }
 
-    private void Start() 
+    protected override void OnActivate()
     {
         ResetPotionToMax();
     }
@@ -40,6 +41,7 @@ public class HealthPotion : MonoBehaviour
             
         currentPotionAmount--;
         health.Heal(1);
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Potion);    
         OnPotionAmountChanged?.Invoke(currentPotionAmount);
 
         StartCoroutine(StartPotionCooldown());

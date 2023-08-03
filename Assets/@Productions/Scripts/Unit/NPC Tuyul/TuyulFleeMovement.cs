@@ -88,8 +88,9 @@ public class TuyulFleeMovement : SceneService
     {
         isBusy = true;
 
-        // animator.SetTrigger("Dash");
         animator.Play("Dash");
+        Context.AudioManager.PlaySound(Context.AudioManager.TuyulDash);
+        
         transform.DOMove(GetMoveTargetPositionRounded(moveDir), moveDuration);
         yield return Helper.GetWaitForSeconds(moveDuration);
         mockInterval = 1f;

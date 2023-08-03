@@ -30,7 +30,7 @@ public class SriAbilityUpSlash : SceneService
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(UP_SLASH);
-        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.VerticalSlash, transform.position);
+        audioManager.PlaySound(audioManager.SriAudioSource.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         upSlashCollider.SetActive(true);

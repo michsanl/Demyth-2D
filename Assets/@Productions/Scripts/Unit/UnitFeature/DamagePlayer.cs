@@ -7,6 +7,8 @@ using CustomTools.Core;
 
 public class DamagePlayer : SceneService
 {
+    public DamagerCharacter damagerCharacter;
+
     [Title("KnockBack Settings")]
     [SerializeField] private bool enableKnockBack = true;
     [ShowIf("enableKnockBack")]
@@ -23,6 +25,7 @@ public class DamagePlayer : SceneService
     public enum KnockBackOrientation { AllDir, HorizontalDir, VerticalDir, SelectedDir };
     public enum KnockBackDirection { Up, Down, Left, Right }
     public enum KnockBackSource { ThisObject, Player }
+    public enum DamagerCharacter { NotSet, Petra, Sri }
 
     private Player player;
     private Vector3 knockBackOrigin;
@@ -32,14 +35,21 @@ public class DamagePlayer : SceneService
     private void OnCollisionStay(Collision other) 
     {
         if (player != null)
-            player.TakeDamage(enableKnockBack, knockBackTargetPosition);
+        {
+            player.TakeDamage(enableKnockBack, knockBackTargetPosition, damagerCharacter);
+        }
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnCollisionEnter(Collision other)
     {
         player = other.collider.GetComponent<Player>();
         knockBackOrigin = GetKnockBackOrigin();
 
+        SetKnockbackTargetPosition();
+    }
+
+    private void SetKnockbackTargetPosition()
+    {
         if (enableKnockBack)
         {
             switch (knockBackOrientation)
