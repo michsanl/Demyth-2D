@@ -25,7 +25,7 @@ public class SriAbilityFireBall : SceneService
         var audioManager = Context.AudioManager;
 
         animator.Play(FIRE_BALL);
-        // audioManager.PlayClipAtPoint(audioManager.SriAudioSource.Fireball, transform.position);
+        // audioManager.PlaySound(audioManager.SriAudioSource.Fireball);
 
         Instantiate(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
         yield return Helper.GetWaitForSeconds(animationDuration);

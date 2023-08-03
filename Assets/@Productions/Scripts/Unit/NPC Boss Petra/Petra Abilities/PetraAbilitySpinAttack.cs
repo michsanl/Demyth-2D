@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using CustomTools.Core;
 
-public class PetraAbilitySpinAttack : MonoBehaviour
+public class PetraAbilitySpinAttack : SceneService
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -20,7 +21,8 @@ public class PetraAbilitySpinAttack : MonoBehaviour
     public IEnumerator SpinAttack()
     {
         animator.Play(SPIN_ATTACK);
-        // audioManager.PlaySound(audioClipSriSO.VerticalSlash);
+        var audioManager = Context.AudioManager;
+        audioManager.PlaySound(audioManager.PetraAudioSource.CoffinSwing);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinAttackCollider.SetActive(true);

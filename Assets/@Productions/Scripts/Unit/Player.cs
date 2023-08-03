@@ -5,6 +5,7 @@ using System;
 using CustomTools.Core;
 using Sirenix.OdinInspector;
 using DG.Tweening;
+using PixelCrushers.DialogueSystem.Demo;
 
 public class Player : SceneService
 {
@@ -26,7 +27,7 @@ public class Player : SceneService
     public Action OnInvulnerableVisualEnd;
     public Action<bool> OnSenterToggle;
     public Vector2 LastMoveTargetPosition => moveTargetPosition;
-    public Vector2 PlayerDir => playerDir; 
+    public Vector2 PlayerDir => playerDir;
 
 #endregion
 
@@ -120,6 +121,8 @@ public class Player : SceneService
         isBusy = true;
 
         animator.SetTrigger("Dash");
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Move);
+
         Helper.MoveToPosition(transform, moveTargetPosition, actionDuration);
         yield return Helper.GetWaitForSeconds(actionDuration);
 
@@ -134,16 +137,20 @@ public class Player : SceneService
         {
             case InteractableType.Push:
                 animator.SetTrigger("Attack");
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+                Instantiate(hitEffect, moveTargetPosition, Quaternion.identity);
                 break;
             case InteractableType.Damage:
                 animator.SetTrigger("Attack");
-                interactable.Interact();
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
                 Instantiate(hitEffect, moveTargetPosition, Quaternion.identity);
+                interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
             case InteractableType.PillarLight:
                 animator.SetTrigger("Attack");
+
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
@@ -188,14 +195,17 @@ public class Player : SceneService
     {
         if (senterGameObject.activeInHierarchy)
         {
+            Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Lantern);
+
             senterGameObject.transform.localPosition = new Vector3(100, 100, 0);
-            // yield return senterGameObject.transform.DOMoveX(100f, 0f).WaitForCompletion();
             yield return Helper.GetWaitForSeconds(0.05f);
             senterGameObject.SetActive(false);
             isSenterEnabled = false;
         }
         else
         {
+            Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Lantern);
+
             senterGameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
             yield return Helper.GetWaitForSeconds(0.05f);
             senterGameObject.SetActive(true);
@@ -205,21 +215,22 @@ public class Player : SceneService
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
-    public void TakeDamage(bool enableKnockBack, Vector2 knockbackTargetPosition)
+    public void TakeDamage(bool enableKnockBack, Vector2 knockbackTargetPosition, DamagePlayer.DamagerCharacter damager)
     {
         if (isTakeDamageOnCooldown)
             return;
         if (enableKnockBack)
             isKnocked = true;
 
-        StartCoroutine(TakeDamageRoutine(enableKnockBack, knockbackTargetPosition));
+        StartCoroutine(TakeDamageRoutine(enableKnockBack, knockbackTargetPosition, damager));
     }
 
-    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 knockbackTargetPosition)
+    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 knockbackTargetPosition, DamagePlayer.DamagerCharacter damager)
     {
         isTakeDamageOnCooldown = true;
 
         animator.SetTrigger("OnHit");
+        PlayTakeDamageAudio(damager);
 
         yield return StartCoroutine(cameraShakeController.PlayCameraShake());
 
@@ -229,12 +240,27 @@ public class Player : SceneService
 
         if (knockBackPlayer)
             StartCoroutine(HandleKnockBack(knockbackTargetPosition));
-        
+
         OnInvulnerableVisualStart?.Invoke();
         yield return Helper.GetWaitForSeconds(takeDamageCooldown);
         OnInvulnerableVisualEnd?.Invoke();
 
         isTakeDamageOnCooldown = false;
+    }
+
+    private void PlayTakeDamageAudio(DamagePlayer.DamagerCharacter damager)
+    {
+        switch (damager)
+        {
+            case DamagePlayer.DamagerCharacter.Petra:
+                Context.AudioManager.PlaySound(Context.AudioManager.SriAudioSource.GetRandomDamageClip());
+                break;
+            case DamagePlayer.DamagerCharacter.Sri:
+                Context.AudioManager.PlaySound(Context.AudioManager.PetraAudioSource.GetRandomDamageClip());
+                break;
+            default:
+                break;
+        }
     }
 
     private IEnumerator HandleKnockBack(Vector2 targetPosition)

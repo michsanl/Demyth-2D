@@ -25,7 +25,7 @@ public class SriAbilityNailSummon : SceneService
         var audioManager = Context.AudioManager;
 
         animator.CrossFade(NAIL_SUMMON_SINGLE, .1f, 0);
-        audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailSummon, transform.position);
+        audioManager.PlaySound(audioManager.SriAudioSource.NailSummon);
         
         Vector2 spawnPosition = Context.Player.LastMoveTargetPosition;
         Instantiate(groundNail, spawnPosition, Quaternion.identity);

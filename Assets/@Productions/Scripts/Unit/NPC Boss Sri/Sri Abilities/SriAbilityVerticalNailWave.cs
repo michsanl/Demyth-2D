@@ -20,7 +20,7 @@ public class SriAbilityVerticalNailWave : SceneService
     {
         animator.Play(NAIL_WAVE);
         var audioManager = Context.AudioManager;
-        // audioManager.PlayClipAtPoint(audioManager.SriAudioSource.NailSummon, transform.position);
+        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
         Instantiate(verticalNailWave, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);

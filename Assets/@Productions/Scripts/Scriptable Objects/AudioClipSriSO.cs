@@ -16,4 +16,9 @@ public class AudioClipSriSO : ScriptableObject
     public AudioClip FlyingNailSummon;
     public AudioClip FlyingNailShot;
     public AudioClip FlyingNailImpact;
+
+    public AudioClip GetRandomDamageClip()
+    {
+        return Damage[Random.Range(0, Damage.Length)];
+    }
 }
