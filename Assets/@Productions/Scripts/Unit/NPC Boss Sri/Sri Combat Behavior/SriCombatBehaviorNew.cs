@@ -30,6 +30,7 @@ public class SriCombatBehaviorNew : SceneService
     private SriAbilityHorizontalNailWave horizontalNailWaveAbility;
     private SriAbilityVerticalNailWave verticalNailWaveAbility;
     private SriAbilityWaveOutNailWave waveOutNailWaveAbility;
+    private SriAbilityDeathSlash deathSlashAbility;
     private LookOrientation lookOrientation;
     private Health health;
 
@@ -49,6 +50,7 @@ public class SriCombatBehaviorNew : SceneService
         horizontalNailWaveAbility = GetComponent<SriAbilityHorizontalNailWave>();
         verticalNailWaveAbility = GetComponent<SriAbilityVerticalNailWave>();
         waveOutNailWaveAbility = GetComponent<SriAbilityWaveOutNailWave>();
+        deathSlashAbility = GetComponent<SriAbilityDeathSlash>();
         lookOrientation = GetComponent<LookOrientation>();
         health = GetComponent<Health>();
     }
@@ -74,6 +76,7 @@ public class SriCombatBehaviorNew : SceneService
     private void Health_OnDeath()
     {
         StopCurrentAbility();
+        StartCoroutine(deathSlashAbility.DeathSlash());
     }
 
     [Button("Change Combat Behavior", ButtonSizes.Medium)]

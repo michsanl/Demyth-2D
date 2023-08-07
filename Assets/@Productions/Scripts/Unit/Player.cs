@@ -248,6 +248,12 @@ public class Player : SceneService
         isTakeDamageOnCooldown = false;
     }
 
+    public void TriggerKnockBack(Vector2 knockbackTargetPosition)
+    {
+        animator.SetTrigger("OnHit");
+        StartCoroutine(HandleKnockBack(knockbackTargetPosition));
+    }
+
     private void PlayTakeDamageAudio(DamagePlayer.DamagerCharacter damager)
     {
         switch (damager)
