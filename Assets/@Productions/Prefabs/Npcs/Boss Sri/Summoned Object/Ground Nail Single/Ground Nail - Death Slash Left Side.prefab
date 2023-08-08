@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 3975585011897390250}
   - component: {fileID: 449008501976421847}
   m_Layer: 0
-  m_Name: Ground Nail - Death Slash
+  m_Name: Ground Nail - Death Slash Left Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,9 +452,10 @@ MonoBehaviour:
   _isActive: 0
   damagerCharacter: 2
   isKnockbackOnly: 1
+  isKnockbackPassThrough: 1
   enableKnockBack: 1
   knockBackSource: 0
-  knockBackOrientation: 0
+  knockBackOrientation: 3
   knockBackDirection: 3
   moveBlockMask:
     serializedVersion: 2
