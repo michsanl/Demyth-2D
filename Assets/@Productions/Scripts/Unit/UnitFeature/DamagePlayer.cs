@@ -11,6 +11,7 @@ public class DamagePlayer : SceneService
 
     [Title("KnockBack Settings")]
     [SerializeField] private bool isKnockbackOnly;
+    [SerializeField] private bool isKnockbackPassThrough;
     [SerializeField] private bool enableKnockBack = true;
     [ShowIf("enableKnockBack")]
     public KnockBackSource knockBackSource;
@@ -136,7 +137,14 @@ public class DamagePlayer : SceneService
     {
         Vector2 selectedDir = GetSelectedDir();
 
-        return IsDirectionBlocked(selectedDir, transform.position) ? Vector2.zero : selectedDir;
+        if (isKnockbackPassThrough)
+        {
+            return selectedDir;
+        }
+        else
+        {
+            return IsDirectionBlocked(selectedDir, transform.position) ? Vector2.zero : selectedDir;
+        }
     }
 
     private Vector3 GetDirectionToPlayer()
