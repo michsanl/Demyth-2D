@@ -10,6 +10,7 @@ public class DamagePlayer : SceneService
     public DamagerCharacter damagerCharacter;
 
     [Title("KnockBack Settings")]
+    [SerializeField] private bool isKnockbackOnly;
     [SerializeField] private bool enableKnockBack = true;
     [ShowIf("enableKnockBack")]
     public KnockBackSource knockBackSource;
@@ -36,7 +37,14 @@ public class DamagePlayer : SceneService
     {
         if (player != null)
         {
-            player.TakeDamage(enableKnockBack, knockBackTargetPosition, damagerCharacter);
+            if (isKnockbackOnly)
+            {
+                player.TriggerKnockBack(knockBackTargetPosition);
+            }
+            else
+            {
+                player.TakeDamage(enableKnockBack, knockBackTargetPosition, damagerCharacter);
+            }
         }
     }
 

@@ -10,6 +10,7 @@ public class GroundSummon : MonoBehaviour
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float anticipationDuration;
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float attackDuration;
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float recoveryDuration;
+    [SerializeField] private bool isEndless;
     [ReadOnly] public float TotalDuration;
 
     [Title("Randomized Spawn")]
@@ -55,6 +56,8 @@ public class GroundSummon : MonoBehaviour
         OnAttack?.Invoke();
         colliderGameObject.SetActive(true);
         yield return Helper.GetWaitForSeconds(attackDuration);
+
+        if (isEndless) yield break;
 
         OnRecovery?.Invoke();
         colliderGameObject.SetActive(false);
