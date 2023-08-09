@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5946625171944893212}
+  - component: {fileID: 8604968934621800572}
   - component: {fileID: 5430028127531931034}
   - component: {fileID: 1894419131004632951}
   m_Layer: 11
@@ -33,6 +34,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8604968934621800572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099938523839547377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &5430028127531931034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +79,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -91,6 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9015068034513849921}
+  - component: {fileID: 6017347448023202540}
   - component: {fileID: 8625300338647017604}
   - component: {fileID: 3206873850754831953}
   m_Layer: 11
@@ -115,6 +138,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6017347448023202540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795829322231095519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8625300338647017604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +183,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -173,6 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3523970617938751789}
+  - component: {fileID: 527115496031247564}
   - component: {fileID: 2234131448089816306}
   - component: {fileID: 2108525769551776216}
   m_Layer: 11
@@ -197,6 +242,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &527115496031247564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621478967917180866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &2234131448089816306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +287,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -255,6 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875247444357935368}
+  - component: {fileID: 1337236939245871600}
   - component: {fileID: 1212262667023932286}
   - component: {fileID: 8988222877750932096}
   - component: {fileID: 8711829485131478448}
@@ -280,6 +347,25 @@ Transform:
   m_Father: {fileID: 4035538333459172009}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337236939245871600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906600543523919839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7193313310fb708418a49270f7bab468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 1
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &1212262667023932286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +392,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 1
   knockBackOrientation: 1
@@ -354,6 +442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339151071044580125}
+  - component: {fileID: 5128894174886812163}
   - component: {fileID: 8478845546267803454}
   - component: {fileID: 8192991233920695436}
   m_Layer: 11
@@ -378,6 +467,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5128894174886812163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3314831482500278176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8478845546267803454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +512,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -436,6 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5002164833262674413}
+  - component: {fileID: 1335462378607212}
   - component: {fileID: 8273127800461537325}
   - component: {fileID: 5768086047377196438}
   m_Layer: 11
@@ -460,6 +571,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335462378607212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3387550342931518756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8273127800461537325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +616,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -568,6 +700,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 0
   knockBackSource: 0
   knockBackOrientation: 0
@@ -600,6 +734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2093782453238309169}
+  - component: {fileID: 1133042692632260820}
   - component: {fileID: 2269613035439344996}
   - component: {fileID: 860825017673831724}
   m_Layer: 11
@@ -624,6 +759,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133042692632260820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4034483119295860988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &2269613035439344996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +804,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -682,6 +838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194392507544977982}
+  - component: {fileID: 1539759059459268891}
   - component: {fileID: 1316269792801312283}
   - component: {fileID: 192730501102384007}
   - component: {fileID: 3440938676272871307}
@@ -707,6 +864,25 @@ Transform:
   m_Father: {fileID: 4035538333459172009}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1539759059459268891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152772934057147649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 1
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &1316269792801312283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,6 +909,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 1
   knockBackOrientation: 0
@@ -821,6 +999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8616175670885172389}
+  - component: {fileID: 5005623619296633926}
   - component: {fileID: 2231996107153810838}
   - component: {fileID: 2555504586037775686}
   m_Layer: 11
@@ -845,6 +1024,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5005623619296633926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5702417594691422889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &2231996107153810838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,6 +1069,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -903,6 +1103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2758474263609331416}
+  - component: {fileID: 2549568077952463159}
   - component: {fileID: 2877475676149210664}
   - component: {fileID: 2310419747884847953}
   - component: {fileID: 5999263334239562857}
@@ -928,6 +1129,25 @@ Transform:
   m_Father: {fileID: 4035538333459172009}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2549568077952463159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631251182860402330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cdc2f721f133344966559324dd0e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 1
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &2877475676149210664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,6 +1174,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 1
   knockBackOrientation: 2
@@ -1002,6 +1224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4574070990449887823}
+  - component: {fileID: 5947196811791034622}
   - component: {fileID: 8500467932143325838}
   - component: {fileID: 7889742666343755253}
   m_Layer: 11
@@ -1026,6 +1249,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5947196811791034622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800158576869532696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8500467932143325838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1294,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
@@ -1851,6 +2095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4707557654921670823}
+  - component: {fileID: 2116222587027392398}
   - component: {fileID: 8431936350268214667}
   - component: {fileID: 5446034547960783244}
   m_Layer: 11
@@ -1875,6 +2120,25 @@ Transform:
   m_Father: {fileID: 6066905539364272980}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116222587027392398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713059183853069673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8431936350268214667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,6 +2165,8 @@ MonoBehaviour:
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0
