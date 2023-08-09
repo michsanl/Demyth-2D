@@ -128,15 +128,15 @@ public class Player : SceneService
     private IEnumerator HandleInteract(Interactable interactable)
     {
         isBusy = true;
-        
-        switch (interactable.interactableType)
+
+        switch (interactable)
         {
-            case InteractableType.Push:
+            case Pushable:
                 animator.SetTrigger("Attack");
                 Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
                 Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
                 break;
-            case InteractableType.Damage:
+            case Damageable:
                 animator.SetTrigger("Attack");
                 Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
                 Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
@@ -144,21 +144,21 @@ public class Player : SceneService
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
-            case InteractableType.PillarLight:
+            case PillarLight:
                 animator.SetTrigger("Attack");
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
-            case InteractableType.HiddenItem:
+            case Pickupable:
                 interactable.Interact();
                 yield return StartCoroutine(HandleMovement());
                 yield break;
             default:
                 break;
         }
-        interactable.Interact(playerDir);
 
+        interactable.Interact(playerDir);
         yield return Helper.GetWaitForSeconds(actionDuration);
 
         isBusy = false;
@@ -175,7 +175,15 @@ public class Player : SceneService
     {
         if (!isHealthPotionUnlocked)
             return;
+        if (health.IsHealthFull())
+            return;
+        if (healthPotion.CurrentPotionAmount <= 0) 
+            return;
+        if (healthPotion.IsHealthPotionOnCooldown)
+            return;
+
         healthPotion.UsePotion();
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Potion);   
     }
 
     private IEnumerator ToggleSenter()
