@@ -92,14 +92,13 @@ public class Player : SceneService
             return;
 
         playerDir = inputVector;
-        moveTargetPosition = GetMoveTargetPosition();
         lookOrientation.SetFacingDirection(playerDir);
         
         if (Helper.CheckTargetDirection(transform.position, playerDir, moveBlockMask, out Interactable interactable))
         {
             if (interactable != null)
             {
-                StartCoroutine(HandleInteract(interactable, moveTargetPosition));
+                StartCoroutine(HandleInteract(interactable));
             }
         } 
         else
@@ -123,13 +122,14 @@ public class Player : SceneService
         animator.SetTrigger("Dash");
         Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Move);
 
+        moveTargetPosition = GetMoveTargetPosition();
         Helper.MoveToPosition(transform, moveTargetPosition, actionDuration);
         yield return Helper.GetWaitForSeconds(actionDuration);
 
         isBusy = false;
     }
 
-    private IEnumerator HandleInteract(Interactable interactable, Vector2 moveTargetPosition)
+    private IEnumerator HandleInteract(Interactable interactable)
     {
         isBusy = true;
         
@@ -138,19 +138,18 @@ public class Player : SceneService
             case InteractableType.Push:
                 animator.SetTrigger("Attack");
                 Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
-                Instantiate(hitEffect, moveTargetPosition, Quaternion.identity);
+                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
                 break;
             case InteractableType.Damage:
                 animator.SetTrigger("Attack");
                 Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
-                Instantiate(hitEffect, moveTargetPosition, Quaternion.identity);
+                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
             case InteractableType.PillarLight:
                 animator.SetTrigger("Attack");
-
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
@@ -215,7 +214,7 @@ public class Player : SceneService
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
-    public void TakeDamage(bool enableKnockBack, Vector2 knockbackTargetPosition, DamagePlayer.DamagerCharacter damager)
+    public void TakeDamage(bool enableKnockBack, Vector2 knockbackTargetPosition, PlayerDamager.DamagerCharacter damager)
     {
         if (isTakeDamageOnCooldown)
             return;
@@ -225,7 +224,7 @@ public class Player : SceneService
         StartCoroutine(TakeDamageRoutine(enableKnockBack, knockbackTargetPosition, damager));
     }
 
-    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 knockbackTargetPosition, DamagePlayer.DamagerCharacter damager)
+    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 knockbackTargetPosition, PlayerDamager.DamagerCharacter damager)
     {
         isTakeDamageOnCooldown = true;
 
@@ -254,14 +253,14 @@ public class Player : SceneService
         StartCoroutine(HandleKnockBack(knockbackTargetPosition));
     }
 
-    private void PlayTakeDamageAudio(DamagePlayer.DamagerCharacter damager)
+    private void PlayTakeDamageAudio(PlayerDamager.DamagerCharacter damager)
     {
         switch (damager)
         {
-            case DamagePlayer.DamagerCharacter.Petra:
+            case PlayerDamager.DamagerCharacter.Petra:
                 Context.AudioManager.PlaySound(Context.AudioManager.SriAudioSource.GetRandomDamageClip());
                 break;
-            case DamagePlayer.DamagerCharacter.Sri:
+            case PlayerDamager.DamagerCharacter.Sri:
                 Context.AudioManager.PlaySound(Context.AudioManager.PetraAudioSource.GetRandomDamageClip());
                 break;
             default:
