@@ -17,23 +17,23 @@ public class PlayerDamager : SceneService
 
     private void OnCollisionStay(Collision other) 
     {
-        if (player != null)
+        if (player == null)
+            return;
+            
+        if (TryGetComponent<KnockbackBase>(out KnockbackBase knockbackBase))
         {
-            if (TryGetComponent<KnockbackBase>(out KnockbackBase knockbackBase))
+            if (isKnockbackOnly)
             {
-                if (isKnockbackOnly)
-                {
-                    player.TriggerKnockBack(knockbackBase.GetKnockbackTargetPosition(player));
-                }
-                else
-                {
-                    player.TakeDamage(true, knockbackBase.GetKnockbackTargetPosition(player), damagerCharacter);
-                }
+                player.TriggerKnockBack(knockbackBase.GetKnockbackTargetPosition(player));
             }
             else
             {
-                player.TakeDamage(false, Vector2.zero, damagerCharacter);
+                player.TakeDamage(true, knockbackBase.GetKnockbackTargetPosition(player), damagerCharacter);
             }
+        }
+        else
+        {
+            player.TakeDamage(false, Vector2.zero, damagerCharacter);
         }
     }
 
