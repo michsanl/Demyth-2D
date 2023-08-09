@@ -9,9 +9,10 @@ using System;
 
 public class LevelManager : SceneService
 {
-    public bool IsMainMenuOpen { get; private set; }
     public Level CurrentLevel { get; private set; }
     public Level MainMenuLevel => mainMenuLevel;
+    public Action OnOpenMainMenu;
+    public Action OnOpenGameLevel;
 
     [SerializeField] private Level mainMenuLevel;
     [SerializeField] private List<Level> levels = new List<Level>();
@@ -35,11 +36,11 @@ public class LevelManager : SceneService
 
         if (targetLevel == mainMenuLevel)
         {
-            IsMainMenuOpen = true;
+            OnOpenMainMenu?.Invoke();
         }
         else
         {
-            IsMainMenuOpen = false;
+            OnOpenGameLevel?.Invoke();
             SetPlayerPosition(targetLevel.StarterPosition);
         }
     }
