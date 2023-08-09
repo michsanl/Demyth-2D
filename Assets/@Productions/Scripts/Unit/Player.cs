@@ -4,8 +4,6 @@ using UnityEngine;
 using System;
 using CustomTools.Core;
 using Sirenix.OdinInspector;
-using DG.Tweening;
-using PixelCrushers.DialogueSystem.Demo;
 
 public class Player : SceneService
 {
@@ -13,13 +11,14 @@ public class Player : SceneService
     [SerializeField] private float actionDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
+    [SerializeField] private bool disableOnStart;
     [SerializeField] private LayerMask moveBlockMask;
-    [SerializeField] private GameObject hitEffect;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
     [SerializeField] private GameObject senterGameObject;
+    [SerializeField] private GameObject hitEffect;
     
 #region Public Fields
     
@@ -31,7 +30,6 @@ public class Player : SceneService
 
 #endregion
 
-    private CameraShakeController cameraShakeController;
     private FlashEffectController flashEffectController;
     private LookOrientation lookOrientation;
     private HealthPotion healthPotion;
@@ -49,7 +47,6 @@ public class Player : SceneService
     {
         base.OnInitialize();
 
-        cameraShakeController = GetComponent<CameraShakeController>();
         flashEffectController = GetComponent<FlashEffectController>();
         lookOrientation = GetComponent<LookOrientation>();
         healthPotion = GetComponent<HealthPotion>();
@@ -64,6 +61,9 @@ public class Player : SceneService
         Context.GameInput.OnHealthPotionPerformed += GameInput_OnHealthPotionPerformed;
 
         moveTargetPosition = transform.position;
+
+        if (disableOnStart)
+            gameObject.SetActive(false);
     }
 
     protected override void OnTick()
@@ -75,10 +75,6 @@ public class Player : SceneService
 
     private void HandlePlayerAction()
     {
-        if (Time.deltaTime == 0)
-            return;
-        if (!isActiveAndEnabled)
-            return;
         if (isKnocked)
             return;
         if (isBusy)
@@ -132,15 +128,15 @@ public class Player : SceneService
     private IEnumerator HandleInteract(Interactable interactable)
     {
         isBusy = true;
-        
-        switch (interactable.interactableType)
+
+        switch (interactable)
         {
-            case InteractableType.Push:
+            case Pushable:
                 animator.SetTrigger("Attack");
                 Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
                 Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
                 break;
-            case InteractableType.Damage:
+            case Damageable:
                 animator.SetTrigger("Attack");
                 Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
                 Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
@@ -148,21 +144,21 @@ public class Player : SceneService
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
-            case InteractableType.PillarLight:
+            case PillarLight:
                 animator.SetTrigger("Attack");
                 interactable.Interact();
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 isBusy = false;
                 yield break;
-            case InteractableType.HiddenItem:
+            case Pickupable:
                 interactable.Interact();
                 yield return StartCoroutine(HandleMovement());
                 yield break;
             default:
                 break;
         }
-        interactable.Interact(playerDir);
 
+        interactable.Interact(playerDir);
         yield return Helper.GetWaitForSeconds(actionDuration);
 
         isBusy = false;
@@ -170,10 +166,6 @@ public class Player : SceneService
 
     private void GameInput_OnSenterPerformed()
     {
-        if (Time.deltaTime == 0)
-            return;
-        if (!isActiveAndEnabled)
-            return;
         if (!isSenterUnlocked)
             return;
         StartCoroutine(ToggleSenter());
@@ -181,13 +173,17 @@ public class Player : SceneService
 
     private void GameInput_OnHealthPotionPerformed()
     {
-        if (Time.deltaTime == 0)
-            return;
-        if (!isActiveAndEnabled)
-            return;
         if (!isHealthPotionUnlocked)
             return;
+        if (health.IsHealthFull())
+            return;
+        if (healthPotion.CurrentPotionAmount <= 0) 
+            return;
+        if (healthPotion.IsHealthPotionOnCooldown)
+            return;
+
         healthPotion.UsePotion();
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Potion);   
     }
 
     private IEnumerator ToggleSenter()
@@ -231,7 +227,7 @@ public class Player : SceneService
         animator.SetTrigger("OnHit");
         PlayTakeDamageAudio(damager);
 
-        yield return StartCoroutine(cameraShakeController.PlayCameraShake());
+        yield return StartCoroutine(Context.CameraShakeController.PlayCameraShake());
 
         health.TakeDamage();
 

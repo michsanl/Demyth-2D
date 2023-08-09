@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,14 +28,11 @@ public class GameManager : SceneService
 
     public void TogglePauseGame()
     {
-        if (Context.LevelManager.IsMainMenuOpen)
-            return;
-
         isGamePaused = !isGamePaused;
         if (isGamePaused)
         {
             Time.timeScale = 0f;
-            Context.CameraShake.gameObject.SetActive(false);
+            Context.CameraShakeController.gameObject.SetActive(false);
             OnGamePaused?.Invoke();
         } else
         {

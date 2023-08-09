@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using CustomTools.Core;
-using PixelCrushers.DialogueSystem;
 
 public class GameInput : SceneService
 {
+    [SerializeField] private bool enablePlayerOnStart = true;
+    [SerializeField] private bool enablePauseOnStart = true;
+
     public Action OnSenterPerformed;
     public Action OnHealthPotionPerformed;
     public Action OnPausePerformed;
@@ -21,21 +23,12 @@ public class GameInput : SceneService
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Senter.performed += PlayerInputAction_OnSenterPerformed;
         playerInputActions.Player.HealthPotion.performed += PlayerInputAction_OnHealthPotionPerformed;
-        playerInputActions.Player.Pause.performed += PlayerInputAction_OnPausePerformed;
-        DialogueManager.Instance.conversationStarted += DialogueManager_OnConversationStarted;
-        DialogueManager.Instance.conversationEnded += DialogueManager_OnConversationEnded;
+        playerInputActions.Pause.Escape.performed += PlayerInputAction_OnEscapePerformed;
 
-        playerInputActions.Player.Enable();
-    }
-
-    private void DialogueManager_OnConversationStarted(Transform t)
-    {
-        playerInputActions.Player.Disable();
-    }
-
-    private void DialogueManager_OnConversationEnded(Transform t)
-    {
-        playerInputActions.Player.Enable();
+        if (enablePlayerOnStart)
+            playerInputActions.Player.Enable();
+        if (enablePauseOnStart)
+            playerInputActions.Pause.Enable();
     }
 
     private void PlayerInputAction_OnSenterPerformed(InputAction.CallbackContext context)
@@ -48,7 +41,7 @@ public class GameInput : SceneService
         OnHealthPotionPerformed?.Invoke();
     }
 
-    private void PlayerInputAction_OnPausePerformed(InputAction.CallbackContext context)
+    private void PlayerInputAction_OnEscapePerformed(InputAction.CallbackContext context)
     {
         OnPausePerformed?.Invoke();
     }
@@ -58,4 +51,27 @@ public class GameInput : SceneService
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
         return inputVector;
     }
+
+
+    public void EnablePlayerInput()
+    {
+        playerInputActions.Player.Enable();
+    }
+
+    public void DisablePlayerInput()
+    {
+        playerInputActions.Player.Disable();
+    }
+
+    public void EnablePauseInput()
+    {
+        playerInputActions.Pause.Enable();
+    }
+
+    public void DisablePauseInput()
+    {
+        playerInputActions.Pause.Disable();
+    }
+
+
 }
