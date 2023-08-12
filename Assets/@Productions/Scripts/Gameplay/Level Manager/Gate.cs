@@ -32,6 +32,8 @@ namespace Demyth.Gameplay
         {
             _level.MoveToNextLevel(targetLevel);
             MoveCamera();
+
+            PixelCrushers.SaveSystem.SaveToSlot(1);
         }
 
         private void MoveCamera()

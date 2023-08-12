@@ -55,7 +55,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShake: {fileID: 0}
+    CameraShakeController: {fileID: 0}
   _services: []
   playerPrefab: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
 --- !u!1001 &8487284318543859425
@@ -112,22 +112,6 @@ PrefabInstance:
     - target: {fileID: 6361526827687399647, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
       propertyPath: m_Name
       value: Dialogue Manager Demyth 2D
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072983, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 4087
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: initialDatabase
-      value: 
-      objectReference: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.inputSettings.cancel.key
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6361526827693072987, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
-      propertyPath: displaySettings.inputSettings.cancelConversation.key
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}

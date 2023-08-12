@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CustomTools.Core;
+using Mono.Cecil;
 
 public class GameManager : SceneService
 {
@@ -19,6 +20,11 @@ public class GameManager : SceneService
     protected override void OnActivate()
     {
         Context.GameInput.OnPausePerformed += GameInput_OnPausePerformed;
+    }
+
+    private void OnDestroy() 
+    {
+        Context.GameInput.OnPausePerformed -= GameInput_OnPausePerformed;
     }
 
     private void GameInput_OnPausePerformed()
@@ -40,7 +46,5 @@ public class GameManager : SceneService
             OnGameUnpaused?.Invoke();
         }
     }
-
-
     
 }
