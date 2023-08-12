@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using DG.Tweening;
+using PixelCrushers;
 
 namespace UISystem
 {
@@ -59,6 +60,17 @@ namespace UISystem
  
             SceneUI.Context.CameraNormal.transform.DOKill();
             SceneUI.Context.CameraNormal.transform.localPosition = Vector3.zero;
+        }
+
+        public void ButtonMainMenu()
+        {
+            DialogueManager.StopAllConversations();
+            SceneUI.Context.GameManager.TogglePauseGame();
+            DOTween.KillAll();
+
+            SaveSystem.SaveToSlotImmediate(1);
+
+            SaveSystem.RestartGame("Demyth Game");
         }
 
         public void ButtonOptions()

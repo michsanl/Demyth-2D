@@ -593,13 +593,15 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShakeController: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
+  openHUDOnStart: 0
   barChangeDuration: 0.5
   barPositionRange: 205
   healthBarTransform: {fileID: 5825263702170508637}

@@ -7,6 +7,7 @@ using System;
 using PixelCrushers.DialogueSystem;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using PixelCrushers;
 
 public class HUDUI : SceneService
 {

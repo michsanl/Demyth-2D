@@ -1,7 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using PixelCrushers;
+using PixelCrushers.DialogueSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UISystem
 {
@@ -51,11 +55,21 @@ namespace UISystem
             selectLevelButtonParent.SetActive(true);
         }
 
+        public void ButtonContinueNew()
+        {
+            Close();
+
+            SceneUI.Context.GameInput.EnablePlayerInput();
+            SceneUI.Context.GameInput.EnablePauseInput();
+            
+            PixelCrushers.SaveSystem.LoadFromSlot(1);
+        }
+
         public void ButtonOption()
         {
 
         }
-
+    
         public void ButtonQuit()
         {
             Application.Quit();
