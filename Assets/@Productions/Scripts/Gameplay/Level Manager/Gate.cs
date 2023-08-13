@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 namespace Demyth.Gameplay
 {
     public class Gate : Interactable
     {
         public Vector3 EnterPoint => transform.position;
-        [SerializeField, ValueDropdown(nameof(LevelName))]
+        [SerializeField, ValueDropdown(nameof(levelNameList))]
         private string targetLevel;
         [SerializeField] private bool moveCameraOnLevelChange;
         [SerializeField, ShowIf("moveCameraOnLevelChange")]
@@ -19,8 +20,14 @@ namespace Demyth.Gameplay
         [SerializeField, ShowIf("moveCameraOnLevelChange")]
         private GameObject cameraGO;
 
+        public static Action OnAnyGateInteract;
+
         private enum CameraMoveDirection { Up, Down };
 
+        private List<string> levelNameList = new List<string> 
+        { 
+            "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level Main Menu" 
+        }; 
         private Level _level;
 
         public void SetupGate(Level level)
@@ -28,11 +35,11 @@ namespace Demyth.Gameplay
             _level = level;
         }
 
-        public override void Interact(Vector3 direction = default)
+        public override void Interact(Player player, Vector3 direction = default)
         {
+            OnAnyGateInteract?.Invoke();
             _level.MoveToNextLevel(targetLevel);
             MoveCamera();
-
             PixelCrushers.SaveSystem.SaveToSlot(1);
         }
 

@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class Pushable : Interactable
 {
     [SerializeField] private LayerMask movementBlockerLayerMask;
     [SerializeField] private int raycastOriginOffsetX;
     [SerializeField] private int raycastOriginOffsetY;
+
+    public static Action OnAnyPushableInteract;
 
     private BoxCollider2D boxCollider;
 
@@ -16,13 +19,15 @@ public class Pushable : Interactable
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    public override void Interact(Vector3 direction)
+    public override void Interact(Player player, Vector3 direction)
     {
+        OnAnyPushableInteract?.Invoke();
         var raycastOrigin = transform.position + GetRaycastOriginOffset(direction);
         if (Helper.CheckTargetDirection(raycastOrigin, direction, boxCollider.size, movementBlockerLayerMask, out Interactable interactable))
             return;
             
         Move(direction);
+
     }
 
     private void Move(Vector3 direction)

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using CustomTools.Core;
 using Sirenix.OdinInspector;
+using Demyth.Gameplay;
 
 public class Player : SceneService
 {
@@ -59,6 +60,12 @@ public class Player : SceneService
 
         Context.GameInput.OnSenterPerformed += GameInput_OnSenterPerformed;
         Context.GameInput.OnHealthPotionPerformed += GameInput_OnHealthPotionPerformed;
+        Damageable.OnAnyDamageableInteract += Damageable_OnAnyDamageableInteract;
+        Pickupable.OnAnyPickupableInteract += Pickupable_OnAnyPickupableInteract;
+        PillarLight.OnAnyPillarLightInteract += PillarLight_OnAnyPillarLightInteract;
+        Pushable.OnAnyPushableInteract += Pushable_OnAnyPushableInteract;
+        Talkable.OnAnyTalkbleInteract += Talkable_OnAnyTalkbleInteract;
+        Gate.OnAnyGateInteract += Gate_OnAnyGateInteract;
 
         moveTargetPosition = transform.position;
 
@@ -94,7 +101,7 @@ public class Player : SceneService
         {
             if (interactable != null)
             {
-                StartCoroutine(HandleInteract(interactable));
+                interactable.Interact(this, playerDir);
             }
         } 
         else
@@ -120,45 +127,6 @@ public class Player : SceneService
 
         moveTargetPosition = GetMoveTargetPosition();
         Helper.MoveToPosition(transform, moveTargetPosition, actionDuration);
-        yield return Helper.GetWaitForSeconds(actionDuration);
-
-        isBusy = false;
-    }
-
-    private IEnumerator HandleInteract(Interactable interactable)
-    {
-        isBusy = true;
-
-        switch (interactable)
-        {
-            case Pushable:
-                animator.SetTrigger("Attack");
-                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
-                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-                break;
-            case Damageable:
-                animator.SetTrigger("Attack");
-                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
-                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-                interactable.Interact();
-                yield return Helper.GetWaitForSeconds(attackDuration);
-                isBusy = false;
-                yield break;
-            case PillarLight:
-                animator.SetTrigger("Attack");
-                interactable.Interact();
-                yield return Helper.GetWaitForSeconds(attackDuration);
-                isBusy = false;
-                yield break;
-            case Pickupable:
-                interactable.Interact();
-                yield return StartCoroutine(HandleMovement());
-                yield break;
-            default:
-                break;
-        }
-
-        interactable.Interact(playerDir);
         yield return Helper.GetWaitForSeconds(actionDuration);
 
         isBusy = false;
@@ -267,12 +235,82 @@ public class Player : SceneService
     private IEnumerator HandleKnockBack(Vector2 targetPosition)
     {
         isKnocked = true;
-
         moveTargetPosition = targetPosition;
         Helper.MoveToPosition(transform, targetPosition, actionDuration);
         yield return Helper.GetWaitForSeconds(actionDuration);
-
         isKnocked = false;
+    }
+
+    private void Damageable_OnAnyDamageableInteract()
+    {
+        StartCoroutine(DamageableCallback());
+    }
+
+    private void Pickupable_OnAnyPickupableInteract()
+    {
+        StartCoroutine(PickupableCallback());
+    }
+
+    private void PillarLight_OnAnyPillarLightInteract()
+    {
+        StartCoroutine(PillarLightCallback());
+    }
+
+    private void Pushable_OnAnyPushableInteract()
+    {
+        StartCoroutine(PushableCallback());
+    }
+
+    private void Talkable_OnAnyTalkbleInteract()
+    {
+        StartCoroutine(GateTalkableCallback());
+    }
+
+    private void Gate_OnAnyGateInteract()
+    {
+        StartCoroutine(GateTalkableCallback());
+    }
+
+    public IEnumerator PushableCallback()
+    {
+        isBusy = true;
+        animator.SetTrigger("Attack");
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+        Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
+        yield return Helper.GetWaitForSeconds(actionDuration);
+        isBusy = false;
+    }
+
+    public IEnumerator DamageableCallback()
+    {
+        isBusy = true;
+        animator.SetTrigger("Attack");
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
+        Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
+        yield return Helper.GetWaitForSeconds(attackDuration);
+        isBusy = false;
+    }
+
+    public IEnumerator PillarLightCallback()
+    {
+        isBusy = true;
+        animator.SetTrigger("Attack");
+        yield return Helper.GetWaitForSeconds(attackDuration);
+        isBusy = false;
+    }
+
+    public IEnumerator PickupableCallback()
+    {
+        isBusy = true;
+        yield return StartCoroutine(HandleMovement());
+        isBusy = false;
+    }
+
+    public IEnumerator GateTalkableCallback()
+    {
+        isBusy = true;
+        yield return Helper.GetWaitForSeconds(actionDuration);
+        isBusy = false;
     }
 
     public void ActivatePlayer()
@@ -292,5 +330,55 @@ public class Player : SceneService
     private bool IsInputVectorDiagonal(Vector2 direction)
     {
         return direction.x != 0 && direction.y != 0;
+    }
+
+    private IEnumerator HandleInteract(Interactable interactable)
+    {
+        isBusy = true;
+
+        switch (interactable)
+        {
+            case Pushable:
+                animator.SetTrigger("Attack");
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
+                break;
+            case Damageable:
+                animator.SetTrigger("Attack");
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
+                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
+                interactable.Interact(this);
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
+            case PillarLight:
+                animator.SetTrigger("Attack");
+                interactable.Interact(this);
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
+            case Pickupable:
+                interactable.Interact(this);
+                yield return StartCoroutine(HandleMovement());
+                isBusy = false;
+                yield break;
+            default:
+                break;
+        }
+
+        interactable.Interact(this, playerDir);
+        yield return Helper.GetWaitForSeconds(actionDuration);
+
+        isBusy = false;
+    }
+
+    private void OnDestroy()
+    {
+        Damageable.OnAnyDamageableInteract -= Damageable_OnAnyDamageableInteract;
+        Pickupable.OnAnyPickupableInteract -= Pickupable_OnAnyPickupableInteract;
+        PillarLight.OnAnyPillarLightInteract -= PillarLight_OnAnyPillarLightInteract;
+        Pushable.OnAnyPushableInteract -= Pushable_OnAnyPushableInteract;
+        Talkable.OnAnyTalkbleInteract -= Talkable_OnAnyTalkbleInteract;
+        Gate.OnAnyGateInteract -= Gate_OnAnyGateInteract;
     }
 }

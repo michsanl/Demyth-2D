@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class Damageable : Interactable
 {
+    public static Action OnAnyDamageableInteract;
+
     private Health health;
 
     private void Awake()
@@ -12,10 +15,9 @@ public class Damageable : Interactable
         health = GetComponent<Health>();
     }
 
-    public override void Interact(Vector3 dir = default)
+    public override void Interact(Player player, Vector3 dir = default)
     {
-        if (health == null) return;
-        
+        OnAnyDamageableInteract?.Invoke();
         health.TakeDamage();
     }
 }
