@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 namespace Demyth.Gameplay
 {
@@ -19,6 +20,8 @@ namespace Demyth.Gameplay
         [SerializeField, ShowIf("moveCameraOnLevelChange")]
         private GameObject cameraGO;
 
+        public static Action OnAnyGateInteract;
+
         private enum CameraMoveDirection { Up, Down };
 
         private List<string> levelNameList = new List<string> 
@@ -32,11 +35,11 @@ namespace Demyth.Gameplay
             _level = level;
         }
 
-        public override void Interact(Vector3 direction = default)
+        public override void Interact(Player player, Vector3 direction = default)
         {
+            OnAnyGateInteract?.Invoke();
             _level.MoveToNextLevel(targetLevel);
             MoveCamera();
-
             PixelCrushers.SaveSystem.SaveToSlot(1);
         }
 

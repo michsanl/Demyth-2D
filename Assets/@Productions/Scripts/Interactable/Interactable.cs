@@ -6,7 +6,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     
-    public virtual void Interact(Vector3 direction = default(Vector3))
+    public virtual void Interact(Player player, Vector3 direction = default(Vector3))
     {
     }
     
