@@ -9,9 +9,14 @@ using UnityEngine;
 [System.Serializable]
 public class LevelSetting
 {
-    [ValueDropdown(nameof(LevelName))]
+    [ValueDropdown(nameof(levelNameList))]
     public string ID;
     public Gate Gate;
+
+    private List<string> levelNameList = new List<string> 
+    { 
+        "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level Main Menu" 
+    }; 
 
 #if UNITY_EDITOR
     private IEnumerable<string> LevelName()

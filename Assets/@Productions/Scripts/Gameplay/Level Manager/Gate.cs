@@ -11,7 +11,7 @@ namespace Demyth.Gameplay
     public class Gate : Interactable
     {
         public Vector3 EnterPoint => transform.position;
-        [SerializeField, ValueDropdown(nameof(LevelName))]
+        [SerializeField, ValueDropdown(nameof(levelNameList))]
         private string targetLevel;
         [SerializeField] private bool moveCameraOnLevelChange;
         [SerializeField, ShowIf("moveCameraOnLevelChange")]
@@ -21,6 +21,10 @@ namespace Demyth.Gameplay
 
         private enum CameraMoveDirection { Up, Down };
 
+        private List<string> levelNameList = new List<string> 
+        { 
+            "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level Main Menu" 
+        }; 
         private Level _level;
 
         public void SetupGate(Level level)

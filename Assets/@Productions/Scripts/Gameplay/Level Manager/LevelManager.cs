@@ -19,7 +19,6 @@ public class LevelManager : SceneService
     
     protected override void OnInitialize()
     {
-        GetLevelOnChild();
         SetLevelContext();
 
         SetLevel(mainMenuLevel);
