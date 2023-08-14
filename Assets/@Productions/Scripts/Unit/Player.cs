@@ -263,12 +263,12 @@ public class Player : SceneService
 
     private void Talkable_OnAnyTalkbleInteract()
     {
-        StartCoroutine(GateTalkableCallback());
+        StartCoroutine(DefaultCallback());
     }
 
     private void Gate_OnAnyGateInteract()
     {
-        StartCoroutine(GateTalkableCallback());
+        StartCoroutine(DefaultCallback());
     }
 
     public IEnumerator PushableCallback()
@@ -277,7 +277,7 @@ public class Player : SceneService
         animator.SetTrigger("Attack");
         Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
         Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-        yield return Helper.GetWaitForSeconds(actionDuration);
+        yield return Helper.GetWaitForSeconds(attackDuration);
         isBusy = false;
     }
 
@@ -295,6 +295,8 @@ public class Player : SceneService
     {
         isBusy = true;
         animator.SetTrigger("Attack");
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+        Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
         yield return Helper.GetWaitForSeconds(attackDuration);
         isBusy = false;
     }
@@ -306,7 +308,7 @@ public class Player : SceneService
         isBusy = false;
     }
 
-    public IEnumerator GateTalkableCallback()
+    public IEnumerator DefaultCallback()
     {
         isBusy = true;
         yield return Helper.GetWaitForSeconds(actionDuration);
