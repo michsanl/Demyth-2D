@@ -63,6 +63,15 @@ public class HUDUI : SceneService
             Open();
     }
 
+    private void OnDestroy() 
+    {
+        if (DialogueManager.instance != null)
+        {
+            DialogueManager.instance.conversationStarted -= DialogueManager_ConversationStarted;
+            DialogueManager.instance.conversationEnded -= DialogueManager_ConversationEnded;
+        }
+    }
+
     private void DialogueManager_ConversationStarted(Transform t)
     {
         Close();
