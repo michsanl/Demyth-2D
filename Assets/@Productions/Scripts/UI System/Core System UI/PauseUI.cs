@@ -38,11 +38,13 @@ namespace UISystem
         private void GameManager_OnGamePaused()
         {
             Open();
+            gameObject.SetActive(true);
         }
 
         private void GameManager_OnGameUnPaused()
         {
             Close();
+            gameObject.SetActive(false);
         }
 
         protected override void OnOpen()
