@@ -376,6 +376,8 @@ public class Player : SceneService
 
     private void OnDestroy()
     {
+        Context.GameInput.OnSenterPerformed -= GameInput_OnSenterPerformed;
+        Context.GameInput.OnHealthPotionPerformed -= GameInput_OnHealthPotionPerformed;
         Damageable.OnAnyDamageableInteract -= Damageable_OnAnyDamageableInteract;
         Pickupable.OnAnyPickupableInteract -= Pickupable_OnAnyPickupableInteract;
         PillarLight.OnAnyPillarLightInteract -= PillarLight_OnAnyPillarLightInteract;
