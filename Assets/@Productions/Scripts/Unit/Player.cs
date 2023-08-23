@@ -31,7 +31,6 @@ public class Player : SceneService
 
 #endregion
 
-    private FlashEffectController flashEffectController;
     private LookOrientation lookOrientation;
     private HealthPotion healthPotion;
     private Health health;
@@ -48,7 +47,6 @@ public class Player : SceneService
     {
         base.OnInitialize();
 
-        flashEffectController = GetComponent<FlashEffectController>();
         lookOrientation = GetComponent<LookOrientation>();
         healthPotion = GetComponent<HealthPotion>();
         health = GetComponent<Health>();
@@ -99,10 +97,7 @@ public class Player : SceneService
         
         if (Helper.CheckTargetDirection(transform.position, playerDir, moveBlockMask, out Interactable interactable))
         {
-            if (interactable != null)
-            {
-                interactable.Interact(this, playerDir);
-            }
+            interactable?.Interact(this, playerDir);
         } 
         else
         {
@@ -241,6 +236,68 @@ public class Player : SceneService
         isKnocked = false;
     }
 
+    public void ActivatePlayer()
+    {
+        gameObject.SetActive(true);
+        isBusy = false;
+        isKnocked = false;
+    }
+
+    private Vector2 GetOppositeDirection(Vector2 dir)
+    {
+        dir.x = Mathf.RoundToInt(dir.x * -1f); 
+        dir.y = Mathf.RoundToInt(dir.y * -1f);
+        return dir;
+    }
+    
+    private bool IsInputVectorDiagonal(Vector2 direction)
+    {
+        return direction.x != 0 && direction.y != 0;
+    }
+
+    // old interact method
+    private IEnumerator HandleInteract(Interactable interactable)
+    {
+        isBusy = true;
+
+        switch (interactable)
+        {
+            case Pushable:
+                animator.SetTrigger("Attack");
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
+                break;
+            case Damageable:
+                animator.SetTrigger("Attack");
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
+                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
+                interactable.Interact(this);
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
+            case PillarLight:
+                animator.SetTrigger("Attack");
+                interactable.Interact(this);
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
+            case Pickupable:
+                interactable.Interact(this);
+                yield return StartCoroutine(HandleMovement());
+                isBusy = false;
+                yield break;
+            default:
+                break;
+        }
+
+        interactable.Interact(this, playerDir);
+        yield return Helper.GetWaitForSeconds(actionDuration);
+
+        isBusy = false;
+    }
+
+#region New Interact Logic
+
     private void Damageable_OnAnyDamageableInteract()
     {
         StartCoroutine(DamageableCallback());
@@ -315,64 +372,7 @@ public class Player : SceneService
         isBusy = false;
     }
 
-    public void ActivatePlayer()
-    {
-        gameObject.SetActive(true);
-        isBusy = false;
-        isKnocked = false;
-    }
-
-    private Vector2 GetOppositeDirection(Vector2 dir)
-    {
-        dir.x = Mathf.RoundToInt(dir.x * -1f); 
-        dir.y = Mathf.RoundToInt(dir.y * -1f);
-        return dir;
-    }
-    
-    private bool IsInputVectorDiagonal(Vector2 direction)
-    {
-        return direction.x != 0 && direction.y != 0;
-    }
-
-    private IEnumerator HandleInteract(Interactable interactable)
-    {
-        isBusy = true;
-
-        switch (interactable)
-        {
-            case Pushable:
-                animator.SetTrigger("Attack");
-                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
-                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-                break;
-            case Damageable:
-                animator.SetTrigger("Attack");
-                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
-                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-                interactable.Interact(this);
-                yield return Helper.GetWaitForSeconds(attackDuration);
-                isBusy = false;
-                yield break;
-            case PillarLight:
-                animator.SetTrigger("Attack");
-                interactable.Interact(this);
-                yield return Helper.GetWaitForSeconds(attackDuration);
-                isBusy = false;
-                yield break;
-            case Pickupable:
-                interactable.Interact(this);
-                yield return StartCoroutine(HandleMovement());
-                isBusy = false;
-                yield break;
-            default:
-                break;
-        }
-
-        interactable.Interact(this, playerDir);
-        yield return Helper.GetWaitForSeconds(actionDuration);
-
-        isBusy = false;
-    }
+#endregion 
 
     private void OnDestroy()
     {
