@@ -13,6 +13,7 @@ public class GameInput : SceneService
     public Action OnSenterPerformed;
     public Action OnHealthPotionPerformed;
     public Action OnPausePerformed;
+    public Action OnRestartPerformed;
 
     private PlayerInputActions playerInputActions;
 
@@ -24,11 +25,19 @@ public class GameInput : SceneService
         playerInputActions.Player.Senter.performed += PlayerInputAction_OnSenterPerformed;
         playerInputActions.Player.HealthPotion.performed += PlayerInputAction_OnHealthPotionPerformed;
         playerInputActions.Pause.Escape.performed += PlayerInputAction_OnEscapePerformed;
+        playerInputActions.Restart.RestartLevel.performed += PlayerInputAction_OnRestartPerformed;
 
+        playerInputActions.Restart.Enable();
         if (enablePlayerOnStart)
             playerInputActions.Player.Enable();
         if (enablePauseOnStart)
             playerInputActions.Pause.Enable();
+    }
+
+    public Vector2 GetMovementVector()
+    {
+        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+        return inputVector;
     }
 
     private void PlayerInputAction_OnSenterPerformed(InputAction.CallbackContext context)
@@ -46,10 +55,9 @@ public class GameInput : SceneService
         OnPausePerformed?.Invoke();
     }
 
-    public Vector2 GetMovementVector()
+    private void PlayerInputAction_OnRestartPerformed(InputAction.CallbackContext context)
     {
-        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-        return inputVector;
+        OnRestartPerformed?.Invoke();
     }
 
 
@@ -72,6 +80,5 @@ public class GameInput : SceneService
     {
         playerInputActions.Pause.Disable();
     }
-
 
 }

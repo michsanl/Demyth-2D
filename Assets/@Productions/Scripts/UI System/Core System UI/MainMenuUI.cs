@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PixelCrushers;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -45,6 +46,8 @@ namespace UISystem
         public void ButtonNewGame()
         {
             Close();
+
+            SaveSystem.ClearSavedGameData();
 
             Level firstLevel = SceneUI.Context.LevelManager.GetLevelByID("Level 1");
             SceneUI.Context.LevelManager.SetLevel(firstLevel);

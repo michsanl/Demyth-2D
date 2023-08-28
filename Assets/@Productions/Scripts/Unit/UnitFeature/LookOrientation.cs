@@ -34,7 +34,7 @@ public class LookOrientation : MonoBehaviour
     {
         if (model != null)
         {
-            model.transform.localScale = new Vector2(xScale * direction, model.localScale.y);
+            model.transform.localScale = new Vector2(Mathf.Abs(xScale) * direction, model.localScale.y);
         }
     }
 }
