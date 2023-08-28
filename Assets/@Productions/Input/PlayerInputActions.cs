@@ -182,6 +182,34 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Restart"",
+            ""id"": ""4857d55b-1f83-4513-8f60-aff9d4649848"",
+            ""actions"": [
+                {
+                    ""name"": ""RestartLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3ac8850-c8ff-4c2c-8611-e726f400a0d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9e6b8c61-ab67-4e68-bfeb-30d3568f5dca"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RestartLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -195,6 +223,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_Escape = m_Pause.FindAction("Escape", throwIfNotFound: true);
+        // Restart
+        m_Restart = asset.FindActionMap("Restart", throwIfNotFound: true);
+        m_Restart_RestartLevel = m_Restart.FindAction("RestartLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -340,6 +371,39 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public PauseActions @Pause => new PauseActions(this);
+
+    // Restart
+    private readonly InputActionMap m_Restart;
+    private IRestartActions m_RestartActionsCallbackInterface;
+    private readonly InputAction m_Restart_RestartLevel;
+    public struct RestartActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public RestartActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RestartLevel => m_Wrapper.m_Restart_RestartLevel;
+        public InputActionMap Get() { return m_Wrapper.m_Restart; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(RestartActions set) { return set.Get(); }
+        public void SetCallbacks(IRestartActions instance)
+        {
+            if (m_Wrapper.m_RestartActionsCallbackInterface != null)
+            {
+                @RestartLevel.started -= m_Wrapper.m_RestartActionsCallbackInterface.OnRestartLevel;
+                @RestartLevel.performed -= m_Wrapper.m_RestartActionsCallbackInterface.OnRestartLevel;
+                @RestartLevel.canceled -= m_Wrapper.m_RestartActionsCallbackInterface.OnRestartLevel;
+            }
+            m_Wrapper.m_RestartActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @RestartLevel.started += instance.OnRestartLevel;
+                @RestartLevel.performed += instance.OnRestartLevel;
+                @RestartLevel.canceled += instance.OnRestartLevel;
+            }
+        }
+    }
+    public RestartActions @Restart => new RestartActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -350,5 +414,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface IPauseActions
     {
         void OnEscape(InputAction.CallbackContext context);
+    }
+    public interface IRestartActions
+    {
+        void OnRestartLevel(InputAction.CallbackContext context);
     }
 }

@@ -49,10 +49,10 @@ namespace Demyth.Gameplay
                 return;
 
             if (cameraMoveDirection == CameraMoveDirection.Up)
-                cameraGO.transform.localPosition = new Vector3(0, 10, 0); 
+                Context.CameraNormal.transform.localPosition = new Vector3(0, 10, 0); 
                 
             if (cameraMoveDirection == CameraMoveDirection.Down)
-                cameraGO.transform.localPosition = Vector3.zero;
+                Context.CameraNormal.transform.localPosition = Vector3.zero;
         }
 
 #if UNITY_EDITOR

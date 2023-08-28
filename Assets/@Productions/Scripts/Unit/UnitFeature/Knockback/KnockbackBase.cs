@@ -34,6 +34,6 @@ public abstract class KnockbackBase : MonoBehaviour
         var moveBlockerAhead = Helper.CheckTargetDirection(knockbackOrigin, knockBackDir, moveBlockMask, out Interactable interactable);
         var damagingPlayerAhead = Physics.Raycast(knockbackOrigin, knockBackDir, 1f, damagePlayerMask); 
 
-        return moveBlockerAhead || damagingPlayerAhead ? true : false;
+        return moveBlockerAhead || damagingPlayerAhead;
     }
 }
