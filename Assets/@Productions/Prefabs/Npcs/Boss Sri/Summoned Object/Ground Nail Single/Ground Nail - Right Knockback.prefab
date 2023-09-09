@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 3975585011897390250}
   - component: {fileID: 449008501976421847}
   m_Layer: 0
-  m_Name: Ground Nail - Death Slash Left Side
+  m_Name: Ground Nail - Right Knockback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,6 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3975585011916006986}
+  - component: {fileID: 113087412067477089}
   - component: {fileID: 3975585011916006988}
   - component: {fileID: 6298036190802501657}
   m_Layer: 11
@@ -425,6 +426,40 @@ Transform:
   m_Father: {fileID: 3975585011641887086}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &113087412067477089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975585011916006985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81b46337a9028d4f9ed5a64118fa04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: {fileID: 0}
+  _context:
+    UI: {fileID: 0}
+    HUDUI: {fileID: 0}
+    Player: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
+    LevelManager: {fileID: 0}
+    AudioManager: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShake: {fileID: 0}
+  _isInitialized: 0
+  _isActive: 0
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  knockbackDir: 3
+  isCheckBlockedDir: 0
 --- !u!114 &3975585011916006988
 MonoBehaviour:
   m_ObjectHideFlags: 0

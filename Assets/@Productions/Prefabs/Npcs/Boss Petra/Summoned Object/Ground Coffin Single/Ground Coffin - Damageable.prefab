@@ -204,6 +204,7 @@ MonoBehaviour:
   anticipationDuration: 0.125
   attackDuration: 4.75
   recoveryDuration: 0.125
+  isEndless: 0
   TotalDuration: 5
   useRandomizedSpawnDelay: 0
   minRandomSpawnDelay: 0
@@ -276,6 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3975585011916006986}
+  - component: {fileID: 4919646766820489169}
   - component: {fileID: 3975585011916006988}
   - component: {fileID: 3429326078195028036}
   m_Layer: 11
@@ -300,6 +302,25 @@ Transform:
   m_Father: {fileID: 3975585011641887086}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4919646766820489169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975585011916006985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff839c9ced24c904e81c9c7104967d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackSource: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &3975585011916006988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,13 +338,17 @@ MonoBehaviour:
     UI: {fileID: 0}
     HUDUI: {fileID: 0}
     Player: {fileID: 0}
-    gameManager: {fileID: 0}
-    gameInput: {fileID: 0}
+    GameManager: {fileID: 0}
+    GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
-    VCamCameraShake: {fileID: 0}
+    CameraNormal: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
+  damagerCharacter: 0
+  isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
   enableKnockBack: 1
   knockBackSource: 0
   knockBackOrientation: 0

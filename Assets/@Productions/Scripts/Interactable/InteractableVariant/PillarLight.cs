@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,13 @@ public class PillarLight : Interactable
     [SerializeField] private int hitToActivate = 6;
     [SerializeField] private GameObject lightModel;
 
+    public static Action OnAnyPillarLightInteract;
+
     private int hitCount;
 
-    public override void Interact(Vector3 direction = default)
+    public override void Interact(Player player, Vector3 direction = default)
     {
+        OnAnyPillarLightInteract?.Invoke();
         if (!lightModel.activeInHierarchy)
         {
             hitCount++;

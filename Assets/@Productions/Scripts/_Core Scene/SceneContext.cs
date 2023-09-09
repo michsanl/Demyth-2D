@@ -24,6 +24,6 @@ namespace CustomTools.Core
 
         [Title("Camera")]
         public GameObject CameraNormal;
-        public GameObject CameraShake;
+        public CameraShakeController CameraShakeController;
     }
 }

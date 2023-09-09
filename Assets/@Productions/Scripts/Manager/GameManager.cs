@@ -1,8 +1,9 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CustomTools.Core;
+using Mono.Cecil;
 
 public class GameManager : SceneService
 {
@@ -21,6 +22,11 @@ public class GameManager : SceneService
         Context.GameInput.OnPausePerformed += GameInput_OnPausePerformed;
     }
 
+    private void OnDestroy() 
+    {
+        Context.GameInput.OnPausePerformed -= GameInput_OnPausePerformed;
+    }
+
     private void GameInput_OnPausePerformed()
     {
         TogglePauseGame();
@@ -28,14 +34,11 @@ public class GameManager : SceneService
 
     public void TogglePauseGame()
     {
-        if (Context.LevelManager.IsMainMenuOpen)
-            return;
-
         isGamePaused = !isGamePaused;
         if (isGamePaused)
         {
             Time.timeScale = 0f;
-            Context.CameraShake.gameObject.SetActive(false);
+            Context.CameraShakeController.gameObject.SetActive(false);
             OnGamePaused?.Invoke();
         } else
         {
@@ -43,7 +46,5 @@ public class GameManager : SceneService
             OnGameUnpaused?.Invoke();
         }
     }
-
-
     
 }

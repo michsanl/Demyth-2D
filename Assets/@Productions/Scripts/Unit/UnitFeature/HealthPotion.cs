@@ -17,6 +17,7 @@ public class HealthPotion : SceneService
 
     public Action<int> OnPotionAmountChanged;
     public int CurrentPotionAmount => currentPotionAmount;
+    public bool IsHealthPotionOnCooldown => isHealthPotionOnCooldown;
 
     private Health health;
 
@@ -32,19 +33,11 @@ public class HealthPotion : SceneService
 
     public void UsePotion()
     {
-        if (currentPotionAmount <= 0) 
-            return;
-        if (isHealthPotionOnCooldown)
-            return;
-        if (health.IsHealthFull())
-            return;
-            
         currentPotionAmount--;
-        health.Heal(1);
-        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Potion);    
-        OnPotionAmountChanged?.Invoke(currentPotionAmount);
-
+        health.Heal(1); 
         StartCoroutine(StartPotionCooldown());
+        
+        OnPotionAmountChanged?.Invoke(currentPotionAmount);
     }
 
     private IEnumerator StartPotionCooldown()

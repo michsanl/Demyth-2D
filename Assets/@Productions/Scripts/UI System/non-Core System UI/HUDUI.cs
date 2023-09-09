@@ -7,6 +7,7 @@ using System;
 using PixelCrushers.DialogueSystem;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using PixelCrushers;
 
 public class HUDUI : SceneService
 {
@@ -60,6 +61,15 @@ public class HUDUI : SceneService
 
         if (openHUDOnStart)
             Open();
+    }
+
+    private void OnDestroy() 
+    {
+        if (DialogueManager.instance != null)
+        {
+            DialogueManager.instance.conversationStarted -= DialogueManager_ConversationStarted;
+            DialogueManager.instance.conversationEnded -= DialogueManager_ConversationEnded;
+        }
     }
 
     private void DialogueManager_ConversationStarted(Transform t)
