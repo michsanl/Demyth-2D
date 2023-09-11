@@ -28,6 +28,11 @@ public class AudioManager : CoreBehaviour
         soundSource.PlayOneShot(clip);
     }
 
+    public void PlaySoundVolume(AudioClip clip, float volume)
+    {
+        soundSource.PlayOneShot(clip, volume);
+    }
+
     public void PlayClipAtPoint(AudioClip audioClip, Vector3 position, float volume = 1f)
     {
         AudioSource.PlayClipAtPoint(audioClip, position, volume);

@@ -7,6 +7,16 @@ using CustomTools.Core;
 
 public class PetraCombatBehaviorNew : SceneService
 {
+
+    public Action OnUpChargeUsed;
+    public Action OnDownChargeUsed;
+    public Action OnHorizontalChargeUsed;
+    public Action OnSpinAttackUsed;
+    public Action OnChargeAttackUsed;
+    public Action OnBasicSlamUsed;
+    public Action OnJumpSlamUsed;
+    public Action OnJumpGroundSlamUsed;
+
     [SerializeField] private bool activateCombatBehaviorOnStart;
     [SerializeField] private int changePhaseHPThreshold;
     [SerializeField, EnumToggleButtons] private CombatMode SelectedCombatMode;
@@ -77,6 +87,7 @@ public class PetraCombatBehaviorNew : SceneService
 
         SetFacingDirection();
         yield return StartCoroutine(ability);
+
         yield return Helper.GetWaitForSeconds(timeVarianceCompensationDelay);
 
         StartCoroutine(LoopCombatBehavior(getAbility));
@@ -86,22 +97,22 @@ public class PetraCombatBehaviorNew : SceneService
     {
         if (IsPlayerNearby())
         {
-            return spinAttackAbility.SpinAttack();
+            return spinAttackAbility.SpinAttack(OnSpinAttackUsed);
         }
 
         if (IsPlayerInlineHorizontally())
         {
-            return horizontalChargeAbility.HorizontalCharge();
+            return horizontalChargeAbility.HorizontalCharge(OnHorizontalChargeUsed);
         }
 
         if (IsPlayerInlineVertically())
         {
-            return IsPlayerAbove() ? upChargeAbility.UpCharge() : downChargeAbility.DownCharge();
+            return IsPlayerAbove() ? upChargeAbility.UpCharge(OnUpChargeUsed) : downChargeAbility.DownCharge(OnDownChargeUsed);
         }
 
         if (!IsPlayerNearby())
         {
-            return basicSlamAbility.BasicSlam();
+            return basicSlamAbility.BasicSlam(OnBasicSlamUsed);
         }
         
         return null;
@@ -112,23 +123,23 @@ public class PetraCombatBehaviorNew : SceneService
         if (IsPlayerNearby())
         {
             int randomIndex = UnityEngine.Random.Range(0,3);
-            return randomIndex == 0 ? spinAttackAbility.SpinAttack() : chargeAttackAbility.ChargeAttack();
+            return randomIndex == 0 ? spinAttackAbility.SpinAttack(OnSpinAttackUsed) : chargeAttackAbility.ChargeAttack(OnChargeAttackUsed);
         }
 
         if (IsPlayerInlineHorizontally())
         {
-            return horizontalChargeAbility.HorizontalCharge();
+            return horizontalChargeAbility.HorizontalCharge(OnHorizontalChargeUsed);
         }
 
         if (IsPlayerInlineVertically())
         {
-            return IsPlayerAbove() ? upChargeAbility.UpCharge() : downChargeAbility.DownCharge();
+            return IsPlayerAbove() ? upChargeAbility.UpCharge(OnUpChargeUsed) : downChargeAbility.DownCharge(OnDownChargeUsed);
         }
 
         if (!IsPlayerNearby())
         {
             int random = GetRandomNumberWithConsecutiveLimit(1, 3, 3);
-            return random == 1 ? jumpSlamAbility.JumpSlam() : basicSlamAbility.BasicSlam();
+            return random == 1 ? jumpSlamAbility.JumpSlam(OnJumpSlamUsed) : basicSlamAbility.BasicSlam(OnBasicSlamUsed);
         }
 
         return null;
@@ -139,19 +150,19 @@ public class PetraCombatBehaviorNew : SceneService
         switch (LoopAbility)
         {
             case Ability.UpCharge:
-                return upChargeAbility.UpCharge();
+                return upChargeAbility.UpCharge(OnUpChargeUsed);
             case Ability.DownCharge:
-                return downChargeAbility.DownCharge();
+                return downChargeAbility.DownCharge(OnDownChargeUsed);
             case Ability.HorizontalCharge:
-                return horizontalChargeAbility.HorizontalCharge();
+                return horizontalChargeAbility.HorizontalCharge(OnHorizontalChargeUsed);
             case Ability.SpinAttack:
-                return spinAttackAbility.SpinAttack();
+                return spinAttackAbility.SpinAttack(OnSpinAttackUsed);
             case Ability.ChargeAttack:
-                return chargeAttackAbility.ChargeAttack();
+                return chargeAttackAbility.ChargeAttack(OnChargeAttackUsed);
             case Ability.BasicSlam:
-                return basicSlamAbility.BasicSlam();
+                return basicSlamAbility.BasicSlam(OnBasicSlamUsed);
             case Ability.JumpSlam:
-                return jumpSlamAbility.JumpSlam();
+                return jumpSlamAbility.JumpSlam(OnJumpSlamUsed);
             default:
                 return null;
         }
@@ -180,7 +191,7 @@ public class PetraCombatBehaviorNew : SceneService
 
     private IEnumerator StartPhaseTwo()
     {
-        yield return jumpGroundSlamAbility.JumpGroundSlam();
+        yield return jumpGroundSlamAbility.JumpGroundSlam(OnJumpGroundSlamUsed);
         yield return Helper.GetWaitForSeconds(timeVarianceCompensationDelay);
     
         StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));

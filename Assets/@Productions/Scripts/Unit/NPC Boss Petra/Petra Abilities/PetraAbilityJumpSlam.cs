@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using System;
 
 public class PetraAbilityJumpSlam : SceneService
 {
@@ -20,13 +21,11 @@ public class PetraAbilityJumpSlam : SceneService
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject jumpSlamCollider;
 
-    private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpSlam()
+    public IEnumerator JumpSlam(Action OnStart)
     {
-        animator.Play(JUMP_SLAM);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.JumpSlam);
+        OnStart?.Invoke();
+
         Vector3 targetPosition = Context.Player.LastMoveTargetPosition;
         
         yield return Helper.GetWaitForSeconds(frontSwingDuration);

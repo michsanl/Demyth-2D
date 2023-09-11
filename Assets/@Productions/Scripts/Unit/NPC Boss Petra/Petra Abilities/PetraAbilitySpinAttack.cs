@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using System;
 
 public class PetraAbilitySpinAttack : SceneService
 {
@@ -16,13 +17,10 @@ public class PetraAbilitySpinAttack : SceneService
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject spinAttackCollider;
     
-    private int SPIN_ATTACK = Animator.StringToHash("Spin_attack");
     
-    public IEnumerator SpinAttack()
+    public IEnumerator SpinAttack(Action OnStart)
     {
-        animator.Play(SPIN_ATTACK);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.CoffinSwing);
+        OnStart?.Invoke();
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinAttackCollider.SetActive(true);

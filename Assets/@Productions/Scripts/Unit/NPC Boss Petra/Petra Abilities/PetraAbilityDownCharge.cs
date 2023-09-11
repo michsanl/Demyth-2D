@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using System;
 
 public class PetraAbilityDownCharge : SceneService
 {
@@ -18,26 +19,28 @@ public class PetraAbilityDownCharge : SceneService
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject downChargeCollider;
     
-    private int DOWN_CHARGE = Animator.StringToHash("Down_charge");
 
-    public IEnumerator DownCharge()
+    public IEnumerator DownCharge(Action OnStart)
+    {
+        OnStart?.Invoke();
+        int moveTargetPosition = GetMoveTargetPosition();
+
+        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        downChargeCollider.SetActive(true);
+
+        yield return transform.DOMoveY(moveTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        downChargeCollider.SetActive(false);
+
+        yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private int GetMoveTargetPosition()
     {
         var targetPosition = Context.Player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
         targetPosition = ClampToMoveBlocker(targetPosition);
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
-
-        animator.Play(DOWN_CHARGE);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
-
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
-        downChargeCollider.SetActive(true);
-
-        yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
-        downChargeCollider.SetActive(false);
-        
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        return finalTargetPosition;
     }
 
     private float SetPositionToBehindPlayer(float playerYPosition)

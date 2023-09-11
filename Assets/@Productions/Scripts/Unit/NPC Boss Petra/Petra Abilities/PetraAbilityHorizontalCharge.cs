@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using System;
 
 public class PetraAbilityHorizontalCharge : SceneService
 {
@@ -18,9 +19,22 @@ public class PetraAbilityHorizontalCharge : SceneService
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject horizontalChargeCollider;
     
-    private int HORIZONTAL_CHARGE = Animator.StringToHash("Side_charge");
 
-    public IEnumerator HorizontalCharge()
+    public IEnumerator HorizontalCharge(Action OnStart)
+    {
+        OnStart?.Invoke();
+        int moveTargetPosition = GetMoveTargetPosition();
+
+        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        horizontalChargeCollider.SetActive(true);
+
+        yield return transform.DOMoveX(moveTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        horizontalChargeCollider.SetActive(false);
+
+        yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private int GetMoveTargetPosition()
     {
         var targetPosition = Context.Player.transform.position.x;
         if (targetPosition > transform.position.x)
@@ -34,18 +48,7 @@ public class PetraAbilityHorizontalCharge : SceneService
             targetPosition = LeftClampToMoveBlocker(targetPosition);
         }
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
-
-        animator.Play(HORIZONTAL_CHARGE);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
-
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
-        horizontalChargeCollider.SetActive(true);
-
-        yield return transform.DOMoveX(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
-        horizontalChargeCollider.SetActive(false);
-
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        return finalTargetPosition;
     }
 
     private float SetPositionToPlayerRight(float targetPosition)
