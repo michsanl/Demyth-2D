@@ -22,7 +22,7 @@ public class SriAbilityHorizontalNailWave : SceneService
         var audioManager = Context.AudioManager;
 
         animator.Play(NAIL_WAVE);
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        audioManager.PlaySound(audioManager.SriAudioSO.NailAOE);
         spawnedNailGO = Instantiate(horizontalNailWave, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);

@@ -22,7 +22,7 @@ public class PetraAbilityChargeAttack : SceneService
     {
         animator.Play(CHARGE_ATTACK);
         var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.ChargeSlam);
+        audioManager.PlaySound(audioManager.PetraAudioSO.ChargeSlam);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         Instantiate(groundCoffinAOE, transform.position, Quaternion.identity);

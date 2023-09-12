@@ -71,7 +71,7 @@ public class TuyulPatrolMovement : SceneService
     private IEnumerator Move(Vector3 moveDir)
     {
         animator.SetTrigger("Dash");
-        Context.AudioManager.PlaySound(Context.AudioManager.TuyulDash);
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.Move);
 
         Vector2 moveTargetPosition = GetRoundedMoveTargetPosition(moveDir);
         yield return transform.DOMove(moveTargetPosition, moveDuration).WaitForCompletion();

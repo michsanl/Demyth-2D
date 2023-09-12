@@ -24,7 +24,7 @@ public class SriAbilityNailAOE : SceneService
         var audioManager = Context.AudioManager;
 
         animator.Play(NAIL_AOE);
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        audioManager.PlaySound(audioManager.SriAudioSO.NailAOE);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         nailAOECollider.SetActive(true);

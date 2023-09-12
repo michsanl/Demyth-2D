@@ -118,7 +118,7 @@ public class Player : SceneService
         isBusy = true;
 
         animator.SetTrigger("Dash");
-        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Move);
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.Move);
 
         moveTargetPosition = GetMoveTargetPosition();
         Helper.MoveToPosition(transform, moveTargetPosition, actionDuration);
@@ -146,14 +146,14 @@ public class Player : SceneService
             return;
 
         healthPotion.UsePotion();
-        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Potion);   
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.Potion);   
     }
 
     private IEnumerator ToggleSenter()
     {
         if (senterGameObject.activeInHierarchy)
         {
-            Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Lantern);
+            Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.Lantern);
 
             senterGameObject.transform.localPosition = new Vector3(100, 100, 0);
             yield return Helper.GetWaitForSeconds(0.05f);
@@ -162,7 +162,7 @@ public class Player : SceneService
         }
         else
         {
-            Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.Lantern);
+            Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.Lantern);
 
             senterGameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
             yield return Helper.GetWaitForSeconds(0.05f);
@@ -217,10 +217,10 @@ public class Player : SceneService
         switch (damager)
         {
             case PlayerDamager.DamagerCharacter.Petra:
-                Context.AudioManager.PlaySound(Context.AudioManager.SriAudioSource.GetRandomDamageClip());
+                Context.AudioManager.PlaySound(Context.AudioManager.SriAudioSO.GetRandomDamageClip());
                 break;
             case PlayerDamager.DamagerCharacter.Sri:
-                Context.AudioManager.PlaySound(Context.AudioManager.PetraAudioSource.GetRandomDamageClip());
+                Context.AudioManager.PlaySound(Context.AudioManager.PetraAudioSO.GetRandomDamageClip());
                 break;
             default:
                 break;
@@ -264,12 +264,12 @@ public class Player : SceneService
         {
             case Pushable:
                 animator.SetTrigger("Attack");
-                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.GetRandomMoveBoxClip());
                 Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
                 break;
             case Damageable:
                 animator.SetTrigger("Attack");
-                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
+                Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.GetRandomPanHitClip());
                 Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
                 interactable.Interact(this);
                 yield return Helper.GetWaitForSeconds(attackDuration);
@@ -332,7 +332,7 @@ public class Player : SceneService
     {
         isBusy = true;
         animator.SetTrigger("Attack");
-        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.GetRandomMoveBoxClip());
         Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
         yield return Helper.GetWaitForSeconds(attackDuration);
         isBusy = false;
@@ -342,7 +342,7 @@ public class Player : SceneService
     {
         isBusy = true;
         animator.SetTrigger("Attack");
-        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomPanHitClip());
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.GetRandomPanHitClip());
         Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
         yield return Helper.GetWaitForSeconds(attackDuration);
         isBusy = false;
@@ -352,7 +352,7 @@ public class Player : SceneService
     {
         isBusy = true;
         animator.SetTrigger("Attack");
-        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSource.GetRandomMoveBoxClip());
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.GetRandomMoveBoxClip());
         Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
         yield return Helper.GetWaitForSeconds(attackDuration);
         isBusy = false;

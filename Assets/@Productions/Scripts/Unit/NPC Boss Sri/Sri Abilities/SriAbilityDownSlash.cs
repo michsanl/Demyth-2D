@@ -29,7 +29,7 @@ public class SriAbilityDownSlash : SceneService
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(DOWN_SLASH);
-        audioManager.PlaySound(audioManager.SriAudioSource.VerticalSlash);
+        audioManager.PlaySound(audioManager.SriAudioSO.VerticalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         downSlashCollider.SetActive(true);

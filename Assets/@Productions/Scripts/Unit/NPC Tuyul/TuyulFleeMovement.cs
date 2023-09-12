@@ -89,7 +89,7 @@ public class TuyulFleeMovement : SceneService
         isBusy = true;
 
         animator.Play("Dash");
-        Context.AudioManager.PlaySound(Context.AudioManager.TuyulDash);
+        Context.AudioManager.PlaySound(Context.AudioManager.AraAudioSO.Move);
         
         transform.DOMove(GetMoveTargetPositionRounded(moveDir), moveDuration);
         yield return Helper.GetWaitForSeconds(moveDuration);

@@ -29,7 +29,7 @@ public class SriAbilityDeathSlash : SceneService
 
         animator.Play(NAIL_WAVE);
         var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        audioManager.PlaySound(audioManager.SriAudioSO.NailAOE);
 
         yield return Helper.GetWaitForSeconds(.5f);
         Instantiate(nailWavePrefab, Vector3.zero, Quaternion.identity);
@@ -37,7 +37,7 @@ public class SriAbilityDeathSlash : SceneService
         yield return Helper.GetWaitForSeconds(3.7f);
         
         animator.Play(DOWN_SLASH);
-        audioManager.PlaySound(audioManager.SriAudioSource.VerticalSlash);
+        audioManager.PlaySound(audioManager.SriAudioSO.VerticalSlash);
         yield return Helper.GetWaitForSeconds(0.6f);
         dialogueCollider.SetActive(true);
         yield return transform.DOMoveY(-4f, .233f).SetEase(Ease.OutExpo).WaitForCompletion();

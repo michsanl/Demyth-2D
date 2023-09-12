@@ -30,7 +30,7 @@ public class SriAbilityHorizontalSlash : SceneService
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(HORIZONTAL_SLASH);
-        audioManager.PlaySound(audioManager.SriAudioSource.HorizontalSlash);
+        audioManager.PlaySound(audioManager.SriAudioSO.HorizontalSlash);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         horizontalSlashCollider.SetActive(true);

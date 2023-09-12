@@ -27,7 +27,7 @@ public class SriAbilityWaveOutNailWave : SceneService
         yield return StartCoroutine(TeleportToMiddleArena());
 
         animator.Play(NAIL_WAVE);
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        audioManager.PlaySound(audioManager.SriAudioSO.NailAOE);
         StartCoroutine(SpawnNail());
 
         yield return Helper.GetWaitForSeconds(animationDuration);

@@ -27,7 +27,7 @@ public class PetraAbilityJumpGroundSlam : SceneService
     {
         animator.Play(JUMP_SLAM);
         var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.JumpSlam);
+        audioManager.PlaySound(audioManager.PetraAudioSO.JumpSlam);
         Vector3 jumpTargetPosition = new Vector3(0, -1, 0);
         
         yield return Helper.GetWaitForSeconds(frontSwingDuration);

@@ -23,7 +23,7 @@ public class SriAbilitySpinClaw : SceneService
         var audioManager = Context.AudioManager;
 
         animator.Play(SPIN_CLAW);
-        audioManager.PlaySound(audioManager.SriAudioSource.SpinClaw);
+        audioManager.PlaySound(audioManager.SriAudioSO.SpinClaw);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinClawCollider.SetActive(true);

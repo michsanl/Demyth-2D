@@ -37,7 +37,7 @@ public class PetraAbilityHorizontalCharge : SceneService
 
         animator.Play(HORIZONTAL_CHARGE);
         var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+        audioManager.PlaySound(audioManager.PetraAudioSO.RunCharge);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         horizontalChargeCollider.SetActive(true);

@@ -22,7 +22,7 @@ public class PetraAbilitySpinAttack : SceneService
     {
         animator.Play(SPIN_ATTACK);
         var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.CoffinSwing);
+        audioManager.PlaySound(audioManager.PetraAudioSO.CoffinSwing);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinAttackCollider.SetActive(true);
