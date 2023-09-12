@@ -75,11 +75,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &1894419131004632951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168,11 +179,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &3206873850754831953
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -261,11 +283,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &2108525769551776216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -355,11 +388,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 1
+  knockBackOrientation: 1
+  knockBackDirection: 3
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!54 &8988222877750932096
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -464,11 +508,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &8192991233920695436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -557,11 +612,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &5768086047377196438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -630,11 +696,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 0
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &2383275137166533048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -723,11 +800,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &860825017673831724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -817,11 +905,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 1
+  knockBackOrientation: 0
+  knockBackDirection: 2
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!54 &192730501102384007
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -966,11 +1065,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &2555504586037775686
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1060,11 +1170,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 1
+  knockBackOrientation: 2
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!54 &2310419747884847953
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1169,11 +1290,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &7889742666343755253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1375,8 +1507,6 @@ GameObject:
   - component: {fileID: 7673398050621169836}
   - component: {fileID: 2020845691378895225}
   - component: {fileID: 9182001827861331906}
-  - component: {fileID: 7921380220039492198}
-  - component: {fileID: 7699445576656917680}
   - component: {fileID: 7673398050621169833}
   - component: {fileID: 5108067734571236107}
   - component: {fileID: 4916652800471147435}
@@ -1434,7 +1564,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   activateCombatBehaviorOnStart: 0
@@ -1463,45 +1593,6 @@ MonoBehaviour:
   maxHealth: 26
   currentHealth: 0
   status: 0
---- !u!114 &7921380220039492198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2717241f8bd8b24ab22c5beaef6b990, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    GameManager: {fileID: 0}
-    GameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  petraAudioSO: {fileID: 11400000, guid: 25c05e0a76a05a2489a4f67e13da126c, type: 2}
---- !u!114 &7699445576656917680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7673398050621169837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3025af491c700c347b36c5c4f41239ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4912183497154396725}
 --- !u!114 &7673398050621169833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,19 +1618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a42bbc1965fd54e81f6abc3402c3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    GameManager: {fileID: 0}
-    GameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
+  interactableType: 3
 --- !u!61 &4916652800471147435
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1588,7 +1667,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.175
@@ -1645,7 +1724,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.175
@@ -1702,7 +1781,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.175
@@ -1759,7 +1838,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.45
@@ -1789,7 +1868,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.6617
@@ -1819,7 +1898,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.5
@@ -1850,7 +1929,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.41
@@ -1905,7 +1984,7 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   frontSwingDuration: 0.41
@@ -2082,11 +2161,22 @@ MonoBehaviour:
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
+    CameraShake: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
+  isKnockbackPassThrough: 0
+  enableKnockBack: 1
+  knockBackSource: 0
+  knockBackOrientation: 0
+  knockBackDirection: 0
+  moveBlockMask:
+    serializedVersion: 2
+    m_Bits: 64
+  damagePlayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!65 &5446034547960783244
 BoxCollider:
   m_ObjectHideFlags: 0

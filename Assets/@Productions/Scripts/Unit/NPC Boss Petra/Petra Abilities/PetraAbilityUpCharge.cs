@@ -19,29 +19,26 @@ public class PetraAbilityUpCharge : SceneService
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject upChargeCollider;
     
+    private int UP_CHARGE = Animator.StringToHash("Up_charge");
 
-    public IEnumerator UpCharge(Action OnStart)
-    {
-        OnStart?.Invoke();
-
-        int moveTargetPosition = GetMoveTargetPosition();
-
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
-        upChargeCollider.SetActive(true);
-
-        yield return transform.DOMoveY(moveTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
-        upChargeCollider.SetActive(false);
-
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
-    }
-
-    private int GetMoveTargetPosition()
+    public IEnumerator UpCharge()
     {
         var targetPosition = Context.Player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
         targetPosition = ClampToMoveBlocker(targetPosition);
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
-        return finalTargetPosition;
+
+        animator.Play(UP_CHARGE);
+        var audioManager = Context.AudioManager;
+        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+
+        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        upChargeCollider.SetActive(true);
+
+        yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        upChargeCollider.SetActive(false);
+
+        yield return Helper.GetWaitForSeconds(backSwingDuration);
     }
 
     private float SetPositionToBehindPlayer(float playerYPosition)

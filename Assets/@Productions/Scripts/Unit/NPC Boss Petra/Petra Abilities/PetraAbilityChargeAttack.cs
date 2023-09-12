@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
-using System;
 
 public class PetraAbilityChargeAttack : SceneService
 {
@@ -17,10 +16,13 @@ public class PetraAbilityChargeAttack : SceneService
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject groundCoffinAOE;
     
+    private int CHARGE_ATTACK = Animator.StringToHash("Charge_attack");
     
-    public IEnumerator ChargeAttack(Action OnStart)
+    public IEnumerator ChargeAttack()
     {
-        OnStart?.Invoke();
+        animator.Play(CHARGE_ATTACK);
+        var audioManager = Context.AudioManager;
+        audioManager.PlaySound(audioManager.PetraAudioSource.ChargeSlam);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         Instantiate(groundCoffinAOE, transform.position, Quaternion.identity);

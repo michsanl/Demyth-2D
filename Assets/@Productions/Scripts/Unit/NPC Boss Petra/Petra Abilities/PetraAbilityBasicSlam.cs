@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
-using System;
 
 public class PetraAbilityBasicSlam : SceneService
 {
@@ -18,16 +17,17 @@ public class PetraAbilityBasicSlam : SceneService
     [SerializeField] private GameObject basicSlamCollider;
     [SerializeField] private GameObject groundCoffin;
     
+    private int BASIC_SLAM = Animator.StringToHash("Basic_Slam");
     
-    public IEnumerator BasicSlam(Action OnStart)
+    public IEnumerator BasicSlam()
     {
-        OnStart?.Invoke();
+        var audioManager = Context.AudioManager;
+        var coffinSpawnPosition = Context.Player.LastMoveTargetPosition;
+        animator.Play(BASIC_SLAM);
+        audioManager.PlaySound(audioManager.PetraAudioSource.BasicSlam);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
-
-        var coffinSpawnPosition = Context.Player.LastMoveTargetPosition;
         Instantiate(groundCoffin, coffinSpawnPosition, Quaternion.identity);
-        
         basicSlamCollider.SetActive(true);
 
         yield return Helper.GetWaitForSeconds(swingDuration);
