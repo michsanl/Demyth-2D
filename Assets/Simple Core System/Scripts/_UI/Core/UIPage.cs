@@ -19,7 +19,7 @@ namespace Core.UI
         public PageData PageData => _pageData;
         public SceneUI SceneUI => _sceneUI;
         public bool DisablePreviousPage => disablePreviousPage;
-        public bool IsCloseAnimationIsPlaying => closePageAnimation != null ? closePageAnimation.IsPlaying : true;
+        public bool IsCloseAnimationIsPlaying => _pageAnimator != null ? _pageAnimator.IsPlaying : false;
 
         [Header("UI ID")]
         [SerializeField] private EnumId pageId;
@@ -27,12 +27,6 @@ namespace Core.UI
         [Header("Page Setting")]
         [SerializeField] private bool disablePreviousPage = false;
         [SerializeField] private ClosePageType offType;
-
-        [Header("Page Animation")]
-        [SerializeField]
-        private AnimationSequencerController openPageAnimation;
-        [SerializeField]
-        private AnimationSequencerController closePageAnimation;
 
         [Header("Events Hook")]
         public UnityEvent<PageData> OnPushed;
@@ -92,7 +86,6 @@ namespace Core.UI
                 SetRaycast(false);
                 _pageAnimator.CloseAnimation(() =>
                 {
-                    closePageAnimation.ResetToInitialState();
                     SetPageVisibility(false);
                 });
             }
