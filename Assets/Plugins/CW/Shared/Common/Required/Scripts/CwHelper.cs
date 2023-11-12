@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿#if UNITY_2021_3 && !(UNITY_2021_3_0 || UNITY_2021_3_1 || UNITY_2021_3_2 || UNITY_2021_3_3 || UNITY_2021_3_4 || UNITY_2021_3_5 || UNITY_2021_3_6 || UNITY_2021_3_7 || UNITY_2021_3_8 || UNITY_2021_3_9 || UNITY_2021_3_10 || UNITY_2021_3_11 || UNITY_2021_3_12 || UNITY_2021_3_13 || UNITY_2021_3_14 || UNITY_2021_3_15 || UNITY_2021_3_16 || UNITY_2021_3_17)
+	#define CW_HAS_NEW_FIND
+#elif UNITY_2022_2 && !(UNITY_2022_2_0 || UNITY_2022_2_1 || UNITY_2022_2_2 || UNITY_2022_2_3 || UNITY_2022_2_4)
+	#define CW_HAS_NEW_FIND
+#elif UNITY_2023_1_OR_NEWER
+	#define CW_HAS_NEW_FIND
+#endif
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using EventSystem = UnityEngine.EventSystems.EventSystem;
@@ -45,6 +53,26 @@ namespace CW.Common
 				{
 					if (OnCameraPostRender != null) OnCameraPostRender(camera);
 				};
+		}
+
+		public static T FindAnyObjectByType<T>(bool includeInactive = false)
+			where T : Object
+		{
+#if CW_HAS_NEW_FIND
+			return Object.FindAnyObjectByType<T>(includeInactive == true ? FindObjectsInactive.Include : FindObjectsInactive.Exclude);
+#else
+			return Object.FindObjectOfType<T>(includeInactive);
+#endif
+		}
+
+		public static T[] FindObjectsByType<T>()
+			where T : Object
+		{
+#if CW_HAS_NEW_FIND
+			return Object.FindObjectsByType<T>(FindObjectsSortMode.None);
+#else
+			return Object.FindObjectsOfType<T>();
+#endif
 		}
 
 		public static Mesh GetQuadMesh()
@@ -526,7 +554,7 @@ namespace CW.Common
 			// Auto attach to canvas?
 			if (parent == null || parent.GetComponentInParent<Canvas>() == null)
 			{
-				var canvas = Object.FindObjectOfType<Canvas>();
+				var canvas = FindAnyObjectByType<Canvas>();
 
 				if (canvas == null)
 				{
@@ -539,7 +567,7 @@ namespace CW.Common
 					// Make event system?
 					if (EventSystem.current == null)
 					{
-#if ENABLE_INPUT_SYSTEM
+#if ENABLE_INPUT_SYSTEM && __INPUTSYSTEM__
 						new GameObject("EventSystem", typeof(EventSystem), typeof(UnityEngine.InputSystem.UI.InputSystemUIInputModule));
 #else
 						new GameObject("EventSystem", typeof(EventSystem), typeof(UnityEngine.EventSystems.StandaloneInputModule));
