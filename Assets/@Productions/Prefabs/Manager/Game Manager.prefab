@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3204978323593259479}
   m_Layer: 0
   m_Name: Game Manager
-  m_TagString: Untagged
+  m_TagString: SceneService
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,9 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5d3a489b703e54e95ed9a6581cb6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 2
-  mainMenuUI: {fileID: 0}
-  loadingUI: {fileID: 0}
-  levelPrefabArray:
-  - {fileID: 0}
-  - {fileID: 0}
+  serviceId: {fileID: 11400000, guid: a70514b4935a5144ea4823d03716f140, type: 2}

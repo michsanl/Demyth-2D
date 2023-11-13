@@ -1563,7 +1563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonContinue
+        m_MethodName: ButtonContinueNew
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2326,6 +2326,7 @@ GameObject:
   - component: {fileID: 1275323380287492343}
   - component: {fileID: 1275323380287492342}
   - component: {fileID: 1275323380287492345}
+  - component: {fileID: 7180717810214494974}
   m_Layer: 5
   m_Name: Main Menu UI
   m_TagString: Untagged
@@ -2431,6 +2432,33 @@ MonoBehaviour:
   musicVolumeSlider: {fileID: 2473802636788274434}
   sfxVolumeSlider: {fileID: 1136359095531708664}
   audioMixer: {fileID: 24100000, guid: 09168361162c6e545a3ccceb8db66597, type: 2}
+--- !u!114 &7180717810214494974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275323380287492347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d390d05f577e43bb50ddaa16b5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageId: {fileID: 11400000, guid: 1bc61db812642c64389e45a43e3750aa, type: 2}
+  disablePreviousPage: 0
+  offType: 0
+  OnPushed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRefresh:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1620651056517823700
 GameObject:
   m_ObjectHideFlags: 0

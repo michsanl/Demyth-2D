@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,7 +67,6 @@ namespace UISystem
         public void ButtonGoToMainMenu()
         {
             Close();
-            SceneUI.Context.HUDUI.Close();
 
             DialogueManager.StopAllConversations();
             SceneUI.Context.GameManager.TogglePauseGame();

@@ -2073,6 +2073,7 @@ GameObject:
   - component: {fileID: 8989853664337860566}
   - component: {fileID: 8989853664337860567}
   - component: {fileID: 8340008496688853411}
+  - component: {fileID: 3636827415533277830}
   m_Layer: 5
   m_Name: Pause UI
   m_TagString: Untagged
@@ -2174,6 +2175,33 @@ MonoBehaviour:
   masterVolumeSlider: {fileID: 5278642118247428786}
   musicVolumeSlider: {fileID: 3447746469702941813}
   sfxVolumeSlider: {fileID: 6072754366906166068}
+--- !u!114 &3636827415533277830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989853664337860570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d390d05f577e43bb50ddaa16b5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageId: {fileID: 11400000, guid: 9a7c9041a74c79643bd31f3aae06f0eb, type: 2}
+  disablePreviousPage: 1
+  offType: 0
+  OnPushed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRefresh:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8989853664356394147
 GameObject:
   m_ObjectHideFlags: 0

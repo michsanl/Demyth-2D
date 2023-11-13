@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomTools.Core;
@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class LevelReset : SceneService
 {
-    
     [SerializeField] private int saveSlot;
 
     public static Action OnAnyRestartLevelEnabled;
@@ -16,7 +15,7 @@ public class LevelReset : SceneService
 
     private void OnEnable() 
     {
-        Context.GameInput.OnRestartPerformed += GameInput_OnRestartPerformed;
+        //Context.GameInput.OnRestartPerformed += GameInput_OnRestartPerformed;
         if (!SaveSystem.HasSavedGameInSlot(saveSlot))
         {
             SaveSystem.SaveToSlot(saveSlot);
@@ -27,7 +26,7 @@ public class LevelReset : SceneService
 
     private void OnDisable() 
     {
-        Context.GameInput.OnRestartPerformed -= GameInput_OnRestartPerformed;
+        //Context.GameInput.OnRestartPerformed -= GameInput_OnRestartPerformed;
 
         OnAnyRestartLevelDisabled?.Invoke();
     }

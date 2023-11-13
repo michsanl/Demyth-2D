@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using PixelCrushers;
@@ -51,7 +51,6 @@ namespace UISystem
 
             Level firstLevel = SceneUI.Context.LevelManager.GetLevelByID("Level 1");
             SceneUI.Context.LevelManager.SetLevel(firstLevel);
-            SceneUI.Context.HUDUI.Open();
 
             SceneUI.Context.Player.ActivatePlayer();
         }
@@ -62,7 +61,6 @@ namespace UISystem
 
             Level targetLevel = SceneUI.Context.LevelManager.GetLevelByID(levelID);
             SceneUI.Context.LevelManager.SetLevel(targetLevel);
-            SceneUI.Context.HUDUI.Open();
 
             SceneUI.Context.Player.ActivatePlayer();
 
@@ -80,7 +78,6 @@ namespace UISystem
         {
             Close();
 
-            SceneUI.Context.HUDUI.Open();
             SceneUI.Context.GameInput.EnablePlayerInput();
             SceneUI.Context.GameInput.EnablePauseInput();
             
