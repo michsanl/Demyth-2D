@@ -1,3 +1,4 @@
+﻿using Core;
 using CustomTools.Core;
 using Demyth.Gameplay;
 using Sirenix.OdinInspector;
@@ -30,12 +31,14 @@ public class LevelSetting
 #endif
 }
 
-public class Level : CoreBehaviour
+public class Level : MonoBehaviour
 {
-    public string ID => gameObject.name;
+    public EnumId ID => levelId;
     public Vector3 StarterPosition => starterPoint.position;
     public LevelSetting[] LevelSetting => settings;
 
+    [SerializeField]
+    private EnumId levelId;
     [SerializeField]
     private LevelSetting[] settings;
     [SerializeField]
@@ -57,7 +60,7 @@ public class Level : CoreBehaviour
 
     public void MoveToNextLevel(string levelID)
     {
-        Context.LevelManager.ChangeLevelByGate(ID, levelID);
+        //Context.LevelManager.ChangeLevelByGate(ID, levelID);
     }
 
     #region DEBUG HELPER

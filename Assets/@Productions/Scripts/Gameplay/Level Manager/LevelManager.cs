@@ -6,34 +6,42 @@ using System.Linq;
 using UnityEngine;
 using System;
 using Core;
+using UnityEngine.Events;
 
 public class LevelManager : SceneService
 {
     public Level CurrentLevel { get; private set; }
-    public Level MainMenuLevel => mainMenuLevel;
-    public Action OnOpenMainMenu;
-    public Action OnOpenGameLevel;
 
-    [SerializeField] private Level mainMenuLevel;
-    [SerializeField] private List<Level> levels = new List<Level>();
+    [SerializeField] 
+    private EnumId starterLevel;
+    [SerializeField] 
+    private Dictionary<EnumId, Level> levels = new();
+
+    public UnityEvent OnOpenMainMenu;
+    public UnityEvent OnOpenGameLevel;
 
     private void Awake()
     {
         SetLevelContext();
+        OpenLevel(starterLevel);
+    }
 
-        SetLevel(mainMenuLevel);
-        CurrentLevel = mainMenuLevel;
+    public void OpenLevel(EnumId targetLevelId)
+    {
+        foreach (var lvl in levels.Values)
+        {
+            lvl.SetActive(lvl.ID == targetLevelId);
+        }
+
+        var level = GetLevelByID(targetLevelId);
+        SetLevel(level);
     }
 
     public void SetLevel(Level targetLevel)
     {
-        foreach (var level in levels)
-        {
-            level.SetActive(level == targetLevel);            
-        }
         CurrentLevel = targetLevel;
 
-        if (targetLevel == mainMenuLevel)
+        if (targetLevel == starterLevel)
         {
             OnOpenMainMenu?.Invoke();
         }
@@ -44,7 +52,7 @@ public class LevelManager : SceneService
         }
     }
 
-    public void ChangeLevelByGate(string previousLevelID, string nextLevelID)
+    /*public void ChangeLevelByGate(string previousLevelID, string nextLevelID)
     {
         var nextLevel = GetLevelByID(nextLevelID);
         var previousLevel = GetLevelByID(previousLevelID);
@@ -56,11 +64,11 @@ public class LevelManager : SceneService
         nextLevel.SetActive(true);
 
         CurrentLevel = nextLevel;
-    }
+    }*/
 
-    public Level GetLevelByID(string id)
+    public Level GetLevelByID(EnumId levelId)
     {
-        return levels.FirstOrDefault(x => x.ID == id);
+        return levels[levelId];
     }
 
     private void SetPlayerPosition(Vector3 targetPosition)
@@ -77,7 +85,7 @@ public class LevelManager : SceneService
     }
 
 #if UNITY_EDITOR
-    #region EDITOR HELPER
+    /*#region EDITOR HELPER
     [Title("Editor Helper")]
     [SerializeField, ValueDropdown("LevelList")]
     private string debugLevelID;
@@ -99,6 +107,6 @@ public class LevelManager : SceneService
     {
         levels = GetComponentsInChildren<Level>(true).ToList();
     }
-    #endregion
+    #endregion*/
 #endif
 }
