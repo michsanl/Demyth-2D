@@ -4,7 +4,10 @@ using PixelCrushers.DialogueSystem;
 
 public class GameInputController : SceneService
 {
-    [SerializeField] private GameInput gameInput;
+    public GameInput GameInput => gameInput;
+
+    [SerializeField] 
+    private GameInput gameInput;
 
     private void Start()
     {

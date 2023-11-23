@@ -12,9 +12,6 @@ namespace UISystem
 {
     public class PauseUI : UIPageView
     {
-
-        
-
         [SerializeField] private AudioMixer audioMixer;
         [SerializeField] private Slider masterVolumeSlider;
         [SerializeField] private Slider musicVolumeSlider;
@@ -74,8 +71,6 @@ namespace UISystem
             Level mainMenuLevel = SceneUI.Context.LevelManager.MainMenuLevel;
             SceneUI.Context.LevelManager.SetLevel(mainMenuLevel);
 
-            Open<MainMenuUI>();
-
             SceneUI.Context.Player.gameObject.SetActive(false);
  
             SceneUI.Context.CameraNormal.transform.DOKill();
@@ -96,8 +91,6 @@ namespace UISystem
         public void ButtonOptions()
         {
             Close();
-
-            Open<OptionsUI>();
         }
 
         private void SetMasterVolume(float sliderValue)

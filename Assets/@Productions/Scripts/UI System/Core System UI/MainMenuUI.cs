@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Core;
 using PixelCrushers;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -8,121 +6,48 @@ using UnityEngine.UI;
 
 namespace UISystem
 {
-    public class MainMenuUI : UIPageView
+    public class MainMenuUI : MonoBehaviour
     {
-        [SerializeField] private GameObject mainPage;
-        [SerializeField] private GameObject selectLevelPage;
-        [SerializeField] private GameObject optionPage;
-        [Space]
-        [SerializeField] private Slider masterVolumeSlider;
-        [SerializeField] private Slider musicVolumeSlider;
-        [SerializeField] private Slider sfxVolumeSlider;
-        [Space]
-        [SerializeField] private AudioMixer audioMixer;
+        private LevelManager _levelManager;
+        private GameInputController _gameInputController;
+        private GameInput _gameInput;
 
-        protected override void OnInitialize()
+        private void Awake()
         {
-            base.OnInitialize();
+            _levelManager = SceneServiceProvider.GetService<LevelManager>();
+            _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+            _gameInput = _gameInputController.GameInput;            
+        }       
 
-            masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
-            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-            sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
-
-            masterVolumeSlider.value = 65f;
-            musicVolumeSlider.value = 80f;
-            sfxVolumeSlider.value = 80f;
-        }
-
-        protected override void OnOpen()
+        public void StartNewGame()
         {
-            Canvas.enabled = true;
-        }
-
-        protected override void OnClosed()
-        {    
-            Canvas.enabled = false;
-        }
-
-        public void ButtonNewGame()
-        {
-            Close();
-
             SaveSystem.ClearSavedGameData();
 
-            Level firstLevel = SceneUI.Context.LevelManager.GetLevelByID("Level 1");
-            SceneUI.Context.LevelManager.SetLevel(firstLevel);
+            Level firstLevel = _levelManager.GetLevelByID("Level 1");
+            _levelManager.SetLevel(firstLevel);
 
-            SceneUI.Context.Player.ActivatePlayer();
+            //SceneUI.Context.Player.ActivatePlayer();
         }
 
-        public void ButtonGoToLevel(string levelID)
+        public void StartToLevel(string levelID)
         {
-            Close();
+            Level targetLevel = _levelManager.GetLevelByID(levelID);
+            _levelManager.SetLevel(targetLevel);
 
-            Level targetLevel = SceneUI.Context.LevelManager.GetLevelByID(levelID);
-            SceneUI.Context.LevelManager.SetLevel(targetLevel);
-
-            SceneUI.Context.Player.ActivatePlayer();
-
-            mainPage.SetActive(true);
-            selectLevelPage.SetActive(false);
+            //SceneUI.Context.Player.ActivatePlayer();
         }
 
-        public void ButtonContinue()
+        public void ContinueGame()
         {
-            mainPage.SetActive(false);
-            selectLevelPage.SetActive(true);
-        }
-
-        public void ButtonContinueNew()
-        {
-            Close();
-
-            SceneUI.Context.GameInput.EnablePlayerInput();
-            SceneUI.Context.GameInput.EnablePauseInput();
+            _gameInput.EnablePlayerInput();
+            _gameInput.EnablePauseInput();
             
-            PixelCrushers.SaveSystem.LoadFromSlot(1);
+            SaveSystem.LoadFromSlot(1);
         }
 
-        public void ButtonOption()
-        {
-            mainPage.SetActive(false);
-            optionPage.SetActive(true);
-        }
-
-        public void ButtonOptionReturn()
-        {
-            optionPage.SetActive(false);
-            mainPage.SetActive(true);
-        }
-
-        private void SetMasterVolume(float sliderValue)
-        {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
-
-            audioMixer.SetFloat("MasterVolume", volumeValue);
-        }
-
-        private void SetMusicVolume(float sliderValue)
-        {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
-
-            audioMixer.SetFloat("MusicVolume", volumeValue);
-        }
-
-        private void SetSFXVolume(float sliderValue)
-        {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
-
-            audioMixer.SetFloat("SFXVolume", volumeValue);
-        }
-    
-        public void ButtonQuit()
+        public void QuitGame()
         {
             Application.Quit();
-        }
+        }                 
     }
 }

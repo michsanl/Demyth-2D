@@ -1,11 +1,11 @@
-using CustomExtensions;
-using CustomTools.Core;
+﻿using CustomExtensions;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
+using Core;
 
 public class LevelManager : SceneService
 {
@@ -16,8 +16,8 @@ public class LevelManager : SceneService
 
     [SerializeField] private Level mainMenuLevel;
     [SerializeField] private List<Level> levels = new List<Level>();
-    
-    protected override void OnInitialize()
+
+    private void Awake()
     {
         SetLevelContext();
 
@@ -65,14 +65,14 @@ public class LevelManager : SceneService
 
     private void SetPlayerPosition(Vector3 targetPosition)
     {
-        Context.Player.transform.position = targetPosition;
+        //Context.Player.transform.position = targetPosition;
     }
 
     private void SetLevelContext()
     {
         foreach (var level in levels)
         {
-            level.Context = Context;
+            //level.Context = Context;
         }
     }
 
