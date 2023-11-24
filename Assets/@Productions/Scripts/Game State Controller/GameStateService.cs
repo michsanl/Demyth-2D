@@ -4,7 +4,7 @@ using ForgeFun.AvarikSaga.Gameplay;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ForgeFun.AvarikSaga.Core
+namespace Demyth.Gameplay
 {
     public class GameStateService : SceneService
     {

@@ -1,6 +1,8 @@
 ﻿using Core;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
+using Demyth.Gameplay;
+using System;
 
 public class GameInputController : SceneService
 {
@@ -8,6 +10,15 @@ public class GameInputController : SceneService
 
     [SerializeField] 
     private GameInput gameInput;
+
+    private GameStateService _gameStateService;
+
+    private void Awake()
+    {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _gameStateService[GameState.MainMenu].onEnter += OnMainMenu;
+        _gameStateService[GameState.Gameplay].onEnter += OnGameplay;
+    }
 
     private void Start()
     {
@@ -24,14 +35,13 @@ public class GameInputController : SceneService
     {
         gameInput.EnablePlayerInput();
     }
-
-    private void LevelManager_OnOpenMainMenu()
+    private void OnMainMenu(GameState obj)
     {
         gameInput.DisablePlayerInput();
         gameInput.DisablePauseInput();
     }
 
-    private void LevelManager_OnOpenGameLevel()
+    private void OnGameplay(GameState obj)
     {
         gameInput.EnablePlayerInput();
         gameInput.EnablePauseInput();

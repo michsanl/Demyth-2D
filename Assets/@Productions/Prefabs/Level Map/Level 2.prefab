@@ -58,7 +58,7 @@ MonoBehaviour:
     CameraShakeController: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
-  targetLevel: Level 3
+  targetLevel: {fileID: 11400000, guid: 439f867b4f47f334f822693fb04b06a6, type: 2}
   moveCameraOnLevelChange: 0
   cameraMoveDirection: 0
   cameraGO: {fileID: 0}
@@ -798,12 +798,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 622534327477877092, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: settings.Array.data[0].ID
-      value: Level 1
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 11400000, guid: 673a69ab871f0fa43b63dbfe1e6d10c6, type: 2}
     - target: {fileID: 622534327477877092, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: settings.Array.data[1].ID
-      value: Level 3
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 11400000, guid: 439f867b4f47f334f822693fb04b06a6, type: 2}
     - target: {fileID: 622534327477877092, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: settings.Array.data[0].Gate
       value: 
@@ -812,6 +812,10 @@ PrefabInstance:
       propertyPath: settings.Array.data[1].Gate
       value: 
       objectReference: {fileID: 419883617}
+    - target: {fileID: 1041318386230468711, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
+      propertyPath: targetLevel
+      value: 
+      objectReference: {fileID: 11400000, guid: 673a69ab871f0fa43b63dbfe1e6d10c6, type: 2}
     - target: {fileID: 2853056097452647123, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_Size.y
       value: 3

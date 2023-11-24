@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.UI;
+using Demyth.Gameplay;
 using PixelCrushers;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -12,16 +13,22 @@ namespace UISystem
         [SerializeField]
         private EnumId gameViewId;
 
+        [Header("Level")]
+        [SerializeField]
+        private EnumId newLevelId;
+
+        private UIPage _uiPage;
         private LevelManager _levelManager;
         private GameInputController _gameInputController;
         private GameInput _gameInput;
-        private UIPage _uiPage;
+        private GameStateService _gameStateService;
 
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _gameInput = _gameInputController.GameInput;            
         }       
 
@@ -29,32 +36,26 @@ namespace UISystem
         {
             SaveSystem.ClearSavedGameData();
 
-            Level firstLevel = _levelManager.GetLevelByID("Level 1");
-            _levelManager.SetLevel(firstLevel);
-
+            _levelManager.OpenLevel(newLevelId);
             _uiPage.OpenPage(gameViewId);
 
-            //SceneUI.Context.Player.ActivatePlayer();
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
-        public void StartToLevel(string levelID)
+        public void StartToLevel(EnumId levelId)
         {
-            Level targetLevel = _levelManager.GetLevelByID(levelID);
-            _levelManager.SetLevel(targetLevel);
-
+            _levelManager.OpenLevel(levelId);
             _uiPage.OpenPage(gameViewId);
 
-            //SceneUI.Context.Player.ActivatePlayer();
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
         public void ContinueGame()
         {
-            _gameInput.EnablePlayerInput();
-            _gameInput.EnablePauseInput();
-            
             SaveSystem.LoadFromSlot(1);
-
             _uiPage.OpenPage(gameViewId);
+
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
         public void QuitGame()

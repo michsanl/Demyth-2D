@@ -4,6 +4,7 @@ using System;
 using Sirenix.OdinInspector;
 using Demyth.Gameplay;
 using echo17.Signaler.Core;
+using Core;
 
 public class Player : MonoBehaviour, IBroadcaster
 {
@@ -11,7 +12,6 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private float actionDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
-    [SerializeField] private bool disableOnStart;
     [SerializeField] private LayerMask moveBlockMask;
     
     [Title("Components")]
@@ -21,7 +21,6 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private GameObject hitEffect;
     
 #region Public Fields
-    
     public Action OnInvulnerableVisualStart;
     public Action OnInvulnerableVisualEnd;
     public Action<bool> OnSenterToggle;
@@ -42,11 +41,22 @@ public class Player : MonoBehaviour, IBroadcaster
     private bool isSenterUnlocked = true;
     private bool isHealthPotionUnlocked = true;
 
+    private GameInputController _gameInputController;
+    private GameInput _gameInput;
+
     private void Awake()
     {
         lookOrientation = GetComponent<LookOrientation>();
         healthPotion = GetComponent<HealthPotion>();
         health = GetComponent<Health>();
+
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+        _gameInput = _gameInputController.GameInput;
+    }
+
+    private void Start()
+    {
+        Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
     }
 
     private void OnEnable()
@@ -61,10 +71,8 @@ public class Player : MonoBehaviour, IBroadcaster
 
         moveTargetPosition = transform.position;
 
-        if (disableOnStart)
-            gameObject.SetActive(false);
-
-        Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
+        _gameInput.OnSenterPerformed.AddListener(GameInput_OnSenterPerformed);
+        _gameInput.OnHealthPotionPerformed.AddListener(GameInput_OnHealthPotionPerformed);
     }
 
     private void OnDisable()
@@ -75,6 +83,9 @@ public class Player : MonoBehaviour, IBroadcaster
         Pushable.OnAnyPushableInteract -= Pushable_OnAnyPushableInteract;
         Talkable.OnAnyTalkbleInteract -= Talkable_OnAnyTalkbleInteract;
         Gate.OnAnyGateInteract -= Gate_OnAnyGateInteract;
+
+        _gameInput.OnSenterPerformed.RemoveListener(GameInput_OnSenterPerformed);
+        _gameInput.OnHealthPotionPerformed.RemoveListener(GameInput_OnHealthPotionPerformed);
     }
 
     private void Update()
@@ -94,6 +105,7 @@ public class Player : MonoBehaviour, IBroadcaster
         animator.SetTrigger("OnHit");
         StartCoroutine(HandleKnockBack(knockbackTargetPosition));
     }
+    
     private void HandlePlayerAction()
     {
         if (isKnocked)
@@ -101,8 +113,7 @@ public class Player : MonoBehaviour, IBroadcaster
         if (isBusy)
             return;
 
-        //TODO:: READ MOVEMENT INPUT VECTOR
-        Vector2 inputVector = Vector3.zero;
+        Vector2 inputVector = _gameInput.GetMovementVector();
 
         if (inputVector == Vector2.zero)
             return;
@@ -215,7 +226,6 @@ public class Player : MonoBehaviour, IBroadcaster
 
         isTakeDamageOnCooldown = false;
     }
-
 
     private IEnumerator HandleKnockBack(Vector2 targetPosition)
     {

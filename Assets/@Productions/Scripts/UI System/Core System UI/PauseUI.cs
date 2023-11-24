@@ -68,8 +68,7 @@ namespace UISystem
             DialogueManager.StopAllConversations();
             SceneUI.Context.GameManager.TogglePauseGame();
 
-            Level mainMenuLevel = SceneUI.Context.LevelManager.MainMenuLevel;
-            SceneUI.Context.LevelManager.SetLevel(mainMenuLevel);
+            
 
             SceneUI.Context.Player.gameObject.SetActive(false);
  

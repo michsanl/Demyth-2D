@@ -52,10 +52,6 @@ namespace Demyth.UI
                 //DialogueManager.instance.conversationStarted -= DialogueManager_ConversationStarted;
                 //DialogueManager.instance.conversationEnded -= DialogueManager_ConversationEnded;
             }
-
-            playerHealthPotion.OnPotionAmountChanged -= PlayerHealthPotion_OnUsePotion;
-            playerHealth.OnHealthChanged -= PlayerHealth_OnHealthChanged;
-            playerShield.OnShieldAmountChanged -= PlayerShield_OnShieldAmountChanged;
         }
 
         private bool OnPlayerSpawned(PlayerSpawnEvent signal)

@@ -1,11 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using CustomTools.Core;
 using System;
+using Demyth.Gameplay;
+using Core;
 
-public class TuyulFleeMovement : SceneService
+public class TuyulFleeMovement : MonoBehaviour
 {
     [SerializeField] private float moveDuration = 0.2f;
     [SerializeField] private Animator animator;
@@ -17,9 +19,12 @@ public class TuyulFleeMovement : SceneService
     private bool isShocked;
     private float mockInterval = 1.5f;
 
+    private PlayerManager _playerManager;
+
     private void Awake() 
     {
         lookOrientation = GetComponent<LookOrientation>();
+        _playerManager = SceneServiceProvider.GetService<PlayerManager>();
     }
     
     private void Update()
@@ -89,7 +94,7 @@ public class TuyulFleeMovement : SceneService
         isBusy = true;
 
         animator.Play("Dash");
-        Context.AudioManager.PlaySound(Context.AudioManager.TuyulDash);
+        //Context.AudioManager.PlaySound(Context.AudioManager.TuyulDash);
         
         transform.DOMove(GetMoveTargetPositionRounded(moveDir), moveDuration);
         yield return Helper.GetWaitForSeconds(moveDuration);
@@ -108,7 +113,7 @@ public class TuyulFleeMovement : SceneService
 
     private Vector2 GetDirToPlayer()
     {
-        if (Context.Player.transform.position.x >= transform.position.x)
+        if (_playerManager.Player.transform.position.x >= transform.position.x)
         {
             return Vector2.right;
         }
