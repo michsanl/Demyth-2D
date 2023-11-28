@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilityNailSummon : SceneService
+public class SriAbilityNailSummon : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -20,14 +21,12 @@ public class SriAbilityNailSummon : SceneService
     
     protected int NAIL_SUMMON_SINGLE = Animator.StringToHash("Nail_Summon_Single");
 
-    public IEnumerator NailSummon()
+    public IEnumerator NailSummon(Player player, Animator animator, AudioClip abilitySFX)
     {
-        var audioManager = Context.AudioManager;
-
         animator.CrossFade(NAIL_SUMMON_SINGLE, .1f, 0);
-        audioManager.PlaySound(audioManager.SriAudioSource.NailSummon);
+        PlayAudio(abilitySFX);
         
-        Vector2 spawnPosition = Context.Player.LastMoveTargetPosition;
+        Vector2 spawnPosition = player.LastMoveTargetPosition;
         Instantiate(groundNail, spawnPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
@@ -39,11 +38,20 @@ public class SriAbilityNailSummon : SceneService
         yield return Helper.GetWaitForSeconds(backSwingDuration);
     }
 
-    private IEnumerator HandleSpawnGroundNail()
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
+    }
+
+    private IEnumerator HandleSpawnGroundNail(Player player)
     {
         yield return Helper.GetWaitForSeconds(nailSpawnDelay);
         
-        Vector2 spawnPosition = Context.Player.LastMoveTargetPosition;
+        Vector2 spawnPosition = player.LastMoveTargetPosition;
         Instantiate(groundNail, spawnPosition, Quaternion.identity);
     }
 }

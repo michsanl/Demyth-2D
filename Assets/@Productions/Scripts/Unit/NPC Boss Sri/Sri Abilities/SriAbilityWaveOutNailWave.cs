@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilityWaveOutNailWave : SceneService
+public class SriAbilityWaveOutNailWave : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float animationDuration;
@@ -20,17 +21,25 @@ public class SriAbilityWaveOutNailWave : SceneService
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator WaveOutNailWave()
+    public IEnumerator WaveOutNailWave(Animator animator, AudioClip abilitySFX)
     {
-        var audioManager = Context.AudioManager;
-
         yield return StartCoroutine(TeleportToMiddleArena());
 
         animator.Play(NAIL_WAVE);
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        PlayAudio(abilitySFX);
+
         StartCoroutine(SpawnNail());
 
         yield return Helper.GetWaitForSeconds(animationDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     public IEnumerator TeleportToMiddleArena()

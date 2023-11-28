@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilityVerticalNailWave : SceneService
+public class SriAbilityVerticalNailWave : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float animationDuration;
@@ -16,13 +17,22 @@ public class SriAbilityVerticalNailWave : SceneService
     
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator VerticalNailWave()
+    public IEnumerator VerticalNailWave(Animator animator, AudioClip abilitySFX)
     {
         animator.Play(NAIL_WAVE);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        PlayAudio(abilitySFX);
+
         Instantiate(verticalNailWave, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

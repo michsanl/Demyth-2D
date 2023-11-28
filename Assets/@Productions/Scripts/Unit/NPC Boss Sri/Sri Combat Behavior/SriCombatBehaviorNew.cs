@@ -3,70 +3,102 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
-using CustomTools.Core;
+using Core;
+using Demyth.Gameplay;
 
-public class SriCombatBehaviorNew : SceneService
+public class SriCombatBehaviorNew : MonoBehaviour
 {
-    [SerializeField] private bool activateCombatBehaviorOnStart;
-    [SerializeField] private int changePhaseHPThreshold;
-    [EnumToggleButtons] public CombatMode SelectCombatMode;
-    [EnumToggleButtons, Space] public Ability LoopAbility;
-    [SerializeField] private GameObject[] attackColliderArray;
 
-    public enum Ability
+    private enum Ability
     { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
     VerticalNailWave, WaveOutNailWave, Teleport }
-    public enum CombatMode 
+    private enum CombatMode 
     { FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
 
-    private SriAbilityUpSlash upSlashAbility;
-    private SriAbilityDownSlash downSlashAbility;
-    private SriAbilityHorizontalSlash horizontalSlashAbility;
-    private SriAbilitySpinClaw spinClawAbility;
-    private SriAbilityNailAOE nailAOEAbility;
-    private SriAbilityNailSummon nailSummonAbility;
-    private SriAbilityFireBall fireBallAbility;
-    private SriAbilityTeleport teleportAbility;
-    private SriAbilityHorizontalNailWave horizontalNailWaveAbility;
-    private SriAbilityVerticalNailWave verticalNailWaveAbility;
-    private SriAbilityWaveOutNailWave waveOutNailWaveAbility;
-    private SriAbilityDeathSlash deathSlashAbility;
-    private LookOrientation lookOrientation;
-    private Health health;
 
-    private int meleeAbilityCounter;
-    private int rangeAbilityCount;
+    [SerializeField] private bool _combatMode;
+    [SerializeField] private int _phaseTwoHPThreshold;
+    [SerializeField, EnumToggleButtons] private CombatMode _selectCombatMode;
+    [SerializeField, EnumToggleButtons, Space] private Ability _abilityLoop;
+    [SerializeField] private GameObject[] _attackColliderArray;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private AudioClipSriSO _sriAudioSO;
 
-    protected override void OnInitialize()
+    private SriAbilityUpSlash _upSlashAbility;
+    private SriAbilityDownSlash _downSlashAbility;
+    private SriAbilityHorizontalSlash _horizontalSlashAbility;
+    private SriAbilitySpinClaw _spinClawAbility;
+    private SriAbilityNailAOE _nailAOEAbility;
+    private SriAbilityNailSummon _nailSummonAbility;
+    private SriAbilityFireBall _fireBallAbility;
+    private SriAbilityTeleport _teleportAbility;
+    private SriAbilityHorizontalNailWave _horizontalNailWaveAbility;
+    private SriAbilityVerticalNailWave _verticalNailWaveAbility;
+    private SriAbilityWaveOutNailWave _waveOutNailWaveAbility;
+    private SriAbilityDeathSlash _deathSlashAbility;
+
+    
+    private CombatMode _currentCombatMode;
+    private PlayerManager _playerManager;
+    private Player _player;
+    private LookOrientation _lookOrientation;
+    private Health _health;
+
+    private int _meleeAbilityCounter;
+    private int _rangeAbilityCount;
+
+    private void Awake()
     {
-        upSlashAbility = GetComponent<SriAbilityUpSlash>();
-        downSlashAbility = GetComponent<SriAbilityDownSlash>();
-        horizontalSlashAbility = GetComponent<SriAbilityHorizontalSlash>();
-        spinClawAbility = GetComponent<SriAbilitySpinClaw>();
-        nailAOEAbility = GetComponent<SriAbilityNailAOE>();
-        nailSummonAbility = GetComponent<SriAbilityNailSummon>();
-        fireBallAbility = GetComponent<SriAbilityFireBall>();
-        teleportAbility = GetComponent<SriAbilityTeleport>();
-        horizontalNailWaveAbility = GetComponent<SriAbilityHorizontalNailWave>();
-        verticalNailWaveAbility = GetComponent<SriAbilityVerticalNailWave>();
-        waveOutNailWaveAbility = GetComponent<SriAbilityWaveOutNailWave>();
-        deathSlashAbility = GetComponent<SriAbilityDeathSlash>();
-        lookOrientation = GetComponent<LookOrientation>();
-        health = GetComponent<Health>();
+        _playerManager = SceneServiceProvider.GetService<PlayerManager>();
+        _lookOrientation = GetComponent<LookOrientation>();
+        _health = GetComponent<Health>();
+        _player = _playerManager.Player;
+
+        _upSlashAbility = GetComponent<SriAbilityUpSlash>();
+        _downSlashAbility = GetComponent<SriAbilityDownSlash>();
+        _horizontalSlashAbility = GetComponent<SriAbilityHorizontalSlash>();
+        _spinClawAbility = GetComponent<SriAbilitySpinClaw>();
+        _nailAOEAbility = GetComponent<SriAbilityNailAOE>();
+        _nailSummonAbility = GetComponent<SriAbilityNailSummon>();
+        _fireBallAbility = GetComponent<SriAbilityFireBall>();
+        _teleportAbility = GetComponent<SriAbilityTeleport>();
+        _horizontalNailWaveAbility = GetComponent<SriAbilityHorizontalNailWave>();
+        _verticalNailWaveAbility = GetComponent<SriAbilityVerticalNailWave>();
+        _waveOutNailWaveAbility = GetComponent<SriAbilityWaveOutNailWave>();
+        _deathSlashAbility = GetComponent<SriAbilityDeathSlash>();
     }
 
-    protected override void OnActivate()
+    private void Start()
     {
-        health.OnTakeDamage += Health_OnTakeDamage;
-        health.OnDeath += Health_OnDeath;
+        _health.OnTakeDamage += Health_OnTakeDamage;
+        _health.OnDeath += Health_OnDeath;
 
-        if (activateCombatBehaviorOnStart)
+        if (_combatMode)
+        {
             ChangeCombatBehavior();
+        }
+    }
+
+    private void Update()
+    {
+        UpdateCombatBehaviour();
+    }
+
+    private void UpdateCombatBehaviour()
+    {
+        if (!_combatMode)
+            return;
+        
+        if (_currentCombatMode != _selectCombatMode)
+        {
+            _currentCombatMode = _selectCombatMode;
+            ChangeCombatBehavior();
+        }
     }
 
     private void Health_OnTakeDamage()
     {
-        if (health.CurrentHP == changePhaseHPThreshold)
+        if (_health.CurrentHP == _phaseTwoHPThreshold)
         {
             StopCurrentAbility();
             StartCoroutine(StartPhaseTwo());
@@ -76,15 +108,14 @@ public class SriCombatBehaviorNew : SceneService
     private void Health_OnDeath()
     {
         StopCurrentAbility();
-        StartCoroutine(deathSlashAbility.DeathSlash());
+        StartCoroutine(StartDeathSlashAbility());
     }
 
-    [Button("Change Combat Behavior", ButtonSizes.Medium)]
     private void ChangeCombatBehavior()
     {
         StopCurrentAbility();
 
-        switch (SelectCombatMode)
+        switch (_selectCombatMode)
         {
             case CombatMode.FirstPhase:
                 StartCoroutine(LoopCombatBehavior(GetFirstPhaseAbility));
@@ -108,37 +139,28 @@ public class SriCombatBehaviorNew : SceneService
         yield return StartCoroutine(ability);
         StartCoroutine(LoopCombatBehavior(getAbility));
     }
-
-    private void IncreaseMeleeAbilityCounter()
-    {
-        meleeAbilityCounter++;
-        if (meleeAbilityCounter > 2)
-        {
-            meleeAbilityCounter = 0;
-        }
-    }
     
     private IEnumerator GetOldFirstPhaseAbility()
     {
         if (IsPlayerNearby())
         {
             IncreaseMeleeAbilityCounter();
-            return meleeAbilityCounter == 0 ? nailAOEAbility.NailAOE() : spinClawAbility.SpinClaw();
+            return _meleeAbilityCounter == 0 ? StartNailAOEAbility() : StartSpinClawAbility();
         }
 
         if (IsPlayerInlineHorizontally())
         {
-            return horizontalSlashAbility.HorizontalSlash();
+            return StartHorizontalSlashAbility();
         }
 
         if (IsPlayerInlineVertically())
         {
-            return IsPlayerAbove() ? upSlashAbility.UpSlash() : downSlashAbility.DownSlash();
+            return IsPlayerAbove() ? StartUpSlashAbility() : StartDownSlashAbility();
         }
 
         if (!IsPlayerNearby())
         {
-            return nailSummonAbility.NailSummon();
+            return StartNailSummonAbility();
         }
 
         return null;
@@ -148,39 +170,39 @@ public class SriCombatBehaviorNew : SceneService
     {
         if (UnityEngine.Random.Range(0, 2) == 0)
         {
-            return teleportAbility.Teleport();
+            return StartTeleportAbility();
         }
 
         if (IsPlayerNearby())
         {
-            rangeAbilityCount = 0;
+            _rangeAbilityCount = 0;
             IncreaseMeleeAbilityCounter();
-            return meleeAbilityCounter == 0 ? spinClawAbility.SpinClaw() : nailAOEAbility.NailAOE();
+            return _meleeAbilityCounter == 0 ? StartSpinClawAbility() : StartNailAOEAbility();
         }
 
         if (IsPlayerInlineHorizontally())
         {
-            rangeAbilityCount = 0;
-            return horizontalSlashAbility.HorizontalSlash();
+            _rangeAbilityCount = 0;
+            return StartHorizontalSlashAbility();
         }
 
         if (IsPlayerInlineVertically())
         {
-            rangeAbilityCount = 0;
-            return IsPlayerAbove() ? upSlashAbility.UpSlash() : downSlashAbility.DownSlash();
+            _rangeAbilityCount = 0;
+            return IsPlayerAbove() ? StartUpSlashAbility() : StartDownSlashAbility();
         }
 
         if (!IsPlayerNearby())
         {
-            rangeAbilityCount++;
-            if (rangeAbilityCount > 5)
+            _rangeAbilityCount++;
+            if (_rangeAbilityCount > 5)
             {
-                rangeAbilityCount = 0;
-                return teleportAbility.Teleport();
+                _rangeAbilityCount = 0;
+                return StartTeleportAbility();
             }
 
             int randomIndex = UnityEngine.Random.Range(0, 2);
-            return randomIndex == 0 ? fireBallAbility.FireBall() : nailSummonAbility.NailSummon();
+            return randomIndex == 0 ? StartFireBallAbility() : StartNailSummonAbility();
         }
 
         return null;
@@ -193,32 +215,108 @@ public class SriCombatBehaviorNew : SceneService
 
     private IEnumerator GetAbilityTesterAbility()
     {
-        switch (LoopAbility)
+        switch (_abilityLoop)
         {
             case Ability.UpSlash:
-                return upSlashAbility.UpSlash();
+                return StartUpSlashAbility();
             case Ability.DownSlash:
-                return downSlashAbility.DownSlash();
+                return StartDownSlashAbility();
             case Ability.HorizontalSlash:
-                return horizontalSlashAbility.HorizontalSlash();
+                return StartHorizontalSlashAbility();
             case Ability.SpinClaw:
-                return spinClawAbility.SpinClaw();
+                return StartSpinClawAbility();
             case Ability.NailAOE:
-                return nailAOEAbility.NailAOE();
+                return StartNailAOEAbility();
             case Ability.NailSummon:
-                return nailSummonAbility.NailSummon();
+                return StartNailSummonAbility();
             case Ability.FireBall:
-                return fireBallAbility.FireBall();
+                return StartFireBallAbility();
             case Ability.HorizontalNailWave:
-                return horizontalNailWaveAbility.HorizontalNailWave();
+                return StartHorizontalNailWaveAbility();
             case Ability.VerticalNailWave:
-                return verticalNailWaveAbility.VerticalNailWave();
+                return StartVerticalNailWaveAbility();
             case Ability.WaveOutNailWave:
-                return waveOutNailWaveAbility.WaveOutNailWave();
+                return StartWaveOutNailWaveAbility();
             case Ability.Teleport:
-                return teleportAbility.Teleport();
+                return StartTeleportAbility();
             default:
                 return null;
+        }
+    }
+
+    private IEnumerator StartUpSlashAbility()
+    {
+        yield return _upSlashAbility.UpSlash(_player, _animator, _sriAudioSO.VerticalSlash);
+    }
+
+    private IEnumerator StartDownSlashAbility()
+    {
+        yield return _downSlashAbility.DownSlash(_player, _animator, _sriAudioSO.VerticalSlash);
+    }
+
+    private IEnumerator StartHorizontalSlashAbility()
+    {
+        yield return _horizontalSlashAbility.HorizontalSlash(_player, _animator, _sriAudioSO.HorizontalSlash);
+    }
+
+    private IEnumerator StartSpinClawAbility()
+    {
+        yield return _spinClawAbility.SpinClaw(_animator, _sriAudioSO.SpinClaw);
+    }
+
+    private IEnumerator StartNailAOEAbility()
+    {
+        yield return _nailAOEAbility.NailAOE(_animator, _sriAudioSO.NailAOE);
+    }
+
+    private IEnumerator StartNailSummonAbility()
+    {
+        yield return _nailSummonAbility.NailSummon(_player, _animator, _sriAudioSO.NailSummon);
+    }
+
+    private IEnumerator StartFireBallAbility()
+    {
+        yield return _fireBallAbility.FireBall(_animator, _sriAudioSO.Fireball);
+    }
+
+    private IEnumerator StartHorizontalNailWaveAbility()
+    {
+        yield return _horizontalNailWaveAbility.HorizontalNailWave(_animator, _sriAudioSO.NailAOE);
+    }
+
+    private IEnumerator StartVerticalNailWaveAbility()
+    {
+        yield return _verticalNailWaveAbility.VerticalNailWave(_animator, _sriAudioSO.NailAOE);
+    }
+
+    private IEnumerator StartWaveOutNailWaveAbility()
+    {
+        yield return _waveOutNailWaveAbility.WaveOutNailWave(_animator, _sriAudioSO.NailAOE);
+    }
+
+    private IEnumerator StartTeleportAbility()
+    {
+        yield return _teleportAbility.Teleport(_player, _animator);
+    }
+
+    private IEnumerator StartDeathSlashAbility()
+    {
+        yield return _deathSlashAbility.DeathSlash(_animator, _sriAudioSO.NailAOE, _sriAudioSO.VerticalSlash);
+    }
+
+
+    private IEnumerator StartPhaseTwo()
+    {
+        yield return StartCoroutine(StartWaveOutNailWaveAbility());
+        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
+    }
+
+    private void IncreaseMeleeAbilityCounter()
+    {
+        _meleeAbilityCounter++;
+        if (_meleeAbilityCounter > 2)
+        {
+            _meleeAbilityCounter = 0;
         }
     }
 
@@ -227,7 +325,7 @@ public class SriCombatBehaviorNew : SceneService
         int teleportCount = UnityEngine.Random.Range(1, 3);
         for (int i = 0; i < teleportCount; i++)
         {
-            yield return StartCoroutine(teleportAbility.Teleport());            
+            yield return StartCoroutine(StartTeleportAbility());            
             SetFacingDirection();
         }
 
@@ -235,20 +333,14 @@ public class SriCombatBehaviorNew : SceneService
         switch (randomNumber)
         {
             case 0:
-                yield return StartCoroutine(horizontalNailWaveAbility.HorizontalNailWave());
+                yield return StartCoroutine(StartHorizontalNailWaveAbility());
                 break;
             case 1:
-                yield return StartCoroutine(verticalNailWaveAbility.VerticalNailWave());
+                yield return StartCoroutine(StartVerticalNailWaveAbility());
                 break;
             default:
                 break;
         }
-    }
-
-    private IEnumerator StartPhaseTwo()
-    {
-        yield return StartCoroutine(waveOutNailWaveAbility.WaveOutNailWave());
-        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
     }
 
     private void StopCurrentAbility()
@@ -259,7 +351,7 @@ public class SriCombatBehaviorNew : SceneService
 
     private void DeactivateAllAttackCollider()
     {
-        foreach (GameObject collider in attackColliderArray)
+        foreach (GameObject collider in _attackColliderArray)
         {
             collider.SetActive(false);
         }
@@ -269,12 +361,12 @@ public class SriCombatBehaviorNew : SceneService
     {
         if (IsPlayerToRight())
         {
-            lookOrientation.SetFacingDirection(Vector2.right);
+            _lookOrientation.SetFacingDirection(Vector2.right);
         }
 
         if (IsPlayerToLeft())
         {
-            lookOrientation.SetFacingDirection(Vector2.left);
+            _lookOrientation.SetFacingDirection(Vector2.left);
         }
     }
 
@@ -282,37 +374,37 @@ public class SriCombatBehaviorNew : SceneService
 
     protected bool IsPlayerAbove()
     {
-        return transform.position.y < Context.Player.transform.position.y;
+        return transform.position.y < _player.transform.position.y;
     }
 
     protected bool IsPlayerBelow()
     {
-        return transform.position.y > Context.Player.transform.position.y;
+        return transform.position.y > _player.transform.position.y;
     }
 
     protected bool IsPlayerToRight()
     {
-        return transform.position.x < Context.Player.transform.position.x;
+        return transform.position.x < _player.transform.position.x;
     }
 
     protected bool IsPlayerToLeft()
     {
-        return transform.position.x > Context.Player.transform.position.x;
+        return transform.position.x > _player.transform.position.x;
     }
 
     protected bool IsPlayerInlineVertically()
     {
-        return Mathf.Approximately(transform.position.x, Context.Player.transform.position.x) ;
+        return Mathf.Approximately(transform.position.x, _player.transform.position.x) ;
     }
 
     protected bool IsPlayerInlineHorizontally()
     {
-        return Mathf.Approximately(transform.position.y, Context.Player.transform.position.y);
+        return Mathf.Approximately(transform.position.y, _player.transform.position.y);
     }
 
     protected bool IsPlayerNearby()
     {
-        return Vector2.Distance(transform.position, Context.Player.transform.position) < 1.5f;
+        return Vector2.Distance(transform.position, _player.transform.position) < 1.5f;
     }
 
 #endregion

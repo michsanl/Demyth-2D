@@ -5,8 +5,9 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilityHorizontalSlash : SceneService
+public class SriAbilityHorizontalSlash : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -15,28 +16,35 @@ public class SriAbilityHorizontalSlash : SceneService
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject horizontalSlashCollider;
     
     private int rightArenaBorder = 6;
     private int leftArenaBorder = -6;
     protected int HORIZONTAL_SLASH = Animator.StringToHash("Horizontal_Slash");
 
-    public IEnumerator HorizontalSlash()
+    public IEnumerator HorizontalSlash(Player player, Animator animator, AudioClip abilitySFX)
     {
-        var audioManager = Context.AudioManager;
-        float playerXPosition = Context.Player.transform.position.x;
+        float playerXPosition = player.transform.position.x;
         float targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerXPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(HORIZONTAL_SLASH);
-        audioManager.PlaySound(audioManager.SriAudioSource.HorizontalSlash);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         horizontalSlashCollider.SetActive(true);
         yield return transform.DOMoveX(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
         horizontalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float GetPositionWithIncrement(float playerXPosition)

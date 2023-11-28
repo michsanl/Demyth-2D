@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using CustomTools.Core;
 using UnityEngine;
 using DG.Tweening;
+using MoreMountains.Tools;
 
-public class SriAbilityDeathSlash : SceneService
+public class SriAbilityDeathSlash : MonoBehaviour
 {
     [SerializeField] private float teleportStartDuration;
     [SerializeField] private float teleportEndDuration;
     [SerializeField] private GameObject dialogueCollider;
     [SerializeField] private GameObject nailWavePrefab;
-    [SerializeField] private Animator animator;
 
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator DeathSlash()
+    public IEnumerator DeathSlash(Animator animator, AudioClip nailAOESFX, AudioClip verticalSlashSFX)
     {
         animator.Play(TELEPORT_START);
         yield return Helper.GetWaitForSeconds(teleportStartDuration);
@@ -28,8 +28,7 @@ public class SriAbilityDeathSlash : SceneService
         yield return Helper.GetWaitForSeconds(teleportEndDuration);
 
         animator.Play(NAIL_WAVE);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        PlayAudio(nailAOESFX);
 
         yield return Helper.GetWaitForSeconds(.5f);
         Instantiate(nailWavePrefab, Vector3.zero, Quaternion.identity);
@@ -37,10 +36,19 @@ public class SriAbilityDeathSlash : SceneService
         yield return Helper.GetWaitForSeconds(3.7f);
         
         animator.Play(DOWN_SLASH);
-        audioManager.PlaySound(audioManager.SriAudioSource.VerticalSlash);
+        PlayAudio(verticalSlashSFX);
         yield return Helper.GetWaitForSeconds(0.6f);
         dialogueCollider.SetActive(true);
         yield return transform.DOMoveY(-4f, .233f).SetEase(Ease.OutExpo).WaitForCompletion();
         dialogueCollider.SetActive(false);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilityNailAOE : SceneService
+public class SriAbilityNailAOE : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -19,17 +20,24 @@ public class SriAbilityNailAOE : SceneService
     
     protected int NAIL_AOE = Animator.StringToHash("Nail_AOE");
 
-    public IEnumerator NailAOE()
+    public IEnumerator NailAOE(Animator animator, AudioClip abilitySFX)
     {
-        var audioManager = Context.AudioManager;
-
         animator.Play(NAIL_AOE);
-        audioManager.PlaySound(audioManager.SriAudioSource.NailAOE);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         nailAOECollider.SetActive(true);
         yield return Helper.GetWaitForSeconds(swingDuration);
         nailAOECollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }
