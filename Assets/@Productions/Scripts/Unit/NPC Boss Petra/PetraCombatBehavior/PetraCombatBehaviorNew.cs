@@ -4,61 +4,88 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using Core;
+using Demyth.Gameplay;
+using UnityEditor.ShortcutManagement;
 
-public class PetraCombatBehaviorNew : SceneService
+public class PetraCombatBehaviorNew : MonoBehaviour
 {
-    [SerializeField] private bool activateCombatBehaviorOnStart;
-    [SerializeField] private int changePhaseHPThreshold;
-    [SerializeField, EnumToggleButtons] private CombatMode SelectedCombatMode;
-    [SerializeField, EnumToggleButtons] private Ability LoopAbility;
-    [SerializeField] private GameObject[] attackColliderArray;
-    [SerializeField] private Animator animator;
+    [SerializeField] private bool _activateCombatBehaviorOnStart;
+    [SerializeField] private int _phaseTwoHPTreshold;
+    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
+    [SerializeField, EnumToggleButtons] private Ability _loopAbility;
+    [SerializeField] private GameObject[] _attackColliderArray;
+    [SerializeField] private Animator _animator;
     
     private enum Ability 
     { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
     private enum CombatMode 
     { FirstPhase, SecondPhase, AbilityLoop }
 
-    private PetraAbilityUpCharge upChargeAbility;
-    private PetraAbilityDownCharge downChargeAbility;
-    private PetraAbilityHorizontalCharge horizontalChargeAbility;
-    private PetraAbilitySpinAttack spinAttackAbility;
-    private PetraAbilityChargeAttack chargeAttackAbility;
-    private PetraAbilityBasicSlam basicSlamAbility;
-    private PetraAbilityJumpSlam jumpSlamAbility;
-    private PetraAbilityJumpGroundSlam jumpGroundSlamAbility;
-    private LookOrientation lookOrientation;
-    private Health health;
-    private int lastRandomResult;
-    private int consecutiveCount;
-    private float timeVarianceCompensationDelay = 0.05f;
+    private PetraAbilityUpCharge _upChargeAbility;
+    private PetraAbilityDownCharge _downChargeAbility;
+    private PetraAbilityHorizontalCharge _horizontalChargeAbility;
+    private PetraAbilitySpinAttack _spinAttackAbility;
+    private PetraAbilityChargeAttack _chargeAttackAbility;
+    private PetraAbilityBasicSlam _basicSlamAbility;
+    private PetraAbilityJumpSlam _jumpSlamAbility;
+    private PetraAbilityJumpGroundSlam _jumpGroundSlamAbility;
 
-    protected override void OnInitialize()
+    private CombatMode _currentCombatMode;
+    private PlayerManager _playerManager;
+    private Player _player;
+    private LookOrientation _lookOrientation;
+    private Health _health;
+    private int _lastRandomResult;
+    private int _consecutiveCount;
+    private float _timeVarianceCompensationDelay = 0.05f;
+
+    private void Awake()
     {
-        upChargeAbility = GetComponent<PetraAbilityUpCharge>();
-        downChargeAbility = GetComponent<PetraAbilityDownCharge>();
-        horizontalChargeAbility = GetComponent<PetraAbilityHorizontalCharge>();
-        spinAttackAbility = GetComponent<PetraAbilitySpinAttack>();
-        chargeAttackAbility = GetComponent<PetraAbilityChargeAttack>();
-        basicSlamAbility = GetComponent<PetraAbilityBasicSlam>();
-        jumpSlamAbility = GetComponent<PetraAbilityJumpSlam>();
-        jumpGroundSlamAbility = GetComponent<PetraAbilityJumpGroundSlam>();
-        lookOrientation = GetComponent<LookOrientation>();
-        health = GetComponent<Health>();
+        _playerManager = SceneServiceProvider.GetService<PlayerManager>();
+        _lookOrientation = GetComponent<LookOrientation>();
+        _health = GetComponent<Health>();
+        _player = _playerManager.Player;
+
+        _upChargeAbility = GetComponent<PetraAbilityUpCharge>();
+        _downChargeAbility = GetComponent<PetraAbilityDownCharge>();
+        _horizontalChargeAbility = GetComponent<PetraAbilityHorizontalCharge>();
+        _spinAttackAbility = GetComponent<PetraAbilitySpinAttack>();
+        _chargeAttackAbility = GetComponent<PetraAbilityChargeAttack>();
+        _basicSlamAbility = GetComponent<PetraAbilityBasicSlam>();
+        _jumpSlamAbility = GetComponent<PetraAbilityJumpSlam>();
+        _jumpGroundSlamAbility = GetComponent<PetraAbilityJumpGroundSlam>();
     }
 
-    protected override void OnActivate()
+    private void Start()
     {
-        health.OnTakeDamage += Health_OnTakeDamage;
-        health.OnDeath += Health_OnDeath;
+        _health.OnTakeDamage += Health_OnTakeDamage;
+        _health.OnDeath += Health_OnDeath;
 
-        if (activateCombatBehaviorOnStart)
+        if (_activateCombatBehaviorOnStart)
             ChangeCombatBehavior();
+    }
+
+    private void Update()
+    {
+        if (!_activateCombatBehaviorOnStart)
+            return;
+
+        UpdateCombatMode();
+    }
+
+    private void UpdateCombatMode()
+    {
+        if (_currentCombatMode != _selectedCombatMode)
+        {
+            _currentCombatMode = _selectedCombatMode;
+            ChangeCombatBehavior();
+        }
     }
 
     private void Health_OnTakeDamage()
     {
-        if (health.CurrentHP == changePhaseHPThreshold)
+        if (_health.CurrentHP == _phaseTwoHPTreshold)
         {
             StopCurrentAbility();
             StartCoroutine(StartPhaseTwo());
@@ -68,40 +95,58 @@ public class PetraCombatBehaviorNew : SceneService
     private void Health_OnDeath()
     {
         StopCurrentAbility();
-        animator.Play("Defeated");
+        _animator.Play("Defeated");
+    }
+    
+    private void ChangeCombatBehavior()
+    {
+        StopCurrentAbility();
+
+        switch (_selectedCombatMode)
+        {
+            case CombatMode.FirstPhase:
+                StartCoroutine(LoopAbility(GetFirstPhaseAbility));
+                break;
+            case CombatMode.SecondPhase:
+                StartCoroutine(LoopAbility(GetSecondPhaseAbility));
+                break;
+            case CombatMode.AbilityLoop:
+                StartCoroutine(LoopAbility(GetAbilityTesterAbility));
+                break;
+        }
     }
 
-    private IEnumerator LoopCombatBehavior(Func<IEnumerator> getAbility)
+    private IEnumerator LoopAbility(Func<IEnumerator> selectedPhaseAbility)
     {
-        IEnumerator ability = getAbility();
+        IEnumerator ability = selectedPhaseAbility();
 
         SetFacingDirection();
         yield return StartCoroutine(ability);
-        yield return Helper.GetWaitForSeconds(timeVarianceCompensationDelay);
+        yield return Helper.GetWaitForSeconds(_timeVarianceCompensationDelay);
 
-        StartCoroutine(LoopCombatBehavior(getAbility));
+        StartCoroutine(LoopAbility(selectedPhaseAbility));
     }
     
     private IEnumerator GetFirstPhaseAbility()
     {
         if (IsPlayerNearby())
         {
-            return spinAttackAbility.SpinAttack();
+            return StartSpinAttackAbility();
         }
 
         if (IsPlayerInlineHorizontally())
         {
-            return horizontalChargeAbility.HorizontalCharge();
+            return StartHorizontalChargeAbility();
         }
 
         if (IsPlayerInlineVertically())
         {
-            return IsPlayerAbove() ? upChargeAbility.UpCharge() : downChargeAbility.DownCharge();
+            return IsPlayerAbove() ? StartUpChargeAbility() : StartDownChargeAbility();
         }
 
         if (!IsPlayerNearby())
         {
-            return basicSlamAbility.BasicSlam();
+            return StartBasicSlamAbility();
         }
         
         return null;
@@ -112,23 +157,23 @@ public class PetraCombatBehaviorNew : SceneService
         if (IsPlayerNearby())
         {
             int randomIndex = UnityEngine.Random.Range(0,3);
-            return randomIndex == 0 ? spinAttackAbility.SpinAttack() : chargeAttackAbility.ChargeAttack();
+            return randomIndex == 0 ? StartSpinAttackAbility() : StartChargeAttackAbility();
         }
 
         if (IsPlayerInlineHorizontally())
         {
-            return horizontalChargeAbility.HorizontalCharge();
+            return StartHorizontalChargeAbility();
         }
 
         if (IsPlayerInlineVertically())
         {
-            return IsPlayerAbove() ? upChargeAbility.UpCharge() : downChargeAbility.DownCharge();
+            return IsPlayerAbove() ? StartUpChargeAbility() : StartDownChargeAbility();
         }
 
         if (!IsPlayerNearby())
         {
             int random = GetRandomNumberWithConsecutiveLimit(1, 3, 3);
-            return random == 1 ? jumpSlamAbility.JumpSlam() : basicSlamAbility.BasicSlam();
+            return random == 1 ? StartJumpSlamAbility() : StartBasicSlamAbility();
         }
 
         return null;
@@ -136,54 +181,33 @@ public class PetraCombatBehaviorNew : SceneService
 
     private IEnumerator GetAbilityTesterAbility()
     {
-        switch (LoopAbility)
+        switch (_loopAbility)
         {
             case Ability.UpCharge:
-                return upChargeAbility.UpCharge();
+                return StartUpChargeAbility();
             case Ability.DownCharge:
-                return downChargeAbility.DownCharge();
+                return StartDownChargeAbility();
             case Ability.HorizontalCharge:
-                return horizontalChargeAbility.HorizontalCharge();
+                return StartHorizontalChargeAbility();
             case Ability.SpinAttack:
-                return spinAttackAbility.SpinAttack();
+                return StartSpinAttackAbility();
             case Ability.ChargeAttack:
-                return chargeAttackAbility.ChargeAttack();
+                return StartChargeAttackAbility();
             case Ability.BasicSlam:
-                return basicSlamAbility.BasicSlam();
+                return StartBasicSlamAbility();
             case Ability.JumpSlam:
-                return jumpSlamAbility.JumpSlam();
+                return StartJumpSlamAbility();
             default:
                 return null;
-        }
-    }
-    
-    
-
-    [Button("Change Combat Behavior", ButtonSizes.Medium)]
-    private void ChangeCombatBehavior()
-    {
-        StopCurrentAbility();
-
-        switch (SelectedCombatMode)
-        {
-            case CombatMode.FirstPhase:
-                StartCoroutine(LoopCombatBehavior(GetFirstPhaseAbility));
-                break;
-            case CombatMode.SecondPhase:
-                StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
-                break;
-            case CombatMode.AbilityLoop:
-                StartCoroutine(LoopCombatBehavior(GetAbilityTesterAbility));
-                break;
         }
     }
 
     private IEnumerator StartPhaseTwo()
     {
-        yield return jumpGroundSlamAbility.JumpGroundSlam();
-        yield return Helper.GetWaitForSeconds(timeVarianceCompensationDelay);
+        yield return StartJumpGroundSlamAbility();
+        yield return Helper.GetWaitForSeconds(_timeVarianceCompensationDelay);
     
-        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
+        StartCoroutine(LoopAbility(GetSecondPhaseAbility));
     }
 
     private void StopCurrentAbility()
@@ -192,31 +216,73 @@ public class PetraCombatBehaviorNew : SceneService
         DeactivateAllAttackCollider();
     }
 
+
+    private IEnumerator StartJumpGroundSlamAbility()
+    {
+        yield return _jumpGroundSlamAbility.JumpGroundSlam(_animator);
+    }
+
+    private IEnumerator StartUpChargeAbility()
+    {
+        yield return _upChargeAbility.UpCharge(_player, _animator);
+    }
+
+    private IEnumerator StartDownChargeAbility()
+    {
+        yield return _downChargeAbility.DownCharge(_player, _animator);
+    }
+
+    private IEnumerator StartHorizontalChargeAbility()
+    {
+        yield return _horizontalChargeAbility.HorizontalCharge(_player, _animator);
+    }
+
+    private IEnumerator StartSpinAttackAbility()
+    {
+        yield return _spinAttackAbility.SpinAttack(_animator);
+    }
+    
+    private IEnumerator StartChargeAttackAbility()
+    {
+        yield return _chargeAttackAbility.ChargeAttack(_animator);
+    }
+    
+    private IEnumerator StartJumpSlamAbility()
+    {
+        yield return _jumpSlamAbility.JumpSlam(_player, _animator);
+    }
+    
+    private IEnumerator StartBasicSlamAbility()
+    {
+        yield return _basicSlamAbility.BasicSlam(_player, _animator);
+    }
+
+
     private int GetRandomNumberWithConsecutiveLimit(int min, int max, int consecutiveLimit)
     {
         int random = UnityEngine.Random.Range(min, max);
-        if (random == lastRandomResult)
+        if (random == _lastRandomResult)
         {
-            consecutiveCount++;
+            _consecutiveCount++;
         }
         else
         {
-            consecutiveCount = 0;
+            _consecutiveCount = 0;
         }
-        if (consecutiveCount > consecutiveLimit)
+        if (_consecutiveCount > consecutiveLimit)
         {
-            while (random == lastRandomResult)
+            while (random == _lastRandomResult)
             {
                 random = UnityEngine.Random.Range(min, max);
             }
         }
-        lastRandomResult = random;
+        _lastRandomResult = random;
         return random;
     }
 
     private void DeactivateAllAttackCollider()
     {
-        foreach (GameObject collider in attackColliderArray)
+        foreach (GameObject collider in _attackColliderArray)
         {
             collider.SetActive(false);
         }
@@ -226,49 +292,55 @@ public class PetraCombatBehaviorNew : SceneService
     {
         if (IsPlayerToRight())
         {
-            lookOrientation.SetFacingDirection(Vector2.right);
+            _lookOrientation.SetFacingDirection(Vector2.right);
         }
 
         if (IsPlayerToLeft())
         {
-            lookOrientation.SetFacingDirection(Vector2.left);
+            _lookOrientation.SetFacingDirection(Vector2.left);
         }
     }
+
+
+
+
+
+
 
 #region PlayerToBossPositionInfo
     protected bool IsPlayerAbove()
     {
-        return transform.position.y < Context.Player.transform.position.y;
+        return transform.position.y < _player.transform.position.y;
     }
 
     protected bool IsPlayerBelow()
     {
-        return transform.position.y > Context.Player.transform.position.y;
+        return transform.position.y > _player.transform.position.y;
     }
 
     protected bool IsPlayerToRight()
     {
-        return transform.position.x < Context.Player.transform.position.x;
+        return transform.position.x < _player.transform.position.x;
     }
 
     protected bool IsPlayerToLeft()
     {
-        return transform.position.x > Context.Player.transform.position.x;
+        return transform.position.x > _player.transform.position.x;
     }
 
     protected bool IsPlayerInlineVertically()
     {
-        return Mathf.Approximately(transform.position.x, Context.Player.transform.position.x) ;
+        return Mathf.Approximately(transform.position.x, _player.transform.position.x) ;
     }
 
     protected bool IsPlayerInlineHorizontally()
     {
-        return Mathf.Approximately(transform.position.y, Context.Player.transform.position.y);
+        return Mathf.Approximately(transform.position.y, _player.transform.position.y);
     }
 
     protected bool IsPlayerNearby()
     {
-        return Vector2.Distance(transform.position, Context.Player.transform.position) < 1.5f;
+        return Vector2.Distance(transform.position, _player.transform.position) < 1.5f;
     }
 #endregion
 

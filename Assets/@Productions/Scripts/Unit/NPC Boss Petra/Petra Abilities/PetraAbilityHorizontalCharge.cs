@@ -5,7 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 
-public class PetraAbilityHorizontalCharge : SceneService
+public class PetraAbilityHorizontalCharge : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -20,9 +20,9 @@ public class PetraAbilityHorizontalCharge : SceneService
     
     private int HORIZONTAL_CHARGE = Animator.StringToHash("Side_charge");
 
-    public IEnumerator HorizontalCharge()
+    public IEnumerator HorizontalCharge(Player player, Animator animator)
     {
-        var targetPosition = Context.Player.transform.position.x;
+        var targetPosition = player.transform.position.x;
         if (targetPosition > transform.position.x)
         {
             targetPosition = SetPositionToPlayerRight(targetPosition);
@@ -36,8 +36,7 @@ public class PetraAbilityHorizontalCharge : SceneService
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(HORIZONTAL_CHARGE);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+        // audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         horizontalChargeCollider.SetActive(true);

@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using System;
 using CustomTools.Core;
 
-public class PetraAbilityUpCharge : SceneService
+public class PetraAbilityUpCharge : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -16,21 +16,19 @@ public class PetraAbilityUpCharge : SceneService
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject upChargeCollider;
     
     private int UP_CHARGE = Animator.StringToHash("Up_charge");
 
-    public IEnumerator UpCharge()
+    public IEnumerator UpCharge(Player player, Animator animator)
     {
-        var targetPosition = Context.Player.transform.position.y;
+        var targetPosition = player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
         targetPosition = ClampToMoveBlocker(targetPosition);
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(UP_CHARGE);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+        // audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         upChargeCollider.SetActive(true);

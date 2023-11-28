@@ -5,7 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 
-public class PetraAbilityJumpGroundSlam : SceneService
+public class PetraAbilityJumpGroundSlam : MonoBehaviour
 {
     [Title("Animation Timeline")]
     [SerializeField] private float frontSwingDuration;
@@ -17,17 +17,15 @@ public class PetraAbilityJumpGroundSlam : SceneService
     [SerializeField] private AnimationCurve jumpCurve;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject jumpSlamCollider;
     [SerializeField] private GameObject groundSlamCoffin;    
 
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpGroundSlam()
+    public IEnumerator JumpGroundSlam(Animator animator)
     {
         animator.Play(JUMP_SLAM);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.JumpSlam);
+        // audioManager.PlaySound(audioManager.PetraAudioSource.JumpSlam);
         Vector3 jumpTargetPosition = new Vector3(0, -1, 0);
         
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
