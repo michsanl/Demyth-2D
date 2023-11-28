@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Core;
+using Core.UI;
 
 namespace UISystem
 {
@@ -14,12 +16,15 @@ namespace UISystem
         private Slider musicVolumeSlider;
         [SerializeField] 
         private Slider sfxVolumeSlider;
-
         [SerializeField] 
         private AudioMixer audioMixer;
+        
+        private UIPage _uiPage;
 
         private void Awake()
         {
+            _uiPage = GetComponent<UIPage>();
+
             masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
             musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
             sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);

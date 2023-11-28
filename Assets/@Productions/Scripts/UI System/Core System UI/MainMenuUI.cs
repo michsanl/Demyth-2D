@@ -34,7 +34,7 @@ namespace UISystem
 
         public void StartNewGame()
         {
-            SaveSystem.ClearSavedGameData();
+            SaveSystem.LoadFromSlot(0);
 
             _levelManager.OpenLevel(newLevelId);
             _uiPage.OpenPage(gameViewId);

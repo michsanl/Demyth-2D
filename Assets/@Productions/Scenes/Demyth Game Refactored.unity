@@ -584,7 +584,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Manager Demyth 2D
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5530007619427868484, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
 --- !u!1001 &538266607
 PrefabInstance:
@@ -1624,17 +1625,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3143619101428999586, guid: 321983681366ef744898eb289741b047, type: 3}
   m_PrefabInstance: {fileID: 892082783}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1361335207 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8340008496688853411, guid: b2e090e935ac0e441855adce42313e48, type: 3}
-  m_PrefabInstance: {fileID: 318402998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a862b624a386dc54bbd0b7fa75624b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1468853390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,7 +1887,7 @@ MonoBehaviour:
   - {fileID: 0}
   _views:
   - {fileID: 0}
-  - {fileID: 1361335207}
+  - {fileID: 0}
 --- !u!1 &1517738839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2506,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
+    - target: {fileID: 250374238, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
+      propertyPath: timeScaleIndependent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 815299986, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
+      propertyPath: timeScaleIndependent
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4715767938073440419, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

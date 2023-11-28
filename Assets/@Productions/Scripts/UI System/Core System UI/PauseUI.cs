@@ -7,21 +7,41 @@ using DG.Tweening;
 using PixelCrushers;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Core;
+using Core.UI;
+using Demyth.Gameplay;
 
 namespace UISystem
 {
-    public class PauseUI : UIPageView
+    public class PauseUI : MonoBehaviour
     {
-        [SerializeField] private AudioMixer audioMixer;
+        [SerializeField] private EnumId _gameViewId;
+        [SerializeField] private EnumId _levelMenulId;
+        [SerializeField] private EnumId _menuPageId;
+        [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _mainMenuButton;
         [SerializeField] private Slider masterVolumeSlider;
         [SerializeField] private Slider musicVolumeSlider;
         [SerializeField] private Slider sfxVolumeSlider;
+        [SerializeField] private AudioMixer audioMixer;
 
+        private UIPage _uiPage;
+        private GameManager _gameManager;
+        private GameStateService _gameStateService;
+        private LevelManager _levelManager;
 
-        protected override void OnInitialize()
+        private void Awake()
         {
-            SceneUI.Context.GameManager.OnGamePaused += GameManager_OnGamePaused;
-            SceneUI.Context.GameManager.OnGameUnpaused += GameManager_OnGameUnPaused;
+            _uiPage = GetComponent<UIPage>();
+            _levelManager = SceneServiceProvider.GetService<LevelManager>();
+            _gameManager = SceneServiceProvider.GetService<GameManager>();
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+
+            _gameManager.OnGamePaused.AddListener(GameManager_OnGamePaused);
+            _gameManager.OnGameUnpaused.AddListener(GameManager_OnGameUnPaused);
+
+            _resumeButton.onClick.AddListener(ButtonResume);
+            _mainMenuButton.onClick.AddListener(ButtonMainMenu);
 
             masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
             musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
@@ -32,64 +52,45 @@ namespace UISystem
             sfxVolumeSlider.value = 80f;
         }
 
-        private void GameManager_OnGamePaused()
+        internal void GameManager_OnGamePaused()
         {
             Open();
-            gameObject.SetActive(true);
         }
 
         private void GameManager_OnGameUnPaused()
         {
             Close();
-            gameObject.SetActive(false);
         }
 
-        protected override void OnOpen()
+        private void Open()
         {
-            Canvas.enabled = true;
+            _uiPage.OpenPage(_uiPage.PageID);
         }
 
-        protected override void OnClosed()
+        private void Close()
         {
-            Canvas.enabled = false;
+            _uiPage.ReturnToPage(_gameViewId);
         }
 
-        public void ButtonResume()
+        private void ButtonResume()
         {
+            _gameManager.TogglePauseGame();
             Close();
-            
-            SceneUI.Context.GameManager.TogglePauseGame();
         }
 
-        public void ButtonGoToMainMenu()
+        private void ButtonMainMenu()
         {
-            Close();
+            _gameManager.TogglePauseGame();
 
             DialogueManager.StopAllConversations();
-            SceneUI.Context.GameManager.TogglePauseGame();
-
-            
-
-            SceneUI.Context.Player.gameObject.SetActive(false);
- 
-            SceneUI.Context.CameraNormal.transform.DOKill();
-            SceneUI.Context.CameraNormal.transform.localPosition = Vector3.zero;
-        }
-
-        public void ButtonMainMenu()
-        {
-            DialogueManager.StopAllConversations();
-            SceneUI.Context.GameManager.TogglePauseGame();
-            DOTween.KillAll();
+            DOTween.CompleteAll();
 
             SaveSystem.SaveToSlotImmediate(1);
 
-            SaveSystem.RestartGame("Demyth Game");
-        }
+            _levelManager.OpenLevel(_levelMenulId);
+            _uiPage.ReturnToPage(_menuPageId);
 
-        public void ButtonOptions()
-        {
-            Close();
+            _gameStateService?.SetState(GameState.MainMenu);
         }
 
         private void SetMasterVolume(float sliderValue)

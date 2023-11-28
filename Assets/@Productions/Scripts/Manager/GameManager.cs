@@ -4,23 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mono.Cecil;
 using Core;
+using UnityEngine.Events;
+using Demyth.Gameplay;
+using PixelCrushers;
 
 public class GameManager : SceneService
 {
-    public Action OnGamePaused;
-    public Action OnGameUnpaused;
+    public UnityEvent OnGamePaused = new();
+    public UnityEvent OnGameUnpaused = new();
     public bool IsGamePaused => isGamePaused;
 
     private bool isGamePaused;
 
-    private void OnEnable()
-    {
-        //Context.GameInput.OnPausePerformed += GameInput_OnPausePerformed;
-    }
+    private GameInputController _gameInputController;
+    private GameInput _gameInput;
 
-    private void OnDisable()
+    private void Awake()
     {
-        //Context.GameInput.OnPausePerformed -= GameInput_OnPausePerformed;
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+        _gameInput = _gameInputController.GameInput;
+
+        _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
+
+        SaveSystem.SaveToSlot(0);
     }
 
     private void GameInput_OnPausePerformed()
@@ -33,13 +39,21 @@ public class GameManager : SceneService
         isGamePaused = !isGamePaused;
         if (isGamePaused)
         {
-            Time.timeScale = 0f;
             OnGamePaused?.Invoke();
+            Time.timeScale = 0f;
         } else
         {
             Time.timeScale = 1f;
             OnGameUnpaused?.Invoke();
         }
+    }
+
+    public void UnpauseGame()
+    {
+        Time.timeScale = 1f;
+        isGamePaused = false;
+
+        OnGameUnpaused?.Invoke();
     }
     
 }
