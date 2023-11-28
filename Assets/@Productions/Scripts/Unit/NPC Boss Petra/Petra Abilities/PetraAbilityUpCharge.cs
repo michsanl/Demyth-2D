@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
 public class PetraAbilityUpCharge : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PetraAbilityUpCharge : MonoBehaviour
     
     private int UP_CHARGE = Animator.StringToHash("Up_charge");
 
-    public IEnumerator UpCharge(Player player, Animator animator)
+    public IEnumerator UpCharge(Player player, Animator animator, AudioClip abilitySFX)
     {
         var targetPosition = player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
@@ -28,7 +29,7 @@ public class PetraAbilityUpCharge : MonoBehaviour
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(UP_CHARGE);
-        // audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         upChargeCollider.SetActive(true);
@@ -37,6 +38,15 @@ public class PetraAbilityUpCharge : MonoBehaviour
         upChargeCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float SetPositionToBehindPlayer(float playerYPosition)

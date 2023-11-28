@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
 public class PetraAbilityDownCharge : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PetraAbilityDownCharge : MonoBehaviour
     
     private int DOWN_CHARGE = Animator.StringToHash("Down_charge");
 
-    public IEnumerator DownCharge(Player player, Animator animator)
+    public IEnumerator DownCharge(Player player, Animator animator, AudioClip abilitySFX)
     {
         var targetPosition = player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
@@ -27,7 +28,7 @@ public class PetraAbilityDownCharge : MonoBehaviour
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(DOWN_CHARGE);
-        // audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         downChargeCollider.SetActive(true);
@@ -36,6 +37,15 @@ public class PetraAbilityDownCharge : MonoBehaviour
         downChargeCollider.SetActive(false);
         
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float SetPositionToBehindPlayer(float playerYPosition)

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
 public class PetraAbilitySpinAttack : MonoBehaviour
 {
@@ -17,10 +18,10 @@ public class PetraAbilitySpinAttack : MonoBehaviour
     
     private int SPIN_ATTACK = Animator.StringToHash("Spin_attack");
     
-    public IEnumerator SpinAttack(Animator animator)
+    public IEnumerator SpinAttack(Animator animator, AudioClip abilitySFX)
     {
         animator.Play(SPIN_ATTACK);
-        // audioManager.PlaySound(audioManager.PetraAudioSource.CoffinSwing);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinAttackCollider.SetActive(true);
@@ -29,5 +30,14 @@ public class PetraAbilitySpinAttack : MonoBehaviour
         spinAttackCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

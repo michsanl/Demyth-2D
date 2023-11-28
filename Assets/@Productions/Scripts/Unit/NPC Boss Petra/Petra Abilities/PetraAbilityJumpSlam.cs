@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using Core;
+using MoreMountains.Tools;
 
 public class PetraAbilityJumpSlam : MonoBehaviour
 {
@@ -22,10 +23,10 @@ public class PetraAbilityJumpSlam : MonoBehaviour
 
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpSlam(Player player, Animator animator)
+    public IEnumerator JumpSlam(Player player, Animator animator, AudioClip abilitySFX)
     {
         animator.Play(JUMP_SLAM);
-        // audioManager.PlaySound(audioManager.PetraAudioSource.JumpSlam);
+        PlayAudio(abilitySFX);
         Vector3 targetPosition = player.LastMoveTargetPosition;
         
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
@@ -37,5 +38,14 @@ public class PetraAbilityJumpSlam : MonoBehaviour
         yield return Helper.GetWaitForSeconds(backSwingDuration);
 
         jumpSlamCollider.SetActive(false);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

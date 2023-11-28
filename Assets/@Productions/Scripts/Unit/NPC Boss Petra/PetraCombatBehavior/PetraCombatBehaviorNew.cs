@@ -10,17 +10,19 @@ using UnityEditor.ShortcutManagement;
 
 public class PetraCombatBehaviorNew : MonoBehaviour
 {
-    [SerializeField] private bool _activateCombatBehaviorOnStart;
-    [SerializeField] private int _phaseTwoHPTreshold;
-    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
-    [SerializeField, EnumToggleButtons] private Ability _loopAbility;
-    [SerializeField] private GameObject[] _attackColliderArray;
-    [SerializeField] private Animator _animator;
     
     private enum Ability 
     { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
     private enum CombatMode 
     { FirstPhase, SecondPhase, AbilityLoop }
+
+    [SerializeField] private bool _combatMode;
+    [SerializeField] private int _phaseTwoHPTreshold;
+    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
+    [SerializeField, EnumToggleButtons] private Ability _loopAbility;
+    [SerializeField] private GameObject[] _attackColliderArray;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private AudioClipPetraSO _petraAudioSO;
 
     private PetraAbilityUpCharge _upChargeAbility;
     private PetraAbilityDownCharge _downChargeAbility;
@@ -62,24 +64,26 @@ public class PetraCombatBehaviorNew : MonoBehaviour
         _health.OnTakeDamage += Health_OnTakeDamage;
         _health.OnDeath += Health_OnDeath;
 
-        if (_activateCombatBehaviorOnStart)
-            ChangeCombatBehavior();
+        if (_combatMode)
+        {
+            ChangeCombatBehaviour();
+        }
     }
 
     private void Update()
     {
-        if (!_activateCombatBehaviorOnStart)
-            return;
-
         UpdateCombatMode();
     }
 
     private void UpdateCombatMode()
     {
+        if (!_combatMode)
+            return;
+
         if (_currentCombatMode != _selectedCombatMode)
         {
             _currentCombatMode = _selectedCombatMode;
-            ChangeCombatBehavior();
+            ChangeCombatBehaviour();
         }
     }
 
@@ -98,7 +102,7 @@ public class PetraCombatBehaviorNew : MonoBehaviour
         _animator.Play("Defeated");
     }
     
-    private void ChangeCombatBehavior()
+    private void ChangeCombatBehaviour()
     {
         StopCurrentAbility();
 
@@ -219,42 +223,42 @@ public class PetraCombatBehaviorNew : MonoBehaviour
 
     private IEnumerator StartJumpGroundSlamAbility()
     {
-        yield return _jumpGroundSlamAbility.JumpGroundSlam(_animator);
+        yield return _jumpGroundSlamAbility.JumpGroundSlam(_animator, _petraAudioSO.JumpSlam);
     }
 
     private IEnumerator StartUpChargeAbility()
     {
-        yield return _upChargeAbility.UpCharge(_player, _animator);
+        yield return _upChargeAbility.UpCharge(_player, _animator, _petraAudioSO.RunCharge);
     }
 
     private IEnumerator StartDownChargeAbility()
     {
-        yield return _downChargeAbility.DownCharge(_player, _animator);
+        yield return _downChargeAbility.DownCharge(_player, _animator, _petraAudioSO.RunCharge);
     }
 
     private IEnumerator StartHorizontalChargeAbility()
     {
-        yield return _horizontalChargeAbility.HorizontalCharge(_player, _animator);
+        yield return _horizontalChargeAbility.HorizontalCharge(_player, _animator, _petraAudioSO.RunCharge);
     }
 
     private IEnumerator StartSpinAttackAbility()
     {
-        yield return _spinAttackAbility.SpinAttack(_animator);
+        yield return _spinAttackAbility.SpinAttack(_animator, _petraAudioSO.CoffinSwing);
     }
     
     private IEnumerator StartChargeAttackAbility()
     {
-        yield return _chargeAttackAbility.ChargeAttack(_animator);
+        yield return _chargeAttackAbility.ChargeAttack(_animator, _petraAudioSO.ChargeSlam);
     }
     
     private IEnumerator StartJumpSlamAbility()
     {
-        yield return _jumpSlamAbility.JumpSlam(_player, _animator);
+        yield return _jumpSlamAbility.JumpSlam(_player, _animator, _petraAudioSO.JumpSlam);
     }
     
     private IEnumerator StartBasicSlamAbility()
     {
-        yield return _basicSlamAbility.BasicSlam(_player, _animator);
+        yield return _basicSlamAbility.BasicSlam(_player, _animator, _petraAudioSO.BasicSlam);
     }
 
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
 public class PetraAbilityHorizontalCharge : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PetraAbilityHorizontalCharge : MonoBehaviour
     
     private int HORIZONTAL_CHARGE = Animator.StringToHash("Side_charge");
 
-    public IEnumerator HorizontalCharge(Player player, Animator animator)
+    public IEnumerator HorizontalCharge(Player player, Animator animator, AudioClip abilitySFX)
     {
         var targetPosition = player.transform.position.x;
         if (targetPosition > transform.position.x)
@@ -36,7 +37,7 @@ public class PetraAbilityHorizontalCharge : MonoBehaviour
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(HORIZONTAL_CHARGE);
-        // audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         horizontalChargeCollider.SetActive(true);
@@ -45,6 +46,15 @@ public class PetraAbilityHorizontalCharge : MonoBehaviour
         horizontalChargeCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float SetPositionToPlayerRight(float targetPosition)
