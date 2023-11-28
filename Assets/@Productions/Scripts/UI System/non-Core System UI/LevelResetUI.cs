@@ -1,43 +1,48 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
+using Core.UI;
 using UISystem;
 using UnityEngine;
 
-public class LevelResetUI : MonoBehaviour
+namespace Demyth.UI
 {
-
-    private void Start() 
+    public class LevelResetUI : MonoBehaviour
     {
-        LevelReset.OnAnyRestartLevelEnabled += LevelReset_OnAnyRestartLevelEnabled;
-        LevelReset.OnAnyRestartLevelDisabled += LevelReset_OnAnyRestartLevelDisabled;
 
-        Hide();
-    }
+        private void Start() 
+        {
+            LevelReset.OnAnyRestartLevelEnabled += LevelReset_OnAnyRestartLevelEnabled;
+            LevelReset.OnAnyRestartLevelDisabled += LevelReset_OnAnyRestartLevelDisabled;
 
-    private void LevelReset_OnAnyRestartLevelEnabled()
-    {
-        Show();
-    }
+            Hide();
+        }
 
-    private void LevelReset_OnAnyRestartLevelDisabled()
-    {
-        Hide();
-    }
+        private void LevelReset_OnAnyRestartLevelEnabled()
+        {
+            Show();
+        }
 
-    private void OnDestroy() 
-    {
-        LevelReset.OnAnyRestartLevelEnabled -= LevelReset_OnAnyRestartLevelEnabled;
-        LevelReset.OnAnyRestartLevelDisabled -= LevelReset_OnAnyRestartLevelDisabled;
-    }
+        private void LevelReset_OnAnyRestartLevelDisabled()
+        {
+            Hide();
+        }
 
-    private void Show()
-    {
-        gameObject.SetActive(true);
-    }
+        private void OnDestroy() 
+        {
+            LevelReset.OnAnyRestartLevelEnabled -= LevelReset_OnAnyRestartLevelEnabled;
+            LevelReset.OnAnyRestartLevelDisabled -= LevelReset_OnAnyRestartLevelDisabled;
+        }
 
-    private void Hide()
-    {
-        gameObject.SetActive(false);
+        private void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void Hide()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

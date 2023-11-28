@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using CustomTools.Core;
+using Core;
 using DG.Tweening;
 using PixelCrushers;
 using UnityEngine;
 
-public class LevelReset : SceneService
+public class LevelReset : MonoBehaviour
 {
     [SerializeField] private int saveSlot;
 
     public static Action OnAnyRestartLevelEnabled;
     public static Action OnAnyRestartLevelDisabled;
 
+    private GameInputController _gameInputController;
+    private GameInput _gameInput;
+
+    private void Awake()
+    {
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+        _gameInput = _gameInputController.GameInput;
+    }
+
     private void OnEnable() 
     {
-        //Context.GameInput.OnRestartPerformed += GameInput_OnRestartPerformed;
+        _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
         if (!SaveSystem.HasSavedGameInSlot(saveSlot))
         {
             SaveSystem.SaveToSlot(saveSlot);
@@ -26,7 +35,7 @@ public class LevelReset : SceneService
 
     private void OnDisable() 
     {
-        //Context.GameInput.OnRestartPerformed -= GameInput_OnRestartPerformed;
+        _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
 
         OnAnyRestartLevelDisabled?.Invoke();
     }
@@ -34,7 +43,7 @@ public class LevelReset : SceneService
     private void GameInput_OnRestartPerformed()
     {
         Debug.Log("restart performed");
-        DOTween.KillAll();
+        DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(saveSlot);
     }
 
