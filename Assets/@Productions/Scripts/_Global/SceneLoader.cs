@@ -16,7 +16,7 @@ public class SceneLoader : MonoBehaviour
 
     private SceneContext _context;
 
-    public void LoadScene(SceneReference sceneReference)
+    public void LoadScene(SceneReferenceGlobal sceneReference)
     {
         // Ada progress yang sedang berjalan
         if (_isLoadInProgress)
@@ -27,7 +27,7 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadSceneCoroutine(sceneReference));
     }
 
-    private IEnumerator LoadSceneCoroutine(SceneReference sceneReference)
+    private IEnumerator LoadSceneCoroutine(SceneReferenceGlobal sceneReference)
     {
         _isLoadInProgress = true;
 
