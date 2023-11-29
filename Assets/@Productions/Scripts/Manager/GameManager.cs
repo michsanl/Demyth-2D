@@ -1,59 +1,62 @@
-﻿ using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Mono.Cecil;
+﻿using UnityEngine;
 using Core;
-using UnityEngine.Events;
 using Demyth.Gameplay;
 using PixelCrushers;
 
 public class GameManager : SceneService
 {
-    public UnityEvent OnGamePaused = new();
-    public UnityEvent OnGameUnpaused = new();
-    public bool IsGamePaused => isGamePaused;
-
-    private bool isGamePaused;
-
+    private GameStateService _gameStateService;
     private GameInputController _gameInputController;
     private GameInput _gameInput;
 
     private void Awake()
     {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _gameInput = _gameInputController.GameInput;
+
+        _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
+        _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
         _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
 
         SaveSystem.SaveToSlot(0);
     }
 
-    private void GameInput_OnPausePerformed()
+    private void Pause_OnEnter(GameState state)
     {
-        TogglePauseGame();
+        Pause();
     }
 
-    public void TogglePauseGame()
+    private void Pause_OnExit(GameState state)
     {
-        isGamePaused = !isGamePaused;
-        if (isGamePaused)
+        UnPause();
+    }
+
+    private void GameInput_OnPausePerformed()
+    {
+        ToggleGameStatePause();
+    }
+
+    private void ToggleGameStatePause()
+    {
+        if (_gameStateService.CurrentState != GameState.Pause)
         {
-            OnGamePaused?.Invoke();
-            Time.timeScale = 0f;
-        } else
+            _gameStateService.SetState(GameState.Pause);
+        }
+        else
         {
-            Time.timeScale = 1f;
-            OnGameUnpaused?.Invoke();
+            _gameStateService.SetState(GameState.Gameplay);
         }
     }
 
-    public void UnpauseGame()
+    private void Pause()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void UnPause()
     {
         Time.timeScale = 1f;
-        isGamePaused = false;
-
-        OnGameUnpaused?.Invoke();
     }
-    
 }

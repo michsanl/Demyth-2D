@@ -18,6 +18,7 @@ public class GameInputController : SceneService
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _gameStateService[GameState.MainMenu].onEnter += OnMainMenu;
         _gameStateService[GameState.Gameplay].onEnter += OnGameplay;
+        _gameStateService[GameState.Pause].onEnter += OnPause;
     }
 
     private void Start()
@@ -26,15 +27,6 @@ public class GameInputController : SceneService
         DialogueManager.Instance.conversationEnded += DialogueManager_OnConversationEnded;
     }
 
-    private void GameManager_OnGamePaused()
-    {
-        gameInput.DisablePlayerInput();
-    }
-
-    private void GameManager_OnGameUnPaused()
-    {
-        gameInput.EnablePlayerInput();
-    }
     private void OnMainMenu(GameState obj)
     {
         gameInput.DisablePlayerInput();
@@ -47,16 +39,11 @@ public class GameInputController : SceneService
         gameInput.EnablePauseInput();
     }
 
-    private void CameraShakeController_OnCameraShakeStart()
+    private void OnPause(GameState state)
     {
         gameInput.DisablePlayerInput();
     }
-
-    private void CameraShakeController_OnCameraShakeEnd()
-    {
-        gameInput.EnablePlayerInput();
-    }
-
+    
     private void DialogueManager_OnConversationStarted(Transform t)
     {
         gameInput.DisablePlayerInput();

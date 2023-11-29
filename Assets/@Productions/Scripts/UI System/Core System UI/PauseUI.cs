@@ -26,7 +26,6 @@ namespace UISystem
         [SerializeField] private AudioMixer audioMixer;
 
         private UIPage _uiPage;
-        private GameManager _gameManager;
         private GameStateService _gameStateService;
         private LevelManager _levelManager;
 
@@ -34,11 +33,10 @@ namespace UISystem
         {
             _uiPage = GetComponent<UIPage>();
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
-            _gameManager = SceneServiceProvider.GetService<GameManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
 
-            _gameManager.OnGamePaused.AddListener(GameManager_OnGamePaused);
-            _gameManager.OnGameUnpaused.AddListener(GameManager_OnGameUnPaused);
+            _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
+            _gameStateService[GameState.Gameplay].onEnter += Gameplay_OnEnter;
 
             _resumeButton.onClick.AddListener(ButtonResume);
             _mainMenuButton.onClick.AddListener(ButtonMainMenu);
@@ -52,36 +50,26 @@ namespace UISystem
             sfxVolumeSlider.value = 80f;
         }
 
-        internal void GameManager_OnGamePaused()
+        private void Gameplay_OnEnter(GameState state)
         {
-            Open();
+            if (_gameStateService.PreviousState == GameState.Pause)
+            {
+                _uiPage.ReturnToPage(_gameViewId);
+            }
         }
 
-        private void GameManager_OnGameUnPaused()
-        {
-            Close();
-        }
-
-        private void Open()
+        private void Pause_OnEnter(GameState state)
         {
             _uiPage.OpenPage(_uiPage.PageID);
         }
 
-        private void Close()
-        {
-            _uiPage.ReturnToPage(_gameViewId);
-        }
-
         private void ButtonResume()
         {
-            _gameManager.TogglePauseGame();
-            Close();
+            _gameStateService.SetState(GameState.Gameplay);
         }
 
         private void ButtonMainMenu()
         {
-            _gameManager.TogglePauseGame();
-
             DialogueManager.StopAllConversations();
             DOTween.CompleteAll();
 
