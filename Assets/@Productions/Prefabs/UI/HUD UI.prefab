@@ -50,7 +50,7 @@ MonoBehaviour:
   - rid: 4456677177422512132
   - rid: 4456677177422512134
   updateType: 0
-  timeScaleIndependent: 0
+  timeScaleIndependent: 1
   autoplayMode: 2
   startPaused: 0
   playbackSpeed: 1
@@ -229,7 +229,7 @@ MonoBehaviour:
   - rid: 4456677177422512132
   - rid: 4456677177422512134
   updateType: 0
-  timeScaleIndependent: 0
+  timeScaleIndependent: 1
   autoplayMode: 2
   startPaused: 0
   playbackSpeed: 1
@@ -472,7 +472,7 @@ RectTransform:
   m_AnchorMin: {x: 0.446, y: 0.39000002}
   m_AnchorMax: {x: 0.446, y: 0.39000002}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 215, y: 215}
+  m_SizeDelta: {x: 214, y: 214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &333329202841499712
 CanvasRenderer:
@@ -1052,8 +1052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6608a126dd9aea7429f517725c5a2a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barChangeDuration: 0.5
-  barPositionRange: 205
+  _barChangeDuration: 0.5
+  _barPositionRange: 205
   healthBarTransform: {fileID: 5825263702170508637}
   shieldBarTransform: {fileID: 5255048700284031295}
   healthPotionEmptyImage: {fileID: 4715767936999583685}

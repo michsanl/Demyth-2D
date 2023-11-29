@@ -84,6 +84,11 @@ public class Health : MonoBehaviour
     {
         return currentHealth == maxHealth;
     }
+
+    public float GetHealthPercentage()
+    {
+        return (float)currentHealth / maxHealth;
+    }
 }
 
 public enum HealthStatus

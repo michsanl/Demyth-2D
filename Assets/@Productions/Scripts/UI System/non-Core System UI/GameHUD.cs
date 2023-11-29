@@ -11,68 +11,54 @@ namespace Demyth.UI
     public class GameHUD : MonoBehaviour, ISubscriber
     {
         [Title("Health/Shield Bar Parameter")]
-        [SerializeField] private float barChangeDuration;
-        [SerializeField] private float barPositionRange = 219;
+        [SerializeField] private float _barChangeDuration = 0.5f;
+        [SerializeField] private float _barPositionRange = 205f;
 
         [Title("Components")]
-        [SerializeField] private Transform healthBarTransform;
-        [SerializeField] private Transform shieldBarTransform;
+        [SerializeField] private RectTransform healthBarTransform;
+        [SerializeField] private RectTransform shieldBarTransform;
         [SerializeField] private Image healthPotionEmptyImage;
         [SerializeField] private Image senterLightOnImage;
 
-        private HealthPotion playerHealthPotion;
-        private Health playerHealth;
-        private Shield playerShield;
-
         private GameObject _playerObject;
+        private Player _player;
+        private HealthPotion _playerHealthPotion;
+        private Health _playerHealth;
+        private Shield _playerShield;
 
-        private float healthPositionX;
-        private float minimumHealthPositionY;
-        private float shieldPositionX;
-        private float minimumShieldPositionY;
+        private float _yPositionAtZeroHealth;
+        private float _yPositionAtZeroShield;
 
         private void Awake()
         {
             Signaler.Instance.Subscribe<PlayerSpawnEvent>(this, OnPlayerSpawned);
             Signaler.Instance.Subscribe<PlayerDespawnEvent>(this, OnPlayerDespawned);
-            GetHealthBarPosition();
-            GetShieldBarPosition();
-        }
-
-        private void Start()
-        {
-            //DialogueManager.instance.conversationStarted += DialogueManager_ConversationStarted;
-            //DialogueManager.instance.conversationEnded += DialogueManager_ConversationEnded;
-        }
-
-        private void OnDestroy()
-        {
-            if (DialogueManager.instance != null)
-            {
-                //DialogueManager.instance.conversationStarted -= DialogueManager_ConversationStarted;
-                //DialogueManager.instance.conversationEnded -= DialogueManager_ConversationEnded;
-            }
+            GetHealthBarPositionAtZeroShield();
+            GetShieldBarPositionAtZeroHealth();
         }
 
         private bool OnPlayerSpawned(PlayerSpawnEvent signal)
         {
             _playerObject = signal.Player;
-            playerHealthPotion = _playerObject.GetComponent<HealthPotion>();
-            playerShield = _playerObject.GetComponent<Shield>();
-            playerHealth = _playerObject.GetComponent<Health>();
+            _player = _playerObject.GetComponent<Player>();
+            _playerHealthPotion = _playerObject.GetComponent<HealthPotion>();
+            _playerShield = _playerObject.GetComponent<Shield>();
+            _playerHealth = _playerObject.GetComponent<Health>();
 
-            playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
-            playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
-            playerShield.OnShieldAmountChanged += PlayerShield_OnShieldAmountChanged;
+            _player.OnSenterToggle += Player_OnSenterToggle;
+            _playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
+            _playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
+            _playerShield.OnShieldAmountChanged += PlayerShield_OnShieldAmountChanged;
 
             return true;
         }
 
         private bool OnPlayerDespawned(PlayerDespawnEvent signal)
         {
-            playerHealthPotion.OnPotionAmountChanged -= PlayerHealthPotion_OnUsePotion;
-            playerHealth.OnHealthChanged -= PlayerHealth_OnHealthChanged;
-            playerShield.OnShieldAmountChanged -= PlayerShield_OnShieldAmountChanged;
+            _player.OnSenterToggle -= Player_OnSenterToggle;
+            _playerHealthPotion.OnPotionAmountChanged -= PlayerHealthPotion_OnUsePotion;
+            _playerHealth.OnHealthChanged -= PlayerHealth_OnHealthChanged;
+            _playerShield.OnShieldAmountChanged -= PlayerShield_OnShieldAmountChanged;
 
             return true;
         }
@@ -89,22 +75,20 @@ namespace Demyth.UI
 
         private void UpdateHelathBar()
         {
-            var healthAmountRatio = (float)playerHealth.CurrentHP / playerHealth.MaxHP;
-            var newHealthPositionY = healthAmountRatio * barPositionRange + minimumHealthPositionY;
+            var healthAmountPercentage = _playerHealth.GetHealthPercentage();
+            var newHealthPositionY = _yPositionAtZeroHealth + (healthAmountPercentage * _barPositionRange);
 
-            Vector3 targetPosition = new Vector3(healthPositionX, newHealthPositionY, 0);
-            healthBarTransform.DOLocalMove(targetPosition, barChangeDuration).SetEase(Ease.OutExpo);
+            healthBarTransform.DOKill();
+            healthBarTransform.DOLocalMoveY(newHealthPositionY, _barChangeDuration).SetEase(Ease.OutExpo);
         }
 
         private void UpdateShieldBar()
         {
-            var shieldAmountRatio = (float)playerShield.CurrentShield / playerShield.MaxShield;
-            var newShieldPositionY = shieldAmountRatio * barPositionRange + minimumShieldPositionY;
+            var shieldAmountPercentage = _playerShield.GetShieldPercentage();
+            var newShieldPositionY = _yPositionAtZeroShield + (shieldAmountPercentage * _barPositionRange);
 
-            Vector3 targetPosition = new Vector3(shieldPositionX, newShieldPositionY, 0);
             shieldBarTransform.DOKill();
-            shieldBarTransform.DOLocalMove(targetPosition, barChangeDuration).SetEase(Ease.OutExpo);
-            // shieldBarTransform.localPosition = targetPosition;
+            shieldBarTransform.DOLocalMoveY(newShieldPositionY, _barChangeDuration).SetEase(Ease.OutExpo);
         }
 
         private void Player_OnSenterToggle(bool senterState)
@@ -124,16 +108,14 @@ namespace Demyth.UI
             }
         }
 
-        private void GetShieldBarPosition()
+        private void GetHealthBarPositionAtZeroShield()
         {
-            shieldPositionX = shieldBarTransform.localPosition.x;
-            minimumShieldPositionY = shieldBarTransform.localPosition.y;
+            _yPositionAtZeroHealth = healthBarTransform.localPosition.y - _barPositionRange;
         }
 
-        private void GetHealthBarPosition()
+        private void GetShieldBarPositionAtZeroHealth()
         {
-            healthPositionX = healthBarTransform.localPosition.x;
-            minimumHealthPositionY = healthBarTransform.localPosition.y;
+            _yPositionAtZeroShield = shieldBarTransform.localPosition.y - _barPositionRange;
         }
     }
 }

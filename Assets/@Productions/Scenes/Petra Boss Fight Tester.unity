@@ -380,6 +380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera Shake Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 352137323435066273, guid: 8ecfeb70e6b316648873ba4e2c61baac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 352137323435066279, guid: 8ecfeb70e6b316648873ba4e2c61baac, type: 3}
       propertyPath: cameraShakeGO
       value: 
@@ -1044,11 +1048,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1755,23 +1759,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1500366410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f192b67368bdee42a7c573c71fab661, type: 3}
+  m_Script: {fileID: 11500000, guid: bf4f7ae4f5087834ab60ff8f6ecd316f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    Player: {fileID: 0}
-    GameManager: {fileID: 0}
-    GameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
-  _defaultViews: []
-  _views: []
+  serviceId: {fileID: 11400000, guid: 76e269f7bc48b6d47b944f64c52a80b8, type: 2}
+  starterPage: {fileID: 11400000, guid: 9c3d0b15a1dd17140ad2b6e52d352322, type: 2}
+  _stackedPages: []
 --- !u!1 &1517738839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,10 +2070,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
-    - target: {fileID: 4715767938073440416, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
-      propertyPath: openHUDOnStart
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4715767938073440419, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
