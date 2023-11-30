@@ -440,6 +440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 3
       objectReference: {fileID: 0}
+    - target: {fileID: 708720891042517942, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 708720891042517943, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -483,6 +487,10 @@ PrefabInstance:
     - target: {fileID: 708720891042517943, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430297817657459018, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
@@ -529,6 +537,11 @@ Transform:
 --- !u!4 &4932355400870570197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5634006361058791180, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
+  m_PrefabInstance: {fileID: 739502889850759129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4946828695434615890 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5685116718888467339, guid: 06f47a3f2be93d8469096679cdd79ae4, type: 3}
   m_PrefabInstance: {fileID: 739502889850759129}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5381461426313112274 stripped
@@ -920,7 +933,7 @@ PrefabInstance:
     - target: {fileID: 7442788156917941275, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_target
       value: 
-      objectReference: {fileID: 1098349383935724672}
+      objectReference: {fileID: 4946828695434615890}
     - target: {fileID: 7442788156917941276, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_target
       value: 
@@ -957,6 +970,10 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 1500549031404185436}
+    - target: {fileID: 7442788157075972374, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 1098349383935724672}
     - target: {fileID: 7442788157075972375, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_target
       value: 
