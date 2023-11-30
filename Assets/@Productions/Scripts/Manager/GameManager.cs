@@ -52,11 +52,13 @@ public class GameManager : SceneService
 
     private void Pause()
     {
+        AudioListener.pause = true;
         Time.timeScale = 0f;
     }
 
     private void UnPause()
     {
+        AudioListener.pause = false;
         Time.timeScale = 1f;
     }
 }

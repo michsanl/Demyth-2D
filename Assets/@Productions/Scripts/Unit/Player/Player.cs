@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using Demyth.Gameplay;
 using echo17.Signaler.Core;
 using Core;
+using MoreMountains.Tools;
 
 public class Player : MonoBehaviour, IBroadcaster
 {
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour, IBroadcaster
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
+    [SerializeField] private AudioClipAraSO araAudioSO;
     [SerializeField] private GameObject senterGameObject;
     [SerializeField] private GameObject hitEffect;
     
@@ -59,16 +61,13 @@ public class Player : MonoBehaviour, IBroadcaster
         Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
     }
 
+    private void Update()
+    {
+        HandlePlayerAction();
+    }
+
     private void OnEnable()
     {
-        //TODO :: REFACTOR THESE
-        Damageable.OnAnyDamageableInteract += Damageable_OnAnyDamageableInteract;
-        Pickupable.OnAnyPickupableInteract += Pickupable_OnAnyPickupableInteract;
-        PillarLight.OnAnyPillarLightInteract += PillarLight_OnAnyPillarLightInteract;
-        Pushable.OnAnyPushableInteract += Pushable_OnAnyPushableInteract;
-        Talkable.OnAnyTalkbleInteract += Talkable_OnAnyTalkbleInteract;
-        Gate.OnAnyGateInteract += Gate_OnAnyGateInteract;
-
         moveTargetPosition = transform.position;
 
         _gameInput.OnSenterPerformed.AddListener(GameInput_OnSenterPerformed);
@@ -77,30 +76,21 @@ public class Player : MonoBehaviour, IBroadcaster
 
     private void OnDisable()
     {
-        Damageable.OnAnyDamageableInteract -= Damageable_OnAnyDamageableInteract;
-        Pickupable.OnAnyPickupableInteract -= Pickupable_OnAnyPickupableInteract;
-        PillarLight.OnAnyPillarLightInteract -= PillarLight_OnAnyPillarLightInteract;
-        Pushable.OnAnyPushableInteract -= Pushable_OnAnyPushableInteract;
-        Talkable.OnAnyTalkbleInteract -= Talkable_OnAnyTalkbleInteract;
-        Gate.OnAnyGateInteract -= Gate_OnAnyGateInteract;
-
         _gameInput.OnSenterPerformed.RemoveListener(GameInput_OnSenterPerformed);
         _gameInput.OnHealthPotionPerformed.RemoveListener(GameInput_OnHealthPotionPerformed);
     }
 
-    private void Update()
+    public void ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
     {
-        HandlePlayerAction();
-    }
-    
-    public void ActivatePlayer()
-    {
-        gameObject.SetActive(true);
-        isBusy = false;
-        isKnocked = false;
+        if (isTakeDamageOnCooldown)
+            return;
+        if (enableKnockBack)
+            isKnocked = true;
+
+        StartCoroutine(ApplyDamageToPlayerCoroutine(enableKnockBack, knockbackTargetPosition));
     }
 
-    public void TriggerKnockBack(Vector2 knockbackTargetPosition)
+    public void ApplyKnockBackToPlayer(Vector2 knockbackTargetPosition)
     {
         animator.SetTrigger("OnHit");
         StartCoroutine(HandleKnockBack(knockbackTargetPosition));
@@ -125,20 +115,15 @@ public class Player : MonoBehaviour, IBroadcaster
         
         if (Helper.CheckTargetDirection(transform.position, playerDir, moveBlockMask, out Interactable interactable))
         {
-            interactable?.Interact(this, playerDir);
-        } 
+            if (interactable == null)
+                return;
+
+            StartCoroutine(HandleInteract(interactable));
+        }
         else
         {
             StartCoroutine(HandleMovement());
         }
-    }
-
-    private Vector2 GetMoveTargetPosition()
-    {
-        var moveTargetPosition = (Vector2)transform.position + playerDir;
-        moveTargetPosition.x = Mathf.RoundToInt(moveTargetPosition.x);
-        moveTargetPosition.y = Mathf.RoundToInt(moveTargetPosition.y);
-        return moveTargetPosition;
     }
 
     private IEnumerator HandleMovement()
@@ -146,6 +131,7 @@ public class Player : MonoBehaviour, IBroadcaster
         isBusy = true;
 
         animator.SetTrigger("Dash");
+        PlayAudio(araAudioSO.Move);
 
         moveTargetPosition = GetMoveTargetPosition();
         Helper.MoveToPosition(transform, moveTargetPosition, actionDuration);
@@ -153,6 +139,45 @@ public class Player : MonoBehaviour, IBroadcaster
 
         isBusy = false;
     }
+
+    private IEnumerator HandleInteract(Interactable interactable)
+    {
+        isBusy = true;
+
+        switch (interactable)
+        {
+            case Pushable:
+                animator.SetTrigger("Attack");
+                interactable.Interact(this, playerDir);
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
+            case Damageable:
+                animator.SetTrigger("Attack");
+                interactable.Interact(this, playerDir);
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
+            case PillarLight:
+                animator.SetTrigger("Attack");
+                interactable.Interact(this, playerDir);
+                yield return Helper.GetWaitForSeconds(attackDuration);
+                isBusy = false;
+                yield break;
+            case Pickupable:
+                interactable.Interact(this);
+                yield return StartCoroutine(HandleMovement());
+                isBusy = false;
+                yield break;
+            default:
+                break;
+        }
+
+        interactable.Interact(this, playerDir);
+        yield return Helper.GetWaitForSeconds(actionDuration);
+
+        isBusy = false;
+    }  
 
     private void GameInput_OnSenterPerformed()
     {
@@ -172,6 +197,7 @@ public class Player : MonoBehaviour, IBroadcaster
         if (healthPotion.IsHealthPotionOnCooldown)
             return;
 
+        PlayAudio(araAudioSO.Potion);
         healthPotion.UsePotion();
     }
 
@@ -179,6 +205,7 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         if (senterGameObject.activeInHierarchy)
         {
+            // Move the object away to trigger OnCollisonExit
             senterGameObject.transform.localPosition = new Vector3(100, 100, 0);
             yield return Helper.GetWaitForSeconds(0.05f);
             senterGameObject.SetActive(false);
@@ -192,20 +219,11 @@ public class Player : MonoBehaviour, IBroadcaster
             isSenterEnabled = true;
         }
 
+        PlayAudio(araAudioSO.Lantern);
         OnSenterToggle?.Invoke(isSenterEnabled);
     }
 
-    public void TakeDamage(bool enableKnockBack, Vector2 knockbackTargetPosition, PlayerDamager.DamagerCharacter damager)
-    {
-        if (isTakeDamageOnCooldown)
-            return;
-        if (enableKnockBack)
-            isKnocked = true;
-
-        StartCoroutine(TakeDamageRoutine(enableKnockBack, knockbackTargetPosition, damager));
-    }
-
-    private IEnumerator TakeDamageRoutine(bool knockBackPlayer, Vector2 knockbackTargetPosition, PlayerDamager.DamagerCharacter damager)
+    private IEnumerator ApplyDamageToPlayerCoroutine(bool knockBackPlayer, Vector2 knockbackTargetPosition)
     {
         isTakeDamageOnCooldown = true;
 
@@ -216,6 +234,7 @@ public class Player : MonoBehaviour, IBroadcaster
         health.TakeDamage();
 
         damagedAnimator.Play("Ara_Damaged");
+        PlayAudio(araAudioSO.MoveBox[UnityEngine.Random.Range(0, 3)]);
 
         if (knockBackPlayer)
             StartCoroutine(HandleKnockBack(knockbackTargetPosition));
@@ -236,6 +255,30 @@ public class Player : MonoBehaviour, IBroadcaster
         isKnocked = false;
     }
 
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
+    }
+    
+    public void ActivatePlayer()
+    {
+        gameObject.SetActive(true);
+        isBusy = false;
+        isKnocked = false;
+    }
+
+    private Vector2 GetMoveTargetPosition()
+    {
+        var moveTargetPosition = (Vector2)transform.position + playerDir;
+        moveTargetPosition.x = Mathf.RoundToInt(moveTargetPosition.x);
+        moveTargetPosition.y = Mathf.RoundToInt(moveTargetPosition.y);
+        return moveTargetPosition;
+    }
+
     private Vector2 GetOppositeDirection(Vector2 dir)
     {
         dir.x = Mathf.RoundToInt(dir.x * -1f); 
@@ -247,118 +290,4 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         return direction.x != 0 && direction.y != 0;
     }
-
-    // old interact method
-    private IEnumerator HandleInteract(Interactable interactable)
-    {
-        isBusy = true;
-
-        switch (interactable)
-        {
-            case Pushable:
-                animator.SetTrigger("Attack");                
-                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-                break;
-            case Damageable:
-                animator.SetTrigger("Attack");
-                Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-                interactable.Interact(this);
-                yield return Helper.GetWaitForSeconds(attackDuration);
-                isBusy = false;
-                yield break;
-            case PillarLight:
-                animator.SetTrigger("Attack");
-                interactable.Interact(this);
-                yield return Helper.GetWaitForSeconds(attackDuration);
-                isBusy = false;
-                yield break;
-            case Pickupable:
-                interactable.Interact(this);
-                yield return StartCoroutine(HandleMovement());
-                isBusy = false;
-                yield break;
-            default:
-                break;
-        }
-
-        interactable.Interact(this, playerDir);
-        yield return Helper.GetWaitForSeconds(actionDuration);
-
-        isBusy = false;
-    }
-
-#region New Interact Logic
-
-    private void Damageable_OnAnyDamageableInteract()
-    {
-        StartCoroutine(DamageableCallback());
-    }
-
-    private void Pickupable_OnAnyPickupableInteract()
-    {
-        StartCoroutine(PickupableCallback());
-    }
-
-    private void PillarLight_OnAnyPillarLightInteract()
-    {
-        StartCoroutine(PillarLightCallback());
-    }
-
-    private void Pushable_OnAnyPushableInteract()
-    {
-        StartCoroutine(PushableCallback());
-    }
-
-    private void Talkable_OnAnyTalkbleInteract()
-    {
-        StartCoroutine(DefaultCallback());
-    }
-
-    private void Gate_OnAnyGateInteract()
-    {
-        StartCoroutine(DefaultCallback());
-    }
-
-    public IEnumerator PushableCallback()
-    {
-        isBusy = true;
-        animator.SetTrigger("Attack");
-        Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-        yield return Helper.GetWaitForSeconds(attackDuration);
-        isBusy = false;
-    }
-
-    public IEnumerator DamageableCallback()
-    {
-        isBusy = true;
-        animator.SetTrigger("Attack");
-        Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-        yield return Helper.GetWaitForSeconds(attackDuration);
-        isBusy = false;
-    }
-
-    public IEnumerator PillarLightCallback()
-    {
-        isBusy = true;
-        animator.SetTrigger("Attack");
-        Instantiate(hitEffect, GetMoveTargetPosition(), Quaternion.identity);
-        yield return Helper.GetWaitForSeconds(attackDuration);
-        isBusy = false;
-    }
-
-    public IEnumerator PickupableCallback()
-    {
-        isBusy = true;
-        yield return StartCoroutine(HandleMovement());
-        isBusy = false;
-    }
-
-    public IEnumerator DefaultCallback()
-    {
-        isBusy = true;
-        yield return Helper.GetWaitForSeconds(actionDuration);
-        isBusy = false;
-    }
-
-#endregion     
 }

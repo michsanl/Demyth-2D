@@ -16,8 +16,6 @@ namespace Demyth.Gameplay
         [SerializeField, ShowIf("moveCameraOnLevelChange")]
         private GameObject cameraGO;
 
-        public static Action OnAnyGateInteract;
-
         private enum CameraMoveDirection { Up, Down };
         private Level _level;
 
@@ -28,7 +26,6 @@ namespace Demyth.Gameplay
 
         public override void Interact(Player player, Vector3 direction = default)
         {
-            OnAnyGateInteract?.Invoke();
             _level.MoveToNextLevel(targetLevel);
             MoveCamera();
             PixelCrushers.SaveSystem.SaveToSlot(1);
