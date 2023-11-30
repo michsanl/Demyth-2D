@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using Core;
 using Core.UI;
 using Demyth.Gameplay;
+using MoreMountains.Tools;
 
 namespace UISystem
 {
@@ -20,9 +21,9 @@ namespace UISystem
         [SerializeField] private EnumId _menuPageId;
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _mainMenuButton;
-        [SerializeField] private Slider masterVolumeSlider;
-        [SerializeField] private Slider musicVolumeSlider;
-        [SerializeField] private Slider sfxVolumeSlider;
+        [SerializeField] private Slider _masterVolumeSlider;
+        [SerializeField] private Slider _musicVolumeSlider;
+        [SerializeField] private Slider _sfxVolumeSlider;
         [SerializeField] private AudioMixer audioMixer;
 
         private UIPage _uiPage;
@@ -41,13 +42,16 @@ namespace UISystem
             _resumeButton.onClick.AddListener(ButtonResume);
             _mainMenuButton.onClick.AddListener(ButtonMainMenu);
 
-            masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
-            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-            sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+            _masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
+            _musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
+            _sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
+        }
 
-            masterVolumeSlider.value = 65f;
-            musicVolumeSlider.value = 80f;
-            sfxVolumeSlider.value = 80f;
+        private void Start()
+        {
+            _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
+            _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
+            _sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
         }
 
         private void Gameplay_OnEnter(GameState state)
@@ -79,6 +83,21 @@ namespace UISystem
             _uiPage.ReturnToPage(_menuPageId);
 
             _gameStateService?.SetState(GameState.MainMenu);
+        }
+
+        private void SetMMSoundMasterVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeMaster(volume);
+        }
+
+        private void SetMMSoundMusicVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeMusic(volume);
+        }
+
+        private void SetMMSoundSfxVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeSfx(volume);
         }
 
         private void SetMasterVolume(float sliderValue)
