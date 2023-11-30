@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using Core;
 using Core.UI;
+using MoreMountains.Tools;
 
 namespace UISystem
 {
@@ -25,14 +26,34 @@ namespace UISystem
         {
             _uiPage = GetComponent<UIPage>();
 
-            masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
-            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-            sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
-
-            masterVolumeSlider.value = 65f;
-            musicVolumeSlider.value = 80f;
-            sfxVolumeSlider.value = 80f;
+            masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
+            musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
+            sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
         }
+
+        private void Start()
+        {
+            masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
+            musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
+            sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
+        }
+
+        private void SetMMSoundMasterVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeMaster(volume);
+        }
+
+        private void SetMMSoundMusicVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeMusic(volume);
+        }
+
+        private void SetMMSoundSfxVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeSfx(volume);
+        }
+
+
 
         private void SetMasterVolume(float sliderValue)
         {

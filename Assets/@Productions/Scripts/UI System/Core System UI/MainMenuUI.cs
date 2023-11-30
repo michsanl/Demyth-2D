@@ -34,6 +34,7 @@ namespace UISystem
 
         public void StartNewGame()
         {
+            ClearGameProgressSave();
             SaveSystem.LoadFromSlot(0);
 
             _levelManager.OpenLevel(newLevelId);
@@ -61,6 +62,13 @@ namespace UISystem
         public void QuitGame()
         {
             Application.Quit();
-        }                 
+        }               
+
+        private static void ClearGameProgressSave()
+        {
+            SaveSystem.DeleteSavedGameInSlot(1);
+            SaveSystem.DeleteSavedGameInSlot(2);
+            SaveSystem.DeleteSavedGameInSlot(3);
+        }  
     }
 }
