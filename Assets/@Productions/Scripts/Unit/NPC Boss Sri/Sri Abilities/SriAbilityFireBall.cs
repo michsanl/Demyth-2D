@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilityFireBall : SceneService
+public class SriAbilityFireBall : MonoBehaviour
 {
     [Title("Parameter Settings")]
     // [SerializeField] private float frontSwingDuration;
@@ -14,20 +15,26 @@ public class SriAbilityFireBall : SceneService
     [SerializeField] private float animationDuration;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject fireBallProjectile;
     [SerializeField] private Transform fireBallSpawnPosition;
     
     protected int FIRE_BALL = Animator.StringToHash("Fire_Ball");
 
-    public IEnumerator FireBall()
+    public IEnumerator FireBall(Animator animator, AudioClip abilitySFX)
     {
-        var audioManager = Context.AudioManager;
-
         animator.Play(FIRE_BALL);
-        // audioManager.PlaySound(audioManager.SriAudioSource.Fireball);
+        PlayAudio(abilitySFX);
 
         Instantiate(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
         yield return Helper.GetWaitForSeconds(animationDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

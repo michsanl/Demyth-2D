@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UISystem;
 using UnityEngine;
 
@@ -9,7 +9,6 @@ namespace CustomTools.Core
     {
         [Title("Scene UI")]
         public SceneUI UI;
-        public HUDUI HUDUI;
 
         [Title("Gameplay")]
         public Player Player;

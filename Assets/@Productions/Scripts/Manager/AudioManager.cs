@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomTools.Core;
 using System;
+using Core;
 
-public class AudioManager : CoreBehaviour
+public class AudioManager : SceneService
 {
 
     public AudioClipAraSO AraAudioSource => araAudioSource;

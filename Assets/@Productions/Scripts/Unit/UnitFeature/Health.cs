@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -55,6 +55,7 @@ public class Health : MonoBehaviour
     {
         if (status == HealthStatus.Invulnerable) 
             return;
+
         if (shield != null)
         {
             if (shield.TryShieldTakeDamage())
@@ -82,6 +83,11 @@ public class Health : MonoBehaviour
     public bool IsHealthFull()
     {
         return currentHealth == maxHealth;
+    }
+
+    public float GetHealthPercentage()
+    {
+        return (float)currentHealth / maxHealth;
     }
 }
 

@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilitySpinClaw : SceneService
+public class SriAbilitySpinClaw : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -18,17 +19,24 @@ public class SriAbilitySpinClaw : SceneService
     
     protected int SPIN_CLAW = Animator.StringToHash("Spin_Claw");
 
-    public IEnumerator SpinClaw()
+    public IEnumerator SpinClaw(Animator animator, AudioClip abilitySFX)
     {
-        var audioManager = Context.AudioManager;
-
         animator.Play(SPIN_CLAW);
-        audioManager.PlaySound(audioManager.SriAudioSource.SpinClaw);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinClawCollider.SetActive(true);
         yield return Helper.GetWaitForSeconds(swingDuration);
         spinClawCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

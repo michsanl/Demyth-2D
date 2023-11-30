@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomTools.Core;
 using System;
+using Core;
 
 public class CameraShakeController : SceneService
 {
@@ -11,13 +11,6 @@ public class CameraShakeController : SceneService
 
     public Action OnCameraShakeStart;
     public Action OnCameraShakeEnd;
-
-    private Player player;
-
-    protected override void OnActivate()
-    {
-        player = Context.Player;
-    }
 
     public IEnumerator PlayCameraShake()
     {
@@ -28,8 +21,8 @@ public class CameraShakeController : SceneService
 
         yield return new WaitForSecondsRealtime(screenShakeDuration);
 
-        if (!Context.GameManager.IsGamePaused)
-            Time.timeScale = 1;
+        /*if (!Context.GameManager.IsGamePaused)
+            Time.timeScale = 1;*/
 
         cameraShakeGO.SetActive(false);
 

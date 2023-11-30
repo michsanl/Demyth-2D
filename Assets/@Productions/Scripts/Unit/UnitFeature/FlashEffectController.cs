@@ -12,37 +12,59 @@ public class FlashEffectController : MonoBehaviour
     [Title("Parameter Settings")]
 
     [OnValueChanged("CalculateFlashDuration")]
-    [SerializeField] private float newColorDuration;
+    [SerializeField] private float newColorDuration = 0.1f;
     [OnValueChanged("CalculateFlashDuration")]
-    [SerializeField] private float normalColorDuration;
+    [SerializeField] private float normalColorDuration = 0.2f;
     [OnValueChanged("CalculateFlashDuration")]
-    [SerializeField] private int cycleAmount;
-    
+    [SerializeField] private int cycleAmount = 4;
     [Space]
-    [ReadOnly]
-    public float FlashEffectDuration;
+    [ReadOnly] public float HitEffectBlend;
+    [ReadOnly] public float FlashEffectDuration;
 
     private Player player;
     private MaterialPropertyBlock mpbNormal;
-    private MaterialPropertyBlock mpbNew;
+    private MaterialPropertyBlock mbpFlash;
     private Coroutine activeFlashEffectCoroutine;
+    private Material _material;
 
-    private void Awake() 
+    private void Awake()
     {
-        mpbNormal = new MaterialPropertyBlock();
-        mpbNew = new MaterialPropertyBlock();
-
-        Color newColor = new Color(255, 255, 255, 0);
-
-        mpbNew.SetColor("_RendererColor", newColor);
-        mpbNew.SetColor("_Color", newColor);
-
-        player = GetComponent<Player>();
+        // player = GetComponent<Player>();
+        // SetupFlashMBP();
     }
 
-    private void Start() {
-        player.OnInvulnerableVisualStart += Player_OnInvulnerableStart;
-        player.OnInvulnerableVisualEnd += Player_OnInvulnerableEnd;
+    private void Start() 
+    {
+        // player.OnInvulnerableVisualStart += Player_OnInvulnerableStart;
+        // player.OnInvulnerableVisualEnd += Player_OnInvulnerableEnd;
+    }
+
+    private void Update()
+    {
+        UpdateHitEffectBlend();
+    }
+
+    private void UpdateHitEffectBlend()
+    {
+        _material = spineMeshRenderer.material;
+        _material.SetFloat("_HitEffectBlend", HitEffectBlend);
+    }
+
+
+
+
+
+
+
+    private void SetupFlashMBP()
+    {
+        mpbNormal = new MaterialPropertyBlock();
+        mbpFlash = new MaterialPropertyBlock();
+
+        Color flashColor = new Color(255, 255, 255, 0);
+
+        mbpFlash.SetColor("_RendererColor", flashColor);
+        mbpFlash.SetColor("_Color", flashColor);
     }
 
     private void Player_OnInvulnerableStart()
@@ -60,7 +82,7 @@ public class FlashEffectController : MonoBehaviour
     {
         for (int i = 0; i < cycleAmount; i++)
         {
-            spineMeshRenderer.SetPropertyBlock(mpbNew);
+            spineMeshRenderer.SetPropertyBlock(mbpFlash);
             yield return Helper.GetWaitForSeconds(newColorDuration);
             spineMeshRenderer.SetPropertyBlock(mpbNormal);
             yield return Helper.GetWaitForSeconds(normalColorDuration);
@@ -71,7 +93,7 @@ public class FlashEffectController : MonoBehaviour
     {
         for (int i = 0; i < cycleAmount; i++)
         {
-            spineMeshRenderer.SetPropertyBlock(mpbNew);
+            spineMeshRenderer.SetPropertyBlock(mbpFlash);
             yield return Helper.GetWaitForSeconds(newColorDuration);
             spineMeshRenderer.SetPropertyBlock(mpbNormal);
             yield return Helper.GetWaitForSeconds(normalColorDuration);

@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class PetraAbilityDownCharge : SceneService
+public class PetraAbilityDownCharge : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -15,21 +16,19 @@ public class PetraAbilityDownCharge : SceneService
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject downChargeCollider;
     
     private int DOWN_CHARGE = Animator.StringToHash("Down_charge");
 
-    public IEnumerator DownCharge()
+    public IEnumerator DownCharge(Player player, Animator animator, AudioClip abilitySFX)
     {
-        var targetPosition = Context.Player.transform.position.y;
+        var targetPosition = player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
         targetPosition = ClampToMoveBlocker(targetPosition);
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(DOWN_CHARGE);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.RunCharge);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         downChargeCollider.SetActive(true);
@@ -38,6 +37,15 @@ public class PetraAbilityDownCharge : SceneService
         downChargeCollider.SetActive(false);
         
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float SetPositionToBehindPlayer(float playerYPosition)

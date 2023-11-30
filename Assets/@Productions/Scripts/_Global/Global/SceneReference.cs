@@ -31,7 +31,7 @@ using UnityEditor.VersionControl;
 /// A wrapper that provides the means to safely serialize Scene Asset References.
 /// </summary>
 [Serializable]
-public class SceneReference : ISerializationCallbackReceiver
+public class SceneReferenceGlobal : ISerializationCallbackReceiver
 {
 #if UNITY_EDITOR
     // What we use in editor to select the scene
@@ -74,7 +74,7 @@ public class SceneReference : ISerializationCallbackReceiver
         }
     }
 
-    public static implicit operator string(SceneReference sceneReference)
+    public static implicit operator string(SceneReferenceGlobal sceneReference)
     {
         return sceneReference.ScenePath;
     }
@@ -150,7 +150,7 @@ public class SceneReference : ISerializationCallbackReceiver
 /// Display a Scene Reference object in the editor.
 /// If scene is valid, provides basic buttons to interact with the scene's role in Build Settings.
 /// </summary>
-[CustomPropertyDrawer(typeof(SceneReference))]
+[CustomPropertyDrawer(typeof(SceneReferenceGlobal))]
 public class SceneReferencePropertyDrawer : PropertyDrawer
 {
     // The exact name of the asset Object variable in the SceneReference object

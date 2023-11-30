@@ -17,6 +17,8 @@ public class PlayerDamager : SceneService
 
     private void OnCollisionStay(Collision other) 
     {
+        if (other == null)
+            return;
         if (player == null)
             return;
             
@@ -24,16 +26,16 @@ public class PlayerDamager : SceneService
         {
             if (isKnockbackOnly)
             {
-                player.TriggerKnockBack(knockbackBase.GetKnockbackTargetPosition(player));
+                player.ApplyKnockBackToPlayer(knockbackBase.GetKnockbackTargetPosition(player));
             }
             else
             {
-                player.TakeDamage(true, knockbackBase.GetKnockbackTargetPosition(player), damagerCharacter);
+                player.ApplyDamageToPlayer(true, knockbackBase.GetKnockbackTargetPosition(player));
             }
         }
         else
         {
-            player.TakeDamage(false, Vector2.zero, damagerCharacter);
+            player.ApplyDamageToPlayer(false, Vector2.zero);
         }
     }
 

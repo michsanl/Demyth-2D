@@ -664,7 +664,7 @@ RectTransform:
   - {fileID: 8060966273710297748}
   - {fileID: 3412027370801819128}
   m_Father: {fileID: 8989853664483248098}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1278,7 +1278,7 @@ RectTransform:
   - {fileID: 1007968968869782185}
   - {fileID: 946606693}
   m_Father: {fileID: 8989853664483248098}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1762,7 +1762,7 @@ RectTransform:
   - {fileID: 2800892019288635105}
   - {fileID: 1706584919}
   m_Father: {fileID: 8989853664483248098}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2073,6 +2073,7 @@ GameObject:
   - component: {fileID: 8989853664337860566}
   - component: {fileID: 8989853664337860567}
   - component: {fileID: 8340008496688853411}
+  - component: {fileID: 3636827415533277830}
   m_Layer: 5
   m_Name: Pause UI
   m_TagString: Untagged
@@ -2165,15 +2166,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a862b624a386dc54bbd0b7fa75624b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleOnInitialize: 0
-  visibleOnEnable: 0
-  hiddenOnDisable: 0
-  _childrens: []
-  _priority: 0
-  audioMixer: {fileID: 24100000, guid: 09168361162c6e545a3ccceb8db66597, type: 2}
+  _gameViewId: {fileID: 11400000, guid: 9c3d0b15a1dd17140ad2b6e52d352322, type: 2}
+  _levelMenulId: {fileID: 11400000, guid: ec72853b2747f914c9eaca3582d4eed1, type: 2}
+  _menuPageId: {fileID: 11400000, guid: 1bc61db812642c64389e45a43e3750aa, type: 2}
+  _resumeButton: {fileID: 8989853664356394145}
+  _mainMenuButton: {fileID: 8989853666336478794}
   masterVolumeSlider: {fileID: 5278642118247428786}
   musicVolumeSlider: {fileID: 3447746469702941813}
   sfxVolumeSlider: {fileID: 6072754366906166068}
+  audioMixer: {fileID: 24100000, guid: 09168361162c6e545a3ccceb8db66597, type: 2}
+--- !u!114 &3636827415533277830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989853664337860570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d390d05f577e43bb50ddaa16b5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageId: {fileID: 11400000, guid: 9a7c9041a74c79643bd31f3aae06f0eb, type: 2}
+  disablePreviousPage: 0
+  offType: 0
+  OnPushed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRefresh:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8989853664356394147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,19 +2324,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8989853664356394144}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8340008496688853411}
-        m_TargetAssemblyTypeName: UISystem.PauseUI, Assembly-CSharp
-        m_MethodName: ButtonResume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2523784244760306560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2325,19 +2341,7 @@ MonoBehaviour:
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8989853664356394145}
-          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-          m_MethodName: OnDeselect
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &8989853664483248099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,10 +2371,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8989853664356394146}
+  - {fileID: 8989853666336478795}
   - {fileID: 5717501955387023556}
   - {fileID: 6824678083754333940}
   - {fileID: 3052188583554395441}
-  - {fileID: 8989853666336478795}
   m_Father: {fileID: 8989853664337860569}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2685,7 +2689,7 @@ RectTransform:
   m_Children:
   - {fileID: 8989853664513419201}
   m_Father: {fileID: 8989853664483248098}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2773,19 +2777,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8989853666336478793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8340008496688853411}
-        m_TargetAssemblyTypeName: UISystem.PauseUI, Assembly-CSharp
-        m_MethodName: ButtonMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8114584662504093401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2802,16 +2794,4 @@ MonoBehaviour:
   - eventID: 1
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8989853666336478794}
-          m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-          m_MethodName: OnDeselect
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []

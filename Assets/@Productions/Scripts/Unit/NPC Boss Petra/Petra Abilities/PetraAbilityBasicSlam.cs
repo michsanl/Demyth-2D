@@ -4,8 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
+using Core;
 
-public class PetraAbilityBasicSlam : SceneService
+public class PetraAbilityBasicSlam : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -13,18 +15,17 @@ public class PetraAbilityBasicSlam : SceneService
     [SerializeField] private float backSwingDuration;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject basicSlamCollider;
     [SerializeField] private GameObject groundCoffin;
     
     private int BASIC_SLAM = Animator.StringToHash("Basic_Slam");
-    
-    public IEnumerator BasicSlam()
+
+    public IEnumerator BasicSlam(Player player, Animator animator, AudioClip abilitySFX)
     {
-        var audioManager = Context.AudioManager;
-        var coffinSpawnPosition = Context.Player.LastMoveTargetPosition;
         animator.Play(BASIC_SLAM);
-        audioManager.PlaySound(audioManager.PetraAudioSource.BasicSlam);
+        PlayAudio(abilitySFX);
+        
+        var coffinSpawnPosition = player.LastMoveTargetPosition;
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         Instantiate(groundCoffin, coffinSpawnPosition, Quaternion.identity);
@@ -35,5 +36,14 @@ public class PetraAbilityBasicSlam : SceneService
         basicSlamCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

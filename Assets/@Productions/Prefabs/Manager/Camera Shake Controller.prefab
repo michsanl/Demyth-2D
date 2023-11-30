@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 352137323435066279}
   m_Layer: 0
   m_Name: Camera Shake Controller
-  m_TagString: Untagged
+  m_TagString: SceneService
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,18 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aed76b1db70b4345b2cfc384cde505f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    GameManager: {fileID: 0}
-    GameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
+  serviceId: {fileID: 11400000, guid: ff7d5f522916d5b4da6ac2a40f6b1f27, type: 2}
   screenShakeDuration: 0.5
   cameraShakeGO: {fileID: 0}

@@ -75,4 +75,9 @@ public class Shield : MonoBehaviour
     {
         return currentShield == maxShield;
     }
+
+    public float GetShieldPercentage()
+    {
+        return currentShield / maxShield;
+    }
 }

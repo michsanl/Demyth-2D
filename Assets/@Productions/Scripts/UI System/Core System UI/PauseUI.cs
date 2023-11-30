@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,24 +7,39 @@ using DG.Tweening;
 using PixelCrushers;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Core;
+using Core.UI;
+using Demyth.Gameplay;
 
 namespace UISystem
 {
-    public class PauseUI : UIPageView
+    public class PauseUI : MonoBehaviour
     {
-
-        
-
-        [SerializeField] private AudioMixer audioMixer;
+        [SerializeField] private EnumId _gameViewId;
+        [SerializeField] private EnumId _levelMenulId;
+        [SerializeField] private EnumId _menuPageId;
+        [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _mainMenuButton;
         [SerializeField] private Slider masterVolumeSlider;
         [SerializeField] private Slider musicVolumeSlider;
         [SerializeField] private Slider sfxVolumeSlider;
+        [SerializeField] private AudioMixer audioMixer;
 
+        private UIPage _uiPage;
+        private GameStateService _gameStateService;
+        private LevelManager _levelManager;
 
-        protected override void OnInitialize()
+        private void Awake()
         {
-            SceneUI.Context.GameManager.OnGamePaused += GameManager_OnGamePaused;
-            SceneUI.Context.GameManager.OnGameUnpaused += GameManager_OnGameUnPaused;
+            _uiPage = GetComponent<UIPage>();
+            _levelManager = SceneServiceProvider.GetService<LevelManager>();
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+
+            _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
+            _gameStateService[GameState.Gameplay].onEnter += Gameplay_OnEnter;
+
+            _resumeButton.onClick.AddListener(ButtonResume);
+            _mainMenuButton.onClick.AddListener(ButtonMainMenu);
 
             masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
             musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
@@ -35,70 +50,35 @@ namespace UISystem
             sfxVolumeSlider.value = 80f;
         }
 
-        private void GameManager_OnGamePaused()
+        private void Gameplay_OnEnter(GameState state)
         {
-            Open();
-            gameObject.SetActive(true);
+            if (_gameStateService.PreviousState == GameState.Pause)
+            {
+                _uiPage.ReturnToPage(_gameViewId);
+            }
         }
 
-        private void GameManager_OnGameUnPaused()
+        private void Pause_OnEnter(GameState state)
         {
-            Close();
-            gameObject.SetActive(false);
+            _uiPage.OpenPage(_uiPage.PageID);
         }
 
-        protected override void OnOpen()
+        private void ButtonResume()
         {
-            Canvas.enabled = true;
+            _gameStateService.SetState(GameState.Gameplay);
         }
 
-        protected override void OnClosed()
-        {
-            Canvas.enabled = false;
-        }
-
-        public void ButtonResume()
-        {
-            Close();
-            
-            SceneUI.Context.GameManager.TogglePauseGame();
-        }
-
-        public void ButtonGoToMainMenu()
-        {
-            Close();
-            SceneUI.Context.HUDUI.Close();
-
-            DialogueManager.StopAllConversations();
-            SceneUI.Context.GameManager.TogglePauseGame();
-
-            Level mainMenuLevel = SceneUI.Context.LevelManager.MainMenuLevel;
-            SceneUI.Context.LevelManager.SetLevel(mainMenuLevel);
-
-            Open<MainMenuUI>();
-
-            SceneUI.Context.Player.gameObject.SetActive(false);
- 
-            SceneUI.Context.CameraNormal.transform.DOKill();
-            SceneUI.Context.CameraNormal.transform.localPosition = Vector3.zero;
-        }
-
-        public void ButtonMainMenu()
+        private void ButtonMainMenu()
         {
             DialogueManager.StopAllConversations();
-            SceneUI.Context.GameManager.TogglePauseGame();
-            DOTween.KillAll();
+            DOTween.CompleteAll();
 
             SaveSystem.SaveToSlotImmediate(1);
 
-            SaveSystem.RestartGame("Demyth Game");
-        }
+            _levelManager.OpenLevel(_levelMenulId);
+            _uiPage.ReturnToPage(_menuPageId);
 
-        public void ButtonOptions()
-        {
-            Close();
-
-            Open<OptionsUI>();
+            _gameStateService?.SetState(GameState.MainMenu);
         }
 
         private void SetMasterVolume(float sliderValue)

@@ -11,6 +11,6 @@ public class GlobalConfig : ScriptableObject
     public SceneLoader SceneLoader;
 
     [Header("Scenes")]
-    public SceneReference GameplayScene;
-    public SceneReference EmptyScene;
+    public SceneReferenceGlobal GameplayScene;
+    public SceneReferenceGlobal EmptyScene;
 }

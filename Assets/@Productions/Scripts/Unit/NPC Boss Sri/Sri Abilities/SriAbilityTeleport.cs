@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class SriAbilityTeleport : SceneService
+public class SriAbilityTeleport : MonoBehaviour
 {
     [SerializeField] private float teleportStartDuration;
     [SerializeField] private float teleportEndDuration;
@@ -20,21 +21,21 @@ public class SriAbilityTeleport : SceneService
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
 
-    public IEnumerator Teleport()
+    public IEnumerator Teleport(Player player, Animator animator)
     {
         animator.Play(TELEPORT_START);
         yield return Helper.GetWaitForSeconds(teleportStartDuration);
 
-        var teleportTargetPosition = GetTeleportTargetPosition();
+        var teleportTargetPosition = GetTeleportTargetPosition(player);
         transform.position = teleportTargetPosition;
 
         animator.Play(TELEPORT_END);
         yield return Helper.GetWaitForSeconds(teleportEndDuration);
     }
 
-    private Vector2 GetTeleportTargetPosition()
+    private Vector2 GetTeleportTargetPosition(Player player)
     {
-        Vector3 targetPosition = Context.Player.LastMoveTargetPosition;
+        Vector3 targetPosition = player.LastMoveTargetPosition;
         int randomIndex = UnityEngine.Random.Range(0, 4);
 
         switch (randomIndex)
@@ -55,7 +56,7 @@ public class SriAbilityTeleport : SceneService
 
         if (IsTargetPositionSamePlace(targetPosition) || IsOutOfBounds(targetPosition))
         {
-            return GetTeleportTargetPosition();
+            return GetTeleportTargetPosition(player);
         }
         else
         {

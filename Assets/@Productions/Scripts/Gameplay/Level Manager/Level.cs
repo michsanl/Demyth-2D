@@ -1,3 +1,4 @@
+﻿using Core;
 using CustomTools.Core;
 using Demyth.Gameplay;
 using Sirenix.OdinInspector;
@@ -9,37 +10,24 @@ using UnityEngine;
 [System.Serializable]
 public class LevelSetting
 {
-    [ValueDropdown(nameof(levelNameList))]
-    public string ID;
+    public EnumId ID;
     public Gate Gate;
-
-    private List<string> levelNameList = new List<string> 
-    { 
-        "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level Main Menu" 
-    }; 
-
-#if UNITY_EDITOR
-    private IEnumerable<string> LevelName()
-    {
-        string levelPath = "Assets/@Productions/Prefabs/Level Map";
-        string[] guids = UnityEditor.AssetDatabase.FindAssets("", new[] { levelPath });
-        return guids
-            .Select(x => UnityEditor.AssetDatabase.GUIDToAssetPath(x))
-            .Select(y => UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(y).name);
-    }
-#endif
 }
 
-public class Level : CoreBehaviour
+public class Level : MonoBehaviour
 {
-    public string ID => gameObject.name;
+    public EnumId ID => levelId;
     public Vector3 StarterPosition => starterPoint.position;
     public LevelSetting[] LevelSetting => settings;
 
     [SerializeField]
+    private EnumId levelId;
+    [SerializeField]
     private LevelSetting[] settings;
     [SerializeField]
     private Transform starterPoint;
+
+    private LevelManager _levelManager;
 
     private void Awake()
     {
@@ -49,15 +37,20 @@ public class Level : CoreBehaviour
         }
     }
 
-    public Vector2 GetLevelPoint(string levelID)
+    public void InjectLevelManager(LevelManager levelManager)
+    {
+        _levelManager = levelManager;
+    }
+
+    public Vector2 GetLevelPoint(EnumId levelID)
     {
         var setting = settings.FirstOrDefault(level => level.ID == levelID);
         return setting == null ? StarterPosition : setting.Gate.EnterPoint;
     }
 
-    public void MoveToNextLevel(string levelID)
+    public void MoveToNextLevel(EnumId levelID)
     {
-        Context.LevelManager.ChangeLevelByGate(ID, levelID);
+        _levelManager.ChangeLevelByGate(ID, levelID);
     }
 
     #region DEBUG HELPER

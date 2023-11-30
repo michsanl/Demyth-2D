@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
+using MoreMountains.Tools;
 
-public class PetraAbilitySpinAttack : SceneService
+public class PetraAbilitySpinAttack : MonoBehaviour
 {
     [Title("Parameter Settings")]
     [SerializeField] private float frontSwingDuration;
@@ -13,16 +14,14 @@ public class PetraAbilitySpinAttack : SceneService
     [SerializeField] private float backSwingDuration;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject spinAttackCollider;
     
     private int SPIN_ATTACK = Animator.StringToHash("Spin_attack");
     
-    public IEnumerator SpinAttack()
+    public IEnumerator SpinAttack(Animator animator, AudioClip abilitySFX)
     {
         animator.Play(SPIN_ATTACK);
-        var audioManager = Context.AudioManager;
-        audioManager.PlaySound(audioManager.PetraAudioSource.CoffinSwing);
+        PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinAttackCollider.SetActive(true);
@@ -31,5 +30,14 @@ public class PetraAbilitySpinAttack : SceneService
         spinAttackCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(backSwingDuration);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = 1f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }
