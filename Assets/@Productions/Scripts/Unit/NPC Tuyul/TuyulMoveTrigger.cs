@@ -33,6 +33,6 @@ public class TuyulMoveTrigger : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        tuyulMovement.Flee(moveDir);
+        tuyulMovement.StartFlee(moveDir);
     }
 }
