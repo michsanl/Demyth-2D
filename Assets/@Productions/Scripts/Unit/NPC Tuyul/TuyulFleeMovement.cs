@@ -94,7 +94,7 @@ public class TuyulFleeMovement : MonoBehaviour
         
         transform.DOMove(GetMoveTargetPositionRounded(moveDir), _moveDuration);
         yield return Helper.GetWaitForSeconds(_moveDuration);
-        _mockTimer = _mockInterval;
+        _mockTimer = 1f;
 
         _isBusy = false;
     }
