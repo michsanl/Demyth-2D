@@ -27,7 +27,8 @@ namespace Demyth.Gameplay
 
         private void ActivatePlayer(GameState obj)
         {
-            spawnedPlayer.ActivatePlayer();
+            spawnedPlayer.SetActive(true);
+            spawnedPlayer.ResetPlayerCondition();
         }
     }
 }

@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, IBroadcaster
     public Action<bool> OnSenterToggle;
     public Vector2 LastMoveTargetPosition => _moveTargetPosition;
     public Vector2 PlayerDir => _playerDir;
+    public bool IsDead => _isDead;
 
     [Title("Settings")]
     [SerializeField] private float actionDuration;
@@ -33,8 +34,10 @@ public class Player : MonoBehaviour, IBroadcaster
     private LookOrientation _lookOrientation;
     private HealthPotion _healthPotion;
     private Health _health;
+    private Shield _shield;
     private Vector2 _playerDir;
     private Vector2 _moveTargetPosition;
+    private bool _isDead;
     private bool _isBusy;
     private bool _isKnocked;
     private bool _isTakeDamageOnCooldown;
@@ -50,9 +53,17 @@ public class Player : MonoBehaviour, IBroadcaster
         _lookOrientation = GetComponent<LookOrientation>();
         _healthPotion = GetComponent<HealthPotion>();
         _health = GetComponent<Health>();
+        _shield = GetComponent<Shield>();
 
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _gameInput = _gameInputController.GameInput;
+
+        _health.OnDeath += Health_OnDeath;
+    }
+
+    private void Health_OnDeath()
+    {
+        _isDead = true;
     }
 
     private void Start()
@@ -77,6 +88,18 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         _gameInput.OnSenterPerformed.RemoveListener(GameInput_OnSenterPerformed);
         _gameInput.OnHealthPotionPerformed.RemoveListener(GameInput_OnHealthPotionPerformed);
+    }
+
+    public void ResetPlayerCondition()
+    {
+        _isDead = false;
+        _isBusy = false;
+        _isKnocked = false;
+        _isTakeDamageOnCooldown = false;
+        _health.ResetHealthToMaximum();
+        _shield.ResetShieldToMaximum();
+        _healthPotion.ResetPotionToMax();
+        StartCoroutine(TurnOffSenter());
     }
 
     public void ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
@@ -178,11 +201,36 @@ public class Player : MonoBehaviour, IBroadcaster
         _isBusy = false;
     }  
 
+    private IEnumerator ApplyDamageToPlayerCoroutine(bool knockBackPlayer, Vector2 knockbackTargetPosition)
+    {
+        _isTakeDamageOnCooldown = true;
+
+        _health.TakeDamage();
+        PlayAudio(araAudioSO.MoveBox[UnityEngine.Random.Range(0, 3)]);
+
+        if (_health.CurrentHP <= 0)
+            yield break;
+
+        _hitFlashEffectMMFPlayer.PlayFeedbacks();
+        animator.SetTrigger("OnHit");
+        damagedAnimator.Play("Ara_Damaged");
+
+        if (knockBackPlayer)
+        {
+            StartCoroutine(HandleKnockBack(knockbackTargetPosition));
+        }
+
+        yield return Helper.GetWaitForSeconds(takeDamageCooldown);
+
+        _isTakeDamageOnCooldown = false;
+    }
+
     private void GameInput_OnSenterPerformed()
     {
         if (!_isSenterUnlocked)
             return;
-        StartCoroutine(ToggleSenter());
+
+        ToggleSenter();
     }
 
     private void GameInput_OnHealthPotionPerformed()
@@ -200,49 +248,38 @@ public class Player : MonoBehaviour, IBroadcaster
         _healthPotion.UsePotion();
     }
 
-    private IEnumerator ToggleSenter()
+    private void ToggleSenter()
     {
         if (senterGameObject.activeInHierarchy)
         {
-            // Move the object away to trigger OnCollisonExit
-            senterGameObject.transform.localPosition = new Vector3(100, 100, 0);
-            yield return Helper.GetWaitForSeconds(0.05f);
-            senterGameObject.SetActive(false);
-            _isSenterEnabled = false;
+            StartCoroutine(TurnOffSenter());
         }
         else
         {
-            senterGameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
-            yield return Helper.GetWaitForSeconds(0.05f);
-            senterGameObject.SetActive(true);
-            _isSenterEnabled = true;
+            StartCoroutine(TurnOnSenter());
         }
-
         PlayAudio(araAudioSO.Lantern);
+    }
+
+    private IEnumerator TurnOffSenter()
+    {
+        // Move the object away to trigger OnCollisonExit
+        senterGameObject.transform.localPosition = new Vector3(100, 100, 0);
+        yield return Helper.GetWaitForSeconds(0.05f);
+        senterGameObject.SetActive(false);
+        _isSenterEnabled = false;
+
         OnSenterToggle?.Invoke(_isSenterEnabled);
     }
 
-    private IEnumerator ApplyDamageToPlayerCoroutine(bool knockBackPlayer, Vector2 knockbackTargetPosition)
+    private IEnumerator TurnOnSenter()
     {
-        _isTakeDamageOnCooldown = true;
-
-        _health.TakeDamage();
-
-        //yield return StartCoroutine(Context.CameraShakeController.PlayCameraShake());
-
-        _hitFlashEffectMMFPlayer.PlayFeedbacks();
-        animator.SetTrigger("OnHit");
-        damagedAnimator.Play("Ara_Damaged");
-        PlayAudio(araAudioSO.MoveBox[UnityEngine.Random.Range(0, 3)]);
-
-        if (knockBackPlayer)
-        {
-            StartCoroutine(HandleKnockBack(knockbackTargetPosition));
-        }
-
-        yield return Helper.GetWaitForSeconds(takeDamageCooldown);
-
-        _isTakeDamageOnCooldown = false;
+        senterGameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
+        yield return Helper.GetWaitForSeconds(0.05f);
+        senterGameObject.SetActive(true);
+        _isSenterEnabled = true;
+        
+        OnSenterToggle?.Invoke(_isSenterEnabled);
     }
 
     private IEnumerator HandleKnockBack(Vector2 targetPosition)

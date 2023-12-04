@@ -300,13 +300,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250125fd3ed81964796aa51208b79f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionDelay: 0.2
   moveDuration: 0.195
-  animator: {fileID: 494685150891091152}
-  yulaPathLayerMask:
+  _dashAudioClip: {fileID: 8300000, guid: ab99753b1cc93744d9ba9cc2fcc4b161, type: 3}
+  _animator: {fileID: 494685150891091152}
+  _yulaPathLayerMask:
     serializedVersion: 2
-    m_Bits: 16384
-  moveBlockerLayerMask:
+    m_Bits: 24576
+  _moveBlockerLayerMask:
     serializedVersion: 2
     m_Bits: 64
 --- !u!114 &5686504465831772982
@@ -334,7 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e972fa5bc7be204a9caf0b49643cd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 0
   dialogueSystemTrigger: {fileID: 2202322414460477779}
 --- !u!114 &2202322414460477779
 MonoBehaviour:
@@ -384,7 +383,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Tes dialog
+  conversation: Test Convo
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -408,7 +407,7 @@ MonoBehaviour:
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 5d8f4e5b8b205a24e960282d50971ab9, type: 2}
+  selectedDatabase: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
 --- !u!61 &2202322414460477778
 BoxCollider2D:
   m_ObjectHideFlags: 0

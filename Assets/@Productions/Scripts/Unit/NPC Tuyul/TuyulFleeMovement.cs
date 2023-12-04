@@ -2,29 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using CustomTools.Core;
-using System;
 using Demyth.Gameplay;
 using Core;
+using MoreMountains.Tools;
 
 public class TuyulFleeMovement : MonoBehaviour
 {
-    [SerializeField] private float moveDuration = 0.2f;
-    [SerializeField] private Animator animator;
-    [SerializeField] private LayerMask yulaPathLayerMask;
-    [SerializeField] private LayerMask moveBlockerLayerMask;
+    [SerializeField] private float _moveDuration = 0.195f;
+    [SerializeField] private AudioClip _dashAudioClip;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private LayerMask _yulaPathLayerMask;
+    [SerializeField] private LayerMask _moveBlockerLayerMask;
 
-    private LookOrientation lookOrientation;
-    private bool isBusy;
-    private bool isShocked;
-    private float mockInterval = 1.5f;
+    private LookOrientation _lookOrientation;
+    private bool _isBusy;
+    private bool _isShocked;
+    private float _mockInterval = 2f;
+    private float _mockTimer;
 
     private PlayerManager _playerManager;
 
     private void Awake() 
     {
-        lookOrientation = GetComponent<LookOrientation>();
+        _lookOrientation = GetComponent<LookOrientation>();
         _playerManager = SceneServiceProvider.GetService<PlayerManager>();
+    }
+
+    private void Start()
+    {
+        _mockTimer = _mockInterval;
     }
     
     private void Update()
@@ -32,75 +38,95 @@ public class TuyulFleeMovement : MonoBehaviour
         MockingLoop();
     }
 
-    private void MockingLoop()
+    public void StartFlee(Vector3 directionToPlayer)
     {
-        if (isShocked)
-            return;
-
-        mockInterval -= Time.deltaTime;
-        if (mockInterval <= 0)
-        {
-            if (isBusy)
-                return;
-
-            animator.SetTrigger("Mock");
-            lookOrientation.SetFacingDirection(GetDirToPlayer());
-            mockInterval = 3f;
-        }
-    }
-
-    public void Flee(Vector3 directionToPlayer)
-    {
-        if (isBusy)
+        if (_isBusy)
             return;
 
         TryFlee(directionToPlayer);
     }
 
-    public void TryFlee(Vector3 dirToPlayer)
+    private void MockingLoop()
     {
-        var fleeDir = dirToPlayer;
-        int loopCount = 3;
-        for (int i = 0; i < loopCount; i++)
+        if (_isShocked)
+            return;
+
+        _mockTimer -= Time.deltaTime;
+        if (_mockTimer <= 0)
         {
-            fleeDir = Vector2.Perpendicular(fleeDir);
-            if (IsFleePathAvailable(fleeDir) && !IsPathBlocked(fleeDir))
+            if (_isBusy)
+                return;
+
+            _animator.SetTrigger("Mock");
+            _lookOrientation.SetFacingDirection(GetDirToPlayer());
+            _mockTimer = _mockInterval;
+        }
+    }
+
+    public void TryFlee(Vector3 directionToPlayer)
+    {
+        List<Vector3> nonFacingPlayerDirectionList = GetNonFacingPlayerDirections(directionToPlayer);
+
+        foreach (var direction in nonFacingPlayerDirectionList)
+        {
+            if (IsFleePathAvailable(direction) && !IsPathBlocked(direction))
             {
-                // can flee
-                lookOrientation.SetFacingDirection(fleeDir);
-                StartCoroutine(Move(fleeDir));
+                // can flee, move
+                _isShocked = false;
+                _lookOrientation.SetFacingDirection(direction);
+                StartCoroutine(Move(direction));
                 return;
             }
         }
-        // cant flee
-        // set panic animation
-        isShocked = true;
-        lookOrientation.SetFacingDirection(dirToPlayer);
-        animator.SetTrigger("Shock");
-    }
-
-    private bool IsFleePathAvailable(Vector3 dirToCheck)
-    {
-        return Physics2D.Raycast(transform.position + dirToCheck, dirToCheck, .1f, yulaPathLayerMask);
-    }
-
-    private bool IsPathBlocked(Vector3 dirToCheck)
-    {
-        return Physics2D.Raycast(transform.position + dirToCheck, dirToCheck, .1f, moveBlockerLayerMask);
+        
+        // cant flee, panik!
+        _isShocked = true;
+        _lookOrientation.SetFacingDirection(directionToPlayer);
+        _animator.SetTrigger("Shock");
     }
 
     private IEnumerator Move(Vector3 moveDir)
     {
-        isBusy = true;
+        _isBusy = true;
 
-        animator.Play("Dash");
-        //Context.AudioManager.PlaySound(Context.AudioManager.TuyulDash);
+        _animator.Play("Dash");
+        PlayAudio(_dashAudioClip);
         
-        transform.DOMove(GetMoveTargetPositionRounded(moveDir), moveDuration);
-        yield return Helper.GetWaitForSeconds(moveDuration);
-        mockInterval = 1f;
+        transform.DOMove(GetMoveTargetPositionRounded(moveDir), _moveDuration);
+        yield return Helper.GetWaitForSeconds(_moveDuration);
+        _mockTimer = 1f;
 
-        isBusy = false;
+        _isBusy = false;
+    }
+
+    private List<Vector3> GetNonFacingPlayerDirections(Vector3 directionToPlayer)
+    {
+        List<Vector3> nonFacingPlayerDirectionList = new();
+
+        nonFacingPlayerDirectionList.Add(Vector2.Perpendicular(directionToPlayer));
+        nonFacingPlayerDirectionList.Add(Vector2.Perpendicular(nonFacingPlayerDirectionList[0]));
+        nonFacingPlayerDirectionList.Add(Vector2.Perpendicular(nonFacingPlayerDirectionList[1]));
+        
+        return nonFacingPlayerDirectionList;
+    }
+
+    private bool IsFleePathAvailable(Vector3 dirToCheck)
+    {
+        return Physics2D.Raycast(transform.position + dirToCheck, dirToCheck, .1f, _yulaPathLayerMask);
+    }
+
+    private bool IsPathBlocked(Vector3 dirToCheck)
+    {
+        return Physics2D.Raycast(transform.position + dirToCheck, dirToCheck, .1f, _moveBlockerLayerMask);
+    }
+
+    private void PlayAudio(AudioClip abilitySFX)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = .5f;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private Vector3 GetMoveTargetPositionRounded(Vector3 moveDir)
