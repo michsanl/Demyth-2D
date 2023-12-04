@@ -3,26 +3,26 @@ using Core;
 using Demyth.Gameplay;
 using UnityEngine;
 
-public class PetraBossLevelReset : MonoBehaviour, IBossLevelReset
+public class BossLevelReset : MonoBehaviour
 {
 
-    public Action<IBossLevelReset> OnPlayerDeathByPetra;
+    public Action<BossLevelReset> OnPlayerDeathByBoss;
 
-    [SerializeField] private GameObject _npcBossPetra;
-    [SerializeField] private GameObject _npcPetra;
-    [SerializeField] private GameObject _invisibleDialogueTrigger;
+    [SerializeField] private GameObject _bossComabatModePrefab;
+    [SerializeField] private GameObject _bossIdlePrefab;
+    [SerializeField] private GameObject _invisibleDialogueTriggerPrefab;
     [Space]
     [SerializeField] private Vector3 _playerDefaultPosition;
-    [SerializeField] private Vector3 _npcBossPetraDefaultPosition;
+    [SerializeField] private Vector3 _npcBossDefaultPosition;
     private Player _player;
     private Health _playerHealth;
-    private Health _petraHealth;
+    private Health _bossHealth;
     
     private void Awake()
     {
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
-        _petraHealth = _npcBossPetra.GetComponent<Health>();
+        _bossHealth = _bossComabatModePrefab.GetComponent<Health>();
     }
 
     private void OnEnable()
@@ -45,7 +45,7 @@ public class PetraBossLevelReset : MonoBehaviour, IBossLevelReset
         _player.gameObject.SetActive(true);
         _player.ResetPlayerCondition();
 
-        _petraHealth.ResetHealthToMaximum();
+        _bossHealth.ResetHealthToMaximum();
 
         ResetUnitPosition();
         ResetActiveState();
@@ -53,20 +53,20 @@ public class PetraBossLevelReset : MonoBehaviour, IBossLevelReset
 
     private void PlayerHealth_OnDeath()
     {
-        OnPlayerDeathByPetra?.Invoke(this);
+        OnPlayerDeathByBoss?.Invoke(this);
     }
 
     private void ResetUnitPosition()
     {
         _player.transform.position = _playerDefaultPosition;
-        _npcBossPetra.transform.position = _npcBossPetraDefaultPosition;
+        _bossComabatModePrefab.transform.position = _npcBossDefaultPosition;
     }
 
     private void ResetActiveState()
     {
-        _npcPetra.SetActive(true);
-        _invisibleDialogueTrigger.SetActive(true);
+        _bossIdlePrefab.SetActive(true);
+        _invisibleDialogueTriggerPrefab.SetActive(true);
         
-        _npcBossPetra.SetActive(false);
+        _bossComabatModePrefab.SetActive(false);
     }
 }

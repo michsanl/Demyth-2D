@@ -9,21 +9,24 @@ using UnityEngine.UI;
 public class BossLevelResetUI : MonoBehaviour
 {
     
-    [SerializeField] private PetraBossLevelReset _petraBossLevelReset;
+    [SerializeField] private BossLevelReset _petraBossLevelReset;
+    [SerializeField] private BossLevelReset _sriBossLevelReset;
     [SerializeField] private Button _retryButton;
     [SerializeField] private EnumId _gameViewId;
     [SerializeField] private UIPage _uiPage;    
     
-    private IBossLevelReset _selectedBossLevelReset;
+    private BossLevelReset _selectedBossLevelReset;
 
     private void Awake()
     {
-        _petraBossLevelReset.OnPlayerDeathByPetra += PetraBossLevelReset_OnPlayerDeathByPetra;
+        // This solve wierd null reference
+        _petraBossLevelReset.OnPlayerDeathByBoss += PetraBossLevelReset_OnPlayerDeathByBoss;
+        _sriBossLevelReset.OnPlayerDeathByBoss += PetraBossLevelReset_OnPlayerDeathByBoss;
         
         gameObject.SetActive(false);
     }
 
-    private void PetraBossLevelReset_OnPlayerDeathByPetra(IBossLevelReset bossLevelReset)
+    private void PetraBossLevelReset_OnPlayerDeathByBoss(BossLevelReset bossLevelReset)
     {
         gameObject.SetActive(true);
 

@@ -161,6 +161,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175887603762691807, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 739502888847507981, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: cameraGO
       value: 
@@ -217,6 +221,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1991120468320084421, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084580017448373030, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2562658709612044340, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -253,6 +265,10 @@ PrefabInstance:
       propertyPath: cameraGO
       value: 
       objectReference: {fileID: 1653471099}
+    - target: {fileID: 8412037382415688564, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9012661368519005651, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2328,6 +2344,17 @@ MonoBehaviour:
   m_saveAcrossSceneChanges: 1
   m_restoreStateOnStart: 0
   m_gameObjectToWatch: {fileID: 1943620904}
+--- !u!114 &1772624724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1304331049781124498, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daedcab5c5d12194c9d4df2cc2db7cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1803580491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,6 +2810,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
+    - target: {fileID: 8551962754239887416, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}
+      propertyPath: _sriBossLevelReset
+      value: 
+      objectReference: {fileID: 1772624724}
     - target: {fileID: 8551962754239887416, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}
       propertyPath: _petraBossLevelReset
       value: 

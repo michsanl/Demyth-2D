@@ -72,16 +72,19 @@ public class SriCombatBehaviorNew : MonoBehaviour
     {
         _health.OnTakeDamage += Health_OnTakeDamage;
         _health.OnDeath += Health_OnDeath;
-
-        if (_combatMode)
-        {
-            ChangeCombatBehavior();
-        }
     }
 
     private void Update()
     {
         UpdateCombatBehaviour();
+    }
+
+    private void OnEnable()
+    {
+        if (_combatMode)
+        {
+            ActivateSelectedCombatMode();
+        }
     }
 
     private void UpdateCombatBehaviour()
@@ -92,7 +95,7 @@ public class SriCombatBehaviorNew : MonoBehaviour
         if (_currentCombatMode != _selectCombatMode)
         {
             _currentCombatMode = _selectCombatMode;
-            ChangeCombatBehavior();
+            ActivateSelectedCombatMode();
         }
     }
 
@@ -111,7 +114,7 @@ public class SriCombatBehaviorNew : MonoBehaviour
         StartCoroutine(StartDeathSlashAbility());
     }
 
-    private void ChangeCombatBehavior()
+    private void ActivateSelectedCombatMode()
     {
         StopCurrentAbility();
 
@@ -134,6 +137,9 @@ public class SriCombatBehaviorNew : MonoBehaviour
 
     private IEnumerator LoopCombatBehavior(Func<IEnumerator> getAbility)
     {
+        if (_player.IsDead)
+            yield break;
+
         IEnumerator ability = getAbility();
         SetFacingDirection();
         yield return StartCoroutine(ability);

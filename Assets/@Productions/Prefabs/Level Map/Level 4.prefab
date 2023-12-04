@@ -263,7 +263,7 @@ Transform:
   - {fileID: 2991862564672425527}
   - {fileID: 1323041022047557946}
   m_Father: {fileID: 1083057257689935217}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850765918850716197
 GameObject:
@@ -384,11 +384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daedcab5c5d12194c9d4df2cc2db7cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcBossPetra: {fileID: 2624266294058160267}
-  _npcPetra: {fileID: 4432366164955928198}
-  _invisibleDialogueTrigger: {fileID: 1345032909872897841}
+  _bossComabatModePrefab: {fileID: 2624266294058160267}
+  _bossIdlePrefab: {fileID: 4432366164955928198}
+  _invisibleDialogueTriggerPrefab: {fileID: 1345032909872897841}
   _playerDefaultPosition: {x: 0, y: -4, z: 0}
-  _npcBossPetraDefaultPosition: {x: 0, y: 1, z: 0}
+  _npcBossDefaultPosition: {x: 0, y: 1, z: 0}
 --- !u!1 &3806629825586358243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3965329577183071319, guid: a6409726ae2f2d14885f89a1569d930b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3965329577183071319, guid: a6409726ae2f2d14885f89a1569d930b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1119,7 +1119,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6429237052861685360, guid: a889e040616039049bef5d913ba155f2, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6429237052861685360, guid: a889e040616039049bef5d913ba155f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1258,7 +1258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_LocalPosition.x
