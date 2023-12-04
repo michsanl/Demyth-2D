@@ -63,16 +63,19 @@ public class PetraCombatBehaviorNew : MonoBehaviour
     {
         _health.OnTakeDamage += Health_OnTakeDamage;
         _health.OnDeath += Health_OnDeath;
-
-        if (_combatMode)
-        {
-            ChangeCombatBehaviour();
-        }
     }
 
     private void Update()
     {
         UpdateCombatMode();
+    }
+
+    private void OnEnable()
+    {
+        if (_combatMode)
+        {
+            ActivateSelectedCombatMode();
+        }
     }
 
     private void UpdateCombatMode()
@@ -83,7 +86,7 @@ public class PetraCombatBehaviorNew : MonoBehaviour
         if (_currentCombatMode != _selectedCombatMode)
         {
             _currentCombatMode = _selectedCombatMode;
-            ChangeCombatBehaviour();
+            ActivateSelectedCombatMode();
         }
     }
 
@@ -102,7 +105,7 @@ public class PetraCombatBehaviorNew : MonoBehaviour
         _animator.Play("Defeated");
     }
     
-    private void ChangeCombatBehaviour()
+    private void ActivateSelectedCombatMode()
     {
         StopCurrentAbility();
 
@@ -122,6 +125,9 @@ public class PetraCombatBehaviorNew : MonoBehaviour
 
     private IEnumerator LoopAbility(Func<IEnumerator> selectedPhaseAbility)
     {
+        if (_player.IsDead)
+            yield break;
+
         IEnumerator ability = selectedPhaseAbility();
 
         SetFacingDirection();
