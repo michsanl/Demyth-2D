@@ -6,7 +6,6 @@ using UnityEngine;
 public class BossLevelReset : MonoBehaviour
 {
 
-    public Action<BossLevelReset> OnPlayerDeathByBoss;
 
     [SerializeField] private GameObject _bossComabatModePrefab;
     [SerializeField] private GameObject _bossIdlePrefab;
@@ -17,9 +16,11 @@ public class BossLevelReset : MonoBehaviour
     private Player _player;
     private Health _playerHealth;
     private Health _bossHealth;
+    private GameStateService _gameStateService;
     
     private void Awake()
     {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
         _bossHealth = _bossComabatModePrefab.GetComponent<Health>();
@@ -27,12 +28,27 @@ public class BossLevelReset : MonoBehaviour
 
     private void OnEnable()
     {
+        _gameStateService[GameState.Gameplay].onEnter += GameStateGamePlay_OnEnter;
         _playerHealth.OnDeath += PlayerHealth_OnDeath;
     }
 
     private void OnDisable() 
     {
-        _playerHealth.OnDeath += PlayerHealth_OnDeath;
+        _gameStateService[GameState.Gameplay].onEnter -= GameStateGamePlay_OnEnter;
+        _playerHealth.OnDeath -= PlayerHealth_OnDeath;
+    }
+
+    private void GameStateGamePlay_OnEnter(GameState state)
+    {
+        if (_gameStateService.PreviousState == GameState.GameOver)
+        {
+            ResetLevel();
+        }
+    }
+
+    private void PlayerHealth_OnDeath()
+    {
+        _gameStateService.SetState(GameState.GameOver);
     }
 
     public void ResetLevel()
@@ -49,11 +65,6 @@ public class BossLevelReset : MonoBehaviour
 
         ResetUnitPosition();
         ResetActiveState();
-    }
-
-    private void PlayerHealth_OnDeath()
-    {
-        OnPlayerDeathByBoss?.Invoke(this);
     }
 
     private void ResetUnitPosition()
