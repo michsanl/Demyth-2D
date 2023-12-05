@@ -77,8 +77,6 @@ namespace UISystem
             DialogueManager.StopAllConversations();
             DOTween.CompleteAll();
 
-            SaveSystem.SaveToSlotImmediate(1);
-
             _levelManager.OpenLevel(_levelMenulId);
             _uiPage.ReturnToPage(_menuPageId);
 

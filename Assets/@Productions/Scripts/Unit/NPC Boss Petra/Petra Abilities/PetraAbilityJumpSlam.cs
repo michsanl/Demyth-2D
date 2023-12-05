@@ -23,11 +23,10 @@ public class PetraAbilityJumpSlam : MonoBehaviour
 
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpSlam(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator JumpSlam(Vector2 targetPosition, Animator animator, AudioClip abilitySFX)
     {
         animator.Play(JUMP_SLAM);
         PlayAudio(abilitySFX);
-        Vector3 targetPosition = player.LastMoveTargetPosition;
         
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
 

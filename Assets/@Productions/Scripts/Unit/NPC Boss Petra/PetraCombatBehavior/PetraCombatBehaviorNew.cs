@@ -74,8 +74,15 @@ public class PetraCombatBehaviorNew : MonoBehaviour
     {
         if (_combatMode)
         {
-            ActivateSelectedCombatMode();
+            StartCoroutine(StartCombatIntro());
         }
+    }
+
+    private IEnumerator StartCombatIntro()
+    {
+        yield return StartCoroutine(StartJumpSlamToMiddleArena());
+
+        ActivateSelectedCombatMode();
     }
 
     private void UpdateCombatMode()
@@ -259,7 +266,12 @@ public class PetraCombatBehaviorNew : MonoBehaviour
     
     private IEnumerator StartJumpSlamAbility()
     {
-        yield return _jumpSlamAbility.JumpSlam(_player, _animator, _petraAudioSO.JumpSlam);
+        yield return _jumpSlamAbility.JumpSlam(_player.LastMoveTargetPosition, _animator, _petraAudioSO.JumpSlam);
+    }
+    
+    private IEnumerator StartJumpSlamToMiddleArena()
+    {
+        yield return _jumpSlamAbility.JumpSlam(new Vector2(0, -1), _animator, _petraAudioSO.JumpSlam);
     }
     
     private IEnumerator StartBasicSlamAbility()
