@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using Core;
+using Demyth.Gameplay;
 
 public class GroundSummon : MonoBehaviour
 {
@@ -33,6 +35,16 @@ public class GroundSummon : MonoBehaviour
     private int rightBorder = 6;
     private int leftBorder = -6;
 
+    private GameStateService _gameStateService;
+
+    private void Awake()
+    {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+
+        _gameStateService[GameState.MainMenu].onEnter += MainMenu_OnEnter;
+        _gameStateService[GameState.GameOver].onEnter += GameOver_OnEnter;
+    }
+
     private void Start() 
     {
         if (IsOutOfBounds())
@@ -43,6 +55,12 @@ public class GroundSummon : MonoBehaviour
 
         ActivateRandomModel();
         StartCoroutine(SummonRoutine());
+    }
+
+    private void OnDestroy() 
+    {
+        _gameStateService[GameState.MainMenu].onEnter -= MainMenu_OnEnter;
+        _gameStateService[GameState.GameOver].onEnter -= GameOver_OnEnter;
     }
 
     private IEnumerator SummonRoutine()
@@ -63,6 +81,16 @@ public class GroundSummon : MonoBehaviour
         colliderGameObject.SetActive(false);
         yield return Helper.GetWaitForSeconds(recoveryDuration);
 
+        Destroy(gameObject);
+    }
+
+    private void MainMenu_OnEnter(GameState state)
+    {
+        Destroy(gameObject);
+    }
+
+    private void GameOver_OnEnter(GameState state)
+    {
         Destroy(gameObject);
     }
     
