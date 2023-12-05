@@ -4,5 +4,6 @@
     MainMenu,
     Gameplay,
     Pause,
+    GameOver,
     GameEnd
 }

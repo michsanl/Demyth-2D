@@ -3,44 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using Core.UI;
+using Demyth.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BossLevelResetUI : MonoBehaviour
 {
-    
-    [SerializeField] private BossLevelReset _petraBossLevelReset;
-    [SerializeField] private BossLevelReset _sriBossLevelReset;
     [SerializeField] private Button _retryButton;
-    [SerializeField] private EnumId _gameViewId;
     [SerializeField] private UIPage _uiPage;    
     
-    private BossLevelReset _selectedBossLevelReset;
-
+    private GameStateService _gameStateService;
+    
     private void Awake()
     {
-        // This solve wierd null reference
-        _petraBossLevelReset.OnPlayerDeathByBoss += PetraBossLevelReset_OnPlayerDeathByBoss;
-        _sriBossLevelReset.OnPlayerDeathByBoss += PetraBossLevelReset_OnPlayerDeathByBoss;
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _gameStateService[GameState.GameOver].onEnter += GameStateGameOver_OnEnter;
+        _gameStateService[GameState.GameOver].onExit += GameStateGameOver_OnExit;
+
+        _retryButton.onClick.AddListener(SetGamteStateToGameplay);
         
         gameObject.SetActive(false);
     }
 
-    private void PetraBossLevelReset_OnPlayerDeathByBoss(BossLevelReset bossLevelReset)
+    private void GameStateGameOver_OnEnter(GameState state)
     {
         gameObject.SetActive(true);
-
-        _selectedBossLevelReset = bossLevelReset;
-
-        _retryButton.onClick.RemoveAllListeners();
-        _retryButton.onClick.AddListener(ResetSelectedBossLevel);
     }
 
-    private void ResetSelectedBossLevel()
+    private void GameStateGameOver_OnExit(GameState state)
     {
-        _selectedBossLevelReset.ResetLevel();
-
         gameObject.SetActive(false);
+    }
+
+    private void SetGamteStateToGameplay()
+    {
+        _gameStateService.SetState(GameState.Gameplay);
     }
 
 
