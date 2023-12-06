@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
-using CustomTools.Core;
 using Core;
 using Demyth.Gameplay;
-using UnityEditor.ShortcutManagement;
 
-public class PetraCombatBehaviorNew : MonoBehaviour
+public class PetraCombatBehaviour : MonoBehaviour
 {
     
     private enum Ability 
@@ -16,7 +14,7 @@ public class PetraCombatBehaviorNew : MonoBehaviour
     private enum CombatMode 
     { FirstPhase, SecondPhase, AbilityLoop }
 
-    [SerializeField] private bool _combatMode;
+    [SerializeField] private bool _combatOnEnable;
     [SerializeField] private int _phaseTwoHPTreshold;
     [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
     [SerializeField, EnumToggleButtons] private Ability _loopAbility;
@@ -72,10 +70,16 @@ public class PetraCombatBehaviorNew : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_combatMode)
+        if (_combatOnEnable)
         {
             StartCoroutine(StartCombatIntro());
         }
+    }
+
+    public void ResetUnitCondition()
+    {
+        _selectedCombatMode = CombatMode.FirstPhase;
+        _health.ResetHealthToMaximum();
     }
 
     private IEnumerator StartCombatIntro()
@@ -87,9 +91,6 @@ public class PetraCombatBehaviorNew : MonoBehaviour
 
     private void UpdateCombatMode()
     {
-        if (!_combatMode)
-            return;
-
         if (_currentCombatMode != _selectedCombatMode)
         {
             _currentCombatMode = _selectedCombatMode;

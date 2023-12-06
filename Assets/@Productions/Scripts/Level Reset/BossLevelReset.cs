@@ -11,11 +11,11 @@ public class BossLevelReset : MonoBehaviour
     [SerializeField] private GameObject _bossIdlePrefab;
     [SerializeField] private GameObject _invisibleDialogueTriggerPrefab;
     [Space]
-    [SerializeField] private Vector3 _playerDefaultPosition;
-    [SerializeField] private Vector3 _npcBossDefaultPosition;
+    [SerializeField] private Vector3 _playerResetPosition;
+    [SerializeField] private Vector3 _npcBossResetPosition;
     private Player _player;
     private Health _playerHealth;
-    private Health _bossHealth;
+    private PetraCombatBehaviour _petraCombatBehaviour;
     private GameStateService _gameStateService;
     
     private void Awake()
@@ -23,7 +23,7 @@ public class BossLevelReset : MonoBehaviour
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
-        _bossHealth = _bossComabatModePrefab.GetComponent<Health>();
+        _petraCombatBehaviour = _bossComabatModePrefab.GetComponent<PetraCombatBehaviour>();
     }
 
     private void OnEnable()
@@ -61,16 +61,16 @@ public class BossLevelReset : MonoBehaviour
         _player.gameObject.SetActive(true);
         _player.ResetPlayerCondition();
 
-        _bossHealth.ResetHealthToMaximum();
-
         ResetUnitPosition();
         ResetActiveState();
+
+        _petraCombatBehaviour.ResetUnitCondition();
     }
 
     private void ResetUnitPosition()
     {
-        _player.transform.position = _playerDefaultPosition;
-        _bossComabatModePrefab.transform.position = _npcBossDefaultPosition;
+        _player.transform.position = _playerResetPosition;
+        _bossComabatModePrefab.transform.position = _npcBossResetPosition;
     }
 
     private void ResetActiveState()
