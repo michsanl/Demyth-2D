@@ -12,13 +12,11 @@ public class PetraPreCombatCutscene : MonoBehaviour
 {
     
     [SerializeField] private float _firstCutsceneStartDelay;
-    [SerializeField] private float _cameraMoveUpDuration;
     [SerializeField] private float _secondCutsceneStartDelay;
     [Space]
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private GameObject _petraCombatGameObject;
-    [SerializeField] private GameObject _petraIdleGameObject;
+    [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
 
     private GameStateService _gameStateService;
     private Player _player;
@@ -44,32 +42,33 @@ public class PetraPreCombatCutscene : MonoBehaviour
 
     private IEnumerator StartPreDialogueCutscene()
     {
+        // SEQUENCE 1
+        // disable player input
         _gameStateService.SetState(GameState.Cutscene);
-        // TIMELINE 1
         yield return new WaitForSeconds(_firstCutsceneStartDelay);
 
-        // TIMELINE 2
+        // SEQUENCE 2
         // move camera up
-        _cameraTransform.DOMoveY(10, 1f).SetEase(Ease.InOutCubic);
-        yield return new WaitForSeconds(_cameraMoveUpDuration);
+        yield return _cameraTransform.DOMoveY(10, 1f).SetEase(Ease.InOutCubic).WaitForCompletion();
         
-        // TIMELINE 3
+        // SEQUENCE 3
         // initiate dialogue
         _dialogueSystemTrigger.OnUse();
     }
 
     private IEnumerator StartPostDialogueCutscene()
     {
-        // TIMELINE 4
+        // SEQUENCE 4
         yield return new WaitForSeconds(_secondCutsceneStartDelay);
 
-        // TIMELINE 5
+        // SEQUENCE 5
         // disable petra idle
         // enable petra combat
         // move camera down
-        // disable cutscene
-        _petraIdleGameObject.SetActive(false);
-        _petraCombatGameObject.SetActive(true);
+        // enable player input
+        // give ara pan
+        // disable cutscene object
+        _petraCombatBehaviour.InitiateCombatMode();
         _cameraTransform.DOMoveY(0, 1f).SetEase(Ease.InOutQuad);
         _gameStateService.SetState(GameState.Gameplay);
         _player.UsePan = true;
