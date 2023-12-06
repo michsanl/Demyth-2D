@@ -9,9 +9,9 @@ using MoreMountains.Tools;
 public class PetraAbilityChargeAttack : MonoBehaviour
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
+    [SerializeField] private float _frontSwingDuration = 0.6617f;
+    [SerializeField] private float _swingDuration = 0.485f;
+    [SerializeField] private float _backSwingDuration = 0.397f;
     
     [Title("Components")]
     [SerializeField] private GameObject groundCoffinAOE;
@@ -23,12 +23,12 @@ public class PetraAbilityChargeAttack : MonoBehaviour
         animator.Play(CHARGE_ATTACK);
         PlayAudio(abilitySFX);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         Instantiate(groundCoffinAOE, transform.position, Quaternion.identity);
 
-        yield return Helper.GetWaitForSeconds(swingDuration);
+        yield return Helper.GetWaitForSeconds(_swingDuration);
 
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_backSwingDuration);
     }
 
     private void PlayAudio(AudioClip abilitySFX)

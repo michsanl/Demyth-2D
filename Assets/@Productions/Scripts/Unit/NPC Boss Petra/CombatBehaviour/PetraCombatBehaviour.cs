@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
-using CustomTools.Core;
 using Core;
 using Demyth.Gameplay;
-using UnityEditor.ShortcutManagement;
 
-public class PetraCombatBehaviorNew : MonoBehaviour
+public class PetraCombatBehaviour : MonoBehaviour
 {
     
     private enum Ability 
@@ -16,7 +14,7 @@ public class PetraCombatBehaviorNew : MonoBehaviour
     private enum CombatMode 
     { FirstPhase, SecondPhase, AbilityLoop }
 
-    [SerializeField] private bool _combatMode;
+    [SerializeField] private bool _combatOnEnable;
     [SerializeField] private int _phaseTwoHPTreshold;
     [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
     [SerializeField, EnumToggleButtons] private Ability _loopAbility;
@@ -72,17 +70,33 @@ public class PetraCombatBehaviorNew : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_combatMode)
+        if (_combatOnEnable)
         {
-            ActivateSelectedCombatMode();
+            StartCoroutine(StartCombatIntro());
         }
+    }
+
+    public void ResetUnitCondition()
+    {
+        _selectedCombatMode = CombatMode.FirstPhase;
+        // there is a case where Health is not set from Awake
+        GetComponent<Health>().ResetHealthToMaximum();
+    }
+
+    public void PlayReviveAnimation()
+    {
+        _animator.Play("Revive");
+    }
+
+    private IEnumerator StartCombatIntro()
+    {
+        yield return StartCoroutine(StartJumpSlamToMiddleArena());
+
+        ActivateSelectedCombatMode();
     }
 
     private void UpdateCombatMode()
     {
-        if (!_combatMode)
-            return;
-
         if (_currentCombatMode != _selectedCombatMode)
         {
             _currentCombatMode = _selectedCombatMode;
@@ -259,7 +273,12 @@ public class PetraCombatBehaviorNew : MonoBehaviour
     
     private IEnumerator StartJumpSlamAbility()
     {
-        yield return _jumpSlamAbility.JumpSlam(_player, _animator, _petraAudioSO.JumpSlam);
+        yield return _jumpSlamAbility.JumpSlam(_player.LastMoveTargetPosition, _animator, _petraAudioSO.JumpSlam);
+    }
+    
+    private IEnumerator StartJumpSlamToMiddleArena()
+    {
+        yield return _jumpSlamAbility.JumpSlam(new Vector2(0, -1), _animator, _petraAudioSO.JumpSlam);
     }
     
     private IEnumerator StartBasicSlamAbility()

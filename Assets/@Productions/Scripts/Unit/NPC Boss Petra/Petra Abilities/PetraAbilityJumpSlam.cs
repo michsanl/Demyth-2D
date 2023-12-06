@@ -10,9 +10,9 @@ using MoreMountains.Tools;
 public class PetraAbilityJumpSlam : MonoBehaviour
 {
     [Title("Animation Timeline")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
+    [SerializeField] private float _frontSwingDuration = 0.41f;
+    [SerializeField] private float _swingDuration = 0.3f;
+    [SerializeField] private float _backSwingDuration = 1f;
     
     [Title("Jump Parameter")]
     [SerializeField] private float jumpPower;
@@ -23,19 +23,18 @@ public class PetraAbilityJumpSlam : MonoBehaviour
 
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpSlam(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator JumpSlam(Vector2 targetPosition, Animator animator, AudioClip abilitySFX)
     {
         animator.Play(JUMP_SLAM);
         PlayAudio(abilitySFX);
-        Vector3 targetPosition = player.LastMoveTargetPosition;
         
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_frontSwingDuration);
 
-        yield return transform.DOJump(targetPosition, jumpPower, 1, swingDuration).SetEase(jumpCurve).WaitForCompletion();
+        yield return transform.DOJump(targetPosition, jumpPower, 1, _swingDuration).SetEase(jumpCurve).WaitForCompletion();
 
         jumpSlamCollider.SetActive(true);
 
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_backSwingDuration);
 
         jumpSlamCollider.SetActive(false);
     }

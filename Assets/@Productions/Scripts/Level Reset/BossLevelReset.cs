@@ -2,6 +2,7 @@ using System;
 using Core;
 using Demyth.Gameplay;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 
 public class BossLevelReset : MonoBehaviour
 {
@@ -9,13 +10,13 @@ public class BossLevelReset : MonoBehaviour
 
     [SerializeField] private GameObject _bossComabatModePrefab;
     [SerializeField] private GameObject _bossIdlePrefab;
-    [SerializeField] private GameObject _invisibleDialogueTriggerPrefab;
+    [SerializeField] private GameObject _preCombatCutsceneGameObject;
     [Space]
-    [SerializeField] private Vector3 _playerDefaultPosition;
-    [SerializeField] private Vector3 _npcBossDefaultPosition;
+    [SerializeField] private Vector3 _playerResetPosition;
+    [SerializeField] private Vector3 _npcBossResetPosition;
     private Player _player;
     private Health _playerHealth;
-    private Health _bossHealth;
+    private PetraCombatBehaviour _petraCombatBehaviour;
     private GameStateService _gameStateService;
     
     private void Awake()
@@ -23,13 +24,18 @@ public class BossLevelReset : MonoBehaviour
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
-        _bossHealth = _bossComabatModePrefab.GetComponent<Health>();
+        _petraCombatBehaviour = _bossComabatModePrefab.GetComponent<PetraCombatBehaviour>();
     }
 
     private void OnEnable()
     {
         _gameStateService[GameState.Gameplay].onEnter += GameStateGamePlay_OnEnter;
         _playerHealth.OnDeath += PlayerHealth_OnDeath;
+
+        if (!IsLevelCompleted())
+        {
+            ResetLevel();
+        }
     }
 
     private void OnDisable() 
@@ -61,23 +67,28 @@ public class BossLevelReset : MonoBehaviour
         _player.gameObject.SetActive(true);
         _player.ResetPlayerCondition();
 
-        _bossHealth.ResetHealthToMaximum();
-
         ResetUnitPosition();
         ResetActiveState();
+
+        _petraCombatBehaviour.ResetUnitCondition();
     }
 
     private void ResetUnitPosition()
     {
-        _player.transform.position = _playerDefaultPosition;
-        _bossComabatModePrefab.transform.position = _npcBossDefaultPosition;
+        _player.transform.position = _playerResetPosition;
+        _bossComabatModePrefab.transform.position = _npcBossResetPosition;
     }
 
     private void ResetActiveState()
     {
         _bossIdlePrefab.SetActive(true);
-        _invisibleDialogueTriggerPrefab.SetActive(true);
+        _preCombatCutsceneGameObject.SetActive(true);
         
         _bossComabatModePrefab.SetActive(false);
+    }
+
+    private static bool IsLevelCompleted()
+    {
+        return DialogueLua.GetVariable("Level_4_Done").AsBool;
     }
 }

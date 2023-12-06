@@ -9,9 +9,9 @@ using MoreMountains.Tools;
 public class PetraAbilitySpinAttack : MonoBehaviour
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
+    [SerializeField] private float _frontSwingDuration = 0.45f;
+    [SerializeField] private float _swingDuration = 0.55f;
+    [SerializeField] private float _backSwingDuration = 0.75f;
     
     [Title("Components")]
     [SerializeField] private GameObject spinAttackCollider;
@@ -23,13 +23,13 @@ public class PetraAbilitySpinAttack : MonoBehaviour
         animator.Play(SPIN_ATTACK);
         PlayAudio(abilitySFX);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         spinAttackCollider.SetActive(true);
 
-        yield return Helper.GetWaitForSeconds(swingDuration);
+        yield return Helper.GetWaitForSeconds(_swingDuration);
         spinAttackCollider.SetActive(false);
 
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_backSwingDuration);
     }
 
     private void PlayAudio(AudioClip abilitySFX)

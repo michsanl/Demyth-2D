@@ -9,9 +9,9 @@ using MoreMountains.Tools;
 public class PetraAbilityHorizontalCharge : MonoBehaviour
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
+    [SerializeField] private float _frontSwingDuration = 0.175f;
+    [SerializeField] private float _swingDuration = 1.225f;
+    [SerializeField] private float _backSwingDuration = 0.35f;
     [SerializeField] private LayerMask moveBlockLayerMask;
     [SerializeField] private AnimationCurve animationCurve;
     
@@ -39,13 +39,13 @@ public class PetraAbilityHorizontalCharge : MonoBehaviour
         animator.Play(HORIZONTAL_CHARGE);
         PlayAudio(abilitySFX);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         horizontalChargeCollider.SetActive(true);
 
-        yield return transform.DOMoveX(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        yield return transform.DOMoveX(finalTargetPosition, _swingDuration).SetEase(animationCurve).WaitForCompletion();
         horizontalChargeCollider.SetActive(false);
 
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_backSwingDuration);
     }
 
     private void PlayAudio(AudioClip abilitySFX)
