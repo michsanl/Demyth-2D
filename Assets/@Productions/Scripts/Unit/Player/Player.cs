@@ -16,6 +16,15 @@ public class Player : MonoBehaviour, IBroadcaster
     public Vector2 LastMoveTargetPosition => _moveTargetPosition;
     public Vector2 PlayerDir => _playerDir;
     public bool IsDead => _isDead;
+    public bool UsePan 
+    {
+        get => _usePan;
+        set
+        {
+            _usePan = value;
+            animator.SetBool("UsePan", value);
+        }
+    }
 
     [Title("Settings")]
     [SerializeField] private float actionDuration;
@@ -42,6 +51,7 @@ public class Player : MonoBehaviour, IBroadcaster
     private bool _isKnocked;
     private bool _isTakeDamageOnCooldown;
     private bool _isSenterEnabled;
+    private bool _usePan;
     private bool _isSenterUnlocked = true;
     private bool _isHealthPotionUnlocked = true;
 
@@ -90,7 +100,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _gameInput.OnHealthPotionPerformed.RemoveListener(GameInput_OnHealthPotionPerformed);
     }
 
-    public void ResetPlayerCondition()
+    public void ResetUnitCondition()
     {
         _isDead = false;
         _isBusy = false;

@@ -21,10 +21,12 @@ public class PetraPreCombatCutscene : MonoBehaviour
     [SerializeField] private GameObject _petraIdleGameObject;
 
     private GameStateService _gameStateService;
+    private Player _player;
 
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -70,6 +72,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
         _petraCombatGameObject.SetActive(true);
         _cameraTransform.DOMoveY(0, 1f).SetEase(Ease.InOutQuad);
         _gameStateService.SetState(GameState.Gameplay);
+        _player.UsePan = true;
         gameObject.SetActive(false);
     }
 }
