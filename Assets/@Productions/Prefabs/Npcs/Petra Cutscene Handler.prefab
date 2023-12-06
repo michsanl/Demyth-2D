@@ -52,10 +52,10 @@ MonoBehaviour:
   _firstCutsceneStartDelay: 0.3
   _cameraMoveUpDuration: 1
   _secondCutsceneStartDelay: 1
-  _mmfPlayerCameraMoveUp: {fileID: 622663221835220606}
-  _mmfPlayerCameraMoveDown: {fileID: 7260333644287400216}
   _dialogueSystemTrigger: {fileID: 27248778500891450}
+  _cameraTransform: {fileID: 0}
   _petraCombatGameObject: {fileID: 0}
+  _petraIdleGameObject: {fileID: 0}
 --- !u!114 &27248778500891450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,19 +161,7 @@ MonoBehaviour:
         m_Calls: []
     onConversationEnd:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 662083689773505421}
-          m_TargetAssemblyTypeName: Cutscene, Assembly-CSharp
-          m_MethodName: StartPostDialogueCutscene
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     runOnConversationEndEventsAtEndOfFrame: 0
     onConversationCancelled:
       m_PersistentCalls:

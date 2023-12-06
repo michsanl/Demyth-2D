@@ -9,7 +9,7 @@ public class BossLevelReset : MonoBehaviour
 
     [SerializeField] private GameObject _bossComabatModePrefab;
     [SerializeField] private GameObject _bossIdlePrefab;
-    [SerializeField] private GameObject _invisibleDialogueTriggerPrefab;
+    [SerializeField] private GameObject _preCombatCutsceneGameObject;
     [Space]
     [SerializeField] private Vector3 _playerResetPosition;
     [SerializeField] private Vector3 _npcBossResetPosition;
@@ -76,7 +76,7 @@ public class BossLevelReset : MonoBehaviour
     private void ResetActiveState()
     {
         _bossIdlePrefab.SetActive(true);
-        _invisibleDialogueTriggerPrefab.SetActive(true);
+        _preCombatCutsceneGameObject.SetActive(true);
         
         _bossComabatModePrefab.SetActive(false);
     }

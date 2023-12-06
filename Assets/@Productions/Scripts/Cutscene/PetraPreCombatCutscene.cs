@@ -5,36 +5,44 @@ using UnityEngine;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 using MoreMountains.Feedbacks;
+using Demyth.Gameplay;
+using Core;
 
-public class PetraCutscene : MonoBehaviour
+public class PetraPreCombatCutscene : MonoBehaviour
 {
     
     [SerializeField] private float _firstCutsceneStartDelay;
     [SerializeField] private float _cameraMoveUpDuration;
     [SerializeField] private float _secondCutsceneStartDelay;
     [Space]
-    [SerializeField] private MMF_Player _mmfPlayerCameraMoveUp;
-    [SerializeField] private MMF_Player _mmfPlayerCameraMoveDown;
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private GameObject _petraCombatGameObject;
     [SerializeField] private GameObject _petraIdleGameObject;
 
+    private GameStateService _gameStateService;
+
+    private void Awake()
+    {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+    }
+
     private void OnCollisionEnter(Collision other) 
     {
         if (other.collider.CompareTag("Player"))
         {
-            StartCoroutine(StartFirstCutsceneSequence());
+            StartCoroutine(StartPreDialogueCutscene());
         }
     }
 
-    public void StartPostDialogueCutscene()
+    public void OnConversationEnd()
     {
-        StartCoroutine(StartSecondCutsceneSequence());
+        StartCoroutine(StartPostDialogueCutscene());
     }
 
-    private IEnumerator StartFirstCutsceneSequence()
+    private IEnumerator StartPreDialogueCutscene()
     {
+        _gameStateService.SetState(GameState.Cutscene);
         // TIMELINE 1
         yield return new WaitForSeconds(_firstCutsceneStartDelay);
 
@@ -48,7 +56,7 @@ public class PetraCutscene : MonoBehaviour
         _dialogueSystemTrigger.OnUse();
     }
 
-    private IEnumerator StartSecondCutsceneSequence()
+    private IEnumerator StartPostDialogueCutscene()
     {
         // TIMELINE 4
         yield return new WaitForSeconds(_secondCutsceneStartDelay);
@@ -61,6 +69,7 @@ public class PetraCutscene : MonoBehaviour
         _petraIdleGameObject.SetActive(false);
         _petraCombatGameObject.SetActive(true);
         _cameraTransform.DOMoveY(0, 1f).SetEase(Ease.InOutQuad);
+        _gameStateService.SetState(GameState.Gameplay);
         gameObject.SetActive(false);
     }
 }

@@ -82,6 +82,11 @@ public class PetraCombatBehaviour : MonoBehaviour
         _health.ResetHealthToMaximum();
     }
 
+    public void PlayReviveAnimation()
+    {
+        _animator.Play("Revive");
+    }
+
     private IEnumerator StartCombatIntro()
     {
         yield return StartCoroutine(StartJumpSlamToMiddleArena());
