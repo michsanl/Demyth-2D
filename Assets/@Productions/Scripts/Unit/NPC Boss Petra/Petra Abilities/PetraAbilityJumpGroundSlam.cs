@@ -9,9 +9,9 @@ using MoreMountains.Tools;
 public class PetraAbilityJumpGroundSlam : MonoBehaviour
 {
     [Title("Animation Timeline")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
+    [SerializeField] private float _frontSwingDuration = 0.41f;
+    [SerializeField] private float _swingDuration = 0.3f;
+    [SerializeField] private float _backSwingDuration = 1f;
     
     [Title("Jump Parameter")]
     [SerializeField] private float jumpPower;
@@ -29,14 +29,14 @@ public class PetraAbilityJumpGroundSlam : MonoBehaviour
         PlayAudio(abilitySFX);
         Vector3 jumpTargetPosition = new Vector3(0, -1, 0);
         
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_frontSwingDuration);
 
-        yield return transform.DOJump(jumpTargetPosition, jumpPower, 1, swingDuration).SetEase(jumpCurve).WaitForCompletion();
+        yield return transform.DOJump(jumpTargetPosition, jumpPower, 1, _swingDuration).SetEase(jumpCurve).WaitForCompletion();
 
         jumpSlamCollider.SetActive(true);
         Instantiate(groundSlamCoffin, transform.position, Quaternion.identity);
 
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_backSwingDuration);
 
         jumpSlamCollider.SetActive(false);
     }

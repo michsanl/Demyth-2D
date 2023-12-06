@@ -10,9 +10,9 @@ using Core;
 public class PetraAbilityBasicSlam : MonoBehaviour
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
+    [SerializeField] private float _frontSwingDuration = 0.5f;
+    [SerializeField] private float _swingDuration = 0.417f;
+    [SerializeField] private float _backSwingDuration = 0.333f;
     
     [Title("Components")]
     [SerializeField] private GameObject basicSlamCollider;
@@ -27,15 +27,15 @@ public class PetraAbilityBasicSlam : MonoBehaviour
         
         var coffinSpawnPosition = player.LastMoveTargetPosition;
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         Instantiate(groundCoffin, coffinSpawnPosition, Quaternion.identity);
         basicSlamCollider.SetActive(true);
 
-        yield return Helper.GetWaitForSeconds(swingDuration);
+        yield return Helper.GetWaitForSeconds(_swingDuration);
 
         basicSlamCollider.SetActive(false);
 
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_backSwingDuration);
     }
 
     private void PlayAudio(AudioClip abilitySFX)
