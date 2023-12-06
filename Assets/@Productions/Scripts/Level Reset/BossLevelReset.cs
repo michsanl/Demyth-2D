@@ -2,6 +2,7 @@ using System;
 using Core;
 using Demyth.Gameplay;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 
 public class BossLevelReset : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class BossLevelReset : MonoBehaviour
     {
         _gameStateService[GameState.Gameplay].onEnter += GameStateGamePlay_OnEnter;
         _playerHealth.OnDeath += PlayerHealth_OnDeath;
+
+        if (!IsLevelCompleted())
+        {
+            ResetLevel();
+        }
     }
 
     private void OnDisable() 
@@ -79,5 +85,10 @@ public class BossLevelReset : MonoBehaviour
         _preCombatCutsceneGameObject.SetActive(true);
         
         _bossComabatModePrefab.SetActive(false);
+    }
+
+    private static bool IsLevelCompleted()
+    {
+        return DialogueLua.GetVariable("Level_4_Done").AsBool;
     }
 }

@@ -79,7 +79,8 @@ public class PetraCombatBehaviour : MonoBehaviour
     public void ResetUnitCondition()
     {
         _selectedCombatMode = CombatMode.FirstPhase;
-        _health.ResetHealthToMaximum();
+        // there is a case where Health is not set from Awake
+        GetComponent<Health>().ResetHealthToMaximum();
     }
 
     public void PlayReviveAnimation()
