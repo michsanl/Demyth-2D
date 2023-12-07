@@ -32,5 +32,13 @@ namespace UISystem
 
             _gameStateService?.SetState(GameState.Gameplay);
         }
+
+        public void ButtonContinue()
+        {
+            SaveSystem.LoadFromSlot(1);
+            _uiPage.OpenPage(gameViewId);
+
+            _gameStateService?.SetState(GameState.Gameplay);
+        }
     }
 }

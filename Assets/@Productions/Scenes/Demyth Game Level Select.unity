@@ -161,6 +161,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 157309381147513584, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 739502888847507981, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: cameraGO
       value: 
@@ -217,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1991120468320084421, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2207895738390530487, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: managedReferences[2969444582531268614].AnimatePositionTarget
       value: 
@@ -229,6 +237,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2970449721645904967, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: BoxResetPositionArray.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3246664193529987533, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: _cameraTransform
       value: 
@@ -237,6 +249,10 @@ PrefabInstance:
       propertyPath: cameraNormal
       value: 
       objectReference: {fileID: 1653471101}
+    - target: {fileID: 3387277972971125636, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_key
+      value: MultiActiveSaver_110344
+      objectReference: {fileID: 0}
     - target: {fileID: 3407995474370650031, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -249,6 +265,18 @@ PrefabInstance:
       propertyPath: cameraNormal
       value: 
       objectReference: {fileID: 1653471101}
+    - target: {fileID: 4579601634892631065, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: conversation
+      value: Level 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646054346686707865, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973234842480106759, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5009176301476540126, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: cameraGO
       value: 
@@ -257,6 +285,10 @@ PrefabInstance:
       propertyPath: cameraNormal
       value: 
       objectReference: {fileID: 1653471101}
+    - target: {fileID: 7186460242710890279, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7208789004158171563, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1961,8 +1993,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747661088}
-  - component: {fileID: 1747661087}
-  - component: {fileID: 1747661086}
   - component: {fileID: 1747661089}
   m_Layer: 0
   m_Name: Player Saver
@@ -1971,42 +2001,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1747661086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747661085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7f30f54c7324264fbf3118d50e97684, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_key: PlayerSaver_706574
-  m_appendSaverTypeToKey: 0
-  m_saveAcrossSceneChanges: 1
-  m_restoreStateOnStart: 0
-  m_target: {fileID: 1360282043}
---- !u!114 &1747661087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747661085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af33a602e20a3d4ca46c8a6ef942618, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_key: PlayerSaver_706482
-  m_appendSaverTypeToKey: 0
-  m_saveAcrossSceneChanges: 1
-  m_restoreStateOnStart: 0
-  m_target: {fileID: 1943620913}
-  m_usePlayerSpawnpoint: 0
-  m_multiscene: 0
 --- !u!4 &1747661088
 Transform:
   m_ObjectHideFlags: 0
@@ -2031,14 +2025,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1747661085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74c30c109de697c4c8fa38395fef35a2, type: 3}
+  m_Script: {fileID: 11500000, guid: e3ce707bf69a30a41ba76fa9297cc722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_key: PlayerSaver_729148
+  m_key: PlayerSaver_322518
   m_appendSaverTypeToKey: 0
   m_saveAcrossSceneChanges: 1
   m_restoreStateOnStart: 0
-  m_gameObjectToWatch: {fileID: 1943620904}
+  m_playerToWatch: {fileID: 1943620921}
+  m_playerModelToWatch: {fileID: 1360282043}
 --- !u!114 &1772624724 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1304331049781124498, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
@@ -2201,22 +2196,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8551962754239887419, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}
   m_PrefabInstance: {fileID: 8551962755590992943}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1943620904 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
-  m_PrefabInstance: {fileID: 892082783}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1943620913 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
-  m_PrefabInstance: {fileID: 892082783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1943620921 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
   m_PrefabInstance: {fileID: 892082783}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1943620904}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de7e28f2122297b4fa193e4768a22ef8, type: 3}

@@ -13,26 +13,37 @@ namespace Demyth.UI
 
         private void Start() 
         {
-            LevelReset.OnAnyRestartLevelEnabled += LevelReset_OnAnyRestartLevelEnabled;
-            LevelReset.OnAnyRestartLevelDisabled += LevelReset_OnAnyRestartLevelDisabled;
+            TuyulChaseCutscene.OnAnyTuyulLevelComplete += OnAnyTuyulLevelComplete;
+            TuyulChaseLevelReset.OnAnyTuyulLevelResetEnabled += OnAnyLevelResetEnabled;
+            TuyulChaseLevelReset.OnAnyTuyulLevelResetDisabled += OnAnyLevelResetDisabled;
+            LevelReset.OnAnyRestartLevelEnabled += OnAnyLevelResetEnabled;
+            LevelReset.OnAnyRestartLevelDisabled += OnAnyLevelResetDisabled;
 
             Hide();
         }
 
-        private void LevelReset_OnAnyRestartLevelEnabled()
+        private void OnAnyTuyulLevelComplete()
+        {
+            Hide();
+        }
+
+        private void OnAnyLevelResetEnabled()
         {
             Show();
         }
 
-        private void LevelReset_OnAnyRestartLevelDisabled()
+        private void OnAnyLevelResetDisabled()
         {
             Hide();
         }
 
         private void OnDestroy() 
         {
-            LevelReset.OnAnyRestartLevelEnabled -= LevelReset_OnAnyRestartLevelEnabled;
-            LevelReset.OnAnyRestartLevelDisabled -= LevelReset_OnAnyRestartLevelDisabled;
+            TuyulChaseCutscene.OnAnyTuyulLevelComplete -= OnAnyTuyulLevelComplete;
+            TuyulChaseLevelReset.OnAnyTuyulLevelResetEnabled -= OnAnyLevelResetEnabled;
+            TuyulChaseLevelReset.OnAnyTuyulLevelResetDisabled -= OnAnyLevelResetDisabled;
+            LevelReset.OnAnyRestartLevelEnabled -= OnAnyLevelResetEnabled;
+            LevelReset.OnAnyRestartLevelDisabled -= OnAnyLevelResetDisabled;
         }
 
         private void Show()
