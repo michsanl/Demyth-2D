@@ -30,7 +30,6 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private LayerMask moveBlockMask;
     
     [Title("Components")]
-    [SerializeField] private MMF_Player _hitFlashEffectMMFPlayer;
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
     [SerializeField] private AudioClipAraSO araAudioSO;
@@ -40,6 +39,7 @@ public class Player : MonoBehaviour, IBroadcaster
     private Health _health;
     private Shield _shield;
     private Lantern _lantern;
+    private FlashEffectController _flashEffectController;
     private Vector2 _playerDir;
     private Vector2 _moveTargetPosition;
     private bool _isDead;
@@ -60,6 +60,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _health = GetComponent<Health>();
         _shield = GetComponent<Shield>();
         _lantern = GetComponent<Lantern>();
+        _flashEffectController = GetComponent<FlashEffectController>();
 
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _gameInput = _gameInputController.GameInput;
@@ -217,9 +218,9 @@ public class Player : MonoBehaviour, IBroadcaster
         if (_health.CurrentHP <= 0)
             yield break;
 
-        _hitFlashEffectMMFPlayer.PlayFeedbacks();
         animator.SetTrigger("OnHit");
         damagedAnimator.Play("Ara_Damaged");
+        _flashEffectController.PlayFlashEffect();
 
         if (knockBackPlayer)
         {
