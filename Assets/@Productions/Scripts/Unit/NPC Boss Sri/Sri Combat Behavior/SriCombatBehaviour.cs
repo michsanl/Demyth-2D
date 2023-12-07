@@ -6,19 +6,19 @@ using Sirenix.OdinInspector;
 using Core;
 using Demyth.Gameplay;
 
-public class SriCombatBehaviorNew : MonoBehaviour
+public class SriCombatBehaviour : MonoBehaviour
 {
 
     private enum Ability
     { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
     VerticalNailWave, WaveOutNailWave, Teleport }
     private enum CombatMode 
-    { FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
+    { None, FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
 
 
-    [SerializeField] private bool _combatMode;
+    [SerializeField] private bool _combatOnEnable;
     [SerializeField] private int _phaseTwoHPThreshold;
-    [SerializeField, EnumToggleButtons] private CombatMode _selectCombatMode;
+    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
     [SerializeField, EnumToggleButtons, Space] private Ability _abilityLoop;
     [SerializeField] private GameObject[] _attackColliderArray;
     [SerializeField] private Animator _animator;
@@ -81,7 +81,32 @@ public class SriCombatBehaviorNew : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_combatMode)
+        if (_combatOnEnable)
+        {
+            StartCoroutine(StartCombatWithIntroMove());
+        }
+    }
+
+    public void InitiateCombatMode()
+    {
+        StartCoroutine(StartCombatWithIntroMove());
+    }
+
+    public void ResetUnitCondition()
+    {
+        _selectedCombatMode = CombatMode.None;
+        _health.ResetHealthToMaximum();
+    }
+
+    private IEnumerator StartCombatWithIntroMove()
+    {
+        yield return StartCoroutine(StartTeleportToMiddleArena());
+
+        if (_selectedCombatMode == CombatMode.None)
+        {
+            _selectedCombatMode = CombatMode.FirstPhase;
+        }
+        else
         {
             ActivateSelectedCombatMode();
         }
@@ -89,12 +114,9 @@ public class SriCombatBehaviorNew : MonoBehaviour
 
     private void UpdateCombatBehaviour()
     {
-        if (!_combatMode)
-            return;
-        
-        if (_currentCombatMode != _selectCombatMode)
+        if (_currentCombatMode != _selectedCombatMode)
         {
-            _currentCombatMode = _selectCombatMode;
+            _currentCombatMode = _selectedCombatMode;
             ActivateSelectedCombatMode();
         }
     }
@@ -114,28 +136,36 @@ public class SriCombatBehaviorNew : MonoBehaviour
         StartCoroutine(StartDeathSlashAbility());
     }
 
+    private IEnumerator StartPhaseTwo()
+    {
+        yield return StartCoroutine(StartWaveOutNailWaveAbility());
+        StartCoroutine(LoopCombatBehaviour(GetSecondPhaseAbility));
+    }
+
     private void ActivateSelectedCombatMode()
     {
         StopCurrentAbility();
 
-        switch (_selectCombatMode)
+        switch (_selectedCombatMode)
         {
+            case CombatMode.None:
+                break;
             case CombatMode.FirstPhase:
-                StartCoroutine(LoopCombatBehavior(GetFirstPhaseAbility));
+                StartCoroutine(LoopCombatBehaviour(GetFirstPhaseAbility));
                 break;
             case CombatMode.SecondPhase:
-                StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
+                StartCoroutine(LoopCombatBehaviour(GetSecondPhaseAbility));
                 break;
             case CombatMode.OldFirstPhase:
-                StartCoroutine(LoopCombatBehavior(GetOldFirstPhaseAbility));
+                StartCoroutine(LoopCombatBehaviour(GetOldFirstPhaseAbility));
                 break;
             case CombatMode.AbilityLoop:
-                StartCoroutine(LoopCombatBehavior(GetAbilityTesterAbility));
+                StartCoroutine(LoopCombatBehaviour(GetAbilityTesterAbility));
                 break;
         }
     }
 
-    private IEnumerator LoopCombatBehavior(Func<IEnumerator> getAbility)
+    private IEnumerator LoopCombatBehaviour(Func<IEnumerator> getAbility)
     {
         if (_player.IsDead)
             yield break;
@@ -143,7 +173,7 @@ public class SriCombatBehaviorNew : MonoBehaviour
         IEnumerator ability = getAbility();
         SetFacingDirection();
         yield return StartCoroutine(ability);
-        StartCoroutine(LoopCombatBehavior(getAbility));
+        StartCoroutine(LoopCombatBehaviour(getAbility));
     }
     
     private IEnumerator GetOldFirstPhaseAbility()
@@ -174,7 +204,7 @@ public class SriCombatBehaviorNew : MonoBehaviour
 
     private IEnumerator GetFirstPhaseAbility()
     {
-        if (UnityEngine.Random.Range(0, 2) == 0)
+        if (UnityEngine.Random.Range(0, 3) == 0)
         {
             return StartTeleportAbility();
         }
@@ -305,17 +335,17 @@ public class SriCombatBehaviorNew : MonoBehaviour
         yield return _teleportAbility.Teleport(_player, _animator);
     }
 
+    private IEnumerator StartTeleportToMiddleArena()
+    {
+        yield return _teleportAbility.Teleport(new Vector3(0, 1, 0), _animator);
+    }
+
     private IEnumerator StartDeathSlashAbility()
     {
         yield return _deathSlashAbility.DeathSlash(_animator, _sriAudioSO.NailAOE, _sriAudioSO.VerticalSlash);
     }
 
 
-    private IEnumerator StartPhaseTwo()
-    {
-        yield return StartCoroutine(StartWaveOutNailWaveAbility());
-        StartCoroutine(LoopCombatBehavior(GetSecondPhaseAbility));
-    }
 
     private void IncreaseMeleeAbilityCounter()
     {

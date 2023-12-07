@@ -8,6 +8,7 @@ using PixelCrushers;
 public class BossLevelReset : MonoBehaviour
 {
 
+    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
     [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
     private Player _player;
     private Health _playerHealth;
@@ -52,7 +53,8 @@ public class BossLevelReset : MonoBehaviour
         // Load from SaveSystem to reset object position & active state
 
         _player.ResetUnitCondition();
-        _petraCombatBehaviour.ResetUnitCondition();
+        _petraCombatBehaviour?.ResetUnitCondition();
+        _sriCombatBehaviour?.ResetUnitCondition();
 
         SaveSystem.LoadFromSlot(1);
     }

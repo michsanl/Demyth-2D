@@ -68,6 +68,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 739502889203897325}
     m_Modifications:
+    - target: {fileID: 5348345865983185714, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712613030700758700, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5805886074711020472, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_Name
       value: Level 5
@@ -696,6 +704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3950425682911972925, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9150947875395577146, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -710,6 +722,16 @@ GameObject:
 --- !u!4 &2084580017448373031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1634480723337629033, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+  m_PrefabInstance: {fileID: 739502890307028558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4364417740984604382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3950425681509011600, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+  m_PrefabInstance: {fileID: 739502890307028558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6719343423632465996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6304154146750096898, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
   m_PrefabInstance: {fileID: 739502890307028558}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &739502890492602445
@@ -884,6 +906,10 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 8246611757313473806}
+    - target: {fileID: 958939465596498471, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_target
+      value: 
+      objectReference: {fileID: 4364417740984604382}
     - target: {fileID: 4758935700749958546, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.size
       value: 3
@@ -920,6 +946,14 @@ PrefabInstance:
       propertyPath: m_gameObjectsToWatch.Array.data[2]
       value: 
       objectReference: {fileID: 2213005658961562274}
+    - target: {fileID: 6873141825197787408, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectsToWatch.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873141825197787408, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectsToWatch.Array.data[0]
+      value: 
+      objectReference: {fileID: 6719343423632465996}
     - target: {fileID: 7442788156419051191, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.data[0]
       value: 
