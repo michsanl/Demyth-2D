@@ -10,9 +10,6 @@ using MoreMountains.Feedbacks;
 
 public class Player : MonoBehaviour, IBroadcaster
 {
-    public Action OnInvulnerableVisualStart;
-    public Action OnInvulnerableVisualEnd;
-    public Action<bool> OnSenterToggle;
     public Vector2 LastMoveTargetPosition => _moveTargetPosition;
     public Vector2 PlayerDir => _playerDir;
     public bool IsDead => _isDead;
@@ -37,22 +34,20 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
     [SerializeField] private AudioClipAraSO araAudioSO;
-    [SerializeField] private GameObject senterGameObject;
-    [SerializeField] private GameObject hitEffect;
 
     private LookOrientation _lookOrientation;
     private HealthPotion _healthPotion;
     private Health _health;
     private Shield _shield;
+    private Lantern _lantern;
     private Vector2 _playerDir;
     private Vector2 _moveTargetPosition;
     private bool _isDead;
     private bool _isBusy;
     private bool _isKnocked;
     private bool _isTakeDamageOnCooldown;
-    private bool _isSenterEnabled;
     private bool _usePan;
-    private bool _isSenterUnlocked = true;
+    private bool _isLanternUnlocked = true;
     private bool _isHealthPotionUnlocked = true;
 
     private GameInputController _gameInputController;
@@ -64,6 +59,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _healthPotion = GetComponent<HealthPotion>();
         _health = GetComponent<Health>();
         _shield = GetComponent<Shield>();
+        _lantern = GetComponent<Lantern>();
 
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _gameInput = _gameInputController.GameInput;
@@ -109,7 +105,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _health.ResetHealthToMaximum();
         _shield.ResetShieldToMaximum();
         _healthPotion.ResetPotionToMax();
-        StartCoroutine(TurnOffSenter());
+        _lantern.TurnOffLantern();
     }
 
     public void ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
@@ -237,10 +233,10 @@ public class Player : MonoBehaviour, IBroadcaster
 
     private void GameInput_OnSenterPerformed()
     {
-        if (!_isSenterUnlocked)
+        if (!_isLanternUnlocked)
             return;
 
-        ToggleSenter();
+        _lantern.ToggleLantern(araAudioSO.Lantern);
     }
 
     private void GameInput_OnHealthPotionPerformed()
@@ -256,40 +252,6 @@ public class Player : MonoBehaviour, IBroadcaster
 
         PlayAudio(araAudioSO.Potion);
         _healthPotion.UsePotion();
-    }
-
-    private void ToggleSenter()
-    {
-        if (senterGameObject.activeInHierarchy)
-        {
-            StartCoroutine(TurnOffSenter());
-        }
-        else
-        {
-            StartCoroutine(TurnOnSenter());
-        }
-        PlayAudio(araAudioSO.Lantern);
-    }
-
-    private IEnumerator TurnOffSenter()
-    {
-        // Move the object away to trigger OnCollisonExit
-        senterGameObject.transform.localPosition = new Vector3(100, 100, 0);
-        yield return Helper.GetWaitForSeconds(0.05f);
-        senterGameObject.SetActive(false);
-        _isSenterEnabled = false;
-
-        OnSenterToggle?.Invoke(_isSenterEnabled);
-    }
-
-    private IEnumerator TurnOnSenter()
-    {
-        senterGameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
-        yield return Helper.GetWaitForSeconds(0.05f);
-        senterGameObject.SetActive(true);
-        _isSenterEnabled = true;
-        
-        OnSenterToggle?.Invoke(_isSenterEnabled);
     }
 
     private IEnumerator HandleKnockBack(Vector2 targetPosition)
@@ -308,13 +270,6 @@ public class Player : MonoBehaviour, IBroadcaster
         playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
 
         MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
-    }
-    
-    public void ActivatePlayer()
-    {
-        gameObject.SetActive(true);
-        _isBusy = false;
-        _isKnocked = false;
     }
 
     private Vector2 GetMoveTargetPosition()

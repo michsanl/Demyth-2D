@@ -227,11 +227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1991120468320084421, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2084580017448373030, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2207895738390530487, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: managedReferences[2969444582531268614].AnimatePositionTarget
@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: cameraNormal
       value: 
       objectReference: {fileID: 1653471101}
+    - target: {fileID: 4267192960048533094, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4358472410955738896, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: _cameraTransform
       value: 
@@ -983,7 +987,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1538411941623662623, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: maxHealth
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name

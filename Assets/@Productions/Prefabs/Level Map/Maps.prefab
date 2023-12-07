@@ -198,6 +198,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 739502889203897325}
     m_Modifications:
+    - target: {fileID: 607385590276264818, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1083057257689935216, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_Name
       value: Level 4
@@ -250,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Petra Cutscene Handler
       objectReference: {fileID: 0}
+    - target: {fileID: 7635943837088204453, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7691413541213051095, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -278,6 +286,11 @@ Transform:
 --- !u!1 &2213005658961562274 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1510132072300972832, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+  m_PrefabInstance: {fileID: 739502888865874306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3215049836089518578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2800424501470488688, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
   m_PrefabInstance: {fileID: 739502888865874306}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3326042189353963784 stripped
@@ -932,7 +945,7 @@ PrefabInstance:
       objectReference: {fileID: 6607363323570562821}
     - target: {fileID: 4883761401182233973, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4883761401182233973, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.data[0]
@@ -945,7 +958,7 @@ PrefabInstance:
     - target: {fileID: 4883761401182233973, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.data[2]
       value: 
-      objectReference: {fileID: 2213005658961562274}
+      objectReference: {fileID: 3215049836089518578}
     - target: {fileID: 6873141825197787408, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.size
       value: 1

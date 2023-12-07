@@ -26,6 +26,7 @@ namespace Demyth.UI
         private HealthPotion _playerHealthPotion;
         private Health _playerHealth;
         private Shield _playerShield;
+        private Lantern _playerLantern;
 
         private float _yPositionAtZeroHealth;
         private float _yPositionAtZeroShield;
@@ -34,11 +35,23 @@ namespace Demyth.UI
         {
             // Signaler.Instance.Subscribe<PlayerSpawnEvent>(this, OnPlayerSpawned);
             // Signaler.Instance.Subscribe<PlayerDespawnEvent>(this, OnPlayerDespawned);
+            
+            _player = SceneServiceProvider.GetService<PlayerManager>().Player;
+            _playerHealthPotion = _player.GetComponent<HealthPotion>();
+            _playerShield = _player.GetComponent<Shield>();
+            _playerHealth = _player.GetComponent<Health>();
+            _playerLantern = _player.GetComponent<Lantern>();
+
+            _playerLantern.OnLanternTogglePerformed += Player_OnLanternTogglePerformed;
+            _playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
+            _playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
+            _playerShield.OnShieldAmountChanged += PlayerShield_OnShieldAmountChanged;
+
             GetHealthBarPositionAtZeroShield();
             GetShieldBarPositionAtZeroHealth();
         }
 
-        // this object is not active when the signaler is broadcasting
+        // this object is not active when the signaler is broadcasting or something
         private bool OnPlayerSpawned(PlayerSpawnEvent signal)
         {
             _playerObject = signal.Player;
@@ -46,8 +59,9 @@ namespace Demyth.UI
             _playerHealthPotion = _playerObject.GetComponent<HealthPotion>();
             _playerShield = _playerObject.GetComponent<Shield>();
             _playerHealth = _playerObject.GetComponent<Health>();
+            _playerLantern = _playerObject.GetComponent<Lantern>();
 
-            _player.OnSenterToggle += Player_OnSenterToggle;
+            _playerLantern.OnLanternTogglePerformed += Player_OnLanternTogglePerformed;
             _playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
             _playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
             _playerShield.OnShieldAmountChanged += PlayerShield_OnShieldAmountChanged;
@@ -57,33 +71,12 @@ namespace Demyth.UI
 
         private bool OnPlayerDespawned(PlayerDespawnEvent signal)
         {
-            // _player.OnSenterToggle -= Player_OnSenterToggle;
-            // _playerHealthPotion.OnPotionAmountChanged -= PlayerHealthPotion_OnUsePotion;
-            // _playerHealth.OnHealthChanged -= PlayerHealth_OnHealthChanged;
-            // _playerShield.OnShieldAmountChanged -= PlayerShield_OnShieldAmountChanged;
+            _playerLantern.OnLanternTogglePerformed -= Player_OnLanternTogglePerformed;
+            _playerHealthPotion.OnPotionAmountChanged -= PlayerHealthPotion_OnUsePotion;
+            _playerHealth.OnHealthChanged -= PlayerHealth_OnHealthChanged;
+            _playerShield.OnShieldAmountChanged -= PlayerShield_OnShieldAmountChanged;
 
             return true;
-        }
-
-        private void OnEnable() 
-        {
-            if (_player == null)
-            {
-                _player = SceneServiceProvider.GetService<PlayerManager>().Player;
-                _playerHealthPotion = _player.GetComponent<HealthPotion>();
-                _playerShield = _player.GetComponent<Shield>();
-                _playerHealth = _player.GetComponent<Health>();
-
-                _player.OnSenterToggle = null;
-                _playerHealthPotion.OnPotionAmountChanged = null;
-                _playerHealth.OnHealthChanged = null;
-                _playerShield.OnShieldAmountChanged = null;
-
-                _player.OnSenterToggle += Player_OnSenterToggle;
-                _playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
-                _playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
-                _playerShield.OnShieldAmountChanged += PlayerShield_OnShieldAmountChanged;
-            }
         }
 
         private void PlayerHealth_OnHealthChanged()
@@ -114,7 +107,7 @@ namespace Demyth.UI
             shieldBarTransform.DOLocalMoveY(newShieldPositionY, _barChangeDuration).SetEase(Ease.OutExpo);
         }
 
-        private void Player_OnSenterToggle(bool senterState)
+        private void Player_OnLanternTogglePerformed(bool senterState)
         {
             senterLightOnImage.gameObject.SetActive(senterState);
         }
