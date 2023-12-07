@@ -40,7 +40,7 @@ public class TuyulFleeMovement : MonoBehaviour
 
     private void OnEnable() 
     {
-        _animator.Play("Idle");
+        ResetUnitCondition();
     }
 
     public void StartFlee(Vector3 directionToPlayer)
