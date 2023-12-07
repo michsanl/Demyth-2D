@@ -6,6 +6,7 @@ using Core;
 using System;
 using PixelCrushers;
 using Demyth.Gameplay;
+using DG.Tweening;
 
 public class TuyulChaseLevelReset : MonoBehaviour
 {
@@ -63,6 +64,8 @@ public class TuyulChaseLevelReset : MonoBehaviour
         // Reset tuyul active state, position, and visual
         // reset box position
         // restore destructible box
+        DOTween.KillAll();
+
         _player.transform.position = _playerResetPosition;
 
         _yula.gameObject.SetActive(true);
