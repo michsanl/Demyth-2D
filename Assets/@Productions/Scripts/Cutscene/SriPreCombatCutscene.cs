@@ -1,22 +1,24 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 using MoreMountains.Feedbacks;
 using Demyth.Gameplay;
 using Core;
 
-public class PetraPreCombatCutscene : MonoBehaviour
+public class SriPreCombatCutscene : MonoBehaviour
 {
+    
     
     [SerializeField] private float _firstCutsceneStartDelay;
     [SerializeField] private float _secondCutsceneStartDelay;
+    [SerializeField] private float _cameraMoveDownSequenceDuration;
     [Space]
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
+    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
 
     private GameStateService _gameStateService;
     private Player _player;
@@ -44,12 +46,14 @@ public class PetraPreCombatCutscene : MonoBehaviour
     {
         // SEQUENCE 1
         // disable player input
+        // wait
         _gameStateService.SetState(GameState.Cutscene);
-        yield return new WaitForSeconds(_firstCutsceneStartDelay);
+        yield return Helper.GetWaitForSeconds(_firstCutsceneStartDelay);
 
         // SEQUENCE 2
         // move camera up
-        yield return _cameraTransform.DOMoveY(10, 1f).SetEase(Ease.InOutCubic).WaitForCompletion();
+        // wait
+        yield return _cameraTransform.DOMoveY(9, 1f).SetEase(Ease.InOutCubic).WaitForCompletion();
         
         // SEQUENCE 3
         // initiate dialogue
@@ -59,19 +63,22 @@ public class PetraPreCombatCutscene : MonoBehaviour
     private IEnumerator StartPostDialogueCutscene()
     {
         // SEQUENCE 4
-        yield return new WaitForSeconds(_secondCutsceneStartDelay);
+        // wait
+        yield return Helper.GetWaitForSeconds(_secondCutsceneStartDelay);
 
         // SEQUENCE 5
-        // disable petra idle
-        // enable petra combat
         // move camera down
-        // enable player input
-        // give ara pan
-        // disable cutscene object
-        _petraCombatBehaviour.InitiateCombatMode();
+        // wait
         _cameraTransform.DOMoveY(0, 1f).SetEase(Ease.InOutQuad);
+        yield return Helper.GetWaitForSeconds(_cameraMoveDownSequenceDuration);
+
+        // SEQUENCE 6
+        // enable boss combat mode
+        // enable player input
+        // disable cutscene object
+        _sriCombatBehaviour.InitiateCombatMode();
         _gameStateService.SetState(GameState.Gameplay);
-        _player.UsePan = true;
         gameObject.SetActive(false);
     }
+
 }

@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 2202322413849604946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3777427347059394493}
@@ -259,9 +259,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2202322414460477781}
   - component: {fileID: 3562212816769162601}
+  - component: {fileID: 783726537896908815}
+  - component: {fileID: 4475845601144095288}
   - component: {fileID: 5686504465831772982}
-  - component: {fileID: 2202322414460477776}
-  - component: {fileID: 2202322414460477779}
   - component: {fileID: 2202322414460477778}
   m_Layer: 6
   m_Name: NPC Yuli Level 5
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250125fd3ed81964796aa51208b79f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDuration: 0.195
+  _moveDuration: 0.195
   _dashAudioClip: {fileID: 8300000, guid: ab99753b1cc93744d9ba9cc2fcc4b161, type: 3}
   _animator: {fileID: 494685150891091152}
   _yulaPathLayerMask:
@@ -309,7 +309,7 @@ MonoBehaviour:
   _moveBlockerLayerMask:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &5686504465831772982
+--- !u!114 &783726537896908815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,24 +318,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2202322414460477780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e58e6f4ba525804880f6ea79a464627, type: 3}
+  m_Script: {fileID: 11500000, guid: d1207ef0f9a0fbb4e9f4dca5c3e54e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 2202322413849604947}
---- !u!114 &2202322414460477776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2202322414460477780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e972fa5bc7be204a9caf0b49643cd4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueSystemTrigger: {fileID: 2202322414460477779}
---- !u!114 &2202322414460477779
+  _dialogueSystemTrigger: {fileID: 4475845601144095288}
+--- !u!114 &4475845601144095288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,7 +370,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Test Convo
+  conversation: Level 5.2
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -408,6 +395,19 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
+--- !u!114 &5686504465831772982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202322414460477780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e58e6f4ba525804880f6ea79a464627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 2202322413849604947}
 --- !u!61 &2202322414460477778
 BoxCollider2D:
   m_ObjectHideFlags: 0

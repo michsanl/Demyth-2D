@@ -33,6 +33,17 @@ public class SriAbilityTeleport : MonoBehaviour
         yield return Helper.GetWaitForSeconds(teleportEndDuration);
     }
 
+    public IEnumerator Teleport(Vector3 targetPosition, Animator animator)
+    {
+        animator.Play(TELEPORT_START);
+        yield return Helper.GetWaitForSeconds(teleportStartDuration);
+
+        transform.position = targetPosition;
+
+        animator.Play(TELEPORT_END);
+        yield return Helper.GetWaitForSeconds(teleportEndDuration);
+    }
+
     private Vector2 GetTeleportTargetPosition(Player player)
     {
         Vector3 targetPosition = player.LastMoveTargetPosition;

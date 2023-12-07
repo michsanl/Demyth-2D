@@ -38,12 +38,24 @@ public class TuyulFleeMovement : MonoBehaviour
         MockingLoop();
     }
 
+    private void OnEnable() 
+    {
+        ResetUnitCondition();
+    }
+
     public void StartFlee(Vector3 directionToPlayer)
     {
         if (_isBusy)
             return;
 
         TryFlee(directionToPlayer);
+    }
+
+    public void ResetUnitCondition()
+    {
+        _isShocked = false;
+        _lookOrientation.SetFacingDirection(GetDirToPlayer());
+        _animator.Play("Idle");
     }
 
     private void MockingLoop()

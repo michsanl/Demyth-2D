@@ -217,14 +217,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2207895738390530487, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
-      propertyPath: managedReferences[2969444582531268614].AnimatePositionTarget
-      value: 
-      objectReference: {fileID: 1653471099}
-    - target: {fileID: 2247313827708933188, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
-      propertyPath: _cameraTransform
-      value: 
-      objectReference: {fileID: 1653471101}
     - target: {fileID: 2562658709612044340, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -237,6 +229,10 @@ PrefabInstance:
       propertyPath: cameraNormal
       value: 
       objectReference: {fileID: 1653471101}
+    - target: {fileID: 3387277972971125636, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_key
+      value: MultiActiveSaver_485254
+      objectReference: {fileID: 0}
     - target: {fileID: 3407995474370650031, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -249,6 +245,22 @@ PrefabInstance:
       propertyPath: cameraNormal
       value: 
       objectReference: {fileID: 1653471101}
+    - target: {fileID: 4267192960048533094, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4358472410955738896, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: _cameraTransform
+      value: 
+      objectReference: {fileID: 1653471101}
+    - target: {fileID: 4646054346686707865, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973234842480106759, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5009176301476540126, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: cameraGO
       value: 
@@ -261,10 +273,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8269105228607706833, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
-      propertyPath: managedReferences[2969444582531268614].AnimatePositionTarget
-      value: 
-      objectReference: {fileID: 1653471099}
     - target: {fileID: 8302963723487824924, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: cameraGO
       value: 
@@ -552,6 +560,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6361526827667264223, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1803580494}
+    - target: {fileID: 6361526827667264223, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6361526827687298559, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -2208,6 +2224,7 @@ GameObject:
   - component: {fileID: 1747661087}
   - component: {fileID: 1747661086}
   - component: {fileID: 1747661089}
+  - component: {fileID: 1747661090}
   m_Layer: 0
   m_Name: Player Saver
   m_TagString: Untagged
@@ -2222,7 +2239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747661085}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7f30f54c7324264fbf3118d50e97684, type: 3}
   m_Name: 
@@ -2239,7 +2256,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747661085}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af33a602e20a3d4ca46c8a6ef942618, type: 3}
   m_Name: 
@@ -2273,7 +2290,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747661085}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74c30c109de697c4c8fa38395fef35a2, type: 3}
   m_Name: 
@@ -2283,6 +2300,24 @@ MonoBehaviour:
   m_saveAcrossSceneChanges: 1
   m_restoreStateOnStart: 0
   m_gameObjectToWatch: {fileID: 1943620904}
+--- !u!114 &1747661090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747661085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ce707bf69a30a41ba76fa9297cc722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_key: PlayerSaver_169866
+  m_appendSaverTypeToKey: 0
+  m_saveAcrossSceneChanges: 1
+  m_restoreStateOnStart: 0
+  m_playerToWatch: {fileID: 1943620921}
+  m_playerModelToWatch: {fileID: 1360282043}
 --- !u!114 &1772624724 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1304331049781124498, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}

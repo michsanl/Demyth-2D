@@ -3,20 +3,15 @@ using Core;
 using Demyth.Gameplay;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
+using PixelCrushers;
 
 public class BossLevelReset : MonoBehaviour
 {
 
-
-    [SerializeField] private GameObject _bossComabatModePrefab;
-    [SerializeField] private GameObject _bossIdlePrefab;
-    [SerializeField] private GameObject _preCombatCutsceneGameObject;
-    [Space]
-    [SerializeField] private Vector3 _playerResetPosition;
-    [SerializeField] private Vector3 _npcBossResetPosition;
+    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
+    [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
     private Player _player;
     private Health _playerHealth;
-    private PetraCombatBehaviour _petraCombatBehaviour;
     private GameStateService _gameStateService;
     
     private void Awake()
@@ -24,18 +19,12 @@ public class BossLevelReset : MonoBehaviour
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
-        _petraCombatBehaviour = _bossComabatModePrefab.GetComponent<PetraCombatBehaviour>();
     }
 
     private void OnEnable()
     {
         _gameStateService[GameState.Gameplay].onEnter += GameStateGamePlay_OnEnter;
         _playerHealth.OnDeath += PlayerHealth_OnDeath;
-
-        if (!IsLevelCompleted())
-        {
-            ResetLevel();
-        }
     }
 
     private void OnDisable() 
@@ -61,34 +50,12 @@ public class BossLevelReset : MonoBehaviour
     {
         // To do :
         // Reset health, shield, etc on Player & Boss
-        // Set back position on Player & Boss
-        // Activate and deactivate objects
+        // Load from SaveSystem to reset object position & active state
 
-        _player.gameObject.SetActive(true);
-        _player.ResetPlayerCondition();
+        _player.ResetUnitCondition();
+        _petraCombatBehaviour?.ResetUnitCondition();
+        _sriCombatBehaviour?.ResetUnitCondition();
 
-        ResetUnitPosition();
-        ResetActiveState();
-
-        _petraCombatBehaviour.ResetUnitCondition();
-    }
-
-    private void ResetUnitPosition()
-    {
-        _player.transform.position = _playerResetPosition;
-        _bossComabatModePrefab.transform.position = _npcBossResetPosition;
-    }
-
-    private void ResetActiveState()
-    {
-        _bossIdlePrefab.SetActive(true);
-        _preCombatCutsceneGameObject.SetActive(true);
-        
-        _bossComabatModePrefab.SetActive(false);
-    }
-
-    private static bool IsLevelCompleted()
-    {
-        return DialogueLua.GetVariable("Level_4_Done").AsBool;
+        SaveSystem.LoadFromSlot(1);
     }
 }

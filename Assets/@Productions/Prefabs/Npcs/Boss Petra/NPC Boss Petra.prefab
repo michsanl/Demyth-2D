@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6004192283ef3b14c90cdcc08955ba02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatOnEnable: 1
+  _combatOnEnable: 0
   _phaseTwoHPTreshold: 15
   _selectedCombatMode: 0
   _loopAbility: 0
@@ -1803,9 +1803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f33d5ca519195142b8d96b132bed2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.175
-  swingDuration: 1.225
-  backSwingDuration: 0.35
+  _frontSwingDuration: 0.175
+  _swingDuration: 1.225
+  _backSwingDuration: 0.35
   moveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1846,9 +1846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7a9cf75c41f9c41a639b3cc437cf3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.175
-  swingDuration: 1.225
-  backSwingDuration: 0.35
+  _frontSwingDuration: 0.175
+  _swingDuration: 1.225
+  _backSwingDuration: 0.35
   moveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1889,9 +1889,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7db55e874d9c7d4fbf4491a49a6ed02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.175
-  swingDuration: 1.225
-  backSwingDuration: 0.35
+  _frontSwingDuration: 0.175
+  _swingDuration: 1.225
+  _backSwingDuration: 0.35
   moveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1933,9 +1933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8268284b446ac8644a7185cf8fa06094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.45
-  swingDuration: 0.55
-  backSwingDuration: 0.75
+  _frontSwingDuration: 0.45
+  _swingDuration: 0.55
+  _backSwingDuration: 0.75
   spinAttackCollider: {fileID: 5215676311051618195}
 --- !u!114 &6108068965076743681
 MonoBehaviour:
@@ -1949,9 +1949,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cad065c37cd0d143b8f594487164a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.6617
-  swingDuration: 0.485
-  backSwingDuration: 0.397
+  _frontSwingDuration: 0.6617
+  _swingDuration: 0.485
+  _backSwingDuration: 0.397
   groundCoffinAOE: {fileID: 2362403029706079944, guid: c74aff0a4a88cf34d89f400b792b9eeb, type: 3}
 --- !u!114 &5643614448671995387
 MonoBehaviour:
@@ -1965,9 +1965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bb6c8461c362148adb41922fab8856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.5
-  swingDuration: 0.417
-  backSwingDuration: 0.333
+  _frontSwingDuration: 0.5
+  _swingDuration: 0.417
+  _backSwingDuration: 0.333
   basicSlamCollider: {fileID: 6631251182860402330}
   groundCoffin: {fileID: 3975585011897390249, guid: 37cec404c8a20874a89f6c6d4f13dc29, type: 3}
 --- !u!114 &7757723810402338686
@@ -1982,9 +1982,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f39d0da437085468a078d57616322b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.41
-  swingDuration: 0.3
-  backSwingDuration: 1
+  _frontSwingDuration: 0.41
+  _swingDuration: 0.3
+  _backSwingDuration: 1
   jumpPower: 1
   jumpCurve:
     serializedVersion: 2
@@ -2023,9 +2023,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c142f94cf54e142a1917c7e1278580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSwingDuration: 0.41
-  swingDuration: 0.3
-  backSwingDuration: 1
+  _frontSwingDuration: 0.41
+  _swingDuration: 0.3
+  _backSwingDuration: 1
   jumpPower: 1
   jumpCurve:
     serializedVersion: 2

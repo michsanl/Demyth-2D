@@ -12,7 +12,7 @@ public class PetraCombatBehaviour : MonoBehaviour
     private enum Ability 
     { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
     private enum CombatMode 
-    { FirstPhase, SecondPhase, AbilityLoop }
+    { None, FirstPhase, SecondPhase, AbilityLoop }
 
     [SerializeField] private bool _combatOnEnable;
     [SerializeField] private int _phaseTwoHPTreshold;
@@ -72,15 +72,19 @@ public class PetraCombatBehaviour : MonoBehaviour
     {
         if (_combatOnEnable)
         {
-            StartCoroutine(StartCombatIntro());
+            StartCoroutine(StartCombatWithIntroMove());
         }
+    }
+
+    public void InitiateCombatMode()
+    {
+        StartCoroutine(StartCombatWithIntroMove());
     }
 
     public void ResetUnitCondition()
     {
-        _selectedCombatMode = CombatMode.FirstPhase;
-        // there is a case where Health is not set from Awake
-        GetComponent<Health>().ResetHealthToMaximum();
+        _selectedCombatMode = CombatMode.None;
+        _health.ResetHealthToMaximum();
     }
 
     public void PlayReviveAnimation()
@@ -88,11 +92,18 @@ public class PetraCombatBehaviour : MonoBehaviour
         _animator.Play("Revive");
     }
 
-    private IEnumerator StartCombatIntro()
+    private IEnumerator StartCombatWithIntroMove()
     {
         yield return StartCoroutine(StartJumpSlamToMiddleArena());
 
-        ActivateSelectedCombatMode();
+        if (_selectedCombatMode == CombatMode.None)
+        {
+            _selectedCombatMode = CombatMode.FirstPhase;
+        }
+        else
+        {
+            ActivateSelectedCombatMode();
+        }
     }
 
     private void UpdateCombatMode()
@@ -125,6 +136,8 @@ public class PetraCombatBehaviour : MonoBehaviour
 
         switch (_selectedCombatMode)
         {
+            case CombatMode.None:
+                break;
             case CombatMode.FirstPhase:
                 StartCoroutine(LoopAbility(GetFirstPhaseAbility));
                 break;

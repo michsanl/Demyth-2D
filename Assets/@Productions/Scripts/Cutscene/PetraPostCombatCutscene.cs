@@ -28,7 +28,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
         StartCoroutine(StartPreDialogueCutscene());
     }
 
-    public void OnConversationEnd(Transform actor)
+    public void OnConversationEnd()
     {
         StartPostDialogueCutscene();
     }
