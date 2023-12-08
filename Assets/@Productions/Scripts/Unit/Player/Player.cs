@@ -124,6 +124,11 @@ public class Player : MonoBehaviour, IBroadcaster
         animator.SetTrigger("OnHit");
         StartCoroutine(HandleKnockBack(knockbackTargetPosition));
     }
+
+    public void SetAnimationToIdleNoPan()
+    {
+        animator.Play("Idle_NoPan");
+    }
     
     private void HandlePlayerAction()
     {
