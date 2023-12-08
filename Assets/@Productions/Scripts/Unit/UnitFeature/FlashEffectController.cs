@@ -9,13 +9,12 @@ using MoreMountains.Feedbacks;
 public class FlashEffectController : MonoBehaviour
 {
     
-    [SerializeField] private MeshRenderer spineMeshRenderer;
+    [SerializeField] private MeshRenderer _spineMeshRenderer;
     [SerializeField] private MMF_Player _flashEffectMMFPlayer;
-    [SerializeField] private float _feedbackDuration;
+    [SerializeField] private float _flashEffectDuration;
     
     [ReadOnly]
     public float HitEffectBlend;  // public so MMFeedback can access
-    private Material _material;
     private bool _canUpdateFlashEffect;
 
     private void Update()
@@ -24,11 +23,6 @@ public class FlashEffectController : MonoBehaviour
     }
 
     private void OnEnable() 
-    {
-        ResetCondition();
-    }
-
-    private void OnDisable()
     {
         ResetCondition();
     }
@@ -43,8 +37,7 @@ public class FlashEffectController : MonoBehaviour
         if (!_canUpdateFlashEffect)
             return;
 
-        _material = spineMeshRenderer.material;
-        _material.SetFloat("_HitEffectBlend", HitEffectBlend);
+        _spineMeshRenderer.material.SetFloat("_HitEffectBlend", HitEffectBlend);
     }
 
     private IEnumerator PlayFlashEffectCoroutine()
@@ -53,8 +46,10 @@ public class FlashEffectController : MonoBehaviour
 
         // Tween blend value with MMFeedback
         _flashEffectMMFPlayer.PlayFeedbacks();
-        yield return Helper.GetWaitForSeconds(_feedbackDuration);
-        ResetCondition();
+        yield return Helper.GetWaitForSeconds(_flashEffectDuration);
+        
+        HitEffectBlend = 0;
+        _spineMeshRenderer.material.SetFloat("_HitEffectBlend", HitEffectBlend);
 
         _canUpdateFlashEffect = false;
     }
@@ -63,8 +58,7 @@ public class FlashEffectController : MonoBehaviour
     {
         _canUpdateFlashEffect = false;
         HitEffectBlend = 0;
-        _material = spineMeshRenderer.material;
-        _material.SetFloat("_HitEffectBlend", HitEffectBlend);
+        _spineMeshRenderer.material.SetFloat("_HitEffectBlend", HitEffectBlend);
     }
 
 
