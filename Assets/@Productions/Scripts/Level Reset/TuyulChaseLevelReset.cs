@@ -12,8 +12,8 @@ public class TuyulChaseLevelReset : MonoBehaviour
 {
     
     
-    public static Action OnAnyTuyulLevelResetEnabled;
-    public static Action OnAnyTuyulLevelResetDisabled;
+    public Action OnTuyulLevelResetEnabled;
+    public Action OnTuyulLevelResetDisabled;
 
     [SerializeField] private TuyulFleeMovement _yula;
     [SerializeField] private TuyulFleeMovement _yuli;
@@ -40,21 +40,18 @@ public class TuyulChaseLevelReset : MonoBehaviour
 
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
-        OnAnyTuyulLevelResetEnabled?.Invoke();
+        OnTuyulLevelResetEnabled?.Invoke();
     }
 
     private void OnDisable() 
     {
         _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
 
-        OnAnyTuyulLevelResetDisabled?.Invoke();
+        OnTuyulLevelResetDisabled?.Invoke();
     }
 
     private void GameInput_OnRestartPerformed()
     {
-        if (IsLevelCompleted())
-            return;
-
         ResetTuyulLevel();
     }
 

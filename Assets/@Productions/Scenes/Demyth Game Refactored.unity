@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &98349128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2970449721645904967, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec941f12a9a7534b9ff1a2becfe4036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &136992782
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +415,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2e090e935ac0e441855adce42313e48, type: 3}
+--- !u!114 &358879572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5863098892826103649, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b20f6a1c2347642a15d8c06a042986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &386103333
 GameObject:
   m_ObjectHideFlags: 3
@@ -570,7 +592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6361526827667264223, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6361526827687298559, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
       propertyPath: m_RootOrder
@@ -2665,6 +2687,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Reset UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5435671882721829131, guid: 99144aef57cccf64686eaa6d0cb204b1, type: 3}
+      propertyPath: _boxPuzzleLevelReset
+      value: 
+      objectReference: {fileID: 358879572}
+    - target: {fileID: 5435671882721829131, guid: 99144aef57cccf64686eaa6d0cb204b1, type: 3}
+      propertyPath: _tuyulChaseLevelReset
+      value: 
+      objectReference: {fileID: 98349128}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99144aef57cccf64686eaa6d0cb204b1, type: 3}
 --- !u!224 &7306986235221065990 stripped
@@ -2822,7 +2852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8551962754239887420, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}
       propertyPath: m_Name
-      value: Boss Level Reset UI
+      value: Game Over UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}

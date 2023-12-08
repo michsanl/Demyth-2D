@@ -11,39 +11,41 @@ namespace Demyth.UI
     public class LevelResetUI : MonoBehaviour
     {
 
+        
+        [SerializeField] private BoxPuzzleLevelReset _boxPuzzleLevelReset;
+        [SerializeField] private TuyulChaseLevelReset _tuyulChaseLevelReset;
+
+        private void Awake()
+        {
+            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetEnabled += BoxLevelReset_OnBoxLevelResetEnabled;
+            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetDisabled += BoxLevelReset_OnBoxLevelResetDisabled;
+            _tuyulChaseLevelReset.OnTuyulLevelResetEnabled += TuyulLevelResetEnabled_OnTuyulLevelResetEnabled;
+            _tuyulChaseLevelReset.OnTuyulLevelResetDisabled += TuyulLevelResetEnabled_OnTuyulLevelResetDisabled;
+        }
+
         private void Start() 
         {
-            TuyulChaseCutscene.OnAnyTuyulLevelComplete += OnAnyTuyulLevelComplete;
-            TuyulChaseLevelReset.OnAnyTuyulLevelResetEnabled += OnAnyLevelResetEnabled;
-            TuyulChaseLevelReset.OnAnyTuyulLevelResetDisabled += OnAnyLevelResetDisabled;
-            LevelReset.OnAnyRestartLevelEnabled += OnAnyLevelResetEnabled;
-            LevelReset.OnAnyRestartLevelDisabled += OnAnyLevelResetDisabled;
-
             Hide();
         }
 
-        private void OnAnyTuyulLevelComplete()
-        {
-            Hide();
-        }
-
-        private void OnAnyLevelResetEnabled()
+        private void BoxLevelReset_OnBoxLevelResetEnabled()
         {
             Show();
         }
 
-        private void OnAnyLevelResetDisabled()
+        private void BoxLevelReset_OnBoxLevelResetDisabled()
         {
             Hide();
         }
 
-        private void OnDestroy() 
+        private void TuyulLevelResetEnabled_OnTuyulLevelResetEnabled()
         {
-            TuyulChaseCutscene.OnAnyTuyulLevelComplete -= OnAnyTuyulLevelComplete;
-            TuyulChaseLevelReset.OnAnyTuyulLevelResetEnabled -= OnAnyLevelResetEnabled;
-            TuyulChaseLevelReset.OnAnyTuyulLevelResetDisabled -= OnAnyLevelResetDisabled;
-            LevelReset.OnAnyRestartLevelEnabled -= OnAnyLevelResetEnabled;
-            LevelReset.OnAnyRestartLevelDisabled -= OnAnyLevelResetDisabled;
+            Show();
+        }
+
+        private void TuyulLevelResetEnabled_OnTuyulLevelResetDisabled()
+        {
+            Hide();
         }
 
         private void Show()

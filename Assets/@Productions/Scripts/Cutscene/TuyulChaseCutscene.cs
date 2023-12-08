@@ -9,11 +9,10 @@ using UnityEngine;
 
 public class TuyulChaseCutscene : MonoBehaviour
 {
-    public static Action OnAnyTuyulLevelComplete;
-
     [SerializeField] private TuyulChaseTalkable _yulaTalkable;
     [SerializeField] private TuyulChaseTalkable _yuliTalkable;
     [SerializeField] private GameObject _dialogueTrigger;
+    [SerializeField] private GameObject _tuyulChaseLevelReset;
 
     private Player _player;
 
@@ -42,7 +41,7 @@ public class TuyulChaseCutscene : MonoBehaviour
         // disable last active tuyul
         // give ara pan
         // save
-        // disable level reset UI
+        // disable level reset
 
         sender.SetActive(false);
 
@@ -50,6 +49,6 @@ public class TuyulChaseCutscene : MonoBehaviour
 
         SaveSystem.SaveToSlot(1);
 
-        OnAnyTuyulLevelComplete?.Invoke();
+        _tuyulChaseLevelReset.SetActive(false);
     }
 }
