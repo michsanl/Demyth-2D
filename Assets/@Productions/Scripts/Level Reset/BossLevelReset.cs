@@ -4,6 +4,7 @@ using Demyth.Gameplay;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using PixelCrushers;
+using DG.Tweening;
 
 public class BossLevelReset : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class BossLevelReset : MonoBehaviour
         // To do :
         // Reset health, shield, etc on Player & Boss
         // Load from SaveSystem to reset object position & active state
+        DOTween.KillAll();
 
         _player.ResetUnitCondition();
         _petraCombatBehaviour?.ResetUnitCondition();
