@@ -7,38 +7,42 @@ using Demyth.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossLevelResetUI : MonoBehaviour
+
+namespace UISystem
 {
-    [SerializeField] private Button _retryButton;
-    [SerializeField] private UIPage _uiPage;    
-    
-    private GameStateService _gameStateService;
-    
-    private void Awake()
+    public class BossLevelResetUI : MonoBehaviour
     {
-        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _gameStateService[GameState.GameOver].onEnter += GameStateGameOver_OnEnter;
-        _gameStateService[GameState.GameOver].onExit += GameStateGameOver_OnExit;
-
-        _retryButton.onClick.AddListener(SetGamteStateToGameplay);
+        [SerializeField] private Button _retryButton;
         
-        gameObject.SetActive(false);
+        private UIPage _uiPage;    
+        private GameStateService _gameStateService;
+        
+        private void Awake()
+        {
+            _uiPage = GetComponent<UIPage>();
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+
+            _gameStateService[GameState.GameOver].onEnter += GameStateGameOver_OnEnter;
+            _gameStateService[GameState.GameOver].onExit += GameStateGameOver_OnExit;
+
+            _retryButton.onClick.AddListener(SetGamteStateToGameplay);
+
+            gameObject.SetActive(false);
+        }
+
+        private void GameStateGameOver_OnEnter(GameState state)
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void GameStateGameOver_OnExit(GameState state)
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void SetGamteStateToGameplay()
+        {
+            _gameStateService.SetState(GameState.Gameplay);
+        }
     }
-
-    private void GameStateGameOver_OnEnter(GameState state)
-    {
-        gameObject.SetActive(true);
-    }
-
-    private void GameStateGameOver_OnExit(GameState state)
-    {
-        gameObject.SetActive(false);
-    }
-
-    private void SetGamteStateToGameplay()
-    {
-        _gameStateService.SetState(GameState.Gameplay);
-    }
-
-
 }

@@ -37,7 +37,7 @@ namespace UISystem
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
 
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
-            _gameStateService[GameState.Gameplay].onEnter += Gameplay_OnEnter;
+            _gameStateService[GameState.Gameplay].onEnter += GamePlay_OnEnter;
 
             _resumeButton.onClick.AddListener(ButtonResume);
             _mainMenuButton.onClick.AddListener(ButtonMainMenu);
@@ -54,17 +54,17 @@ namespace UISystem
             _sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
         }
 
-        private void Gameplay_OnEnter(GameState state)
+        private void Pause_OnEnter(GameState state)
+        {
+            _uiPage.OpenPage(_uiPage.PageID);
+        }
+
+        private void GamePlay_OnEnter(GameState state)
         {
             if (_gameStateService.PreviousState == GameState.Pause)
             {
                 _uiPage.Return();
             }
-        }
-
-        private void Pause_OnEnter(GameState state)
-        {
-            _uiPage.OpenPage(_uiPage.PageID);
         }
 
         private void ButtonResume()
