@@ -7,12 +7,12 @@ using Demyth.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace UISystem
 {
-    public class BossLevelResetUI : MonoBehaviour
+    public class GameOverUI : MonoBehaviour
     {
         [SerializeField] private Button _retryButton;
+        [SerializeField] private Animator _animator;
         
         private UIPage _uiPage;    
         private GameStateService _gameStateService;
@@ -27,17 +27,17 @@ namespace UISystem
 
             _retryButton.onClick.AddListener(SetGamteStateToGameplay);
 
-            gameObject.SetActive(false);
+            _uiPage.OnOpen.AddListener(() => _animator.SetTrigger("OpenPage"));
         }
 
         private void GameStateGameOver_OnEnter(GameState state)
         {
-            gameObject.SetActive(true);
+            _uiPage.OpenPage(_uiPage.PageID);
         }
 
         private void GameStateGameOver_OnExit(GameState state)
         {
-            gameObject.SetActive(false);
+            _uiPage.Return();
         }
 
         private void SetGamteStateToGameplay()
