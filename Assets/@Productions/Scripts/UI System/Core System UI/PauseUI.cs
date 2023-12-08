@@ -58,7 +58,7 @@ namespace UISystem
         {
             if (_gameStateService.PreviousState == GameState.Pause)
             {
-                _uiPage.ReturnToPage(_gameViewId);
+                _uiPage.Return();
             }
         }
 
