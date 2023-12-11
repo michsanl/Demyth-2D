@@ -17,6 +17,16 @@ public class SriAbilityDeathSlash : MonoBehaviour
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
 
+    private GameObject _summonedObject;
+
+    private void OnDisable()
+    {
+        if (_summonedObject != null) 
+        {
+            Destroy(_summonedObject);
+        }
+    }
+
     public IEnumerator DeathSlash(Animator animator, AudioClip nailAOESFX, AudioClip verticalSlashSFX)
     {
         animator.Play(TELEPORT_START);
@@ -31,7 +41,7 @@ public class SriAbilityDeathSlash : MonoBehaviour
         PlayAudio(nailAOESFX);
 
         yield return Helper.GetWaitForSeconds(.5f);
-        Instantiate(nailWavePrefab, Vector3.zero, Quaternion.identity);
+        _summonedObject = Instantiate(nailWavePrefab, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(3.7f);
         
@@ -40,7 +50,7 @@ public class SriAbilityDeathSlash : MonoBehaviour
         yield return Helper.GetWaitForSeconds(0.6f);
         dialogueCollider.SetActive(true);
         yield return transform.DOMoveY(-4f, .233f).SetEase(Ease.OutExpo).WaitForCompletion();
-        dialogueCollider.SetActive(false);
+        // dialogueCollider.SetActive(false);
     }
 
     private void PlayAudio(AudioClip abilitySFX)

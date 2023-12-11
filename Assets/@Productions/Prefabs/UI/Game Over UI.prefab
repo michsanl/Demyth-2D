@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8551962754239887419}
-  - component: {fileID: 8551962754239887416}
   - component: {fileID: 8551962754239887412}
   - component: {fileID: 8551962754239887413}
   - component: {fileID: 8551962754239887414}
+  - component: {fileID: 8551962754239887416}
+  - component: {fileID: 1904856090}
   m_Layer: 5
-  m_Name: Boss Level Reset UI
+  m_Name: Game Over UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,22 +43,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8551962754239887416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551962754239887420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d98e0e3edb426045b7631929c2ba9e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _petraBossLevelReset: {fileID: 0}
-  _retryButton: {fileID: 8551962754875949547}
-  _gameViewId: {fileID: 11400000, guid: 9c3d0b15a1dd17140ad2b6e52d352322, type: 2}
-  _uiPage: {fileID: 0}
 --- !u!223 &8551962754239887412
 Canvas:
   m_ObjectHideFlags: 0
@@ -108,6 +93,47 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4087
+--- !u!114 &8551962754239887416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551962754239887420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d98e0e3edb426045b7631929c2ba9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _retryButton: {fileID: 8551962754875949547}
+  _animator: {fileID: 8551962754431947571}
+--- !u!114 &1904856090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551962754239887420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d390d05f577e43bb50ddaa16b5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageId: {fileID: 11400000, guid: 903737c1676143a4f9e1c98ed4030e46, type: 2}
+  disablePreviousPage: 0
+  offType: 0
+  OnPushed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRefresh:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8551962754431947575
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +147,7 @@ GameObject:
   - component: {fileID: 8551962754431947573}
   - component: {fileID: 8551962754431947571}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Game Over Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

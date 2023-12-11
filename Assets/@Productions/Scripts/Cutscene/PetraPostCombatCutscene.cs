@@ -1,16 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Core;
 using Demyth.Gameplay;
+using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
 
 public class PetraPostCombatCutscene : MonoBehaviour
 {
     
-    [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
+    [SerializeField] private GameObject _bossPetraGameObject;
+    [SerializeField] private GameObject _npcPetraGameObject;
+    [SerializeField] private Transform _bossPetraModel;
+    [SerializeField] private Transform _npcPetraModel;
+    [SerializeField] private Animator _npcPetraAnimator;
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
+    [SerializeField] private GameObject _unlockableInvisibleWall;
 
     private GameStateService _gameStateService;
     private Health _petraHealth;
@@ -18,7 +25,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _petraHealth = _petraCombatBehaviour.GetComponent<Health>();
+        _petraHealth = _bossPetraGameObject.GetComponent<Health>();
 
         _petraHealth.OnDeath += PetraHealth_OnDeath;
     }
@@ -35,23 +42,40 @@ public class PetraPostCombatCutscene : MonoBehaviour
 
     private IEnumerator StartPreDialogueCutscene()
     {
-        // Disable player input
-        _gameStateService.SetState(GameState.Cutscene);
-
+        // SEQUENCE 1
         // Wait for petra on death animation to complete
         yield return Helper.GetWaitForSeconds(2.5f);
 
+        // SEQUENCE 2
+        // Disable player input
         // Start dialogue 
+        _gameStateService.SetState(GameState.Cutscene);
         _dialogueSystemTrigger.OnUse();
     }
     
     private void StartPostDialogueCutscene()
     {
-        // Play petra reverse on death animation after dialogue
-        _petraCombatBehaviour.PlayReviveAnimation();
-
+        // SEQUENCE 3
         // Enable player input
+        // Disable boss petraa
+        // Enable non-boss petra
+        // Set position and facing direction on non-boss petra
+        // play revive animation on non-boss petra
+        // disable blocking wall
+        // save
         _gameStateService.SetState(GameState.Gameplay);
+
+        _bossPetraGameObject.SetActive(false);
+        _npcPetraGameObject.SetActive(true);
+
+        _npcPetraGameObject.transform.position = _bossPetraGameObject.transform.position;
+        _npcPetraModel.localScale = _bossPetraModel.localScale;
+        _npcPetraAnimator.Play("Revive");
+
+        _unlockableInvisibleWall.SetActive(false);
+        SaveSystem.SaveToSlot(1);
+
+        // _petraCombatBehaviour.PlayReviveAnimation();
     }
 
 }

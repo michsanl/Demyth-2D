@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &109562837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 109562838}
-  - component: {fileID: 109562839}
-  m_Layer: 0
-  m_Name: LevelRestartController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &109562838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109562837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 708720891042517943}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &109562839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109562837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c5832ce27b98e4f97be8f067759a73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveSlot: 2
-  levelUnlockConditionName: Level_3_Done
 --- !u!1 &1965499157
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +109,7 @@ Transform:
   - {fileID: 1648727578102301497}
   - {fileID: 5784269258963244177}
   m_Father: {fileID: 1716440146924473190}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463676421050595670
 GameObject:
@@ -353,12 +307,77 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6843968379131675803}
   - {fileID: 2501341800882563052}
   - {fileID: 8582900350455435734}
+  - {fileID: 6843968379131675803}
   m_Father: {fileID: 708720891343397042}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2491084273674226624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5401070567049700811}
+  - component: {fileID: 6565919042464327864}
+  m_Layer: 0
+  m_Name: BoxPuzzleLevelReset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5401070567049700811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491084273674226624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 708720891042517943}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6565919042464327864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491084273674226624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b20f6a1c2347642a15d8c06a042986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boxCrateArray:
+  - {fileID: 6486136156586886628}
+  - {fileID: 7474824694118483269}
+  - {fileID: 2043808107345047122}
+  - {fileID: 5685116718888467339}
+  - {fileID: 3731549968175639257}
+  - {fileID: 4699234553506740413}
+  - {fileID: 6303147745702268243}
+  _boxCardBoardOpenArray:
+  - {fileID: 4678667521550830859}
+  - {fileID: 7383863334582460984}
+  - {fileID: 9118827583029169740}
+  - {fileID: 8978626244501123854}
+  - {fileID: 9066885944897405583}
+  _boxCardboardClosedArray:
+  - {fileID: 395510858860456793}
+  - {fileID: 6763634869750104465}
+  - {fileID: 5634006361058791180}
+  - {fileID: 1648727578102301497}
+  - {fileID: 5784269258963244177}
+  _resetPositionSO: {fileID: 11400000, guid: d57428f8f33a23149951d57311f12e29, type: 2}
 --- !u!1 &4498224419373264572
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +414,7 @@ Transform:
   - {fileID: 4699234553506740413}
   - {fileID: 6303147745702268243}
   m_Father: {fileID: 1716440146924473190}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5181360482036541496
 GameObject:
@@ -489,7 +508,7 @@ Transform:
   - {fileID: 8978626244501123854}
   - {fileID: 9066885944897405583}
   m_Father: {fileID: 1716440146924473190}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5361134653823641174
 GameObject:
@@ -897,10 +916,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6843968379131675803}
     m_Modifications:
-    - target: {fileID: 1581017933277813790, guid: 102e4c3ff75f3c74a9d50590a2f821ae, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1581017933277813856, guid: 102e4c3ff75f3c74a9d50590a2f821ae, type: 3}
       propertyPath: m_Name
       value: Box Cardboard Closed
@@ -1307,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955560, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2853056097991955561, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_RootOrder
@@ -2172,14 +2187,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8582900350455435734}
     m_Modifications:
-    - target: {fileID: 1581017933277813790, guid: 7234ff59986e3c94d9fbf6401b03500e, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581017933277813790, guid: 7234ff59986e3c94d9fbf6401b03500e, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1581017933277813856, guid: 7234ff59986e3c94d9fbf6401b03500e, type: 3}
       propertyPath: m_Name
       value: Boxes Cardboard Open (4)

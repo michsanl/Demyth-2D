@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1538411941623662623}
   - component: {fileID: 1289367315621703064}
   - component: {fileID: 1719733396858741420}
+  - component: {fileID: 6545709953532637698}
   - component: {fileID: 4645373257415794240}
   - component: {fileID: 426225192504292295}
   - component: {fileID: 837404810948868202}
@@ -140,12 +141,9 @@ MonoBehaviour:
   moveBlockMask:
     serializedVersion: 2
     m_Bits: 64
-  _hitFlashEffectMMFPlayer: {fileID: 8322088471257207920}
   animator: {fileID: 3143619101154623906}
   damagedAnimator: {fileID: 364290908265347085}
   araAudioSO: {fileID: 11400000, guid: e223975f3b5920f4097a5c1f5548abb9, type: 2}
-  senterGameObject: {fileID: 6712916346127714324}
-  hitEffect: {fileID: 3334399798543976364, guid: 69b81010be706ce4abd791ceecdfafbe, type: 3}
 --- !u!114 &1538411941623662623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +188,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPotionAmount: 2
   currentPotionAmount: 2
+--- !u!114 &6545709953532637698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143619101027616268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d518f9225368b4a8e06d0754e58225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lanternGameObject: {fileID: 6712916346127714324}
 --- !u!114 &4645373257415794240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,12 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23853d2458b2f245ab1589efb802b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spineMeshRenderer: {fileID: 3143619101154623905}
-  newColorDuration: 0.1
-  normalColorDuration: 0.2
-  cycleAmount: 4
+  _spineMeshRenderer: {fileID: 3143619101154623905}
+  _flashEffectMMFPlayer: {fileID: 8322088471257207920}
+  _flashEffectDuration: 1
   HitEffectBlend: 0
-  FlashEffectDuration: 1.2
 --- !u!114 &426225192504292295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,7 +831,7 @@ GameObject:
   - component: {fileID: 1257137515}
   - component: {fileID: 1257137514}
   m_Layer: 9
-  m_Name: Senter
+  m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

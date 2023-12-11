@@ -35,7 +35,7 @@ public class HealthPotion : MonoBehaviour
     public void UsePotion()
     {
         currentPotionAmount--;
-        health.Heal(1); 
+        health.Heal(); 
         StartCoroutine(StartPotionCooldown());
         
         OnPotionAmountChanged?.Invoke(currentPotionAmount);

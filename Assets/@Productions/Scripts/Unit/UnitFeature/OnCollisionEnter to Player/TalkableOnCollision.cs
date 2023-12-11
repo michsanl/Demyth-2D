@@ -9,6 +9,9 @@ public class TalkableOnCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        dialogueSystemTrigger.OnUse();
+        if (other.collider.CompareTag("Player"))
+        {
+            dialogueSystemTrigger.OnUse();
+        }
     }
 }

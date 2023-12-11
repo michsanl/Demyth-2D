@@ -369,8 +369,16 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _combatOnEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
       propertyPath: _selectCombatMode
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _selectedCombatMode
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6162601669282108410, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
       propertyPath: m_RootOrder
@@ -1053,6 +1061,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1538411941623662623, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name
       value: Player
