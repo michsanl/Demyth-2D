@@ -1,35 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
+using Core;
+using Core.UI;
+using Demyth.Gameplay;
+using PixelCrushers;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 namespace UISystem
 {
     public class SelectLevelUI : UIPageView
     {
 
-        protected override void OnOpen()
+        [SerializeField]
+        private EnumId gameViewId;
+
+        private UIPage _uiPage;
+        private LevelManager _levelManager;
+        private GameStateService _gameStateService;
+
+        private void Awake()
         {
-            Canvas.enabled = true;
+            _uiPage = GetComponent<UIPage>();
+            _levelManager = SceneServiceProvider.GetService<LevelManager>();
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        }       
+
+        public void ButtonGoToLevel(EnumId levelId)
+        {
+            _levelManager.OpenLevel(levelId);
+            _uiPage.OpenPage(gameViewId);
+
+            SaveSystem.SaveToSlot(1);
+
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
-        protected override void OnClosed()
-        {    
-            Canvas.enabled = false;
-        }
-
-        public void ButtonBack()
+        public void ButtonContinue()
         {
-            Close();
-            Open<MainMenuUI>();
-        }
+            SaveSystem.LoadFromSlot(1);
+            _uiPage.OpenPage(gameViewId);
 
-        public void ButtonGoToLevel(string levelID)
-        {
-            Close();
-            //Open<HUDUI>();
-
-            var levelDestination = SceneUI.Context.LevelManager.GetLevelByID(levelID);
-            SceneUI.Context.LevelManager.ChangeLevel(levelDestination);
+            _gameStateService?.SetState(GameState.Gameplay);
         }
     }
 }

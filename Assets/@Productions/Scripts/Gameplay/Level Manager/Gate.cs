@@ -1,17 +1,22 @@
-using CustomTools.Core;
-using Sirenix.OdinInspector;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
+using System;
+using Core;
 
 namespace Demyth.Gameplay
 {
     public class Gate : Interactable
     {
         public Vector3 EnterPoint => transform.position;
-        [SerializeField, ValueDropdown(nameof(LevelName))]
-        private string targetLevel;
+        [SerializeField]
+        private EnumId targetLevel;
+        [SerializeField] private bool moveCameraOnLevelChange;
+        [SerializeField, ShowIf("moveCameraOnLevelChange")]
+        private CameraMoveDirection cameraMoveDirection;
+        [SerializeField, ShowIf("moveCameraOnLevelChange")]
+        private GameObject cameraGO;
+
+        private enum CameraMoveDirection { Up, Down };
         private Level _level;
 
         public void SetupGate(Level level)
@@ -19,20 +24,23 @@ namespace Demyth.Gameplay
             _level = level;
         }
 
-        public override void Interact(Vector3 direction = default)
+        public override void Interact(Player player, Vector3 direction = default)
         {
             _level.MoveToNextLevel(targetLevel);
+            MoveCamera();
+            PixelCrushers.SaveSystem.SaveToSlot(1);
         }
 
-#if UNITY_EDITOR
-        private IEnumerable<string> LevelName()
+        private void MoveCamera()
         {
-            string levelPath = "Assets/@Productions/Prefabs/Level Map";
-            string[] guids = UnityEditor.AssetDatabase.FindAssets("", new[] { levelPath });
-            return guids
-                .Select(x => UnityEditor.AssetDatabase.GUIDToAssetPath(x))
-                .Select(y => UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(y).name);
+            if (!moveCameraOnLevelChange)
+                return;
+
+            if (cameraMoveDirection == CameraMoveDirection.Up)
+                cameraGO.transform.localPosition = new Vector3(0, 10, -10); 
+                
+            if (cameraMoveDirection == CameraMoveDirection.Down)
+                cameraGO.transform.localPosition = new Vector3(0, 0, -10);
         }
-#endif
     }
 }

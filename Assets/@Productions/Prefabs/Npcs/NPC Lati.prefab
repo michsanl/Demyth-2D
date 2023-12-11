@@ -132,7 +132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074557270366048634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -152,19 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e972fa5bc7be204a9caf0b49643cd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scene: {fileID: 0}
-  _context:
-    UI: {fileID: 0}
-    HUDUI: {fileID: 0}
-    Player: {fileID: 0}
-    GameManager: {fileID: 0}
-    GameInput: {fileID: 0}
-    LevelManager: {fileID: 0}
-    AudioManager: {fileID: 0}
-    CameraNormal: {fileID: 0}
-    CameraShakeController: {fileID: 0}
-  _isInitialized: 0
-  _isActive: 0
   dialogueSystemTrigger: {fileID: 4072411111004031610}
 --- !u!114 &4072411111004031610
 MonoBehaviour:
@@ -238,7 +225,7 @@ MonoBehaviour:
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 5d8f4e5b8b205a24e960282d50971ab9, type: 2}
+  selectedDatabase: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
 --- !u!61 &7305386393145886628
 BoxCollider2D:
   m_ObjectHideFlags: 0

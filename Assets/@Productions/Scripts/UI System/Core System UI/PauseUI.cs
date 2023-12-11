@@ -1,63 +1,125 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
-using UnityEngine.SceneManagement;
+using DG.Tweening;
+using PixelCrushers;
+using UnityEngine.Audio;
+using UnityEngine.UI;
+using Core;
+using Core.UI;
+using Demyth.Gameplay;
+using MoreMountains.Tools;
 
 namespace UISystem
 {
-    public class PauseUI : UIPageView
+    public class PauseUI : MonoBehaviour
     {
-        protected override void OnInitialize()
-        {
-            base.OnInitialize();
+        [SerializeField] private EnumId _gameViewId;
+        [SerializeField] private EnumId _levelMenulId;
+        [SerializeField] private EnumId _menuPageId;
+        [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _mainMenuButton;
+        [SerializeField] private Slider _masterVolumeSlider;
+        [SerializeField] private Slider _musicVolumeSlider;
+        [SerializeField] private Slider _sfxVolumeSlider;
+        [SerializeField] private AudioMixer audioMixer;
 
-            SceneUI.Context.gameManager.OnGamePaused += GameManager_OnGamePaused;
-            SceneUI.Context.gameManager.OnGameUnpaused += GameManager_OnGameUnpaused;
+        private UIPage _uiPage;
+        private GameStateService _gameStateService;
+        private LevelManager _levelManager;
+
+        private void Awake()
+        {
+            _uiPage = GetComponent<UIPage>();
+            _levelManager = SceneServiceProvider.GetService<LevelManager>();
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+
+            _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
+            _gameStateService[GameState.Gameplay].onEnter += GamePlay_OnEnter;
+
+            _resumeButton.onClick.AddListener(ButtonResume);
+            _mainMenuButton.onClick.AddListener(ButtonMainMenu);
+
+            _masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
+            _musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
+            _sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
         }
 
-        private void GameManager_OnGamePaused(object sender, EventArgs e)
+        private void Start()
         {
-            Canvas.enabled = true;
+            _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
+            _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
+            _sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
         }
 
-        private void GameManager_OnGameUnpaused(object sender, EventArgs e)
+        private void Pause_OnEnter(GameState state)
         {
-            Canvas.enabled = false;
+            _uiPage.OpenPage(_uiPage.PageID);
         }
 
-        protected override void OnOpen()
+        private void GamePlay_OnEnter(GameState state)
         {
-            Canvas.enabled = true;
+            if (_gameStateService.PreviousState == GameState.Pause)
+            {
+                _uiPage.Return();
+            }
         }
 
-        protected override void OnClosed()
+        private void ButtonResume()
         {
-            Canvas.enabled = false;
+            _gameStateService.SetState(GameState.Gameplay);
         }
 
-        public void ButtonResume()
+        private void ButtonMainMenu()
         {
-            Close();
-            
-            SceneUI.Context.gameManager.TogglePauseGame();
-        }
-
-        public void ButtonGoToMainMenu()
-        {
-            Close();
-
             DialogueManager.StopAllConversations();
-            SceneUI.Context.gameManager.TogglePauseGame();
-            SceneManager.LoadScene(0);
+            DOTween.CompleteAll();
+
+            _levelManager.OpenLevel(_levelMenulId);
+            _uiPage.ReturnToPage(_menuPageId);
+
+            _gameStateService?.SetState(GameState.MainMenu);
         }
 
-        public void ButtonOptions()
+        private void SetMMSoundMasterVolume(float volume)
         {
-            Close();
+            MMSoundManager.Current.SetVolumeMaster(volume);
+        }
 
-            Open<OptionsUI>();
+        private void SetMMSoundMusicVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeMusic(volume);
+        }
+
+        private void SetMMSoundSfxVolume(float volume)
+        {
+            MMSoundManager.Current.SetVolumeSfx(volume);
+        }
+
+        private void SetMasterVolume(float sliderValue)
+        {
+            float minVolumeValue = -80f;
+            float volumeValue = minVolumeValue + sliderValue;
+
+            audioMixer.SetFloat("MasterVolume", volumeValue);
+        }
+
+        private void SetMusicVolume(float sliderValue)
+        {
+            float minVolumeValue = -80f;
+            float volumeValue = minVolumeValue + sliderValue;
+
+            audioMixer.SetFloat("MusicVolume", volumeValue);
+        }
+
+        private void SetSFXVolume(float sliderValue)
+        {
+            float minVolumeValue = -80f;
+            float volumeValue = minVolumeValue + sliderValue;
+
+            audioMixer.SetFloat("SFXVolume", volumeValue);
         }
 
     }

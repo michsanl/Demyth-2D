@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UISystem;
 using UnityEngine;
 
@@ -9,20 +9,20 @@ namespace CustomTools.Core
     {
         [Title("Scene UI")]
         public SceneUI UI;
-        public HUDUI HUDUI;
 
         [Title("Gameplay")]
         public Player Player;
 
         [Title("Control System")]
-        public GameManager gameManager;
-        public GameInput gameInput;
+        public GameManager GameManager;
+        public GameInput GameInput;
         public LevelManager LevelManager;
 
         [Title("Audio")]
         public AudioManager AudioManager;
 
-        [Title("Audio")]
-        public GameObject VCamCameraShake;
+        [Title("Camera")]
+        public GameObject CameraNormal;
+        public CameraShakeController CameraShakeController;
     }
 }

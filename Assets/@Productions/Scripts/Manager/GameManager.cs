@@ -1,45 +1,64 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using CustomTools.Core;
+﻿using UnityEngine;
+using Core;
+using Demyth.Gameplay;
+using PixelCrushers;
 
 public class GameManager : SceneService
 {
-    public event EventHandler OnGamePaused;
-    public event EventHandler OnGameUnpaused;
-    public bool IsGamePaused => isGamePaused;
+    private GameStateService _gameStateService;
+    private GameInputController _gameInputController;
+    private GameInput _gameInput;
 
-    private bool isGamePaused;
-
-    protected override void OnActivate()
+    private void Awake()
     {
-        base.OnActivate();
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+        _gameInput = _gameInputController.GameInput;
 
-        Context.gameInput.OnPausePerformed += GameInput_OnPausePerformed;
+        _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
+        _gameStateService[GameState.Pause].onExit += Pause_OnExit;
+
+        _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
+
+        SaveSystem.SaveToSlot(0);
+    }
+
+    private void Pause_OnEnter(GameState state)
+    {
+        Pause();
+    }
+
+    private void Pause_OnExit(GameState state)
+    {
+        UnPause();
     }
 
     private void GameInput_OnPausePerformed()
     {
-        TogglePauseGame();
+        ToggleGameStatePause();
     }
 
-    public void TogglePauseGame()
+    private void ToggleGameStatePause()
     {
-        isGamePaused = !isGamePaused;
-        if (isGamePaused)
+        if (_gameStateService.CurrentState != GameState.Pause)
         {
-            Time.timeScale = 0f;
-            Context.VCamCameraShake.gameObject.SetActive(false);
-            OnGamePaused?.Invoke(this, EventArgs.Empty);
-        } else
+            _gameStateService.SetState(GameState.Pause);
+        }
+        else
         {
-            Time.timeScale = 1f;
-            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
+            _gameStateService.SetState(GameState.Gameplay);
         }
     }
 
+    private void Pause()
+    {
+        AudioListener.pause = true;
+        Time.timeScale = 0f;
+    }
 
-    
+    private void UnPause()
+    {
+        AudioListener.pause = false;
+        Time.timeScale = 1f;
+    }
 }

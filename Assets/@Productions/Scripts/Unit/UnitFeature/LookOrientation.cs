@@ -6,11 +6,12 @@ public class LookOrientation : MonoBehaviour
 {
     [SerializeField]
     private Transform model;
-    private float xScale;
+    private float xScale = 1f;
 
     private void Start()
     {
-        if (model == null) return;
+        if (model == null) 
+            return;
         xScale = model.localScale.x;
     }
 
@@ -33,7 +34,7 @@ public class LookOrientation : MonoBehaviour
     {
         if (model != null)
         {
-            model.transform.localScale = new Vector2(xScale * direction, model.localScale.y);
+            model.transform.localScale = new Vector2(Mathf.Abs(xScale) * direction, model.localScale.y);
         }
     }
 }

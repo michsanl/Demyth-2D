@@ -1,53 +1,74 @@
-using CustomExtensions;
-using CustomTools.Core;
+﻿using CustomExtensions;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
+using Core;
+using UnityEngine.Events;
+using echo17.Signaler.Core;
+using Demyth.Gameplay;
 
-public class LevelManager : SceneService
+public class LevelManager : SceneService, ISubscriber
 {
-    public Action OnLevelChanged;
     public Level CurrentLevel { get; private set; }
 
-    [SerializeField]
-    private List<Level> levels = new List<Level>();
+    [SerializeField] 
+    private EnumId starterLevel;
+    [DictionaryDrawerSettings][ShowInInspector]
+    private Dictionary<EnumId, Level> _levelCollections = new();
 
-    protected override void OnInitialize()
+    public UnityEvent OnOpenMainMenu;
+    public UnityEvent OnOpenGameLevel;
+
+    private Transform _player;
+    private ISubscription _playerSpawnSubs;
+
+    public override IEnumerator StartService()
     {
-        GetLevelOnChild();
-        foreach (var level in levels)
+        PrepareLevels();
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    private void Awake()
+    {
+        _playerSpawnSubs = Signaler.Instance.Subscribe<PlayerSpawnEvent>(this, OnPlayerSpawned);
+    }
+
+    private void Start()    
+    {
+        OpenLevel(starterLevel);
+    }
+
+    public void OpenLevel(EnumId targetLevelId)
+    {
+        foreach (var lvl in _levelCollections.Values)
         {
-            level.Context = Context;
+            lvl.SetActive(lvl.ID == targetLevelId);
         }
-        CurrentLevel = GetLevelByID(debugLevelID);
+
+        var level = GetLevelByID(targetLevelId);
+        SetLevel(level);
     }
 
-    public IEnumerator SetupLevel()
+    public void SetLevel(Level targetLevel)
     {
-        yield return new WaitForEndOfFrame();
-    }
+        CurrentLevel = targetLevel;
 
-    public void SetLevel(Level level)
-    {
-        foreach (var mapLevel in levels)
+        if (targetLevel == starterLevel)
         {
-            mapLevel.SetActive(mapLevel == level);            
+            OnOpenMainMenu?.Invoke();
+        }
+        else
+        {
+            OnOpenGameLevel?.Invoke();
         }
 
-        if (level == null) return;
-
-        level.SetActive(true);
+        SetPlayerPosition(targetLevel.StarterPosition);
     }
 
-    public Level GetLevelByID(string id)
-    {
-        return levels.FirstOrDefault(x => x.ID == id);
-    }
-
-    public void ChangeLevel(string previousLevelID, string nextLevelID)
+    public void ChangeLevelByGate(EnumId previousLevelID, EnumId nextLevelID)
     {
         var nextLevel = GetLevelByID(nextLevelID);
         var previousLevel = GetLevelByID(previousLevelID);
@@ -57,46 +78,35 @@ public class LevelManager : SceneService
 
         previousLevel.SetActive(false);
         nextLevel.SetActive(true);
+
         CurrentLevel = nextLevel;
     }
 
-    public void ChangeLevel(Level targetLevel)
+    public Level GetLevelByID(EnumId levelId)
     {
-        foreach (var mapLevel in levels)
+        return _levelCollections[levelId];
+    }
+
+    private void SetPlayerPosition(Vector3 targetPosition)
+    {
+        if (_player != null)
+            _player.position = targetPosition;
+    }
+
+    private void PrepareLevels()
+    {
+        var levels = GetComponentsInChildren<Level>(true);
+        foreach (var level in levels)
         {
-            mapLevel.SetActive(mapLevel == targetLevel);            
-        }
-        
-        targetLevel.SetActive(true);
-        CurrentLevel = targetLevel;
-        OnLevelChanged?.Invoke();
+            level.InjectLevelManager(this);
+            _levelCollections.TryAdd(level.ID, level);
+        }        
     }
 
-    private void SetPlayerPosition(Vector3 levelStarterPosition)
+    private bool OnPlayerSpawned(PlayerSpawnEvent signal)
     {
-        Context.Player.transform.position = levelStarterPosition;
-    }
+        _player = signal.Player.transform;
 
-#if UNITY_EDITOR
-    #region EDITOR HELPER
-    [Title("Editor Helper")]
-    [SerializeField, ValueDropdown("LevelList")]
-    private string debugLevelID;
-    private IEnumerable<string> LevelList => levels.Select(x => x.ID);
-    [Button]
-    private void DebugOpenLevel()
-    {
-        var level = levels.FirstOrDefault(x => x.ID == debugLevelID);
-        if (level == null) return;
-
-        SetLevel(level);
+        return true;
     }
-
-    [Button]
-    private void GetLevelOnChild()
-    {
-        levels = GetComponentsInChildren<Level>(true).ToList();
-    }
-    #endregion
-#endif
 }

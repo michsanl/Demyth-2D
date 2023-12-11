@@ -46,9 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dadd4f87d4a1ee0448b06bf53b9d05b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  araAudioSource: {fileID: 11400000, guid: e223975f3b5920f4097a5c1f5548abb9, type: 2}
+  petraAudioSource: {fileID: 11400000, guid: 25c05e0a76a05a2489a4f67e13da126c, type: 2}
+  sriAudioSource: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
+  tuyulDash: {fileID: 8300000, guid: 3560b29979cf4a043bedc20d37119611, type: 3}
   musicSource: {fileID: 6198851195508146033}
   soundSource: {fileID: 6198851195493539703}
-  sriAudioSource: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
 --- !u!1 &6198851195493539702
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +93,7 @@ AudioSource:
   m_GameObject: {fileID: 6198851195493539702}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1115141787505372282, guid: 09168361162c6e545a3ccceb8db66597, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -218,12 +221,12 @@ AudioSource:
   m_GameObject: {fileID: 6198851195508146032}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2193176580618510789, guid: 09168361162c6e545a3ccceb8db66597, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

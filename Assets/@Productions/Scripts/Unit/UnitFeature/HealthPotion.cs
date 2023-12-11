@@ -1,11 +1,15 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using CustomTools.Core;
 
 public class HealthPotion : MonoBehaviour
 {
+    public int CurrentPotionAmount => currentPotionAmount;
+    public bool IsHealthPotionOnCooldown => isHealthPotionOnCooldown;
+
     [Header("Potion Attribute")]
     [SerializeField]
     private int maxPotionAmount = 2;
@@ -14,35 +18,27 @@ public class HealthPotion : MonoBehaviour
     private int currentPotionAmount;
     private bool isHealthPotionOnCooldown;
 
-    public Action<int> OnPotionAmountChanged;
-    public int CurrentPotionAmount => currentPotionAmount;
+    public Action<int> OnPotionAmountChanged;    
 
     private Health health;
 
-    private void Awake() 
+    private void Awake()
     {
         health = GetComponent<Health>();
     }
 
-    private void Start() 
+    private void Start()
     {
         ResetPotionToMax();
     }
 
     public void UsePotion()
     {
-        if (currentPotionAmount <= 0) 
-            return;
-        if (isHealthPotionOnCooldown)
-            return;
-        if (health.IsHealthFull())
-            return;
-            
         currentPotionAmount--;
-        health.Heal(1);
-        OnPotionAmountChanged?.Invoke(currentPotionAmount);
-
+        health.Heal(); 
         StartCoroutine(StartPotionCooldown());
+        
+        OnPotionAmountChanged?.Invoke(currentPotionAmount);
     }
 
     private IEnumerator StartPotionCooldown()

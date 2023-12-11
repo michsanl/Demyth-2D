@@ -1,47 +1,74 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using Core;
+using Core.UI;
+using Demyth.Gameplay;
+using PixelCrushers;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 namespace UISystem
 {
-    public class MainMenuUI : UIPageView
+    public class MainMenuUI : MonoBehaviour
     {
+        [SerializeField]
+        private EnumId gameViewId;
 
-        protected override void OnOpen()
+        [Header("Level")]
+        [SerializeField]
+        private EnumId newLevelId;
+
+        private UIPage _uiPage;
+        private LevelManager _levelManager;
+        private GameInputController _gameInputController;
+        private GameInput _gameInput;
+        private GameStateService _gameStateService;
+
+        private void Awake()
         {
-            Canvas.enabled = true;
-        }
+            _uiPage = GetComponent<UIPage>();
+            _levelManager = SceneServiceProvider.GetService<LevelManager>();
+            _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+            _gameInput = _gameInputController.GameInput;            
+        }       
 
-        protected override void OnClosed()
-        {    
-            Canvas.enabled = false;
-        }
-
-        public void ButtonNewGame()
+        public void StartNewGame()
         {
-            Close();
+            ClearGameProgressSave();
+            SaveSystem.LoadFromSlot(0);
 
-            // Go to level 1
+            _levelManager.OpenLevel(newLevelId);
+            _uiPage.OpenPage(gameViewId);
 
-            var levelDestination = SceneUI.Context.LevelManager.GetLevelByID("Level 1");
-            SceneUI.Context.LevelManager.ChangeLevel(levelDestination);
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
-        public void ButtonContinue()
+        public void StartToLevel(EnumId levelId)
         {
-            Close();
-            Open<SelectLevelUI>();
+            _levelManager.OpenLevel(levelId);
+            _uiPage.OpenPage(gameViewId);
+
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
-        public void ButtonOption()
+        public void ContinueGame()
         {
-            Close();
-            Open<OptionsUI>();
+            SaveSystem.LoadFromSlot(1);
+            _uiPage.OpenPage(gameViewId);
+
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
-        public void ButtonQuit()
+        public void QuitGame()
         {
             Application.Quit();
-        }
+        }               
+
+        private static void ClearGameProgressSave()
+        {
+            SaveSystem.DeleteSavedGameInSlot(1);
+            SaveSystem.DeleteSavedGameInSlot(2);
+            SaveSystem.DeleteSavedGameInSlot(3);
+        }  
     }
 }

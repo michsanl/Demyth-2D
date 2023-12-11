@@ -1,3 +1,4 @@
+﻿using Core;
 using CustomTools.Core;
 using Demyth.Gameplay;
 using Sirenix.OdinInspector;
@@ -9,32 +10,24 @@ using UnityEngine;
 [System.Serializable]
 public class LevelSetting
 {
-    [ValueDropdown(nameof(LevelName))]
-    public string ID;
+    public EnumId ID;
     public Gate Gate;
-
-#if UNITY_EDITOR
-    private IEnumerable<string> LevelName()
-    {
-        string levelPath = "Assets/@Productions/Prefabs/Level Map";
-        string[] guids = UnityEditor.AssetDatabase.FindAssets("", new[] { levelPath });
-        return guids
-            .Select(x => UnityEditor.AssetDatabase.GUIDToAssetPath(x))
-            .Select(y => UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(y).name);
-    }
-#endif
 }
 
-public class Level : CoreBehaviour
+public class Level : MonoBehaviour
 {
-    public string ID => gameObject.name;
+    public EnumId ID => levelId;
     public Vector3 StarterPosition => starterPoint.position;
     public LevelSetting[] LevelSetting => settings;
 
     [SerializeField]
+    private EnumId levelId;
+    [SerializeField]
     private LevelSetting[] settings;
     [SerializeField]
     private Transform starterPoint;
+
+    private LevelManager _levelManager;
 
     private void Awake()
     {
@@ -44,15 +37,20 @@ public class Level : CoreBehaviour
         }
     }
 
-    public Vector2 GetLevelPoint(string levelID)
+    public void InjectLevelManager(LevelManager levelManager)
+    {
+        _levelManager = levelManager;
+    }
+
+    public Vector2 GetLevelPoint(EnumId levelID)
     {
         var setting = settings.FirstOrDefault(level => level.ID == levelID);
         return setting == null ? StarterPosition : setting.Gate.EnterPoint;
     }
 
-    public void MoveToNextLevel(string levelID)
+    public void MoveToNextLevel(EnumId levelID)
     {
-        Context.LevelManager.ChangeLevel(ID, levelID);
+        _levelManager.ChangeLevelByGate(ID, levelID);
     }
 
     #region DEBUG HELPER
@@ -66,7 +64,7 @@ public class Level : CoreBehaviour
     private void DebugDrawLine()
     {
         int width = 17;
-        int height = 10;
+        int height = 30;
         Vector3 originGridPosition = transform.position + Vector3.up * 0.5f;
         Vector3 centerPosition = originGridPosition + new Vector3(-width / 2f, -height / 2f, 0);
         for (int i = 0; i < width; i++)
