@@ -28,6 +28,14 @@ namespace Demyth.UI
             Hide();
         }
 
+        private void OnDestroy()
+        {
+            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetEnabled -= BoxLevelReset_OnBoxLevelResetEnabled;
+            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetDisabled -= BoxLevelReset_OnBoxLevelResetDisabled;
+            _tuyulChaseLevelReset.OnTuyulLevelResetEnabled -= TuyulLevelResetEnabled_OnTuyulLevelResetEnabled;
+            _tuyulChaseLevelReset.OnTuyulLevelResetDisabled -= TuyulLevelResetEnabled_OnTuyulLevelResetDisabled;
+        }
+
         private void BoxLevelReset_OnBoxLevelResetEnabled()
         {
             Show();
