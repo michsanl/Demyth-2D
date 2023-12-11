@@ -685,6 +685,7 @@ GameObject:
   - component: {fileID: 7146482866294819291}
   - component: {fileID: 7146482866294819288}
   - component: {fileID: 7146482866294819289}
+  - component: {fileID: 1798662084}
   m_Layer: 5
   m_Name: Select Level UI
   m_TagString: Untagged
@@ -782,6 +783,33 @@ MonoBehaviour:
   _childrens: []
   _priority: 0
   gameViewId: {fileID: 11400000, guid: 9c3d0b15a1dd17140ad2b6e52d352322, type: 2}
+--- !u!114 &1798662084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7146482866294819295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d390d05f577e43bb50ddaa16b5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pageId: {fileID: 11400000, guid: fbfe5c8d5eed60c48856c2f4441c6957, type: 2}
+  disablePreviousPage: 0
+  offType: 0
+  OnPushed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnOpen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRefresh:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7146482866588581593
 GameObject:
   m_ObjectHideFlags: 0
