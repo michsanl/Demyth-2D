@@ -11,7 +11,11 @@ using UnityEngine;
 public class PetraPostCombatCutscene : MonoBehaviour
 {
     
-    [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
+    [SerializeField] private GameObject _bossPetraGameObject;
+    [SerializeField] private GameObject _npcPetraGameObject;
+    [SerializeField] private Transform _bossPetraModel;
+    [SerializeField] private Transform _npcPetraModel;
+    [SerializeField] private Animator _npcPetraAnimator;
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private GameObject _unlockableInvisibleWall;
 
@@ -21,7 +25,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _petraHealth = _petraCombatBehaviour.GetComponent<Health>();
+        _petraHealth = _bossPetraGameObject.GetComponent<Health>();
 
         _petraHealth.OnDeath += PetraHealth_OnDeath;
     }
@@ -53,13 +57,25 @@ public class PetraPostCombatCutscene : MonoBehaviour
     {
         // SEQUENCE 3
         // Enable player input
-        // Play petra reverse on death animation after dialogue
+        // Disable boss petraa
+        // Enable non-boss petra
+        // Set position and facing direction on non-boss petra
+        // play revive animation on non-boss petra
         // disable blocking wall
         // save
         _gameStateService.SetState(GameState.Gameplay);
-        _petraCombatBehaviour.PlayReviveAnimation();
+
+        _bossPetraGameObject.SetActive(false);
+        _npcPetraGameObject.SetActive(true);
+
+        _npcPetraGameObject.transform.position = _bossPetraGameObject.transform.position;
+        _npcPetraModel.localScale = _bossPetraModel.localScale;
+        _npcPetraAnimator.Play("Revive");
+
         _unlockableInvisibleWall.SetActive(false);
         SaveSystem.SaveToSlot(1);
+
+        // _petraCombatBehaviour.PlayReviveAnimation();
     }
 
 }

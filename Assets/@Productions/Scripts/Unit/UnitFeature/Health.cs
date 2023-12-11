@@ -56,6 +56,9 @@ public class Health : MonoBehaviour
         if (status == HealthStatus.Invulnerable) 
             return;
 
+        if (currentHealth <= 0)
+            return;
+
         if (shield != null)
         {
             if (shield.TryShieldTakeDamage())
@@ -68,7 +71,7 @@ public class Health : MonoBehaviour
         OnTakeDamage?.Invoke();
     }
 
-    public void Heal(int healAmount)
+    public void Heal()
     {
         CurrentHP++;
 

@@ -30,6 +30,8 @@ namespace UISystem
             _levelManager.OpenLevel(levelId);
             _uiPage.OpenPage(gameViewId);
 
+            SaveSystem.SaveToSlot(1);
+
             _gameStateService?.SetState(GameState.Gameplay);
         }
 
