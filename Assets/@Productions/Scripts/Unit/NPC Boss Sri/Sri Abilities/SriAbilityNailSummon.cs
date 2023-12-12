@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityNailSummon : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class SriAbilityNailSummon : MonoBehaviour
         PlayAudio(abilitySFX);
         
         Vector2 spawnPosition = player.LastMoveTargetPosition;
-        Instantiate(groundNail, spawnPosition, Quaternion.identity);
+        LeanPool.Spawn(groundNail, spawnPosition, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         nailSummonCollider.SetActive(true);

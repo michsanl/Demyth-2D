@@ -4,6 +4,7 @@ using CustomTools.Core;
 using UnityEngine;
 using DG.Tweening;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityDeathSlash : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class SriAbilityDeathSlash : MonoBehaviour
     {
         if (_summonedObject != null) 
         {
-            Destroy(_summonedObject);
+            LeanPool.Despawn(_summonedObject);
         }
     }
 
@@ -41,7 +42,7 @@ public class SriAbilityDeathSlash : MonoBehaviour
         PlayAudio(nailAOESFX);
 
         yield return Helper.GetWaitForSeconds(.5f);
-        _summonedObject = Instantiate(nailWavePrefab, Vector3.zero, Quaternion.identity);
+        _summonedObject = LeanPool.Spawn(nailWavePrefab, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(3.7f);
         

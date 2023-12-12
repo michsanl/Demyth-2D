@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityWaveOutNailWave : MonoBehaviour
 {
@@ -57,6 +58,6 @@ public class SriAbilityWaveOutNailWave : MonoBehaviour
     {
         yield return Helper.GetWaitForSeconds(nailSpawnDelay);
 
-        Instantiate(waveOutNailWave, new Vector3(0, -1, 0), Quaternion.identity);
+        LeanPool.Spawn(waveOutNailWave, new Vector3(0, -1, 0), Quaternion.identity);
     }
 }

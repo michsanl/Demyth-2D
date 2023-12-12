@@ -13,6 +13,7 @@ public class GroundSummon : MonoBehaviour
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float anticipationDuration;
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float attackDuration;
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float recoveryDuration;
+    [SerializeField] private int _animationModelCount = 3;
     [SerializeField] private bool isEndless;
     [SerializeField] private bool _disableDespawn;
     [ReadOnly] public float TotalDuration;
@@ -33,9 +34,9 @@ public class GroundSummon : MonoBehaviour
     public Action OnAttack;
     public Action OnRecovery;
 
-    private string[] _inAnimationArray = new string[3] { "Ground_Summon_1_In", "Ground_Summon_2_In", "Ground_Summon_3_In"};
-    private string[] _attackAnimationArray = new string[3] { "Ground_Summon_1_Attack", "Ground_Summon_2_Attack", "Ground_Summon_3_Attack"};
-    private string[] _outAnimationArray = new string[3] { "Ground_Summon_1_Out", "Ground_Summon_2_Out", "Ground_Summon_3_Out"};
+    private string[] _inAnimationArray = new string[6] { "Ground_Summon_1_In", "Ground_Summon_2_In", "Ground_Summon_3_In", "Ground_Summon_4_In", "Ground_Summon_5_In", "Ground_Summon_6_In"};
+    private string[] _attackAnimationArray = new string[6] { "Ground_Summon_1_Attack", "Ground_Summon_2_Attack", "Ground_Summon_3_Attack", "Ground_Summon_4_Attack", "Ground_Summon_5_Attack", "Ground_Summon_6_Attack"};
+    private string[] _outAnimationArray = new string[6] { "Ground_Summon_1_Out", "Ground_Summon_2_Out", "Ground_Summon_3_Out", "Ground_Summon_4_Out", "Ground_Summon_5_Out", "Ground_Summon_6_Out"};
 
     private int topBorder = 2;
     private int bottomBorder = -4;
@@ -76,7 +77,7 @@ public class GroundSummon : MonoBehaviour
         if (useRandomizedSpawnDelay)
             yield return StartCoroutine(RandomizedSpawnDelay());
 
-        var randomIndex = UnityEngine.Random.Range(0, 3);
+        var randomIndex = UnityEngine.Random.Range(0, _animationModelCount);
 
         _animator.Play(_inAnimationArray[randomIndex]);
         yield return Helper.GetWaitForSeconds(anticipationDuration);
@@ -133,10 +134,5 @@ public class GroundSummon : MonoBehaviour
     private void CalculateTotalDuration()
     {
         TotalDuration = anticipationDuration + attackDuration + recoveryDuration;
-    }
-
-    public void PlayFrontSwingAnimation(int index)
-    {
-        
     }
 }

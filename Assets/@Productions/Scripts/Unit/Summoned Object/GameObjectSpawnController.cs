@@ -9,6 +9,7 @@ public class GameObjectSpawnController : MonoBehaviour
 {
     [SerializeField] private float spawnInterval;
     [SerializeField] private float _despawnTimer = 2f;
+    [SerializeField] private bool _disableDespawn;
     [SerializeField] private GameObject[] gameObjectsToSpawnArray;
 
     private GameStateService _gameStateService;
@@ -47,17 +48,23 @@ public class GameObjectSpawnController : MonoBehaviour
             yield return Helper.GetWaitForSeconds(spawnInterval);
         }
 
+        if (_disableDespawn) 
+            yield break;
         yield return Helper.GetWaitForSeconds(_despawnTimer);
         LeanPool.Despawn(gameObject);
     }
 
     private void MainMenu_OnEnter(GameState state)
     {
+        if (_disableDespawn) 
+            return;
         LeanPool.Despawn(gameObject);
     }
 
     private void GameOver_OnEnter(GameState state)
     {
+        if (_disableDespawn) 
+            return;
         LeanPool.Despawn(gameObject);
     }
 }

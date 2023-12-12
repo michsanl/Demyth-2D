@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityHorizontalNailWave : MonoBehaviour
 {
@@ -14,15 +15,14 @@ public class SriAbilityHorizontalNailWave : MonoBehaviour
     [Title("Components")]
     [SerializeField] private GameObject horizontalNailWave;
 
-    private GameObject spawnedNailGO;
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 
     public IEnumerator HorizontalNailWave(Animator animator, AudioClip abilitySFX)
     {
-
         animator.Play(NAIL_WAVE);
         PlayAudio(abilitySFX);
-        spawnedNailGO = Instantiate(horizontalNailWave, Vector3.zero, Quaternion.identity);
+
+        LeanPool.Spawn(horizontalNailWave, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);
     }
@@ -34,10 +34,5 @@ public class SriAbilityHorizontalNailWave : MonoBehaviour
         playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
 
         MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
-    }
-
-    public GameObject GetNailGameObject()
-    {
-        return spawnedNailGO;
     }
 }
