@@ -214,6 +214,7 @@ MonoBehaviour:
   - {fileID: 3975585013025071505}
   - {fileID: 2043537636635439728}
   - {fileID: 6270471600297573761}
+  _animator: {fileID: 3975585013025071508}
 --- !u!114 &448300485161178022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a42bbc1965fd54e81f6abc3402c3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 3
 --- !u!61 &939546829481698260
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -336,29 +336,17 @@ MonoBehaviour:
   _scene: {fileID: 0}
   _context:
     UI: {fileID: 0}
-    HUDUI: {fileID: 0}
     Player: {fileID: 0}
     GameManager: {fileID: 0}
     GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShake: {fileID: 0}
+    CameraShakeController: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 0
   isKnockbackOnly: 0
-  isKnockbackPassThrough: 0
-  enableKnockBack: 1
-  knockBackSource: 0
-  knockBackOrientation: 0
-  knockBackDirection: 0
-  moveBlockMask:
-    serializedVersion: 2
-    m_Bits: 64
-  damagePlayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!65 &3429326078195028036
 BoxCollider:
   m_ObjectHideFlags: 0

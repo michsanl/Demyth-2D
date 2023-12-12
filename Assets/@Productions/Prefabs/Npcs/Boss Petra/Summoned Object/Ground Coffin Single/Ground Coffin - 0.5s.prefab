@@ -261,6 +261,7 @@ MonoBehaviour:
   attackDuration: 0.25
   recoveryDuration: 0.125
   isEndless: 0
+  _disableDespawn: 1
   TotalDuration: 0.5
   useRandomizedSpawnDelay: 0
   minRandomSpawnDelay: 0
@@ -270,6 +271,7 @@ MonoBehaviour:
   - {fileID: 3975585013025071505}
   - {fileID: 2043537636635439728}
   - {fileID: 6270471600297573761}
+  _animator: {fileID: 3975585013025071508}
 --- !u!1 &3975585011916006985
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,29 +340,17 @@ MonoBehaviour:
   _scene: {fileID: 0}
   _context:
     UI: {fileID: 0}
-    HUDUI: {fileID: 0}
     Player: {fileID: 0}
     GameManager: {fileID: 0}
     GameInput: {fileID: 0}
     LevelManager: {fileID: 0}
     AudioManager: {fileID: 0}
     CameraNormal: {fileID: 0}
-    CameraShake: {fileID: 0}
+    CameraShakeController: {fileID: 0}
   _isInitialized: 0
   _isActive: 0
   damagerCharacter: 1
   isKnockbackOnly: 0
-  isKnockbackPassThrough: 0
-  enableKnockBack: 1
-  knockBackSource: 0
-  knockBackOrientation: 0
-  knockBackDirection: 0
-  moveBlockMask:
-    serializedVersion: 2
-    m_Bits: 64
-  damagePlayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!65 &1093564055611812540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -392,7 +382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3975585013025071506
 Transform:
   m_ObjectHideFlags: 0
