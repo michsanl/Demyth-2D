@@ -11,9 +11,10 @@ public class SriPostCombatCutscene : MonoBehaviour
     public void StartCutscene()
     {
         // SEQUENCE 1
-        // Deactivae summoned object
+        // Deactivate summoned object
         // Deactivate boss sri
-        // Activate npc
+        // Deactivate NPC on all previous floor
+        // Activate end game NPC and portal
 
         LeanPool.DespawnAll();
 
