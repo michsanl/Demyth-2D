@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityVerticalNailWave : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class SriAbilityVerticalNailWave : MonoBehaviour
         animator.Play(NAIL_WAVE);
         PlayAudio(abilitySFX);
 
-        Instantiate(verticalNailWave, Vector3.zero, Quaternion.identity);
+        LeanPool.Spawn(verticalNailWave, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(animationDuration);
     }

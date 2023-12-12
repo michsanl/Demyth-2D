@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
 using Core;
+using Lean.Pool;
 
 public class PetraAbilityBasicSlam : MonoBehaviour
 {
@@ -24,11 +25,12 @@ public class PetraAbilityBasicSlam : MonoBehaviour
     {
         animator.Play(BASIC_SLAM);
         PlayAudio(abilitySFX);
-        
-        var coffinSpawnPosition = player.LastMoveTargetPosition;
 
+        var coffinSpawnPosition = player.LastMoveTargetPosition;
+        
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
-        Instantiate(groundCoffin, coffinSpawnPosition, Quaternion.identity);
+
+        var spawnedCoffin = LeanPool.Spawn(groundCoffin, coffinSpawnPosition, Quaternion.identity);
         basicSlamCollider.SetActive(true);
 
         yield return Helper.GetWaitForSeconds(_swingDuration);

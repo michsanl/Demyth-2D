@@ -236,7 +236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInterval: 0.5
-  destroyTimerOnComplete: 5000
+  _despawnTimer: 0
+  _disableDespawn: 1
   gameObjectsToSpawnArray:
   - {fileID: 6829240828973207839}
   - {fileID: 3260537754865550655}

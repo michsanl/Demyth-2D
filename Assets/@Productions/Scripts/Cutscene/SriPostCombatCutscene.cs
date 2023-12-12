@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
+using PixelCrushers;
 
 public class SriPostCombatCutscene : MonoBehaviour
 {
@@ -10,8 +12,13 @@ public class SriPostCombatCutscene : MonoBehaviour
     public void StartCutscene()
     {
         // SEQUENCE 1
+        // Deactivate summoned object
         // Deactivate boss sri
-        // Activate npc
+        // Deactivate NPC on all previous floor
+        // Activate end game NPC and portal
+        // Save
+
+        LeanPool.DespawnAll();
 
         foreach (var item in _gameObjectsToActivate)
         {
@@ -22,5 +29,7 @@ public class SriPostCombatCutscene : MonoBehaviour
         {
             item.SetActive(false);
         }
+
+        SaveSystem.SaveToSlot(1);
     }
 }

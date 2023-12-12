@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class PetraAbilityChargeAttack : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class PetraAbilityChargeAttack : MonoBehaviour
         PlayAudio(abilitySFX);
 
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
-        Instantiate(groundCoffinAOE, transform.position, Quaternion.identity);
+        LeanPool.Spawn(groundCoffinAOE, transform.position, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(_swingDuration);
 

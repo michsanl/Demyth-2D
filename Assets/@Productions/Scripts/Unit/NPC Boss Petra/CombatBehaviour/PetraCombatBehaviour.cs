@@ -10,7 +10,7 @@ public class PetraCombatBehaviour : MonoBehaviour
 {
     
     private enum Ability 
-    { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam }
+    { UpCharge, DownCharge, HorizontalCharge, SpinAttack, ChargeAttack, BasicSlam, JumpSlam, JumpGroundSlam }
     private enum CombatMode 
     { None, FirstPhase, SecondPhase, AbilityLoop }
 
@@ -78,6 +78,7 @@ public class PetraCombatBehaviour : MonoBehaviour
 
     public void InitiateCombatMode()
     {
+        _health.ResetHealthToMaximum();
         StartCoroutine(StartCombatWithIntroMove());
     }
 
@@ -234,6 +235,8 @@ public class PetraCombatBehaviour : MonoBehaviour
                 return StartBasicSlamAbility();
             case Ability.JumpSlam:
                 return StartJumpSlamAbility();
+            case Ability.JumpGroundSlam:
+                return StartJumpGroundSlamAbility();
             default:
                 return null;
         }

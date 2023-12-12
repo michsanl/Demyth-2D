@@ -5,6 +5,7 @@ using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
+using Lean.Pool;
 
 public class BossLevelReset : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class BossLevelReset : MonoBehaviour
     private void PlayerHealth_OnDeath()
     {
         _gameStateService.SetState(GameState.GameOver);
+        LeanPool.DespawnAll();
     }
 
     public void ResetLevel()

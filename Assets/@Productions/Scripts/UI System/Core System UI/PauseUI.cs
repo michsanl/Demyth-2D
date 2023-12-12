@@ -11,6 +11,7 @@ using Core;
 using Core.UI;
 using Demyth.Gameplay;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 namespace UISystem
 {
@@ -76,6 +77,7 @@ namespace UISystem
         {
             DialogueManager.StopAllConversations();
             DOTween.CompleteAll();
+            LeanPool.DespawnAll();
 
             _levelManager.OpenLevel(_levelMenulId);
             _uiPage.ReturnToPage(_menuPageId);

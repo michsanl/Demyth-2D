@@ -11,7 +11,7 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private enum Ability
     { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
-    VerticalNailWave, WaveOutNailWave, Teleport }
+    VerticalNailWave, WaveOutNailWave, Teleport, DeathSlash }
     private enum CombatMode 
     { None, FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
 
@@ -89,6 +89,7 @@ public class SriCombatBehaviour : MonoBehaviour
 
     public void InitiateCombatMode()
     {
+        _health.ResetHealthToMaximum();
         StartCoroutine(StartCombatWithIntroMove());
     }
 
@@ -275,6 +276,8 @@ public class SriCombatBehaviour : MonoBehaviour
                 return StartWaveOutNailWaveAbility();
             case Ability.Teleport:
                 return StartTeleportAbility();
+            case Ability.DeathSlash:
+                return StartDeathSlashAbility();
             default:
                 return null;
         }
