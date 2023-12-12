@@ -89,6 +89,7 @@ public class SriCombatBehaviour : MonoBehaviour
 
     public void InitiateCombatMode()
     {
+        _health.ResetHealthToMaximum();
         StartCoroutine(StartCombatWithIntroMove());
     }
 

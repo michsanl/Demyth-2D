@@ -18,16 +18,6 @@ public class SriAbilityDeathSlash : MonoBehaviour
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    private GameObject _summonedObject;
-
-    private void OnDisable()
-    {
-        if (_summonedObject != null) 
-        {
-            LeanPool.Despawn(_summonedObject);
-        }
-    }
-
     public IEnumerator DeathSlash(Animator animator, AudioClip nailAOESFX, AudioClip verticalSlashSFX)
     {
         animator.Play(TELEPORT_START);
@@ -42,7 +32,7 @@ public class SriAbilityDeathSlash : MonoBehaviour
         PlayAudio(nailAOESFX);
 
         yield return Helper.GetWaitForSeconds(.5f);
-        _summonedObject = LeanPool.Spawn(nailWavePrefab, Vector3.zero, Quaternion.identity);
+        LeanPool.Spawn(nailWavePrefab, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(3.7f);
         

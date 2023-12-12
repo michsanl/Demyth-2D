@@ -78,6 +78,7 @@ public class PetraCombatBehaviour : MonoBehaviour
 
     public void InitiateCombatMode()
     {
+        _health.ResetHealthToMaximum();
         StartCoroutine(StartCombatWithIntroMove());
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class SriPostCombatCutscene : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class SriPostCombatCutscene : MonoBehaviour
     public void StartCutscene()
     {
         // SEQUENCE 1
+        // Deactivae summoned object
         // Deactivate boss sri
         // Activate npc
+
+        LeanPool.DespawnAll();
 
         foreach (var item in _gameObjectsToActivate)
         {

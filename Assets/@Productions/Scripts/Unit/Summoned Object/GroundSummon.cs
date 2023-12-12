@@ -43,33 +43,17 @@ public class GroundSummon : MonoBehaviour
     private int rightBorder = 6;
     private int leftBorder = -6;
 
-    private GameStateService _gameStateService;
-
-    private void Awake()
-    {
-        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-
-        _gameStateService[GameState.MainMenu].onEnter += MainMenu_OnEnter;
-        _gameStateService[GameState.GameOver].onEnter += GameOver_OnEnter;
-    }
-
     private void OnEnable() 
     {
         if (IsOutOfBounds())
         {
-            if (_disableDespawn)
-                return;
+            if (_disableDespawn) return;
+
             LeanPool.Despawn(gameObject);
             return;
         }
 
         StartCoroutine(SummonRoutine());
-    }
-
-    private void OnDestroy() 
-    {
-        _gameStateService[GameState.MainMenu].onEnter -= MainMenu_OnEnter;
-        _gameStateService[GameState.GameOver].onEnter -= GameOver_OnEnter;
     }
 
     private IEnumerator SummonRoutine()
@@ -82,32 +66,18 @@ public class GroundSummon : MonoBehaviour
         _animator.Play(_inAnimationArray[randomIndex]);
         yield return Helper.GetWaitForSeconds(anticipationDuration);
 
-        _animator.Play(_attackAnimationArray[randomIndex]);
         colliderGameObject.SetActive(true);
+        _animator.Play(_attackAnimationArray[randomIndex]);
         yield return Helper.GetWaitForSeconds(attackDuration);
 
         if (isEndless) yield break;
 
-        _animator.Play(_outAnimationArray[randomIndex]);
         colliderGameObject.SetActive(false);
+        _animator.Play(_outAnimationArray[randomIndex]);
         yield return Helper.GetWaitForSeconds(recoveryDuration);
         
-        if (_disableDespawn)
-            yield break;
-        LeanPool.Despawn(gameObject);
-    }
+        if (_disableDespawn) yield break;
 
-    private void MainMenu_OnEnter(GameState state)
-    {
-        if (_disableDespawn)
-            return;
-        LeanPool.Despawn(gameObject);
-    }
-
-    private void GameOver_OnEnter(GameState state)
-    {
-        if (_disableDespawn)
-            return;
         LeanPool.Despawn(gameObject);
     }
     

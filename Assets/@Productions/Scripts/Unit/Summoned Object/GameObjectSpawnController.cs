@@ -12,15 +12,6 @@ public class GameObjectSpawnController : MonoBehaviour
     [SerializeField] private bool _disableDespawn;
     [SerializeField] private GameObject[] gameObjectsToSpawnArray;
 
-    private GameStateService _gameStateService;
-
-    private void Awake()
-    {
-        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-
-        _gameStateService[GameState.MainMenu].onEnter += MainMenu_OnEnter;
-        _gameStateService[GameState.GameOver].onEnter += GameOver_OnEnter;
-    }
     private void OnEnable()
     {
         StartCoroutine(ActivateGameObjectWithInterval());
@@ -34,12 +25,6 @@ public class GameObjectSpawnController : MonoBehaviour
         }
     }
 
-    private void OnDestroy() 
-    {
-        _gameStateService[GameState.MainMenu].onEnter -= MainMenu_OnEnter;
-        _gameStateService[GameState.GameOver].onEnter -= GameOver_OnEnter;
-    }
-
     private IEnumerator ActivateGameObjectWithInterval()
     {
         foreach (var gameObject in gameObjectsToSpawnArray)
@@ -48,23 +33,9 @@ public class GameObjectSpawnController : MonoBehaviour
             yield return Helper.GetWaitForSeconds(spawnInterval);
         }
 
-        if (_disableDespawn) 
-            yield break;
+        if (_disableDespawn) yield break;
+
         yield return Helper.GetWaitForSeconds(_despawnTimer);
-        LeanPool.Despawn(gameObject);
-    }
-
-    private void MainMenu_OnEnter(GameState state)
-    {
-        if (_disableDespawn) 
-            return;
-        LeanPool.Despawn(gameObject);
-    }
-
-    private void GameOver_OnEnter(GameState state)
-    {
-        if (_disableDespawn) 
-            return;
         LeanPool.Despawn(gameObject);
     }
 }
