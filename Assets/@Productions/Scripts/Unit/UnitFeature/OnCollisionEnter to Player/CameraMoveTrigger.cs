@@ -1,16 +1,32 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using Core;
+using System;
 
 public class CameraMoveTrigger : MonoBehaviour
 {
-    [SerializeField] private int targetPositionY;
-    [SerializeField] private float moveDuration;
+    public enum CameraMoveDir { Up, Down };
+    
+    [SerializeField] private CameraMoveDir _cameraMoveDir;
 
-    [SerializeField]
-    private Transform cameraNormal;
+    private CameraController _cameraController;
+
+    private void Awake()
+    {
+        _cameraController = SceneServiceProvider.GetService<CameraController>();
+    }
 
     private void OnCollisionEnter(Collision other) 
     {
-        cameraNormal.DOLocalMoveY(targetPositionY, moveDuration).SetEase(Ease.OutExpo);
+        if (other is null) return;
+
+        if (_cameraMoveDir == CameraMoveDir.Up)
+        {
+            _cameraController.MoveCameraUpSmoothly();
+        }
+        else
+        {
+            _cameraController.MoveCameraDownSmoothly();
+        }
     }
 }
