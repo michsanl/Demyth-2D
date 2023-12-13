@@ -7,17 +7,24 @@ namespace Demyth.Gameplay
 {
     public class Gate : Interactable
     {
+        private enum CameraMoveDirection { Up, Down };
+        
         public Vector3 EnterPoint => transform.position;
+
         [SerializeField]
         private EnumId targetLevel;
-        [SerializeField] private bool moveCameraOnLevelChange;
+        [SerializeField] 
+        private bool moveCameraOnLevelChange;
         [SerializeField, ShowIf("moveCameraOnLevelChange")]
         private CameraMoveDirection cameraMoveDirection;
-        [SerializeField, ShowIf("moveCameraOnLevelChange")]
-        private GameObject cameraGO;
 
-        private enum CameraMoveDirection { Up, Down };
         private Level _level;
+        private CameraController _cameraController;
+
+        private void Awake()
+        {
+            _cameraController = SceneServiceProvider.GetService<CameraController>();
+        }
 
         public void SetupGate(Level level)
         {
@@ -37,10 +44,13 @@ namespace Demyth.Gameplay
                 return;
 
             if (cameraMoveDirection == CameraMoveDirection.Up)
-                cameraGO.transform.localPosition = new Vector3(0, 10, -10); 
-                
-            if (cameraMoveDirection == CameraMoveDirection.Down)
-                cameraGO.transform.localPosition = new Vector3(0, 0, -10);
+            {
+                _cameraController.MoveCameraUpImmediate();
+            }
+            else
+            {
+                _cameraController.MoveCameraDownImmediate();
+            }
         }
     }
 }

@@ -20,12 +20,22 @@ public class GameInputController : SceneService
         _gameStateService[GameState.Gameplay].onEnter += OnGameplay;
         _gameStateService[GameState.Pause].onEnter += OnPause;
         _gameStateService[GameState.GameOver].onEnter += OnGameOver;
-        _gameStateService[GameState.Cutscene].onEnter += OnCutscene;
     }
+    
     private void Start()
     {
         DialogueManager.Instance.conversationStarted += DialogueManager_OnConversationStarted;
         DialogueManager.Instance.conversationEnded += DialogueManager_OnConversationEnded;
+    }
+
+    public void EnablePlayerInput()
+    {
+        gameInput.EnablePlayerInput();
+    }
+
+    public void DisablePlayerInput()
+    {
+        gameInput.DisablePlayerInput();
     }
 
     private void OnMainMenu(GameState obj)
@@ -50,12 +60,6 @@ public class GameInputController : SceneService
         gameInput.DisablePlayerInput();
         gameInput.DisablePauseInput();
     }
-
-    private void OnCutscene(GameState state)
-    {
-        gameInput.DisablePlayerInput();
-    }
-
     
     private void DialogueManager_OnConversationStarted(Transform t)
     {

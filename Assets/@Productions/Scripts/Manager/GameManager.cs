@@ -2,9 +2,11 @@
 using Core;
 using Demyth.Gameplay;
 using PixelCrushers;
+using System;
 
 public class GameManager : SceneService
 {
+    
     private GameStateService _gameStateService;
     private GameInputController _gameInputController;
     private GameInput _gameInput;
@@ -20,6 +22,12 @@ public class GameManager : SceneService
 
         _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
 
+        CreateVanillaSaveFile();
+    }
+
+    // Saving on the start of the scene, before loading anything, to create vanilla save file
+    private static void CreateVanillaSaveFile()
+    {
         SaveSystem.SaveToSlot(0);
     }
 
