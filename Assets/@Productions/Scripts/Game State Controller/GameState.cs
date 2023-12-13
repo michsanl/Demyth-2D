@@ -5,6 +5,5 @@
     Gameplay,
     Pause,
     GameOver,
-    Cutscene,
     GameEnd
 }

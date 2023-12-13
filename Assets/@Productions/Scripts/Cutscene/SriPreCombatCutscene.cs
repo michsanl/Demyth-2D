@@ -19,13 +19,13 @@ public class SriPreCombatCutscene : MonoBehaviour
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
 
-    private GameStateService _gameStateService;
     private CameraController _cameraController;
+    private GameInputController _gameInputController;
 
     private void Awake()
     {
-        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _cameraController = SceneServiceProvider.GetService<CameraController>();
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -46,7 +46,7 @@ public class SriPreCombatCutscene : MonoBehaviour
         // SEQUENCE 1
         // disable player input
         // wait
-        _gameStateService.SetState(GameState.Cutscene);
+        _gameInputController.DisablePlayerInput();
         yield return Helper.GetWaitForSeconds(_firstCutsceneStartDelay);
 
         // SEQUENCE 2
@@ -77,7 +77,7 @@ public class SriPreCombatCutscene : MonoBehaviour
         // enable player input
         // disable cutscene object
         _sriCombatBehaviour.InitiateCombatMode();
-        _gameStateService.SetState(GameState.Gameplay);
+        _gameInputController.EnablePlayerInput();
         gameObject.SetActive(false);
     }
 

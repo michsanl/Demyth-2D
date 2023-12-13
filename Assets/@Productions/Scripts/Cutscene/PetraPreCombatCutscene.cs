@@ -17,13 +17,13 @@ public class PetraPreCombatCutscene : MonoBehaviour
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
 
-    private GameStateService _gameStateService;
+    private GameInputController _gameInputController;
     private CameraController _cameraController;
     private Player _player;
 
     private void Awake()
     {
-        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _cameraController = SceneServiceProvider.GetService<CameraController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
     }
@@ -45,7 +45,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
     {
         // SEQUENCE 1
         // disable player input
-        _gameStateService.SetState(GameState.Cutscene);
+        _gameInputController.DisablePlayerInput();
         yield return new WaitForSeconds(_firstCutsceneStartDelay);
 
         // SEQUENCE 2
@@ -72,7 +72,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
         // disable cutscene object
         _petraCombatBehaviour.InitiateCombatMode();
         _cameraController.DOMoveYCamera(0f, 1f, Ease.InOutQuad);
-        _gameStateService.SetState(GameState.Gameplay);
+        _gameInputController.EnablePlayerInput();
         _player.UsePan = true;
         gameObject.SetActive(false);
     }

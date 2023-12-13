@@ -12,10 +12,11 @@ public class SriPostCombatCutscene : MonoBehaviour
     public void StartCutscene()
     {
         // SEQUENCE 1
+        // Activate end game NPC and portal
         // Deactivate summoned object
         // Deactivate boss sri
+        // Deactivate invisible wall
         // Deactivate NPC on all previous floor
-        // Activate end game NPC and portal
         // Save
 
         LeanPool.DespawnAll();
