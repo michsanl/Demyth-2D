@@ -237,12 +237,24 @@ public class Player : MonoBehaviour, IBroadcaster
         _isTakeDamageOnCooldown = false;
     }
 
+    private IEnumerator HandleKnockBack(Vector2 targetPosition)
+    {
+        _isKnocked = true;
+
+        _moveTargetPosition = targetPosition;
+        Helper.MoveToPosition(transform, targetPosition, actionDuration);
+        yield return Helper.GetWaitForSeconds(actionDuration);
+        
+        _isKnocked = false;
+    }
+
     private void GameInput_OnSenterPerformed()
     {
         if (!_isLanternUnlocked)
             return;
 
-        _lantern.ToggleLantern(araAudioSO.Lantern);
+        _lantern.ToggleLantern();
+        PlayAudio(araAudioSO.Lantern);
     }
 
     private void GameInput_OnHealthPotionPerformed()
@@ -256,17 +268,8 @@ public class Player : MonoBehaviour, IBroadcaster
         if (_healthPotion.IsHealthPotionOnCooldown)
             return;
 
-        PlayAudio(araAudioSO.Potion);
         _healthPotion.UsePotion();
-    }
-
-    private IEnumerator HandleKnockBack(Vector2 targetPosition)
-    {
-        _isKnocked = true;
-        _moveTargetPosition = targetPosition;
-        Helper.MoveToPosition(transform, targetPosition, actionDuration);
-        yield return Helper.GetWaitForSeconds(actionDuration);
-        _isKnocked = false;
+        PlayAudio(araAudioSO.Potion);
     }
 
     private void PlayAudio(AudioClip abilitySFX)

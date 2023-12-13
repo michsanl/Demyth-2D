@@ -13,7 +13,7 @@ public class Lantern : MonoBehaviour
 
     private bool _isSenterEnabled;
 
-    public void ToggleLantern(AudioClip lanternSFX)
+    public void ToggleLantern()
     {
         if (_lanternGameObject.activeInHierarchy)
         {
@@ -23,8 +23,6 @@ public class Lantern : MonoBehaviour
         {
             StartCoroutine(TurnOnLanternCoroutine());
         }
-
-        PlayAudio(lanternSFX);
     }
 
     public void TurnOnLantern()
@@ -59,14 +57,5 @@ public class Lantern : MonoBehaviour
         _isSenterEnabled = true;
 
         OnLanternTogglePerformed?.Invoke(_isSenterEnabled);
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }
