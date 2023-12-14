@@ -5,6 +5,7 @@ using System;
 using Sirenix.OdinInspector;
 using Core;
 using Demyth.Gameplay;
+using DG.Tweening;
 
 public class SriCombatBehaviour : MonoBehaviour
 {
@@ -90,6 +91,7 @@ public class SriCombatBehaviour : MonoBehaviour
     public void InitiateCombatMode()
     {
         _health.ResetHealthToMaximum();
+        DeactivateAllAttackCollider();
         StartCoroutine(StartCombatWithIntroMove());
     }
 
@@ -384,6 +386,7 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private void StopCurrentAbility()
     {
+        transform.DOKill();
         StopAllCoroutines();
         DeactivateAllAttackCollider();
     }

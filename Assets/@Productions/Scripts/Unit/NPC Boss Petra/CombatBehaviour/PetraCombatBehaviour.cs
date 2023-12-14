@@ -5,6 +5,7 @@ using System;
 using Sirenix.OdinInspector;
 using Core;
 using Demyth.Gameplay;
+using DG.Tweening;
 
 public class PetraCombatBehaviour : MonoBehaviour
 {
@@ -79,6 +80,7 @@ public class PetraCombatBehaviour : MonoBehaviour
     public void InitiateCombatMode()
     {
         _health.ResetHealthToMaximum();
+        DeactivateAllAttackCollider();
         StartCoroutine(StartCombatWithIntroMove());
     }
 
@@ -150,6 +152,22 @@ public class PetraCombatBehaviour : MonoBehaviour
                 break;
         }
     }
+
+    private IEnumerator StartPhaseTwo()
+    {
+        yield return StartJumpGroundSlamAbility();
+        yield return Helper.GetWaitForSeconds(_timeVarianceCompensationDelay);
+    
+        StartCoroutine(LoopAbility(GetSecondPhaseAbility));
+    }
+
+    private void StopCurrentAbility()
+    {
+        StopAllCoroutines();
+        transform.DOKill();
+        DeactivateAllAttackCollider();
+    }
+
 
     private IEnumerator LoopAbility(Func<IEnumerator> selectedPhaseAbility)
     {
@@ -241,21 +259,6 @@ public class PetraCombatBehaviour : MonoBehaviour
                 return null;
         }
     }
-
-    private IEnumerator StartPhaseTwo()
-    {
-        yield return StartJumpGroundSlamAbility();
-        yield return Helper.GetWaitForSeconds(_timeVarianceCompensationDelay);
-    
-        StartCoroutine(LoopAbility(GetSecondPhaseAbility));
-    }
-
-    private void StopCurrentAbility()
-    {
-        StopAllCoroutines();
-        DeactivateAllAttackCollider();
-    }
-
 
     private IEnumerator StartJumpGroundSlamAbility()
     {
