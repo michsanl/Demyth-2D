@@ -5,5 +5,6 @@
     Gameplay,
     Pause,
     GameOver,
+    BossDying,
     GameEnd
 }

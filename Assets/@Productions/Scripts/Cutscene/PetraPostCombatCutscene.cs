@@ -74,8 +74,6 @@ public class PetraPostCombatCutscene : MonoBehaviour
 
         _unlockableInvisibleWall.SetActive(false);
         SaveSystem.SaveToSlot(1);
-
-        // _petraCombatBehaviour.PlayReviveAnimation();
     }
 
 }

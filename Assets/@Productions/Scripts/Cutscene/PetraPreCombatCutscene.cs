@@ -70,7 +70,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
         // enable player input
         // give ara pan
         // disable cutscene object
-        _petraCombatBehaviour.InitiateCombatMode();
+        _petraCombatBehaviour.InitiateCombat();
         _cameraController.DOMoveYCamera(0f, 1f, Ease.InOutQuad);
         _gameInputController.EnablePlayerInput();
         _player.UsePan = true;

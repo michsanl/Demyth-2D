@@ -5,6 +5,7 @@ using System;
 using Sirenix.OdinInspector;
 using Core;
 using Demyth.Gameplay;
+using DG.Tweening;
 
 public class PetraCombatBehaviour : MonoBehaviour
 {
@@ -14,13 +15,16 @@ public class PetraCombatBehaviour : MonoBehaviour
     private enum CombatMode 
     { None, FirstPhase, SecondPhase, AbilityLoop }
 
-    [SerializeField] private bool _combatOnEnable;
     [SerializeField] private int _phaseTwoHPTreshold;
-    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
-    [SerializeField, EnumToggleButtons] private Ability _loopAbility;
-    [SerializeField] private GameObject[] _attackColliderArray;
+    [SerializeField] private bool _combatTestMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private CombatMode _selectedCombatMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private Ability _loopAbility;
+    [Space]
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioClipPetraSO _petraAudioSO;
+    [SerializeField] private GameObject[] _attackColliderArray;
 
     private PetraAbilityUpCharge _upChargeAbility;
     private PetraAbilityDownCharge _downChargeAbility;
@@ -31,21 +35,20 @@ public class PetraCombatBehaviour : MonoBehaviour
     private PetraAbilityJumpSlam _jumpSlamAbility;
     private PetraAbilityJumpGroundSlam _jumpGroundSlamAbility;
 
+    private GameStateService _gameStateService;
     private CombatMode _currentCombatMode;
-    private PlayerManager _playerManager;
     private Player _player;
     private LookOrientation _lookOrientation;
     private Health _health;
     private int _lastRandomResult;
     private int _consecutiveCount;
-    private float _timeVarianceCompensationDelay = 0.05f;
 
     private void Awake()
     {
-        _playerManager = SceneServiceProvider.GetService<PlayerManager>();
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _lookOrientation = GetComponent<LookOrientation>();
         _health = GetComponent<Health>();
-        _player = _playerManager.Player;
 
         _upChargeAbility = GetComponent<PetraAbilityUpCharge>();
         _downChargeAbility = GetComponent<PetraAbilityDownCharge>();
@@ -59,56 +62,20 @@ public class PetraCombatBehaviour : MonoBehaviour
 
     private void Start()
     {
+        _gameStateService[GameState.GameOver].onEnter += GameOver_OnEnter;
         _health.OnTakeDamage += Health_OnTakeDamage;
         _health.OnDeath += Health_OnDeath;
-    }
 
-    private void Update()
-    {
-        UpdateCombatMode();
-    }
-
-    private void OnEnable()
-    {
-        if (_combatOnEnable)
-        {
-            StartCoroutine(StartCombatWithIntroMove());
-        }
-    }
-
-    public void InitiateCombatMode()
-    {
-        _health.ResetHealthToMaximum();
-        StartCoroutine(StartCombatWithIntroMove());
-    }
-
-    public void ResetUnitCondition()
-    {
-        _selectedCombatMode = CombatMode.None;
-        _health.ResetHealthToMaximum();
-    }
-
-    public void PlayReviveAnimation()
-    {
-        _animator.Play("Revive");
-    }
-
-    private IEnumerator StartCombatWithIntroMove()
-    {
-        yield return StartCoroutine(StartJumpSlamToMiddleArena());
-
-        if (_selectedCombatMode == CombatMode.None)
-        {
-            _selectedCombatMode = CombatMode.FirstPhase;
-        }
-        else
+        if (_combatTestMode)
         {
             ActivateSelectedCombatMode();
         }
     }
 
-    private void UpdateCombatMode()
+    private void Update()
     {
+        if (!_combatTestMode) return;
+
         if (_currentCombatMode != _selectedCombatMode)
         {
             _currentCombatMode = _selectedCombatMode;
@@ -116,53 +83,92 @@ public class PetraCombatBehaviour : MonoBehaviour
         }
     }
 
+    public void InitiateCombat()
+    {
+        ResetUnitCondition();
+        StartCoroutine(StartPhaseOne());
+    }
+
+    private IEnumerator StartPhaseOne()
+    {
+        yield return StartCoroutine(StartJumpSlamToMiddleArena());
+        StartCoroutine(LoopCombatMode(GetFirstPhaseAbility));
+    }
+
+    private IEnumerator StartPhaseTwo()
+    {
+        yield return StartJumpGroundSlamAbility();
+        yield return Helper.GetWaitForSeconds(0.05f);
+
+        StartCoroutine(LoopCombatMode(GetSecondPhaseAbility));
+    }
+
+    private void ResetUnitCondition()
+    {
+        _health.ResetHealthToMaximum();
+        DeactivateAllAttackCollider();
+    }
+
+    private void StopAbility()
+    {
+        StopAllCoroutines();
+        transform.DOKill();
+        DeactivateAllAttackCollider();
+    }
+
+    private void GameOver_OnEnter(GameState state)
+    {
+        StopAbility();
+    }
+
     private void Health_OnTakeDamage()
     {
         if (_health.CurrentHP == _phaseTwoHPTreshold)
         {
-            StopCurrentAbility();
+            StopAbility();
             StartCoroutine(StartPhaseTwo());
         }
     }
 
     private void Health_OnDeath()
     {
-        StopCurrentAbility();
+        _gameStateService.SetState(GameState.BossDying);
+        StopAbility();
+
         _animator.Play("Defeated");
     }
     
+    ///////////////////////////// Combat Mode Loop /////////////////////////////
+
     private void ActivateSelectedCombatMode()
     {
-        StopCurrentAbility();
+        StopAbility();
 
         switch (_selectedCombatMode)
         {
             case CombatMode.None:
                 break;
             case CombatMode.FirstPhase:
-                StartCoroutine(LoopAbility(GetFirstPhaseAbility));
+                StartCoroutine(LoopCombatMode(GetFirstPhaseAbility));
                 break;
             case CombatMode.SecondPhase:
-                StartCoroutine(LoopAbility(GetSecondPhaseAbility));
+                StartCoroutine(LoopCombatMode(GetSecondPhaseAbility));
                 break;
             case CombatMode.AbilityLoop:
-                StartCoroutine(LoopAbility(GetAbilityTesterAbility));
+                StartCoroutine(LoopCombatMode(GetAbilityTesterAbility));
                 break;
         }
     }
 
-    private IEnumerator LoopAbility(Func<IEnumerator> selectedPhaseAbility)
+    private IEnumerator LoopCombatMode(Func<IEnumerator> selectedPhaseAbility)
     {
-        if (_player.IsDead)
-            yield break;
-
         IEnumerator ability = selectedPhaseAbility();
 
         SetFacingDirection();
         yield return StartCoroutine(ability);
-        yield return Helper.GetWaitForSeconds(_timeVarianceCompensationDelay);
+        yield return Helper.GetWaitForSeconds(0.05f);
 
-        StartCoroutine(LoopAbility(selectedPhaseAbility));
+        StartCoroutine(LoopCombatMode(selectedPhaseAbility));
     }
     
     private IEnumerator GetFirstPhaseAbility()
@@ -242,20 +248,7 @@ public class PetraCombatBehaviour : MonoBehaviour
         }
     }
 
-    private IEnumerator StartPhaseTwo()
-    {
-        yield return StartJumpGroundSlamAbility();
-        yield return Helper.GetWaitForSeconds(_timeVarianceCompensationDelay);
-    
-        StartCoroutine(LoopAbility(GetSecondPhaseAbility));
-    }
-
-    private void StopCurrentAbility()
-    {
-        StopAllCoroutines();
-        DeactivateAllAttackCollider();
-    }
-
+    //////////////////////////////////////////////////////////////////////////
 
     private IEnumerator StartJumpGroundSlamAbility()
     {
