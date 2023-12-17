@@ -19,11 +19,13 @@ public class PetraPostCombatCutscene : MonoBehaviour
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private GameObject _unlockableInvisibleWall;
 
+    private GameStateService _gameStateService;
     private GameInputController _gameInputController;
     private Health _petraHealth;
 
     private void Awake()
     {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _petraHealth = _bossPetraGameObject.GetComponent<Health>();
 
@@ -37,6 +39,8 @@ public class PetraPostCombatCutscene : MonoBehaviour
 
     public void OnConversationEnd()
     {
+        if (_gameStateService.CurrentState == GameState.MainMenu) return;
+        
         StartPostDialogueCutscene();
     }
 

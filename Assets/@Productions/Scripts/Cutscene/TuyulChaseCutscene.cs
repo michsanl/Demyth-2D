@@ -14,10 +14,12 @@ public class TuyulChaseCutscene : MonoBehaviour
     [SerializeField] private GameObject _dialogueTrigger;
     [SerializeField] private GameObject _tuyulChaseLevelReset;
 
+    private GameStateService _gameStateService;
     private Player _player;
 
     private void Awake()
     {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
 
         _yulaTalkable.OnAllTuyulHasBeenCaught += TuyulTalkable_OnAllTuyulCaught;
@@ -26,6 +28,8 @@ public class TuyulChaseCutscene : MonoBehaviour
 
     public void OnConversationEnd()
     {
+        if (_gameStateService.CurrentState == GameState.MainMenu) return;
+        
         _player.UsePan = false;
         _dialogueTrigger.SetActive(false);
         SaveSystem.SaveToSlot(1);
