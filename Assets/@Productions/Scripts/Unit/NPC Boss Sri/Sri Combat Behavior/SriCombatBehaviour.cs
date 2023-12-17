@@ -17,13 +17,16 @@ public class SriCombatBehaviour : MonoBehaviour
     { None, FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
 
 
-    [SerializeField] private bool _updateCombatMode;
     [SerializeField] private int _phaseTwoHPThreshold;
-    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
-    [SerializeField, EnumToggleButtons, Space] private Ability _abilityLoop;
-    [SerializeField] private GameObject[] _attackColliderArray;
+    [SerializeField] private bool _combatTestMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private CombatMode _selectedCombatMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private Ability _abilityLoop;
+    [Space]
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioClipSriSO _sriAudioSO;
+    [SerializeField] private GameObject[] _attackColliderArray;
 
     private SriAbilityUpSlash _upSlashAbility;
     private SriAbilityDownSlash _downSlashAbility;
@@ -76,7 +79,7 @@ public class SriCombatBehaviour : MonoBehaviour
         _health.OnTakeDamage += Health_OnTakeDamage;
         _health.OnDeath += Health_OnDeath;
 
-        if (_updateCombatMode)
+        if (_combatTestMode)
         {
             ActivateSelectedCombatMode();
         }
@@ -84,7 +87,7 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (!_updateCombatMode) return;
+        if (!_combatTestMode) return;
 
         if (_currentCombatMode != _selectedCombatMode)
         {

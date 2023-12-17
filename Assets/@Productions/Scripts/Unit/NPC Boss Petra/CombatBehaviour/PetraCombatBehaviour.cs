@@ -15,13 +15,16 @@ public class PetraCombatBehaviour : MonoBehaviour
     private enum CombatMode 
     { None, FirstPhase, SecondPhase, AbilityLoop }
 
-    [SerializeField] private bool _updateCombatMode;
     [SerializeField] private int _phaseTwoHPTreshold;
-    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
-    [SerializeField, EnumToggleButtons] private Ability _loopAbility;
-    [SerializeField] private GameObject[] _attackColliderArray;
+    [SerializeField] private bool _combatTestMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private CombatMode _selectedCombatMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private Ability _loopAbility;
+    [Space]
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioClipPetraSO _petraAudioSO;
+    [SerializeField] private GameObject[] _attackColliderArray;
 
     private PetraAbilityUpCharge _upChargeAbility;
     private PetraAbilityDownCharge _downChargeAbility;
@@ -63,7 +66,7 @@ public class PetraCombatBehaviour : MonoBehaviour
         _health.OnTakeDamage += Health_OnTakeDamage;
         _health.OnDeath += Health_OnDeath;
 
-        if (_updateCombatMode)
+        if (_combatTestMode)
         {
             ActivateSelectedCombatMode();
         }
@@ -71,7 +74,7 @@ public class PetraCombatBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (!_updateCombatMode) return;
+        if (!_combatTestMode) return;
 
         if (_currentCombatMode != _selectedCombatMode)
         {

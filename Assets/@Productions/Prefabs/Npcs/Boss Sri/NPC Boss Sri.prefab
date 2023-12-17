@@ -1588,10 +1588,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492e82d58bab214459724da156b97ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatOnEnable: 0
   _phaseTwoHPThreshold: 15
+  _combatTester: 0
   _selectedCombatMode: 0
   _abilityLoop: 0
+  _animator: {fileID: 7673398052024204807}
+  _sriAudioSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
   _attackColliderArray:
   - {fileID: 982308991402775369}
   - {fileID: 4574950767016202372}
@@ -1599,8 +1601,6 @@ MonoBehaviour:
   - {fileID: 1934800817761677944}
   - {fileID: 8946307553033440143}
   - {fileID: 6206227978528789694}
-  _animator: {fileID: 7673398052024204807}
-  _sriAudioSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
 --- !u!114 &9182001827861331906
 MonoBehaviour:
   m_ObjectHideFlags: 0
