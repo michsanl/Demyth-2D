@@ -56,6 +56,11 @@ public class GroundSummon : MonoBehaviour
         StartCoroutine(SummonRoutine());
     }
 
+    private void OnDisable()
+    {
+        colliderGameObject.SetActive(false);
+    }
+
     private IEnumerator SummonRoutine()
     {
         if (useRandomizedSpawnDelay)

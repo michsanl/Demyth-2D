@@ -34,6 +34,7 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private Animator damagedAnimator;
     [SerializeField] private AudioClipAraSO araAudioSO;
 
+    private GameStateService _gameStateService;
     private LookOrientation _lookOrientation;
     private HealthPotion _healthPotion;
     private Health _health;
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour, IBroadcaster
 
     private void Awake()
     {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _lookOrientation = GetComponent<LookOrientation>();
         _healthPotion = GetComponent<HealthPotion>();
         _health = GetComponent<Health>();
@@ -64,13 +66,6 @@ public class Player : MonoBehaviour, IBroadcaster
 
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _gameInput = _gameInputController.GameInput;
-
-        _health.OnDeath += Health_OnDeath;
-    }
-
-    private void Health_OnDeath()
-    {
-        _isDead = true;
     }
 
     private void Start()
@@ -111,6 +106,8 @@ public class Player : MonoBehaviour, IBroadcaster
 
     public void ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
     {
+        if (_gameStateService.CurrentState == GameState.BossDying)
+            return;
         if (_isTakeDamageOnCooldown)
             return;
         if (enableKnockBack)

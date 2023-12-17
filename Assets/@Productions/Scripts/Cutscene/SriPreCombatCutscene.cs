@@ -76,7 +76,7 @@ public class SriPreCombatCutscene : MonoBehaviour
         // enable boss combat mode
         // enable player input
         // disable cutscene object
-        _sriCombatBehaviour.InitiateCombatMode();
+        _sriCombatBehaviour.InitiateCombat();
         _gameInputController.EnablePlayerInput();
         gameObject.SetActive(false);
     }
