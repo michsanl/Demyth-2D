@@ -8528,7 +8528,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_1_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -8539,8 +8539,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 7.595043, y: 0}
-    canvasZoom: 0.73000026
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 1.0899999
   - id: 9
     fields:
     - title: Title
