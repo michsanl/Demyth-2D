@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d40c5d45616db7e438ffb6b9c73bd854
+guid: d8fdd89b946cb1f468d90d1d8a916623
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 29
     textureCompression: 1
@@ -104,10 +104,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Yula_Portrait_0
+      name: Yula_Portrait_Flip_0
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1350
         y: 4684
         width: 1250
         height: 1750
@@ -118,17 +118,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb94cdc1f498358499d194f253743d94
-      internalID: 1399371113
+      spriteID: 7deea10380ef6ce4ca925cf60cb76bc2
+      internalID: 396147311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yula_Portrait_1
+      name: Yula_Portrait_Flip_1
       rect:
         serializedVersion: 2
-        x: 2741
+        x: 2713
         y: 4684
         width: 1250
         height: 1750
@@ -139,17 +139,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a5768c9bc5f0ca4cba00c25c8acb033
-      internalID: 1216392166
+      spriteID: d10a00d0b2630c741bff34c4196d0b87
+      internalID: -2137733298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yula_Portrait_2
+      name: Yula_Portrait_Flip_2
       rect:
         serializedVersion: 2
-        x: 4196
+        x: 4163
         y: 4684
         width: 1250
         height: 1750
@@ -160,17 +160,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c370cec78e616f4e83fdf5fa2cc841b
-      internalID: -2106606021
+      spriteID: 93459099595eea54aa367303129b8243
+      internalID: 1023908339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yula_Portrait_4
+      name: Yula_Portrait_Flip_3
       rect:
         serializedVersion: 2
-        x: 5561
+        x: 5637
         y: 4684
         width: 1250
         height: 1750
@@ -181,17 +181,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 408ff8ac254ad554e84c78ce68c4d091
-      internalID: 1865642150
+      spriteID: 0d7decbce1a66d64d9182d6f26e0f563
+      internalID: -1523021491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yula_Portrait_6
+      name: Yula_Portrait_Flip_4
       rect:
         serializedVersion: 2
-        x: 2739
+        x: 1350
         y: 1915
         width: 1250
         height: 1750
@@ -202,17 +202,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 917cebf06e8ce734b86b4efd3a81d9bc
-      internalID: 1734323711
+      spriteID: 12e03b3e7bba2864e9b762373a6b5171
+      internalID: -2051327361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yula_Portrait_7
+      name: Yula_Portrait_Flip_5
       rect:
         serializedVersion: 2
-        x: 4096
+        x: 2713
         y: 1915
         width: 1250
         height: 1750
@@ -223,17 +223,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30521d1a073b14b49a3a155b96d21e23
-      internalID: 2131245491
+      spriteID: 36c615780b4386b4a9701db6cb398b7f
+      internalID: -853535071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yula_Portrait_9
+      name: Yula_Portrait_Flip_6
       rect:
         serializedVersion: 2
-        x: 5550
+        x: 4163
         y: 1915
         width: 1250
         height: 1750
@@ -244,8 +244,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a1571c914cff02449f5b8fd814de53d
-      internalID: -1498792009
+      spriteID: d17dbfc9a11ed5d40bf825effab35cbc
+      internalID: 207946596
       vertices: []
       indices: 
       edges: []
@@ -261,16 +261,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Yula_Portrait_7: 2131245491
-      Yula_Portrait_6: 1734323711
-      Yula_Portrait_4: 1865642150
-      Yula_Portrait_2: -2106606021
-      Yula_Portrait_0: 1399371113
-      Yula_Portrait_1: 1216392166
-      Yula_Portrait_9: -1498792009
-      Yula_Portrait_8: 1366237733
-      Yula_Portrait_5: -653078999
-      Yula_Portrait_3: 545291328
+      Yula_Portrait_Flip_0: 396147311
+      Yula_Portrait_Flip_3: -1523021491
+      Yula_Portrait_Flip_5: -853535071
+      Yula_Portrait_Flip_6: 207946596
+      Yula_Portrait_Flip_4: -2051327361
+      Yula_Portrait_Flip_1: -2137733298
+      Yula_Portrait_Flip_2: 1023908339
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7cfa63d267221c3468bbfab3728ee0d4
+guid: f9474bcc29d4d804e83721168882d2ef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,14 +78,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 29
+    textureFormat: -1
     textureCompression: 1
-    compressionQuality: 100
+    compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -104,10 +104,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Yuli_Portrait_0
+      name: Yuli_Portrait_Flip_0
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1025
         y: 4798
         width: 1250
         height: 1750
@@ -118,17 +118,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc5166a36c55ee3428a841e91422594b
-      internalID: -893460534
+      spriteID: c722635c3cb9cdd4395d47b2848bb91b
+      internalID: 357513048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yuli_Portrait_1
+      name: Yuli_Portrait_Flip_1
       rect:
         serializedVersion: 2
-        x: 2580
+        x: 2953
         y: 4798
         width: 1250
         height: 1750
@@ -139,17 +139,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff132e79effdee54abefb2f1d2924d82
-      internalID: 1416803674
+      spriteID: 789e3ec0320c01543be9db8b871ecfb4
+      internalID: -748853673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yuli_Portrait_3
+      name: Yuli_Portrait_Flip_2
       rect:
         serializedVersion: 2
-        x: 3996
+        x: 4350
         y: 4798
         width: 1250
         height: 1750
@@ -160,17 +160,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7a1bef419d06cc4a9db17b87e155430
-      internalID: 701248314
+      spriteID: 1ef7a00960b110d42a6a7e935c116ffc
+      internalID: -176141780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yuli_Portrait_5
+      name: Yuli_Portrait_Flip_3
       rect:
         serializedVersion: 2
-        x: 5447
+        x: 5470
         y: 4798
         width: 1250
         height: 1750
@@ -181,17 +181,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8de84ddf6ddb9ff46a987c05e4a501e6
-      internalID: -1628074114
+      spriteID: a9e8c4160271eb0478b77a6725fd4630
+      internalID: 771617211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yuli_Portrait_13
+      name: Yuli_Portrait_Flip_4
       rect:
         serializedVersion: 2
-        x: 2580
+        x: 1210
         y: 1724
         width: 1250
         height: 1750
@@ -202,17 +202,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b91835e8388ba44abb9e0660b60e609
-      internalID: 1262210745
+      spriteID: f3139a8e069a9864086fd650c5d42153
+      internalID: 1265771159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yuli_Portrait_16
+      name: Yuli_Portrait_Flip_5
       rect:
         serializedVersion: 2
-        x: 5447
+        x: 2491
         y: 1724
         width: 1250
         height: 1750
@@ -223,17 +223,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eda8a43862660464ea95e1e2eee5d362
-      internalID: -1804352744
+      spriteID: 4cb2180145297524594bda0adcdde99e
+      internalID: 1241458044
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Yuli_Portrait_18
+      name: Yuli_Portrait_Flip_6
       rect:
         serializedVersion: 2
-        x: 3996
+        x: 4142
         y: 1724
         width: 1250
         height: 1750
@@ -244,8 +244,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0057332295d0ccd4f8248fbb29950caa
-      internalID: -260177008
+      spriteID: 689f6ce8d3358314fb32217078943332
+      internalID: -1347290929
       vertices: []
       indices: 
       edges: []
@@ -261,30 +261,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Yuli_Portrait_23: -1223411842
-      Yuli_Portrait_7: 1980123176
-      Yuli_Portrait_20: 729232514
-      Yuli_Portrait_8: -2034496610
-      Yuli_Portrait_13: 1262210745
-      Yuli_Portrait_11: -2128988487
-      Yuli_Portrait_19: 764488267
-      Yuli_Portrait_4: 1349955019
-      Yuli_Portrait_5: -1628074114
-      Yuli_Portrait_1: 1416803674
-      Yuli_Portrait_3: 701248314
-      Yuli_Portrait_2: -1234702936
-      Yuli_Portrait_12: -1652609723
-      Yuli_Portrait_18: -260177008
-      Yuli_Portrait_22: -1995607117
-      Yuli_Portrait_15: -92051290
-      Yuli_Portrait_17: -1124907493
-      Yuli_Portrait_9: 341462376
-      Yuli_Portrait_0: -893460534
-      Yuli_Portrait_14: -1302430443
-      Yuli_Portrait_6: -981743399
-      Yuli_Portrait_21: -837819490
-      Yuli_Portrait_16: -1804352744
-      Yuli_Portrait_10: -720862106
+      Yuli_Portrait_Flip_3: -176141780
+      Yuli_Portrait_Flip_2: -748853673
+      Yuli_Portrait_Flip_5: 1265771159
+      Yuli_Portrait_Flip_4: 771617211
+      Yuli_Portrait_Flip_0: 485674890
+      Yuli_Portrait_Flip_6: 1241458044
+      Yuli_Portrait_Flip_1: 357513048
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
