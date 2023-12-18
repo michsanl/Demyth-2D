@@ -1147,7 +1147,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Level_1
+  conversation: Test Convo
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -1183,8 +1183,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 0}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 5, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!54 &3501588161499120952
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1588,10 +1588,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492e82d58bab214459724da156b97ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatOnEnable: 0
   _phaseTwoHPThreshold: 15
+  _combatTester: 0
   _selectedCombatMode: 0
   _abilityLoop: 0
+  _animator: {fileID: 7673398052024204807}
+  _sriAudioSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
   _attackColliderArray:
   - {fileID: 982308991402775369}
   - {fileID: 4574950767016202372}
@@ -1599,8 +1601,6 @@ MonoBehaviour:
   - {fileID: 1934800817761677944}
   - {fileID: 8946307553033440143}
   - {fileID: 6206227978528789694}
-  _animator: {fileID: 7673398052024204807}
-  _sriAudioSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
 --- !u!114 &9182001827861331906
 MonoBehaviour:
   m_ObjectHideFlags: 0

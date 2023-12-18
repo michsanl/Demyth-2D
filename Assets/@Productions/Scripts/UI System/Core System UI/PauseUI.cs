@@ -11,6 +11,7 @@ using Core;
 using Core.UI;
 using Demyth.Gameplay;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 namespace UISystem
 {
@@ -74,13 +75,14 @@ namespace UISystem
 
         private void ButtonMainMenu()
         {
+            _gameStateService?.SetState(GameState.MainMenu);
+
             DialogueManager.StopAllConversations();
             DOTween.CompleteAll();
+            LeanPool.DespawnAll();
 
             _levelManager.OpenLevel(_levelMenulId);
             _uiPage.ReturnToPage(_menuPageId);
-
-            _gameStateService?.SetState(GameState.MainMenu);
         }
 
         private void SetMMSoundMasterVolume(float volume)

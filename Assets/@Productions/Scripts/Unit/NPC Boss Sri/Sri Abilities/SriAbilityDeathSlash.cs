@@ -4,6 +4,7 @@ using CustomTools.Core;
 using UnityEngine;
 using DG.Tweening;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityDeathSlash : MonoBehaviour
 {
@@ -16,16 +17,6 @@ public class SriAbilityDeathSlash : MonoBehaviour
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
-
-    private GameObject _summonedObject;
-
-    private void OnDisable()
-    {
-        if (_summonedObject != null) 
-        {
-            Destroy(_summonedObject);
-        }
-    }
 
     public IEnumerator DeathSlash(Animator animator, AudioClip nailAOESFX, AudioClip verticalSlashSFX)
     {
@@ -41,7 +32,7 @@ public class SriAbilityDeathSlash : MonoBehaviour
         PlayAudio(nailAOESFX);
 
         yield return Helper.GetWaitForSeconds(.5f);
-        _summonedObject = Instantiate(nailWavePrefab, Vector3.zero, Quaternion.identity);
+        LeanPool.Spawn(nailWavePrefab, Vector3.zero, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(3.7f);
         

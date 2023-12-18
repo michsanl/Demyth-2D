@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class PetraAbilityJumpGroundSlam : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PetraAbilityJumpGroundSlam : MonoBehaviour
     
     [Title("Components")]
     [SerializeField] private GameObject jumpSlamCollider;
-    [SerializeField] private GameObject groundSlamCoffin;    
+    [SerializeField] private GameObject groundCoffinWaveOut;    
 
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
@@ -34,7 +35,7 @@ public class PetraAbilityJumpGroundSlam : MonoBehaviour
         yield return transform.DOJump(jumpTargetPosition, jumpPower, 1, _swingDuration).SetEase(jumpCurve).WaitForCompletion();
 
         jumpSlamCollider.SetActive(true);
-        Instantiate(groundSlamCoffin, transform.position, Quaternion.identity);
+        LeanPool.Spawn(groundCoffinWaveOut, transform.position, Quaternion.identity);
 
         yield return Helper.GetWaitForSeconds(_backSwingDuration);
 

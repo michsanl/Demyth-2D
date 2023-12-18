@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using System;
 using Core;
 using Demyth.Gameplay;
+using Lean.Pool;
 
 public class GroundSummon : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class GroundSummon : MonoBehaviour
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float anticipationDuration;
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float attackDuration;
     [SerializeField, OnValueChanged("CalculateTotalDuration")] private float recoveryDuration;
+    [SerializeField] private int _animationModelCount = 3;
     [SerializeField] private bool isEndless;
+    [SerializeField] private bool _disableDespawn;
     [ReadOnly] public float TotalDuration;
 
     [Title("Randomized Spawn")]
@@ -25,42 +28,37 @@ public class GroundSummon : MonoBehaviour
     [Title("External Components")]
     [SerializeField] private GameObject colliderGameObject;
     [SerializeField] private GameObject[] groundCoffinModelArray;
+    [SerializeField] private Animator _animator;
 
     public Action OnAnticipation;
     public Action OnAttack;
     public Action OnRecovery;
+
+    private string[] _inAnimationArray = new string[6] { "Ground_Summon_1_In", "Ground_Summon_2_In", "Ground_Summon_3_In", "Ground_Summon_4_In", "Ground_Summon_5_In", "Ground_Summon_6_In"};
+    private string[] _attackAnimationArray = new string[6] { "Ground_Summon_1_Attack", "Ground_Summon_2_Attack", "Ground_Summon_3_Attack", "Ground_Summon_4_Attack", "Ground_Summon_5_Attack", "Ground_Summon_6_Attack"};
+    private string[] _outAnimationArray = new string[6] { "Ground_Summon_1_Out", "Ground_Summon_2_Out", "Ground_Summon_3_Out", "Ground_Summon_4_Out", "Ground_Summon_5_Out", "Ground_Summon_6_Out"};
 
     private int topBorder = 2;
     private int bottomBorder = -4;
     private int rightBorder = 6;
     private int leftBorder = -6;
 
-    private GameStateService _gameStateService;
-
-    private void Awake()
-    {
-        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-
-        _gameStateService[GameState.MainMenu].onEnter += MainMenu_OnEnter;
-        _gameStateService[GameState.GameOver].onEnter += GameOver_OnEnter;
-    }
-
-    private void Start() 
+    private void OnEnable() 
     {
         if (IsOutOfBounds())
         {
-            Destroy(gameObject);
+            if (_disableDespawn) return;
+
+            LeanPool.Despawn(gameObject);
             return;
         }
 
-        ActivateRandomModel();
         StartCoroutine(SummonRoutine());
     }
 
-    private void OnDestroy() 
+    private void OnDisable()
     {
-        _gameStateService[GameState.MainMenu].onEnter -= MainMenu_OnEnter;
-        _gameStateService[GameState.GameOver].onEnter -= GameOver_OnEnter;
+        colliderGameObject.SetActive(false);
     }
 
     private IEnumerator SummonRoutine()
@@ -68,30 +66,24 @@ public class GroundSummon : MonoBehaviour
         if (useRandomizedSpawnDelay)
             yield return StartCoroutine(RandomizedSpawnDelay());
 
-        OnAnticipation?.Invoke();
+        var randomIndex = UnityEngine.Random.Range(0, _animationModelCount);
+
+        _animator.Play(_inAnimationArray[randomIndex]);
         yield return Helper.GetWaitForSeconds(anticipationDuration);
 
-        OnAttack?.Invoke();
         colliderGameObject.SetActive(true);
+        _animator.Play(_attackAnimationArray[randomIndex]);
         yield return Helper.GetWaitForSeconds(attackDuration);
 
         if (isEndless) yield break;
 
-        OnRecovery?.Invoke();
         colliderGameObject.SetActive(false);
+        _animator.Play(_outAnimationArray[randomIndex]);
         yield return Helper.GetWaitForSeconds(recoveryDuration);
+        
+        if (_disableDespawn) yield break;
 
-        Destroy(gameObject);
-    }
-
-    private void MainMenu_OnEnter(GameState state)
-    {
-        Destroy(gameObject);
-    }
-
-    private void GameOver_OnEnter(GameState state)
-    {
-        Destroy(gameObject);
+        LeanPool.Despawn(gameObject);
     }
     
     private bool IsOutOfBounds()

@@ -20,11 +20,13 @@ public class PetraPostCombatCutscene : MonoBehaviour
     [SerializeField] private GameObject _unlockableInvisibleWall;
 
     private GameStateService _gameStateService;
+    private GameInputController _gameInputController;
     private Health _petraHealth;
 
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _petraHealth = _bossPetraGameObject.GetComponent<Health>();
 
         _petraHealth.OnDeath += PetraHealth_OnDeath;
@@ -37,6 +39,8 @@ public class PetraPostCombatCutscene : MonoBehaviour
 
     public void OnConversationEnd()
     {
+        if (_gameStateService.CurrentState == GameState.MainMenu) return;
+        
         StartPostDialogueCutscene();
     }
 
@@ -49,7 +53,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
         // SEQUENCE 2
         // Disable player input
         // Start dialogue 
-        _gameStateService.SetState(GameState.Cutscene);
+        _gameInputController.DisablePlayerInput();
         _dialogueSystemTrigger.OnUse();
     }
     
@@ -63,7 +67,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
         // play revive animation on non-boss petra
         // disable blocking wall
         // save
-        _gameStateService.SetState(GameState.Gameplay);
+        _gameInputController.EnablePlayerInput();
 
         _bossPetraGameObject.SetActive(false);
         _npcPetraGameObject.SetActive(true);
@@ -74,8 +78,6 @@ public class PetraPostCombatCutscene : MonoBehaviour
 
         _unlockableInvisibleWall.SetActive(false);
         SaveSystem.SaveToSlot(1);
-
-        // _petraCombatBehaviour.PlayReviveAnimation();
     }
 
 }

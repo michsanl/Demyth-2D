@@ -5,12 +5,11 @@ using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
+using Lean.Pool;
 
 public class BossLevelReset : MonoBehaviour
 {
 
-    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
-    [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
     private Player _player;
     private Health _playerHealth;
     private GameStateService _gameStateService;
@@ -45,6 +44,7 @@ public class BossLevelReset : MonoBehaviour
     private void PlayerHealth_OnDeath()
     {
         _gameStateService.SetState(GameState.GameOver);
+        LeanPool.DespawnAll();
     }
 
     public void ResetLevel()
@@ -55,8 +55,6 @@ public class BossLevelReset : MonoBehaviour
         DOTween.KillAll();
 
         _player.ResetUnitCondition();
-        _petraCombatBehaviour?.ResetUnitCondition();
-        _sriCombatBehaviour?.ResetUnitCondition();
 
         SaveSystem.LoadFromSlot(1);
     }

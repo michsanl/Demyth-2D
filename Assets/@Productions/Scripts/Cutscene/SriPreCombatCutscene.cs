@@ -17,16 +17,15 @@ public class SriPreCombatCutscene : MonoBehaviour
     [SerializeField] private float _cameraMoveDownSequenceDuration;
     [Space]
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
-    [SerializeField] private Transform _cameraTransform;
     [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
 
-    private GameStateService _gameStateService;
-    private Player _player;
+    private CameraController _cameraController;
+    private GameInputController _gameInputController;
 
     private void Awake()
     {
-        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
+        _cameraController = SceneServiceProvider.GetService<CameraController>();
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -47,13 +46,14 @@ public class SriPreCombatCutscene : MonoBehaviour
         // SEQUENCE 1
         // disable player input
         // wait
-        _gameStateService.SetState(GameState.Cutscene);
+        _gameInputController.DisablePlayerInput();
         yield return Helper.GetWaitForSeconds(_firstCutsceneStartDelay);
 
         // SEQUENCE 2
         // move camera up
         // wait
-        yield return _cameraTransform.DOMoveY(9, 1f).SetEase(Ease.InOutCubic).WaitForCompletion();
+        _cameraController.DOMoveYCamera(9f, 1f, Ease.InOutCubic);
+        yield return new WaitForSeconds(1f);
         
         // SEQUENCE 3
         // initiate dialogue
@@ -69,15 +69,15 @@ public class SriPreCombatCutscene : MonoBehaviour
         // SEQUENCE 5
         // move camera down
         // wait
-        _cameraTransform.DOMoveY(0, 1f).SetEase(Ease.InOutQuad);
+        _cameraController.DOMoveYCamera(0f, 1f, Ease.InOutQuad);
         yield return Helper.GetWaitForSeconds(_cameraMoveDownSequenceDuration);
 
         // SEQUENCE 6
         // enable boss combat mode
         // enable player input
         // disable cutscene object
-        _sriCombatBehaviour.InitiateCombatMode();
-        _gameStateService.SetState(GameState.Gameplay);
+        _sriCombatBehaviour.InitiateCombat();
+        _gameInputController.EnablePlayerInput();
         gameObject.SetActive(false);
     }
 

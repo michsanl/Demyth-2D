@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using echo17.Signaler.Core;
 using Demyth.Gameplay;
 using Core;
+using System;
 
 namespace Demyth.UI
 {
@@ -19,7 +20,9 @@ namespace Demyth.UI
         [SerializeField] private RectTransform healthBarTransform;
         [SerializeField] private RectTransform shieldBarTransform;
         [SerializeField] private Image healthPotionEmptyImage;
-        [SerializeField] private Image senterLightOnImage;
+        [SerializeField] private Image healthPotionFullImage;
+        [SerializeField] private Image lanternOnImage;
+        [SerializeField] private Image lanternOffImage;
 
         private GameObject _playerObject;
         private Player _player;
@@ -42,6 +45,8 @@ namespace Demyth.UI
             _playerHealth = _player.GetComponent<Health>();
             _playerLantern = _player.GetComponent<Lantern>();
 
+            _player.OnLanternValueChanged += Player_OnLanternUnlockedChanged;
+            _player.OnHealthPotionUnlockedValueChanged += Player_OnPotionUnlockedChanged;
             _playerLantern.OnLanternTogglePerformed += Player_OnLanternTogglePerformed;
             _playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
             _playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
@@ -49,6 +54,16 @@ namespace Demyth.UI
 
             GetHealthBarPositionAtZeroShield();
             GetShieldBarPositionAtZeroHealth();
+        }
+
+        private void Player_OnLanternUnlockedChanged(bool isUnlocked)
+        {
+            lanternOffImage.gameObject.SetActive(isUnlocked);
+        }
+
+        private void Player_OnPotionUnlockedChanged(bool isUnlocked)
+        {
+            healthPotionFullImage.gameObject.SetActive(isUnlocked);;
         }
 
         // this object is not active when the signaler is broadcasting or something
@@ -69,7 +84,7 @@ namespace Demyth.UI
             return true;
         }
 
-        private bool OnPlayerDespawned(PlayerDespawnEvent signal)
+        private bool OnPlayerDespawned()
         {
             _playerLantern.OnLanternTogglePerformed -= Player_OnLanternTogglePerformed;
             _playerHealthPotion.OnPotionAmountChanged -= PlayerHealthPotion_OnUsePotion;
@@ -109,7 +124,7 @@ namespace Demyth.UI
 
         private void Player_OnLanternTogglePerformed(bool senterState)
         {
-            senterLightOnImage.gameObject.SetActive(senterState);
+            lanternOnImage.gameObject.SetActive(senterState);
         }
 
         private void PlayerHealthPotion_OnUsePotion(int healthPotionAmount)

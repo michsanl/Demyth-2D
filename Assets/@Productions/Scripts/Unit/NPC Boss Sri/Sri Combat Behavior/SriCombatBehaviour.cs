@@ -5,24 +5,28 @@ using System;
 using Sirenix.OdinInspector;
 using Core;
 using Demyth.Gameplay;
+using DG.Tweening;
 
 public class SriCombatBehaviour : MonoBehaviour
 {
 
     private enum Ability
     { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
-    VerticalNailWave, WaveOutNailWave, Teleport }
+    VerticalNailWave, WaveOutNailWave, Teleport, DeathSlash }
     private enum CombatMode 
     { None, FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
 
 
-    [SerializeField] private bool _combatOnEnable;
     [SerializeField] private int _phaseTwoHPThreshold;
-    [SerializeField, EnumToggleButtons] private CombatMode _selectedCombatMode;
-    [SerializeField, EnumToggleButtons, Space] private Ability _abilityLoop;
-    [SerializeField] private GameObject[] _attackColliderArray;
+    [SerializeField] private bool _combatTestMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private CombatMode _selectedCombatMode;
+    [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
+    private Ability _abilityLoop;
+    [Space]
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioClipSriSO _sriAudioSO;
+    [SerializeField] private GameObject[] _attackColliderArray;
 
     private SriAbilityUpSlash _upSlashAbility;
     private SriAbilityDownSlash _downSlashAbility;
@@ -37,7 +41,7 @@ public class SriCombatBehaviour : MonoBehaviour
     private SriAbilityWaveOutNailWave _waveOutNailWaveAbility;
     private SriAbilityDeathSlash _deathSlashAbility;
 
-    
+    private GameStateService _gameStateService;
     private CombatMode _currentCombatMode;
     private PlayerManager _playerManager;
     private Player _player;
@@ -49,6 +53,7 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _playerManager = SceneServiceProvider.GetService<PlayerManager>();
         _lookOrientation = GetComponent<LookOrientation>();
         _health = GetComponent<Health>();
@@ -70,50 +75,20 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private void Start()
     {
+        _gameStateService[GameState.GameOver].onEnter += GameOver_OnEnter;
         _health.OnTakeDamage += Health_OnTakeDamage;
         _health.OnDeath += Health_OnDeath;
-    }
 
-    private void Update()
-    {
-        UpdateCombatBehaviour();
-    }
-
-    private void OnEnable()
-    {
-        if (_combatOnEnable)
-        {
-            StartCoroutine(StartCombatWithIntroMove());
-        }
-    }
-
-    public void InitiateCombatMode()
-    {
-        StartCoroutine(StartCombatWithIntroMove());
-    }
-
-    public void ResetUnitCondition()
-    {
-        _selectedCombatMode = CombatMode.None;
-        _health.ResetHealthToMaximum();
-    }
-
-    private IEnumerator StartCombatWithIntroMove()
-    {
-        yield return StartCoroutine(StartTeleportToMiddleArena());
-
-        if (_selectedCombatMode == CombatMode.None)
-        {
-            _selectedCombatMode = CombatMode.FirstPhase;
-        }
-        else
+        if (_combatTestMode)
         {
             ActivateSelectedCombatMode();
         }
     }
 
-    private void UpdateCombatBehaviour()
+    private void Update()
     {
+        if (!_combatTestMode) return;
+
         if (_currentCombatMode != _selectedCombatMode)
         {
             _currentCombatMode = _selectedCombatMode;
@@ -121,19 +96,16 @@ public class SriCombatBehaviour : MonoBehaviour
         }
     }
 
-    private void Health_OnTakeDamage()
+    public void InitiateCombat()
     {
-        if (_health.CurrentHP == _phaseTwoHPThreshold)
-        {
-            StopCurrentAbility();
-            StartCoroutine(StartPhaseTwo());
-        }
+        ResetUnitCondition();
+        StartCoroutine(StartPhaseOne());
     }
 
-    private void Health_OnDeath()
+    private IEnumerator StartPhaseOne()
     {
-        StopCurrentAbility();
-        StartCoroutine(StartDeathSlashAbility());
+        yield return StartCoroutine(StartTeleportToMiddleArena());
+        StartCoroutine(LoopCombatBehaviour(GetFirstPhaseAbility));
     }
 
     private IEnumerator StartPhaseTwo()
@@ -142,9 +114,54 @@ public class SriCombatBehaviour : MonoBehaviour
         StartCoroutine(LoopCombatBehaviour(GetSecondPhaseAbility));
     }
 
+    private void Health_OnTakeDamage()
+    {
+        if (_health.CurrentHP == _phaseTwoHPThreshold)
+        {
+            StopAbility();
+            StartCoroutine(StartPhaseTwo());
+        }
+    }
+
+    private void GameOver_OnEnter(GameState state)
+    {
+        StopAbility();
+    }
+
+    private void Health_OnDeath()
+    {
+        _gameStateService.SetState(GameState.BossDying);
+        StopAbility();
+
+        StartCoroutine(StartDeathSlashAbility());
+    }
+
+    private void ResetUnitCondition()
+    {
+        _health.ResetHealthToMaximum();
+        DeactivateAllAttackCollider();
+    }
+
+    private void StopAbility()
+    {
+        transform.DOKill();
+        StopAllCoroutines();
+        DeactivateAllAttackCollider();
+    }
+
+    private void DeactivateAllAttackCollider()
+    {
+        foreach (GameObject collider in _attackColliderArray)
+        {
+            collider.SetActive(false);
+        }
+    }
+
+    ///////////////////////////// Combat Mode Loop /////////////////////////////
+
     private void ActivateSelectedCombatMode()
     {
-        StopCurrentAbility();
+        StopAbility();
 
         switch (_selectedCombatMode)
         {
@@ -275,10 +292,60 @@ public class SriCombatBehaviour : MonoBehaviour
                 return StartWaveOutNailWaveAbility();
             case Ability.Teleport:
                 return StartTeleportAbility();
+            case Ability.DeathSlash:
+                return StartDeathSlashAbility();
             default:
                 return null;
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////
+
+    private void IncreaseMeleeAbilityCounter()
+    {
+        _meleeAbilityCounter++;
+        if (_meleeAbilityCounter > 2)
+        {
+            _meleeAbilityCounter = 0;
+        }
+    }
+
+    private IEnumerator TeleportIntoNailWaveVariant()
+    {
+        int teleportCount = UnityEngine.Random.Range(1, 3);
+        for (int i = 0; i < teleportCount; i++)
+        {
+            yield return StartCoroutine(StartTeleportAbility());            
+            SetFacingDirection();
+        }
+
+        int randomNumber = UnityEngine.Random.Range(0, 2);
+        switch (randomNumber)
+        {
+            case 0:
+                yield return StartCoroutine(StartHorizontalNailWaveAbility());
+                break;
+            case 1:
+                yield return StartCoroutine(StartVerticalNailWaveAbility());
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected void SetFacingDirection()
+    {
+        if (IsPlayerToRight())
+        {
+            _lookOrientation.SetFacingDirection(Vector2.right);
+        }
+
+        if (IsPlayerToLeft())
+        {
+            _lookOrientation.SetFacingDirection(Vector2.left);
+        }
+    }
+
 
     private IEnumerator StartUpSlashAbility()
     {
@@ -343,67 +410,6 @@ public class SriCombatBehaviour : MonoBehaviour
     private IEnumerator StartDeathSlashAbility()
     {
         yield return _deathSlashAbility.DeathSlash(_animator, _sriAudioSO.NailAOE, _sriAudioSO.VerticalSlash);
-    }
-
-
-
-    private void IncreaseMeleeAbilityCounter()
-    {
-        _meleeAbilityCounter++;
-        if (_meleeAbilityCounter > 2)
-        {
-            _meleeAbilityCounter = 0;
-        }
-    }
-
-    private IEnumerator TeleportIntoNailWaveVariant()
-    {
-        int teleportCount = UnityEngine.Random.Range(1, 3);
-        for (int i = 0; i < teleportCount; i++)
-        {
-            yield return StartCoroutine(StartTeleportAbility());            
-            SetFacingDirection();
-        }
-
-        int randomNumber = UnityEngine.Random.Range(0, 2);
-        switch (randomNumber)
-        {
-            case 0:
-                yield return StartCoroutine(StartHorizontalNailWaveAbility());
-                break;
-            case 1:
-                yield return StartCoroutine(StartVerticalNailWaveAbility());
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void StopCurrentAbility()
-    {
-        StopAllCoroutines();
-        DeactivateAllAttackCollider();
-    }
-
-    private void DeactivateAllAttackCollider()
-    {
-        foreach (GameObject collider in _attackColliderArray)
-        {
-            collider.SetActive(false);
-        }
-    }
-
-    protected void SetFacingDirection()
-    {
-        if (IsPlayerToRight())
-        {
-            _lookOrientation.SetFacingDirection(Vector2.right);
-        }
-
-        if (IsPlayerToLeft())
-        {
-            _lookOrientation.SetFacingDirection(Vector2.left);
-        }
     }
 
 #region Position to Player Checker
