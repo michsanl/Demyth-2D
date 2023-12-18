@@ -1057,7 +1057,9 @@ MonoBehaviour:
   healthBarTransform: {fileID: 5825263702170508637}
   shieldBarTransform: {fileID: 5255048700284031295}
   healthPotionEmptyImage: {fileID: 4715767936999583685}
-  senterLightOnImage: {fileID: 4715767937996383732}
+  healthPotionFullImage: {fileID: 4715767938426335251}
+  lanternOnImage: {fileID: 4715767937996383732}
+  lanternOffImage: {fileID: 4715767938251886707}
 --- !u!114 &4273378061712580691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,7 +1118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4715767938251886716
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1192,7 +1194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4715767938426335260
 RectTransform:
   m_ObjectHideFlags: 0

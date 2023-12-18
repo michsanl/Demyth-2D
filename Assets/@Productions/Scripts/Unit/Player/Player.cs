@@ -10,6 +10,8 @@ using MoreMountains.Feedbacks;
 
 public class Player : MonoBehaviour, IBroadcaster
 {
+    public Action<bool> OnLanternValueChanged;
+    public Action<bool> OnHealthPotionUnlockedValueChanged;
     public Vector2 LastMoveTargetPosition => _moveTargetPosition;
     public Vector2 PlayerDir => _playerDir;
     public bool IsDead => _isDead;
@@ -20,6 +22,24 @@ public class Player : MonoBehaviour, IBroadcaster
         {
             _usePan = value;
             animator.SetBool("UsePan", value);
+        }
+    }
+    public bool IsLanternUnlocked
+    {
+        get => _isLanternUnlocked;
+        set
+        {
+            _isLanternUnlocked = value;
+            OnLanternValueChanged?.Invoke(value);
+        }
+    }
+    public bool IsHealthPotionUnlocked
+    {
+        get => _isHealthPotionUnlocked;
+        set
+        {
+            _isHealthPotionUnlocked = value;
+            OnHealthPotionUnlockedValueChanged?.Invoke(value);
         }
     }
 
@@ -48,8 +68,8 @@ public class Player : MonoBehaviour, IBroadcaster
     private bool _isKnocked;
     private bool _isTakeDamageOnCooldown;
     private bool _usePan;
-    private bool _isLanternUnlocked = true;
-    private bool _isHealthPotionUnlocked = true;
+    private bool _isLanternUnlocked;
+    private bool _isHealthPotionUnlocked;
 
     private GameInputController _gameInputController;
     private GameInput _gameInput;
