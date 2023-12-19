@@ -16,9 +16,9 @@ public class SriAbilityNailSummon : MonoBehaviour
     [SerializeField] private float nailSpawnDelay;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject nailSummonCollider;
     [SerializeField] private GameObject groundNail;
+    [SerializeField] private Animator _animator;
     
     protected int NAIL_SUMMON_SINGLE = Animator.StringToHash("Nail_Summon_Single");
 

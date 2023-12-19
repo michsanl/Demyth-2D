@@ -16,12 +16,20 @@ public class SriAbilityUpSlash : MonoBehaviour
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
+    [SerializeField] private AbilityTimelineSO _abilityTimeline;
     [SerializeField] private GameObject upSlashCollider;
+    [SerializeField] private Animator _animator;
     
     private int topArenaBorder = 2;
     private int bottomArenaBorder = -4;
     private int UP_SLASH = Animator.StringToHash("Up_Slash");
+
+    private void Awake()
+    {
+        _animator.SetFloat("Ver_Slash_A", _abilityTimeline.AnticipationMultiplier);
+        _animator.SetFloat("Ver_Slash_B", _abilityTimeline.AttackMultiplier);
+        _animator.SetFloat("Ver_Slash_C", _abilityTimeline.RecoveryMultiplier);
+    }
 
     public IEnumerator UpSlash(Player player, Animator animator, AudioClip abilitySFX)
     {
@@ -29,14 +37,14 @@ public class SriAbilityUpSlash : MonoBehaviour
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.Play(UP_SLASH);
+        animator.SetTrigger("Up_Slash");
         PlayAudio(abilitySFX);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_abilityTimeline.FinalAnticiptionDuration);
         upSlashCollider.SetActive(true);
-        yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        yield return transform.DOMoveY(finalTargetPosition, _abilityTimeline.FinalAttackDuration).SetEase(animationCurve).WaitForCompletion();
         upSlashCollider.SetActive(false);
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_abilityTimeline.FinalRecoveryDuration);
     }
 
     private void PlayAudio(AudioClip abilitySFX)

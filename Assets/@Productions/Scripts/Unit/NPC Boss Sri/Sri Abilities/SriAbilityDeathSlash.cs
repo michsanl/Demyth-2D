@@ -12,6 +12,7 @@ public class SriAbilityDeathSlash : MonoBehaviour
     [SerializeField] private float teleportEndDuration;
     [SerializeField] private GameObject dialogueCollider;
     [SerializeField] private GameObject nailWavePrefab;
+    [SerializeField] private Animator _animator;
 
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");

@@ -15,7 +15,9 @@ public class SriAbilityDownSlash : MonoBehaviour
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
+    [SerializeField] private AbilityTimelineSO _abilityTimeline;
     [SerializeField] private GameObject downSlashCollider;
+    [SerializeField] private Animator _animator;
     
     private int topArenaBorder = 2;
     private int bottomArenaBorder = -4;
@@ -27,14 +29,14 @@ public class SriAbilityDownSlash : MonoBehaviour
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.Play(DOWN_SLASH);
+        animator.SetTrigger("Down_Slash");
         PlayAudio(abilitySFX);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_abilityTimeline.FinalAnticiptionDuration);
         downSlashCollider.SetActive(true);
-        yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        yield return transform.DOMoveY(finalTargetPosition, _abilityTimeline.FinalAttackDuration).SetEase(animationCurve).WaitForCompletion();
         downSlashCollider.SetActive(false);
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_abilityTimeline.FinalRecoveryDuration);
     }
 
     private void PlayAudio(AudioClip abilitySFX)

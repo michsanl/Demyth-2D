@@ -17,6 +17,7 @@ public class SriAbilityFireBall : MonoBehaviour
     [Title("Components")]
     [SerializeField] private GameObject fireBallProjectile;
     [SerializeField] private Transform fireBallSpawnPosition;
+    [SerializeField] private Animator _animator;
     
     protected int FIRE_BALL = Animator.StringToHash("Fire_Ball");
 

@@ -13,8 +13,8 @@ public class SriAbilityVerticalNailWave : MonoBehaviour
     [SerializeField] private float animationDuration;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject verticalNailWave;
+    [SerializeField] private Animator _animator;
     
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 

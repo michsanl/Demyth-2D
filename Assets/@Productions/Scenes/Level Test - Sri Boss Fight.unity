@@ -360,9 +360,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4086238673456598856, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 634144305}
+    - target: {fileID: 4086238673456598856, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _abilityTimeline
+      value: 
+      objectReference: {fileID: 11400000, guid: a106c21f7042cb44dbd144c0b7fb573c, type: 2}
+    - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _abilityLoop
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _combatTestMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
       propertyPath: _selectedCombatMode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6162601669282108410, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
       propertyPath: m_RootOrder
@@ -416,6 +432,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6631311648392498172, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 634144305}
+    - target: {fileID: 6631311648392498172, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _abilityTimeline
+      value: 
+      objectReference: {fileID: 11400000, guid: 99c42495ef7bd26439d6a0c7dc393d11, type: 2}
+    - target: {fileID: 6631311648392498172, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _animationDurationSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 99c42495ef7bd26439d6a0c7dc393d11, type: 2}
+    - target: {fileID: 8331803747265067259, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 634144305}
+    - target: {fileID: 8331803747265067259, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+      propertyPath: _abilityTimeline
+      value: 
+      objectReference: {fileID: 11400000, guid: a106c21f7042cb44dbd144c0b7fb573c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
 --- !u!224 &353531287 stripped
@@ -752,6 +788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7cd62888640396479f9940ff8c84c64, type: 3}
+--- !u!95 &634144305 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6162601670018239825, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
+  m_PrefabInstance: {fileID: 235584787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &663759122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6361526827687298559, guid: 8eef7114f6a17b04f9377df23092b74a, type: 3}
@@ -1055,11 +1096,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_LocalPosition.z

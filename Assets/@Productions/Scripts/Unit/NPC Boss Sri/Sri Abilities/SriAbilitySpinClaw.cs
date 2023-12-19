@@ -14,8 +14,8 @@ public class SriAbilitySpinClaw : MonoBehaviour
     [SerializeField] private float backSwingDuration;
     
     [Title("Components")]
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject spinClawCollider;
+    [SerializeField] private Animator _animator;
     
     protected int SPIN_CLAW = Animator.StringToHash("Spin_Claw");
 

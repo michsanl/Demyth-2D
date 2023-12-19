@@ -17,6 +17,7 @@ public class SriAbilityNailAOE : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject nailAOECollider;
     [SerializeField] private GameObject nailProjectile;
+    [SerializeField] private Animator _animator;
     
     protected int NAIL_AOE = Animator.StringToHash("Nail_AOE");
 

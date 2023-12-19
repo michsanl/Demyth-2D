@@ -14,6 +14,7 @@ public class SriAbilityHorizontalNailWave : MonoBehaviour
     
     [Title("Components")]
     [SerializeField] private GameObject horizontalNailWave;
+    [SerializeField] private Animator _animator;
 
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 

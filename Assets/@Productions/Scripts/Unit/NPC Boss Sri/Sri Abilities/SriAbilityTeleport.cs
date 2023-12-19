@@ -8,7 +8,7 @@ public class SriAbilityTeleport : MonoBehaviour
 {
     [SerializeField] private float teleportStartDuration;
     [SerializeField] private float teleportEndDuration;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
     
     private int topBorder = 2;
     private int bottomBorder = -4;
