@@ -7,6 +7,7 @@ using echo17.Signaler.Core;
 using Demyth.Gameplay;
 using Core;
 using System;
+using Core.UI;
 
 namespace Demyth.UI
 {
@@ -23,7 +24,9 @@ namespace Demyth.UI
         [SerializeField] private Image healthPotionFullImage;
         [SerializeField] private Image lanternOnImage;
         [SerializeField] private Image lanternOffImage;
+        [SerializeField] private UIPage _uiPage;
 
+        private GameStateService _gameStateService;
         private GameObject _playerObject;
         private Player _player;
         private HealthPotion _playerHealthPotion;
@@ -39,12 +42,15 @@ namespace Demyth.UI
             // Signaler.Instance.Subscribe<PlayerSpawnEvent>(this, OnPlayerSpawned);
             // Signaler.Instance.Subscribe<PlayerDespawnEvent>(this, OnPlayerDespawned);
             
+            _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _player = SceneServiceProvider.GetService<PlayerManager>().Player;
             _playerHealthPotion = _player.GetComponent<HealthPotion>();
             _playerShield = _player.GetComponent<Shield>();
             _playerHealth = _player.GetComponent<Health>();
             _playerLantern = _player.GetComponent<Lantern>();
 
+            DialogueManager.Instance.conversationStarted += DialogueManager_OnConversationStarted;
+            DialogueManager.Instance.conversationEnded += DialogueManager_OnConversationEnded;
             _player.OnLanternValueChanged += Player_OnLanternUnlockedChanged;
             _player.OnHealthPotionUnlockedValueChanged += Player_OnPotionUnlockedChanged;
             _playerLantern.OnLanternTogglePerformed += Player_OnLanternTogglePerformed;
@@ -54,6 +60,18 @@ namespace Demyth.UI
 
             GetHealthBarPositionAtZeroShield();
             GetShieldBarPositionAtZeroHealth();
+        }
+
+        private void DialogueManager_OnConversationStarted(Transform t)
+        {
+            _uiPage.Return();
+        }
+
+        private void DialogueManager_OnConversationEnded(Transform t)
+        {
+            if (_gameStateService.CurrentState == GameState.MainMenu) return;
+            
+            _uiPage.OpenPage(_uiPage.PageID);
         }
 
         private void Player_OnLanternUnlockedChanged(bool isUnlocked)

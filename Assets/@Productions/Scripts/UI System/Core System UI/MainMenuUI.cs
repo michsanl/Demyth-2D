@@ -19,17 +19,13 @@ namespace UISystem
 
         private UIPage _uiPage;
         private LevelManager _levelManager;
-        private GameInputController _gameInputController;
-        private GameInput _gameInput;
         private GameStateService _gameStateService;
 
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
-            _gameInputController = SceneServiceProvider.GetService<GameInputController>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-            _gameInput = _gameInputController.GameInput;            
         }       
 
         public void StartNewGame()
@@ -55,6 +51,7 @@ namespace UISystem
         public void ContinueGame()
         {
             SaveSystem.LoadFromSlot(1);
+            _uiPage.Return();
             _uiPage.OpenPage(gameViewId);
 
             _gameStateService?.SetState(GameState.Gameplay);
