@@ -312,7 +312,6 @@ MonoBehaviour:
   targetLevel: {fileID: 11400000, guid: 9fb99ad0b27dde846a0a644002890da0, type: 2}
   moveCameraOnLevelChange: 0
   cameraMoveDirection: 0
-  cameraGO: {fileID: 0}
 --- !u!61 &5791378521375256556
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -640,6 +639,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5769574275846061963}
     m_Modifications:
+    - target: {fileID: 2202322414460477779, guid: ae58949ef1cd00145bc9477617fba22c, type: 3}
+      propertyPath: conversation
+      value: Level 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2202322414460477780, guid: ae58949ef1cd00145bc9477617fba22c, type: 3}
       propertyPath: m_Name
       value: NPC Raine

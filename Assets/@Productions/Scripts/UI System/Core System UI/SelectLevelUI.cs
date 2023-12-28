@@ -1,6 +1,7 @@
 using Core;
 using Core.UI;
 using Demyth.Gameplay;
+using Demyth.UI;
 using PixelCrushers;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -8,11 +9,13 @@ using UnityEngine.UI;
 
 namespace UISystem
 {
-    public class SelectLevelUI : UIPageView
+    public class SelectLevelUI : MonoBehaviour
     {
 
         [SerializeField]
         private EnumId gameViewId;
+        [SerializeField]
+        private GameHUD _gameHUD;
 
         private UIPage _uiPage;
         private LevelManager _levelManager;
@@ -28,7 +31,9 @@ namespace UISystem
         public void ButtonGoToLevel(EnumId levelId)
         {
             _levelManager.OpenLevel(levelId);
-            _uiPage.OpenPage(gameViewId);
+            _uiPage.Return();
+            _gameHUD.gameObject.SetActive(true);
+            _gameHUD.Open();
 
             SaveSystem.SaveToSlot(1);
 
@@ -38,7 +43,9 @@ namespace UISystem
         public void ButtonContinue()
         {
             SaveSystem.LoadFromSlot(1);
-            _uiPage.OpenPage(gameViewId);
+            _uiPage.Return();
+            _gameHUD.gameObject.SetActive(true);
+            _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
         }
