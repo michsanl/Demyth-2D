@@ -8,6 +8,7 @@ using Demyth.Gameplay;
 using Core;
 using System;
 using Core.UI;
+using BrunoMikoski.AnimationSequencer;
 
 namespace Demyth.UI
 {
@@ -24,7 +25,6 @@ namespace Demyth.UI
         [SerializeField] private Image healthPotionFullImage;
         [SerializeField] private Image lanternOnImage;
         [SerializeField] private Image lanternOffImage;
-        [SerializeField] private UIPage _uiPage;
 
         private GameStateService _gameStateService;
         private GameObject _playerObject;
@@ -33,9 +33,11 @@ namespace Demyth.UI
         private Health _playerHealth;
         private Shield _playerShield;
         private Lantern _playerLantern;
+        private IPageAnimator _pageAnimator;
 
         private float _yPositionAtZeroHealth;
         private float _yPositionAtZeroShield;
+        private bool _isOpen;
 
         private void Awake()
         {
@@ -48,6 +50,7 @@ namespace Demyth.UI
             _playerShield = _player.GetComponent<Shield>();
             _playerHealth = _player.GetComponent<Health>();
             _playerLantern = _player.GetComponent<Lantern>();
+            _pageAnimator = GetComponent<IPageAnimator>();
 
             DialogueManager.Instance.conversationStarted += DialogueManager_OnConversationStarted;
             DialogueManager.Instance.conversationEnded += DialogueManager_OnConversationEnded;
@@ -60,18 +63,43 @@ namespace Demyth.UI
 
             GetHealthBarPositionAtZeroShield();
             GetShieldBarPositionAtZeroHealth();
+
+            gameObject.SetActive(false);
         }
 
         private void DialogueManager_OnConversationStarted(Transform t)
         {
-            _uiPage.Return();
+            Close();
         }
 
         private void DialogueManager_OnConversationEnded(Transform t)
         {
             if (_gameStateService.CurrentState == GameState.MainMenu) return;
-            
-            _uiPage.OpenPage(_uiPage.PageID);
+
+            gameObject.SetActive(true);
+            Open();
+        }
+
+        public void Open()
+        {
+            if (_isOpen) return;
+            _isOpen = true;
+
+            _pageAnimator?.PlayAnimation(() =>
+            {
+                
+            });
+        }
+
+        public void Close()
+        {
+            if (!_isOpen) return;
+            _isOpen = false;
+
+            _pageAnimator?.CloseAnimation(() =>
+            {
+                
+            });
         }
 
         private void Player_OnLanternUnlockedChanged(bool isUnlocked)

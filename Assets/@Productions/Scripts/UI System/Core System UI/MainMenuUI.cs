@@ -1,7 +1,10 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Core.UI;
 using Demyth.Gameplay;
+using Demyth.UI;
 using PixelCrushers;
+using PixelCrushers.DialogueSystem;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,6 +15,8 @@ namespace UISystem
     {
         [SerializeField]
         private EnumId gameViewId;
+        [SerializeField]
+        private GameHUD _gameHUD;
 
         [Header("Level")]
         [SerializeField]
@@ -26,7 +31,7 @@ namespace UISystem
             _uiPage = GetComponent<UIPage>();
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        }       
+        }
 
         public void StartNewGame()
         {
@@ -34,16 +39,20 @@ namespace UISystem
             SaveSystem.LoadFromSlot(0);
 
             _levelManager.OpenLevel(newLevelId);
-            _uiPage.OpenPage(gameViewId);
+            _uiPage.Return();
             
             SaveSystem.SaveToSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
+
+            DialogueManager.StartConversation("Intro");
         }
 
         public void StartToLevel(EnumId levelId)
         {
             _levelManager.OpenLevel(levelId);
-            _uiPage.OpenPage(gameViewId);
+            _uiPage.Return();
+            _gameHUD.gameObject.SetActive(true);
+            _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
         }
@@ -52,7 +61,8 @@ namespace UISystem
         {
             SaveSystem.LoadFromSlot(1);
             _uiPage.Return();
-            _uiPage.OpenPage(gameViewId);
+            _gameHUD.gameObject.SetActive(true);
+            _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
         }
