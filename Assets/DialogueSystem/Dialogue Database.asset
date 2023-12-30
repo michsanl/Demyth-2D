@@ -5318,7 +5318,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetPortrait(Lati, pic=8);
+        value: 'SetPortrait(Lati, pic=8);
+
+'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -8475,7 +8477,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 206.57887}
+    canvasScrollPosition: {x: 73.68417, y: 0}
     canvasZoom: 0.7600002
   - id: 9
     fields:
@@ -15485,8 +15487,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 253.68747, y: 0}
-    canvasZoom: 0.9699998
+    canvasScrollPosition: {x: 0, y: 719.96954}
+    canvasZoom: 0.40000027
   - id: 11
     fields:
     - title: Title
@@ -15660,7 +15662,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: '
+        value: 'SetActive (Bg 2, false);
+
+          SetActive (Bg 3, true);
 
 '
         type: 0
@@ -16296,7 +16300,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 186.58534}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 0.8200001
   - id: 12
     fields:
@@ -19943,7 +19947,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: 'SetActive (Bg 3, false);
+
+          SetActive (Bg 4, true);'
         type: 0
         typeString: 
       - title: id
@@ -23147,8 +23153,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 565.94995, y: 1749.3165}
-    canvasZoom: 0.9175012
+    canvasScrollPosition: {x: 564.1592, y: 1637.1072}
+    canvasZoom: 0.9475012
   - id: 14
     fields:
     - title: Title
@@ -25069,8 +25075,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 955.59985}
-    canvasZoom: 0.57999986
+    canvasScrollPosition: {x: 356.71402, y: 234.02954}
+    canvasZoom: 0.8499996
   - id: 15
     fields:
     - title: Title
@@ -25213,7 +25219,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: 'SetActive (Bg 4, false);
+
+          SetActive (Bg 5, true);'
         type: 0
         typeString: 
       - title: id
@@ -26290,7 +26298,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 246.53888, y: 631.3825}
+    canvasScrollPosition: {x: 306.31476, y: 0}
     canvasZoom: 0.8029999
   - id: 16
     fields:
@@ -27647,7 +27655,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: 'SetActive (Bg 5, false);
+
+          SetActive (Bg 6, true);'
         type: 0
         typeString: 
       - title: id
@@ -29001,8 +29011,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 409.3025, y: 928.7245}
-    canvasZoom: 0.9399996
+    canvasScrollPosition: {x: 386.37756, y: 0}
+    canvasZoom: 0.9099996
   - id: 19
     fields:
     - title: Title
@@ -30061,12 +30071,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: '
+        value: 'SetActive (Bg 6, false);
 
-          SetActive (Bad, false);
-
-          SetActive (Dialog
-          BG, true);'
+          SetActive (Bg 7, true);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -30654,7 +30661,7 @@ MonoBehaviour:
         value: '[em3][pic=2]K.R. Sri
 
 
-          So you''re looking for Amel?'
+          So you''re looking for Amel?[/em3]'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -33360,7 +33367,8 @@ MonoBehaviour:
         value: '[em3][pic=7]K.R. Sri
 
 
-          Hmm~ Why should I tell you?'
+          Hmm~ Alright but first I need you
+          to do something for me~[/em3]'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -33421,15 +33429,14 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: Because her family worried
+        value: No
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=2]Ara
 
 
-          Becouse.. her sister and daughter worried
-          about her..'
+          Uhm.. No'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -33451,7 +33458,7 @@ MonoBehaviour:
       - originConversationID: 20
         originDialogueID: 167
         destinationConversationID: 20
-        destinationDialogueID: 169
+        destinationDialogueID: 171
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -33484,18 +33491,20 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: Because I'll owe you
+        value: Okay
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=16]Ara
 
 
-          Because.. I''ll owe you a favor'
+          What do you want me to do..?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SetActive(Continue Buttons, false);
+
+          Continue()@3'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -33524,132 +33533,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 973.6593
-        y: 657.4147
-        width: 160
-        height: 30
-    - id: 169
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 14
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[em3][pic=7]K.R. Sri
-
-
-          Ah that''s unfortunate, but I don''t
-          care'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 20
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 20
-        originDialogueID: 169
-        destinationConversationID: 20
-        destinationDialogueID: 170
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 644.39075
-        y: 707.4147
-        width: 160
-        height: 30
-    - id: 170
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 14
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[em3][pic=8]K.R. Sri
-
-
-          And now you bore me'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 20
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 20
-        originDialogueID: 170
-        destinationConversationID: 20
-        destinationDialogueID: 171
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 645.39636
-        y: 775.3563
+        y: 658.5912
         width: 160
         height: 30
     - id: 171
@@ -33725,8 +33609,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 644.37177
-        y: 846.9956
+        x: 638.69
+        y: 726.541
         width: 160
         height: 30
     - id: 172
@@ -33798,8 +33682,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 439.60248
-        y: 850.5775
+        x: 433.92072
+        y: 730.1229
         width: 160
         height: 30
     - id: 173
@@ -33832,7 +33716,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: Continue()@3
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -33890,11 +33774,11 @@ MonoBehaviour:
         value: '[em3][pic=4]K.R. Sri
 
 
-          Interesting~'
+          Interesting~[/em3]'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: Continue()@3
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -33953,12 +33837,11 @@ MonoBehaviour:
 
 
           Entertain me then, if you want your
-
-          Answer~'
+          answer~[/em3]'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: Continue()@3
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -33987,7 +33870,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 973.6593
-        y: 807.4147
+        y: 808.47845
         width: 160
         height: 30
     - id: 176
@@ -34020,13 +33903,17 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: Continue()@3
         type: 0
         typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: 
       conversationID: 20
       isRoot: 0
       isGroup: 0
@@ -34038,7 +33925,7 @@ MonoBehaviour:
       - originConversationID: 20
         originDialogueID: 176
         destinationConversationID: 20
-        destinationDialogueID: 177
+        destinationDialogueID: 178
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -34082,7 +33969,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: Continue()@3
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -34104,13 +33991,75 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 973.6593
-        y: 907.4147
+        x: 974.22266
+        y: 963.62244
+        width: 160
+        height: 30
+    - id: 178
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 14
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[em3][pic=8]K.R. Sri
+
+
+          PREPARE YOURSELF[/em3]'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: Continue()@3
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 20
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 20
+        originDialogueID: 178
+        destinationConversationID: 20
+        destinationDialogueID: 177
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 975.7212
+        y: 908.44556
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.45999974
+    canvasScrollPosition: {x: 443.47925, y: 520.8271}
+    canvasZoom: 0.5799995
   - id: 21
     fields:
     - title: Title
@@ -37712,13 +37661,13 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 539
-        y: 68
+        x: 517.68854
+        y: 164.72125
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 118, y: 0}
-    canvasZoom: 1
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.6100004
   - id: 25
     fields:
     - title: Title
@@ -38442,8 +38391,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 150.2622, y: 193.4066}
-    canvasZoom: 0.9100001
+    canvasScrollPosition: {x: 169.60294, y: 0}
+    canvasZoom: 0.7000003
   - id: 26
     fields:
     - title: Title
