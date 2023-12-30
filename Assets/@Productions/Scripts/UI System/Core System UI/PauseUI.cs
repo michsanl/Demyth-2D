@@ -12,6 +12,7 @@ using Core.UI;
 using Demyth.Gameplay;
 using MoreMountains.Tools;
 using Lean.Pool;
+using Demyth.UI;
 
 namespace UISystem
 {
@@ -26,6 +27,7 @@ namespace UISystem
         [SerializeField] private Slider _musicVolumeSlider;
         [SerializeField] private Slider _sfxVolumeSlider;
         [SerializeField] private AudioMixer audioMixer;
+        [SerializeField] private GameHUD _gameHUD;
 
         private UIPage _uiPage;
         private GameStateService _gameStateService;
@@ -38,7 +40,7 @@ namespace UISystem
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
 
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
-            _gameStateService[GameState.Gameplay].onEnter += GamePlay_OnEnter;
+            _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
             _resumeButton.onClick.AddListener(ButtonResume);
             _mainMenuButton.onClick.AddListener(ButtonMainMenu);
@@ -60,12 +62,9 @@ namespace UISystem
             _uiPage.OpenPage(_uiPage.PageID);
         }
 
-        private void GamePlay_OnEnter(GameState state)
+        private void Pause_OnExit(GameState state)
         {
-            if (_gameStateService.PreviousState == GameState.Pause)
-            {
-                _uiPage.Return();
-            }
+            _uiPage.Return();
         }
 
         private void ButtonResume()
@@ -82,7 +81,8 @@ namespace UISystem
             LeanPool.DespawnAll();
 
             _levelManager.OpenLevel(_levelMenulId);
-            _uiPage.ReturnToPage(_menuPageId);
+            _gameHUD.Close();
+            _uiPage.OpenPage(_menuPageId);
         }
 
         private void SetMMSoundMasterVolume(float volume)
