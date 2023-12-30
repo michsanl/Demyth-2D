@@ -41,7 +41,9 @@ public class SriAbilityDeathSlash : MonoBehaviour
         yield return Helper.GetWaitForSeconds(0.6f);
         dialogueCollider.SetActive(true);
         yield return transform.DOMoveY(-4f, .233f).SetEase(Ease.OutExpo).WaitForCompletion();
-        // dialogueCollider.SetActive(false);
+        
+        yield return Helper.GetWaitForSeconds(1f);
+        dialogueCollider.SetActive(false);
     }
 
     private void PlayAudio(AudioClip abilitySFX)

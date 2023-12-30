@@ -389,6 +389,9 @@ MonoBehaviour:
   _secondCutsceneStartDelay: 1
   _dialogueSystemTrigger: {fileID: 8114377932929409595}
   _petraCombatBehaviour: {fileID: 5916985431247403359}
+  _postCombatCutscene: {fileID: 5358408762841971155}
+  _petraFightIntro: {fileID: 8300000, guid: f927f285b217aed428b21f93e68f5678, type: 3}
+  _petraFightLoop: {fileID: 8300000, guid: fc852ed1e9e46b1438b6eae4aba0ca7d, type: 3}
 --- !u!114 &8114377932929409595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daedcab5c5d12194c9d4df2cc2db7cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sriCombatBehaviour: {fileID: 0}
-  _petraCombatBehaviour: {fileID: 5916985431247403359}
 --- !u!1 &3806629825586358243
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +667,7 @@ MonoBehaviour:
   _npcPetraAnimator: {fileID: 8689829764801100882}
   _dialogueSystemTrigger: {fileID: 7281907620234861998}
   _unlockableInvisibleWall: {fileID: 2800424501470488688}
+  _levelBGM: {fileID: 8300000, guid: 99ce892b0f410a5478e3ce5790ec1236, type: 3}
 --- !u!114 &7281907620234861998
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1411,18 +1411,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6004192283ef3b14c90cdcc08955ba02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _combatOnEnable: 0
   _phaseTwoHPTreshold: 15
+  _combatTestMode: 0
   _selectedCombatMode: 0
   _loopAbility: 0
+  _animator: {fileID: 4912183497154396725}
+  _petraAudioSO: {fileID: 11400000, guid: 25c05e0a76a05a2489a4f67e13da126c, type: 2}
   _attackColliderArray:
   - {fileID: 5215676311051618195}
   - {fileID: 3394045014038967453}
   - {fileID: 6631251182860402330}
   - {fileID: 2906600543523919839}
   - {fileID: 4152772934057147649}
-  _animator: {fileID: 4912183497154396725}
-  _petraAudioSO: {fileID: 11400000, guid: 25c05e0a76a05a2489a4f67e13da126c, type: 2}
 --- !u!114 &9182001827861331906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2062,6 +2062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7673398051580542024}
+  - component: {fileID: 1738247079919561231}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -2085,6 +2086,17 @@ Transform:
   m_Father: {fileID: 2035042749252718171}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1738247079919561231
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673398051580542025}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &8056380377115380981
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using System;
 
 public class GameManager : SceneService
 {
-    
     private GameStateService _gameStateService;
     private GameInputController _gameInputController;
     private GameInput _gameInput;
@@ -23,6 +22,7 @@ public class GameManager : SceneService
         _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
 
         CreateVanillaSaveFile();
+        Application.runInBackground = true; // So music wont pause
     }
 
     // Saving on the start of the scene, before loading anything, to create vanilla save file
@@ -60,13 +60,11 @@ public class GameManager : SceneService
 
     private void Pause()
     {
-        AudioListener.pause = true;
         Time.timeScale = 0f;
     }
 
     private void UnPause()
     {
-        AudioListener.pause = false;
         Time.timeScale = 1f;
     }
 }

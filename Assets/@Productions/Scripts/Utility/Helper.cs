@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Tools;
 
 // non allocating WaitForSeconds, by Tarodev
 
@@ -14,6 +15,26 @@ public static class Helper
 
         WaitDictionary[time] = new WaitForSeconds(time);
         return WaitDictionary[time];
+    }
+
+    public static void PlayMusic(AudioClip audioClip, float volume, int id, bool loop)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = volume;
+        playOptions.ID = id;
+        playOptions.Loop = loop;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Music;
+
+        MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
+    }
+
+    public static void PlaySFX(AudioClip audioClip, float volume)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = volume;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
     }
 
     public static float GetAngleFromFectorFloat(Vector3 dir)
