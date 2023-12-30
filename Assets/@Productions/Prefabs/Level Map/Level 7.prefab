@@ -328,8 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daedcab5c5d12194c9d4df2cc2db7cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sriCombatBehaviour: {fileID: 6678796350286695659}
-  _petraCombatBehaviour: {fileID: 0}
 --- !u!1 &3188134469175879116
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7169940858755412624}
   - component: {fileID: 7188326492354256570}
+  - component: {fileID: 2969423720754882099}
   m_Layer: 0
   m_Name: SriPostCombatCutscene
   m_TagString: Untagged
@@ -722,6 +721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d23288daac746429af4fe7b8f9f60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _talkableOnCollision: {fileID: 4117291182169101105}
+  _dialogueSystemTrigger: {fileID: 2969423720754882099}
   _gameObjectsToActivate:
   - {fileID: 5231546283808791277}
   _gameObjectsToDeactivate:
@@ -735,6 +736,79 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &2969423720754882099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724826765307675722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 32
+  condition:
+    luaConditions: []
+    questConditions: []
+    acceptedTags: []
+    acceptedGameObjects: []
+    luaWizardIndex: -1
+    lastEvaluationValue: 0
+  setQuestState: 1
+  questName: 
+  questState: 0
+  setQuestEntryState: 0
+  questEntryNumber: 1
+  questEntryState: 0
+  setAnotherQuestEntryState: 0
+  anotherQuestEntryNumber: 1
+  anotherQuestEntryState: 0
+  luaCode: 
+  sequence: 
+  sequenceSpeaker: {fileID: 0}
+  sequenceListener: {fileID: 0}
+  waitOneFrameOnStartOrEnable: 1
+  alertMessage: 
+  textTable: {fileID: 0}
+  alertDuration: 0
+  sendMessages: []
+  barkSource: 0
+  barkConversation: 
+  barkText: 
+  barkTextSequence: 
+  barker: {fileID: 0}
+  barkTarget: {fileID: 0}
+  barkOrder: 0
+  allowBarksDuringConversations: 0
+  skipBarkIfNoValidEntries: 0
+  cacheBarkLines: 0
+  conversation: Test Convo
+  conversationConversant: {fileID: 0}
+  conversationActor: {fileID: 0}
+  startConversationEntryID: -1
+  startConversationEntryTitle: 
+  exclusive: 0
+  replace: 0
+  skipIfNoValidEntries: 0
+  preventRestartOnSameFrameEnded: 0
+  stopConversationOnTriggerExit: 0
+  stopConversationIfTooFar: 0
+  maxConversationDistance: 5
+  monitorConversationDistanceFrequency: 1
+  showCursorDuringConversation: 0
+  pauseGameDuringConversation: 0
+  setActiveActions: []
+  setEnabledActions: []
+  setAnimatorStateActions: []
+  onExecute:
+    m_PersistentCalls:
+      m_Calls: []
+  useConversationTitlePicker: 1
+  useBarkTitlePicker: 1
+  useQuestNamePicker: 1
+  selectedDatabase: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
 --- !u!1 &5231546283808791277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,7 +1087,6 @@ MonoBehaviour:
   _secondCutsceneStartDelay: 1
   _cameraMoveDownSequenceDuration: 0.3
   _dialogueSystemTrigger: {fileID: 5373851937270661592}
-  _cameraTransform: {fileID: 0}
   _sriCombatBehaviour: {fileID: 6678796350286695659}
 --- !u!114 &5373851937270661592
 MonoBehaviour:
@@ -2269,118 +2342,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
---- !u!1 &1112452342164796630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6043795961679398122, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
-  m_PrefabInstance: {fileID: 6678796350028509244}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5897819410840880646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112452342164796630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5473918a168c44fa0294bd4d1399f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conversationEvents:
-    onConversationStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationEnd:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7188326492354256570}
-          m_TargetAssemblyTypeName: SriPostCombatCutscene, Assembly-CSharp
-          m_MethodName: StartCutscene
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1112452342164796630}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    runOnConversationEndEventsAtEndOfFrame: 0
-    onConversationCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationLine:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationLineEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationLineCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationResponseMenu:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationResponseMenuTimeout:
-      m_PersistentCalls:
-        m_Calls: []
-    onLinkedConversationStart:
-      m_PersistentCalls:
-        m_Calls: []
-  barkEvents:
-    onBarkStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onBarkEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    onBarkLine:
-      m_PersistentCalls:
-        m_Calls: []
-  sequenceEvents:
-    onSequenceStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onSequenceEnd:
-      m_PersistentCalls:
-        m_Calls: []
-  questEvents:
-    onQuestStateChange:
-      m_PersistentCalls:
-        m_Calls: []
-    onQuestTrackingEnabled:
-      m_PersistentCalls:
-        m_Calls: []
-    onQuestTrackingDisabled:
-      m_PersistentCalls:
-        m_Calls: []
-    onUpdateQuestTracker:
-      m_PersistentCalls:
-        m_Calls: []
-  pauseEvents:
-    onDialogueSystemPause:
-      m_PersistentCalls:
-        m_Calls: []
-    onDialogueSystemUnpause:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &3950425681509011601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7673398050621169837, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
   m_PrefabInstance: {fileID: 6678796350028509244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4117291182169101105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7317319568904839949, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
+  m_PrefabInstance: {fileID: 6678796350028509244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfe0fbb34af9d345937c3d7b8452005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6678796350286695659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 278691031, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}

@@ -3,6 +3,7 @@ using Core;
 using Core.UI;
 using Demyth.Gameplay;
 using Demyth.UI;
+using MoreMountains.Tools;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
@@ -13,10 +14,8 @@ namespace UISystem
 {
     public class MainMenuUI : MonoBehaviour
     {
-        [SerializeField]
-        private EnumId gameViewId;
-        [SerializeField]
-        private GameHUD _gameHUD;
+        [SerializeField] private GameHUD _gameHUD;
+        [SerializeField] private AudioClip _levelBGM;
 
         [Header("Level")]
         [SerializeField]
@@ -45,6 +44,7 @@ namespace UISystem
             _gameStateService?.SetState(GameState.Gameplay);
 
             DialogueManager.StartConversation("Intro");
+            Helper.PlayMusic(_levelBGM, .2f, 1, true);
         }
 
         public void StartToLevel(EnumId levelId)
@@ -55,6 +55,7 @@ namespace UISystem
             _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
+            Helper.PlayMusic(_levelBGM, .2f, 1, true);
         }
 
         public void ContinueGame()
@@ -65,6 +66,7 @@ namespace UISystem
             _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
+            Helper.PlayMusic(_levelBGM, .2f, 1, true);
         }
 
         public void QuitGame()
@@ -75,8 +77,6 @@ namespace UISystem
         private static void ClearGameProgressSave()
         {
             SaveSystem.DeleteSavedGameInSlot(1);
-            SaveSystem.DeleteSavedGameInSlot(2);
-            SaveSystem.DeleteSavedGameInSlot(3);
-        }  
+        }
     }
 }

@@ -83,6 +83,8 @@ namespace UISystem
             _levelManager.OpenLevel(_levelMenulId);
             _gameHUD.Close();
             _uiPage.OpenPage(_menuPageId);
+
+            MMSoundManagerAllSoundsControlEvent.Trigger(MMSoundManagerAllSoundsControlEventTypes.Free);
         }
 
         private void SetMMSoundMasterVolume(float volume)

@@ -2,6 +2,7 @@ using Core;
 using Core.UI;
 using Demyth.Gameplay;
 using Demyth.UI;
+using MoreMountains.Tools;
 using PixelCrushers;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,11 +12,8 @@ namespace UISystem
 {
     public class SelectLevelUI : MonoBehaviour
     {
-
-        [SerializeField]
-        private EnumId gameViewId;
-        [SerializeField]
-        private GameHUD _gameHUD;
+        [SerializeField] private GameHUD _gameHUD;
+        [SerializeField] private AudioClip _levelBGM;
 
         private UIPage _uiPage;
         private LevelManager _levelManager;
@@ -38,6 +36,7 @@ namespace UISystem
             SaveSystem.SaveToSlot(1);
 
             _gameStateService?.SetState(GameState.Gameplay);
+            Helper.PlayMusic(_levelBGM, .2f, 1, true);
         }
 
         public void ButtonContinue()
@@ -48,6 +47,7 @@ namespace UISystem
             _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
+            Helper.PlayMusic(_levelBGM, .2f, 1, true);
         }
     }
 }

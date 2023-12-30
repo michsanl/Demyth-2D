@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
-using MoreMountains.Feedbacks;
 using Demyth.Gameplay;
 using Core;
+using MoreMountains.Tools;
+using System.Threading.Tasks;
 
 public class PetraPreCombatCutscene : MonoBehaviour
 {
@@ -19,12 +20,14 @@ public class PetraPreCombatCutscene : MonoBehaviour
 
     private GameInputController _gameInputController;
     private CameraController _cameraController;
+    private MusicController _musicController;
     private Player _player;
 
     private void Awake()
     {
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _cameraController = SceneServiceProvider.GetService<CameraController>();
+        _musicController = SceneServiceProvider.GetService<MusicController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
     }
 
@@ -44,10 +47,12 @@ public class PetraPreCombatCutscene : MonoBehaviour
     private IEnumerator StartPreDialogueCutscene()
     {
         // SEQUENCE 1
+        // fade out level bgm
         // disable player input
+        _musicController.FadeOutLevelBGM(10f);
         _gameInputController.DisablePlayerInput();
         yield return new WaitForSeconds(_firstCutsceneStartDelay);
-
+        
         // SEQUENCE 2
         // move camera up
         _cameraController.DOMoveYCamera(10f, 1f, Ease.InOutCubic);
@@ -74,6 +79,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
         _cameraController.DOMoveYCamera(0f, 1f, Ease.InOutQuad);
         _gameInputController.EnablePlayerInput();
         _player.UsePan = true;
+        _musicController.StartPetraBossFightMusic();
         gameObject.SetActive(false);
     }
 }

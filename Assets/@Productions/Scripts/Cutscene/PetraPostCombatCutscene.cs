@@ -7,6 +7,7 @@ using Demyth.Gameplay;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
+using MoreMountains.Tools;
 
 public class PetraPostCombatCutscene : MonoBehaviour
 {
@@ -21,12 +22,14 @@ public class PetraPostCombatCutscene : MonoBehaviour
 
     private GameStateService _gameStateService;
     private GameInputController _gameInputController;
+    private MusicController _musicController;
     private Health _petraHealth;
 
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+        _musicController = SceneServiceProvider.GetService<MusicController>();
         _petraHealth = _bossPetraGameObject.GetComponent<Health>();
 
         _petraHealth.OnDeath += PetraHealth_OnDeath;
@@ -48,6 +51,8 @@ public class PetraPostCombatCutscene : MonoBehaviour
     {
         // SEQUENCE 1
         // Wait for petra on death animation to complete
+        _musicController.StopAllCoroutines();
+        _musicController.EndPetraBossFightMusic();
         yield return Helper.GetWaitForSeconds(2.5f);
 
         // SEQUENCE 2

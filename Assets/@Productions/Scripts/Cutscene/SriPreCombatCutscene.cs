@@ -7,6 +7,8 @@ using PixelCrushers.DialogueSystem;
 using MoreMountains.Feedbacks;
 using Demyth.Gameplay;
 using Core;
+using MoreMountains.Tools;
+using System.Threading.Tasks;
 
 public class SriPreCombatCutscene : MonoBehaviour
 {
@@ -21,11 +23,13 @@ public class SriPreCombatCutscene : MonoBehaviour
 
     private CameraController _cameraController;
     private GameInputController _gameInputController;
+    private MusicController _musicController;
 
     private void Awake()
     {
         _cameraController = SceneServiceProvider.GetService<CameraController>();
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+        _musicController = SceneServiceProvider.GetService<MusicController>();
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -46,6 +50,7 @@ public class SriPreCombatCutscene : MonoBehaviour
         // SEQUENCE 1
         // disable player input
         // wait
+        _musicController.StartSriCutsceneMusic();
         _gameInputController.DisablePlayerInput();
         yield return Helper.GetWaitForSeconds(_firstCutsceneStartDelay);
 
@@ -78,6 +83,8 @@ public class SriPreCombatCutscene : MonoBehaviour
         // disable cutscene object
         _sriCombatBehaviour.InitiateCombat();
         _gameInputController.EnablePlayerInput();
+        _musicController.StopAllCoroutines();
+        _musicController.StartSriBossFightMusic();
         gameObject.SetActive(false);
     }
 
