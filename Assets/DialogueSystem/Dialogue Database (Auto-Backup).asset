@@ -8475,7 +8475,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 206.57887}
+    canvasScrollPosition: {x: 73.68417, y: 0}
     canvasZoom: 0.7600002
   - id: 9
     fields:
@@ -15485,8 +15485,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 253.68747, y: 0}
-    canvasZoom: 0.9699998
+    canvasScrollPosition: {x: 281.06534, y: 0}
+    canvasZoom: 0.96999985
   - id: 11
     fields:
     - title: Title
@@ -15660,7 +15660,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: '
+        value: 'SetActive (Bg 2, false);
+
+          SetActive (Bg 3, true);
 
 '
         type: 0
@@ -16296,7 +16298,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 186.58534}
+    canvasScrollPosition: {x: 0, y: 0}
     canvasZoom: 0.8200001
   - id: 12
     fields:
@@ -19943,7 +19945,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: 'SetActive (Bg 3, false);
+
+          SetActive (Bg 4, true);'
         type: 0
         typeString: 
       - title: id
@@ -23147,8 +23151,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 565.94995, y: 1749.3165}
-    canvasZoom: 0.9175012
+    canvasScrollPosition: {x: 564.1592, y: 1637.1072}
+    canvasZoom: 0.9475012
   - id: 14
     fields:
     - title: Title
@@ -25069,8 +25073,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 955.59985}
-    canvasZoom: 0.57999986
+    canvasScrollPosition: {x: 356.71402, y: 234.02954}
+    canvasZoom: 0.8499996
   - id: 15
     fields:
     - title: Title
@@ -25213,7 +25217,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: 'SetActive (Bg 4, false);
+
+          SetActive (Bg 5, true);'
         type: 0
         typeString: 
       - title: id
@@ -26290,7 +26296,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 246.53888, y: 631.3825}
+    canvasScrollPosition: {x: 306.31476, y: 0}
     canvasZoom: 0.8029999
   - id: 16
     fields:
@@ -27647,7 +27653,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: 'SetActive (Bg 5, false);
+
+          SetActive (Bg 6, true);'
         type: 0
         typeString: 
       - title: id
@@ -29001,8 +29009,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 409.3025, y: 928.7245}
-    canvasZoom: 0.9399996
+    canvasScrollPosition: {x: 386.37756, y: 0}
+    canvasZoom: 0.9099996
   - id: 19
     fields:
     - title: Title
@@ -30061,12 +30069,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: '
+        value: 'SetActive (Bg 6, false);
 
-          SetActive (Bad, false);
-
-          SetActive (Dialog
-          BG, true);'
+          SetActive (Bg 7, true);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -34109,8 +34114,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.45999974
+    canvasScrollPosition: {x: 469.5501, y: 542.43726}
+    canvasZoom: 0.9099994
   - id: 21
     fields:
     - title: Title
@@ -41736,7 +41741,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=17]Ara
 
 
           Oh hi again!'
@@ -41860,7 +41865,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=13]Ara
 
 
           Okay..'
@@ -41984,7 +41989,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=13]Ara
 
 
           Well.. See ya later then!'
@@ -42046,7 +42051,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Raine
+        value: '[pic=10]Raine
 
 
           :D'
@@ -42080,7 +42085,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 13, y: 110}
     canvasZoom: 1
   - id: 31
     fields:
@@ -42210,7 +42215,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=1]Ara
 
 
           So.. This is it?'
@@ -42308,7 +42313,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 447
+        x: 444.6471
         y: 122
         width: 160
         height: 30
@@ -42335,7 +42340,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=2]Ara
 
 
           Umm Hopefully?'
@@ -42397,7 +42402,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Sri
+        value: '[pic=2]Sri
 
 
           The last time I checked it leads to
@@ -42464,7 +42469,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=13]Ara
 
 
           What is she doing exactly?'
@@ -42526,7 +42531,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Sri
+        value: '[pic=5]Sri
 
 
           It''s better if you know it from her or
@@ -42653,7 +42658,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Sri
+        value: '[pic=6]Sri
 
 
           For some time'
@@ -42715,7 +42720,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Sri
+        value: '[pic=7]Sri
 
 
           I was hoping she woul come here
@@ -42780,7 +42785,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=7]Ara
 
 
           She''s.. busy..'
@@ -42842,7 +42847,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Sri
+        value: '[piv=4]Sri
 
 
           Or maybe she''s afraid'
@@ -42904,7 +42909,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=16]Ara
 
 
           Please~ She fears nothing'
@@ -42966,7 +42971,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Sri
+        value: '[pic=2]Sri
 
 
           Even her past..?'
@@ -43028,7 +43033,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=13]Ara
 
 
           What..?'
@@ -43090,7 +43095,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: 'Sri
+        value: '[pic=5]Sri
 
 
           Ah you better hear it from
@@ -43127,8 +43132,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 351}
-    canvasZoom: 1
+    canvasScrollPosition: {x: 22.352966, y: 441.17645}
+    canvasZoom: 0.8500001
   - id: 32
     fields:
     - title: Title
