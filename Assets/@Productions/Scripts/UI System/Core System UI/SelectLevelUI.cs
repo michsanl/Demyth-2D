@@ -13,17 +13,18 @@ namespace UISystem
     public class SelectLevelUI : MonoBehaviour
     {
         [SerializeField] private GameHUD _gameHUD;
-        [SerializeField] private AudioClip _levelBGM;
 
         private UIPage _uiPage;
         private LevelManager _levelManager;
         private GameStateService _gameStateService;
+        private MusicController _musicController;
 
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+            _musicController = SceneServiceProvider.GetService<MusicController>();
         }       
 
         public void ButtonGoToLevel(EnumId levelId)
@@ -36,7 +37,7 @@ namespace UISystem
             SaveSystem.SaveToSlot(1);
 
             _gameStateService?.SetState(GameState.Gameplay);
-            Helper.PlayMusic(_levelBGM, .2f, 1, true);
+            _musicController.PlayLevelBGM();
         }
 
         public void ButtonContinue()
@@ -47,7 +48,7 @@ namespace UISystem
             _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
-            Helper.PlayMusic(_levelBGM, .2f, 1, true);
+            _musicController.PlayLevelBGM();
         }
     }
 }

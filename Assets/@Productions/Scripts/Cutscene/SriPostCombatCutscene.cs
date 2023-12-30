@@ -52,6 +52,7 @@ public class SriPostCombatCutscene : MonoBehaviour
         // Save
 
         LeanPool.DespawnAll();
+        _gameStateService.SetState(GameState.Gameplay);
 
         foreach (var item in _gameObjectsToActivate)
         {

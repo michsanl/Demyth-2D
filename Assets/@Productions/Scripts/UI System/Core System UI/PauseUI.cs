@@ -32,12 +32,14 @@ namespace UISystem
         private UIPage _uiPage;
         private GameStateService _gameStateService;
         private LevelManager _levelManager;
+        private MusicController _musicController;
 
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+            _musicController = SceneServiceProvider.GetService<MusicController>();
 
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
             _gameStateService[GameState.Pause].onExit += Pause_OnExit;
@@ -84,7 +86,7 @@ namespace UISystem
             _gameHUD.Close();
             _uiPage.OpenPage(_menuPageId);
 
-            MMSoundManagerAllSoundsControlEvent.Trigger(MMSoundManagerAllSoundsControlEventTypes.Free);
+            _musicController.StopMusic();
         }
 
         private void SetMMSoundMasterVolume(float volume)
