@@ -161,9 +161,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
+    - target: {fileID: 2354279058757056863, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354279058757056863, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354279058757056863, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354279058757056863, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2523672193232088674, guid: da492a5609042544abf4b4cd140aecab, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4452264994111399365, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ca2631f5a878ac443afa3a9c9791cfdc, type: 2}
+    - target: {fileID: 5579765167750772862, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066916987990719515, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070151427308800316, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8384304966782905046, guid: da492a5609042544abf4b4cd140aecab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -329,6 +361,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9008678284753213590, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da492a5609042544abf4b4cd140aecab, type: 3}
 --- !u!1001 &160455914
@@ -448,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7962591430040773703, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: conversation
-      value: Level 6
+      value: Intro
       objectReference: {fileID: 0}
     - target: {fileID: 8302963723487824924, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: cameraGO
