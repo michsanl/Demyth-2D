@@ -30,6 +30,16 @@ public class GameManager : SceneService
         SaveSystem.SaveToSlot(1);
     }
 
+    public void SetGameStateToGameplay()
+    {
+        _gameStateService.SetState(GameState.Gameplay);
+    }
+
+    public void SetGameStateToGameOver()
+    {
+        _gameStateService.SetState(GameState.GameOver);
+    }
+
     // Saving on the start of the scene, before loading anything, to create vanilla save file
     private static void CreateVanillaSaveFile()
     {

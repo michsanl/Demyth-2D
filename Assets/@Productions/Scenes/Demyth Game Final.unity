@@ -1544,6 +1544,78 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - guid: 1825461e-e27f-4eaf-a140-3da14b772d9b
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SetGameStateToGameOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 5024918c-d51e-4314-9220-0a0140c72876
+    onExecute:
+      m_PersistentCalls:
+        m_Calls: []
+  - guid: 7fecfae7-20f4-4aab-abd1-28056cf7ff25
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SetGameStateToGameOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 0c8a7261-4c7b-4efd-87ee-a23aaad916c8
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SetGameStateToGameOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 67f99852-9de3-4d07-97df-e7fb70a9a07f
+    onExecute:
+      m_PersistentCalls:
+        m_Calls: []
+  - guid: 3deaee7f-240c-429f-a15e-060f01224017
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1545248647}
+          m_TargetAssemblyTypeName: SriPreCombatCutscene, Assembly-CSharp
+          m_MethodName: StartPostDialogueCutscene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &667031192
 Transform:
   m_ObjectHideFlags: 0
@@ -2504,6 +2576,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545248647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4358472410955738896, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027f6f18597da224b89c7d5651991814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1552343710 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4715767938073440416, guid: c7cd62888640396479f9940ff8c84c64, type: 3}

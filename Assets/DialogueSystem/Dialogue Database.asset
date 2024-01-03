@@ -14233,18 +14233,19 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetActive (Bad, true);
+        value: 'SetActive (Dialog BG, false);
 
-          SetActive (Dialog BG, false);
-
-          required
-          LoadLevel (Main);'
+          Continue();'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 1825461e-e27f-4eaf-a140-3da14b772d9b
+        type: 0
+        typeString: 
       conversationID: 10
       isRoot: 0
       isGroup: 0
@@ -14267,7 +14268,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 842.672
-        y: 661.03625
+        y: 658.9086
         width: 160
         height: 30
     - id: 119
@@ -14337,7 +14338,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 844.944
+        x: 843.8801
         y: 714.69855
         width: 160
         height: 30
@@ -15555,8 +15556,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 328.54846, y: 995.3518}
-    canvasZoom: 0.6100003
+    canvasScrollPosition: {x: 636.65234, y: 450.93344}
+    canvasZoom: 0.93999964
   - id: 11
     fields:
     - title: Title
@@ -23241,8 +23242,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 409.56357, y: 1440.1565}
-    canvasZoom: 0.66999996
+    canvasScrollPosition: {x: 0, y: 1126.3501}
+    canvasZoom: 0.33999997
   - id: 14
     fields:
     - title: Title
@@ -30109,7 +30110,7 @@ MonoBehaviour:
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 
+        value: 67f99852-9de3-4d07-97df-e7fb70a9a07f
         type: 0
         typeString: 
       conversationID: 20
@@ -30130,19 +30131,7 @@ MonoBehaviour:
       userScript: 
       onExecute:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 4918658004996570369, guid: 405c8a02814096d41b1959207ecd9e70, type: 3}
-            m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
-            m_MethodName: StartSriCutsceneMusic
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 698
@@ -30636,15 +30625,19 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetActive (Bad, true);
+        value: 'SetActive (Dialog BG, false);
 
-          SetActive (Dialog BG, false);'
+          Continue();'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 0c8a7261-4c7b-4efd-87ee-a23aaad916c8
+        type: 0
+        typeString: 
       conversationID: 20
       isRoot: 0
       isGroup: 0
@@ -33691,15 +33684,19 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetActive (Bad, true);
+        value: 'SetActive (Dialog BG, false);
 
-          SetActive (Dialog BG, false);'
+          Continue();'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 7fecfae7-20f4-4aab-abd1-28056cf7ff25
+        type: 0
+        typeString: 
       conversationID: 20
       isRoot: 0
       isGroup: 0
@@ -34090,6 +34087,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 5024918c-d51e-4314-9220-0a0140c72876
+        type: 0
+        typeString: 
       conversationID: 20
       isRoot: 0
       isGroup: 0
@@ -34097,7 +34098,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 20
+        originDialogueID: 177
+        destinationConversationID: 20
+        destinationDialogueID: 179
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -34105,7 +34112,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 974.22266
+        x: 978.3043
         y: 963.62244
         width: 160
         height: 30
@@ -34171,9 +34178,66 @@ MonoBehaviour:
         y: 908.44556
         width: 160
         height: 30
+    - id: 179
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 14
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: Continue();
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 3deaee7f-240c-429f-a15e-060f01224017
+        type: 0
+        typeString: 
+      conversationID: 20
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 976.2634
+        y: 1013.62244
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 55.708313, y: 0}
-    canvasZoom: 0.36999944
+    canvasScrollPosition: {x: 634.0561, y: 870.62933}
+    canvasZoom: 0.48999998
   - id: 21
     fields:
     - title: Title
