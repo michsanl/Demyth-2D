@@ -389,9 +389,6 @@ MonoBehaviour:
   _secondCutsceneStartDelay: 1
   _dialogueSystemTrigger: {fileID: 8114377932929409595}
   _petraCombatBehaviour: {fileID: 5916985431247403359}
-  _postCombatCutscene: {fileID: 5358408762841971155}
-  _petraFightIntro: {fileID: 8300000, guid: f927f285b217aed428b21f93e68f5678, type: 3}
-  _petraFightLoop: {fileID: 8300000, guid: fc852ed1e9e46b1438b6eae4aba0ca7d, type: 3}
 --- !u!114 &8114377932929409595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +437,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Test Convo
+  conversation: Level 4
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -667,7 +664,6 @@ MonoBehaviour:
   _npcPetraAnimator: {fileID: 8689829764801100882}
   _dialogueSystemTrigger: {fileID: 7281907620234861998}
   _unlockableInvisibleWall: {fileID: 2800424501470488688}
-  _levelBGM: {fileID: 8300000, guid: 99ce892b0f410a5478e3ce5790ec1236, type: 3}
 --- !u!114 &7281907620234861998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,7 +712,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Test Convo
+  conversation: Level 4.1
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
