@@ -37,6 +37,7 @@ public class MariaLevelReset : MonoBehaviour
 
     public void ResetLevel()
     {
+        DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(1);
     }
 }

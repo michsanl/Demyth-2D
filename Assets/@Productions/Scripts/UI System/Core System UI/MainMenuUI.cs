@@ -55,6 +55,7 @@ namespace UISystem
             _gameHUD.gameObject.SetActive(true);
             _gameHUD.Open();
 
+            SaveSystem.SaveToSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
             _musicController.PlayLevelBGM();
         }

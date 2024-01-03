@@ -51,10 +51,10 @@ public class BoxPuzzleLevelReset : MonoBehaviour
 
     private void ResetBoxPuzzleLevel()
     {
-        // kill all tween
+        // complete all tween
         // reset player position & animation
         // reset box position
-        DOTween.KillAll();
+        DOTween.CompleteAll();
 
         _player.SetAnimationToIdleNoPan();
         ResetPlayerPosition();

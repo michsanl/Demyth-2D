@@ -52,7 +52,7 @@ public class BossLevelReset : MonoBehaviour
         // To do :
         // Reset health, shield, etc on Player & Boss
         // Load from SaveSystem to reset object position & active state
-        DOTween.KillAll();
+        DOTween.CompleteAll();
 
         _player.ResetUnitCondition();
 
