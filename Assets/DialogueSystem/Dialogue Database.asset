@@ -33504,7 +33504,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetActive(Continue Buttons, false);
+        value: 'SetActive(Continue Buttons, fals);
 
           Continue()@3'
         type: 0
@@ -38714,7 +38714,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SetActive (Bg 7, true);
+
+          AnimatorPlay (End_ends, End);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -38929,7 +38931,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 538.31287
-        y: 727.22876
+        y: 726.1649
         width: 160
         height: 30
     - id: 34
@@ -39051,8 +39053,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 272.1538, y: 210.63806}
-    canvasZoom: 0.9400002
+    canvasScrollPosition: {x: 260.7907, y: 387.678}
+    canvasZoom: 0.9100002
   - id: 25
     fields:
     - title: Title
@@ -44176,7 +44178,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[piv=4]Sri
+        value: '[pic=4]Sri
 
 
           Or maybe she''s afraid'
@@ -44461,7 +44463,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 22.352966, y: 441.17645}
+    canvasScrollPosition: {x: 41.176514, y: 352.94135}
     canvasZoom: 0.8500001
   - id: 32
     fields:
@@ -45136,7 +45138,10 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive (Blank, true);
 
-          AnimatorPlay (Epilog_1, Epilog);'
+          SetActive (Bg 7, false);
+
+          AnimatorPlay
+          (Epilog_1, Epilog);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -45942,11 +45947,11 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: AnimatorPlay (Epilog_4, Epilog);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: AnimatorPlay (Epilog_4, Epilog);
+        value: 
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 33
@@ -46094,7 +46099,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 318.05316}
+    canvasScrollPosition: {x: 0, y: 2.8571777}
     canvasZoom: 0.7000003
   syncInfo:
     syncActors: 0
