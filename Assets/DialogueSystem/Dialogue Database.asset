@@ -808,10 +808,38 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: CustomFieldType_Text
+  - id: 23
+    fields:
+    - title: Name
+      value: Level_2_Intro_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 15
     fields:
     - title: Name
       value: Level_2_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+  - id: 24
+    fields:
+    - title: Name
+      value: Level_3_Intro_Done
       type: 0
       typeString: CustomFieldType_Text
     - title: Initial Value
@@ -878,6 +906,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 25
+    fields:
+    - title: Name
+      value: Level_6_Intro_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 20
     fields:
     - title: Name
@@ -9217,6 +9259,14 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: 41e96012-1852-4d92-9be1-43e473fe1f3e
+        type: 0
+        typeString: 
       conversationID: 9
       isRoot: 0
       isGroup: 0
@@ -9226,10 +9276,24 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: 'Variable["Level_2_Intro_Done"] = true;
+
+'
       onExecute:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: 
+            m_MethodName: 
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: 
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       canvasRect:
         serializedVersion: 2
         x: 570.627
@@ -9315,8 +9379,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 287.19824, y: 0}
-    canvasZoom: 0.97000027
+    canvasScrollPosition: {x: 79.99422, y: 173.21913}
+    canvasZoom: 0.58000064
   - id: 10
     fields:
     - title: Title
@@ -15099,7 +15163,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 767.85803
-        y: 1152.0026
+        y: 1153.6418
         width: 160
         height: 30
     - id: 133
@@ -15491,8 +15555,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 235.11844, y: 19.164827}
-    canvasZoom: 0.67000014
+    canvasScrollPosition: {x: 328.54846, y: 995.3518}
+    canvasZoom: 0.6100003
   - id: 11
     fields:
     - title: Title
@@ -16284,6 +16348,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 14fdd0d4-5544-4969-8ead-4727c1f02491
+        type: 0
+        typeString: 
       conversationID: 11
       isRoot: 0
       isGroup: 0
@@ -16293,7 +16361,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_3_Intro_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -16304,8 +16372,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.8200001
+    canvasScrollPosition: {x: 126.82467, y: 187.1693}
+    canvasZoom: 0.7000001
   - id: 12
     fields:
     - title: Title
@@ -28425,6 +28493,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 34dd512c-71ac-42bd-ac04-dff5dcb3bfce
+        type: 0
+        typeString: 
       conversationID: 18
       isRoot: 0
       isGroup: 0
@@ -28434,7 +28506,9 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: 'Variable["Level_6_Intro_Done"] = true;
+
+'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -29015,8 +29089,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 386.37756, y: 0}
-    canvasZoom: 0.9099996
+    canvasScrollPosition: {x: 399.37085, y: 911.1732}
+    canvasZoom: 0.6099998
   - id: 19
     fields:
     - title: Title

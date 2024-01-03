@@ -25,6 +25,11 @@ public class GameManager : SceneService
         Application.runInBackground = true; // So music wont pause
     }
 
+    public void SaveGameplayProgress()
+    {
+        SaveSystem.SaveToSlot(1);
+    }
+
     // Saving on the start of the scene, before loading anything, to create vanilla save file
     private static void CreateVanillaSaveFile()
     {
