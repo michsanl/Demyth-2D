@@ -80,6 +80,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
         _npcPetraGameObject.transform.position = _bossPetraGameObject.transform.position;
         _npcPetraModel.localScale = _bossPetraModel.localScale;
         _npcPetraAnimator.Play("Revive");
+        _gameStateService.SetState(GameState.Gameplay);
 
         _unlockableInvisibleWall.SetActive(false);
         SaveSystem.SaveToSlot(1);

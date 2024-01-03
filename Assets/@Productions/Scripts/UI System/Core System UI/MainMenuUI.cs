@@ -15,7 +15,6 @@ namespace UISystem
     public class MainMenuUI : MonoBehaviour
     {
         [SerializeField] private GameHUD _gameHUD;
-        [SerializeField] private AudioClip _levelBGM;
 
         [Header("Level")]
         [SerializeField]
@@ -24,12 +23,14 @@ namespace UISystem
         private UIPage _uiPage;
         private LevelManager _levelManager;
         private GameStateService _gameStateService;
+        private MusicController _musicController;
 
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+            _musicController = SceneServiceProvider.GetService<MusicController>();
         }
 
         public void StartNewGame()
@@ -44,7 +45,7 @@ namespace UISystem
             _gameStateService?.SetState(GameState.Gameplay);
 
             DialogueManager.StartConversation("Intro");
-            Helper.PlayMusic(_levelBGM, .2f, 1, true);
+            _musicController.PlayLevelBGM();
         }
 
         public void StartToLevel(EnumId levelId)
@@ -55,7 +56,7 @@ namespace UISystem
             _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
-            Helper.PlayMusic(_levelBGM, .2f, 1, true);
+            _musicController.PlayLevelBGM();
         }
 
         public void ContinueGame()
@@ -66,7 +67,7 @@ namespace UISystem
             _gameHUD.Open();
 
             _gameStateService?.SetState(GameState.Gameplay);
-            Helper.PlayMusic(_levelBGM, .2f, 1, true);
+            _musicController.PlayLevelBGM();
         }
 
         public void QuitGame()
