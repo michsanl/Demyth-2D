@@ -644,6 +644,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4918658004996570368, guid: 405c8a02814096d41b1959207ecd9e70, type: 3}
   m_PrefabInstance: {fileID: 583716028}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &387687087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4918658004996570369, guid: 405c8a02814096d41b1959207ecd9e70, type: 3}
+  m_PrefabInstance: {fileID: 583716028}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387687086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd95395c67d2e44ca5d02aa229cc76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &404614784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1459,82 @@ MonoBehaviour:
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SaveGameplayProgress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: f5e86894-9473-4efa-9ec4-af7f3851287a
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+          m_MethodName: StopAllCoroutines
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: StartSriBossFightMusic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 7a0a3536-6c58-424d-99bb-950a551bafb0
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: StartSriCutsceneMusic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 7e250e7e-02dd-445a-bbdc-ed2f0061bbab
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: StartPetraBossFightMusic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 9041ab4c-cd61-4a3e-8534-c10dbc331725
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: StartPetraBossFightMusic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

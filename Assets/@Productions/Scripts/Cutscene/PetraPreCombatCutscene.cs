@@ -79,7 +79,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
         _cameraController.DOMoveYCamera(0f, 1f, Ease.InOutQuad);
         _gameInputController.EnablePlayerInput();
         _player.UsePan = true;
-        _musicController.StartPetraBossFightMusic();
+        // _musicController.StartPetraBossFightMusic();
         gameObject.SetActive(false);
     }
 }

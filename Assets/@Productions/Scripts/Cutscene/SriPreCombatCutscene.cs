@@ -83,8 +83,8 @@ public class SriPreCombatCutscene : MonoBehaviour
         // disable cutscene object
         _sriCombatBehaviour.InitiateCombat();
         _gameInputController.EnablePlayerInput();
-        _musicController.StopAllCoroutines();
-        _musicController.StartSriBossFightMusic();
+        // _musicController.StopAllCoroutines();
+        // _musicController.StartSriBossFightMusic();
         gameObject.SetActive(false);
     }
 
