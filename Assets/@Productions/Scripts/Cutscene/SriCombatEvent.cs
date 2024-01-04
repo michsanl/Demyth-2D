@@ -26,22 +26,35 @@ public class SriCombatEvent : MonoBehaviour
     private void Start()
     {
         _gameStateService[GameState.MainMenu].onEnter += MainMenu_OnEnter;
-        _sriCombatBehaviour.OnPhaseTwoStart += SriCombatBehaviour_OnPhaseTwoStart;
-    }
+        _gameStateService[GameState.GameOver].onEnter += GameOver_OnEnter;
 
-    private void MainMenu_OnEnter(GameState state)
-    {
-        StopAllCoroutines();
-        _light2D.intensity = 1f;
-        foreach (var pillarLight in _pillarLightArray)
-        {
-            pillarLight.TurnOnPillarLight();
-        }
+        _sriCombatBehaviour.OnPhaseTwoStart += SriCombatBehaviour_OnPhaseTwoStart;
     }
 
     private void SriCombatBehaviour_OnPhaseTwoStart()
     {
         StartCoroutine(StartTurnOffLightCoroutine());
+    }
+
+    private void MainMenu_OnEnter(GameState state)
+    {
+        StopAllCoroutines();
+        ResetLight();
+    }
+
+    private void GameOver_OnEnter(GameState state)
+    {
+        StopAllCoroutines();
+        ResetLight();
+    }
+
+    private void ResetLight()
+    {
+        _light2D.intensity = 1f;
+        foreach (var pillarLight in _pillarLightArray)
+        {
+            pillarLight.TurnOnPillarLight();
+        }
     }
 
     private IEnumerator StartTurnOffLightCoroutine()
