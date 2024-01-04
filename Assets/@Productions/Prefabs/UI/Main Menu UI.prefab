@@ -394,11 +394,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonGoToLevel
-        m_Mode: 5
+        m_MethodName: StartToLevel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: b8f4d749905208b4ba34916c3ca98282, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Core.EnumId, Core
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level 2
@@ -795,7 +795,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1275323378259579240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1275323380287492345}
+        m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1275323378350363355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf32e68fa5e9074ea543fbee5bdfd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameViewId: {fileID: 11400000, guid: 9c3d0b15a1dd17140ad2b6e52d352322, type: 2}
+  _gameHUD: {fileID: 0}
   newLevelId: {fileID: 11400000, guid: 673a69ab871f0fa43b63dbfe1e6d10c6, type: 2}
 --- !u!114 &7180717810214494974
 MonoBehaviour:
@@ -2199,11 +2211,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonGoToLevel
-        m_Mode: 5
+        m_MethodName: StartToLevel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 266f62a52f06e334ba6c58ff3be793f1, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Core.EnumId, Core
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level 5
@@ -2468,11 +2480,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonGoToLevel
-        m_Mode: 5
+        m_MethodName: StartToLevel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 8a8aa365e9da45447b1ec20168258be0, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Core.EnumId, Core
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level 6
@@ -2737,11 +2749,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonGoToLevel
-        m_Mode: 5
+        m_MethodName: StartToLevel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 9fb99ad0b27dde846a0a644002890da0, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Core.EnumId, Core
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level 7
@@ -2871,11 +2883,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonGoToLevel
-        m_Mode: 5
+        m_MethodName: StartToLevel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 439f867b4f47f334f822693fb04b06a6, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Core.EnumId, Core
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level 3
@@ -3005,11 +3017,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonGoToLevel
-        m_Mode: 5
+        m_MethodName: StartToLevel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 673a69ab871f0fa43b63dbfe1e6d10c6, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Core.EnumId, Core
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level 1
@@ -3274,11 +3286,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1275323380287492345}
         m_TargetAssemblyTypeName: UISystem.MainMenuUI, Assembly-CSharp
-        m_MethodName: ButtonGoToLevel
-        m_Mode: 5
+        m_MethodName: StartToLevel
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 1df05c44717ed63428071b708d04707b, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Core.EnumId, Core
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level 4
@@ -3369,7 +3381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3923665064561032310
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3388,6 +3400,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 216}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

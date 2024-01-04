@@ -40,9 +40,9 @@ public class SriPreCombatCutscene : MonoBehaviour
         }
     }
 
-    public void OnConversationEnd()
+    public void StartPostDialogueCutscene()
     {
-        StartCoroutine(StartPostDialogueCutscene());
+        StartCoroutine(StartPostDialogueCutsceneCoroutine());
     }
 
     private IEnumerator StartPreDialogueCutscene()
@@ -65,7 +65,7 @@ public class SriPreCombatCutscene : MonoBehaviour
         _dialogueSystemTrigger.OnUse();
     }
 
-    private IEnumerator StartPostDialogueCutscene()
+    private IEnumerator StartPostDialogueCutsceneCoroutine()
     {
         // SEQUENCE 4
         // wait
@@ -83,8 +83,8 @@ public class SriPreCombatCutscene : MonoBehaviour
         // disable cutscene object
         _sriCombatBehaviour.InitiateCombat();
         _gameInputController.EnablePlayerInput();
-        _musicController.StopAllCoroutines();
-        _musicController.StartSriBossFightMusic();
+        // _musicController.StopAllCoroutines();
+        // _musicController.StartSriBossFightMusic();
         gameObject.SetActive(false);
     }
 

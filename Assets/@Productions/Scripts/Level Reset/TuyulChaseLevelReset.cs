@@ -61,7 +61,7 @@ public class TuyulChaseLevelReset : MonoBehaviour
         // Reset tuyul active state, position, and visual
         // reset box position
         // restore destructible box
-        DOTween.KillAll();
+        DOTween.CompleteAll();
 
         _player.transform.position = _playerResetPosition;
 
