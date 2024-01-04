@@ -22,6 +22,7 @@ namespace PixelCrushers
             public bool UsePan;
             public bool IsLanternUnlocked;
             public bool IsHealthPotionUnlocked;
+            public bool IsShieldUnlocked;
         }
 
         [SerializeField]
@@ -52,6 +53,7 @@ namespace PixelCrushers
             m_playerData.UsePan = m_playerToWatch.UsePan;
             m_playerData.IsLanternUnlocked = m_playerToWatch.IsLanternUnlocked;
             m_playerData.IsHealthPotionUnlocked = m_playerToWatch.IsHealthPotionUnlocked;
+            m_playerData.IsShieldUnlocked = m_playerToWatch.IsShieldUnlocked;
             m_playerData.FacingDirection = m_playerModelToWatch.localScale;
 
             return SaveSystem.Serialize(m_playerData);
@@ -81,6 +83,7 @@ namespace PixelCrushers
             m_playerToWatch.UsePan = data.UsePan;
             m_playerToWatch.IsLanternUnlocked = data.IsLanternUnlocked;
             m_playerToWatch.IsHealthPotionUnlocked = data.IsHealthPotionUnlocked;
+            m_playerToWatch.IsShieldUnlocked = data.IsShieldUnlocked;
             m_playerModelToWatch.localScale = data.FacingDirection;
         }
 

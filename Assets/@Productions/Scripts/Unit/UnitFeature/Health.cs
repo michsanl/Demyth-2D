@@ -31,13 +31,6 @@ public class Health : MonoBehaviour
     public Action OnHealthChanged;
     public Action OnDeath;
 
-    private Shield shield;
-
-    private void Awake() 
-    {
-        shield = GetComponent<Shield>();
-    }
-
     private void Start()
     {
         ResetHealthToMaximum();
@@ -58,12 +51,6 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
             return;
-
-        if (shield != null)
-        {
-            if (shield.TryShieldTakeDamage())
-                return;
-        }
 
         CurrentHP--;
 

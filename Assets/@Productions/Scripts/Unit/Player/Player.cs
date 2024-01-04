@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IBroadcaster
 {
     public Action<bool> OnLanternValueChanged;
     public Action<bool> OnHealthPotionUnlockedValueChanged;
+    public Action<bool> OnShieldUnlockedValueChanged;
     public Vector2 LastMoveTargetPosition => _moveTargetPosition;
     public Vector2 PlayerDir => _playerDir;
     public bool IsDead => _isDead;
@@ -40,6 +41,15 @@ public class Player : MonoBehaviour, IBroadcaster
         {
             _isHealthPotionUnlocked = value;
             OnHealthPotionUnlockedValueChanged?.Invoke(value);
+        }
+    }
+    public bool IsShieldUnlocked
+    {
+        get => _isShieldUnlocked;
+        set
+        {
+            _isShieldUnlocked = value;
+            OnShieldUnlockedValueChanged?.Invoke(value);
         }
     }
 
@@ -73,6 +83,7 @@ public class Player : MonoBehaviour, IBroadcaster
     private bool _usePan;
     private bool _isLanternUnlocked;
     private bool _isHealthPotionUnlocked;
+    private bool _isShieldUnlocked;
 
     private GameInputController _gameInputController;
     private GameInput _gameInput;
@@ -97,6 +108,7 @@ public class Player : MonoBehaviour, IBroadcaster
         
         IsLanternUnlocked = _unlockLanternOnStart;
         IsHealthPotionUnlocked = _unlockPotionOnStart;
+        IsShieldUnlocked = _unlockShieldOnStart;
     }
 
     private void Update()
@@ -128,6 +140,21 @@ public class Player : MonoBehaviour, IBroadcaster
         _shield.ResetShieldToMaximum();
         _healthPotion.ResetPotionToMax();
         _lantern.TurnOffLantern();
+    }
+
+    public void UnlockLantern()
+    {
+        IsLanternUnlocked = true;
+    }
+
+    public void UnlockPotion()
+    {
+        IsHealthPotionUnlocked = true;
+    }
+
+    public void UnlockShield()
+    {
+        IsShieldUnlocked = true;
     }
 
     public void ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
@@ -240,7 +267,7 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         _isTakeDamageOnCooldown = true;
 
-        _health.TakeDamage();
+        TakeDamage();
         PlayAudio(araAudioSO.MoveBox[UnityEngine.Random.Range(0, 3)]);
 
         if (_health.CurrentHP <= 0)
@@ -269,6 +296,18 @@ public class Player : MonoBehaviour, IBroadcaster
         yield return Helper.GetWaitForSeconds(actionDuration);
         
         _isKnocked = false;
+    }
+
+    private void TakeDamage()
+    {
+        if (_isShieldUnlocked)
+        {
+            if (_shield.TryShieldTakeDamage()) return;
+        }
+        else
+        {
+            _health.TakeDamage();
+        }
     }
 
     private void GameInput_OnSenterPerformed()

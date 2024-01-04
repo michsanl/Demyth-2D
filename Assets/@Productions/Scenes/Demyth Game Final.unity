@@ -1728,6 +1728,94 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - guid: a0781c26-7ce8-418f-a78c-c72897a20eff
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1943620921}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: UnlockLantern
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SaveGameplayProgress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 27c56195-74c2-45ec-8218-890a64576329
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1943620921}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: UnlockPotion
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SaveGameplayProgress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 06a7dc1e-e412-4a8b-ad6d-8866fab7d54b
+    onExecute:
+      m_PersistentCalls:
+        m_Calls: []
+  - guid: 26c91909-b2cc-49fe-b903-fd8a2ec214a1
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1943620921}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: UnlockShield
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SaveGameplayProgress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &667031192
 Transform:
   m_ObjectHideFlags: 0
@@ -1980,8 +2068,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: _unlockPotionOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: _unlockShieldOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: _unlockLanternOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_RootOrder
