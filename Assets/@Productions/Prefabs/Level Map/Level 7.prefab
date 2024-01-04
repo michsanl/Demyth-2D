@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 7547916414773712114}
   - component: {fileID: 1754952328409471964}
   m_Layer: 0
-  m_Name: SriBossLevelReset
+  m_Name: Sri BossLevel Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,6 +328,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daedcab5c5d12194c9d4df2cc2db7cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _globalLight: {fileID: 0}
+  _pillarLights:
+  - {fileID: 931772525203809020}
+  - {fileID: 3219225178356136327}
+  - {fileID: 7073838848864071131}
+  - {fileID: 5765937970116582952}
+  _sriCombatEvent: {fileID: 105545626483990613}
+--- !u!1 &2561545502527352176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7574644214066431599}
+  - component: {fileID: 105545626483990613}
+  m_Layer: 0
+  m_Name: Sri Combat Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7574644214066431599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561545502527352176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1634480723337629033}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &105545626483990613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561545502527352176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb19285a2d711441a67d062ed901964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lightsOffIntensity: 0.05
+  _globalLightsOffDelay: 1.45
+  _lightsOffInterval: 0.75
+  _sriCombatBehaviour: {fileID: 6678796350286695659}
+  _light2D: {fileID: 0}
+  _pillarLightArray:
+  - {fileID: 931772525203809020}
+  - {fileID: 3219225178356136327}
+  - {fileID: 7073838848864071131}
+  - {fileID: 5765937970116582952}
 --- !u!1 &3188134469175879116
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +749,7 @@ GameObject:
   - component: {fileID: 7188326492354256570}
   - component: {fileID: 2969423720754882099}
   m_Layer: 0
-  m_Name: SriPostCombatCutscene
+  m_Name: Sri Post Combat Cutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,7 +768,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1634480723337629033}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7188326492354256570
 MonoBehaviour:
@@ -846,7 +907,7 @@ Transform:
   - {fileID: 3912534923093521840}
   - {fileID: 2263079430886411331}
   m_Father: {fileID: 1634480723337629033}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5410545781645855387
 GameObject:
@@ -1050,7 +1111,7 @@ GameObject:
   - component: {fileID: 5373851937270661592}
   - component: {fileID: 8559315296697959597}
   m_Layer: 0
-  m_Name: SriPreCombatCutscene
+  m_Name: Sri Pre Combat Cutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,7 +1130,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1634480723337629033}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3908942392047921502
 MonoBehaviour:
@@ -2145,6 +2206,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df2daeaa98b36a4f9c51c88dad4c781, type: 3}
+--- !u!114 &931772525203809020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3909430193900028685, guid: 3df2daeaa98b36a4f9c51c88dad4c781, type: 3}
+  m_PrefabInstance: {fileID: 4228673481864438257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c7502cce4b82a4792307f8a3ee1118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5860977831839011761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2264,6 +2336,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4c82146d1475644cbaf970a8eb859d9, type: 3}
+--- !u!114 &3219225178356136327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8695932555584278297, guid: d4c82146d1475644cbaf970a8eb859d9, type: 3}
+  m_PrefabInstance: {fileID: 6053634668261160606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c7502cce4b82a4792307f8a3ee1118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6167937588364664276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2341,6 +2424,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1634480723337629033}
     m_Modifications:
+    - target: {fileID: 278691031, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
+      propertyPath: _phaseTwoHPThreshold
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 278691031, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
+      propertyPath: _phaseThreeHPThreshold
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2395,7 +2486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182001827861331906, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: maxHealth
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
@@ -2483,6 +2574,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d40b2a994f0e07f4a93ec91edfa6e387, type: 3}
+--- !u!114 &5765937970116582952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3909287881042768069, guid: d40b2a994f0e07f4a93ec91edfa6e387, type: 3}
+  m_PrefabInstance: {fileID: 7369066109044485869}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c7502cce4b82a4792307f8a3ee1118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7647164793746423694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2668,3 +2770,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: accea0b234c7f4544ab792daa2cf3724, type: 3}
+--- !u!114 &7073838848864071131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1807885649374269220, guid: accea0b234c7f4544ab792daa2cf3724, type: 3}
+  m_PrefabInstance: {fileID: 8880452636002509567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c7502cce4b82a4792307f8a3ee1118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

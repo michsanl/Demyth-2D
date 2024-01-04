@@ -21,7 +21,7 @@ public class PillarLight : Interactable
     {
         panHitMMFeedback();
 
-        if (!lightModel.activeInHierarchy)
+        if (!lightModel.activeSelf)
         {
             hitCount++;
             if (hitCount >= hitToActivate)
@@ -32,8 +32,20 @@ public class PillarLight : Interactable
         }
         else
         {
-            lightModel.SetActive(false);
+            // lightModel.SetActive(false);
         }
+    }
+
+    public void TurnOnPillarLight()
+    {
+        lightModel.SetActive(true);
+        hitCount = 0;
+    }
+
+    public void TurnOffPillarLight()
+    {
+        lightModel.SetActive(false);
+        hitCount = 0;
     }
 
     private void panHitMMFeedback()

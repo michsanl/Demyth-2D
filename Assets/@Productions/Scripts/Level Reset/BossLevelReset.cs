@@ -6,9 +6,14 @@ using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
+using UnityEngine.Rendering.Universal;
 
 public class BossLevelReset : MonoBehaviour
 {
+
+    [SerializeField] private Light2D _globalLight;
+    [SerializeField] private PillarLight[] _pillarLights;
+    [SerializeField] private SriCombatEvent _sriCombatEvent;
 
     private Player _player;
     private Health _playerHealth;
@@ -49,12 +54,27 @@ public class BossLevelReset : MonoBehaviour
 
     public void ResetLevel()
     {
-        // To do :
-        // Reset health, shield, etc on Player & Boss
-        // Load from SaveSystem to reset object position & active state
         DOTween.CompleteAll();
 
         _player.ResetUnitCondition();
+
+        if (_sriCombatEvent != null)
+        {
+            _sriCombatEvent.StopAllCoroutines();
+        }
+
+        if (_globalLight != null) 
+        {
+            _globalLight.intensity = 1f;
+        }
+
+        if (_pillarLights.Length > 0)
+        {
+            foreach (var pillarLight in _pillarLights)
+            {
+                pillarLight.TurnOnPillarLight();
+            }
+        }
 
         SaveSystem.LoadFromSlot(1);
     }

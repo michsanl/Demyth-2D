@@ -47,6 +47,9 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private float actionDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
+    [SerializeField] private bool _unlockPotionOnStart;
+    [SerializeField] private bool _unlockLanternOnStart;
+    [SerializeField] private bool _unlockShieldOnStart;
     [SerializeField] private LayerMask moveBlockMask;
     
     [Title("Components")]
@@ -91,6 +94,9 @@ public class Player : MonoBehaviour, IBroadcaster
     private void Start()
     {
         Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
+        
+        IsLanternUnlocked = _unlockLanternOnStart;
+        IsHealthPotionUnlocked = _unlockPotionOnStart;
     }
 
     private void Update()
@@ -242,7 +248,7 @@ public class Player : MonoBehaviour, IBroadcaster
 
         animator.SetTrigger("OnHit");
         damagedAnimator.Play("Ara_Damaged");
-        _flashEffectController.PlayFlashEffect();
+        // _flashEffectController.PlayFlashEffect();
 
         if (knockBackPlayer)
         {

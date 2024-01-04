@@ -309,10 +309,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 807768061943522843, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: _light2D
+      value: 
+      objectReference: {fileID: 557433475}
     - target: {fileID: 1180872992660334122, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1304331049781124498, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: _globalLight
+      value: 
+      objectReference: {fileID: 557433475}
     - target: {fileID: 2562658709612044340, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1967,13 +1975,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1538411941623662623, guid: 321983681366ef744898eb289741b047, type: 3}
-      propertyPath: maxHealth
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: _unlockLanternOnStart
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_RootOrder
