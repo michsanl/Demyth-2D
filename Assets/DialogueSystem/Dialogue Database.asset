@@ -8527,8 +8527,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 444.6478, y: 1519.0342}
-    canvasZoom: 1.24
+    canvasScrollPosition: {x: 182.39801, y: 1386.675}
+    canvasZoom: 0.7300002
   - id: 9
     fields:
     - title: Title
@@ -15654,7 +15654,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 432.9638
-        y: 1158.1145
+        y: 1156.7446
         width: 160
         height: 30
     - id: 140
@@ -15770,8 +15770,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 349.67374, y: 753.62244}
-    canvasZoom: 0.5799999
+    canvasScrollPosition: {x: 196.88922, y: 872.3566}
+    canvasZoom: 0.60999984
   - id: 11
     fields:
     - title: Title
@@ -29183,8 +29183,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 214.84607, y: 42.38015}
-    canvasZoom: 0.7299997
+    canvasScrollPosition: {x: 469.0133, y: 142.86798}
+    canvasZoom: 0.34
   - id: 19
     fields:
     - title: Title
@@ -29294,6 +29294,12 @@ MonoBehaviour:
         destinationDialogueID: 148
         isConnector: 0
         priority: 2
+      - originConversationID: 19
+        originDialogueID: 0
+        destinationConversationID: 19
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -29356,15 +29362,16 @@ MonoBehaviour:
         destinationDialogueID: 2
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: (CurrentQuestState("Sparkling Hidden Item") == "active")
+        and (Variable["HiddenItem.NumCollected"] >= 5)
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 925.0894
-        y: 181.91556
+        x: 926.6519
+        y: 179.21283
         width: 160
         height: 30
     - id: 2
@@ -29422,7 +29429,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 923.91296
+        x: 925.01184
         y: 230.73909
         width: 160
         height: 30
@@ -30022,6 +30029,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: dda3e467-4c80-41f4-b1c1-5bf64e70057f
+        type: 0
+        typeString: 
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -30037,14 +30048,14 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: SetQuestState("Sparkling Hidden Item", "success")
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 923.91296
-        y: 830.7395
+        x: 923.73627
+        y: 833.8391
         width: 160
         height: 30
     - id: 128
@@ -30084,7 +30095,7 @@ MonoBehaviour:
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 26c91909-b2cc-49fe-b903-fd8a2ec214a1
+        value: 
         type: 0
         typeString: 
       conversationID: 19
@@ -30102,8 +30113,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 923.91296
-        y: 883.31226
+        x: 922.59705
+        y: 884.4888
         width: 160
         height: 30
     - id: 137
@@ -30715,6 +30726,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 9529f203-67f6-4d4d-ad4b-61f6a4d1ce45
+        type: 0
+        typeString: 
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -30730,14 +30745,17 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: Variable["Level_6_Done"] = true
+      userScript: 'Variable["Level_6_Done"] = true;
+
+        SetQuestState("Sparkling
+        Hidden Item", "active")'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 555.49084
-        y: 908.2603
+        y: 907.04083
         width: 160
         height: 30
     - id: 147
@@ -30777,7 +30795,7 @@ MonoBehaviour:
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: df56805f-520f-4878-bd50-3f40d1d27802
+        value: 
         type: 0
         typeString: 
       conversationID: 19
@@ -30789,16 +30807,14 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 'Variable["Level_6_Intro_Done"] = true;
-
-'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 553.97266
-        y: 965.9334
+        x: 552.79614
+        y: 968.9184
         width: 160
         height: 30
     - id: 148
@@ -30856,15 +30872,16 @@ MonoBehaviour:
         destinationDialogueID: 145
         isConnector: 1
         priority: 2
-      conditionsString: Variable["Level_6_Done"] == true
+      conditionsString: Variable["Level_6_Done"] == true and (CurrentQuestState("Sparkling
+        Hidden Item") == "active") and (Variable["HiddenItem.NumCollected"] < 5)
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 354.52063
-        y: 854.0573
+        x: 737.5516
+        y: 855.29553
         width: 160
         height: 30
     - id: 149
@@ -31174,7 +31191,8 @@ MonoBehaviour:
         destinationDialogueID: 137
         isConnector: 0
         priority: 2
-      conditionsString: Variable["Level_6_Done"] == false
+      conditionsString: Variable["Level_6_Done"] == false and (CurrentQuestState("Sparkling
+        Hidden Item") == "unassigned")
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -31186,8 +31204,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 408.2785, y: 442.7113}
-    canvasZoom: 0.6999998
+    canvasScrollPosition: {x: 425.38513, y: 112.88029}
+    canvasZoom: 0.4300003
   - id: 20
     fields:
     - title: Title
@@ -39284,8 +39302,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 645.2564}
-    canvasZoom: 0.36999992
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.21999979
   - id: 24
     fields:
     - title: Title

@@ -8503,6 +8503,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 03a63250-0b80-4d4c-86bb-b9bcf14ff482
+        type: 0
+        typeString: 
       conversationID: 8
       isRoot: 0
       isGroup: 0
@@ -8523,8 +8527,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 73.68417, y: 0}
-    canvasZoom: 0.7600002
+    canvasScrollPosition: {x: 182.39801, y: 1386.675}
+    canvasZoom: 0.7300002
   - id: 9
     fields:
     - title: Title
@@ -9158,7 +9162,7 @@ MonoBehaviour:
         value: '[pic=4]Ara
 
 
-          Anyway how do I get out from gere?'
+          Anyway how do I get out from here?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -9379,8 +9383,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 79.99422, y: 173.21913}
-    canvasZoom: 0.58000064
+    canvasScrollPosition: {x: 165.91782, y: 214.44391}
+    canvasZoom: 0.67000055
   - id: 10
     fields:
     - title: Title
@@ -14338,7 +14342,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 843.8801
+        x: 842.6606
         y: 714.69855
         width: 160
         height: 30
@@ -15296,6 +15300,87 @@ MonoBehaviour:
         y: 1252.0026
         width: 160
         height: 30
+    - id: 135
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Pictures
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 8
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: BAD END
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Parenthetical
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Audio Files
+        value: '[]'
+        type: 3
+        typeString: CustomFieldType_Files
+      - title: Video File
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetActive (Dialog BG, false);
+
+          Continue();'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 614e479b-65c2-47fc-b160-21e52522cf67
+        type: 0
+        typeString: 
+      conversationID: 10
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 10
+        originDialogueID: 135
+        destinationConversationID: 10
+        destinationDialogueID: 136
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 433.1498
+        y: 1156.6813
+        width: 160
+        height: 30
     - id: 136
       fields:
       - title: Title
@@ -15569,7 +15654,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 432.9638
-        y: 1158.1145
+        y: 1156.7446
         width: 160
         height: 30
     - id: 140
@@ -15685,8 +15770,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 356.7989, y: 803.3008}
-    canvasZoom: 0.5799998
+    canvasScrollPosition: {x: 196.88922, y: 872.3566}
+    canvasZoom: 0.60999984
   - id: 11
     fields:
     - title: Title
@@ -17452,7 +17537,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=17]Ara
 
 
           Anyway where is the way out?'
@@ -17965,7 +18050,7 @@ MonoBehaviour:
       - originConversationID: 12
         originDialogueID: 17
         destinationConversationID: 12
-        destinationDialogueID: 11
+        destinationDialogueID: 132
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -17975,8 +18060,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 822.0711
-        y: 1237.6334
+        x: 825.7297
+        y: 1229.0969
         width: 160
         height: 30
     - id: 19
@@ -19118,8 +19203,8 @@ MonoBehaviour:
       - originConversationID: 12
         originDialogueID: 34
         destinationConversationID: 12
-        destinationDialogueID: 37
-        isConnector: 1
+        destinationDialogueID: 133
+        isConnector: 0
         priority: 2
       conditionsString: 
       userScript: 
@@ -19280,10 +19365,10 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=3]Ara
 
 
-          Alright then I''ll dip'
+          Alright then'
         type: 0
         typeString: 
       - title: Sequence
@@ -19649,7 +19734,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=3]Ara
 
 
           Thanks!'
@@ -20004,6 +20089,132 @@ MonoBehaviour:
         serializedVersion: 2
         x: 689.7006
         y: 906.11285
+        width: 160
+        height: 30
+    - id: 132
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 11
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=17]
+
+
+          (You got two health potions! Press "E" to use
+          the potions)'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 12
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 12
+        originDialogueID: 132
+        destinationConversationID: 12
+        destinationDialogueID: 11
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 825.7297
+        y: 1281.1588
+        width: 160
+        height: 30
+    - id: 133
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 11
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=17]
+
+
+          (You got two health potions! Press "E" to use
+          the potions)'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 12
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 12
+        originDialogueID: 133
+        destinationConversationID: 12
+        destinationDialogueID: 37
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 626.73975
+        y: 1829.988
         width: 160
         height: 30
     entryGroups: []
@@ -20711,8 +20922,8 @@ MonoBehaviour:
         value: '[pic=3]Lati
 
 
-          I guess so.. The space is getting convoluted
-          here..'
+          I guess so.. It looks like there''s going
+          to be a storm..'
         type: 0
         typeString: 
       - title: Sequence
@@ -20895,7 +21106,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=8]???
+        value: '[pic=8]Petra
 
 
           Who dares to take a step into my realm?!'
@@ -21081,7 +21292,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=1]???
+        value: '[pic=1]Petra
 
 
           <size=35>AH HUMAN!!!</size>'
@@ -21205,7 +21416,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=4]???
+        value: '[pic=4]Petra
 
 
           Sshhh!'
@@ -21404,7 +21615,7 @@ MonoBehaviour:
         value: '[pic=3]Lati
 
 
-          Really..? But you don''t have a weapon..'
+          Really..? How are you going to fight..?'
         type: 0
         typeString: 
       - title: Sequence
@@ -22590,7 +22801,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=2]???
+        value: '[pic=2]Petra
 
 
           <size=55>ARE YOU READY</size>'
@@ -22652,7 +22863,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=9]???
+        value: '[pic=9]Petra
 
 
           <size=75>TO</size>'
@@ -22714,7 +22925,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=10]???
+        value: '[pic=10]Petra
 
 
           [em3]<size=100>D</size>[em3]'
@@ -22776,7 +22987,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=10]???
+        value: '[pic=10]Petra
 
 
           [em3]<size=100>DI</size>[em3]'
@@ -22838,7 +23049,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=10]???
+        value: '[pic=10]Petra
 
 
           [em3]<size=100>DIE</size>[em3]'
@@ -22900,7 +23111,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=10]???
+        value: '[pic=10]Petra
 
 
           [em3]<size=100>DIE!</size>[em3]'
@@ -22962,7 +23173,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=10]???
+        value: '[pic=10]Petra
 
 
           [em3]<size=100>DIE!?</size>[em3]'
@@ -23024,7 +23235,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=10]???
+        value: '[pic=10]Petra
 
 
           [em3]<size=100>DIE!?!</size>[em3]'
@@ -23375,8 +23586,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 1126.3501}
-    canvasZoom: 0.33999997
+    canvasScrollPosition: {x: 379.2349, y: 0}
+    canvasZoom: 0.54999995
   - id: 14
     fields:
     - title: Title
@@ -24080,11 +24291,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=7]Petra
-
-
-          Also it''s a good thing Amel didn''t help
-          either, I could''ve lost another eye HAHAH!'
+        value: "[pic=7]Petra\n\nAlso it's a good thing Amel didn't help either, \nI
+          could've lost another eye HAHAH!"
         type: 0
         typeString: 
       - title: Sequence
@@ -24691,7 +24899,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 7
+        value: 12
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -24892,7 +25100,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=3]Ara
 
 
           Okay thanks!'
@@ -25016,7 +25224,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 
+        value: SetPanel  (Ara, 0);
         type: 0
         typeString: 
       - title: id
@@ -25071,7 +25279,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 'Ara
+        value: '[pic=10]Ara
 
 
           No thanks, I''m just taking a break'
@@ -25297,8 +25505,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 356.71402, y: 234.02954}
-    canvasZoom: 0.8499996
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.60999984
   - id: 15
     fields:
     - title: Title
@@ -25867,7 +26075,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[piv=3]Lati
+        value: '[pic=3]Lati
 
 
           Oh here we go again..'
@@ -26288,7 +26496,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 9
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -26300,7 +26508,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[pic=5]Yula
+        value: '[pic=5]Yuli
 
 
           Besides, We don''t think you can leave-go
@@ -26520,8 +26728,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 388.87195, y: 478.68475}
-    canvasZoom: 0.6830001
+    canvasScrollPosition: {x: 197.75388, y: 427.89236}
+    canvasZoom: 0.803
   - id: 16
     fields:
     - title: Title
@@ -27062,7 +27270,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 813.5714
-        y: 273.5
+        y: 276.48508
         width: 160
         height: 30
     - id: 126
@@ -27076,11 +27284,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 7
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 1
+        value: 9
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -27121,7 +27329,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 212.38611, y: 15.956557}
+    canvasScrollPosition: {x: 210.89359, y: 0}
     canvasZoom: 0.67000014
   - id: 17
     fields:
@@ -27680,11 +27888,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 7
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 1
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -27828,12 +28036,6 @@ MonoBehaviour:
         originDialogueID: 0
         destinationConversationID: 18
         destinationDialogueID: 1
-        isConnector: 0
-        priority: 2
-      - originConversationID: 18
-        originDialogueID: 0
-        destinationConversationID: 18
-        destinationDialogueID: 128
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -28968,13 +29170,7 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 18
-        originDialogueID: 132
-        destinationConversationID: 18
-        destinationDialogueID: 10
-        isConnector: 0
-        priority: 2
+      outgoingLinks: []
       conditionsString: 
       userScript: 
       onExecute:
@@ -28986,265 +29182,9 @@ MonoBehaviour:
         y: 314.91443
         width: 160
         height: 30
-    - id: 133
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 13
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[pic=2]Ara
-
-
-          Yeah have you seen human woman with horns?'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 18
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 18
-        originDialogueID: 133
-        destinationConversationID: 18
-        destinationDialogueID: 134
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 701.0381
-        y: 479.60663
-        width: 160
-        height: 30
-    - id: 134
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 13
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[pic=2]Rai
-
-
-          [em1]Help
-
-          Then
-
-          Answer[em1]'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 18
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 18
-        originDialogueID: 134
-        destinationConversationID: 18
-        destinationDialogueID: 135
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 702.0198
-        y: 546.0935
-        width: 160
-        height: 30
-    - id: 135
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 13
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[pic=7]Ara
-
-
-          Okay.. How can I help'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 18
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 18
-        originDialogueID: 135
-        destinationConversationID: 18
-        destinationDialogueID: 136
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 702.0198
-        y: 596.0935
-        width: 160
-        height: 30
-    - id: 136
-      fields:
-      - title: Title
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Description
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Actor
-        value: 13
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Conversant
-        value: 1
-        type: 5
-        typeString: CustomFieldType_Actor
-      - title: Menu Text
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Dialogue Text
-        value: '[pic=3]Rai
-
-
-          [em1]Find
-
-          Papers
-
-          Stolen[em1]'
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: Sequence
-        value: 
-        type: 0
-        typeString: CustomFieldType_Text
-      - title: id
-        value: 
-        type: 4
-        typeString: CustomFieldType_Localization
-      conversationID: 18
-      isRoot: 0
-      isGroup: 0
-      nodeColor: 
-      delaySimStatus: 0
-      falseConditionAction: Block
-      conditionPriority: 2
-      outgoingLinks:
-      - originConversationID: 18
-        originDialogueID: 136
-        destinationConversationID: 18
-        destinationDialogueID: 14
-        isConnector: 0
-        priority: 2
-      conditionsString: 
-      userScript: 
-      onExecute:
-        m_PersistentCalls:
-          m_Calls: []
-      canvasRect:
-        serializedVersion: 2
-        x: 702.0198
-        y: 646.0935
-        width: 160
-        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 451.98996, y: 969.4278}
-    canvasZoom: 0.8799996
+    canvasScrollPosition: {x: 409.39563, y: 664.7439}
+    canvasZoom: 0.4300001
   - id: 19
     fields:
     - title: Title
@@ -29345,6 +29285,18 @@ MonoBehaviour:
       - originConversationID: 19
         originDialogueID: 0
         destinationConversationID: 19
+        destinationDialogueID: 153
+        isConnector: 0
+        priority: 2
+      - originConversationID: 19
+        originDialogueID: 0
+        destinationConversationID: 19
+        destinationDialogueID: 148
+        isConnector: 0
+        priority: 2
+      - originConversationID: 19
+        originDialogueID: 0
+        destinationConversationID: 19
         destinationDialogueID: 1
         isConnector: 0
         priority: 2
@@ -29355,8 +29307,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 9
+        x: 734.7826
+        y: 35.086945
         width: 160
         height: 30
     - id: 1
@@ -29410,15 +29362,16 @@ MonoBehaviour:
         destinationDialogueID: 2
         isConnector: 0
         priority: 2
-      conditionsString: 
+      conditionsString: (CurrentQuestState("Sparkling Hidden Item") == "active")
+        and (Variable["HiddenItem.NumCollected"] >= 5)
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 701.17645
-        y: 60.176468
+        x: 926.6519
+        y: 181.91556
         width: 160
         height: 30
     - id: 2
@@ -29476,8 +29429,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 109
+        x: 923.91296
+        y: 230.73909
         width: 160
         height: 30
     - id: 3
@@ -29538,8 +29491,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 159
+        x: 923.91296
+        y: 280.73907
         width: 160
         height: 30
     - id: 4
@@ -29597,8 +29550,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 209
+        x: 923.91296
+        y: 330.73907
         width: 160
         height: 30
     - id: 5
@@ -29659,8 +29612,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 259
+        x: 923.91296
+        y: 380.73907
         width: 160
         height: 30
     - id: 6
@@ -29721,8 +29674,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 309
+        x: 923.91296
+        y: 430.73907
         width: 160
         height: 30
     - id: 7
@@ -29786,8 +29739,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 359
+        x: 923.91296
+        y: 480.73907
         width: 160
         height: 30
     - id: 8
@@ -29848,8 +29801,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 409
+        x: 923.91296
+        y: 530.73914
         width: 160
         height: 30
     - id: 9
@@ -29911,8 +29864,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 457.36072
+        x: 923.91296
+        y: 579.1
         width: 160
         height: 30
     - id: 10
@@ -29973,8 +29926,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 702.3529
-        y: 509
+        x: 926.26587
+        y: 630.7395
         width: 160
         height: 30
     - id: 11
@@ -30035,8 +29988,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 559
+        x: 923.91296
+        y: 680.7395
         width: 160
         height: 30
     - id: 14
@@ -30076,6 +30029,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 4a281d05-4117-47b5-956e-960637c7a350
+        type: 0
+        typeString: 
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -30091,14 +30048,14 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: SetQuestState("Sparkling Hidden Item", "success")
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 709
+        x: 923.91296
+        y: 830.7395
         width: 160
         height: 30
     - id: 128
@@ -30156,13 +30113,1099 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 700
-        y: 761.57275
+        x: 923.91296
+        y: 883.31226
+        width: 160
+        height: 30
+    - id: 137
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=2]Raine
+
+
+          [em1]Human?
+
+          Rare
+
+          Here[/em1]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: SetPortrait(Ara, pic=1)
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 137
+        destinationConversationID: 19
+        destinationDialogueID: 138
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 553.90186
+        y: 184.78252
+        width: 160
+        height: 30
+    - id: 138
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=3]Lati
+
+
+          Yeaa he just showed up looking for his aunt
+          like that'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 138
+        destinationConversationID: 19
+        destinationDialogueID: 149
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 554.50916
+        y: 240.20866
+        width: 160
+        height: 30
+    - id: 139
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=13]Ara
+
+
+          What paper?'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 139
+        destinationConversationID: 19
+        destinationDialogueID: 140
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 556.6967
+        width: 160
+        height: 30
+    - id: 140
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=5]Raine
+
+
+          [em1]Those
+
+          Brat
+
+          Stole![/em1]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 140
+        destinationConversationID: 19
+        destinationDialogueID: 141
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 552.66064
+        y: 606.69696
+        width: 160
+        height: 30
+    - id: 141
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 10
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=3]Yuli
+
+
+          Ehmm.. Hehe.. Noooo?'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 141
+        destinationConversationID: 19
+        destinationDialogueID: 142
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 656.6972
+        width: 160
+        height: 30
+    - id: 142
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 10
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=16]Ara
+
+
+          Oh really??'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 142
+        destinationConversationID: 19
+        destinationDialogueID: 143
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 706.6972
+        width: 160
+        height: 30
+    - id: 143
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 9
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=3]Yula
+
+
+          Wee.. Kinda forgot~ Hehe'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 143
+        destinationConversationID: 19
+        destinationDialogueID: 144
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 756.6972
+        width: 160
+        height: 30
+    - id: 144
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=6]Raine
+
+
+          [em1]Light
+
+          Shiny
+
+          Five[/em1]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 144
+        destinationConversationID: 19
+        destinationDialogueID: 145
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 806.6977
+        width: 160
+        height: 30
+    - id: 145
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: 'Lati
+
+
+          Maybe some are in the rooms before? try with lantern,
+          good luck~'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 145
+        destinationConversationID: 19
+        destinationDialogueID: 146
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 856.6978
+        width: 160
+        height: 30
+    - id: 146
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=7]Ara
+
+
+          Oh great..'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 9529f203-67f6-4d4d-ad4b-61f6a4d1ce45
+        type: 0
+        typeString: 
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 146
+        destinationConversationID: 19
+        destinationDialogueID: 147
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 'Variable["Level_6_Done"] = true;
+
+        SetQuestState("Sparkling
+        Hidden Item", "active")'
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 907.04083
+        width: 160
+        height: 30
+    - id: 147
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: END
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[em5]...[/em5]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 'Continue();
+
+'
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: df56805f-520f-4878-bd50-3f40d1d27802
+        type: 0
+        typeString: 
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 552.79614
+        y: 965.9334
+        width: 160
+        height: 30
+    - id: 148
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=6]Raine
+
+
+          [em1]Light
+
+          Shiny
+
+          Five[/em1]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 148
+        destinationConversationID: 19
+        destinationDialogueID: 145
+        isConnector: 1
+        priority: 2
+      conditionsString: Variable["Level_6_Done"] == true and (CurrentQuestState("Sparkling
+        Hidden Item") == "active")
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 737.5515
+        y: 855.29553
+        width: 160
+        height: 30
+    - id: 149
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=2]Ara
+
+
+          Yeah have you seen human woman with horns?'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 149
+        destinationConversationID: 19
+        destinationDialogueID: 150
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 554.50916
+        y: 290.20868
+        width: 160
+        height: 30
+    - id: 150
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=3]Rai
+
+
+          [em1]Help
+
+          Then
+
+          Answer[em1]'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 150
+        destinationConversationID: 19
+        destinationDialogueID: 151
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 356.69556
+        width: 160
+        height: 30
+    - id: 151
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=7]Ara
+
+
+          Okay.. How can I help'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 151
+        destinationConversationID: 19
+        destinationDialogueID: 152
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 406.69556
+        width: 160
+        height: 30
+    - id: 152
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=4]Rai
+
+
+          [em1]Find
+
+          Papers
+
+          Stolen[em1]'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 152
+        destinationConversationID: 19
+        destinationDialogueID: 139
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 555.49084
+        y: 456.69556
+        width: 160
+        height: 30
+    - id: 153
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=13]Ara
+
+
+          Uhm.. Hi'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 153
+        destinationConversationID: 19
+        destinationDialogueID: 137
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["Level_6_Done"] == false and (CurrentQuestState("Sparkling
+        Hidden Item") == "unassigned")
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 551.97015
+        y: 130.39944
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 408.2785, y: 442.7113}
-    canvasZoom: 0.6999998
+    canvasScrollPosition: {x: 477.60864, y: 632.58325}
+    canvasZoom: 0.8800004
   - id: 20
     fields:
     - title: Title
@@ -34377,8 +35420,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 634.0561, y: 870.62933}
-    canvasZoom: 0.48999998
+    canvasScrollPosition: {x: 457.05283, y: 575.609}
+    canvasZoom: 0.8199997
   - id: 21
     fields:
     - title: Title
@@ -38259,8 +39302,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 645.2564}
-    canvasZoom: 0.36999992
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.21999979
   - id: 24
     fields:
     - title: Title
@@ -39368,7 +40411,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 260.7907, y: 387.678}
+    canvasScrollPosition: {x: 175.07645, y: 0}
     canvasZoom: 0.9100002
   - id: 25
     fields:
@@ -40944,8 +41987,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 2.8571167, y: 0}
-    canvasZoom: 0.7000003
+    canvasScrollPosition: {x: 40.036034, y: 203.86972}
+    canvasZoom: 0.7900002
   - id: 27
     fields:
     - title: Title
@@ -42848,7 +43891,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[piv=5]Yuli
+        value: '[pic=5]Yuli
 
 
           Yeah you''re really TOUGH-STRONG!'
@@ -43034,7 +44077,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic1=7]Ara
+        value: '[pic=7]Ara
 
 
           Well I''d love to but i have to go home
