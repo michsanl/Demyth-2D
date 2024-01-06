@@ -12,6 +12,8 @@ public class FlashEffectController : MonoBehaviour
     [SerializeField] private MeshRenderer _spineMeshRenderer;
     [SerializeField] private MMF_Player _flashEffectMMFPlayer;
     [SerializeField] private float _flashEffectDuration;
+    [SerializeField] private Shader _originalShader;
+    [SerializeField] private Shader _allInOneShader;
     
     [ReadOnly]
     public float HitEffectBlend;  // public so MMFeedback can access
@@ -44,21 +46,24 @@ public class FlashEffectController : MonoBehaviour
     {
         _canUpdateFlashEffect = true;
 
-        // Tween blend value with MMFeedback
-        _flashEffectMMFPlayer.PlayFeedbacks();
+        _flashEffectMMFPlayer.PlayFeedbacks(); // Tween blend value with MMFeedback
+        _spineMeshRenderer.material.shader = _allInOneShader;
+
         yield return Helper.GetWaitForSeconds(_flashEffectDuration);
         
         HitEffectBlend = 0;
         _spineMeshRenderer.material.SetFloat("_HitEffectBlend", HitEffectBlend);
+        _spineMeshRenderer.material.shader = _originalShader;
 
         _canUpdateFlashEffect = false;
     }
 
     private void ResetCondition()
     {
-        _canUpdateFlashEffect = false;
         HitEffectBlend = 0;
         _spineMeshRenderer.material.SetFloat("_HitEffectBlend", HitEffectBlend);
+        _spineMeshRenderer.material.shader = _originalShader;
+        _canUpdateFlashEffect = false;
     }
 
 

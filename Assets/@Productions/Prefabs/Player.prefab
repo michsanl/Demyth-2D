@@ -138,6 +138,9 @@ MonoBehaviour:
   actionDuration: 0.25
   attackDuration: 0.5
   takeDamageCooldown: 1
+  _unlockPotionOnStart: 0
+  _unlockLanternOnStart: 0
+  _unlockShieldOnStart: 0
   moveBlockMask:
     serializedVersion: 2
     m_Bits: 64
@@ -156,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 2
   currentHealth: 0
   status: 0
 --- !u!114 &1289367315621703064
@@ -216,6 +219,8 @@ MonoBehaviour:
   _spineMeshRenderer: {fileID: 3143619101154623905}
   _flashEffectMMFPlayer: {fileID: 8322088471257207920}
   _flashEffectDuration: 1
+  _originalShader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  _allInOneShader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
   HitEffectBlend: 0
 --- !u!114 &426225192504292295
 MonoBehaviour:

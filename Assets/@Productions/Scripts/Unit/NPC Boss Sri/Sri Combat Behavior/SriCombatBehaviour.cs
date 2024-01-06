@@ -16,8 +16,11 @@ public class SriCombatBehaviour : MonoBehaviour
     private enum CombatMode 
     { None, FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
 
+    public Action OnPhaseTwoStart;
+    public Action OnPhaseThreeStart;
 
     [SerializeField] private int _phaseTwoHPThreshold;
+    [SerializeField] private int _phaseThreeHPThreshold;
     [SerializeField] private bool _combatTestMode;
     [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
     private CombatMode _selectedCombatMode;
@@ -110,6 +113,14 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private IEnumerator StartPhaseTwo()
     {
+        OnPhaseTwoStart?.Invoke();
+        yield return StartCoroutine(StartWaveOutNailWaveAbility());
+        StartCoroutine(LoopCombatBehaviour(GetFirstPhaseAbility));
+    }
+
+    private IEnumerator StartPhaseThree()
+    {
+        OnPhaseThreeStart?.Invoke();
         yield return StartCoroutine(StartWaveOutNailWaveAbility());
         StartCoroutine(LoopCombatBehaviour(GetSecondPhaseAbility));
     }
@@ -120,6 +131,12 @@ public class SriCombatBehaviour : MonoBehaviour
         {
             StopAbility();
             StartCoroutine(StartPhaseTwo());
+        }
+
+        if (_health.CurrentHP == _phaseThreeHPThreshold)
+        {
+            StopAbility();
+            StartCoroutine(StartPhaseThree());
         }
     }
 

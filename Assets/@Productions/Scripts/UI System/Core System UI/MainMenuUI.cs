@@ -7,8 +7,6 @@ using MoreMountains.Tools;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.UI;
 
 namespace UISystem
 {
@@ -17,8 +15,7 @@ namespace UISystem
         [SerializeField] private GameHUD _gameHUD;
 
         [Header("Level")]
-        [SerializeField]
-        private EnumId newLevelId;
+        [SerializeField] private EnumId newLevelId;
 
         private UIPage _uiPage;
         private LevelManager _levelManager;

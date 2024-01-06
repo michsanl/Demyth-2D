@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Tools;
 using Core;
+using Demyth.Gameplay;
+using System;
 
 public class MusicController : SceneService
 {
@@ -15,8 +17,20 @@ public class MusicController : SceneService
     [SerializeField] private AudioClip _sriLoopBGM;
     [SerializeField] private AudioClip _epilogueVer1BGM;
     
+    private GameStateService _gameStateService;
     private Coroutine _fadeCoroutine;
 
+    private void Awake()
+    {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+
+        _gameStateService[GameState.MainMenu].onEnter += MainMenu_OnEnter;
+    }
+
+    private void MainMenu_OnEnter(GameState state)
+    {
+        StopAllCoroutines();
+    }
 
     public void PlayMusic(AudioClip clip, float volume, bool loop)
     {
