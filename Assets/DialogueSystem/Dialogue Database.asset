@@ -14338,7 +14338,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 843.8801
+        x: 842.6606
         y: 714.69855
         width: 160
         height: 30
@@ -15333,18 +15333,19 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetActive (Bad, true);
+        value: 'SetActive (Dialog BG, false);
 
-          SetActive (Dialog BG, false);
-
-          required
-          LoadLevel (Main);'
+          Continue();'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 614e479b-65c2-47fc-b160-21e52522cf67
+        type: 0
+        typeString: 
       conversationID: 10
       isRoot: 0
       isGroup: 0
@@ -15367,7 +15368,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 433.1498
-        y: 1157.7803
+        y: 1156.6813
         width: 160
         height: 30
     - id: 136
@@ -15560,8 +15561,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 356.7989, y: 803.3008}
-    canvasZoom: 0.5799998
+    canvasScrollPosition: {x: 201.7195, y: 876.2891}
+    canvasZoom: 0.6999998
   - id: 11
     fields:
     - title: Title
