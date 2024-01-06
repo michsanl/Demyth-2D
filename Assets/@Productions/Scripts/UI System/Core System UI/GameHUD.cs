@@ -25,6 +25,7 @@ namespace Demyth.UI
         [SerializeField] private Image healthPotionFullImage;
         [SerializeField] private Image lanternOnImage;
         [SerializeField] private Image lanternOffImage;
+        [SerializeField] private Image shieldImage;
 
         private GameStateService _gameStateService;
         private GameObject _playerObject;
@@ -56,6 +57,7 @@ namespace Demyth.UI
             DialogueManager.Instance.conversationEnded += DialogueManager_OnConversationEnded;
             _player.OnLanternValueChanged += Player_OnLanternUnlockedChanged;
             _player.OnHealthPotionUnlockedValueChanged += Player_OnPotionUnlockedChanged;
+            _player.OnShieldUnlockedValueChanged += Player_OnShieldUnlockedValueChanged;
             _playerLantern.OnLanternTogglePerformed += Player_OnLanternTogglePerformed;
             _playerHealthPotion.OnPotionAmountChanged += PlayerHealthPotion_OnUsePotion;
             _playerHealth.OnHealthChanged += PlayerHealth_OnHealthChanged;
@@ -110,6 +112,11 @@ namespace Demyth.UI
         private void Player_OnPotionUnlockedChanged(bool isUnlocked)
         {
             healthPotionFullImage.gameObject.SetActive(isUnlocked);;
+        }
+
+        private void Player_OnShieldUnlockedValueChanged(bool isUnlocked)
+        {
+            shieldImage.gameObject.SetActive(isUnlocked);
         }
 
         // this object is not active when the signaler is broadcasting or something

@@ -6,6 +6,7 @@ using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
+using UnityEngine.Rendering.Universal;
 
 public class BossLevelReset : MonoBehaviour
 {
@@ -49,9 +50,6 @@ public class BossLevelReset : MonoBehaviour
 
     public void ResetLevel()
     {
-        // To do :
-        // Reset health, shield, etc on Player & Boss
-        // Load from SaveSystem to reset object position & active state
         DOTween.CompleteAll();
 
         _player.ResetUnitCondition();
