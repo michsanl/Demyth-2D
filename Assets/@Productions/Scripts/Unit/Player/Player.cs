@@ -270,17 +270,13 @@ public class Player : MonoBehaviour, IBroadcaster
         TakeDamage();
         PlayAudio(araAudioSO.MoveBox[UnityEngine.Random.Range(0, 3)]);
 
-        if (_health.CurrentHP <= 0)
-            yield break;
+        if (_health.CurrentHP <= 0) yield break;
 
         animator.SetTrigger("OnHit");
         damagedAnimator.Play("Ara_Damaged");
         // _flashEffectController.PlayFlashEffect();
 
-        if (knockBackPlayer)
-        {
-            StartCoroutine(HandleKnockBack(knockbackTargetPosition));
-        }
+        if (knockBackPlayer) StartCoroutine(HandleKnockBack(knockbackTargetPosition));
 
         yield return Helper.GetWaitForSeconds(takeDamageCooldown);
 
@@ -302,7 +298,14 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         if (_isShieldUnlocked)
         {
-            if (_shield.TryShieldTakeDamage()) return;
+            if (_shield.TryShieldTakeDamage()) 
+            {
+                return;
+            }
+            else 
+            {
+                _health.TakeDamage();
+            }
         }
         else
         {
