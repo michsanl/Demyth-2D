@@ -8,6 +8,7 @@ using Demyth.Gameplay;
 using Core;
 using MoreMountains.Tools;
 using System.Threading.Tasks;
+using PixelCrushers;
 
 public class PetraPreCombatCutscene : MonoBehaviour
 {
@@ -81,5 +82,6 @@ public class PetraPreCombatCutscene : MonoBehaviour
         _player.UsePan = true;
         // _musicController.StartPetraBossFightMusic();
         gameObject.SetActive(false);
+        SaveSystem.SaveToSlot(1);
     }
 }

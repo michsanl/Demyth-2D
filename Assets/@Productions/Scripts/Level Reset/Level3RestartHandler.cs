@@ -7,12 +7,13 @@ using System;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 
-public class BoxPuzzleLevelReset : MonoBehaviour
+public class Level3RestartHandler : MonoBehaviour
 {
     
     public Action OnBoxPuzzleLevelResetEnabled;
     public Action OnBoxPuzzleLevelResetDisabled;
 
+    [SerializeField] private Transform _playerModel;
     [SerializeField] private Transform[] _boxCrateArray;
     [SerializeField] private Transform[] _boxCardBoardOpenArray;
     [SerializeField] private Transform[] _boxCardboardClosedArray;
@@ -56,6 +57,7 @@ public class BoxPuzzleLevelReset : MonoBehaviour
         // reset box position
         DOTween.CompleteAll();
 
+        _playerModel.localScale = Vector3.one;
         _player.SetAnimationToIdleNoPan();
         ResetPlayerPosition();
         ResetBoxCratePosition();

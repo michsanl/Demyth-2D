@@ -6,20 +6,23 @@ using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
-using UnityEngine.Rendering.Universal;
 
-public class BossLevelReset : MonoBehaviour
+public class Level4RestartHandler : MonoBehaviour
 {
+    
+    [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
 
     private Player _player;
     private Health _playerHealth;
     private GameStateService _gameStateService;
+    private CameraController _cameraController;
     
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
+        _cameraController = SceneServiceProvider.GetService<CameraController>();
     }
 
     private void OnEnable()
@@ -51,9 +54,9 @@ public class BossLevelReset : MonoBehaviour
     public void ResetLevel()
     {
         DOTween.CompleteAll();
-
-        _player.ResetUnitCondition();
-
         SaveSystem.LoadFromSlot(1);
+        _player.ResetUnitCondition();
+        _petraCombatBehaviour.InitiateCombat();
+        _cameraController.MoveCameraDownSmoothly();
     }
 }
