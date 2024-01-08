@@ -118,6 +118,7 @@ public class Player : MonoBehaviour, IBroadcaster
 
     private void OnEnable()
     {
+        ResetUnitCondition();
         _moveTargetPosition = transform.position;
 
         _gameInput.OnSenterPerformed.AddListener(GameInput_OnSenterPerformed);

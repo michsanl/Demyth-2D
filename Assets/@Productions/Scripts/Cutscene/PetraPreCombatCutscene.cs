@@ -82,6 +82,5 @@ public class PetraPreCombatCutscene : MonoBehaviour
         _player.UsePan = true;
         // _musicController.StartPetraBossFightMusic();
         gameObject.SetActive(false);
-        SaveSystem.SaveToSlot(1);
     }
 }

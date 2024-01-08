@@ -7,9 +7,15 @@ using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
 
-public class Level7RestartHandler : MonoBehaviour
+public class Level7RestartHandler : SceneService
 {
-    
+
+    public Action<Action> OnPlayerDeathByBoss;
+    public Action<Action> OnPlayerDeathByDialogue;
+
+    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
+    [SerializeField] private GameObject _sriPreCombatCutscene;
+
     private Player _player;
     private Health _playerHealth;
     private GameStateService _gameStateService;
@@ -23,31 +29,41 @@ public class Level7RestartHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameStateService[GameState.Gameplay].onEnter += GameStateGamePlay_OnEnter;
         _playerHealth.OnDeath += PlayerHealth_OnDeath;
     }
 
     private void OnDisable() 
     {
-        _gameStateService[GameState.Gameplay].onEnter -= GameStateGamePlay_OnEnter;
         _playerHealth.OnDeath -= PlayerHealth_OnDeath;
     }
 
-    private void GameStateGamePlay_OnEnter(GameState state)
+    public void PlayeDeathByDialogue()
     {
-        if (_gameStateService.PreviousState == GameState.GameOver)
-        {
-            ResetLevel();
-        }
+        _gameStateService.SetState(GameState.GameOver);
+        LeanPool.DespawnAll();
+        OnPlayerDeathByDialogue?.Invoke(RestartLevel);
     }
 
     private void PlayerHealth_OnDeath()
     {
         _gameStateService.SetState(GameState.GameOver);
         LeanPool.DespawnAll();
+        OnPlayerDeathByBoss?.Invoke(RestartBossFight);
     }
 
-    public void ResetLevel()
+    public void RestartBossFight()
+    {
+        DOTween.CompleteAll();
+
+        _player.ResetUnitCondition();
+
+        SaveSystem.LoadFromSlot(1);
+
+        _sriPreCombatCutscene.SetActive(false);
+        _sriCombatBehaviour.InitiateCombat();
+    }
+
+    public void RestartLevel()
     {
         DOTween.CompleteAll();
 

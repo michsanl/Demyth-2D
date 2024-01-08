@@ -11,18 +11,17 @@ public class Level4RestartHandler : MonoBehaviour
 {
     
     [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
+    [SerializeField] private GameObject _petraPreCombatCutscene;
 
     private Player _player;
     private Health _playerHealth;
     private GameStateService _gameStateService;
-    private CameraController _cameraController;
     
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
-        _cameraController = SceneServiceProvider.GetService<CameraController>();
     }
 
     private void OnEnable()
@@ -54,9 +53,11 @@ public class Level4RestartHandler : MonoBehaviour
     public void ResetLevel()
     {
         DOTween.CompleteAll();
-        SaveSystem.LoadFromSlot(1);
         _player.ResetUnitCondition();
+
+        SaveSystem.LoadFromSlot(1);
+
         _petraCombatBehaviour.InitiateCombat();
-        _cameraController.MoveCameraDownSmoothly();
+        _petraPreCombatCutscene.SetActive(false);
     }
 }
