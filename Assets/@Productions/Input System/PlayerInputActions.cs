@@ -123,7 +123,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""52fa522e-23c8-4a02-9a86-9787a75ee77b"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -134,7 +134,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e86442c6-b688-444c-8a6e-860db29151c9"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
