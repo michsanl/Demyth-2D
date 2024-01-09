@@ -9,13 +9,7 @@ using System;
 public class MusicController : SceneService
 {
     [SerializeField] private AudioSource _musicAudioSource;
-    [SerializeField] private AudioClip _levelBGM;
-    [SerializeField] private AudioClip _petraFightIntroBGM;
-    [SerializeField] private AudioClip _petraFightLoopBGM;
-    [SerializeField] private AudioClip _sriCutsceneBGM;
-    [SerializeField] private AudioClip _sriIntroBGM;
-    [SerializeField] private AudioClip _sriLoopBGM;
-    [SerializeField] private AudioClip _epilogueVer1BGM;
+    [SerializeField] private MusicClipSO _musicClipSO;
     
     private GameStateService _gameStateService;
     private Coroutine _fadeCoroutine;
@@ -49,7 +43,7 @@ public class MusicController : SceneService
 
     public void PlayLevelBGM()
     {
-        PlayMusic(_levelBGM, 0.2f, true);
+        PlayMusic(_musicClipSO.LevelBGM, _musicClipSO.LevelBGMVolume, true);
     }
 
     public void StartPetraBossFightMusic()
@@ -87,9 +81,9 @@ public class MusicController : SceneService
         // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
         // PlayMusic(_petraFightLoopBGM, .25f, 3, true);
 
-        PlayMusic(_petraFightIntroBGM, 0.25f, false);
+        PlayMusic(_musicClipSO.PetraFightIntroBGM, _musicClipSO.PetraFightIntroBGMVolume, false);
         yield return MMCoroutine.WaitForUnscaled(26f);
-        PlayMusic(_petraFightLoopBGM, 0.25f, true);
+        PlayMusic(_musicClipSO.PetraFightLoopBGM, _musicClipSO.PetraFightLoopBGMVolume, true);
     }
 
     private IEnumerator EndPetraBossFightMusicCoroutine()
@@ -106,7 +100,7 @@ public class MusicController : SceneService
 
         StartFadeCurrentMusic(fadeDuration, 0f);
         yield return MMCoroutine.WaitFor(fadeDuration);
-        PlayMusic(_levelBGM, 0.2f, true);
+        PlayMusic(_musicClipSO.LevelBGM, _musicClipSO.LevelBGMVolume, true);
     }
 
     private IEnumerator StartSriCutsceneMusicCoroutine()
@@ -121,7 +115,7 @@ public class MusicController : SceneService
 
         StartFadeCurrentMusic(fadeDuration, 0f);
         yield return MMCoroutine.WaitForUnscaled(5f);
-        PlayMusic(_sriCutsceneBGM, 0.25f, true);
+        PlayMusic(_musicClipSO.SriCutsceneBGM, _musicClipSO.SriCutsceneBGMVolume, true);
     }
 
     private IEnumerator StartSriBossFightMusicCoroutine()
@@ -134,9 +128,9 @@ public class MusicController : SceneService
         // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
         // PlayMusic(_sriLoopBGM, .25f, 6, true);
 
-        PlayMusic(_sriIntroBGM, 0.25f, false);
+        PlayMusic(_musicClipSO.SriIntroBGM, _musicClipSO.SriIntroBGMVolume, false);
         yield return MMCoroutine.WaitForUnscaled(21f);
-        PlayMusic(_sriLoopBGM, 0.25f, true);
+        PlayMusic(_musicClipSO.SriLoopBGM, _musicClipSO.SriLoopBGMVolume, true);
     }
 
     private IEnumerator EndSriBossFightMusicCoroutine()
@@ -152,7 +146,7 @@ public class MusicController : SceneService
 
         StartFadeCurrentMusic(fadeDuration, 0f);
         yield return MMCoroutine.WaitForUnscaled(fadeDuration);
-        PlayMusic(_epilogueVer1BGM, 0.25f, true);
+        PlayMusic(_musicClipSO.EpilogueVer1BGM, _musicClipSO.EpilogueVer1BGMVolume, true);
     }
 
     public void StartFadeCurrentMusic(float duration, float targetVolume)
