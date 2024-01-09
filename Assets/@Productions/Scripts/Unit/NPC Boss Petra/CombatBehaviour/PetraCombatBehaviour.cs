@@ -23,7 +23,7 @@ public class PetraCombatBehaviour : MonoBehaviour
     private Ability _loopAbility;
     [Space]
     [SerializeField] private Animator _animator;
-    [SerializeField] private AudioClipPetraSO _petraAudioSO;
+    [SerializeField] private PetraClipSO _petraAudioSO;
     [SerializeField] private GameObject[] _attackColliderArray;
 
     private PetraAbilityUpCharge _upChargeAbility;

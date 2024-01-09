@@ -28,7 +28,7 @@ public class SriCombatBehaviour : MonoBehaviour
     private Ability _abilityLoop;
     [Space]
     [SerializeField] private Animator _animator;
-    [SerializeField] private AudioClipSriSO _sriAudioSO;
+    [SerializeField] private SriClipSO _sriAudioSO;
     [SerializeField] private GameObject[] _attackColliderArray;
 
     private SriAbilityUpSlash _upSlashAbility;

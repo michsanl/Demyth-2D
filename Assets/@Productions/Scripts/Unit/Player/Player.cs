@@ -65,7 +65,7 @@ public class Player : MonoBehaviour, IBroadcaster
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
-    [SerializeField] private AudioClipAraSO araAudioSO;
+    [SerializeField] private AraClipSO araAudioSO;
 
     private GameStateService _gameStateService;
     private LookOrientation _lookOrientation;

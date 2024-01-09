@@ -17,7 +17,7 @@ public class Level3RestartHandler : MonoBehaviour
     [SerializeField] private Transform[] _boxCrateArray;
     [SerializeField] private Transform[] _boxCardBoardOpenArray;
     [SerializeField] private Transform[] _boxCardboardClosedArray;
-    [SerializeField] private BoxPuzzleResetPositionSO _resetPositionSO;
+    [SerializeField] private BoxPositionSO _resetPositionSO;
     
     private Player _player;
     private GameInput _gameInput;
