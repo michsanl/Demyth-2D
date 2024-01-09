@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityFireBall : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class SriAbilityFireBall : MonoBehaviour
         animator.Play(FIRE_BALL);
         Helper.PlaySFX(_sriClipSO.Fireball, _sriClipSO.FireballVolume);
 
-        Instantiate(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
+        LeanPool.Spawn(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
+        
         yield return Helper.GetWaitForSeconds(animationDuration);
     }
 
