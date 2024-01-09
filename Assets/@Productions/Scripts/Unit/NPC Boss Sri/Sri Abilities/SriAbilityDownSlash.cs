@@ -16,19 +16,20 @@ public class SriAbilityDownSlash : MonoBehaviour
     
     [Title("Components")]
     [SerializeField] private GameObject downSlashCollider;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     private int topArenaBorder = 2;
     private int bottomArenaBorder = -4;
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
 
-    public IEnumerator DownSlash(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator DownSlash(Player player, Animator animator)
     {
         var playerYPosition = player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(DOWN_SLASH);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.VerticalSlash, _sriClipSO.VerticalSlashVolume);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         downSlashCollider.SetActive(true);

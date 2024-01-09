@@ -18,19 +18,20 @@ public class SriAbilityUpSlash : MonoBehaviour
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject upSlashCollider;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     private int topArenaBorder = 2;
     private int bottomArenaBorder = -4;
     private int UP_SLASH = Animator.StringToHash("Up_Slash");
 
-    public IEnumerator UpSlash(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator UpSlash(Player player, Animator animator)
     {
         var playerYPosition = player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(UP_SLASH);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.VerticalSlash, _sriClipSO.VerticalSlashVolume);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         upSlashCollider.SetActive(true);

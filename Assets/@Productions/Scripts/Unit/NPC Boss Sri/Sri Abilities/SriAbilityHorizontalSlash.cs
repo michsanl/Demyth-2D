@@ -17,34 +17,26 @@ public class SriAbilityHorizontalSlash : MonoBehaviour
     
     [Title("Components")]
     [SerializeField] private GameObject horizontalSlashCollider;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     private int rightArenaBorder = 6;
     private int leftArenaBorder = -6;
     protected int HORIZONTAL_SLASH = Animator.StringToHash("Horizontal_Slash");
 
-    public IEnumerator HorizontalSlash(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator HorizontalSlash(Player player, Animator animator)
     {
         float playerXPosition = player.transform.position.x;
         float targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerXPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(HORIZONTAL_SLASH);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.HorizontalSlash, _sriClipSO.HorizontalSlashVolume);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         horizontalSlashCollider.SetActive(true);
         yield return transform.DOMoveX(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
         horizontalSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwingDuration);
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float GetPositionWithIncrement(float playerXPosition)

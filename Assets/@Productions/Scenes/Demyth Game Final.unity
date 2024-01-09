@@ -2289,13 +2289,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1538411941623662623, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: maxHealth
+      value: 123
+      objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: _usePanOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: _unlockPotionOnStart
@@ -3660,10 +3664,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8282415113978912548, guid: e9a103415e33eb94d8479edb373513cf, type: 3}
-      propertyPath: PoolCanExpand
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8282415113978912549, guid: e9a103415e33eb94d8479edb373513cf, type: 3}
       propertyPath: m_RootOrder
       value: 16

@@ -18,10 +18,10 @@ public class PetraAbilitySpinAttack : MonoBehaviour
     
     private int SPIN_ATTACK = Animator.StringToHash("Spin_attack");
     
-    public IEnumerator SpinAttack(Animator animator, AudioClip abilitySFX)
+    public IEnumerator SpinAttack(Animator animator, PetraClipSO petraClipSO)
     {
         animator.Play(SPIN_ATTACK);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(petraClipSO.CoffinSwing, petraClipSO.CoffinSwingVolume);
 
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         spinAttackCollider.SetActive(true);

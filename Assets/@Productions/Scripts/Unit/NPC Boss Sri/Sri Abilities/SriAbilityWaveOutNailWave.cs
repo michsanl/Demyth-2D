@@ -15,6 +15,7 @@ public class SriAbilityWaveOutNailWave : MonoBehaviour
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject waveOutNailWave;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     private float teleportStartDuration = 0.3f;
     private float teleportEndDuration = 0.4f;
@@ -22,12 +23,12 @@ public class SriAbilityWaveOutNailWave : MonoBehaviour
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator WaveOutNailWave(Animator animator, AudioClip abilitySFX)
+    public IEnumerator WaveOutNailWave(Animator animator)
     {
         yield return StartCoroutine(TeleportToMiddleArena());
 
         animator.Play(NAIL_WAVE);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.NailAOE, _sriClipSO.NailAOEVolume);
 
         StartCoroutine(SpawnNail());
 

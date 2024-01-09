@@ -28,7 +28,6 @@ public class SriCombatBehaviour : MonoBehaviour
     private Ability _abilityLoop;
     [Space]
     [SerializeField] private Animator _animator;
-    [SerializeField] private SriClipSO _sriAudioSO;
     [SerializeField] private GameObject[] _attackColliderArray;
 
     private SriAbilityUpSlash _upSlashAbility;
@@ -366,52 +365,52 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private IEnumerator StartUpSlashAbility()
     {
-        yield return _upSlashAbility.UpSlash(_player, _animator, _sriAudioSO.VerticalSlash);
+        yield return _upSlashAbility.UpSlash(_player, _animator);
     }
 
     private IEnumerator StartDownSlashAbility()
     {
-        yield return _downSlashAbility.DownSlash(_player, _animator, _sriAudioSO.VerticalSlash);
+        yield return _downSlashAbility.DownSlash(_player, _animator);
     }
 
     private IEnumerator StartHorizontalSlashAbility()
     {
-        yield return _horizontalSlashAbility.HorizontalSlash(_player, _animator, _sriAudioSO.HorizontalSlash);
+        yield return _horizontalSlashAbility.HorizontalSlash(_player, _animator);
     }
 
     private IEnumerator StartSpinClawAbility()
     {
-        yield return _spinClawAbility.SpinClaw(_animator, _sriAudioSO.SpinClaw);
+        yield return _spinClawAbility.SpinClaw(_animator);
     }
 
     private IEnumerator StartNailAOEAbility()
     {
-        yield return _nailAOEAbility.NailAOE(_animator, _sriAudioSO.NailAOE);
+        yield return _nailAOEAbility.NailAOE(_animator);
     }
 
     private IEnumerator StartNailSummonAbility()
     {
-        yield return _nailSummonAbility.NailSummon(_player, _animator, _sriAudioSO.NailSummon);
+        yield return _nailSummonAbility.NailSummon(_player, _animator);
     }
 
     private IEnumerator StartFireBallAbility()
     {
-        yield return _fireBallAbility.FireBall(_animator, _sriAudioSO.Fireball);
+        yield return _fireBallAbility.FireBall(_animator);
     }
 
     private IEnumerator StartHorizontalNailWaveAbility()
     {
-        yield return _horizontalNailWaveAbility.HorizontalNailWave(_animator, _sriAudioSO.NailAOE);
+        yield return _horizontalNailWaveAbility.HorizontalNailWave(_animator);
     }
 
     private IEnumerator StartVerticalNailWaveAbility()
     {
-        yield return _verticalNailWaveAbility.VerticalNailWave(_animator, _sriAudioSO.NailAOE);
+        yield return _verticalNailWaveAbility.VerticalNailWave(_animator);
     }
 
     private IEnumerator StartWaveOutNailWaveAbility()
     {
-        yield return _waveOutNailWaveAbility.WaveOutNailWave(_animator, _sriAudioSO.NailAOE);
+        yield return _waveOutNailWaveAbility.WaveOutNailWave(_animator);
     }
 
     private IEnumerator StartTeleportAbility()
@@ -426,7 +425,7 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private IEnumerator StartDeathSlashAbility()
     {
-        yield return _deathSlashAbility.DeathSlash(_animator, _sriAudioSO.NailAOE, _sriAudioSO.VerticalSlash);
+        yield return _deathSlashAbility.DeathSlash(_animator);
     }
 
 #region Position to Player Checker

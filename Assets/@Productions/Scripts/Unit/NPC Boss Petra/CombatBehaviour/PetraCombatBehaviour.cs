@@ -252,47 +252,47 @@ public class PetraCombatBehaviour : MonoBehaviour
 
     private IEnumerator StartJumpGroundSlamAbility()
     {
-        yield return _jumpGroundSlamAbility.JumpGroundSlam(_animator, _petraAudioSO.JumpSlam);
+        yield return _jumpGroundSlamAbility.JumpGroundSlam(_animator, _petraAudioSO);
     }
 
     private IEnumerator StartUpChargeAbility()
     {
-        yield return _upChargeAbility.UpCharge(_player, _animator, _petraAudioSO.RunCharge);
+        yield return _upChargeAbility.UpCharge(_player, _animator, _petraAudioSO);
     }
 
     private IEnumerator StartDownChargeAbility()
     {
-        yield return _downChargeAbility.DownCharge(_player, _animator, _petraAudioSO.RunCharge);
+        yield return _downChargeAbility.DownCharge(_player, _animator, _petraAudioSO);
     }
 
     private IEnumerator StartHorizontalChargeAbility()
     {
-        yield return _horizontalChargeAbility.HorizontalCharge(_player, _animator, _petraAudioSO.RunCharge);
+        yield return _horizontalChargeAbility.HorizontalCharge(_player, _animator, _petraAudioSO);
     }
 
     private IEnumerator StartSpinAttackAbility()
     {
-        yield return _spinAttackAbility.SpinAttack(_animator, _petraAudioSO.CoffinSwing);
+        yield return _spinAttackAbility.SpinAttack(_animator, _petraAudioSO);
     }
     
     private IEnumerator StartChargeAttackAbility()
     {
-        yield return _chargeAttackAbility.ChargeAttack(_animator, _petraAudioSO.ChargeSlam);
+        yield return _chargeAttackAbility.ChargeAttack(_animator, _petraAudioSO);
     }
     
     private IEnumerator StartJumpSlamAbility()
     {
-        yield return _jumpSlamAbility.JumpSlam(_player.LastMoveTargetPosition, _animator, _petraAudioSO.JumpSlam);
+        yield return _jumpSlamAbility.JumpSlam(_player.LastMoveTargetPosition, _animator, _petraAudioSO);
     }
     
     private IEnumerator StartJumpSlamToMiddleArena()
     {
-        yield return _jumpSlamAbility.JumpSlam(new Vector2(0, -1), _animator, _petraAudioSO.JumpSlam);
+        yield return _jumpSlamAbility.JumpSlam(new Vector2(0, -1), _animator, _petraAudioSO);
     }
     
     private IEnumerator StartBasicSlamAbility()
     {
-        yield return _basicSlamAbility.BasicSlam(_player, _animator, _petraAudioSO.BasicSlam);
+        yield return _basicSlamAbility.BasicSlam(_player, _animator, _petraAudioSO);
     }
 
 

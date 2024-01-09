@@ -17,13 +17,14 @@ public class SriAbilityFireBall : MonoBehaviour
     [Title("Components")]
     [SerializeField] private GameObject fireBallProjectile;
     [SerializeField] private Transform fireBallSpawnPosition;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     protected int FIRE_BALL = Animator.StringToHash("Fire_Ball");
 
-    public IEnumerator FireBall(Animator animator, AudioClip abilitySFX)
+    public IEnumerator FireBall(Animator animator)
     {
         animator.Play(FIRE_BALL);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.Fireball, _sriClipSO.FireballVolume);
 
         Instantiate(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
         yield return Helper.GetWaitForSeconds(animationDuration);

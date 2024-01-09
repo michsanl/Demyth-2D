@@ -9,6 +9,7 @@ public class SriAbilityTeleport : MonoBehaviour
     [SerializeField] private float teleportStartDuration;
     [SerializeField] private float teleportEndDuration;
     [SerializeField] private Animator animator;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     private int topBorder = 2;
     private int bottomBorder = -4;
@@ -16,7 +17,7 @@ public class SriAbilityTeleport : MonoBehaviour
     private int leftBorder = -6;
     private Vector3[] pillarPositionArray = new Vector3[] 
     { 
-        new Vector3(5,1,0), new Vector3(-5,1,0), new Vector3(5,-1,0), new Vector3(-5,-1,0)
+        new(5,1,0), new(-5,1,0), new(5,-1,0), new(-5,-1,0)
     };
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");

@@ -21,7 +21,7 @@ public class PetraAbilityHorizontalCharge : MonoBehaviour
     
     private int HORIZONTAL_CHARGE = Animator.StringToHash("Side_charge");
 
-    public IEnumerator HorizontalCharge(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator HorizontalCharge(Player player, Animator animator, PetraClipSO petraClipSO)
     {
         var targetPosition = player.transform.position.x;
         if (targetPosition > transform.position.x)
@@ -37,7 +37,7 @@ public class PetraAbilityHorizontalCharge : MonoBehaviour
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(HORIZONTAL_CHARGE);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(petraClipSO.RunCharge, petraClipSO.RunChargeVolume);
 
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         horizontalChargeCollider.SetActive(true);
