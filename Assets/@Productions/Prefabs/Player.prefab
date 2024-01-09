@@ -138,6 +138,7 @@ MonoBehaviour:
   actionDuration: 0.25
   attackDuration: 0.5
   takeDamageCooldown: 1
+  _usePanOnStart: 0
   _unlockPotionOnStart: 0
   _unlockLanternOnStart: 0
   _unlockShieldOnStart: 0
@@ -146,7 +147,7 @@ MonoBehaviour:
     m_Bits: 64
   animator: {fileID: 3143619101154623906}
   damagedAnimator: {fileID: 364290908265347085}
-  araAudioSO: {fileID: 11400000, guid: e223975f3b5920f4097a5c1f5548abb9, type: 2}
+  _araClipSO: {fileID: 11400000, guid: e223975f3b5920f4097a5c1f5548abb9, type: 2}
 --- !u!114 &1538411941623662623
 MonoBehaviour:
   m_ObjectHideFlags: 0

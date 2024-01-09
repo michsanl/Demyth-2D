@@ -8,6 +8,7 @@ using Demyth.Gameplay;
 using Core;
 using MoreMountains.Tools;
 using System.Threading.Tasks;
+using PixelCrushers;
 
 public class PetraPreCombatCutscene : MonoBehaviour
 {

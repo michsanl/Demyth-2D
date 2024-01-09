@@ -21,16 +21,16 @@ public class PetraAbilityBasicSlam : MonoBehaviour
     
     private int BASIC_SLAM = Animator.StringToHash("Basic_Slam");
 
-    public IEnumerator BasicSlam(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator BasicSlam(Player player, Animator animator, PetraClipSO petraClipSO)
     {
         animator.Play(BASIC_SLAM);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(petraClipSO.BasicSlam, petraClipSO.BasicSlamVolume);
 
         var coffinSpawnPosition = player.LastMoveTargetPosition;
         
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
 
-        var spawnedCoffin = LeanPool.Spawn(groundCoffin, coffinSpawnPosition, Quaternion.identity);
+        LeanPool.Spawn(groundCoffin, coffinSpawnPosition, Quaternion.identity);
         basicSlamCollider.SetActive(true);
 
         yield return Helper.GetWaitForSeconds(_swingDuration);
@@ -38,14 +38,5 @@ public class PetraAbilityBasicSlam : MonoBehaviour
         basicSlamCollider.SetActive(false);
 
         yield return Helper.GetWaitForSeconds(_backSwingDuration);
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

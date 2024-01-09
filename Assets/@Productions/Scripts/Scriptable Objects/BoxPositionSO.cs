@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Box Reset Position/Box Puzzle Reset Position")]
-public class BoxPuzzleResetPositionSO : ScriptableObject
+// [CreateAssetMenu(menuName = "Box Position/Box Puzzle Reset Position")]
+public class BoxPositionSO : ScriptableObject
 {
     
     public Vector3 PlayerResetPosition;

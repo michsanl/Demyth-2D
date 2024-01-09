@@ -366,7 +366,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
       propertyPath: _abilityLoop
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4609600580114272129, guid: efcca2ae0b5e8f946b8db4c92ad3a93c, type: 3}
       propertyPath: _selectedCombatMode
@@ -1062,11 +1062,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1538411941623662623, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: maxHealth
-      value: 21
+      value: 123
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: _usePanOnStart
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616307, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_RootOrder

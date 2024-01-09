@@ -19,10 +19,10 @@ public class PetraAbilityChargeAttack : MonoBehaviour
     
     private int CHARGE_ATTACK = Animator.StringToHash("Charge_attack");
     
-    public IEnumerator ChargeAttack(Animator animator, AudioClip abilitySFX)
+    public IEnumerator ChargeAttack(Animator animator, PetraClipSO petraClipSO)
     {
         animator.Play(CHARGE_ATTACK);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(petraClipSO.ChargeSlam, petraClipSO.ChargeSlamVolume);
 
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         LeanPool.Spawn(groundCoffinAOE, transform.position, Quaternion.identity);

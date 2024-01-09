@@ -57,6 +57,7 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private float actionDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
+    [SerializeField] private bool _usePanOnStart;
     [SerializeField] private bool _unlockPotionOnStart;
     [SerializeField] private bool _unlockLanternOnStart;
     [SerializeField] private bool _unlockShieldOnStart;
@@ -65,9 +66,11 @@ public class Player : MonoBehaviour, IBroadcaster
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
-    [SerializeField] private AudioClipAraSO araAudioSO;
+    [SerializeField] private AraClipSO _araClipSO;
 
     private GameStateService _gameStateService;
+    private GameInput _gameInput;
+    private LevelManager _levelManager;
     private LookOrientation _lookOrientation;
     private HealthPotion _healthPotion;
     private Health _health;
@@ -85,12 +88,12 @@ public class Player : MonoBehaviour, IBroadcaster
     private bool _isHealthPotionUnlocked;
     private bool _isShieldUnlocked;
 
-    private GameInputController _gameInputController;
-    private GameInput _gameInput;
 
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _gameInput = SceneServiceProvider.GetService<GameInputController>().GameInput;
+        _levelManager = SceneServiceProvider.GetService<LevelManager>();
         _lookOrientation = GetComponent<LookOrientation>();
         _healthPotion = GetComponent<HealthPotion>();
         _health = GetComponent<Health>();
@@ -98,14 +101,13 @@ public class Player : MonoBehaviour, IBroadcaster
         _lantern = GetComponent<Lantern>();
         _flashEffectController = GetComponent<FlashEffectController>();
 
-        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
-        _gameInput = _gameInputController.GameInput;
     }
 
     private void Start()
     {
         Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
         
+        UsePan = _usePanOnStart;
         IsLanternUnlocked = _unlockLanternOnStart;
         IsHealthPotionUnlocked = _unlockPotionOnStart;
         IsShieldUnlocked = _unlockShieldOnStart;
@@ -118,6 +120,7 @@ public class Player : MonoBehaviour, IBroadcaster
 
     private void OnEnable()
     {
+        ResetUnitCondition();
         _moveTargetPosition = transform.position;
 
         _gameInput.OnSenterPerformed.AddListener(GameInput_OnSenterPerformed);
@@ -157,16 +160,18 @@ public class Player : MonoBehaviour, IBroadcaster
         IsShieldUnlocked = true;
     }
 
-    public void ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
+    public bool ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
     {
-        if (_gameStateService.CurrentState == GameState.BossDying)
-            return;
-        if (_isTakeDamageOnCooldown)
-            return;
+        if (_gameStateService.CurrentState == GameState.BossDying) return false;
+        if (_isTakeDamageOnCooldown) return false;
+
         if (enableKnockBack)
+        {
             _isKnocked = true;
+        }
 
         StartCoroutine(ApplyDamageToPlayerCoroutine(enableKnockBack, knockbackTargetPosition));
+        return true;
     }
 
     public void ApplyKnockBackToPlayer(Vector2 knockbackTargetPosition)
@@ -215,7 +220,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _isBusy = true;
 
         animator.SetTrigger("Dash");
-        PlayAudio(araAudioSO.Move);
+        PlayAudio(_araClipSO.Move, _araClipSO.MoveVolume);
 
         _moveTargetPosition = GetMoveTargetPosition();
         Helper.MoveToPosition(transform, _moveTargetPosition, actionDuration);
@@ -232,18 +237,21 @@ public class Player : MonoBehaviour, IBroadcaster
         {
             case Pushable:
                 animator.SetTrigger("Attack");
+                PlayAttackHitAudio();
                 interactable.Interact(this, _playerDir);
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 _isBusy = false;
                 yield break;
             case Damageable:
                 animator.SetTrigger("Attack");
+                PlayAttackHitAudio();
                 interactable.Interact(this, _playerDir);
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 _isBusy = false;
                 yield break;
             case PillarLight:
                 animator.SetTrigger("Attack");
+                PlayAttackHitAudio();
                 interactable.Interact(this, _playerDir);
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 _isBusy = false;
@@ -268,7 +276,6 @@ public class Player : MonoBehaviour, IBroadcaster
         _isTakeDamageOnCooldown = true;
 
         TakeDamage();
-        PlayAudio(araAudioSO.MoveBox[UnityEngine.Random.Range(0, 3)]);
 
         if (_health.CurrentHP <= 0) yield break;
 
@@ -319,28 +326,44 @@ public class Player : MonoBehaviour, IBroadcaster
             return;
 
         _lantern.ToggleLantern();
-        PlayAudio(araAudioSO.Lantern);
+        PlayAudio(_araClipSO.Lantern, _araClipSO.LanternVolume);
     }
 
     private void GameInput_OnHealthPotionPerformed()
     {
         if (!_isHealthPotionUnlocked)
             return;
-        if (_health.IsHealthFull())
-            return;
+        // if (_health.IsHealthFull())
+        //     return;
         if (_healthPotion.CurrentPotionAmount <= 0) 
             return;
         if (_healthPotion.IsHealthPotionOnCooldown)
             return;
 
         _healthPotion.UsePotion();
-        PlayAudio(araAudioSO.Potion);
+        PlayAudio(_araClipSO.Potion, _araClipSO.PotionVolume);
     }
 
-    private void PlayAudio(AudioClip abilitySFX)
+    private void PlayAttackHitAudio()
+    {
+        int random;
+
+        if (_usePan)
+        {
+            random = UnityEngine.Random.Range(0, _araClipSO.PanHit.Length);
+            PlayAudio(_araClipSO.PanHit[random], _araClipSO.GetPanHitVolume(random));
+        }
+        else
+        {
+            random = UnityEngine.Random.Range(0, _araClipSO.MoveBox.Length);
+            PlayAudio(_araClipSO.MoveBox[random], _araClipSO.GetMoveBoxVolume(random));
+        }
+    }
+
+    private void PlayAudio(AudioClip abilitySFX , float volume)
     {
         MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
+        playOptions.Volume = volume;
         playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
 
         MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);

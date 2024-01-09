@@ -7,8 +7,6 @@ using PixelCrushers.DialogueSystem;
 using MoreMountains.Feedbacks;
 using Demyth.Gameplay;
 using Core;
-using MoreMountains.Tools;
-using System.Threading.Tasks;
 
 public class SriPreCombatCutscene : MonoBehaviour
 {

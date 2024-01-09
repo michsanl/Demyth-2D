@@ -8,13 +8,13 @@ using PixelCrushers;
 using Demyth.Gameplay;
 using DG.Tweening;
 
-public class TuyulChaseLevelReset : MonoBehaviour
+public class Level5RestartHandler : MonoBehaviour
 {
-    
     
     public Action OnTuyulLevelResetEnabled;
     public Action OnTuyulLevelResetDisabled;
 
+    [SerializeField] private Transform _playerModel;
     [SerializeField] private TuyulFleeMovement _yula;
     [SerializeField] private TuyulFleeMovement _yuli;
     [SerializeField] private GameObject _destructibleBox;
@@ -63,6 +63,7 @@ public class TuyulChaseLevelReset : MonoBehaviour
         // restore destructible box
         DOTween.CompleteAll();
 
+        _playerModel.localScale = Vector3.one;
         _player.transform.position = _playerResetPosition;
 
         _yula.gameObject.SetActive(true);

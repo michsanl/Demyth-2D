@@ -17,27 +17,19 @@ public class SriAbilityNailAOE : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject nailAOECollider;
     [SerializeField] private GameObject nailProjectile;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     protected int NAIL_AOE = Animator.StringToHash("Nail_AOE");
 
-    public IEnumerator NailAOE(Animator animator, AudioClip abilitySFX)
+    public IEnumerator NailAOE(Animator animator)
     {
         animator.Play(NAIL_AOE);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.NailAOE, _sriClipSO.NailAOEVolume);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         nailAOECollider.SetActive(true);
         yield return Helper.GetWaitForSeconds(swingDuration);
         nailAOECollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(backSwingDuration);
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 }

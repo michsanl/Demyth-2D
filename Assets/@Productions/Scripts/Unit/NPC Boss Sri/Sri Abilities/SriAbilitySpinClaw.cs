@@ -16,13 +16,14 @@ public class SriAbilitySpinClaw : MonoBehaviour
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject spinClawCollider;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     protected int SPIN_CLAW = Animator.StringToHash("Spin_Claw");
 
-    public IEnumerator SpinClaw(Animator animator, AudioClip abilitySFX)
+    public IEnumerator SpinClaw(Animator animator)
     {
         animator.Play(SPIN_CLAW);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.SpinClaw, _sriClipSO.SpinClawVolume);
 
         yield return Helper.GetWaitForSeconds(frontSwingDuration);
         spinClawCollider.SetActive(true);

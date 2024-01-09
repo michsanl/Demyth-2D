@@ -341,6 +341,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2970449721645904967, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: _playerModel
+      value: 
+      objectReference: {fileID: 1360282043}
     - target: {fileID: 3211148314312249477, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: conversation
       value: Level 6.1
@@ -409,6 +413,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5863098892826103649, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: _playerModel
+      value: 
+      objectReference: {fileID: 1360282043}
     - target: {fileID: 6544182614343383059, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -448,6 +456,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4221356783138009850, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
   m_PrefabInstance: {fileID: 160455914}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &224500051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1245917910178099086, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &224500053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 606725494124216799, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224500051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242e392e6ff864f4b8a1769bfe002aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &260261638 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3204978323593259479, guid: 8ac88cfd73af2a946b195755473bf523, type: 3}
@@ -1741,9 +1765,9 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 260261638}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: SetGameStateToGameOver
+        - m_Target: {fileID: 224500053}
+          m_TargetAssemblyTypeName: Level7RestartHandler, Assembly-CSharp
+          m_MethodName: PlayeDeathByDialogue
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1757,9 +1781,9 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 260261638}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: SetGameStateToGameOver
+        - m_Target: {fileID: 224500053}
+          m_TargetAssemblyTypeName: Level7RestartHandler, Assembly-CSharp
+          m_MethodName: PlayeDeathByDialogue
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2265,9 +2289,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1538411941623662623, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: maxHealth
+      value: 123
+      objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616268, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
+      propertyPath: _usePanOnStart
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: _unlockPotionOnStart
@@ -2275,7 +2307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: _unlockShieldOnStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3143619101027616306, guid: 321983681366ef744898eb289741b047, type: 3}
       propertyPath: _unlockLanternOnStart
@@ -2380,6 +2412,7 @@ MonoBehaviour:
   - {fileID: 824627299}
   - {fileID: 1163280977}
   - {fileID: 387687086}
+  - {fileID: 224500051}
 --- !u!224 &938130206 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8989853664337860569, guid: b2e090e935ac0e441855adce42313e48, type: 3}
@@ -3631,10 +3664,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8282415113978912548, guid: e9a103415e33eb94d8479edb373513cf, type: 3}
-      propertyPath: PoolCanExpand
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8282415113978912549, guid: e9a103415e33eb94d8479edb373513cf, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -3779,10 +3808,6 @@ PrefabInstance:
     - target: {fileID: 8551962754239887420, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}
       propertyPath: m_Name
       value: Game Over UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551962754239887420, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc2080af6c39a3f48b337cbe916cc821, type: 3}

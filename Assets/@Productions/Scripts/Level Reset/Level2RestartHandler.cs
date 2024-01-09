@@ -7,7 +7,7 @@ using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
 
-public class MariaLevelReset : MonoBehaviour
+public class Level2RestartHandler : MonoBehaviour
 {
     
     private GameStateService _gameStateService;

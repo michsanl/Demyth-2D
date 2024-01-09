@@ -15,13 +15,14 @@ public class SriAbilityVerticalNailWave : MonoBehaviour
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject verticalNailWave;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     protected int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator VerticalNailWave(Animator animator, AudioClip abilitySFX)
+    public IEnumerator VerticalNailWave(Animator animator)
     {
         animator.Play(NAIL_WAVE);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(_sriClipSO.NailAOE, _sriClipSO.NailAOEVolume);
 
         LeanPool.Spawn(verticalNailWave, Vector3.zero, Quaternion.identity);
 

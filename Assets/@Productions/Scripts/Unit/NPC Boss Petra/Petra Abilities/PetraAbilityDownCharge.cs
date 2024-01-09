@@ -20,7 +20,7 @@ public class PetraAbilityDownCharge : MonoBehaviour
     
     private int DOWN_CHARGE = Animator.StringToHash("Down_charge");
 
-    public IEnumerator DownCharge(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator DownCharge(Player player, Animator animator, PetraClipSO petraClipSO)
     {
         var targetPosition = player.transform.position.y;
         targetPosition = SetPositionToBehindPlayer(targetPosition);
@@ -28,7 +28,7 @@ public class PetraAbilityDownCharge : MonoBehaviour
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
         animator.Play(DOWN_CHARGE);
-        PlayAudio(abilitySFX);
+        Helper.PlaySFX(petraClipSO.RunCharge, petraClipSO.RunChargeVolume);
 
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
         downChargeCollider.SetActive(true);
