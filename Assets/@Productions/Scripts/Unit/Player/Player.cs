@@ -57,6 +57,7 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private float actionDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
+    [SerializeField] private bool _usePanOnStart;
     [SerializeField] private bool _unlockPotionOnStart;
     [SerializeField] private bool _unlockLanternOnStart;
     [SerializeField] private bool _unlockShieldOnStart;
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour, IBroadcaster
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
-    [SerializeField] private AraClipSO araAudioSO;
+    [SerializeField] private AraClipSO araClipSO;
 
     private GameStateService _gameStateService;
     private LookOrientation _lookOrientation;
@@ -106,6 +107,7 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
         
+        UsePan = _usePanOnStart;
         IsLanternUnlocked = _unlockLanternOnStart;
         IsHealthPotionUnlocked = _unlockPotionOnStart;
         IsShieldUnlocked = _unlockShieldOnStart;
@@ -216,7 +218,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _isBusy = true;
 
         animator.SetTrigger("Dash");
-        PlayAudio(araAudioSO.Move);
+        PlayAudio(araClipSO.Move, araClipSO.MoveVolume);
 
         _moveTargetPosition = GetMoveTargetPosition();
         Helper.MoveToPosition(transform, _moveTargetPosition, actionDuration);
@@ -233,18 +235,21 @@ public class Player : MonoBehaviour, IBroadcaster
         {
             case Pushable:
                 animator.SetTrigger("Attack");
+                PlayAttackHitAudio();
                 interactable.Interact(this, _playerDir);
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 _isBusy = false;
                 yield break;
             case Damageable:
                 animator.SetTrigger("Attack");
+                PlayAttackHitAudio();
                 interactable.Interact(this, _playerDir);
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 _isBusy = false;
                 yield break;
             case PillarLight:
                 animator.SetTrigger("Attack");
+                PlayAttackHitAudio();
                 interactable.Interact(this, _playerDir);
                 yield return Helper.GetWaitForSeconds(attackDuration);
                 _isBusy = false;
@@ -269,7 +274,9 @@ public class Player : MonoBehaviour, IBroadcaster
         _isTakeDamageOnCooldown = true;
 
         TakeDamage();
-        PlayAudio(araAudioSO.MoveBox[UnityEngine.Random.Range(0, 3)]);
+
+        int random = UnityEngine.Random.Range(0, araClipSO.MoveBox.Length);
+        PlayAudio(araClipSO.MoveBox[random], araClipSO.GetMoveBoxVolume(random));
 
         if (_health.CurrentHP <= 0) yield break;
 
@@ -320,7 +327,7 @@ public class Player : MonoBehaviour, IBroadcaster
             return;
 
         _lantern.ToggleLantern();
-        PlayAudio(araAudioSO.Lantern);
+        PlayAudio(araClipSO.Lantern, araClipSO.LanternVolume);
     }
 
     private void GameInput_OnHealthPotionPerformed()
@@ -335,13 +342,29 @@ public class Player : MonoBehaviour, IBroadcaster
             return;
 
         _healthPotion.UsePotion();
-        PlayAudio(araAudioSO.Potion);
+        PlayAudio(araClipSO.Potion, araClipSO.PotionVolume);
     }
 
-    private void PlayAudio(AudioClip abilitySFX)
+    private void PlayAttackHitAudio()
+    {
+        int random;
+
+        if (_usePan)
+        {
+            random = UnityEngine.Random.Range(0, araClipSO.PanHit.Length);
+            PlayAudio(araClipSO.PanHit[random], araClipSO.GetPanHitVolume(random));
+        }
+        else
+        {
+            random = UnityEngine.Random.Range(0, araClipSO.MoveBox.Length);
+            PlayAudio(araClipSO.MoveBox[random], araClipSO.GetMoveBoxVolume(random));
+        }
+    }
+
+    private void PlayAudio(AudioClip abilitySFX , float volume)
     {
         MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
+        playOptions.Volume = volume;
         playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
 
         MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);

@@ -29,6 +29,8 @@ public class AraClipSO : ScriptableObject
     public float PanHit2Volume = 1f;
     [Range(0, 1)]
     public float PanHit3Volume = 1f;
+    [Range(0, 1)]
+    public float PanHit4Volume = 1f;
 
     public float GetMoveBoxVolume(int index)
     {
@@ -40,6 +42,23 @@ public class AraClipSO : ScriptableObject
                 return MoveBox2Volume;
             case 2:
                 return MoveBox3Volume;
+            default:
+                return 1f;
+        }
+    }
+
+    public float GetPanHitVolume(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return PanHit1Volume;
+            case 1:
+                return PanHit2Volume;
+            case 2:
+                return PanHit3Volume;
+            case 3:
+                return PanHit4Volume;
             default:
                 return 1f;
         }

@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec941f12a9a7534b9ff1a2becfe4036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerModel: {fileID: 0}
   _yula: {fileID: 3562212816524243147}
   _yuli: {fileID: 6196429394815940046}
   _destructibleBox: {fileID: 777243047095982479}
@@ -1407,8 +1408,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1581017933277813791, guid: c661a1a5d7032764e8203ba3f23e8255, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c661a1a5d7032764e8203ba3f23e8255, type: 3}
 --- !u!4 &777243047095982478 stripped
 Transform:
@@ -1420,45 +1420,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1581017933277813856, guid: c661a1a5d7032764e8203ba3f23e8255, type: 3}
   m_PrefabInstance: {fileID: 2250028508619703791}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &196987330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777243047095982479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb961716f95d5b4692288f9354c2c94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &664418737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777243047095982479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a42bbc1965fd54e81f6abc3402c3ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &664418738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777243047095982479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2
-  currentHealth: 0
-  status: 0
 --- !u!1001 &2321136558152904508
 PrefabInstance:
   m_ObjectHideFlags: 0
