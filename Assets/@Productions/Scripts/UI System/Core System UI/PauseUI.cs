@@ -27,12 +27,12 @@ namespace UISystem
         [SerializeField] private Slider _musicVolumeSlider;
         [SerializeField] private Slider _sfxVolumeSlider;
         [SerializeField] private AudioMixer audioMixer;
-        [SerializeField] private GameHUD _gameHUD;
 
         private UIPage _uiPage;
         private GameStateService _gameStateService;
         private LevelManager _levelManager;
         private MusicController _musicController;
+        private GameHUD _gameHUD;
 
         private void Awake()
         {
@@ -40,6 +40,7 @@ namespace UISystem
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _musicController = SceneServiceProvider.GetService<MusicController>();
+            _gameHUD = SceneServiceProvider.GetService<GameHUD>();
 
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
             _gameStateService[GameState.Pause].onExit += Pause_OnExit;

@@ -12,7 +12,6 @@ namespace UISystem
 {
     public class MainMenuUI : MonoBehaviour
     {
-        [SerializeField] private GameHUD _gameHUD;
 
         [Header("Level")]
         [SerializeField] private EnumId newLevelId;
@@ -21,6 +20,7 @@ namespace UISystem
         private LevelManager _levelManager;
         private GameStateService _gameStateService;
         private MusicController _musicController;
+        private GameHUD _gameHUD;
 
         private void Awake()
         {
@@ -28,6 +28,7 @@ namespace UISystem
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _musicController = SceneServiceProvider.GetService<MusicController>();
+            _gameHUD = SceneServiceProvider.GetService<GameHUD>();
         }
 
         public void StartNewGame()
