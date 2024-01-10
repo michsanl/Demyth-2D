@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using Core.UI;
+using CustomExtensions;
 using Demyth.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ namespace UISystem
         private UIPage _uiPage;    
         private GameStateService _gameStateService;
         private Level7RestartHandler _level7RestartHandler;
-        private Action _restartLevelCallback;
+        private Action _onRestartLevel;
         
         private void Awake()
         {
@@ -28,25 +29,26 @@ namespace UISystem
             _gameStateService[GameState.GameOver].onEnter += GameStateGameOver_OnEnter;
             _gameStateService[GameState.GameOver].onExit += GameStateGameOver_OnExit;
 
-            _retryButton.onClick.AddListener(RestartLevel);
+            _retryButton.onClick.AddListener(RetryButton_OnClick);
+            _uiPage.OnOpen.AddListener(UIPage_OnOpen);
 
-            _uiPage.OnOpen.AddListener(() => _animator.SetTrigger("OpenPage"));
-        }
-
-        private void Start()
-        {
             _level7RestartHandler.OnPlayerDeathByBoss += OnPlayerDeathByBoss;
             _level7RestartHandler.OnPlayerDeathByDialogue += OnPlayerDeathByDialogue;
         }
 
-        private void OnPlayerDeathByBoss(Action restartLevelCallback)
+        private void Start()
         {
-            _restartLevelCallback = restartLevelCallback;
+            _retryButton.gameObject.SetActive(false);
         }
 
-        private void OnPlayerDeathByDialogue(Action restartLevelCallback)
+        private void RetryButton_OnClick()
         {
-            _restartLevelCallback = restartLevelCallback;
+            ResetCondition();
+
+            _gameStateService.SetState(GameState.Gameplay);
+
+            _onRestartLevel?.Invoke();
+            _onRestartLevel = null;
         }
 
         private void GameStateGameOver_OnEnter(GameState state)
@@ -59,12 +61,34 @@ namespace UISystem
             _uiPage.Return();
         }
 
-        private void RestartLevel()
+        private void OnPlayerDeathByBoss(Action restartLevelCallback)
         {
-            _gameStateService.SetState(GameState.Gameplay);
-            
-            _restartLevelCallback?.Invoke();
-            _restartLevelCallback = null;
+            _onRestartLevel = restartLevelCallback;
+        }
+
+        private void OnPlayerDeathByDialogue(Action restartLevelCallback)
+        {
+            _onRestartLevel = restartLevelCallback;
+        }
+
+        private void UIPage_OnOpen()
+        {
+            StartCoroutine(OpenPageCoroutine());
+        }
+
+        private IEnumerator OpenPageCoroutine()
+        {
+            _animator.SetTrigger("OpenPage");
+
+            yield return Helper.GetWaitForSeconds(.75f);
+
+            _retryButton.gameObject.SetActive(true);
+        }
+
+        private void ResetCondition()
+        {
+            StopAllCoroutines();
+            _retryButton.gameObject.SetActive(false);
         }
     }
 }
