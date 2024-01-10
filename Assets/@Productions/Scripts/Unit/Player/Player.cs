@@ -57,16 +57,13 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private float actionDuration;
     [SerializeField] private float attackDuration;
     [SerializeField] private float takeDamageCooldown = 1f;
-    [SerializeField] private bool _usePanOnStart;
-    [SerializeField] private bool _unlockPotionOnStart;
-    [SerializeField] private bool _unlockLanternOnStart;
-    [SerializeField] private bool _unlockShieldOnStart;
     [SerializeField] private LayerMask moveBlockMask;
     
     [Title("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
     [SerializeField] private AraClipSO _araClipSO;
+    [SerializeField] private GameSettingsSO _gameSettingsSO;
 
     private GameStateService _gameStateService;
     private GameInput _gameInput;
@@ -107,10 +104,10 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
         
-        UsePan = _usePanOnStart;
-        IsLanternUnlocked = _unlockLanternOnStart;
-        IsHealthPotionUnlocked = _unlockPotionOnStart;
-        IsShieldUnlocked = _unlockShieldOnStart;
+        UsePan = _gameSettingsSO.UsePanOnStart;
+        IsLanternUnlocked = _gameSettingsSO.UnlockLanternOnStart;
+        IsHealthPotionUnlocked = _gameSettingsSO.UnlockPotionOnStart;
+        IsShieldUnlocked = _gameSettingsSO.UnlockShieldOnStart;
     }
 
     private void Update()

@@ -782,6 +782,7 @@ MonoBehaviour:
   _dialogueSystemTrigger: {fileID: 2969423720754882099}
   _gameObjectsToActivate:
   - {fileID: 5231546283808791277}
+  - {fileID: 8930755017240044509}
   _gameObjectsToDeactivate:
   - {fileID: 3950425681509011601}
   - {fileID: 274093261593770712}
@@ -1145,6 +1146,7 @@ MonoBehaviour:
   _cameraMoveDownSequenceDuration: 0.3
   _dialogueSystemTrigger: {fileID: 5373851937270661592}
   _sriCombatBehaviour: {fileID: 6678796350286695659}
+  _prevLevelGate: {fileID: 8930755017240044509}
 --- !u!114 &5373851937270661592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2082,12 +2084,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1041318386230468711, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
   m_PrefabInstance: {fileID: 3546233865570998528}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8930755017240044509}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1c4e7d9d902a674f81fbf5ccca672d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8930755017240044509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5388181709524089565, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
+  m_PrefabInstance: {fileID: 3546233865570998528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4098474210184546955
 PrefabInstance:
   m_ObjectHideFlags: 0
