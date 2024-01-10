@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 125852, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_Name
-      value: Dialogue Manager
+      value: Dialogue Manager Demyth 2D
       objectReference: {fileID: 0}
     - target: {fileID: 425660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_RootOrder
@@ -33,15 +33,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 425660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 425660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 425660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 425660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55,5 +55,138 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11426068, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4087
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: initialDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 969f31303dbc8c94eab96a86385e2e8b, type: 2}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.dialogueUI
+      value: 
+      objectReference: {fileID: 8384304967820226969, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: warmUpConversationController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.defaultCanvas
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.inputSettings.cancel.key
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.subtitleSettings.continueButton
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.inputSettings.cancelConversation.key
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.inputSettings.alwaysForceResponseMenu
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.subtitleSettings.allowPCSubtitleReminders
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.subtitleSettings.showPCSubtitlesDuringLine
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426072, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: displaySettings.subtitleSettings.skipPCSubtitleAfterResponseMenu
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22325660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22325660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193717574850487428, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193717574850487428, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+--- !u!1 &6361526827687399647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 125852, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+  m_PrefabInstance: {fileID: 6361526827687426883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &793187602337929420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361526827687399647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc03036aad05c334eab057a96938959a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_version: 0
+  m_saveCurrentScene: 0
+  m_framesToWaitBeforeApplyData: 0
+  m_debug: 1
+--- !u!114 &3418495527307274373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361526827687399647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689b4b1238e337d4590a91183947bcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_key: DialogueManagerDemyth2D_6536
+  m_appendSaverTypeToKey: 0
+  m_saveAcrossSceneChanges: 1
+  m_restoreStateOnStart: 0
+  skipApplyDataAfterFramesIfApplyImmediate: 1
+  saveRawData: 0
+--- !u!114 &3994308916913831838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361526827687399647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce15367ff646a9f448ec0e0bce64c2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeSaveFilesIn: 0
+  customPath: 
+  encrypt: 1
+  encryptionPassword: My Password
+  m_debug: 0
+--- !u!114 &4446265609900178567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361526827687399647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbafe64f40b0694b8d4ec9c082f8bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_prettyPrint: 0

@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.brunomikoski.animationsequencer": {
+      "version": "https://github.com/brunomikoski/Animation-Sequencer.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a786134e17ad4d30d8c3272d7625ef3e43afc7d5"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.5",
       "depth": 1,
@@ -94,6 +101,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.cinemachine": {
+      "version": "2.8.9",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.31"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.16",
       "depth": 0,
@@ -170,6 +186,15 @@
       "depth": 2,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.recorder": {
+      "version": "3.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {

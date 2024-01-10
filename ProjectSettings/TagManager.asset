@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SceneCore
+  - SceneUI
+  - SceneService
   layers:
   - Default
   - TransparentFX
@@ -11,16 +14,16 @@ TagManager:
   - 
   - Water
   - UI
-  - Box
-  - NPC
-  - Wall
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - MoveBlocker
+  - Interactable
+  - Player
+  - SenterLight
+  - SenterPickup
+  - DamagingPlayer
+  - PlayerTrigger
+  - YulaPath
+  - YuliPath
+  - Tuyul
   - 
   - 
   - 
@@ -40,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1445058939
     locked: 0

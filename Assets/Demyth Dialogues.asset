@@ -599,8 +599,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 213, y: 0}
-    canvasZoom: 1
+    canvasScrollPosition: {x: 13.081951, y: 0}
+    canvasZoom: 0.58000034
   - id: 2
     fields:
     - title: Title
@@ -708,8 +708,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 420.58817
-        y: 83.39006
+        x: 418.86404
+        y: 82.02019
         width: 160
         height: 30
     - id: 51
@@ -739,7 +739,8 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '
+        value: 'Ara
+
 
           Hmm.. What is that..'
         type: 0
@@ -759,12 +760,10 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive(Kamar, true);
 
-          AnimatorPlay (HUD_Open, HUD)@0.2;
+          SetPortrait(Lati, pic=8);
 
-          SetPortrait(Lati,
-          pic=8);
-
-          SetPanel(Ara, 4)'
+          SetPanel(Ara,
+          4)'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -823,9 +822,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '
+        value: '....
 
-          ....'
+
+          ......'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -875,7 +875,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 423.748
+        x: 419.9505
         y: 252.92786
         width: 160
         height: 30
@@ -953,7 +953,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 227.27748
+        x: 229.00163
         y: 304.1043
         width: 160
         height: 30
@@ -3575,7 +3575,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Description
-        value: 
+        value: END
         type: 0
         typeString: 
       - title: Actor
@@ -3587,17 +3587,15 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: END
+        value: 
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[em5]...[/em5]'
+        value: 
         type: 0
         typeString: 
       - title: Sequence
-        value: 'Continue();
-
-          AnimatorPlay (HUD_Close, HUD);'
+        value: Continue();
         type: 0
         typeString: 
       - title: id
@@ -4139,7 +4137,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Description
-        value: 
+        value: END
         type: 0
         typeString: 
       - title: Actor
@@ -4151,17 +4149,15 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: END
+        value: 
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: '[em5]...[/em5]'
+        value: 
         type: 0
         typeString: 
       - title: Sequence
-        value: 'Continue();
-
-          AnimatorPlay (HUD_Close, HUD);'
+        value: Continue();
         type: 0
         typeString: 
       - title: id
@@ -4188,8 +4184,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 379.25613}
-    canvasZoom: 0.7000004
+    canvasScrollPosition: {x: 8.9552, y: 0}
+    canvasZoom: 0.67000043
   syncInfo:
     syncActors: 0
     syncItems: 0
@@ -4200,8 +4196,10 @@ MonoBehaviour:
     syncLocationsDatabase: {fileID: 0}
     syncVariablesDatabase: {fileID: 0}
   templateJson: '{"treatItemsAsQuests":true,"actorFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":""},{"title":"IsPlayer","value":"False","type":2,"typeString":"CustomFieldType_Boolean"}],"itemFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":""},{"title":"Is
-    Item","value":"True","type":2,"typeString":"CustomFieldType_Boolean"}],"questFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":""},{"title":"Success
-    Description","value":"","type":0,"typeString":""},{"title":"Failure Description","value":"","type":0,"typeString":""},{"title":"State","value":"unassigned","type":0,"typeString":""},{"title":"Is
-    Item","value":"False","type":2,"typeString":"CustomFieldType_Boolean"}],"locationFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Description","value":"","type":0,"typeString":""}],"variableFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Initial
-    Value","value":"","type":0,"typeString":""},{"title":"Description","value":"","type":0,"typeString":""}],"conversationFields":[{"title":"Title","value":"","type":0,"typeString":""},{"title":"Description","value":"","type":0,"typeString":""},{"title":"Actor","value":"0","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"0","type":5,"typeString":"CustomFieldType_Actor"}],"dialogueEntryFields":[{"title":"Title","value":"","type":0,"typeString":""},{"title":"Description","value":"","type":0,"typeString":""},{"title":"Actor","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Menu
-    Text","value":"","type":0,"typeString":""},{"title":"Dialogue Text","value":"","type":0,"typeString":""},{"title":"Sequence","value":"","type":0,"typeString":""}],"actorPrimaryFieldTitles":[],"itemPrimaryFieldTitles":[],"questPrimaryFieldTitles":[],"locationPrimaryFieldTitles":[],"variablePrimaryFieldTitles":[],"conversationPrimaryFieldTitles":[],"dialogueEntryPrimaryFieldTitles":[],"npcLineColor":{"r":1.0,"g":0.0,"b":0.0,"a":1.0},"pcLineColor":{"r":0.0,"g":0.0,"b":1.0,"a":1.0},"repeatLineColor":{"r":0.5,"g":0.5,"b":0.5,"a":1.0}}'
+    Item","value":"True","type":2,"typeString":"CustomFieldType_Boolean"}],"questFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Pictures","value":"[]","type":3,"typeString":"CustomFieldType_Files"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Success
+    Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Failure
+    Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"State","value":"unassigned","type":0,"typeString":"CustomFieldType_QuestState"},{"title":"Is
+    Item","value":"False","type":2,"typeString":"CustomFieldType_Boolean"}],"locationFields":[{"title":"Name","value":"","type":0,"typeString":""},{"title":"Description","value":"","type":0,"typeString":""}],"variableFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Initial
+    Value","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"}],"conversationFields":[{"title":"Title","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Actor","value":"0","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"0","type":5,"typeString":"CustomFieldType_Actor"}],"dialogueEntryFields":[{"title":"Title","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Actor","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Menu
+    Text","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Dialogue
+    Text","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Sequence","value":"","type":0,"typeString":"CustomFieldType_Text"}],"actorPrimaryFieldTitles":[],"itemPrimaryFieldTitles":[],"questPrimaryFieldTitles":[],"locationPrimaryFieldTitles":[],"variablePrimaryFieldTitles":[],"conversationPrimaryFieldTitles":[],"dialogueEntryPrimaryFieldTitles":[],"npcLineColor":{"r":1.0,"g":0.0,"b":0.0,"a":1.0},"pcLineColor":{"r":0.0,"g":0.0,"b":1.0,"a":1.0},"repeatLineColor":{"r":0.5,"g":0.5,"b":0.5,"a":1.0}}'

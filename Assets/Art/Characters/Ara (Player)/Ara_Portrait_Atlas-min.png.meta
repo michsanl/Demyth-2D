@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,8 +69,8 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
+    textureCompression: 2
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -78,14 +78,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 29
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -107,12 +107,12 @@ TextureImporter:
       name: Ara_Portrait_Atlas-min_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 6045
-        width: 1200
-        height: 1680
+        x: 1105
+        y: 6337
+        width: 1100
+        height: 1540
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,12 +128,12 @@ TextureImporter:
       name: Ara_Portrait_Atlas-min_1
       rect:
         serializedVersion: 2
-        x: 1227
-        y: 6045
-        width: 1200
-        height: 1680
+        x: 2340
+        y: 6337
+        width: 1100
+        height: 1540
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,10 +145,220 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_2
+      rect:
+        serializedVersion: 2
+        x: 3737
+        y: 6337
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70858a2bd927d8244bae1da02dda807c
+      internalID: -1882457568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_3
+      rect:
+        serializedVersion: 2
+        x: 5059
+        y: 6337
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d93185716cc8047a0838ff9b553f7b
+      internalID: 1636173765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_4
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 3703
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ccfa994756dbca468eeee0371dd0c57
+      internalID: -322547345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_5
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 3703
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e30b5693ebb55ca42b6ed68b4c9ec801
+      internalID: 2103743046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_6
+      rect:
+        serializedVersion: 2
+        x: 3737
+        y: 3703
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea0bee190f37034783e4ac67295b811
+      internalID: -1794691612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_7
+      rect:
+        serializedVersion: 2
+        x: 5059
+        y: 3703
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487aebcdfbb082847b0a6ff22793c1dd
+      internalID: 1500397354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_8
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 1081
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9dc90570fe141c47b469ed1ccb21227
+      internalID: 1563367289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_9
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 1081
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb4b0d675151f54ea973f6d5a03e5ef
+      internalID: 325197202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_10
+      rect:
+        serializedVersion: 2
+        x: 3737
+        y: 1081
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 799e3bb80623a8643a4f562ff415ffb5
+      internalID: -280161357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ara_Portrait_Atlas-min_11
+      rect:
+        serializedVersion: 2
+        x: 5059
+        y: 1081
+        width: 1100
+        height: 1540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 300a8ab04cb6ffd4596d70c94ff573c7
+      internalID: 2117665310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 89e9da4ace4c1a247b319ff9f56da935
     internalID: 0
     vertices: []
     indices: 
@@ -156,8 +366,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Ara_Portrait_Atlas-min_8: 1563367289
+      Ara_Portrait_Atlas-min_5: 2103743046
+      Ara_Portrait_Atlas-min_10: -280161357
+      Ara_Portrait_Atlas-min_9: 325197202
+      Ara_Portrait_Atlas-min_3: 1636173765
       Ara_Portrait_Atlas-min_0: -1800541845
+      Ara_Portrait_Atlas-min_2: -1882457568
+      Ara_Portrait_Atlas-min_4: -322547345
       Ara_Portrait_Atlas-min_1: 787998094
+      Ara_Portrait_Atlas-min_11: 2117665310
+      Ara_Portrait_Atlas-min_7: 1500397354
+      Ara_Portrait_Atlas-min_6: -1794691612
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
