@@ -121,7 +121,6 @@ public class Player : MonoBehaviour, IBroadcaster
     private void OnEnable()
     {
         ResetUnitCondition();
-        _moveTargetPosition = transform.position;
 
         _gameInput.OnSenterPerformed.AddListener(GameInput_OnSenterPerformed);
         _gameInput.OnHealthPotionPerformed.AddListener(GameInput_OnHealthPotionPerformed);
@@ -146,6 +145,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _lantern.TurnOffLantern();
         
         UsePan = _usePan;
+        _moveTargetPosition = transform.position + Vector3.up;
     }
 
     public void UnlockLantern()
