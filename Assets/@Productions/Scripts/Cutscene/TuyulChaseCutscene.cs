@@ -13,6 +13,7 @@ public class TuyulChaseCutscene : MonoBehaviour
     [SerializeField] private TuyulChaseTalkable _yuliTalkable;
     [SerializeField] private GameObject _dialogueTrigger;
     [SerializeField] private GameObject _tuyulChaseLevelReset;
+    [SerializeField] private GameObject _nextLevelGate;
 
     private GameStateService _gameStateService;
     private Player _player;
@@ -48,6 +49,7 @@ public class TuyulChaseCutscene : MonoBehaviour
         // disable level reset
 
         sender.SetActive(false);
+        _nextLevelGate.SetActive(true);
 
         _player.UsePan = true;
 

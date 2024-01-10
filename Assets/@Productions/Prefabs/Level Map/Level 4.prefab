@@ -282,7 +282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8206446510662918637
 Transform:
   m_ObjectHideFlags: 0
@@ -389,6 +389,7 @@ MonoBehaviour:
   _secondCutsceneStartDelay: 1
   _dialogueSystemTrigger: {fileID: 8114377932929409595}
   _petraCombatBehaviour: {fileID: 5916985431247403359}
+  _prevLevelGate: {fileID: 7086826357579465669}
 --- !u!114 &8114377932929409595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,6 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bossPetraGameObject: {fileID: 2624266294058160267}
   _npcPetraGameObject: {fileID: 4072677326034311735}
+  _prevLevelGate: {fileID: 7086826357579465669}
   _bossPetraModel: {fileID: 5921048289437580925}
   _npcPetraModel: {fileID: 3127442528226434557}
   _npcPetraAnimator: {fileID: 8689829764801100882}
@@ -1198,12 +1200,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1041318386230468711, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
   m_PrefabInstance: {fileID: 2927302038332569880}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7086826357579465669}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1c4e7d9d902a674f81fbf5ccca672d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7086826357579465669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5388181709524089565, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
+  m_PrefabInstance: {fileID: 2927302038332569880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7695151694451463074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4779856338162330298, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
