@@ -6,6 +6,10 @@ using System;
 
 public class GameManager : SceneService
 {
+
+    [SerializeField] private GameSettingsSO _gameSettingsSO;
+    [SerializeField] private GameObject[] _levelGateArray;
+
     private GameStateService _gameStateService;
     private GameInputController _gameInputController;
     private GameInput _gameInput;
@@ -23,6 +27,11 @@ public class GameManager : SceneService
 
         CreateVanillaSaveFile();
         Application.runInBackground = true; // So music wont pause
+    }
+
+    private void Start()
+    {
+        SetupLevelGate();
     }
 
     public void SaveGameplayProgress()
@@ -81,5 +90,13 @@ public class GameManager : SceneService
     private void UnPause()
     {
         Time.timeScale = 1f;
+    }
+
+    private void SetupLevelGate()
+    {
+        foreach (var levelGate in _levelGateArray)
+        {
+            levelGate.SetActive(_gameSettingsSO.UnlockAllGateOnStart);
+        }
     }
 }
