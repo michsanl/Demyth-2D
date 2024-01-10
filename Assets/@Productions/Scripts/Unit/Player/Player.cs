@@ -104,10 +104,13 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
         
-        UsePan = _gameSettingsSO.UsePanOnStart;
-        IsLanternUnlocked = _gameSettingsSO.UnlockLanternOnStart;
-        IsHealthPotionUnlocked = _gameSettingsSO.UnlockPotionOnStart;
-        IsShieldUnlocked = _gameSettingsSO.UnlockShieldOnStart;
+        if (_gameSettingsSO != null)
+        {
+            UsePan = _gameSettingsSO.UsePanOnStart;
+            IsLanternUnlocked = _gameSettingsSO.UnlockLanternOnStart;
+            IsHealthPotionUnlocked = _gameSettingsSO.UnlockPotionOnStart;
+            IsShieldUnlocked = _gameSettingsSO.UnlockShieldOnStart;
+        }
     }
 
     private void Update()
@@ -136,10 +139,13 @@ public class Player : MonoBehaviour, IBroadcaster
         _isBusy = false;
         _isKnocked = false;
         _isTakeDamageOnCooldown = false;
+        
         _health.ResetHealthToMaximum();
         _shield.ResetShieldToMaximum();
         _healthPotion.ResetPotionToMax();
         _lantern.TurnOffLantern();
+        
+        UsePan = _usePan;
     }
 
     public void UnlockLantern()
