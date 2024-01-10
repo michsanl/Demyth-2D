@@ -41,16 +41,19 @@ namespace UISystem
         private void SetMMSoundMasterVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeMaster(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
         private void SetMMSoundMusicVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeMusic(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
         private void SetMMSoundSfxVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeSfx(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
 

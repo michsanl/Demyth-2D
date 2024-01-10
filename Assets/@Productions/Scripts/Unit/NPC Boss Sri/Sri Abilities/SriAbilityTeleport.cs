@@ -6,6 +6,7 @@ using MoreMountains.Tools;
 
 public class SriAbilityTeleport : MonoBehaviour
 {
+    [SerializeField] private AnimationPropertiesSO _teleportProp;
     [SerializeField] private float teleportStartDuration;
     [SerializeField] private float teleportEndDuration;
     [SerializeField] private Animator animator;
@@ -24,25 +25,29 @@ public class SriAbilityTeleport : MonoBehaviour
 
     public IEnumerator Teleport(Player player, Animator animator)
     {
-        animator.Play(TELEPORT_START);
-        yield return Helper.GetWaitForSeconds(teleportStartDuration);
+        animator.SetFloat("Teleport_Multiplier", _teleportProp.AnimationSpeedMultiplier);
+        
+        animator.SetTrigger(TELEPORT_START);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetFrontSwingDuration());
 
         var teleportTargetPosition = GetTeleportTargetPosition(player);
         transform.position = teleportTargetPosition;
 
-        animator.Play(TELEPORT_END);
-        yield return Helper.GetWaitForSeconds(teleportEndDuration);
+        animator.SetTrigger(TELEPORT_END);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetBackSwingDuration());
     }
 
     public IEnumerator Teleport(Vector3 targetPosition, Animator animator)
     {
+        animator.SetFloat("Teleport_Multiplier", _teleportProp.AnimationSpeedMultiplier);
+
         animator.Play(TELEPORT_START);
-        yield return Helper.GetWaitForSeconds(teleportStartDuration);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetFrontSwingDuration());
 
         transform.position = targetPosition;
 
         animator.Play(TELEPORT_END);
-        yield return Helper.GetWaitForSeconds(teleportEndDuration);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetBackSwingDuration());
     }
 
     private Vector2 GetTeleportTargetPosition(Player player)

@@ -6,11 +6,15 @@ using MoreMountains.Feedbacks;
 
 public class PillarLight : Interactable
 {
+    public bool IsLightActive => isLightActive;
+    public Action OnTurnOnLight;
+
     [SerializeField] private int hitToActivate = 6;
     [SerializeField] private GameObject lightModel;
 
     private MMF_Player panHitMMFPlayer;
     private int hitCount;
+    private bool isLightActive = true;
 
     private void Awake()
     {
@@ -27,7 +31,10 @@ public class PillarLight : Interactable
             if (hitCount >= hitToActivate)
             {
                 lightModel.SetActive(true);
+                isLightActive = true;
                 hitCount = 0;
+
+                OnTurnOnLight?.Invoke();
             }
         }
         else
@@ -39,12 +46,14 @@ public class PillarLight : Interactable
     public void TurnOnPillarLight()
     {
         lightModel.SetActive(true);
+        isLightActive = true;
         hitCount = 0;
     }
 
     public void TurnOffPillarLight()
     {
         lightModel.SetActive(false);
+        isLightActive = false;
         hitCount = 0;
     }
 

@@ -12,8 +12,9 @@ using BrunoMikoski.AnimationSequencer;
 
 namespace Demyth.UI
 {
-    public class GameHUD : MonoBehaviour, ISubscriber
+    public class GameHUD : SceneService, ISubscriber
     {
+        [SerializeField] private bool _showOnStart;
         [Title("Health/Shield Bar Parameter")]
         [SerializeField] private float _barChangeDuration = 0.5f;
         [SerializeField] private float _barPositionRange = 205f;
@@ -65,8 +66,18 @@ namespace Demyth.UI
 
             GetHealthBarPositionAtZeroShield();
             GetShieldBarPositionAtZeroHealth();
+        }
 
-            gameObject.SetActive(false);
+        private void Start()
+        {
+            if (_showOnStart)
+            {
+                Open();
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         private void DialogueManager_OnConversationStarted(Transform t)

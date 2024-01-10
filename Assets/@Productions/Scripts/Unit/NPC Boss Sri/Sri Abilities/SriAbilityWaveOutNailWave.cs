@@ -13,6 +13,7 @@ public class SriAbilityWaveOutNailWave : MonoBehaviour
     [SerializeField] private float nailSpawnDelay;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _introProp;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject waveOutNailWave;
     [SerializeField] private SriClipSO _sriClipSO;
@@ -25,14 +26,16 @@ public class SriAbilityWaveOutNailWave : MonoBehaviour
 
     public IEnumerator WaveOutNailWave(Animator animator)
     {
+        animator.SetFloat("Nail_AOE_Multiplier", _introProp.AnimationSpeedMultiplier);
+
         yield return StartCoroutine(TeleportToMiddleArena());
 
-        animator.Play(NAIL_WAVE);
+        animator.SetTrigger(NAIL_WAVE);
         Helper.PlaySFX(_sriClipSO.NailAOE, _sriClipSO.NailAOEVolume);
 
         StartCoroutine(SpawnNail());
 
-        yield return Helper.GetWaitForSeconds(animationDuration);
+        yield return Helper.GetWaitForSeconds(_introProp.GetSwingDuration());
     }
 
     private void PlayAudio(AudioClip abilitySFX)
