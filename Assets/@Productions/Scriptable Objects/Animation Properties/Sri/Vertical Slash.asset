@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c71083ac53f8745bd57c9430107611, type: 3}
-  m_Name: TemporarySaveDataSO
+  m_Script: {fileID: 11500000, guid: d1836e0f9a6660c4eb6370f0ea3adf20, type: 3}
+  m_Name: Vertical Slash
   m_EditorClassIdentifier: 
-  level01:
-    isNextLevelUnlocked: 1
-    isNPCDialogueTriggered: 0
-    playerSpawnPosition: {x: 0, y: 0, z: 0}
-    playerDirection: {x: -1, y: 1, z: 1}
-  isNextLevelUnlocked: 0
+  FrontSwingDuration: 0.6
+  SwingDuration: 0.233
+  BackSwingDuration: 1.15
+  AnimationSpeedMultiplier: 1.25

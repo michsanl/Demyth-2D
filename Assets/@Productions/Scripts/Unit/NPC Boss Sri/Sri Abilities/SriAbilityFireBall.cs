@@ -16,6 +16,7 @@ public class SriAbilityFireBall : MonoBehaviour
     [SerializeField] private float animationDuration;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _fireBallProp;
     [SerializeField] private GameObject fireBallProjectile;
     [SerializeField] private Transform fireBallSpawnPosition;
     [SerializeField] private SriClipSO _sriClipSO;
@@ -24,12 +25,14 @@ public class SriAbilityFireBall : MonoBehaviour
 
     public IEnumerator FireBall(Animator animator)
     {
-        animator.Play(FIRE_BALL);
+        animator.SetFloat("Fire_Ball_Multiplier", _fireBallProp.AnimationSpeedMultiplier);
+        
+        animator.SetTrigger(FIRE_BALL);
         Helper.PlaySFX(_sriClipSO.Fireball, _sriClipSO.FireballVolume);
 
         LeanPool.Spawn(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
         
-        yield return Helper.GetWaitForSeconds(animationDuration);
+        yield return Helper.GetWaitForSeconds(_fireBallProp.GetSwingDuration());
     }
 
     private void PlayAudio(AudioClip abilitySFX)

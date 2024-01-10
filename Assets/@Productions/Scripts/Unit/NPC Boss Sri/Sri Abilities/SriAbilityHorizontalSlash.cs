@@ -16,6 +16,7 @@ public class SriAbilityHorizontalSlash : MonoBehaviour
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _horSlashProp;
     [SerializeField] private GameObject horizontalSlashCollider;
     [SerializeField] private SriClipSO _sriClipSO;
     
@@ -25,18 +26,20 @@ public class SriAbilityHorizontalSlash : MonoBehaviour
 
     public IEnumerator HorizontalSlash(Player player, Animator animator)
     {
+        animator.SetFloat("Hor_Slash_Multiplier", _horSlashProp.AnimationSpeedMultiplier);
+        
         float playerXPosition = player.transform.position.x;
         float targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerXPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.Play(HORIZONTAL_SLASH);
+        animator.SetTrigger(HORIZONTAL_SLASH);
         Helper.PlaySFX(_sriClipSO.HorizontalSlash, _sriClipSO.HorizontalSlashVolume);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_horSlashProp.GetFrontSwingDuration());
         horizontalSlashCollider.SetActive(true);
-        yield return transform.DOMoveX(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        yield return transform.DOMoveX(finalTargetPosition, _horSlashProp.GetSwingDuration()).SetEase(animationCurve).WaitForCompletion();
         horizontalSlashCollider.SetActive(false);
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_horSlashProp.GetBackSwingDuration());
     }
 
     private float GetPositionWithIncrement(float playerXPosition)

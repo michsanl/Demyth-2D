@@ -16,6 +16,7 @@ public class SriAbilityUpSlash : MonoBehaviour
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _upSlashProp;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject upSlashCollider;
     [SerializeField] private SriClipSO _sriClipSO;
@@ -26,18 +27,20 @@ public class SriAbilityUpSlash : MonoBehaviour
 
     public IEnumerator UpSlash(Player player, Animator animator)
     {
+        animator.SetFloat("Ver_Slash_Multiplier", _upSlashProp.AnimationSpeedMultiplier);
+        
         var playerYPosition = player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.Play(UP_SLASH);
+        animator.SetTrigger(UP_SLASH);
         Helper.PlaySFX(_sriClipSO.VerticalSlash, _sriClipSO.VerticalSlashVolume);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_upSlashProp.GetFrontSwingDuration());
         upSlashCollider.SetActive(true);
-        yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        yield return transform.DOMoveY(finalTargetPosition, _upSlashProp.GetSwingDuration()).SetEase(animationCurve).WaitForCompletion();
         upSlashCollider.SetActive(false);
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_upSlashProp.GetBackSwingDuration());
     }
 
     private void PlayAudio(AudioClip abilitySFX)

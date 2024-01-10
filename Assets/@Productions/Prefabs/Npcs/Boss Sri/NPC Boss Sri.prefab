@@ -1837,6 +1837,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _upSlashProp: {fileID: 11400000, guid: 8492a3081ccb92245ad4b93348dd87f4, type: 2}
   animator: {fileID: 7673398052024204807}
   upSlashCollider: {fileID: 982308991402775369}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
@@ -1879,6 +1880,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _downSlashProp: {fileID: 11400000, guid: 8492a3081ccb92245ad4b93348dd87f4, type: 2}
   downSlashCollider: {fileID: 4574950767016202372}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
 --- !u!114 &7205673097563830442
@@ -1920,6 +1922,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _horSlashProp: {fileID: 11400000, guid: a82f251ad3074ac4fbf2d946d619a0b6, type: 2}
   horizontalSlashCollider: {fileID: 9198151067170226575}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
 --- !u!114 &7570824483944674719
@@ -1937,6 +1940,7 @@ MonoBehaviour:
   frontSwingDuration: 1
   swingDuration: 1
   backSwingDuration: 0.55
+  _spinClawProp: {fileID: 11400000, guid: 3666f831ecbaf294389c8f67a512f77e, type: 2}
   animator: {fileID: 7673398052024204807}
   spinClawCollider: {fileID: 8946307553033440143}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
@@ -1955,6 +1959,7 @@ MonoBehaviour:
   frontSwingDuration: 0.7
   swingDuration: 3.133
   backSwingDuration: 0.316
+  _nailAOEProp: {fileID: 11400000, guid: 4a2e9b99cc152764bafc7c6e25d4f9a0, type: 2}
   animator: {fileID: 7673398052024204807}
   nailAOECollider: {fileID: 6206227978528789694}
   nailProjectile: {fileID: 5018207761852412869, guid: f6dd71198aaa91c4aabdc4c3fd7615fc, type: 3}
@@ -1975,6 +1980,7 @@ MonoBehaviour:
   swingDuration: 0.625
   backSwingDuration: 0.8254
   nailSpawnDelay: 0
+  _nailSummonProp: {fileID: 11400000, guid: 2cd5fb33b6df46143a180fff2127e525, type: 2}
   animator: {fileID: 7673398052024204807}
   nailSummonCollider: {fileID: 218241469}
   groundNail: {fileID: 3975585011897390249, guid: dbfcb9b44ca4f8a489e5c4cf60a17a7f, type: 3}
@@ -1992,6 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 2.117
+  _fireBallProp: {fileID: 11400000, guid: 2ace4c2742caea146adcc4611d82bf3b, type: 2}
   fireBallProjectile: {fileID: 1436042891738576300, guid: ee31fe01da0934048bf95f88e645267f, type: 3}
   fireBallSpawnPosition: {fileID: 4007197789071535468}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
@@ -2007,6 +2014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a456a439d1a4554f9ac43ac7cc36971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _teleportProp: {fileID: 11400000, guid: d623e9bfb582adc40a33b835438e529b, type: 2}
   teleportStartDuration: 0.3
   teleportEndDuration: 0.45
   animator: {fileID: 7673398052024204807}
@@ -2024,6 +2032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 4.2
+  _introProp: {fileID: 11400000, guid: 2a7b21ead9134f8418793c0c41ddac33, type: 2}
   horizontalNailWave: {fileID: 3047413229281473511, guid: 3779b8f7bbefe1c4c8d6ca390a2b1799, type: 3}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
 --- !u!114 &8446042306020832353
@@ -2039,6 +2048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationDuration: 4.2
+  _introProp: {fileID: 11400000, guid: 2a7b21ead9134f8418793c0c41ddac33, type: 2}
   animator: {fileID: 7673398052024204807}
   verticalNailWave: {fileID: 3047413229281473511, guid: b6b67d69af50a154ca81abecef007de1, type: 3}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
@@ -2056,6 +2066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationDuration: 4.2
   nailSpawnDelay: 0.5
+  _introProp: {fileID: 11400000, guid: 2a7b21ead9134f8418793c0c41ddac33, type: 2}
   animator: {fileID: 7673398052024204807}
   waveOutNailWave: {fileID: 3047413229281473511, guid: df906e5e643869c42a035ef2c02591db, type: 3}
   _sriClipSO: {fileID: 11400000, guid: 13a8f7f08dc1b314198b4a63df7988c5, type: 2}
@@ -2071,6 +2082,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0500edf2de2458448682de37361ed26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _teleportProp: {fileID: 11400000, guid: d623e9bfb582adc40a33b835438e529b, type: 2}
+  _nailAOEProp: {fileID: 11400000, guid: 4a2e9b99cc152764bafc7c6e25d4f9a0, type: 2}
+  _downSlashProp: {fileID: 11400000, guid: 8492a3081ccb92245ad4b93348dd87f4, type: 2}
   teleportStartDuration: 0.3
   teleportEndDuration: 0.45
   dialogueCollider: {fileID: 6043795961679398122}
