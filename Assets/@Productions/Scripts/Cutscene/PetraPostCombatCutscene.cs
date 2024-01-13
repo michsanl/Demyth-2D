@@ -14,6 +14,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
     
     [SerializeField] private GameObject _bossPetraGameObject;
     [SerializeField] private GameObject _npcPetraGameObject;
+    [SerializeField] private GameObject _prevLevelGate;
     [SerializeField] private Transform _bossPetraModel;
     [SerializeField] private Transform _npcPetraModel;
     [SerializeField] private Animator _npcPetraAnimator;
@@ -76,6 +77,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
 
         _bossPetraGameObject.SetActive(false);
         _npcPetraGameObject.SetActive(true);
+        _prevLevelGate.SetActive(true);
 
         _npcPetraGameObject.transform.position = _bossPetraGameObject.transform.position;
         _npcPetraModel.localScale = _bossPetraModel.localScale;

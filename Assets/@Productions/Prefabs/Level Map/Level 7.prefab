@@ -293,9 +293,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7547916414773712114}
-  - component: {fileID: 1754952328409471964}
+  - component: {fileID: 155576955743405969}
   m_Layer: 0
-  m_Name: Sri BossLevel Reset
+  m_Name: Restart Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,7 +316,7 @@ Transform:
   m_Father: {fileID: 1634480723337629033}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1754952328409471964
+--- !u!114 &155576955743405969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,16 +325,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1948191981848390080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daedcab5c5d12194c9d4df2cc2db7cc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 242e392e6ff864f4b8a1769bfe002aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _globalLight: {fileID: 0}
-  _pillarLights:
-  - {fileID: 931772525203809020}
-  - {fileID: 3219225178356136327}
-  - {fileID: 7073838848864071131}
-  - {fileID: 5765937970116582952}
-  _sriCombatEvent: {fileID: 105545626483990613}
+  serviceId: {fileID: 11400000, guid: 2ee36f380e6cc454fa1493d6525f2d08, type: 2}
+  _sriCombatBehaviour: {fileID: 6678796350286695659}
+  _sriPreCombatCutscene: {fileID: 6304154146750096898}
 --- !u!1 &2561545502527352176
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +782,7 @@ MonoBehaviour:
   _dialogueSystemTrigger: {fileID: 2969423720754882099}
   _gameObjectsToActivate:
   - {fileID: 5231546283808791277}
+  - {fileID: 8930755017240044509}
   _gameObjectsToDeactivate:
   - {fileID: 3950425681509011601}
   - {fileID: 274093261593770712}
@@ -1149,6 +1146,7 @@ MonoBehaviour:
   _cameraMoveDownSequenceDuration: 0.3
   _dialogueSystemTrigger: {fileID: 5373851937270661592}
   _sriCombatBehaviour: {fileID: 6678796350286695659}
+  _prevLevelGate: {fileID: 8930755017240044509}
 --- !u!114 &5373851937270661592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2086,12 +2084,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1041318386230468711, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
   m_PrefabInstance: {fileID: 3546233865570998528}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8930755017240044509}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1c4e7d9d902a674f81fbf5ccca672d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8930755017240044509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5388181709524089565, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
+  m_PrefabInstance: {fileID: 3546233865570998528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4098474210184546955
 PrefabInstance:
   m_ObjectHideFlags: 0

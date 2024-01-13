@@ -14,30 +14,25 @@ public class SriAbilityNailAOE : MonoBehaviour
     [SerializeField] private float backSwingDuration;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _nailAOEProp;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject nailAOECollider;
     [SerializeField] private GameObject nailProjectile;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     protected int NAIL_AOE = Animator.StringToHash("Nail_AOE");
 
-    public IEnumerator NailAOE(Animator animator, AudioClip abilitySFX)
+    public IEnumerator NailAOE(Animator animator)
     {
-        animator.Play(NAIL_AOE);
-        PlayAudio(abilitySFX);
+        animator.SetFloat("Nail_AOE_Multiplier", _nailAOEProp.AnimationSpeedMultiplier);
+        
+        animator.SetTrigger(NAIL_AOE);
+        Helper.PlaySFX(_sriClipSO.NailAOE, _sriClipSO.NailAOEVolume);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_nailAOEProp.GetFrontSwingDuration());
         nailAOECollider.SetActive(true);
-        yield return Helper.GetWaitForSeconds(swingDuration);
+        yield return Helper.GetWaitForSeconds(_nailAOEProp.GetSwingDuration());
         nailAOECollider.SetActive(false);
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
+        yield return Helper.GetWaitForSeconds(_nailAOEProp.GetBackSwingDuration());
     }
 }

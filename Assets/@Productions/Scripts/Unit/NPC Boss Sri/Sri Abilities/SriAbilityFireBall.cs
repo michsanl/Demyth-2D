@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Lean.Pool;
 
 public class SriAbilityFireBall : MonoBehaviour
 {
@@ -15,18 +16,23 @@ public class SriAbilityFireBall : MonoBehaviour
     [SerializeField] private float animationDuration;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _fireBallProp;
     [SerializeField] private GameObject fireBallProjectile;
     [SerializeField] private Transform fireBallSpawnPosition;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     protected int FIRE_BALL = Animator.StringToHash("Fire_Ball");
 
-    public IEnumerator FireBall(Animator animator, AudioClip abilitySFX)
+    public IEnumerator FireBall(Animator animator)
     {
-        animator.Play(FIRE_BALL);
-        PlayAudio(abilitySFX);
+        animator.SetFloat("Fire_Ball_Multiplier", _fireBallProp.AnimationSpeedMultiplier);
+        
+        animator.SetTrigger(FIRE_BALL);
+        Helper.PlaySFX(_sriClipSO.Fireball, _sriClipSO.FireballVolume);
 
-        Instantiate(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
-        yield return Helper.GetWaitForSeconds(animationDuration);
+        LeanPool.Spawn(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
+        
+        yield return Helper.GetWaitForSeconds(_fireBallProp.GetSwingDuration());
     }
 
     private void PlayAudio(AudioClip abilitySFX)

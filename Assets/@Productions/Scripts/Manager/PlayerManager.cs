@@ -16,7 +16,7 @@ namespace Demyth.Gameplay
         private void Awake()
         {
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-            _gameStateService[GameState.Gameplay].onEnter += ActivatePlayer;
+            _gameStateService[GameState.MainMenu].onExit += ActivatePlayer;
             _gameStateService[GameState.MainMenu].onEnter += HidePlayerOnMainMenu;
         }
 
@@ -28,7 +28,6 @@ namespace Demyth.Gameplay
         private void ActivatePlayer(GameState obj)
         {
             spawnedPlayer.SetActive(true);
-            spawnedPlayer.ResetUnitCondition();
         }
     }
 }

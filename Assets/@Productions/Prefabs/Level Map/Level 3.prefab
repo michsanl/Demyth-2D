@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1965499158
 Transform:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 5401070567049700811}
   - component: {fileID: 6565919042464327864}
   m_Layer: 0
-  m_Name: BoxPuzzleLevelReset
+  m_Name: Level 3 Restart Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b20f6a1c2347642a15d8c06a042986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerModel: {fileID: 0}
   _boxCrateArray:
   - {fileID: 395510858860456793}
   - {fileID: 7474824694118483269}

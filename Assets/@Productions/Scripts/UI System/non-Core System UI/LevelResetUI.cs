@@ -12,8 +12,8 @@ namespace Demyth.UI
     {
 
         
-        [SerializeField] private BoxPuzzleLevelReset _boxPuzzleLevelReset;
-        [SerializeField] private TuyulChaseLevelReset _tuyulChaseLevelReset;
+        [SerializeField] private Level3RestartHandler _boxPuzzleLevelReset;
+        [SerializeField] private Level5RestartHandler _tuyulChaseLevelReset;
 
         private void Awake()
         {

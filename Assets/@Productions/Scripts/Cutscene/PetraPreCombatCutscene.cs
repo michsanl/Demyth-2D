@@ -8,6 +8,7 @@ using Demyth.Gameplay;
 using Core;
 using MoreMountains.Tools;
 using System.Threading.Tasks;
+using PixelCrushers;
 
 public class PetraPreCombatCutscene : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
     [Space]
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
+    [SerializeField] private GameObject _prevLevelGate;
 
     private GameInputController _gameInputController;
     private CameraController _cameraController;
@@ -69,17 +71,17 @@ public class PetraPreCombatCutscene : MonoBehaviour
         yield return new WaitForSeconds(_secondCutsceneStartDelay);
 
         // SEQUENCE 5
-        // disable petra idle
         // enable petra combat
-        // move camera down
         // enable player input
-        // give ara pan
         // disable cutscene object
+        // disable prev level gate
+        // move camera down
+        // give ara pan
         _petraCombatBehaviour.InitiateCombat();
         _cameraController.DOMoveYCamera(0f, 1f, Ease.InOutQuad);
         _gameInputController.EnablePlayerInput();
         _player.UsePan = true;
-        // _musicController.StartPetraBossFightMusic();
+        _prevLevelGate.SetActive(false);
         gameObject.SetActive(false);
     }
 }

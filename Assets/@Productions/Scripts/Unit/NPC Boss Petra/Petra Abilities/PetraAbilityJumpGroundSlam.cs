@@ -24,11 +24,12 @@ public class PetraAbilityJumpGroundSlam : MonoBehaviour
 
     private int JUMP_SLAM = Animator.StringToHash("Jump_slam");
 
-    public IEnumerator JumpGroundSlam(Animator animator, AudioClip abilitySFX)
+    public IEnumerator JumpGroundSlam(Animator animator, PetraClipSO petraClipSO)
     {
-        animator.Play(JUMP_SLAM);
-        PlayAudio(abilitySFX);
         Vector3 jumpTargetPosition = new Vector3(0, -1, 0);
+
+        animator.Play(JUMP_SLAM);
+        Helper.PlaySFX(petraClipSO.JumpSlam, petraClipSO.JumpSlamVolume);
         
         yield return Helper.GetWaitForSeconds(_frontSwingDuration);
 

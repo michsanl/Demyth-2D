@@ -7,8 +7,6 @@ using PixelCrushers.DialogueSystem;
 using MoreMountains.Feedbacks;
 using Demyth.Gameplay;
 using Core;
-using MoreMountains.Tools;
-using System.Threading.Tasks;
 
 public class SriPreCombatCutscene : MonoBehaviour
 {
@@ -20,6 +18,7 @@ public class SriPreCombatCutscene : MonoBehaviour
     [Space]
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
+    [SerializeField] private GameObject _prevLevelGate;
 
     private CameraController _cameraController;
     private GameInputController _gameInputController;
@@ -80,11 +79,11 @@ public class SriPreCombatCutscene : MonoBehaviour
         // SEQUENCE 6
         // enable boss combat mode
         // enable player input
+        // disable prev level gate
         // disable cutscene object
         _sriCombatBehaviour.InitiateCombat();
+        _prevLevelGate.SetActive(false);
         _gameInputController.EnablePlayerInput();
-        // _musicController.StopAllCoroutines();
-        // _musicController.StartSriBossFightMusic();
         gameObject.SetActive(false);
     }
 

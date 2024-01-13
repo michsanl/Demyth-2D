@@ -12,8 +12,8 @@ namespace UISystem
 {
     public class MainMenuUI : MonoBehaviour
     {
-        [SerializeField] private GameHUD _gameHUD;
-
+        [SerializeField] private GameSettingsSO _gameSettingsSO;
+        [SerializeField] private GameObject _selectLevelButtonParent;
         [Header("Level")]
         [SerializeField] private EnumId newLevelId;
 
@@ -21,6 +21,7 @@ namespace UISystem
         private LevelManager _levelManager;
         private GameStateService _gameStateService;
         private MusicController _musicController;
+        private GameHUD _gameHUD;
 
         private void Awake()
         {
@@ -28,6 +29,12 @@ namespace UISystem
             _levelManager = SceneServiceProvider.GetService<LevelManager>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _musicController = SceneServiceProvider.GetService<MusicController>();
+            _gameHUD = SceneServiceProvider.GetService<GameHUD>();
+        }
+
+        private void Start()
+        {
+            SetSelectLevelButtonVisibility();
         }
 
         public void StartNewGame()
@@ -76,6 +83,11 @@ namespace UISystem
         private static void ClearGameProgressSave()
         {
             SaveSystem.DeleteSavedGameInSlot(1);
+        }
+
+        private void SetSelectLevelButtonVisibility()
+        {
+            _selectLevelButtonParent.SetActive(_gameSettingsSO.ShowLevelSelect);
         }
     }
 }

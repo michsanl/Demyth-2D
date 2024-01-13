@@ -14,21 +14,25 @@ public class SriAbilitySpinClaw : MonoBehaviour
     [SerializeField] private float backSwingDuration;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _spinClawProp;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject spinClawCollider;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     protected int SPIN_CLAW = Animator.StringToHash("Spin_Claw");
 
-    public IEnumerator SpinClaw(Animator animator, AudioClip abilitySFX)
+    public IEnumerator SpinClaw(Animator animator)
     {
-        animator.Play(SPIN_CLAW);
-        PlayAudio(abilitySFX);
+        animator.SetFloat("Spin_Claw_Multiplier", _spinClawProp.AnimationSpeedMultiplier);
+        
+        animator.SetTrigger(SPIN_CLAW);
+        Helper.PlaySFX(_sriClipSO.SpinClaw, _sriClipSO.SpinClawVolume);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_spinClawProp.GetFrontSwingDuration());
         spinClawCollider.SetActive(true);
-        yield return Helper.GetWaitForSeconds(swingDuration);
+        yield return Helper.GetWaitForSeconds(_spinClawProp.GetSwingDuration());
         spinClawCollider.SetActive(false);
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_spinClawProp.GetBackSwingDuration());
     }
 
     private void PlayAudio(AudioClip abilitySFX)

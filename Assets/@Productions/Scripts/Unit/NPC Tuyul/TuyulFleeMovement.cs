@@ -9,7 +9,6 @@ using MoreMountains.Tools;
 public class TuyulFleeMovement : MonoBehaviour
 {
     [SerializeField] private float _moveDuration = 0.195f;
-    [SerializeField] private AudioClip _dashAudioClip;
     [SerializeField] private Animator _animator;
     [SerializeField] private LayerMask _yulaPathLayerMask;
     [SerializeField] private LayerMask _moveBlockerLayerMask;
@@ -102,7 +101,6 @@ public class TuyulFleeMovement : MonoBehaviour
         _isBusy = true;
 
         _animator.Play("Dash");
-        PlayAudio(_dashAudioClip);
         
         transform.DOMove(GetMoveTargetPositionRounded(moveDir), _moveDuration);
         yield return Helper.GetWaitForSeconds(_moveDuration);
@@ -130,15 +128,6 @@ public class TuyulFleeMovement : MonoBehaviour
     private bool IsPathBlocked(Vector3 dirToCheck)
     {
         return Physics2D.Raycast(transform.position + dirToCheck, dirToCheck, .1f, _moveBlockerLayerMask);
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = .5f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private Vector3 GetMoveTargetPositionRounded(Vector3 moveDir)

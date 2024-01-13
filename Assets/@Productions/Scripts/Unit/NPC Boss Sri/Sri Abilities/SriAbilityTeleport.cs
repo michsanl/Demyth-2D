@@ -6,9 +6,11 @@ using MoreMountains.Tools;
 
 public class SriAbilityTeleport : MonoBehaviour
 {
+    [SerializeField] private AnimationPropertiesSO _teleportProp;
     [SerializeField] private float teleportStartDuration;
     [SerializeField] private float teleportEndDuration;
     [SerializeField] private Animator animator;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     private int topBorder = 2;
     private int bottomBorder = -4;
@@ -16,32 +18,36 @@ public class SriAbilityTeleport : MonoBehaviour
     private int leftBorder = -6;
     private Vector3[] pillarPositionArray = new Vector3[] 
     { 
-        new Vector3(5,1,0), new Vector3(-5,1,0), new Vector3(5,-1,0), new Vector3(-5,-1,0)
+        new(5,1,0), new(-5,1,0), new(5,-1,0), new(-5,-1,0)
     };
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
 
     public IEnumerator Teleport(Player player, Animator animator)
     {
-        animator.Play(TELEPORT_START);
-        yield return Helper.GetWaitForSeconds(teleportStartDuration);
+        animator.SetFloat("Teleport_Multiplier", _teleportProp.AnimationSpeedMultiplier);
+        
+        animator.SetTrigger(TELEPORT_START);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetFrontSwingDuration());
 
         var teleportTargetPosition = GetTeleportTargetPosition(player);
         transform.position = teleportTargetPosition;
 
-        animator.Play(TELEPORT_END);
-        yield return Helper.GetWaitForSeconds(teleportEndDuration);
+        animator.SetTrigger(TELEPORT_END);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetBackSwingDuration());
     }
 
     public IEnumerator Teleport(Vector3 targetPosition, Animator animator)
     {
+        animator.SetFloat("Teleport_Multiplier", _teleportProp.AnimationSpeedMultiplier);
+
         animator.Play(TELEPORT_START);
-        yield return Helper.GetWaitForSeconds(teleportStartDuration);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetFrontSwingDuration());
 
         transform.position = targetPosition;
 
         animator.Play(TELEPORT_END);
-        yield return Helper.GetWaitForSeconds(teleportEndDuration);
+        yield return Helper.GetWaitForSeconds(_teleportProp.GetBackSwingDuration());
     }
 
     private Vector2 GetTeleportTargetPosition(Player player)

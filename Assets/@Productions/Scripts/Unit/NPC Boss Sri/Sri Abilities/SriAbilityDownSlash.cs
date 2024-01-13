@@ -15,26 +15,30 @@ public class SriAbilityDownSlash : MonoBehaviour
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _downSlashProp;
     [SerializeField] private GameObject downSlashCollider;
+    [SerializeField] private SriClipSO _sriClipSO;
     
     private int topArenaBorder = 2;
     private int bottomArenaBorder = -4;
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
 
-    public IEnumerator DownSlash(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator DownSlash(Player player, Animator animator)
     {
+        animator.SetFloat("Ver_Slash_Multiplier", _downSlashProp.AnimationSpeedMultiplier);
+        
         var playerYPosition = player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.Play(DOWN_SLASH);
-        PlayAudio(abilitySFX);
+        animator.SetTrigger(DOWN_SLASH);
+        Helper.PlaySFX(_sriClipSO.VerticalSlash, _sriClipSO.VerticalSlashVolume);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_downSlashProp.GetFrontSwingDuration());
         downSlashCollider.SetActive(true);
-        yield return transform.DOMoveY(finalTargetPosition, swingDuration).SetEase(animationCurve).WaitForCompletion();
+        yield return transform.DOMoveY(finalTargetPosition, _downSlashProp.GetSwingDuration()).SetEase(animationCurve).WaitForCompletion();
         downSlashCollider.SetActive(false);
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_downSlashProp.GetBackSwingDuration());
     }
 
     private void PlayAudio(AudioClip abilitySFX)

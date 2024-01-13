@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 1390942461}
   - component: {fileID: 2556379640674148332}
   m_Layer: 0
-  m_Name: Tuyul Level Reset
+  m_Name: Level 5 Restart Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec941f12a9a7534b9ff1a2becfe4036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerModel: {fileID: 0}
   _yula: {fileID: 3562212816524243147}
   _yuli: {fileID: 6196429394815940046}
   _destructibleBox: {fileID: 777243047095982479}
@@ -1085,6 +1086,7 @@ MonoBehaviour:
   _yuliTalkable: {fileID: 7958420437400039592}
   _dialogueTrigger: {fileID: 5904549080732716206}
   _tuyulChaseLevelReset: {fileID: 1390942460}
+  _nextLevelGate: {fileID: 4452964161469267213}
 --- !u!1 &8021701652371897428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,8 +1409,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1581017933277813791, guid: c661a1a5d7032764e8203ba3f23e8255, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c661a1a5d7032764e8203ba3f23e8255, type: 3}
 --- !u!4 &777243047095982478 stripped
 Transform:
@@ -1420,45 +1421,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1581017933277813856, guid: c661a1a5d7032764e8203ba3f23e8255, type: 3}
   m_PrefabInstance: {fileID: 2250028508619703791}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &196987330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777243047095982479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb961716f95d5b4692288f9354c2c94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &664418737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777243047095982479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6a42bbc1965fd54e81f6abc3402c3ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &664418738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777243047095982479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2
-  currentHealth: 0
-  status: 0
 --- !u!1001 &2321136558152904508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2142,6 +2104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 6 Gate
       objectReference: {fileID: 0}
+    - target: {fileID: 5388181709524089565, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5586778560892502185, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: height
       value: 7
@@ -2165,6 +2131,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4779856338162330298, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
   m_PrefabInstance: {fileID: 8577864120812636112}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4452964161469267213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5388181709524089565, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
+  m_PrefabInstance: {fileID: 8577864120812636112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5805886074544627900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2853056098762860396, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
@@ -2180,7 +2151,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1041318386230468711, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
   m_PrefabInstance: {fileID: 8577864120812636112}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4452964161469267213}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1c4e7d9d902a674f81fbf5ccca672d5, type: 3}

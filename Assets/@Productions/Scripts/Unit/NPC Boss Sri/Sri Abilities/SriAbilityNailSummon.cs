@@ -16,27 +16,31 @@ public class SriAbilityNailSummon : MonoBehaviour
     [SerializeField] private float nailSpawnDelay;
     
     [Title("Components")]
+    [SerializeField] private AnimationPropertiesSO _nailSummonProp;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject nailSummonCollider;
     [SerializeField] private GameObject groundNail;
+    [SerializeField] private SriClipSO _sriClipSO;
     
-    protected int NAIL_SUMMON_SINGLE = Animator.StringToHash("Nail_Summon_Single");
+    protected int NAIL_SUMMON = Animator.StringToHash("Nail_Summon");
 
-    public IEnumerator NailSummon(Player player, Animator animator, AudioClip abilitySFX)
+    public IEnumerator NailSummon(Player player, Animator animator)
     {
-        animator.CrossFade(NAIL_SUMMON_SINGLE, .1f, 0);
-        PlayAudio(abilitySFX);
+        animator.SetFloat("Nail_Summon_Multiplier", _nailSummonProp.AnimationSpeedMultiplier);
+        
+        animator.SetTrigger(NAIL_SUMMON);
+        Helper.PlaySFX(_sriClipSO.NailSummon, _sriClipSO.NailSummonVolume);
         
         Vector2 spawnPosition = player.LastMoveTargetPosition;
         LeanPool.Spawn(groundNail, spawnPosition, Quaternion.identity);
 
-        yield return Helper.GetWaitForSeconds(frontSwingDuration);
+        yield return Helper.GetWaitForSeconds(_nailSummonProp.GetFrontSwingDuration());
         nailSummonCollider.SetActive(true);
 
-        yield return Helper.GetWaitForSeconds(swingDuration);
+        yield return Helper.GetWaitForSeconds(_nailSummonProp.GetSwingDuration());
         nailSummonCollider.SetActive(false);
 
-        yield return Helper.GetWaitForSeconds(backSwingDuration);
+        yield return Helper.GetWaitForSeconds(_nailSummonProp.GetBackSwingDuration());
     }
 
     private void PlayAudio(AudioClip abilitySFX)
