@@ -31,9 +31,18 @@ public class SriCombatEvent : MonoBehaviour
         _sriCombatBehaviour.OnPhaseTwoStart += SriCombatBehaviour_OnPhaseTwoStart;
     }
 
+    public void ResetLight()
+    {
+        _light2D.intensity = 1f;
+        foreach (var pillarLight in _pillarLightArray)
+        {
+            pillarLight.TurnOnPillarLight();
+        }
+    }
+
     private void SriCombatBehaviour_OnPhaseTwoStart()
     {
-        StartCoroutine(StartTurnOffLightCoroutine());
+        StartCoroutine(StartTurnOffLightSequenceCoroutine());
     }
 
     private void MainMenu_OnEnter(GameState state)
@@ -48,16 +57,7 @@ public class SriCombatEvent : MonoBehaviour
         ResetLight();
     }
 
-    private void ResetLight()
-    {
-        _light2D.intensity = 1f;
-        foreach (var pillarLight in _pillarLightArray)
-        {
-            pillarLight.TurnOnPillarLight();
-        }
-    }
-
-    private IEnumerator StartTurnOffLightCoroutine()
+    private IEnumerator StartTurnOffLightSequenceCoroutine()
     {
         yield return Helper.GetWaitForSeconds(_globalLightsOffDelay);
 

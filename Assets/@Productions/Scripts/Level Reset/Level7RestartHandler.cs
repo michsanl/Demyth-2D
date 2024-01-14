@@ -55,9 +55,9 @@ public class Level7RestartHandler : SceneService
     {
         DOTween.CompleteAll();
 
-        _player.ResetUnitCondition();
-
         SaveSystem.LoadFromSlot(1);
+
+        _player.ResetUnitCondition();
 
         _sriPreCombatCutscene.SetActive(false);
         _sriCombatBehaviour.InitiateCombat();
@@ -67,8 +67,8 @@ public class Level7RestartHandler : SceneService
     {
         DOTween.CompleteAll();
 
-        _player.ResetUnitCondition();
-
         SaveSystem.LoadFromSlot(1);
+        
+        _player.ResetUnitCondition();
     }
 }

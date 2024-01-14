@@ -28,13 +28,13 @@ public static class Helper
         MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
     }
 
-    public static void PlaySFX(AudioClip audioClip, float volume)
+    public static AudioSource PlaySFX(AudioClip audioClip, float volume)
     {
         MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
         playOptions.Volume = volume;
         playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
 
-        MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
+        return MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
     }
 
     public static float GetAngleFromFectorFloat(Vector3 dir)

@@ -53,9 +53,10 @@ public class Level4RestartHandler : MonoBehaviour
     public void ResetLevel()
     {
         DOTween.CompleteAll();
-        _player.ResetUnitCondition();
 
         SaveSystem.LoadFromSlot(1);
+        
+        _player.ResetUnitCondition();
 
         _petraCombatBehaviour.InitiateCombat();
         _petraPreCombatCutscene.SetActive(false);
