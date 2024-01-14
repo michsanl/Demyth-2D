@@ -13,6 +13,7 @@ using Demyth.Gameplay;
 using MoreMountains.Tools;
 using Lean.Pool;
 using Demyth.UI;
+using UnityEngine.SceneManagement;
 
 namespace UISystem
 {
@@ -77,17 +78,22 @@ namespace UISystem
 
         private void ButtonMainMenu()
         {
-            _gameStateService?.SetState(GameState.MainMenu);
 
-            DialogueManager.StopAllConversations();
+            // _gameStateService?.SetState(GameState.MainMenu);
+
+            // DialogueManager.StopAllConversations();
             DOTween.CompleteAll();
             LeanPool.DespawnAll();
 
-            _levelManager.OpenLevel(_levelMenulId);
-            _gameHUD.Close();
-            _uiPage.OpenPage(_menuPageId);
+            // _levelManager.OpenLevel(_levelMenulId);
+            // _gameHUD.Close();
+            // _uiPage.OpenPage(_menuPageId);
 
-            _musicController.StopMusic();
+            // _musicController.StopMusic();
+            
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(0);
+
         }
 
         private void SetMMSoundMasterVolume(float volume)
