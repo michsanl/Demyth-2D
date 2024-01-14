@@ -25,14 +25,19 @@ namespace UISystem
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
+        }
 
+        private void Start()
+        {
+            _uiPage.OnOpen.AddListener(UpdateAudioSettings);
             masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
             musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
             sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
         }
 
-        private void Start()
+        private void UpdateAudioSettings()
         {
+            MMSoundManager.Current.LoadSettings();
             masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
             musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
             sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
@@ -41,16 +46,19 @@ namespace UISystem
         private void SetMMSoundMasterVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeMaster(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
         private void SetMMSoundMusicVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeMusic(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
         private void SetMMSoundSfxVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeSfx(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
 

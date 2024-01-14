@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1436360363793647375}
   - component: {fileID: 1436360363793647368}
   - component: {fileID: 1436360363793647369}
-  - component: {fileID: 1436360363793647370}
+  - component: {fileID: 415244145038535116}
   m_Layer: 0
   m_Name: Save System
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_prettyPrint: 0
---- !u!114 &1436360363793647370
+--- !u!114 &415244145038535116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,10 +91,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1436360363793647371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4d3f2fce70b2441bd76f6c5777e8ab, type: 3}
+  m_Script: {fileID: 11500000, guid: ce15367ff646a9f448ec0e0bce64c2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerPrefsKeyBase: Save
-  encrypt: 0
+  storeSaveFilesIn: 0
+  customPath: 
+  encrypt: 1
   encryptionPassword: My Password
   m_debug: 0
