@@ -5,6 +5,7 @@ using MoreMountains.Tools;
 using Core;
 using Demyth.Gameplay;
 using System;
+using PixelCrushers.DialogueSystem;
 
 public class MusicController : SceneService
 {
@@ -43,7 +44,14 @@ public class MusicController : SceneService
 
     public void PlayLevelBGM()
     {
-        PlayMusic(_musicClipSO.LevelBGM, _musicClipSO.LevelBGMVolume, true);
+        if (DialogueLua.GetVariable("Level_7_Done").asBool)
+        {
+            PlayMusic(_musicClipSO.EpilogueVer1BGM, _musicClipSO.EpilogueVer1BGMVolume, true);
+        }
+        else
+        {
+            PlayMusic(_musicClipSO.LevelBGM, _musicClipSO.LevelBGMVolume, true);
+        }
     }
 
     public void StartPetraBossFightMusic()
