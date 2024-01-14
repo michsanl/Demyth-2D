@@ -68,6 +68,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 739502889203897325}
     m_Modifications:
+    - target: {fileID: 1686960086474210707, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686960086474210707, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 3874980284871717724, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -80,13 +88,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 5348345865983185714, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712613030700758700, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5805886074711020472, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_Name
       value: Level 5
       objectReference: {fileID: 0}
     - target: {fileID: 5805886074711020472, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5805886074711020473, guid: f0d315f12b505ff46bc379a8f828f05e, type: 3}
       propertyPath: m_RootOrder
@@ -747,6 +763,14 @@ PrefabInstance:
       propertyPath: hitToActivate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6678796350286695659, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+      propertyPath: _phaseTwoHPThreshold
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678796350286695659, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+      propertyPath: _phaseThreeHPThreshold
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7073838848864071131, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: hitToActivate
       value: 1
@@ -1015,6 +1039,10 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 8246611757313473806}
+    - target: {fileID: 98702327654955392, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectsToWatch.Array.data[0]
+      value: 
+      objectReference: {fileID: 6407860063836503879}
     - target: {fileID: 958939465596498471, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_target
       value: 

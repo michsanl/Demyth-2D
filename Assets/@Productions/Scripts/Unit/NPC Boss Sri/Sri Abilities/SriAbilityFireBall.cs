@@ -20,27 +20,47 @@ public class SriAbilityFireBall : MonoBehaviour
     [SerializeField] private GameObject fireBallProjectile;
     [SerializeField] private Transform fireBallSpawnPosition;
     [SerializeField] private SriClipSO _sriClipSO;
-    
+    [SerializeField] private float sfxDuration;
+    [SerializeField] private float fadeDuration;
+
     protected int FIRE_BALL = Animator.StringToHash("Fire_Ball");
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
     public IEnumerator FireBall(Animator animator)
     {
         animator.SetFloat("Fire_Ball_Multiplier", _fireBallProp.AnimationSpeedMultiplier);
         
         animator.SetTrigger(FIRE_BALL);
-        Helper.PlaySFX(_sriClipSO.Fireball, _sriClipSO.FireballVolume);
+        StartCoroutine(PlayFireballSFX());
 
         LeanPool.Spawn(fireBallProjectile, fireBallSpawnPosition.position, Quaternion.identity);
         
         yield return Helper.GetWaitForSeconds(_fireBallProp.GetSwingDuration());
     }
 
-    private void PlayAudio(AudioClip abilitySFX)
+    private IEnumerator PlayFireballSFX()
     {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+        var source = Helper.PlaySFX(_sriClipSO.Fireball, _sriClipSO.FireballVolume);
 
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
+        yield return Helper.GetWaitForSeconds(sfxDuration);
+
+        StartCoroutine(StartFadeCoroutine(source, fadeDuration, 0));
+    }
+
+    public IEnumerator StartFadeCoroutine(AudioSource audioSource, float duration, float targetVolume)
+    {
+        float currentTime = 0;
+        float start = audioSource.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
     }
 }
