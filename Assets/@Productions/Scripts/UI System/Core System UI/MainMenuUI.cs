@@ -40,7 +40,7 @@ namespace UISystem
         public void StartNewGame()
         {
             ClearGameProgressSave();
-            SaveSystem.LoadFromSlot(0);
+            // SaveSystem.LoadFromSlot(0);
 
             _levelManager.OpenLevel(newLevelId);
             _uiPage.Return();
@@ -66,11 +66,11 @@ namespace UISystem
 
         public void ContinueGame()
         {
-            SaveSystem.LoadFromSlot(1);
             _uiPage.Return();
             _gameHUD.gameObject.SetActive(true);
             _gameHUD.Open();
 
+            SaveSystem.LoadFromSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
             _musicController.PlayLevelBGM();
         }

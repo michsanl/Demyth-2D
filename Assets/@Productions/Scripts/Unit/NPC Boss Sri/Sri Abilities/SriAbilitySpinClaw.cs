@@ -12,6 +12,8 @@ public class SriAbilitySpinClaw : MonoBehaviour
     [SerializeField] private float frontSwingDuration;
     [SerializeField] private float swingDuration;
     [SerializeField] private float backSwingDuration;
+    [Space]
+    [SerializeField] private float _sfxDelay;
     
     [Title("Components")]
     [SerializeField] private AnimationPropertiesSO _spinClawProp;
@@ -24,9 +26,9 @@ public class SriAbilitySpinClaw : MonoBehaviour
     public IEnumerator SpinClaw(Animator animator)
     {
         animator.SetFloat("Spin_Claw_Multiplier", _spinClawProp.AnimationSpeedMultiplier);
-        
+
         animator.SetTrigger(SPIN_CLAW);
-        Helper.PlaySFX(_sriClipSO.SpinClaw, _sriClipSO.SpinClawVolume);
+        StartCoroutine(PlaySFX());
 
         yield return Helper.GetWaitForSeconds(_spinClawProp.GetFrontSwingDuration());
         spinClawCollider.SetActive(true);
@@ -35,12 +37,9 @@ public class SriAbilitySpinClaw : MonoBehaviour
         yield return Helper.GetWaitForSeconds(_spinClawProp.GetBackSwingDuration());
     }
 
-    private void PlayAudio(AudioClip abilitySFX)
+    private IEnumerator PlaySFX()
     {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
+        yield return Helper.GetWaitForSeconds(_sfxDelay);
+        Helper.PlaySFX(_sriClipSO.SpinClaw, _sriClipSO.SpinClawVolume);
     }
 }

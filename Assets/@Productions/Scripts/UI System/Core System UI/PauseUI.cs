@@ -13,6 +13,7 @@ using Demyth.Gameplay;
 using MoreMountains.Tools;
 using Lean.Pool;
 using Demyth.UI;
+using UnityEngine.SceneManagement;
 
 namespace UISystem
 {
@@ -41,23 +42,21 @@ namespace UISystem
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _musicController = SceneServiceProvider.GetService<MusicController>();
             _gameHUD = SceneServiceProvider.GetService<GameHUD>();
+        }
 
+        private void Start()
+        {
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
             _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
+            _uiPage.OnOpen.AddListener(UpdateAudioSettings);
+            
             _resumeButton.onClick.AddListener(ButtonResume);
             _mainMenuButton.onClick.AddListener(ButtonMainMenu);
 
             _masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
             _musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
             _sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
-        }
-
-        private void Start()
-        {
-            _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
-            _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
-            _sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
         }
 
         private void Pause_OnEnter(GameState state)
@@ -77,32 +76,48 @@ namespace UISystem
 
         private void ButtonMainMenu()
         {
-            _gameStateService?.SetState(GameState.MainMenu);
 
-            DialogueManager.StopAllConversations();
+            // _gameStateService?.SetState(GameState.MainMenu);
+
+            // DialogueManager.StopAllConversations();
             DOTween.CompleteAll();
             LeanPool.DespawnAll();
 
-            _levelManager.OpenLevel(_levelMenulId);
-            _gameHUD.Close();
-            _uiPage.OpenPage(_menuPageId);
+            // _levelManager.OpenLevel(_levelMenulId);
+            // _gameHUD.Close();
+            // _uiPage.OpenPage(_menuPageId);
 
-            _musicController.StopMusic();
+            // _musicController.StopMusic();
+            
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(0);
+
+        }
+
+        private void UpdateAudioSettings()
+        {
+            MMSoundManager.Current.LoadSettings();
+            _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
+            _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
+            _sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
         }
 
         private void SetMMSoundMasterVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeMaster(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
         private void SetMMSoundMusicVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeMusic(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
         private void SetMMSoundSfxVolume(float volume)
         {
             MMSoundManager.Current.SetVolumeSfx(volume);
+            MMSoundManager.Current.SaveSettings();
         }
 
         private void SetMasterVolume(float sliderValue)

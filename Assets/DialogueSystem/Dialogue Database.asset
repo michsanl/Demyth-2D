@@ -916,6 +916,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 30
+    fields:
+    - title: Name
+      value: Level_7_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 21
     fields:
     - title: Name
@@ -41005,7 +41019,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_7_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
