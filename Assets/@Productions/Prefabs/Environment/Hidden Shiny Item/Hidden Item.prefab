@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a1c98b4241b5f419d2d233475fa144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableType: 6
   dialogueSystemTrigger: {fileID: 1677763850040318392}
   mainGameObject: {fileID: 6429237052861685366}
 --- !u!61 &6429237052383729502
@@ -104,8 +103,7 @@ MonoBehaviour:
   setAnotherQuestEntryState: 0
   anotherQuestEntryNumber: 1
   anotherQuestEntryState: 0
-  luaCode: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
-    + 1
+  luaCode: 
   sequence: 
   sequenceSpeaker: {fileID: 0}
   sequenceListener: {fileID: 0}

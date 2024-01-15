@@ -673,7 +673,7 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Track
-      value: True
+      value: False
       type: 2
       typeString: CustomFieldType_Boolean
   locations: []
@@ -5342,7 +5342,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: 
+        value: 'Ara
+
+
+          Hmm.. apaan tu ya'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 8
@@ -5366,8 +5369,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 640.75543
-        y: 92.19388
+        x: 643.6125
+        y: 95.05101
         width: 160
         height: 30
     - id: 2
@@ -5422,7 +5425,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: 
+        value: '???
+
+
+          .... -in indonesian'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 8
@@ -5452,7 +5458,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 634.5288
+        x: 643.1002
         y: 147.885
         width: 160
         height: 30
@@ -8579,8 +8585,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 225.71423, y: 8.571426}
-    canvasZoom: 0.7000002
+    canvasScrollPosition: {x: 73.95503, y: 0}
+    canvasZoom: 0.58000034
   - id: 9
     fields:
     - title: Title
@@ -36833,8 +36839,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 435.77338
-        y: 58.790703
+        x: 442.91623
+        y: 23.076431
         width: 160
         height: 30
     - id: 1
@@ -36880,7 +36886,8 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["Paper_2"] = true
+      userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
+        + 1
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -36933,13 +36940,14 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["Paper_3"] = true
+      userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
+        + 1
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 232.85764
+        x: 237.14334
         y: 219.59303
         width: 160
         height: 30
@@ -36986,14 +36994,15 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["Paper_4"] = true
+      userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
+        + 1
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 440.00034
-        y: 216.73589
+        y: 215.30733
         width: 160
         height: 30
     - id: 4
@@ -37039,7 +37048,8 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["Paper_5"] = true
+      userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
+        + 1
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -37092,13 +37102,14 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
+        + 1
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 832.13324
+        x: 833.56177
         y: 209.53433
         width: 160
         height: 30
@@ -37153,7 +37164,7 @@ MonoBehaviour:
         destinationDialogueID: 1
         isConnector: 0
         priority: 2
-      conditionsString: Variable["Paper_2"] == false
+      conditionsString: Variable["HiddenItem.NumCollected"] == 0
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -37161,7 +37172,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 31.663841
-        y: 136.18794
+        y: 137.61653
         width: 160
         height: 30
     - id: 7
@@ -37215,7 +37226,7 @@ MonoBehaviour:
         destinationDialogueID: 2
         isConnector: 0
         priority: 2
-      conditionsString: Variable["Paper_2"] == true
+      conditionsString: Variable["HiddenItem.NumCollected"] == 1
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -37277,14 +37288,14 @@ MonoBehaviour:
         destinationDialogueID: 3
         isConnector: 0
         priority: 2
-      conditionsString: Variable["Paper_3"] == true
+      conditionsString: Variable["HiddenItem.NumCollected"] == 2
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 439.88293
+        x: 441.31152
         y: 133.44824
         width: 160
         height: 30
@@ -37339,14 +37350,14 @@ MonoBehaviour:
         destinationDialogueID: 4
         isConnector: 0
         priority: 2
-      conditionsString: Variable["Paper_4"] == true
+      conditionsString: Variable["HiddenItem.NumCollected"] == 3
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 639.88293
+        x: 641.3115
         y: 136.18794
         width: 160
         height: 30
@@ -37401,7 +37412,7 @@ MonoBehaviour:
         destinationDialogueID: 5
         isConnector: 0
         priority: 2
-      conditionsString: Variable["Paper_5"] == true
+      conditionsString: Variable["HiddenItem.NumCollected"] == 4
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -41030,8 +41041,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 313.47836, y: 626.6842}
-    canvasZoom: 0.85000026
+    canvasScrollPosition: {x: 235.1976, y: 591.5729}
+    canvasZoom: 0.7300004
   - id: 25
     fields:
     - title: Title

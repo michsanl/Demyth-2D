@@ -14,6 +14,7 @@ using MoreMountains.Tools;
 using Lean.Pool;
 using Demyth.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace UISystem
 {
@@ -22,12 +23,16 @@ namespace UISystem
         [SerializeField] private EnumId _gameViewId;
         [SerializeField] private EnumId _levelMenulId;
         [SerializeField] private EnumId _menuPageId;
+        [Space]
         [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _setLanguageButton;
         [SerializeField] private Button _mainMenuButton;
+        [Space]
         [SerializeField] private Slider _masterVolumeSlider;
         [SerializeField] private Slider _musicVolumeSlider;
         [SerializeField] private Slider _sfxVolumeSlider;
-        [SerializeField] private AudioMixer audioMixer;
+        [Space]
+        [SerializeField] private TextMeshProUGUI _selectedLanguageText;
 
         private UIPage _uiPage;
         private GameStateService _gameStateService;
@@ -49,14 +54,27 @@ namespace UISystem
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
             _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
-            _uiPage.OnOpen.AddListener(UpdateAudioSettings);
+            _uiPage.OnOpen.AddListener(UpdateSettings);
             
             _resumeButton.onClick.AddListener(ButtonResume);
+            _setLanguageButton.onClick.AddListener(ToggleLanguage);
             _mainMenuButton.onClick.AddListener(ButtonMainMenu);
 
             _masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
             _musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
             _sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
+        }
+
+        private void ToggleLanguage()
+        {
+            if (Localization.isDefaultLanguage)
+            {
+                SetLanguageToIndonesia();
+            }
+            else
+            {
+                SetLanguageToDefault();
+            }
         }
 
         private void Pause_OnEnter(GameState state)
@@ -94,9 +112,19 @@ namespace UISystem
 
         }
 
-        private void UpdateAudioSettings()
+        private void UpdateSettings()
         {
+            if (PlayerPrefs.GetString("SelectedLanguage") == "id")
+            {
+                SetLanguageToIndonesia();
+            }
+            else
+            {
+                SetLanguageToDefault();
+            }
+
             MMSoundManager.Current.LoadSettings();
+
             _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
             _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
             _sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
@@ -120,29 +148,24 @@ namespace UISystem
             MMSoundManager.Current.SaveSettings();
         }
 
-        private void SetMasterVolume(float sliderValue)
+        private void SetLanguageToDefault()
         {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
+            DialogueManager.SetLanguage("");
+            PlayerPrefs.SetString("SelectedLanguage", "default");
 
-            audioMixer.SetFloat("MasterVolume", volumeValue);
+            _selectedLanguageText.text = "English";
+
+            Debug.Log("set language to default");
         }
 
-        private void SetMusicVolume(float sliderValue)
+        private void SetLanguageToIndonesia()
         {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
+            DialogueManager.SetLanguage("id");
+            PlayerPrefs.SetString("SelectedLanguage", "id");
 
-            audioMixer.SetFloat("MusicVolume", volumeValue);
+            _selectedLanguageText.text = "Indonesia";
+
+            Debug.Log("set language to id");
         }
-
-        private void SetSFXVolume(float sliderValue)
-        {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
-
-            audioMixer.SetFloat("SFXVolume", volumeValue);
-        }
-
     }
 }
