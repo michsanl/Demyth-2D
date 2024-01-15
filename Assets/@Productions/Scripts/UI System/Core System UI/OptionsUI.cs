@@ -6,19 +6,21 @@ using UnityEngine.UI;
 using Core;
 using Core.UI;
 using MoreMountains.Tools;
+using PixelCrushers.DialogueSystem;
+using TMPro;
+using PixelCrushers;
 
 namespace UISystem
 {
     public class OptionsUI : MonoBehaviour
     {
-        [SerializeField] 
-        private Slider masterVolumeSlider;
-        [SerializeField] 
-        private Slider musicVolumeSlider;
-        [SerializeField] 
-        private Slider sfxVolumeSlider;
-        [SerializeField] 
-        private AudioMixer audioMixer;
+
+        [SerializeField] private Button _changeLanguageButton;
+        [SerializeField] private TextMeshProUGUI _selectedLanguageText;
+        [Space]
+        [SerializeField] private Slider _masterVolumeSlider;
+        [SerializeField] private Slider _musicVolumeSlider;
+        [SerializeField] private Slider _sfxVolumeSlider;
         
         private UIPage _uiPage;
 
@@ -29,18 +31,61 @@ namespace UISystem
 
         private void Start()
         {
-            _uiPage.OnOpen.AddListener(UpdateAudioSettings);
-            masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
-            musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
-            sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
+            _uiPage.OnOpen.AddListener(UpdateSettings);
+            _changeLanguageButton.onClick.AddListener(ToggleLanguage);
+            _masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
+            _musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
+            _sfxVolumeSlider.onValueChanged.AddListener(SetMMSoundSfxVolume);
         }
 
-        private void UpdateAudioSettings()
+        private void ToggleLanguage()
         {
+            if (Localization.isDefaultLanguage)
+            {
+                SetLanguageToIndonesia();
+            }
+            else
+            {
+                SetLanguageToDefault();
+            }
+        }
+
+        private void UpdateSettings()
+        {
+            if (PlayerPrefs.GetString("SelectedLanguage") == "id")
+            {
+                SetLanguageToIndonesia();
+            }
+            else
+            {
+                SetLanguageToDefault();
+            }
+
             MMSoundManager.Current.LoadSettings();
-            masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
-            musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
-            sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
+
+            _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
+            _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
+            _sfxVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Sfx, false);
+        }
+
+        private void SetLanguageToDefault()
+        {
+            DialogueManager.SetLanguage("");
+            PlayerPrefs.SetString("SelectedLanguage", "default");
+
+            _selectedLanguageText.text = "English";
+
+            Debug.Log("set language to default");
+        }
+
+        private void SetLanguageToIndonesia()
+        {
+            DialogueManager.SetLanguage("id");
+            PlayerPrefs.SetString("SelectedLanguage", "id");
+
+            _selectedLanguageText.text = "Indonesia";
+
+            Debug.Log("set language to id");
         }
 
         private void SetMMSoundMasterVolume(float volume)
@@ -59,32 +104,6 @@ namespace UISystem
         {
             MMSoundManager.Current.SetVolumeSfx(volume);
             MMSoundManager.Current.SaveSettings();
-        }
-
-
-
-        private void SetMasterVolume(float sliderValue)
-        {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
-
-            audioMixer.SetFloat("MasterVolume", volumeValue);
-        }
-
-        private void SetMusicVolume(float sliderValue)
-        {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
-
-            audioMixer.SetFloat("MusicVolume", volumeValue);
-        }
-
-        private void SetSFXVolume(float sliderValue)
-        {
-            float minVolumeValue = -80f;
-            float volumeValue = minVolumeValue + sliderValue;
-
-            audioMixer.SetFloat("SFXVolume", volumeValue);
         }
     }
 }
