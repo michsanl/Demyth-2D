@@ -450,32 +450,10 @@ MonoBehaviour:
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
-  - id: 17
-    fields:
-    - title: Name
-      value: Papers
-      type: 0
-      typeString: CustomFieldType_Text
-    - title: Pictures
-      value: '[]'
-      type: 3
-      typeString: CustomFieldType_Files
-    - title: Description
-      value: 
-      type: 0
-      typeString: CustomFieldType_Text
-    - title: IsPlayer
-      value: False
-      type: 2
-      typeString: CustomFieldType_Boolean
-    portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
-    alternatePortraits: []
-    spritePortraits: []
   - id: 16
     fields:
     - title: Name
-      value: Test NPC
+      value: Paper
       type: 0
       typeString: CustomFieldType_Text
     - title: Pictures
@@ -491,9 +469,13 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    spritePortrait: {fileID: 21300000, guid: 6320ac206211c664bb332b7f1a050342, type: 3}
     alternatePortraits: []
-    spritePortraits: []
+    spritePortraits:
+    - {fileID: 21300000, guid: 6353099e9729c9e4a8f21ea97b56c7a9, type: 3}
+    - {fileID: 21300000, guid: a8324f7337a7c6b4699d5db11155aaca, type: 3}
+    - {fileID: 21300000, guid: d1b8e0ab7ba72bf41b1b227d367a1700, type: 3}
+    - {fileID: 21300000, guid: 92b6a4fec08af1041bc7a61a0edb7811, type: 3}
   - id: 18
     fields:
     - title: Name
@@ -934,6 +916,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 30
+    fields:
+    - title: Name
+      value: Level_7_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 21
     fields:
     - title: Name
@@ -8583,8 +8579,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 182.39801, y: 1386.675}
-    canvasZoom: 0.7300002
+    canvasScrollPosition: {x: 225.71423, y: 8.571426}
+    canvasZoom: 0.7000002
   - id: 9
     fields:
     - title: Title
@@ -8742,7 +8738,7 @@ MonoBehaviour:
         value: '[pic=2]Ara
 
 
-          helooo excuse me, Where is this?'
+          Helooo excuse me, Where is this?'
         type: 0
         typeString: CustomFieldType_Text
       - title: Parenthetical
@@ -8765,7 +8761,7 @@ MonoBehaviour:
           SetActive
           (Bg 2, true);
 
-'
+          SetActive (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -9439,7 +9435,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 165.91782, y: 214.44391}
+    canvasScrollPosition: {x: 121.14169, y: 0}
     canvasZoom: 0.67000055
   - id: 10
     fields:
@@ -15826,8 +15822,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 333.43094, y: 1013.4429}
-    canvasZoom: 0.87999964
+    canvasScrollPosition: {x: 146.14738, y: 6.4903793}
+    canvasZoom: 0.63999987
   - id: 11
     fields:
     - title: Title
@@ -16005,7 +16001,8 @@ MonoBehaviour:
 
           SetActive (Bg 3, true);
 
-'
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -16643,8 +16640,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 67.275665, y: 102.15933}
-    canvasZoom: 0.43000022
+    canvasScrollPosition: {x: 175.38776, y: 64.99282}
+    canvasZoom: 0.6400001
   - id: 12
     fields:
     - title: Title
@@ -20422,7 +20419,10 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive (Bg 3, false);
 
-          SetActive (Bg 4, true);'
+          SetActive (Bg 4, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: 
       - title: id
@@ -23642,7 +23642,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 379.2349, y: 0}
+    canvasScrollPosition: {x: 151.96213, y: 0}
     canvasZoom: 0.54999995
   - id: 14
     fields:
@@ -25711,7 +25711,10 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive (Bg 4, false);
 
-          SetActive (Bg 5, true);'
+          SetActive (Bg 5, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: 
       - title: id
@@ -26788,7 +26791,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 197.75388, y: 427.89236}
+    canvasScrollPosition: {x: 286.17233, y: 0}
     canvasZoom: 0.803
   - id: 16
     fields:
@@ -28141,7 +28144,10 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive (Bg 5, false);
 
-          SetActive (Bg 6, true);'
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: 
       - title: id
@@ -29243,8 +29249,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 295.5477, y: 66.707344}
-    canvasZoom: 0.66999966
+    canvasScrollPosition: {x: 32.653076, y: 0}
+    canvasZoom: 0.4899998
   - id: 19
     fields:
     - title: Title
@@ -31414,7 +31420,10 @@ MonoBehaviour:
       - title: Sequence
         value: 'SetActive (Bg 6, false);
 
-          SetActive (Bg 7, true);'
+          SetActive (Bg 7, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -35480,7 +35489,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 688.428, y: 804.5237}
+    canvasScrollPosition: {x: 254.21713, y: 0}
     canvasZoom: 0.7599999
   - id: 21
     fields:
@@ -36697,8 +36706,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 75.0522, y: 17.35189}
-    canvasZoom: 0.82
+    canvasScrollPosition: {x: 0, y: 583.60626}
+    canvasZoom: 0.6100002
   - id: 22
     fields:
     - title: Title
@@ -36756,7 +36765,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 16
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -36768,11 +36777,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 
+        value: '[pic=18]'
         type: 0
         typeString: 
       - title: Sequence
-        value: None()
+        value: SetPanel (Paper, 4);
         type: 0
         typeString: 
       - title: id
@@ -36790,31 +36799,31 @@ MonoBehaviour:
       - originConversationID: 22
         originDialogueID: 0
         destinationConversationID: 22
-        destinationDialogueID: 1
+        destinationDialogueID: 6
         isConnector: 0
         priority: 2
       - originConversationID: 22
         originDialogueID: 0
         destinationConversationID: 22
-        destinationDialogueID: 2
+        destinationDialogueID: 7
         isConnector: 0
         priority: 2
       - originConversationID: 22
         originDialogueID: 0
         destinationConversationID: 22
-        destinationDialogueID: 3
+        destinationDialogueID: 8
         isConnector: 0
         priority: 2
       - originConversationID: 22
         originDialogueID: 0
         destinationConversationID: 22
-        destinationDialogueID: 4
+        destinationDialogueID: 9
         isConnector: 0
         priority: 2
       - originConversationID: 22
         originDialogueID: 0
         destinationConversationID: 22
-        destinationDialogueID: 5
+        destinationDialogueID: 10
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -36824,8 +36833,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 443.99255
-        y: 24.54412
+        x: 435.77338
+        y: 58.790703
         width: 160
         height: 30
     - id: 1
@@ -36851,7 +36860,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Paper 1
+        value: The first paper
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -36870,15 +36879,15 @@ MonoBehaviour:
       falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks: []
-      conditionsString: Variable["Paper_2"] == false
+      conditionsString: 
       userScript: Variable["Paper_2"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 37.00473
-        y: 140.2318
+        x: 30.155396
+        y: 222.42355
         width: 160
         height: 30
     - id: 2
@@ -36904,7 +36913,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Paper 2
+        value: The second paper
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -36923,15 +36932,15 @@ MonoBehaviour:
       falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks: []
-      conditionsString: Variable["Paper_2"] == true
+      conditionsString: 
       userScript: Variable["Paper_3"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 239.70697
-        y: 137.40128
+        x: 232.85764
+        y: 219.59303
         width: 160
         height: 30
     - id: 3
@@ -36957,7 +36966,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Paper 3
+        value: The third paper
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -36976,15 +36985,15 @@ MonoBehaviour:
       falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks: []
-      conditionsString: Variable["Paper_3"] == true
+      conditionsString: 
       userScript: Variable["Paper_4"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 446.84967
-        y: 134.54413
+        x: 440.00034
+        y: 216.73589
         width: 160
         height: 30
     - id: 4
@@ -37010,7 +37019,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Paper 4
+        value: The fourth paper
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -37029,15 +37038,15 @@ MonoBehaviour:
       falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks: []
-      conditionsString: Variable["Paper_4"] == true
+      conditionsString: 
       userScript: Variable["Paper_5"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 645.7146
-        y: 128.82983
+        x: 638.86523
+        y: 209.593
         width: 160
         height: 30
     - id: 5
@@ -37063,7 +37072,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Paper 5
+        value: The fifth paper
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -37082,6 +37091,316 @@ MonoBehaviour:
       falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 832.13324
+        y: 209.53433
+        width: 160
+        height: 30
+    - id: 6
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 16
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]
+
+
+          .'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: Continue()@0.1
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 22
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 6
+        destinationConversationID: 22
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["Paper_2"] == false
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 31.663841
+        y: 136.18794
+        width: 160
+        height: 30
+    - id: 7
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 16
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]
+
+
+          .'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: Continue()@0.1
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 22
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 7
+        destinationConversationID: 22
+        destinationDialogueID: 2
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["Paper_2"] == true
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 237.14325
+        y: 136.18796
+        width: 160
+        height: 30
+    - id: 8
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 16
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]
+
+
+          .'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: Continue()@0.1
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 22
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 8
+        destinationConversationID: 22
+        destinationDialogueID: 3
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["Paper_3"] == true
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 439.88293
+        y: 133.44824
+        width: 160
+        height: 30
+    - id: 9
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 16
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]
+
+
+          .'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: Continue()@0.1
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 22
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 9
+        destinationConversationID: 22
+        destinationDialogueID: 4
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["Paper_4"] == true
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 639.88293
+        y: 136.18794
+        width: 160
+        height: 30
+    - id: 10
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 16
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]
+
+
+          .'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: Continue()@0.1
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 22
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 10
+        destinationConversationID: 22
+        destinationDialogueID: 5
+        isConnector: 0
+        priority: 2
       conditionsString: Variable["Paper_5"] == true
       userScript: 
       onExecute:
@@ -37089,13 +37408,13 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 833.2684
-        y: 128.77113
+        x: 831.7224
+        y: 137.55782
         width: 160
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.73000014
+    canvasZoom: 0.70000017
   - id: 23
     fields:
     - title: Title
@@ -40687,6 +41006,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: d1d5e21f-cdf2-4f30-8b91-2637687d01ce
+        type: 0
+        typeString: 
       conversationID: 24
       isRoot: 0
       isGroup: 0
@@ -40696,7 +41019,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_7_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -40707,8 +41030,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 175.07645, y: 0}
-    canvasZoom: 0.9100002
+    canvasScrollPosition: {x: 313.47836, y: 626.6842}
+    canvasZoom: 0.85000026
   - id: 25
     fields:
     - title: Title
@@ -41432,8 +41755,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 169.60294, y: 0}
-    canvasZoom: 0.7000003
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.52000046
   - id: 26
     fields:
     - title: Title
@@ -42283,7 +42606,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 40.036034, y: 203.86972}
+    canvasScrollPosition: {x: 81.80819, y: 0}
     canvasZoom: 0.7900002
   - id: 27
     fields:
