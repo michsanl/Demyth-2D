@@ -122,8 +122,6 @@ namespace UISystem
             {
                 _selectedLanguageText.text = "Indonesia";
             }
-            
-            MMSoundManager.Current.LoadSettings();
 
             _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
             _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
