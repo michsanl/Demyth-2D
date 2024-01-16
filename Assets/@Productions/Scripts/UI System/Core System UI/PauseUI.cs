@@ -54,7 +54,7 @@ namespace UISystem
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
             _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
-            _uiPage.OnOpen.AddListener(UpdateSettings);
+            _uiPage.OnOpen.AddListener(UpdateSettingsValue);
             
             _resumeButton.onClick.AddListener(ButtonResume);
             _setLanguageButton.onClick.AddListener(ToggleLanguage);
@@ -112,18 +112,16 @@ namespace UISystem
 
         }
 
-        private void UpdateSettings()
+        private void UpdateSettingsValue()
         {
-            if (PlayerPrefs.GetString("SelectedLanguage") == "id")
+            if (Localization.isDefaultLanguage)
             {
-                SetLanguageToIndonesia();
+                _selectedLanguageText.text = "English";
             }
             else
             {
-                SetLanguageToDefault();
+                _selectedLanguageText.text = "Indonesia";
             }
-
-            MMSoundManager.Current.LoadSettings();
 
             _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
             _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
