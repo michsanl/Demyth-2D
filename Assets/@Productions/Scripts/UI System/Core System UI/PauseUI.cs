@@ -114,16 +114,14 @@ namespace UISystem
 
         private void UpdateSettings()
         {
-            if (PlayerPrefs.GetString("SelectedLanguage") == "id")
+            if (Localization.isDefaultLanguage)
             {
-                SetLanguageToIndonesia();
+                _selectedLanguageText.text = "English";
             }
             else
             {
-                SetLanguageToDefault();
+                _selectedLanguageText.text = "Indonesia";
             }
-
-            MMSoundManager.Current.LoadSettings();
 
             _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
             _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
