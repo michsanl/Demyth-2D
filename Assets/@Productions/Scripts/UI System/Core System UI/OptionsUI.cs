@@ -27,7 +27,10 @@ namespace UISystem
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
+        }
 
+        private void Start()
+        {
             MMSoundManager.Current.LoadSettings();
             
             if (PlayerPrefs.GetString("SelectedLanguage") == "id")
@@ -38,11 +41,8 @@ namespace UISystem
             {
                 SetLanguageToDefault();
             }
-        }
 
-        private void Start()
-        {
-            _uiPage.OnOpen.AddListener(UpdateSettingsDisplay);
+            _uiPage.OnOpen.AddListener(UpdateSettingsValue);
             _changeLanguageButton.onClick.AddListener(ToggleLanguage);
             _masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
             _musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);
@@ -61,7 +61,7 @@ namespace UISystem
             }
         }
 
-        private void UpdateSettingsDisplay()
+        private void UpdateSettingsValue()
         {
             if (Localization.isDefaultLanguage)
             {
@@ -71,6 +71,8 @@ namespace UISystem
             {
                 _selectedLanguageText.text = "Indonesia";
             }
+
+            MMSoundManager.Current.LoadSettings();
 
             _masterVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Master, false);
             _musicVolumeSlider.value = MMSoundManager.Current.GetTrackVolume(MMSoundManager.MMSoundManagerTracks.Music, false);
