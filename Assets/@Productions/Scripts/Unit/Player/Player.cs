@@ -336,8 +336,8 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         if (!_isHealthPotionUnlocked)
             return;
-        // if (_health.IsHealthFull())
-        //     return;
+        if (_health.IsHealthFull())
+            return;
         if (_healthPotion.CurrentPotionAmount <= 0) 
             return;
         if (_healthPotion.IsHealthPotionOnCooldown)

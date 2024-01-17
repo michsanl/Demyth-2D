@@ -25,13 +25,16 @@ public class PetraPostCombatCutscene : MonoBehaviour
     private GameInputController _gameInputController;
     private MusicController _musicController;
     private Health _petraHealth;
+    private Player _player;
 
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _musicController = SceneServiceProvider.GetService<MusicController>();
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _petraHealth = _bossPetraGameObject.GetComponent<Health>();
+        
 
         _petraHealth.OnDeath += PetraHealth_OnDeath;
     }
@@ -74,6 +77,7 @@ public class PetraPostCombatCutscene : MonoBehaviour
         // disable blocking wall
         // save
         _gameInputController.EnablePlayerInput();
+        _player.ResetUnitCondition();
 
         _bossPetraGameObject.SetActive(false);
         _npcPetraGameObject.SetActive(true);

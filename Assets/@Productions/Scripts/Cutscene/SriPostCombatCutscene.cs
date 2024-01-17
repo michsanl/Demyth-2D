@@ -17,11 +17,13 @@ public class SriPostCombatCutscene : MonoBehaviour
     
     private GameStateService _gameStateService;
     private MusicController _musicController;
+    private Player _player;
 
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _musicController = SceneServiceProvider.GetService<MusicController>();
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
     }
 
     private void Start()
@@ -53,6 +55,7 @@ public class SriPostCombatCutscene : MonoBehaviour
 
         LeanPool.DespawnAll();
         _gameStateService.SetState(GameState.Gameplay);
+        _player.ResetUnitCondition();
 
         foreach (var item in _gameObjectsToActivate)
         {
