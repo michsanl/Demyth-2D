@@ -13,7 +13,8 @@ namespace UISystem
     public class MainMenuUI : MonoBehaviour
     {
         [SerializeField] private GameSettingsSO _gameSettingsSO;
-        [SerializeField] private GameObject _selectLevelButtonParent;
+        [SerializeField] private GameObject _mainButtons;
+        [SerializeField] private GameObject _selectLevelButtons;
         [Header("Level")]
         [SerializeField] private EnumId newLevelId;
 
@@ -34,7 +35,7 @@ namespace UISystem
 
         private void Start()
         {
-            SetSelectLevelButtonVisibility();
+            _selectLevelButtons.SetActive(_gameSettingsSO.ShowLevelSelect);
         }
 
         public void StartNewGame()
@@ -46,6 +47,17 @@ namespace UISystem
             _gameStateService?.SetState(GameState.Gameplay);
 
             DialogueManager.StartConversation("Intro");
+            _musicController.PlayLevelBGM();
+        }
+
+        public void ContinueGame()
+        {
+            _uiPage.Return();
+            _gameHUD.gameObject.SetActive(true);
+            _gameHUD.Open();
+
+            SaveSystem.LoadFromSlot(1);
+            _gameStateService?.SetState(GameState.Gameplay);
             _musicController.PlayLevelBGM();
         }
 
@@ -62,17 +74,6 @@ namespace UISystem
             _musicController.PlayLevelBGM();
         }
 
-        public void ContinueGame()
-        {
-            _uiPage.Return();
-            _gameHUD.gameObject.SetActive(true);
-            _gameHUD.Open();
-
-            SaveSystem.LoadFromSlot(1);
-            _gameStateService?.SetState(GameState.Gameplay);
-            _musicController.PlayLevelBGM();
-        }
-
         public void QuitGame()
         {
             Application.Quit();
@@ -81,11 +82,6 @@ namespace UISystem
         private static void ClearGameProgressSave()
         {
             SaveSystem.DeleteSavedGameInSlot(1);
-        }
-
-        private void SetSelectLevelButtonVisibility()
-        {
-            _selectLevelButtonParent.SetActive(_gameSettingsSO.ShowLevelSelect);
         }
     }
 }

@@ -8,8 +8,7 @@ public class GameInputController : SceneService
 {
     public GameInput GameInput => gameInput;
 
-    [SerializeField] 
-    private GameInput gameInput;
+    [SerializeField] private GameInput gameInput;
 
     private GameStateService _gameStateService;
 
