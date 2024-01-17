@@ -87,7 +87,7 @@ namespace Demyth.UI
 
         private void DialogueManager_OnConversationEnded(Transform t)
         {
-            if (_gameStateService.CurrentState == GameState.MainMenu) return;
+            if (_gameStateService.CurrentState == GameState.GameOver) return;
 
             gameObject.SetActive(true);
             Open();
@@ -97,6 +97,7 @@ namespace Demyth.UI
         {
             if (_isOpen) return;
             _isOpen = true;
+            DOTween.CompleteAll();
 
             _pageAnimator?.PlayAnimation(() =>
             {
@@ -108,6 +109,7 @@ namespace Demyth.UI
         {
             if (!_isOpen) return;
             _isOpen = false;
+            DOTween.CompleteAll();
 
             _pageAnimator?.CloseAnimation(() =>
             {

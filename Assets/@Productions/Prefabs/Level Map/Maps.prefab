@@ -230,6 +230,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1083057257689935216, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1083057257689935217, guid: 4579c4be75cfcad4390bf8b54a3f25fe, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -755,6 +759,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2576868118399193086, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
+      propertyPath: maxHealth
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 3219225178356136327, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: hitToActivate
       value: 1
@@ -765,11 +773,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6678796350286695659, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: _phaseTwoHPThreshold
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6678796350286695659, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: _phaseThreeHPThreshold
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7073838848864071131, guid: cc1641484eaa9e8489fd3d1921c4eaa6, type: 3}
       propertyPath: hitToActivate
@@ -1053,10 +1061,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8246611757313473806}
     - target: {fileID: 98702327654955392, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
-      propertyPath: m_gameObjectsToWatch.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 98702327654955392, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.data[0]
       value: 
       objectReference: {fileID: 6407860063836503879}
@@ -1068,6 +1072,10 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 4364417740984604382}
+    - target: {fileID: 1678469443984563949, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectToWatch
+      value: 
+      objectReference: {fileID: 3211148314312249474}
     - target: {fileID: 4758935700749958546, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.data[0]
       value: 
@@ -1096,6 +1104,22 @@ PrefabInstance:
       propertyPath: m_gameObjectsToWatch.Array.data[3]
       value: 
       objectReference: {fileID: 3215049836089518578}
+    - target: {fileID: 5006230061595976986, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectsToWatch.Array.data[0]
+      value: 
+      objectReference: {fileID: 635967673988686779}
+    - target: {fileID: 5006230061595976986, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectsToWatch.Array.data[1]
+      value: 
+      objectReference: {fileID: 7939950503536596689}
+    - target: {fileID: 5006230061595976986, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectsToWatch.Array.data[2]
+      value: 
+      objectReference: {fileID: 7592961193800758737}
+    - target: {fileID: 6420472967049120504, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
+      propertyPath: m_gameObjectsToWatch.Array.data[0]
+      value: 
+      objectReference: {fileID: 3922106406917372855}
     - target: {fileID: 6873141825197787408, guid: 902cd8838ea70af4b9df79a2b2f48d0e, type: 3}
       propertyPath: m_gameObjectsToWatch.Array.data[0]
       value: 

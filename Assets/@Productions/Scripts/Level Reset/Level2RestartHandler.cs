@@ -6,15 +6,20 @@ using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
+using Demyth.UI;
 
 public class Level2RestartHandler : MonoBehaviour
 {
     
     private GameStateService _gameStateService;
+    private GameInputController _gameInputController;
+    private GameHUD _gameHUD;
     
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
+        _gameHUD = SceneServiceProvider.GetService<GameHUD>();
     }
 
     private void OnEnable()
@@ -39,5 +44,7 @@ public class Level2RestartHandler : MonoBehaviour
     {
         DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(1);
+        _gameInputController.EnablePlayerInput();
+        _gameHUD.Open();
     }
 }
