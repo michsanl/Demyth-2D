@@ -8,8 +8,7 @@ public class GameInputController : SceneService
 {
     public GameInput GameInput => gameInput;
 
-    [SerializeField] 
-    private GameInput gameInput;
+    [SerializeField] private GameInput gameInput;
 
     private GameStateService _gameStateService;
 
@@ -68,6 +67,8 @@ public class GameInputController : SceneService
 
     private void DialogueManager_OnConversationEnded(Transform t)
     {
+        if (_gameStateService.CurrentState == GameState.GameOver) return;
+
         gameInput.EnablePlayerInput();
     }
 }
