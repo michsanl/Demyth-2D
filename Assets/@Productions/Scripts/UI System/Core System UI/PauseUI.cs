@@ -94,6 +94,7 @@ namespace UISystem
 
         private void ButtonMainMenu()
         {
+            // _musicController.StopMusic();
 
             // _gameStateService?.SetState(GameState.MainMenu);
 
@@ -105,7 +106,6 @@ namespace UISystem
             // _gameHUD.Close();
             // _uiPage.OpenPage(_menuPageId);
 
-            // _musicController.StopMusic();
             
             Time.timeScale = 1f;
             SceneManager.LoadScene(0);

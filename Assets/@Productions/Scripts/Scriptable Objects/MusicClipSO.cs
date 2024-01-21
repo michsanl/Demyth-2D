@@ -7,6 +7,7 @@ public class MusicClipSO : ScriptableObject
 {
     
     public AudioClip LevelBGM;
+    public AudioClip MainMenuBGM;
     public AudioClip PetraFightIntroBGM;
     public AudioClip PetraFightLoopBGM;
     public AudioClip SriCutsceneBGM;
@@ -16,6 +17,9 @@ public class MusicClipSO : ScriptableObject
     
     [Range(0, 1)]
     public float LevelBGMVolume = 1f;
+    
+    [Range(0, 1)]
+    public float MainMenuBGMVolume = 1f;
     [Range(0, 1)]
     public float PetraFightIntroBGMVolume = 1f;
     [Range(0, 1)]
