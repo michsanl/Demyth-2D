@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 160252904}
     m_Modifications:
+    - target: {fileID: 326126776908426954, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326126776908426954, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326126776908426954, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 326126776908426954, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1167430751969365946, guid: da492a5609042544abf4b4cd140aecab, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -147,6 +163,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1605385532828906559, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687561483635852518, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687561483635852518, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687561483635852518, guid: da492a5609042544abf4b4cd140aecab, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687561483635852518, guid: da492a5609042544abf4b4cd140aecab, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -992,10 +1024,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1736539381989679942, guid: cdf7c1ebe529d7948a5c98c5c9d04f8a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3990401209433934040, guid: cdf7c1ebe529d7948a5c98c5c9d04f8a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1004,19 +1032,7 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6116968843170918752, guid: cdf7c1ebe529d7948a5c98c5c9d04f8a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145511220733514696, guid: cdf7c1ebe529d7948a5c98c5c9d04f8a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6923499617315976522, guid: cdf7c1ebe529d7948a5c98c5c9d04f8a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048751065611290866, guid: cdf7c1ebe529d7948a5c98c5c9d04f8a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -2133,6 +2149,102 @@ MonoBehaviour:
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SaveGameplayProgress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: d4bac8c5-511a-4631-852e-da054ebbb32a
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: PlayPaperDrawSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 6541ff1e-c6e1-4801-b826-df9e694ca117
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: PlayPaperDrawSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: c30828a0-0bf6-44fa-b3a5-b4b66fb0db6b
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: PlayPaperDrawSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 17b54a39-2b30-4604-ae01-ccb7ab2a6810
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: PlayLevelBGM
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: eaf53a7d-9b58-4e21-a0c4-391ec2c4067d
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: PlayLevelBGM
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 0ce92ff0-455e-42cc-894b-5b27a0c7c3e6
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 387687087}
+          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+          m_MethodName: StopMusic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3429,10 +3541,6 @@ PrefabInstance:
     - target: {fileID: 8551962754239887420, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
       propertyPath: m_Name
       value: Credit UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551962754239887420, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}

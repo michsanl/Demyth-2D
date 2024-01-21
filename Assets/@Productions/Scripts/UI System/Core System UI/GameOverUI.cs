@@ -12,6 +12,7 @@ namespace UISystem
 {
     public class GameOverUI : MonoBehaviour
     {
+        [SerializeField] private UIClipSO _uiClipSO;
         [SerializeField] private Button _retryButton;
         [SerializeField] private Animator _animator;
         
@@ -79,6 +80,7 @@ namespace UISystem
         private IEnumerator OpenPageCoroutine()
         {
             _animator.SetTrigger("OpenPage");
+            Helper.PlaySFX(_uiClipSO.GameOver, _uiClipSO.GameOverVolume);
 
             yield return Helper.GetWaitForSeconds(.75f);
 

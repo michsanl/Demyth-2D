@@ -1456,6 +1456,7 @@ GameObject:
   - component: {fileID: 8384304967140114721}
   - component: {fileID: 8384304967140114722}
   - component: {fileID: 8384304967140114733}
+  - component: {fileID: 4423052390226271150}
   m_Layer: 5
   m_Name: Continue Button
   m_TagString: Untagged
@@ -1579,6 +1580,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4423052390226271150}
+        m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+        m_MethodName: PlayDialogContinueButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8384304967140114721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,6 +1641,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &4423052390226271150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384304967140114724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393210c7e06b66b4f9025ba10717e9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiClipSO: {fileID: 11400000, guid: 4555970013c9ba94898852ca822d423e, type: 2}
 --- !u!1 &8384304967220672544
 GameObject:
   m_ObjectHideFlags: 0
@@ -3650,6 +3676,7 @@ GameObject:
   - component: {fileID: 8384304967712721590}
   - component: {fileID: 8384304967712721591}
   - component: {fileID: 8384304967712721576}
+  - component: {fileID: 7979383995343002503}
   - component: {fileID: 8384304967712721588}
   - component: {fileID: 8384304967712721587}
   - component: {fileID: 8384304967712721586}
@@ -3790,6 +3817,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7979383995343002503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384304967712721578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393210c7e06b66b4f9025ba10717e9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiClipSO: {fileID: 11400000, guid: 4555970013c9ba94898852ca822d423e, type: 2}
 --- !u!114 &8384304967712721588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3861,6 +3901,38 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
           m_MethodName: OnDeselect
           m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7979383995343002503}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonHighlightSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7979383995343002503}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonClickSound
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5508,7 +5580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a44b96aa95563e4dbd81da44328a697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSelected: {fileID: 0}
+  firstSelected: {fileID: 8384304967712721578}
   focusCheckFrequency: 0.2
   refreshSelectablesFrequency: 0.5
   selectPreviousOnDisable: 1

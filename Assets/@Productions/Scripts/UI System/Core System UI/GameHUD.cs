@@ -22,11 +22,16 @@ namespace Demyth.UI
         [Title("Components")]
         [SerializeField] private RectTransform healthBarTransform;
         [SerializeField] private RectTransform shieldBarTransform;
+        [Space]
         [SerializeField] private Image healthPotionEmptyImage;
         [SerializeField] private Image healthPotionFullImage;
+        [Space]
         [SerializeField] private Image lanternOnImage;
         [SerializeField] private Image lanternOffImage;
+        [Space]
         [SerializeField] private Image shieldImage;
+        [Space]
+        [SerializeField] private UIClipSO _uiClipSO;
 
         private GameStateService _gameStateService;
         private GameObject _playerObject;
@@ -98,6 +103,7 @@ namespace Demyth.UI
             if (_isOpen) return;
             _isOpen = true;
             DOTween.CompleteAll();
+            Helper.PlaySFX(_uiClipSO.HUDOpen, _uiClipSO.HUDOpenVolume);
 
             _pageAnimator?.PlayAnimation(() =>
             {
@@ -110,6 +116,7 @@ namespace Demyth.UI
             if (!_isOpen) return;
             _isOpen = false;
             DOTween.CompleteAll();
+            Helper.PlaySFX(_uiClipSO.HUDClose, _uiClipSO.HUDCloseVolume);
 
             _pageAnimator?.CloseAnimation(() =>
             {

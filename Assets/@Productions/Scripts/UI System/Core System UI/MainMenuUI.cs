@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Core;
 using Core.UI;
 using Demyth.Gameplay;
@@ -7,6 +9,8 @@ using MoreMountains.Tools;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace UISystem
 {
@@ -40,6 +44,8 @@ namespace UISystem
 
         public void StartNewGame()
         {
+            // SaveSystem.LoadFromSlot(0);
+
             _levelManager.OpenLevel(newLevelId);
             _uiPage.Return();
             
@@ -47,7 +53,6 @@ namespace UISystem
             _gameStateService?.SetState(GameState.Gameplay);
 
             DialogueManager.StartConversation("Intro");
-            _musicController.PlayLevelBGM();
         }
 
         public void ContinueGame()
@@ -77,11 +82,11 @@ namespace UISystem
         public void QuitGame()
         {
             Application.Quit();
-        }               
+        }
 
-        private static void ClearGameProgressSave()
+        public void GoToGameplayScene()
         {
-            SaveSystem.DeleteSavedGameInSlot(1);
+            SceneManager.LoadSceneAsync(1);
         }
     }
 }

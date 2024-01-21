@@ -955,6 +955,7 @@ GameObject:
   - component: {fileID: 1275323378259579241}
   - component: {fileID: 1275323378259579240}
   - component: {fileID: 1275323378259579243}
+  - component: {fileID: 1685631533854439373}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -1077,6 +1078,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1685631533854439373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275323378259579245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonHighlightSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonClickSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1275323378350363355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,6 +1286,7 @@ GameObject:
   - component: {fileID: 1275323379619222996}
   - component: {fileID: 1275323379619222999}
   - component: {fileID: 1275323379619222998}
+  - component: {fileID: 6756995219985187951}
   m_Layer: 5
   m_Name: Continue Button
   m_TagString: Untagged
@@ -1362,6 +1409,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &6756995219985187951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275323379619223000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonHighlightSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonClickSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1275323379895595720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,6 +1466,7 @@ GameObject:
   - component: {fileID: 1275323379895595716}
   - component: {fileID: 1275323379895595719}
   - component: {fileID: 1275323379895595718}
+  - component: {fileID: 6985973572372756514}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -1496,6 +1589,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6985973572372756514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275323379895595720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonHighlightSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonClickSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1275323379926409443
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2166,7 @@ GameObject:
   - component: {fileID: 1275323380239147934}
   - component: {fileID: 1275323380239147905}
   - component: {fileID: 1275323380239147904}
+  - component: {fileID: 786687259119999613}
   m_Layer: 5
   m_Name: New Game Button
   m_TagString: Untagged
@@ -2150,6 +2289,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &786687259119999613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275323380239147906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonHighlightSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5597948806325446406}
+          m_TargetAssemblyTypeName: ButtonEventTrigger, Assembly-CSharp
+          m_MethodName: PlayButtonClickSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1275323380287492347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2348,7 @@ GameObject:
   - component: {fileID: 1275323380287492342}
   - component: {fileID: 1275323380287492345}
   - component: {fileID: 7180717810214494974}
+  - component: {fileID: 5597948806325446406}
   m_Layer: 5
   m_Name: Main Menu UI
   m_TagString: Untagged
@@ -2288,6 +2473,19 @@ MonoBehaviour:
   OnClose:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5597948806325446406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275323380287492347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393210c7e06b66b4f9025ba10717e9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiClipSO: {fileID: 11400000, guid: 4555970013c9ba94898852ca822d423e, type: 2}
 --- !u!1 &1532415001922718377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,7 +3332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 585.00006, y: -955}
+  m_AnchoredPosition: {x: 585.0001, y: -955}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7592690726926611056
@@ -3402,7 +3600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 835.00006, y: -955}
+  m_AnchoredPosition: {x: 835.0001, y: -955}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1981860577569661603
@@ -5154,7 +5352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 710.00006, y: -955}
+  m_AnchoredPosition: {x: 710.0001, y: -955}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7960254170902614040
