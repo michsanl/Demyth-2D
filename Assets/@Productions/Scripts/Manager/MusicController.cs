@@ -52,6 +52,22 @@ public class MusicController : SceneService
         }
     }
 
+    public void PlayLevelBGMWithFade()
+    {
+        if (DialogueLua.GetVariable("Level_7_Done").asBool)
+        {
+            PlayMusic(_musicClipSO.EpilogueVer1BGM, _musicClipSO.EpilogueVer1BGMVolume, true);
+            _musicAudioSource.volume = 0;
+            FadeCurrentMusic(2f, _musicClipSO.EpilogueVer1BGMVolume);
+        }
+        else
+        {
+            PlayMusic(_musicClipSO.LevelBGM, _musicClipSO.LevelBGMVolume, true);
+            _musicAudioSource.volume = 0;
+            FadeCurrentMusic(2f, _musicClipSO.LevelBGMVolume);
+        }
+    }
+
     public void StartPetraBossFightMusic()
     {
         StartCoroutine(StartPetraBossFightMusicCoroutine());
@@ -114,7 +130,7 @@ public class MusicController : SceneService
         // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.FreeTrack, MMSoundManager.MMSoundManagerTracks.Music);
         // PlayMusic(_levelBGM, .2f, 1, true);
 
-        StartFadeCurrentMusic(fadeDuration, 0f);
+        FadeCurrentMusic(fadeDuration, 0f);
         yield return MMCoroutine.WaitFor(fadeDuration);
         PlayMusic(_musicClipSO.LevelBGM, _musicClipSO.LevelBGMVolume, true);
     }
@@ -129,7 +145,7 @@ public class MusicController : SceneService
         // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
         // PlayMusic(_sriCutsceneBGM, .25f, 4, false);
 
-        StartFadeCurrentMusic(fadeDuration, 0f);
+        FadeCurrentMusic(fadeDuration, 0f);
         yield return MMCoroutine.WaitForUnscaled(5f);
         PlayMusic(_musicClipSO.SriCutsceneBGM, _musicClipSO.SriCutsceneBGMVolume, true);
     }
@@ -160,12 +176,12 @@ public class MusicController : SceneService
         // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
         // PlayMusic(_epilogueVer1BGM, .25f, 1, true);
 
-        StartFadeCurrentMusic(fadeDuration, 0f);
+        FadeCurrentMusic(fadeDuration, 0f);
         yield return MMCoroutine.WaitForUnscaled(fadeDuration);
         PlayMusic(_musicClipSO.EpilogueVer1BGM, _musicClipSO.EpilogueVer1BGMVolume, true);
     }
 
-    public void StartFadeCurrentMusic(float duration, float targetVolume)
+    public void FadeCurrentMusic(float duration, float targetVolume)
     {
         _fadeCoroutine = StartCoroutine(StartFadeCoroutine(_musicAudioSource, duration, targetVolume));
     }

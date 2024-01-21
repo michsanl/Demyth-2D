@@ -63,7 +63,7 @@ namespace UISystem
 
             SaveSystem.LoadFromSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
-            _musicController.PlayLevelBGM();
+            _musicController.PlayLevelBGMWithFade();
         }
 
         public void StartToLevel(EnumId levelId)
