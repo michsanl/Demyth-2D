@@ -40,6 +40,7 @@ namespace UISystem
         private void Start()
         {
             _selectLevelButtons.SetActive(_gameSettingsSO.ShowLevelSelect);
+            _musicController.PlayMainMenuBGM();
         }
 
         public void StartNewGame()
@@ -63,7 +64,9 @@ namespace UISystem
 
             SaveSystem.LoadFromSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
+
             _musicController.PlayLevelBGM();
+            _musicController.FadeInCurrentMusic(1.5f);
         }
 
         public void StartToLevel(EnumId levelId)
@@ -77,6 +80,7 @@ namespace UISystem
             _gameStateService?.SetState(GameState.Gameplay);
 
             _musicController.PlayLevelBGM();
+            _musicController.FadeInCurrentMusic(1.5f);
         }
 
         public void QuitGame()
