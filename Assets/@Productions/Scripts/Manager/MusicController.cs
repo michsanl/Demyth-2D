@@ -11,6 +11,7 @@ public class MusicController : SceneService
 {
     [SerializeField] private AudioSource _musicAudioSource;
     [SerializeField] private MusicClipSO _musicClipSO;
+    [SerializeField] private UIClipSO _uiClipSO;
     
     private GameStateService _gameStateService;
     private Coroutine _fadeCoroutine;
@@ -25,6 +26,8 @@ public class MusicController : SceneService
     private void MainMenu_OnEnter(GameState state)
     {
         StopAllCoroutines();
+
+        PlayMusic(_musicClipSO.MainMenuBGM, _musicClipSO.MainMenuBGMVolume, true);
     }
 
     public void PlayMusic(AudioClip clip, float volume, bool loop)
@@ -35,11 +38,6 @@ public class MusicController : SceneService
         _musicAudioSource.volume = volume;
         _musicAudioSource.loop = loop;
         _musicAudioSource.Play();
-    }
-    
-    public void StopMusic()
-    {
-        _musicAudioSource.Stop();
     }
 
     public void PlayLevelBGM()
@@ -77,6 +75,16 @@ public class MusicController : SceneService
     public void EndSriBossFightMusic()
     {
         StartCoroutine(EndSriBossFightMusicCoroutine());
+    }
+
+    public void PlayPaperDrawSound()
+    {
+        Helper.PlaySFX(_uiClipSO.PaperDraw, _uiClipSO.PaperDrawVolume);
+    }
+    
+    public void StopMusic()
+    {
+        _musicAudioSource.Stop();
     }
 
     private IEnumerator StartPetraBossFightMusicCoroutine()
