@@ -51,7 +51,7 @@ public class PetraPreCombatCutscene : MonoBehaviour
         // SEQUENCE 1
         // fade out level bgm
         // disable player input
-        _musicController.FadeCurrentMusic(10f, 0f);
+        _musicController.FadeOutCurrentMusic(10f);
         _gameInputController.DisablePlayerInput();
         yield return new WaitForSeconds(_firstCutsceneStartDelay);
         

@@ -2158,22 +2158,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - guid: d4bac8c5-511a-4631-852e-da054ebbb32a
-    onExecute:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 387687087}
-          m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
-          m_MethodName: StopMusic
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - guid: 6541ff1e-c6e1-4801-b826-df9e694ca117
     onExecute:
       m_PersistentCalls:
@@ -2238,14 +2222,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - guid: 0ce92ff0-455e-42cc-894b-5b27a0c7c3e6
+  - guid: 4fac9b62-5726-4f94-9abf-740786a3f589
     onExecute:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 387687087}
           m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
-          m_MethodName: StopMusic
-          m_Mode: 1
+          m_MethodName: FadeInCurrentMusic
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
