@@ -47,18 +47,19 @@ public class MusicController : SceneService
 
     public void FadeInCurrentMusic(float duration)
     {
-        if (_fadeCoroutine !=null) StopFade();
+        StopFade();
         _fadeCoroutine = StartCoroutine(StartFadeCoroutine(_musicAudioSource, duration, 0, _currentMusicDefaultVolume));
     }
 
     public void FadeOutCurrentMusic(float duration)
     {
-        if (_fadeCoroutine !=null) StopFade();
+        StopFade();
         _fadeCoroutine = StartCoroutine(StartFadeCoroutine(_musicAudioSource, duration, _musicAudioSource.volume, 0f));
     }
 
     public void StopFade()
     {
+        if (_fadeCoroutine == null) return;
         StopCoroutine(_fadeCoroutine);
     }
 
@@ -172,7 +173,7 @@ public class MusicController : SceneService
 
     private void PlayMusic(AudioClip clip, float volume, bool loop)
     {
-        if (_fadeCoroutine !=null) StopFade();
+        StopFade();
 
         _currentMusicDefaultVolume = volume;
 
