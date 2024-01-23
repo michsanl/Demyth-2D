@@ -9,7 +9,7 @@ using PixelCrushers.DialogueSystem;
 
 public class MusicController : SceneService
 {
-    [SerializeField] private AudioSource _musicAudioSource;
+    [SerializeField] private AudioSource _musicSource;
     [SerializeField] private MusicClipSO _musicClipSO;
     [SerializeField] private UIClipSO _uiClipSO;
     
@@ -21,6 +21,22 @@ public class MusicController : SceneService
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _gameStateService[GameState.MainMenu].onEnter += MainMenu_OnEnter;
+        _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
+        _gameStateService[GameState.Pause].onExit += Pause_OnExit;
+        _musicSource.ignoreListenerPause = true;
+    }
+
+    private void MainMenu_OnEnter(GameState state)
+    {
+        StopAllCoroutines();
+    }
+
+    private void Pause_OnEnter(GameState state)
+    {
+    }
+
+    private void Pause_OnExit(GameState state)
+    {
     }
 
     public void PlayLevelBGM()
@@ -42,19 +58,19 @@ public class MusicController : SceneService
     
     public void StopMusic()
     {
-        _musicAudioSource.Stop();
+        _musicSource.Stop();
     }
 
     public void FadeInCurrentMusic(float duration)
     {
         StopFade();
-        _fadeCoroutine = StartCoroutine(StartFadeCoroutine(_musicAudioSource, duration, 0, _currentMusicDefaultVolume));
+        _fadeCoroutine = StartCoroutine(StartFadeCoroutine(_musicSource, duration, 0, _currentMusicDefaultVolume));
     }
 
     public void FadeOutCurrentMusic(float duration)
     {
         StopFade();
-        _fadeCoroutine = StartCoroutine(StartFadeCoroutine(_musicAudioSource, duration, _musicAudioSource.volume, 0f));
+        _fadeCoroutine = StartCoroutine(StartFadeCoroutine(_musicSource, duration, _musicSource.volume, 0f));
     }
 
     public void StopFade()
@@ -95,80 +111,47 @@ public class MusicController : SceneService
 
     private IEnumerator StartPetraBossFightMusicCoroutine()
     {
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // PlayMusic(_petraFightIntroBGM, .25f, 2, false);
-
-        // yield return MMCoroutine.WaitForUnscaled(26f);
-
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // PlayMusic(_petraFightLoopBGM, .25f, 3, true);
+        float introMusicLength = _musicClipSO.PetraFightIntroBGM.length;
 
         PlayMusic(_musicClipSO.PetraFightIntroBGM, _musicClipSO.PetraFightIntroBGMVolume, false);
-        yield return MMCoroutine.WaitForUnscaled(26f);
+        yield return new WaitUntil(() => _musicSource.time >= introMusicLength);
         PlayMusic(_musicClipSO.PetraFightLoopBGM, _musicClipSO.PetraFightLoopBGMVolume, true);
+    }
+
+    private IEnumerator StartSriBossFightMusicCoroutine()
+    {
+        float introMusicLength = _musicClipSO.SriIntroBGM.length;
+
+        PlayMusic(_musicClipSO.SriIntroBGM, _musicClipSO.SriIntroBGMVolume, false);
+        yield return new WaitUntil(() => _musicSource.time >= introMusicLength);
+        PlayMusic(_musicClipSO.SriLoopBGM, _musicClipSO.SriLoopBGMVolume, true);
     }
 
     private IEnumerator EndPetraBossFightMusicCoroutine()
     {
         float fadeDuration = 10f;
-        // MMSoundManagerSoundFadeEvent.Trigger(MMSoundManagerSoundFadeEvent.Modes.PlayFade, 3, fadeDuration, 0f, new MMTweenType(MMTween.MMTweenCurve.EaseInCubic));
-        // MMSoundManagerSoundFadeEvent.Trigger(MMSoundManagerSoundFadeEvent.Modes.PlayFade, 2, fadeDuration, 0f, new MMTweenType(MMTween.MMTweenCurve.EaseInCubic));
-    
-        // yield return MMCoroutine.WaitFor(fadeDuration);
-
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.FreeTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // PlayMusic(_levelBGM, .2f, 1, true);
 
         FadeOutCurrentMusic(fadeDuration);
-        yield return MMCoroutine.WaitFor(fadeDuration);
+        yield return Helper.GetWaitForSeconds(fadeDuration);
         PlayMusic(_musicClipSO.LevelBGM, _musicClipSO.LevelBGMVolume, true);
-    }
-
-    private IEnumerator StartSriCutsceneMusicCoroutine()
-    {
-        float fadeDuration = 5f;
-        // MMSoundManagerSoundFadeEvent.Trigger(MMSoundManagerSoundFadeEvent.Modes.PlayFade, 1, fadeDuration, 0f, new MMTweenType(MMTween.MMTweenCurve.EaseInCubic));
-
-        // yield return MMCoroutine.WaitForUnscaled(5f);
-
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // PlayMusic(_sriCutsceneBGM, .25f, 4, false);
-
-        FadeOutCurrentMusic(fadeDuration);
-        yield return MMCoroutine.WaitForUnscaled(fadeDuration);
-        PlayMusic(_musicClipSO.SriCutsceneBGM, _musicClipSO.SriCutsceneBGMVolume, true);
-    }
-
-    private IEnumerator StartSriBossFightMusicCoroutine()
-    {
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // PlayMusic(_sriIntroBGM, .25f, 5, false);
-
-        // yield return MMCoroutine.WaitForUnscaled(21f);
-
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // PlayMusic(_sriLoopBGM, .25f, 6, true);
-
-        PlayMusic(_musicClipSO.SriIntroBGM, _musicClipSO.SriIntroBGMVolume, false);
-        yield return MMCoroutine.WaitForUnscaled(21f);
-        PlayMusic(_musicClipSO.SriLoopBGM, _musicClipSO.SriLoopBGMVolume, true);
     }
 
     private IEnumerator EndSriBossFightMusicCoroutine()
     {
         float fadeDuration = 10f;
-        // MMSoundManagerSoundFadeEvent.Trigger(MMSoundManagerSoundFadeEvent.Modes.PlayFade, 5, fadeDuration, 0f, new MMTweenType(MMTween.MMTweenCurve.EaseInCubic));
-        // MMSoundManagerSoundFadeEvent.Trigger(MMSoundManagerSoundFadeEvent.Modes.PlayFade, 6, fadeDuration, 0f, new MMTweenType(MMTween.MMTweenCurve.EaseInCubic));
-
-        // yield return MMCoroutine.WaitForUnscaled(fadeDuration);
-
-        // MMSoundManagerTrackEvent.Trigger(MMSoundManagerTrackEventTypes.StopTrack, MMSoundManager.MMSoundManagerTracks.Music);
-        // PlayMusic(_epilogueVer1BGM, .25f, 1, true);
 
         FadeOutCurrentMusic(fadeDuration);
-        yield return MMCoroutine.WaitForUnscaled(fadeDuration);
+        yield return Helper.GetWaitForSeconds(fadeDuration);
         PlayMusic(_musicClipSO.EpilogueVer1BGM, _musicClipSO.EpilogueVer1BGMVolume, true);
+    }
+
+    private IEnumerator StartSriCutsceneMusicCoroutine()
+    {
+        float fadeDuration = 5f;
+
+        FadeOutCurrentMusic(fadeDuration);
+        yield return Helper.GetWaitForSeconds(fadeDuration);
+        PlayMusic(_musicClipSO.SriCutsceneBGM, _musicClipSO.SriCutsceneBGMVolume, true);
     }
 
     private void PlayMusic(AudioClip clip, float volume, bool loop)
@@ -177,21 +160,10 @@ public class MusicController : SceneService
 
         _currentMusicDefaultVolume = volume;
 
-        _musicAudioSource.clip = clip;
-        _musicAudioSource.volume = volume;
-        _musicAudioSource.loop = loop;
-        _musicAudioSource.Play();
-    }
-
-    private void PlayMusicMM(AudioClip audioClip, float volume, int id, bool loop)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = volume;
-        playOptions.ID = id;
-        playOptions.Loop = loop;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Music;
-
-        MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
+        _musicSource.clip = clip;
+        _musicSource.volume = volume;
+        _musicSource.loop = loop;
+        _musicSource.Play();
     }
 
     private IEnumerator StartFadeCoroutine(AudioSource audioSource, float duration, float startVolume, float targetVolume)
@@ -200,15 +172,23 @@ public class MusicController : SceneService
         float start = startVolume;
         while (currentTime < duration)
         {
-            currentTime += Time.deltaTime;
+            currentTime += Time.unscaledDeltaTime;
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
         yield break;
     }
 
-    private void MainMenu_OnEnter(GameState state)
+    private IEnumerator StartFadeListenerCoroutine(float duration, float startVolume, float targetVolume)
     {
-        StopAllCoroutines();
+        float currentTime = 0;
+        float start = startVolume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.unscaledDeltaTime;
+            AudioListener.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
     }
 }

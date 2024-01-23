@@ -103,7 +103,7 @@ namespace Demyth.UI
             if (_isOpen) return;
             _isOpen = true;
             DOTween.CompleteAll();
-            Helper.PlaySFX(_uiClipSO.HUDOpen, _uiClipSO.HUDOpenVolume);
+            Helper.PlaySFXIgnorePause(_uiClipSO.HUDOpen, _uiClipSO.HUDOpenVolume);
 
             _pageAnimator?.PlayAnimation(() =>
             {
@@ -116,7 +116,7 @@ namespace Demyth.UI
             if (!_isOpen) return;
             _isOpen = false;
             DOTween.CompleteAll();
-            Helper.PlaySFX(_uiClipSO.HUDClose, _uiClipSO.HUDCloseVolume);
+            Helper.PlaySFXIgnorePause(_uiClipSO.HUDClose, _uiClipSO.HUDCloseVolume);
 
             _pageAnimator?.CloseAnimation(() =>
             {

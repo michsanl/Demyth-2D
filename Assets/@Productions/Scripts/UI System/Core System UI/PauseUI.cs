@@ -99,7 +99,8 @@ namespace UISystem
             // _gameStateService?.SetState(GameState.MainMenu);
 
             // DialogueManager.StopAllConversations();
-            DOTween.CompleteAll();
+            // DOTween.CompleteAll();
+            DOTween.KillAll();
             LeanPool.DespawnAll();
 
             // _levelManager.OpenLevel(_levelMenulId);
@@ -108,6 +109,7 @@ namespace UISystem
 
             
             Time.timeScale = 1f;
+            AudioListener.pause = false;
             SceneManager.LoadScene(0);
 
         }
