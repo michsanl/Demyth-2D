@@ -6,6 +6,7 @@ using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
+using Demyth.UI;
 
 public class Level7RestartHandler : SceneService
 {
@@ -19,12 +20,14 @@ public class Level7RestartHandler : SceneService
     private Player _player;
     private Health _playerHealth;
     private GameStateService _gameStateService;
+    private GameHUD _gameHUD;
     
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
+        _gameHUD = SceneServiceProvider.GetService<GameHUD>();
     }
 
     private void OnEnable()
@@ -54,11 +57,8 @@ public class Level7RestartHandler : SceneService
     public void RestartBossFight()
     {
         DOTween.CompleteAll();
-
         SaveSystem.LoadFromSlot(1);
-
         _player.ResetUnitCondition();
-
         _sriPreCombatCutscene.SetActive(false);
         _sriCombatBehaviour.InitiateCombat();
     }
@@ -66,9 +66,8 @@ public class Level7RestartHandler : SceneService
     public void RestartLevel()
     {
         DOTween.CompleteAll();
-
         SaveSystem.LoadFromSlot(1);
-        
         _player.ResetUnitCondition();
+        _gameHUD.Open();
     }
 }
