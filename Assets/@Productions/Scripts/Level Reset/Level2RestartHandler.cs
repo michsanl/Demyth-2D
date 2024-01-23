@@ -44,7 +44,6 @@ public class Level2RestartHandler : MonoBehaviour
     {
         DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(1);
-        _gameInputController.EnablePlayerInput();
         _gameHUD.Open();
     }
 }

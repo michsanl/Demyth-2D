@@ -15,12 +15,14 @@ public class GameInputController : SceneService
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _gameStateService[GameState.MainMenu].onEnter += OnMainMenu;
-        _gameStateService[GameState.Gameplay].onEnter += OnGameplay;
-        _gameStateService[GameState.Pause].onEnter += OnPause;
-        _gameStateService[GameState.GameOver].onEnter += OnGameOver;
+        _gameStateService[GameState.MainMenu].onEnter += OnMainMenu_Enter;
+        _gameStateService[GameState.MainMenu].onExit += OnMainMenu_Exit;
+        _gameStateService[GameState.Pause].onEnter += OnPause_Enter;
+        _gameStateService[GameState.Pause].onExit += OnPause_Exit;
+        _gameStateService[GameState.GameOver].onEnter += OnGameOver_Enter;
+        _gameStateService[GameState.GameOver].onExit += OnGameOver_Exit;
     }
-    
+
     private void Start()
     {
         DialogueManager.Instance.conversationStarted += DialogueManager_OnConversationStarted;
@@ -37,27 +39,40 @@ public class GameInputController : SceneService
         gameInput.DisablePlayerInput();
     }
 
-    private void OnMainMenu(GameState obj)
+    private void OnMainMenu_Enter(GameState obj)
     {
         gameInput.DisablePlayerInput();
         gameInput.DisablePauseInput();
     }
 
-    private void OnGameplay(GameState obj)
+    private void OnMainMenu_Exit(GameState obj)
+    {
+        gameInput.EnablePauseInput();
+        gameInput.EnablePlayerInput();
+    }
+
+    private void OnPause_Enter(GameState state)
+    {
+        gameInput.DisablePlayerInput();
+    }
+
+    private void OnPause_Exit(GameState state)
+    {
+        if (DialogueManager.isConversationActive) return;
+
+        gameInput.EnablePlayerInput();
+    }
+
+    private void OnGameOver_Enter(GameState state)
+    {
+        gameInput.DisablePlayerInput();
+        gameInput.DisablePauseInput();
+    }
+
+    private void OnGameOver_Exit(GameState state)
     {
         gameInput.EnablePlayerInput();
         gameInput.EnablePauseInput();
-    }
-
-    private void OnPause(GameState state)
-    {
-        gameInput.DisablePlayerInput();
-    }
-
-    private void OnGameOver(GameState state)
-    {
-        gameInput.DisablePlayerInput();
-        gameInput.DisablePauseInput();
     }
     
     private void DialogueManager_OnConversationStarted(Transform t)
