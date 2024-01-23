@@ -83,6 +83,7 @@ public class GameInputController : SceneService
     private void DialogueManager_OnConversationEnded(Transform t)
     {
         if (_gameStateService.CurrentState == GameState.GameOver) return;
+        if (_gameStateService.CurrentState == GameState.Pause) return;
 
         gameInput.EnablePlayerInput();
     }
