@@ -4,6 +4,7 @@ using CustomExtensions;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UISystem
@@ -25,7 +26,7 @@ namespace UISystem
             });
             _skipButton.onClick.AddListener(() =>
             {
-                
+                StartCoroutine(LoadSceneWithDelay(1.1f));
             });
         }
 
@@ -34,11 +35,23 @@ namespace UISystem
             _skipButton.gameObject.SetActive(false);
         }
 
+        private void OnEnable()
+        {
+            _showSkipButton.gameObject.SetActive(true);
+            _skipButton.gameObject.SetActive(false);
+        }
+
         private IEnumerator HideSkipButton()
         {
             yield return Helper.GetWaitForSeconds(_skipButtonHideTimer);
 
             _skipButton.SetActive(false);
+        }
+
+        private IEnumerator LoadSceneWithDelay(float delay)
+        {
+            yield return Helper.GetWaitForSeconds(delay);
+            SceneManager.LoadScene(0);
         }
     }
 }
