@@ -8,10 +8,13 @@ public class Lantern : MonoBehaviour
 {
 
     public Action<bool> OnLanternTogglePerformed;
+    public bool EnableAutoTurnOff => _enableAutoTurnOff;
     
     [SerializeField] private GameObject _lanternGameObject;
+    [SerializeField] private bool _enableAutoTurnOff;
 
     private bool _isSenterEnabled;
+    private Coroutine _turnOffRandomCoroutine;
 
     public void ToggleLantern()
     {
@@ -44,6 +47,8 @@ public class Lantern : MonoBehaviour
         _lanternGameObject.SetActive(false);
         _isSenterEnabled = false;
 
+        if (_turnOffRandomCoroutine != null) StopCoroutine(_turnOffRandomCoroutine);
+        
         OnLanternTogglePerformed?.Invoke(_isSenterEnabled);
     }
 
@@ -56,6 +61,34 @@ public class Lantern : MonoBehaviour
         _lanternGameObject.SetActive(true);
         _isSenterEnabled = true;
 
+        if (_enableAutoTurnOff) _turnOffRandomCoroutine = StartCoroutine(StartLanternTurnOffTimer());
+        
         OnLanternTogglePerformed?.Invoke(_isSenterEnabled);
+    }
+
+    private IEnumerator StartLanternTurnOffTimer()
+    {
+        var timer = UnityEngine.Random.Range(5f, 11f);
+        yield return Helper.GetWaitForSeconds(timer);
+
+        StartCoroutine(TurnOffSenterWithFlicker());
+    }
+
+    private IEnumerator TurnOffSenterWithFlicker()
+    {
+        _lanternGameObject.SetActive(false);
+        yield return Helper.GetWaitForSeconds(.05f);
+        _lanternGameObject.SetActive(true);
+        yield return Helper.GetWaitForSeconds(.07f);
+        _lanternGameObject.SetActive(false);
+        yield return Helper.GetWaitForSeconds(.04f);
+        _lanternGameObject.SetActive(true);
+        yield return Helper.GetWaitForSeconds(.02f);
+        _lanternGameObject.SetActive(false);
+        yield return Helper.GetWaitForSeconds(.08f);
+        _lanternGameObject.SetActive(true);
+        yield return Helper.GetWaitForSeconds(.4f);
+
+        TurnOffLantern();
     }
 }
