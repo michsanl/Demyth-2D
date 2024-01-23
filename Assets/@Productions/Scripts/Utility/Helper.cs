@@ -37,6 +37,17 @@ public static class Helper
         return MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
     }
 
+    public static AudioSource PlaySFXIgnorePause(AudioClip audioClip, float volume)
+    {
+        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
+        playOptions.Volume = volume;
+        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+
+        var source = MMSoundManagerSoundPlayEvent.Trigger(audioClip, playOptions);
+        source.ignoreListenerPause = true;
+        return source;
+    }
+
     public static float GetAngleFromFectorFloat(Vector3 dir)
     {
         dir = dir.normalized;
