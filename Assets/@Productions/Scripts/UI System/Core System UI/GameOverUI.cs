@@ -82,7 +82,7 @@ namespace UISystem
             _animator.SetTrigger("OpenPage");
             Helper.PlaySFX(_uiClipSO.GameOver, _uiClipSO.GameOverVolume);
 
-            yield return Helper.GetWaitForSeconds(.75f);
+            yield return Helper.GetWaitForSeconds(1f);
 
             _retryButton.gameObject.SetActive(true);
         }

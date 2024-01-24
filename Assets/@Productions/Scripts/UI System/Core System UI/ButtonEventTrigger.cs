@@ -9,21 +9,21 @@ public class ButtonEventTrigger : MonoBehaviour
 
     public void PlayButtonHighlightSound()
     {
-        Helper.PlaySFX(_uiClipSO.ButtonHighlight, _uiClipSO.ButtonHighlightVolume);
+        Helper.PlaySFXIgnorePause(_uiClipSO.ButtonHighlight, _uiClipSO.ButtonHighlightVolume);
     }
 
     public void PlayButtonClickSound()
     {
-        Helper.PlaySFX(_uiClipSO.ButtonClickYes, _uiClipSO.ButtonYesVolume);
+        Helper.PlaySFXIgnorePause(_uiClipSO.ButtonClickYes, _uiClipSO.ButtonYesVolume);
     }
 
     public void PlayButtonClickNoSound()
     {
-        Helper.PlaySFX(_uiClipSO.ButtonClickNo, _uiClipSO.ButtonNoVolume);
+        Helper.PlaySFXIgnorePause(_uiClipSO.ButtonClickNo, _uiClipSO.ButtonNoVolume);
     }
 
     public void PlayDialogContinueButtonSound()
     {
-        Helper.PlaySFX(_uiClipSO.DialogContinueButton, _uiClipSO.DialogContinueButtonVolume);
+        Helper.PlaySFXIgnorePause(_uiClipSO.DialogContinueButton, _uiClipSO.DialogContinueButtonVolume);
     }
 }

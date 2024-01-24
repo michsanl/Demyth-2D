@@ -99,17 +99,18 @@ namespace UISystem
             // _gameStateService?.SetState(GameState.MainMenu);
 
             // DialogueManager.StopAllConversations();
-            DOTween.CompleteAll();
+            // DOTween.CompleteAll();
+            DOTween.KillAll();
             LeanPool.DespawnAll();
 
             // _levelManager.OpenLevel(_levelMenulId);
             // _gameHUD.Close();
             // _uiPage.OpenPage(_menuPageId);
 
-            
             Time.timeScale = 1f;
-            SceneManager.LoadScene(0);
+            AudioListener.pause = false;
 
+            SceneManager.LoadScene(0);
         }
 
         private void UpdateSettingsValue()

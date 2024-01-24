@@ -24,9 +24,6 @@ public class GameManager : SceneService
         _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
         _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
-
-        CreateVanillaSaveFile();
-        Application.runInBackground = true; // So music wont pause
     }
 
     private void Start()
@@ -85,11 +82,13 @@ public class GameManager : SceneService
     private void Pause()
     {
         Time.timeScale = 0f;
+        AudioListener.pause = true;
     }
 
     private void UnPause()
     {
         Time.timeScale = 1f;
+        AudioListener.pause = false;
     }
 
     private void SetupLevelGate()

@@ -47,8 +47,8 @@ namespace UISystem
         {
             // SaveSystem.LoadFromSlot(0);
 
-            _levelManager.OpenLevel(newLevelId);
             _uiPage.Return();
+            _levelManager.OpenLevel(newLevelId);
             
             SaveSystem.SaveToSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
