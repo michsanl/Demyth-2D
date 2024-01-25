@@ -138,10 +138,10 @@ MonoBehaviour:
   actionDuration: 0.25
   attackDuration: 0.5
   takeDamageCooldown: 1
-  _usePanOnStart: 0
   moveBlockMask:
     serializedVersion: 2
     m_Bits: 64
+  _playerModel: {fileID: 3143619101428999586}
   animator: {fileID: 3143619101154623906}
   damagedAnimator: {fileID: 364290908265347085}
   _araClipSO: {fileID: 11400000, guid: e223975f3b5920f4097a5c1f5548abb9, type: 2}
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lanternGameObject: {fileID: 6712916346127714324}
+  _enableAutoTurnOff: 0
 --- !u!114 &4645373257415794240
 MonoBehaviour:
   m_ObjectHideFlags: 0

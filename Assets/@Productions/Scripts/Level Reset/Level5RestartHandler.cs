@@ -15,19 +15,20 @@ public class Level5RestartHandler : MonoBehaviour
     public Action OnTuyulLevelResetDisabled;
 
     [SerializeField] private BoxPositionSO _boxPositionSO;
-    [SerializeField] private Transform _playerModel;
     [SerializeField] private TuyulFleeMovement _yula;
     [SerializeField] private TuyulFleeMovement _yuli;
     [SerializeField] private Vector3 _playerResetPosition;
     [SerializeField] private Transform[] _boxArray;
-    
+
     private GameInput _gameInput;
     private Player _player;
+    private Transform _playerModel;
 
     private void Awake()
     {
         _gameInput = SceneServiceProvider.GetService<GameInputController>().GameInput;
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
+        _playerModel = _player.PlayerModel;
     }
 
     private void OnEnable()
@@ -58,7 +59,7 @@ public class Level5RestartHandler : MonoBehaviour
 
         ResetPlayer();
         ResetTuyul();
-        ResetBoxPosition();
+        ResetBox();
     }
 
     private void ResetPlayer()
@@ -79,7 +80,7 @@ public class Level5RestartHandler : MonoBehaviour
         DialogueLua.SetVariable("Catch_Yuli", false);
     }
 
-    private void ResetBoxPosition()
+    private void ResetBox()
     {
         for (int i = 0; i < _boxArray.Length; i++)
         {
