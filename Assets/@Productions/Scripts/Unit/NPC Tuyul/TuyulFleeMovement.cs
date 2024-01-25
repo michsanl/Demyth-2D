@@ -5,6 +5,8 @@ using DG.Tweening;
 using Demyth.Gameplay;
 using Core;
 using MoreMountains.Tools;
+using CustomExtensions;
+using PixelCrushers;
 
 public class TuyulFleeMovement : MonoBehaviour
 {
@@ -16,8 +18,10 @@ public class TuyulFleeMovement : MonoBehaviour
     private LookOrientation _lookOrientation;
     private bool _isBusy;
     private bool _isShocked;
-    private float _mockInterval = 2f;
+    private bool _isMocking;
+    private float _mockTimerMax = 2f;
     private float _mockTimer;
+    private Coroutine _mockCoroutine;
 
     private PlayerManager _playerManager;
 
@@ -29,12 +33,17 @@ public class TuyulFleeMovement : MonoBehaviour
 
     private void Start()
     {
-        _mockTimer = _mockInterval;
+        _mockTimer = _mockTimerMax;
     }
     
     private void Update()
     {
         MockingLoop();
+
+        if (_isMocking)
+        {
+            _lookOrientation.SetFacingDirection(GetDirToPlayer());
+        }
     }
 
     private void OnEnable() 
@@ -54,7 +63,7 @@ public class TuyulFleeMovement : MonoBehaviour
     {
         _isShocked = false;
         _lookOrientation.SetFacingDirection(GetDirToPlayer());
-        _animator.Play("Idle");
+        _animator.SetTrigger("Idle");
     }
 
     private void MockingLoop()
@@ -68,9 +77,8 @@ public class TuyulFleeMovement : MonoBehaviour
             if (_isBusy)
                 return;
 
-            _animator.SetTrigger("Mock");
-            _lookOrientation.SetFacingDirection(GetDirToPlayer());
-            _mockTimer = _mockInterval;
+            _mockCoroutine = StartCoroutine(StartMocking());
+            _mockTimer = _mockTimerMax;
         }
     }
 
@@ -83,14 +91,27 @@ public class TuyulFleeMovement : MonoBehaviour
             if (IsFleePathAvailable(direction) && !IsPathBlocked(direction))
             {
                 // can flee, move
+                StopMocking();
                 _isShocked = false;
-                _lookOrientation.SetFacingDirection(direction);
+                StartCoroutine(Move(direction));
+                return;
+            }
+        }
+
+        foreach (var direction in nonFacingPlayerDirectionList)
+        {
+            if (!IsPathBlocked(direction))
+            {
+                // can flee, move
+                StopMocking();
+                _isShocked = false;
                 StartCoroutine(Move(direction));
                 return;
             }
         }
         
         // cant flee, panik!
+        StopMocking();
         _isShocked = true;
         _lookOrientation.SetFacingDirection(directionToPlayer);
         _animator.SetTrigger("Shock");
@@ -101,12 +122,29 @@ public class TuyulFleeMovement : MonoBehaviour
         _isBusy = true;
 
         _animator.Play("Dash");
+        _lookOrientation.SetFacingDirection(moveDir);
         
         transform.DOMove(GetMoveTargetPositionRounded(moveDir), _moveDuration);
         yield return Helper.GetWaitForSeconds(_moveDuration);
         _mockTimer = 1f;
 
         _isBusy = false;
+    }
+
+    private IEnumerator StartMocking()
+    {
+        _isMocking = true;
+
+        _animator.SetTrigger("Mock");
+        yield return Helper.GetWaitForSeconds(1.875f);
+
+        _isMocking = false;
+    }
+
+    private void StopMocking()
+    {
+        if (_mockCoroutine != null) StopCoroutine(_mockCoroutine);
+        _isMocking = false;
     }
 
     private List<Vector3> GetNonFacingPlayerDirections(Vector3 directionToPlayer)
@@ -117,6 +155,7 @@ public class TuyulFleeMovement : MonoBehaviour
         nonFacingPlayerDirectionList.Add(Vector2.Perpendicular(nonFacingPlayerDirectionList[0]));
         nonFacingPlayerDirectionList.Add(Vector2.Perpendicular(nonFacingPlayerDirectionList[1]));
         
+        nonFacingPlayerDirectionList.Shuffle();
         return nonFacingPlayerDirectionList;
     }
 
