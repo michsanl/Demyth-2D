@@ -7,6 +7,7 @@ using System;
 using PixelCrushers;
 using Demyth.Gameplay;
 using DG.Tweening;
+using UISystem;
 
 public class Level5RestartHandler : MonoBehaviour
 {
@@ -20,15 +21,19 @@ public class Level5RestartHandler : MonoBehaviour
     [SerializeField] private Vector3 _playerResetPosition;
     [SerializeField] private Transform[] _boxArray;
 
+    private LoadingUI _loadingUI;
     private GameInput _gameInput;
+    private GameInputController _inputController;
     private Player _player;
     private Transform _playerModel;
 
     private void Awake()
     {
-        _gameInput = SceneServiceProvider.GetService<GameInputController>().GameInput;
+        _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
+        _inputController = SceneServiceProvider.GetService<GameInputController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerModel = _player.PlayerModel;
+        _gameInput = _inputController.GameInput;
     }
 
     private void OnEnable()
@@ -50,16 +55,28 @@ public class Level5RestartHandler : MonoBehaviour
 
     private void GameInput_OnRestartPerformed()
     {
-        ResetLevel();
+        _inputController.DisableRestartInput();
+        _inputController.DisablePlayerInput();
+        
+        StartCoroutine(ResetLevel());
     }
 
-    private void ResetLevel()
+    private IEnumerator ResetLevel()
     {
-        DOTween.CompleteAll();
 
+        _loadingUI.OpenPage();
+        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+
+        DOTween.CompleteAll();
         ResetPlayer();
         ResetTuyul();
         ResetBox();
+        _inputController.EnablePlayerInput();
+
+        _loadingUI.ClosePage();
+        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+
+        _inputController.EnableRestartInput();
     }
 
     private void ResetPlayer()
