@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Core;
@@ -11,18 +12,15 @@ namespace UISystem
     public class LoadingUI : SceneService
     {
 
+        public Action OnOpenPageComplete;
+        public Action OnClosePageComplete;
+
         [SerializeField] private float _openPageDuration;
         [SerializeField] private float _closePageDuration;
         [Space]
+        [SerializeField] private UIClipSO _uiClipSO;
         [SerializeField] private Animator _animator;
         [SerializeField] private GameObject _model;
-
-        private GameHUD _gameHUD;
-
-        private void Awake()
-        {
-            _gameHUD = SceneServiceProvider.GetService<GameHUD>();
-        }
 
         private void Start()
         {
@@ -53,18 +51,22 @@ namespace UISystem
         private IEnumerator OpenPageCoroutine()
         {
             _animator.SetTrigger("OpenPage");
-            _gameHUD.Close();
+            Helper.PlaySFX(_uiClipSO.HUDOpen, _uiClipSO.HUDOpenVolume);
 
             yield return Helper.GetWaitForSeconds(_openPageDuration);
+
+            OnOpenPageComplete?.Invoke();
         }
 
         private IEnumerator ClosePageCoroutine()
         {
             _animator.SetTrigger("ClosePage");
-            _gameHUD.Open();
+            Helper.PlaySFX(_uiClipSO.HUDClose, _uiClipSO.HUDCloseVolume);
 
             yield return Helper.GetWaitForSeconds(_closePageDuration);
             _model.SetActive(false);
+
+            OnClosePageComplete?.Invoke();
         }
 
     }

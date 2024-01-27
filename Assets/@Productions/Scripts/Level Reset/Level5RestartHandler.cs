@@ -21,14 +21,17 @@ public class Level5RestartHandler : MonoBehaviour
     [SerializeField] private Vector3 _playerResetPosition;
     [SerializeField] private Transform[] _boxArray;
 
+    private GameStateService _gameStateService;
     private LoadingUI _loadingUI;
     private GameInput _gameInput;
     private GameInputController _inputController;
     private Player _player;
     private Transform _playerModel;
+    private bool _isRestarting;
 
     private void Awake()
     {
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
         _inputController = SceneServiceProvider.GetService<GameInputController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
@@ -55,7 +58,10 @@ public class Level5RestartHandler : MonoBehaviour
 
     private void GameInput_OnRestartPerformed()
     {
-        _inputController.DisableRestartInput();
+        if (_isRestarting) return;
+        if (_gameStateService.CurrentState == GameState.Pause) return;
+        
+        _inputController.DisablePauseInput();
         _inputController.DisablePlayerInput();
         
         StartCoroutine(ResetLevel());
@@ -63,20 +69,23 @@ public class Level5RestartHandler : MonoBehaviour
 
     private IEnumerator ResetLevel()
     {
+        _isRestarting = true;
 
         _loadingUI.OpenPage();
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
-        DOTween.CompleteAll();
         ResetPlayer();
         ResetTuyul();
         ResetBox();
+
         _inputController.EnablePlayerInput();
 
         _loadingUI.ClosePage();
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
-        _inputController.EnableRestartInput();
+        _inputController.EnablePauseInput();
+        
+        _isRestarting = false;
     }
 
     private void ResetPlayer()

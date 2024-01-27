@@ -39,14 +39,14 @@ public class GameInputController : SceneService
         gameInput.DisablePlayerInput();
     }
 
-    public void EnableRestartInput()
+    public void EnablePauseInput()
     {
-        gameInput.EnableRestartInput();
+        gameInput.EnablePauseInput();
     }
 
-    public void DisableRestartInput()
+    public void DisablePauseInput()
     {
-        gameInput.DisableRestartInput();
+        gameInput.DisablePauseInput();
     }
 
     private void OnMainMenu_Enter(GameState obj)
