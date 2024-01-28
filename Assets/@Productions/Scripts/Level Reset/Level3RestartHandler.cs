@@ -6,6 +6,7 @@ using Core;
 using System;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
+using UISystem;
 
 public class Level3RestartHandler : MonoBehaviour
 {
@@ -19,11 +20,18 @@ public class Level3RestartHandler : MonoBehaviour
     [SerializeField] private Transform[] _boxCardboardClosedArray;
     [SerializeField] private BoxPositionSO _resetPositionSO;
     
+    private GameStateService _gameStateService;
+    private GameInputController _inputController;
+    private LoadingUI _loadingUI;
     private Player _player;
     private GameInput _gameInput;
+    private bool _isRestarting;
 
     private void Awake()
     {
+        _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _inputController = SceneServiceProvider.GetService<GameInputController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _gameInput = SceneServiceProvider.GetService<GameInputController>().GameInput;
     }
@@ -47,22 +55,38 @@ public class Level3RestartHandler : MonoBehaviour
 
     private void GameInput_OnRestartPerformed()
     {
-        ResetBoxPuzzleLevel();
+        if (_isRestarting) return;
+        if (_gameStateService.CurrentState == GameState.Pause) return;
+        
+        _inputController.DisablePauseInput();
+        _inputController.DisablePlayerInput();
+
+        StartCoroutine(RestartLevel());
     }
 
-    private void ResetBoxPuzzleLevel()
+    private IEnumerator RestartLevel()
     {
-        // complete all tween
-        // reset player position & animation
-        // reset box position
-        DOTween.CompleteAll();
+        _isRestarting = true;
 
+        _loadingUI.OpenPage();
+        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+        
+        DOTween.CompleteAll();
         _playerModel.localScale = Vector3.one;
         _player.SetAnimationToIdleNoPan();
         ResetPlayerPosition();
         ResetBoxCratePosition();
         ResetBoxCardboardOpenPosition();
         ResetBoxCardboardClosedPosition();
+
+        _inputController.EnablePlayerInput();
+
+        _loadingUI.ClosePage();
+        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+
+        _inputController.EnablePauseInput();
+        
+        _isRestarting = false;
     }
 
     private void ResetPlayerPosition()
