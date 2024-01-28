@@ -64,27 +64,25 @@ public class Level5RestartHandler : MonoBehaviour
         _inputController.DisablePauseInput();
         _inputController.DisablePlayerInput();
         
-        StartCoroutine(ResetLevel());
+        StartCoroutine(RestartLevel());
     }
 
-    private IEnumerator ResetLevel()
+    private IEnumerator RestartLevel()
     {
         _isRestarting = true;
-
         _loadingUI.OpenPage();
+        
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
         ResetPlayer();
         ResetTuyul();
         ResetBox();
-
         _inputController.EnablePlayerInput();
-
         _loadingUI.ClosePage();
+
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
         _inputController.EnablePauseInput();
-        
         _isRestarting = false;
     }
 

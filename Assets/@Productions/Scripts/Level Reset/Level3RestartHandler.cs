@@ -67,8 +67,8 @@ public class Level3RestartHandler : MonoBehaviour
     private IEnumerator RestartLevel()
     {
         _isRestarting = true;
-
         _loadingUI.OpenPage();
+
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
         
         DOTween.CompleteAll();
@@ -78,14 +78,12 @@ public class Level3RestartHandler : MonoBehaviour
         ResetBoxCratePosition();
         ResetBoxCardboardOpenPosition();
         ResetBoxCardboardClosedPosition();
-
         _inputController.EnablePlayerInput();
-
         _loadingUI.ClosePage();
+
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
         _inputController.EnablePauseInput();
-        
         _isRestarting = false;
     }
 

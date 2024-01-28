@@ -6,6 +6,8 @@ using PixelCrushers.DialogueSystem;
 using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
+using System.Collections.Generic;
+using System.Collections;
 
 public class Level4RestartHandler : MonoBehaviour
 {
@@ -26,22 +28,19 @@ public class Level4RestartHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        _gameStateService[GameState.Gameplay].onEnter += GameStateGamePlay_OnEnter;
+        _gameStateService[GameState.GameOver].onExit += GameOver_OnExit;
         _playerHealth.OnDeath += PlayerHealth_OnDeath;
     }
 
     private void OnDisable() 
     {
-        _gameStateService[GameState.Gameplay].onEnter -= GameStateGamePlay_OnEnter;
+        _gameStateService[GameState.GameOver].onExit -= GameOver_OnExit;
         _playerHealth.OnDeath -= PlayerHealth_OnDeath;
     }
 
-    private void GameStateGamePlay_OnEnter(GameState state)
+    private void GameOver_OnExit(GameState state)
     {
-        if (_gameStateService.PreviousState == GameState.GameOver)
-        {
-            ResetLevel();
-        }
+        RestartLevelBossFight();
     }
 
     private void PlayerHealth_OnDeath()
@@ -50,15 +49,20 @@ public class Level4RestartHandler : MonoBehaviour
         LeanPool.DespawnAll();
     }
 
-    public void ResetLevel()
+    public void RestartLevelBossFight()
     {
         DOTween.CompleteAll();
-
         SaveSystem.LoadFromSlot(1);
         
         _player.ResetUnitCondition();
-
-        _petraCombatBehaviour.InitiateCombat();
         _petraPreCombatCutscene.SetActive(false);
+        
+        StartCoroutine(ActivateBossCombatMode());
+    }
+    
+    private IEnumerator ActivateBossCombatMode()
+    {
+        yield return Helper.GetWaitForSeconds(.8f);
+        _petraCombatBehaviour.InitiateCombat();
     }
 }

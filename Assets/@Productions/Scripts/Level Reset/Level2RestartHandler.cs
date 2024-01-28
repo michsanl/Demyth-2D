@@ -14,68 +14,35 @@ public class Level2RestartHandler : MonoBehaviour
 {
     
     private GameStateService _gameStateService;
-    private GameInputController _inputController;
-    private LoadingUI _loadingUI;
     private GameHUD _gameHUD;
     private bool _isRestarting;
     
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
-        _inputController = SceneServiceProvider.GetService<GameInputController>();
         _gameHUD = SceneServiceProvider.GetService<GameHUD>();
     }
 
     private void OnEnable()
     {
-        _gameStateService[GameState.Gameplay].onEnter += GamePlay_OnEnter;
+        _gameStateService[GameState.GameOver].onExit += GameOver_OnExit;
     }
 
     private void OnDisable() 
     {
-        _gameStateService[GameState.Gameplay].onEnter -= GamePlay_OnEnter;
+        _gameStateService[GameState.GameOver].onExit -= GameOver_OnExit;
     }
 
-    public void RestartLevel()
+    private void GameOver_OnExit(GameState state)
     {
-        StartCoroutine(RestartLevelCoroutine());
+        RestartLevel();
     }
 
-    private void GamePlay_OnEnter(GameState state)
+    private void RestartLevel()
     {
         DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(1);
         _gameStateService.SetState(GameState.Gameplay);
         _gameHUD.Open();
-        // if (_isRestarting) return;
-        // if (_gameStateService.CurrentState == GameState.Pause) return;
-        // if (_gameStateService.PreviousState != GameState.GameOver)
-
-        // _inputController.DisablePauseInput();
-        // _inputController.DisablePlayerInput();
-
-        // StartCoroutine(RestartLevelCoroutine());
-    }
-
-    public IEnumerator RestartLevelCoroutine()
-    {
-        _isRestarting = true;
-
-        _loadingUI.OpenPage();
-        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
-        
-        DOTween.CompleteAll();
-        SaveSystem.LoadFromSlot(1);
-        _gameStateService.SetState(GameState.Gameplay);
-
-        _inputController.EnablePlayerInput();
-
-        _loadingUI.ClosePage();
-        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
-
-        _inputController.EnablePauseInput();
-        
-        _isRestarting = false;
     }
 }

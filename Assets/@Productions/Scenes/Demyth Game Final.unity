@@ -647,17 +647,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1245917910178099086, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
   m_PrefabInstance: {fileID: 160455914}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &224500053 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 606725494124216799, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
-  m_PrefabInstance: {fileID: 160455914}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224500051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242e392e6ff864f4b8a1769bfe002aa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &225018706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3021996278455498057, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
@@ -1862,9 +1851,9 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 224500053}
-          m_TargetAssemblyTypeName: Level7RestartHandler, Assembly-CSharp
-          m_MethodName: PlayeDeathByDialogue
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SetGameStateToGameOver
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1878,9 +1867,9 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 224500053}
-          m_TargetAssemblyTypeName: Level7RestartHandler, Assembly-CSharp
-          m_MethodName: PlayeDeathByDialogue
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SetGameStateToGameOver
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
