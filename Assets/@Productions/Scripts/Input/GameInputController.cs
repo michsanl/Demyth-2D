@@ -39,6 +39,16 @@ public class GameInputController : SceneService
         gameInput.DisablePlayerInput();
     }
 
+    public void EnablePauseInput()
+    {
+        gameInput.EnablePauseInput();
+    }
+
+    public void DisablePauseInput()
+    {
+        gameInput.DisablePauseInput();
+    }
+
     private void OnMainMenu_Enter(GameState obj)
     {
         gameInput.DisablePlayerInput();
@@ -54,6 +64,7 @@ public class GameInputController : SceneService
     private void OnPause_Enter(GameState state)
     {
         gameInput.DisablePlayerInput();
+        gameInput.DisableRestartInput();
     }
 
     private void OnPause_Exit(GameState state)
@@ -61,6 +72,7 @@ public class GameInputController : SceneService
         if (DialogueManager.isConversationActive) return;
 
         gameInput.EnablePlayerInput();
+        gameInput.EnableRestartInput();
     }
 
     private void OnGameOver_Enter(GameState state)
@@ -78,6 +90,7 @@ public class GameInputController : SceneService
     private void DialogueManager_OnConversationStarted(Transform t)
     {
         gameInput.DisablePlayerInput();
+        gameInput.DisableRestartInput();
     }
 
     private void DialogueManager_OnConversationEnded(Transform t)
@@ -86,5 +99,6 @@ public class GameInputController : SceneService
         if (_gameStateService.CurrentState == GameState.Pause) return;
 
         gameInput.EnablePlayerInput();
+        gameInput.EnableRestartInput();
     }
 }

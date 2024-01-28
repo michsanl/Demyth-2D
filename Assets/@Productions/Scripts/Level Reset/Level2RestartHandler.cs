@@ -7,43 +7,42 @@ using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
 using Demyth.UI;
+using UISystem;
+using System.Collections;
 
 public class Level2RestartHandler : MonoBehaviour
 {
     
     private GameStateService _gameStateService;
-    private GameInputController _gameInputController;
     private GameHUD _gameHUD;
+    private bool _isRestarting;
     
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         _gameHUD = SceneServiceProvider.GetService<GameHUD>();
     }
 
     private void OnEnable()
     {
-        _gameStateService[GameState.Gameplay].onEnter += GameStateGamePlay_OnEnter;
+        _gameStateService[GameState.GameOver].onExit += GameOver_OnExit;
     }
 
     private void OnDisable() 
     {
-        _gameStateService[GameState.Gameplay].onEnter -= GameStateGamePlay_OnEnter;
+        _gameStateService[GameState.GameOver].onExit -= GameOver_OnExit;
     }
 
-    private void GameStateGamePlay_OnEnter(GameState state)
+    private void GameOver_OnExit(GameState state)
     {
-        if (_gameStateService.PreviousState == GameState.GameOver)
-        {
-            ResetLevel();
-        }
+        RestartLevel();
     }
 
-    public void ResetLevel()
+    private void RestartLevel()
     {
         DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(1);
+        _gameStateService.SetState(GameState.Gameplay);
         _gameHUD.Open();
     }
 }

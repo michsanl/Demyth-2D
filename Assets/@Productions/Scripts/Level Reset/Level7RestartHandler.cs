@@ -7,12 +7,10 @@ using PixelCrushers;
 using DG.Tweening;
 using Lean.Pool;
 using Demyth.UI;
+using System.Collections;
 
-public class Level7RestartHandler : SceneService
+public class Level7RestartHandler : MonoBehaviour
 {
-
-    public Action<Action> OnPlayerDeathByBoss;
-    public Action<Action> OnPlayerDeathByDialogue;
 
     [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
     [SerializeField] private GameObject _sriPreCombatCutscene;
@@ -21,6 +19,7 @@ public class Level7RestartHandler : SceneService
     private Health _playerHealth;
     private GameStateService _gameStateService;
     private GameHUD _gameHUD;
+    private bool _isPlayerDead;
     
     private void Awake()
     {
@@ -32,42 +31,57 @@ public class Level7RestartHandler : SceneService
 
     private void OnEnable()
     {
+        _gameStateService[GameState.GameOver].onExit += GameOver_OnExit;
         _playerHealth.OnDeath += PlayerHealth_OnDeath;
     }
 
     private void OnDisable() 
     {
+        _gameStateService[GameState.GameOver].onExit -= GameOver_OnExit;
         _playerHealth.OnDeath -= PlayerHealth_OnDeath;
     }
 
-    public void PlayeDeathByDialogue()
+    private void GameOver_OnExit(GameState state)
     {
-        _gameStateService.SetState(GameState.GameOver);
-        LeanPool.DespawnAll();
-        OnPlayerDeathByDialogue?.Invoke(RestartLevel);
+        if (_isPlayerDead)
+        {
+            RestartLevelBossFight();
+        }
+        else
+        {
+            RestartLevelDialogue();
+        }
     }
 
     private void PlayerHealth_OnDeath()
     {
-        _gameStateService.SetState(GameState.GameOver);
+        _isPlayerDead = true;
         LeanPool.DespawnAll();
-        OnPlayerDeathByBoss?.Invoke(RestartBossFight);
+
+        _gameStateService.SetState(GameState.GameOver);
     }
 
-    public void RestartBossFight()
-    {
-        DOTween.CompleteAll();
-        SaveSystem.LoadFromSlot(1);
-        _player.ResetUnitCondition();
-        _sriPreCombatCutscene.SetActive(false);
-        _sriCombatBehaviour.InitiateCombat();
-    }
-
-    public void RestartLevel()
+    private void RestartLevelDialogue()
     {
         DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(1);
         _player.ResetUnitCondition();
         _gameHUD.Open();
+    }
+
+    private void RestartLevelBossFight()
+    {
+        DOTween.CompleteAll();
+        SaveSystem.LoadFromSlot(1);
+        _sriPreCombatCutscene.SetActive(false);
+        _player.ResetUnitCondition();
+        _isPlayerDead = false;
+        StartCoroutine(ActivateBossCombatMode());
+    }
+    
+    private IEnumerator ActivateBossCombatMode()
+    {
+        yield return Helper.GetWaitForSeconds(.9f);
+        _sriCombatBehaviour.InitiateCombat();
     }
 }

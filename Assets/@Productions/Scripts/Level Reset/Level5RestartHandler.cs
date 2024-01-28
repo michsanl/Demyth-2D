@@ -7,6 +7,7 @@ using System;
 using PixelCrushers;
 using Demyth.Gameplay;
 using DG.Tweening;
+using UISystem;
 
 public class Level5RestartHandler : MonoBehaviour
 {
@@ -15,19 +16,27 @@ public class Level5RestartHandler : MonoBehaviour
     public Action OnTuyulLevelResetDisabled;
 
     [SerializeField] private BoxPositionSO _boxPositionSO;
-    [SerializeField] private Transform _playerModel;
     [SerializeField] private TuyulFleeMovement _yula;
     [SerializeField] private TuyulFleeMovement _yuli;
     [SerializeField] private Vector3 _playerResetPosition;
     [SerializeField] private Transform[] _boxArray;
-    
+
+    private GameStateService _gameStateService;
+    private LoadingUI _loadingUI;
     private GameInput _gameInput;
+    private GameInputController _inputController;
     private Player _player;
+    private Transform _playerModel;
+    private bool _isRestarting;
 
     private void Awake()
     {
-        _gameInput = SceneServiceProvider.GetService<GameInputController>().GameInput;
+        _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+        _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
+        _inputController = SceneServiceProvider.GetService<GameInputController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
+        _playerModel = _player.PlayerModel;
+        _gameInput = _inputController.GameInput;
     }
 
     private void OnEnable()
@@ -49,16 +58,32 @@ public class Level5RestartHandler : MonoBehaviour
 
     private void GameInput_OnRestartPerformed()
     {
-        ResetLevel();
+        if (_isRestarting) return;
+        if (_gameStateService.CurrentState == GameState.Pause) return;
+        
+        _inputController.DisablePauseInput();
+        _inputController.DisablePlayerInput();
+        
+        StartCoroutine(RestartLevel());
     }
 
-    private void ResetLevel()
+    private IEnumerator RestartLevel()
     {
-        DOTween.CompleteAll();
+        _isRestarting = true;
+        _loadingUI.OpenPage();
+        
+        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
         ResetPlayer();
         ResetTuyul();
-        ResetBoxPosition();
+        ResetBox();
+        _inputController.EnablePlayerInput();
+        _loadingUI.ClosePage();
+
+        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+
+        _inputController.EnablePauseInput();
+        _isRestarting = false;
     }
 
     private void ResetPlayer()
@@ -79,7 +104,7 @@ public class Level5RestartHandler : MonoBehaviour
         DialogueLua.SetVariable("Catch_Yuli", false);
     }
 
-    private void ResetBoxPosition()
+    private void ResetBox()
     {
         for (int i = 0; i < _boxArray.Length; i++)
         {

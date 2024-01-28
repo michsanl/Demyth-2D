@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, IBroadcaster
     public Action<bool> OnLanternValueChanged;
     public Action<bool> OnHealthPotionUnlockedValueChanged;
     public Action<bool> OnShieldUnlockedValueChanged;
+    public Transform PlayerModel => _playerModel;
     public Vector2 LastMoveTargetPosition => _moveTargetPosition;
     public Vector2 PlayerDir => _playerDir;
     public bool IsDead => _isDead;
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private LayerMask moveBlockMask;
     
     [Title("Components")]
+    [SerializeField] private Transform _playerModel;
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
     [SerializeField] private AraClipSO _araClipSO;

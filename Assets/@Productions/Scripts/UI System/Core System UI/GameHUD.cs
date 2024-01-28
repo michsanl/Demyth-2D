@@ -116,7 +116,7 @@ namespace Demyth.UI
             if (!_isOpen) return;
             _isOpen = false;
             DOTween.CompleteAll();
-            Helper.PlaySFXIgnorePause(_uiClipSO.HUDClose, _uiClipSO.HUDCloseVolume);
+            Helper.PlaySFXIgnorePause(_uiClipSO.HUDOpen, _uiClipSO.HUDOpenVolume);
 
             _pageAnimator?.CloseAnimation(() =>
             {

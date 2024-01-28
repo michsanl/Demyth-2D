@@ -485,13 +485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boxPositionSO: {fileID: 11400000, guid: d57428f8f33a23149951d57311f12e29, type: 2}
-  _playerModel: {fileID: 0}
   _yula: {fileID: 3562212816524243147}
   _yuli: {fileID: 6196429394815940046}
-  _destructibleBox: {fileID: 0}
   _playerResetPosition: {x: 0, y: -4, z: 0}
-  _yulaResetPosition: {x: -2, y: -1, z: 0}
-  _yuliResetPosition: {x: 2, y: -1, z: 0}
   _boxArray:
   - {fileID: 8661236026503222949}
   - {fileID: 7833336798690957294}
@@ -507,10 +503,6 @@ MonoBehaviour:
   - {fileID: 3126332717182287033}
   - {fileID: 3735757265390088398}
   - {fileID: 6838508413058048445}
-  BoxesResetPositionArray:
-  - {x: -5, y: -2, z: 0}
-  - {x: -5, y: -3, z: 0}
-  - {x: -6, y: -2, z: 0}
 --- !u!1 &1580712744
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +753,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -772,7 +764,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 3, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &3515312693788752784
 GameObject:

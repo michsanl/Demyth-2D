@@ -59,6 +59,16 @@ public class GameInput : MonoBehaviour
         playerInputActions.Pause.Disable();
     }
 
+    public void EnableRestartInput()
+    {
+        playerInputActions.Restart.Enable();
+    }
+
+    public void DisableRestartInput()
+    {
+        playerInputActions.Restart.Disable();
+    }
+
     private void PlayerInputAction_OnSenterPerformed(InputAction.CallbackContext context)
     {
         OnSenterPerformed?.Invoke();
