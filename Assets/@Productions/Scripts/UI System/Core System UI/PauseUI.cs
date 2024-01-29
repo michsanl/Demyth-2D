@@ -107,9 +107,6 @@ namespace UISystem
             // _gameHUD.Close();
             // _uiPage.OpenPage(_menuPageId);
 
-            Time.timeScale = 1f;
-            AudioListener.pause = false;
-
             SceneManager.LoadScene(0);
         }
 

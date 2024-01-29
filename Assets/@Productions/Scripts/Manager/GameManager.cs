@@ -24,6 +24,9 @@ public class GameManager : SceneService
         _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
         _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
+
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
     }
 
     private void Start()
@@ -44,12 +47,6 @@ public class GameManager : SceneService
     public void SetGameStateToGameOver()
     {
         _gameStateService.SetState(GameState.GameOver);
-    }
-
-    // Saving on the start of the scene, before loading anything, to create vanilla save file
-    private static void CreateVanillaSaveFile()
-    {
-        SaveSystem.SaveToSlot(0);
     }
 
     private void Pause_OnEnter(GameState state)
