@@ -14,4 +14,7 @@ public class BoxPositionSO : ScriptableObject
     public Vector2 YulaPosition;
     public Vector2 YuliPosition;
     public Vector2[] BoxWoodPositionArray;
+    [Header("Level 6")]
+    public Vector2 PlayerPosition;
+    public Vector2[] BoxPositionArray;
 }
