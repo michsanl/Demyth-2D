@@ -24,6 +24,7 @@ public class Level6RestartHandler : MonoBehaviour
     private Player _player;
     private Transform _playerModel;
     private bool _isRestarting;
+    private Vector3[] _boxInitialPositionArray;
 
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class Level6RestartHandler : MonoBehaviour
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerModel = _player.PlayerModel;
         _gameInput = _inputController.GameInput;
+
+        _boxInitialPositionArray = new Vector3[_boxArray.Length];
     }
 
     private void OnEnable()
@@ -41,6 +44,7 @@ public class Level6RestartHandler : MonoBehaviour
             return;
 
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
+        SetBoxInitialPosition();
 
         OnLevelRestartEnabled?.Invoke();
     }
@@ -71,7 +75,7 @@ public class Level6RestartHandler : MonoBehaviour
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
         ResetPlayer();
-        ResetBox();
+        ResetBoxPosition();
         _inputController.EnablePlayerInput();
         _loadingUI.ClosePage();
 
@@ -87,11 +91,19 @@ public class Level6RestartHandler : MonoBehaviour
         _player.transform.position = _playerResetPosition;
     }
 
-    private void ResetBox()
+    private void SetBoxInitialPosition()
     {
         for (int i = 0; i < _boxArray.Length; i++)
         {
-            _boxArray[i].transform.position = _boxPositionSO.BoxPositionArray[i];
+            _boxInitialPositionArray[i] = _boxArray[i].position;
+        }
+    }
+
+    private void ResetBoxPosition()
+    {
+        for (int i = 0; i < _boxArray.Length; i++)
+        {
+            _boxArray[i].transform.position = _boxInitialPositionArray[i];
         }
     }
 

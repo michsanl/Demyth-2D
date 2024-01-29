@@ -669,6 +669,70 @@ Transform:
   m_Father: {fileID: 5769574276897024326}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7021940307428822218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4547824425973518729}
+  - component: {fileID: 4474307894039167719}
+  m_Layer: 0
+  m_Name: Level 6 Restart Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4547824425973518729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021940307428822218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5769574275846061963}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4474307894039167719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021940307428822218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75af42bf41de1974980b2c242be7d9cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boxPositionSO: {fileID: 11400000, guid: d57428f8f33a23149951d57311f12e29, type: 2}
+  _playerResetPosition: {x: -4, y: -4, z: 0}
+  _boxArray:
+  - {fileID: 3697761963197042370}
+  - {fileID: 5346810716661167205}
+  - {fileID: 1383562545998012399}
+  - {fileID: 3081974003729845097}
+  - {fileID: 1683372484762172821}
+  - {fileID: 4376871123132900862}
+  - {fileID: 4022953637978906545}
+  - {fileID: 3292610989244354855}
+  - {fileID: 4997462498042967226}
+  - {fileID: 4521135624784974711}
+  - {fileID: 1533803787782226550}
+  - {fileID: 5255877626070797698}
+  - {fileID: 6644529762452614967}
+  - {fileID: 6072803167036200795}
+  - {fileID: 7161472396576130938}
+  - {fileID: 2406077862761872053}
+  - {fileID: 889554955578806571}
 --- !u!1 &7258928898975071059
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +779,7 @@ Transform:
   - {fileID: 2406077862761872053}
   - {fileID: 889554955578806571}
   m_Father: {fileID: 5769574275846061963}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8231971554241870741
 GameObject:
@@ -728,7 +792,7 @@ GameObject:
   - component: {fileID: 6790841602979454410}
   - component: {fileID: 2479745594607160482}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Level Cutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
