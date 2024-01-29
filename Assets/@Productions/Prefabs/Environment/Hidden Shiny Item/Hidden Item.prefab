@@ -225,7 +225,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -284,8 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518a951ce50569243a687589c9f39a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupableGameOBject: {fileID: 6429237052383729507}
-  animator: {fileID: 6429237052839309928}
+  _dialogueTriggerGO: {fileID: 6429237052383729507}
+  _animator: {fileID: 6429237052839309928}
 --- !u!65 &1727764306780834689
 BoxCollider:
   m_ObjectHideFlags: 0
