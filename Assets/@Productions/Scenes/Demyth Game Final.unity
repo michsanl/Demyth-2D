@@ -569,9 +569,17 @@ PrefabInstance:
       propertyPath: _light2D
       value: 
       objectReference: {fileID: 557433475}
+    - target: {fileID: 1164657816910384339, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1738427685664459109, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987295814670315341, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2084580017448373030, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
@@ -597,6 +605,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4546543653971275226, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: trigger
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546543653971275226, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: condition.acceptedTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546543653971275226, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: condition.acceptedTags.Array.data[0]
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4646054346686707865, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -621,11 +641,32 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6798203708492136968, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: trigger
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798203708492136968, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: condition.acceptedTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798203708492136968, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: condition.acceptedTags.Array.data[0]
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7186460242710890279, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8172116880756712193, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
 --- !u!1 &171422963 stripped
 GameObject:
