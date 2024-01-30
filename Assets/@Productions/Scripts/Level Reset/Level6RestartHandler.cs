@@ -13,7 +13,7 @@ public class Level6RestartHandler : MonoBehaviour
     public Action OnLevelRestartEnabled;
     public Action OnLevelRestartDisabled;
 
-    [SerializeField] private BoxPositionSO _boxPositionSO;
+    [SerializeField] private Level6PuzzlePositionSO _level6PositionSO;
     [SerializeField] private Transform[] _boxArray;
     [SerializeField] private GameObject[] _hiddenItems;
 
@@ -24,7 +24,6 @@ public class Level6RestartHandler : MonoBehaviour
     private Player _player;
     private Transform _playerModel;
     private bool _isRestarting;
-    private Vector3[] _boxInitialPositionArray;
 
     private void Awake()
     {
@@ -34,8 +33,6 @@ public class Level6RestartHandler : MonoBehaviour
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerModel = _player.PlayerModel;
         _gameInput = _inputController.GameInput;
-
-        _boxInitialPositionArray = new Vector3[_boxArray.Length];
     }
 
     private void OnEnable()
@@ -44,7 +41,6 @@ public class Level6RestartHandler : MonoBehaviour
             return;
 
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
-        SetBoxInitialPosition();
 
         OnLevelRestartEnabled?.Invoke();
     }
@@ -54,14 +50,6 @@ public class Level6RestartHandler : MonoBehaviour
         _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
 
         OnLevelRestartDisabled?.Invoke();
-    }
-
-    private void SetBoxInitialPosition()
-    {
-        for (int i = 0; i < _boxArray.Length; i++)
-        {
-            _boxPositionSO.BoxPositionLevel6[i] = _boxArray[i].position;
-        }
     }
 
     private void GameInput_OnRestartPerformed()
@@ -97,7 +85,7 @@ public class Level6RestartHandler : MonoBehaviour
     private void ResetPlayer()
     {
         _playerModel.localScale = Vector3.one;
-        _player.transform.position = _boxPositionSO.PlayerPositionLevel6;
+        _player.transform.position = _level6PositionSO.PlayerPosition;
     }
 
     private void ResetHiddenItem()
@@ -112,7 +100,7 @@ public class Level6RestartHandler : MonoBehaviour
     {
         for (int i = 0; i < _boxArray.Length; i++)
         {
-            _boxArray[i].transform.position = _boxInitialPositionArray[i];
+            _boxArray[i].transform.position = _level6PositionSO.BoxPositions[i];
         }
     }
 
