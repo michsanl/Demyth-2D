@@ -5,19 +5,19 @@ using System;
 
 public class HiddenItemShine : MonoBehaviour
 {
-    [SerializeField] private GameObject pickupableGameOBject;
-    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject _dialogueTriggerGO;
+    [SerializeField] private Animator _animator;
 
     private void OnCollisionEnter(Collision other) 
     {
-        animator.SetBool("Shine", true);
-        pickupableGameOBject.SetActive(true);
+        _animator.SetBool("Shine", true);
+        _dialogueTriggerGO.SetActive(true);
     }
 
     private void OnCollisionExit(Collision other) 
     {
-        animator.SetBool("Shine", false);
-        pickupableGameOBject.SetActive(false);
+        _animator.SetBool("Shine", false);
+        _dialogueTriggerGO.SetActive(false);
     }
 
 }

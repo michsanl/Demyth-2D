@@ -4,22 +4,19 @@ using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using Core;
 using System;
-using PixelCrushers;
 using Demyth.Gameplay;
-using DG.Tweening;
 using UISystem;
 
-public class Level5RestartHandler : SceneService
+public class Level6RestartHandler : SceneService
 {
     
     public Action OnRestartHandlerEnabled;
     public Action OnRestartHandlerDisabled;
 
     [Space]
-    [SerializeField] private Level5PuzzlePositionSO _level5PuzzlePositionSO;
-    [SerializeField] private TuyulFleeMovement _yula;
-    [SerializeField] private TuyulFleeMovement _yuli;
+    [SerializeField] private Level6PuzzlePositionSO _level6PositionSO;
     [SerializeField] private Transform[] _boxArray;
+    [SerializeField] private GameObject[] _hiddenItems;
 
     private GameStateService _gameStateService;
     private LoadingUI _loadingUI;
@@ -75,12 +72,12 @@ public class Level5RestartHandler : SceneService
         yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
 
         ResetPlayer();
-        ResetTuyul();
-        ResetBox();
+        ResetBoxPosition();
+        ResetHiddenItem();
         _inputController.EnablePlayerInput();
         _loadingUI.ClosePage();
 
-        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+        yield return Helper.GetWaitForSeconds(_loadingUI.GetClosePageDuration());
 
         _inputController.EnablePauseInput();
         _isRestarting = false;
@@ -89,31 +86,30 @@ public class Level5RestartHandler : SceneService
     private void ResetPlayer()
     {
         _playerModel.localScale = Vector3.one;
-        _player.transform.position = _level5PuzzlePositionSO.PlayerPosition;
+        _player.transform.position = _level6PositionSO.PlayerPosition;
     }
 
-    private void ResetTuyul()
+    private void ResetHiddenItem()
     {
-        _yula.gameObject.SetActive(true);
-        _yuli.gameObject.SetActive(true);
-        _yula.transform.position = _level5PuzzlePositionSO.YulaPosition;
-        _yuli.transform.position = _level5PuzzlePositionSO.YuliPosition;
-        _yula.ResetUnitCondition();
-        _yuli.ResetUnitCondition();
-        DialogueLua.SetVariable("Catch_Yula", false);
-        DialogueLua.SetVariable("Catch_Yuli", false);
+        foreach (var hiddenItem in _hiddenItems)
+        {
+            hiddenItem.SetActive(true);
+        }
+
+        int collectedPaperCount = 0;
+        DialogueLua.SetVariable("HiddenItem.NumCollected", collectedPaperCount);
     }
 
-    private void ResetBox()
+    private void ResetBoxPosition()
     {
         for (int i = 0; i < _boxArray.Length; i++)
         {
-            _boxArray[i].transform.position = _level5PuzzlePositionSO.BoxPositions[i];
+            _boxArray[i].transform.position = _level6PositionSO.BoxPositions[i];
         }
     }
 
     private bool IsLevelCompleted()
     {
-        return DialogueLua.GetVariable("Catch_Yula").AsBool && DialogueLua.GetVariable("Catch_Yuli").AsBool;
+        return DialogueLua.GetVariable("Level_6_Done").AsBool;
     }
 }
