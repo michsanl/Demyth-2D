@@ -15,10 +15,9 @@ public class Level5RestartHandler : MonoBehaviour
     public Action OnTuyulLevelResetEnabled;
     public Action OnTuyulLevelResetDisabled;
 
-    [SerializeField] private BoxPositionSO _boxPositionSO;
+    [SerializeField] private Level5PuzzlePositionSO _level5PuzzlePositionSO;
     [SerializeField] private TuyulFleeMovement _yula;
     [SerializeField] private TuyulFleeMovement _yuli;
-    [SerializeField] private Vector3 _playerResetPosition;
     [SerializeField] private Transform[] _boxArray;
 
     private GameStateService _gameStateService;
@@ -89,15 +88,15 @@ public class Level5RestartHandler : MonoBehaviour
     private void ResetPlayer()
     {
         _playerModel.localScale = Vector3.one;
-        _player.transform.position = _playerResetPosition;
+        _player.transform.position = _level5PuzzlePositionSO.PlayerPosition;
     }
 
     private void ResetTuyul()
     {
         _yula.gameObject.SetActive(true);
         _yuli.gameObject.SetActive(true);
-        _yula.transform.position = _boxPositionSO.YulaPosition;
-        _yuli.transform.position = _boxPositionSO.YuliPosition;
+        _yula.transform.position = _level5PuzzlePositionSO.YulaPosition;
+        _yuli.transform.position = _level5PuzzlePositionSO.YuliPosition;
         _yula.ResetUnitCondition();
         _yuli.ResetUnitCondition();
         DialogueLua.SetVariable("Catch_Yula", false);
@@ -108,45 +107,12 @@ public class Level5RestartHandler : MonoBehaviour
     {
         for (int i = 0; i < _boxArray.Length; i++)
         {
-            _boxArray[i].transform.position = _boxPositionSO.BoxWoodPositionArray[i];
+            _boxArray[i].transform.position = _level5PuzzlePositionSO.BoxPositions[i];
         }
     }
 
     private bool IsLevelCompleted()
     {
         return DialogueLua.GetVariable("Catch_Yula").AsBool && DialogueLua.GetVariable("Catch_Yuli").AsBool;
-    }
-
-
-
-    private void OldResetTuyulLevel()
-    {
-        // reset player position
-        // Reset tuyul active state, position, and visual
-        // reset box position
-        // restore destructible box
-        // DOTween.CompleteAll();
-
-        // _playerModel.localScale = Vector3.one;
-        // _player.transform.position = _playerResetPosition;
-
-        // _yula.gameObject.SetActive(true);
-        // _yuli.gameObject.SetActive(true);
-        // _yula.transform.position = _yulaResetPosition;
-        // _yuli.transform.position = _yuliResetPosition;
-        // _yula.ResetUnitCondition();
-        // _yuli.ResetUnitCondition();
-
-        // for (int i = 0; i < _boxArray.Length; i++)
-        // {
-        //     _boxArray[i].position = BoxesResetPositionArray[i];
-        // }
-
-        // _destructibleBox.SetActive(true);
-        // _destructibleBox.GetComponent<Health>().ResetHealthToMaximum();
-
-        // bool caughtState = false;
-        // DialogueLua.SetVariable("Catch_Yula", caughtState);
-        // DialogueLua.SetVariable("Catch_Yuli", caughtState);
     }
 }
