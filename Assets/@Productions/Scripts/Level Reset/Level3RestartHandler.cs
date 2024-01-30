@@ -14,16 +14,16 @@ public class Level3RestartHandler : MonoBehaviour
     public Action OnBoxPuzzleLevelResetEnabled;
     public Action OnBoxPuzzleLevelResetDisabled;
 
-    [SerializeField] private Transform _playerModel;
+    [SerializeField] private Level3PuzzlePositionSO _level3PuzzlePositionSO;
     [SerializeField] private Transform[] _boxCrateArray;
     [SerializeField] private Transform[] _boxCardBoardOpenArray;
     [SerializeField] private Transform[] _boxCardboardClosedArray;
-    [SerializeField] private BoxPositionSO _resetPositionSO;
     
     private GameStateService _gameStateService;
     private GameInputController _inputController;
     private LoadingUI _loadingUI;
     private Player _player;
+    private Transform _playerModel;
     private GameInput _gameInput;
     private bool _isRestarting;
 
@@ -34,6 +34,7 @@ public class Level3RestartHandler : MonoBehaviour
         _inputController = SceneServiceProvider.GetService<GameInputController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _gameInput = SceneServiceProvider.GetService<GameInputController>().GameInput;
+        _playerModel = _player.PlayerModel;
     }
 
     private void OnEnable()
@@ -89,14 +90,14 @@ public class Level3RestartHandler : MonoBehaviour
 
     private void ResetPlayerPosition()
     {
-        _player.transform.position = _resetPositionSO.PlayerResetPosition;
+        _player.transform.position = _level3PuzzlePositionSO.PlayerPosition;
     }
 
     private void ResetBoxCratePosition()
     {
         for (int i = 0; i < _boxCrateArray.Length; i++)
         {
-            _boxCrateArray[i].position = _resetPositionSO.BoxCrateResetPositionArray[i];
+            _boxCrateArray[i].position = _level3PuzzlePositionSO.BoxCrateResetPositionArray[i];
         }
     }
 
@@ -104,7 +105,7 @@ public class Level3RestartHandler : MonoBehaviour
     {
         for (int i = 0; i < _boxCardBoardOpenArray.Length; i++)
         {
-            _boxCardBoardOpenArray[i].position = _resetPositionSO.BoxCardBoardOpenResetPositionArray[i];
+            _boxCardBoardOpenArray[i].position = _level3PuzzlePositionSO.BoxCardBoardOpenResetPositionArray[i];
         }
     }
 
@@ -112,7 +113,7 @@ public class Level3RestartHandler : MonoBehaviour
     {
         for (int i = 0; i < _boxCardboardClosedArray.Length; i++)
         {
-            _boxCardboardClosedArray[i].position = _resetPositionSO.BoxCardboardClosedResetPositionArray[i];
+            _boxCardboardClosedArray[i].position = _level3PuzzlePositionSO.BoxCardboardClosedResetPositionArray[i];
         }
     }
 
