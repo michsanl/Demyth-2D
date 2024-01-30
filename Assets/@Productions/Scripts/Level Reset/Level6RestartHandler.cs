@@ -94,6 +94,9 @@ public class Level6RestartHandler : MonoBehaviour
         {
             hiddenItem.SetActive(true);
         }
+
+        int collectedPaperCount = 0;
+        DialogueLua.SetVariable("HiddenItem.NumCollected", collectedPaperCount);
     }
 
     private void ResetBoxPosition()
