@@ -653,6 +653,26 @@ PrefabInstance:
       propertyPath: condition.acceptedTags.Array.data[0]
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7061682368982006163, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: onExecute.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061682368982006163, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: onExecute.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 557433475}
+    - target: {fileID: 7061682368982006163, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: onExecute.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_intensity
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061682368982006163, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: onExecute.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Rendering.Universal.Light2D, Unity.RenderPipelines.Universal.Runtime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061682368982006163, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: onExecute.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7186460242710890279, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
