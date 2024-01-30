@@ -12,15 +12,22 @@ namespace Demyth.UI
     {
 
         
-        [SerializeField] private Level3RestartHandler _boxPuzzleLevelReset;
-        [SerializeField] private Level5RestartHandler _tuyulChaseLevelReset;
+        private Level3RestartHandler _level3Restart;
+        private Level5RestartHandler _level5Restart;
+        private Level6RestartHandler _level6Restart;
 
         private void Awake()
         {
-            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetEnabled += BoxLevelReset_OnBoxLevelResetEnabled;
-            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetDisabled += BoxLevelReset_OnBoxLevelResetDisabled;
-            _tuyulChaseLevelReset.OnTuyulLevelResetEnabled += TuyulLevelResetEnabled_OnTuyulLevelResetEnabled;
-            _tuyulChaseLevelReset.OnTuyulLevelResetDisabled += TuyulLevelResetEnabled_OnTuyulLevelResetDisabled;
+            _level3Restart = SceneServiceProvider.GetService<Level3RestartHandler>();
+            _level5Restart = SceneServiceProvider.GetService<Level5RestartHandler>();
+            _level6Restart = SceneServiceProvider.GetService<Level6RestartHandler>();
+
+            _level3Restart.OnRestartHandlerEnabled += Level3Restart_OnRestartHandlerEnabled;
+            _level3Restart.OnRestartHandlerDisabled += Level3Restart_OnRestartHandlerDisabled;
+            _level5Restart.OnRestartHandlerEnabled += Level5Restart_OnRestartHandlerEnabled;
+            _level5Restart.OnRestartHandlerDisabled += Level5Restart_OnRestartHandlerDisabled;
+            _level6Restart.OnRestartHandlerEnabled += Level6Restart_OnRestartHandlerEnabled;
+            _level6Restart.OnRestartHandlerDisabled += Level6Restart_OnRestartHandlerDisabled;
         }
 
         private void Start() 
@@ -28,30 +35,40 @@ namespace Demyth.UI
             Hide();
         }
 
+        // this prevents weird null reference exception on game quit
         private void OnDestroy()
         {
-            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetEnabled -= BoxLevelReset_OnBoxLevelResetEnabled;
-            _boxPuzzleLevelReset.OnBoxPuzzleLevelResetDisabled -= BoxLevelReset_OnBoxLevelResetDisabled;
-            _tuyulChaseLevelReset.OnTuyulLevelResetEnabled -= TuyulLevelResetEnabled_OnTuyulLevelResetEnabled;
-            _tuyulChaseLevelReset.OnTuyulLevelResetDisabled -= TuyulLevelResetEnabled_OnTuyulLevelResetDisabled;
+            _level3Restart.OnRestartHandlerDisabled -= Level3Restart_OnRestartHandlerDisabled;
+            _level5Restart.OnRestartHandlerDisabled -= Level5Restart_OnRestartHandlerDisabled;
+            _level6Restart.OnRestartHandlerDisabled -= Level6Restart_OnRestartHandlerDisabled;
         }
 
-        private void BoxLevelReset_OnBoxLevelResetEnabled()
+        private void Level6Restart_OnRestartHandlerEnabled()
         {
             Show();
         }
 
-        private void BoxLevelReset_OnBoxLevelResetDisabled()
+        private void Level6Restart_OnRestartHandlerDisabled()
         {
             Hide();
         }
 
-        private void TuyulLevelResetEnabled_OnTuyulLevelResetEnabled()
+        private void Level3Restart_OnRestartHandlerEnabled()
         {
             Show();
         }
 
-        private void TuyulLevelResetEnabled_OnTuyulLevelResetDisabled()
+        private void Level3Restart_OnRestartHandlerDisabled()
+        {
+            Hide();
+        }
+
+        private void Level5Restart_OnRestartHandlerEnabled()
+        {
+            Show();
+        }
+
+        private void Level5Restart_OnRestartHandlerDisabled()
         {
             Hide();
         }

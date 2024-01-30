@@ -8,12 +8,13 @@ using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 using UISystem;
 
-public class Level3RestartHandler : MonoBehaviour
+public class Level3RestartHandler : SceneService
 {
     
-    public Action OnBoxPuzzleLevelResetEnabled;
-    public Action OnBoxPuzzleLevelResetDisabled;
+    public Action OnRestartHandlerEnabled;
+    public Action OnRestartHandlerDisabled;
 
+    [Space]
     [SerializeField] private Level3PuzzlePositionSO _level3PuzzlePositionSO;
     [SerializeField] private Transform[] _boxCrateArray;
     [SerializeField] private Transform[] _boxCardBoardOpenArray;
@@ -44,14 +45,14 @@ public class Level3RestartHandler : MonoBehaviour
 
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
-        OnBoxPuzzleLevelResetEnabled?.Invoke();
+        OnRestartHandlerEnabled?.Invoke();
     }
 
     private void OnDisable() 
     {
         _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
 
-        OnBoxPuzzleLevelResetDisabled?.Invoke();
+        OnRestartHandlerDisabled?.Invoke();
     }
 
     private void GameInput_OnRestartPerformed()

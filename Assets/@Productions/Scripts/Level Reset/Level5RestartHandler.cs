@@ -9,12 +9,13 @@ using Demyth.Gameplay;
 using DG.Tweening;
 using UISystem;
 
-public class Level5RestartHandler : MonoBehaviour
+public class Level5RestartHandler : SceneService
 {
     
-    public Action OnTuyulLevelResetEnabled;
-    public Action OnTuyulLevelResetDisabled;
+    public Action OnRestartHandlerEnabled;
+    public Action OnRestartHandlerDisabled;
 
+    [Space]
     [SerializeField] private Level5PuzzlePositionSO _level5PuzzlePositionSO;
     [SerializeField] private TuyulFleeMovement _yula;
     [SerializeField] private TuyulFleeMovement _yuli;
@@ -45,14 +46,14 @@ public class Level5RestartHandler : MonoBehaviour
 
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
-        OnTuyulLevelResetEnabled?.Invoke();
+        OnRestartHandlerEnabled?.Invoke();
     }
 
     private void OnDisable() 
     {
         _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
 
-        OnTuyulLevelResetDisabled?.Invoke();
+        OnRestartHandlerDisabled?.Invoke();
     }
 
     private void GameInput_OnRestartPerformed()

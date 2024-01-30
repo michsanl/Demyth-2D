@@ -7,12 +7,13 @@ using System;
 using Demyth.Gameplay;
 using UISystem;
 
-public class Level6RestartHandler : MonoBehaviour
+public class Level6RestartHandler : SceneService
 {
     
-    public Action OnLevelRestartEnabled;
-    public Action OnLevelRestartDisabled;
+    public Action OnRestartHandlerEnabled;
+    public Action OnRestartHandlerDisabled;
 
+    [Space]
     [SerializeField] private Level6PuzzlePositionSO _level6PositionSO;
     [SerializeField] private Transform[] _boxArray;
     [SerializeField] private GameObject[] _hiddenItems;
@@ -42,14 +43,14 @@ public class Level6RestartHandler : MonoBehaviour
 
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
-        OnLevelRestartEnabled?.Invoke();
+        OnRestartHandlerEnabled?.Invoke();
     }
 
     private void OnDisable() 
     {
         _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
 
-        OnLevelRestartDisabled?.Invoke();
+        OnRestartHandlerDisabled?.Invoke();
     }
 
     private void GameInput_OnRestartPerformed()
