@@ -663,11 +663,11 @@ MonoBehaviour:
     - title: Entry 1 State
       value: active
       type: 0
-      typeString: 
+      typeString: CustomFieldType_QuestState
     - title: Entry 1
       value: '[var=HiddenItem.NumCollected]/5 Collected'
       type: 0
-      typeString: 
+      typeString: CustomFieldType_Text
     - title: Trackable
       value: True
       type: 2
@@ -916,6 +916,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 31
+    fields:
+    - title: Name
+      value: Level_6_Puzzle_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 30
     fields:
     - title: Name
@@ -31512,7 +31526,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 926.6519
-        y: 179.21283
+        y: 177.84296
         width: 160
         height: 30
     - id: 2
@@ -33453,8 +33467,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 100.438614}
-    canvasZoom: 0.40000045
+    canvasScrollPosition: {x: 522.35065, y: 737.6518}
+    canvasZoom: 0.97000015
   - id: 20
     fields:
     - title: Title
