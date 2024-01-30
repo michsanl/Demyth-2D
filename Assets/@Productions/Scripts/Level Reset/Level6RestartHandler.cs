@@ -16,6 +16,7 @@ public class Level6RestartHandler : MonoBehaviour
     [SerializeField] private BoxPositionSO _boxPositionSO;
     [SerializeField] private Vector3 _playerResetPosition;
     [SerializeField] private Transform[] _boxArray;
+    [SerializeField] private GameObject[] _hiddenItems;
 
     private GameStateService _gameStateService;
     private LoadingUI _loadingUI;
@@ -76,6 +77,7 @@ public class Level6RestartHandler : MonoBehaviour
 
         ResetPlayer();
         ResetBoxPosition();
+        ResetHiddenItem();
         _inputController.EnablePlayerInput();
         _loadingUI.ClosePage();
 
@@ -89,6 +91,14 @@ public class Level6RestartHandler : MonoBehaviour
     {
         _playerModel.localScale = Vector3.one;
         _player.transform.position = _playerResetPosition;
+    }
+
+    private void ResetHiddenItem()
+    {
+        foreach (var hiddenItem in _hiddenItems)
+        {
+            hiddenItem.SetActive(true);
+        }
     }
 
     private void SetBoxInitialPosition()
