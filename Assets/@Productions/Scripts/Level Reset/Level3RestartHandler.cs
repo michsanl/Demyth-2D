@@ -40,9 +40,8 @@ public class Level3RestartHandler : SceneService
 
     private void OnEnable()
     {
-        if (IsLevelCompleted())
-            return;
-
+        if (IsLevelCompleted()) return;
+        
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
         OnRestartHandlerEnabled?.Invoke();

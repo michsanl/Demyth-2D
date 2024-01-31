@@ -38,9 +38,8 @@ public class Level6RestartHandler : SceneService
 
     private void OnEnable()
     {
-        if (IsLevelCompleted())
-            return;
-
+        if (IsLevelCompleted()) return;
+        
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
         OnRestartHandlerEnabled?.Invoke();
@@ -113,6 +112,6 @@ public class Level6RestartHandler : SceneService
 
     private bool IsLevelCompleted()
     {
-        return DialogueLua.GetVariable("Level_6_Done").AsBool;
+        return DialogueLua.GetVariable("Level_6_Puzzle_Done").AsBool;
     }
 }
