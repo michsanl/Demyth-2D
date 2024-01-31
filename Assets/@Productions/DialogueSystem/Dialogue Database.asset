@@ -32051,11 +32051,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 9
         type: 5
@@ -32067,18 +32067,18 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=7]Yula
 
 
           But I think she can really scary you know..?'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=7]Yula
 
@@ -32086,6 +32086,10 @@ MonoBehaviour:
           Tapi tetap seram juga sih..'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32181,11 +32185,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 13
         type: 5
@@ -32197,18 +32201,18 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=9]Raine
 
 
           [em1]Good Luck![/em1]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=9]Raine
 
@@ -32219,7 +32223,7 @@ MonoBehaviour:
       - title: EventGuid
         value: dda3e467-4c80-41f4-b1c1-5bf64e70057f
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32253,11 +32257,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 7
         type: 5
@@ -32269,25 +32273,25 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[em5]...[/em5]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 'Continue();
 
           SetActive (Bg 6, false)@0.95;'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 
+        value: f9614d75-cae5-484f-87bb-96d0e3e9a4b6
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32303,7 +32307,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 922.59705
+        x: 923.8165
         y: 884.4888
         width: 160
         height: 30
@@ -32312,11 +32316,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 13
         type: 5
@@ -32328,7 +32332,7 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=2]Raine
 
@@ -32339,11 +32343,11 @@ MonoBehaviour:
 
           Here[/em1]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: SetPortrait(Ara, pic=1)
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=2]Raine
 
@@ -32829,6 +32833,10 @@ MonoBehaviour:
           Lima[/em1]'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: f7589e6b-31cd-4525-a44e-360bf0b90b59
+        type: 0
+        typeString: 
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32844,7 +32852,10 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: 'Variable["Level_6_Done"] = true;
+
+        SetQuestState("Sparkling
+        Hidden Item", "active")'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -32926,11 +32937,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 1
         type: 5
@@ -32942,18 +32953,18 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=7]Ara
 
 
           Oh great..'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=7]Ara
 
@@ -32962,9 +32973,9 @@ MonoBehaviour:
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 9529f203-67f6-4d4d-ad4b-61f6a4d1ce45
+        value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32980,10 +32991,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 'Variable["Level_6_Done"] = true;
-
-        SetQuestState("Sparkling
-        Hidden Item", "active")'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -32998,11 +33006,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 7
         type: 5
@@ -33014,17 +33022,17 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[em5]...[/em5]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 'Continue();
 
           SetActive (Bg 6, false)@0.95;'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
@@ -33032,7 +33040,7 @@ MonoBehaviour:
       - title: EventGuid
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -33474,8 +33482,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 486.57587, y: 483.8048}
-    canvasZoom: 0.7600005
+    canvasScrollPosition: {x: 434.42346, y: 32.727272}
+    canvasZoom: 0.54999995
   - id: 20
     fields:
     - title: Title

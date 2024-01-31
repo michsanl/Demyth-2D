@@ -41,8 +41,6 @@ public class Level5RestartHandler : SceneService
 
     private void OnEnable()
     {
-        if (IsLevelCompleted()) return;
-        
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
         OnRestartHandlerEnabled?.Invoke();

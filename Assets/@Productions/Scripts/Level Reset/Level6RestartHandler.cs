@@ -38,8 +38,6 @@ public class Level6RestartHandler : SceneService
 
     private void OnEnable()
     {
-        if (IsLevelCompleted()) return;
-        
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
         OnRestartHandlerEnabled?.Invoke();
@@ -87,7 +85,7 @@ public class Level6RestartHandler : SceneService
 
     private void ResetPlayer()
     {
-        _playerModel.localScale = Vector3.one;
+        _playerModel.localScale = new Vector3(-1, 1, 1);
         _player.transform.position = _level6PositionSO.PlayerPosition;
     }
 
@@ -108,10 +106,5 @@ public class Level6RestartHandler : SceneService
         {
             _boxArray[i].transform.position = _level6PositionSO.BoxPositions[i];
         }
-    }
-
-    private bool IsLevelCompleted()
-    {
-        return DialogueLua.GetVariable("Level_6_Puzzle_Done").AsBool;
     }
 }

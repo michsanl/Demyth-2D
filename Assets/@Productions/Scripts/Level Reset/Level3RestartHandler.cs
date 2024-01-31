@@ -40,8 +40,6 @@ public class Level3RestartHandler : SceneService
 
     private void OnEnable()
     {
-        if (IsLevelCompleted()) return;
-        
         _gameInput.OnRestartPerformed.AddListener(GameInput_OnRestartPerformed);
 
         OnRestartHandlerEnabled?.Invoke();
@@ -118,10 +116,5 @@ public class Level3RestartHandler : SceneService
         {
             _boxCardboardClosedArray[i].position = _level3PuzzlePositionSO.BoxCardboardClosedResetPositionArray[i];
         }
-    }
-
-    private bool IsLevelCompleted()
-    {
-        return DialogueLua.GetVariable("Level_3_Done").asBool;
     }
 }
