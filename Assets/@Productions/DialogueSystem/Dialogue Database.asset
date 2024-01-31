@@ -31518,7 +31518,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: (CurrentQuestState("Sparkling Hidden Item") == "active")
-        and (Variable["HiddenItem.NumCollected"] >= 5)
+        and (Variable["HiddenItem.NumCollected"] >= 3)
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -32235,7 +32235,10 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: SetQuestState("Sparkling Hidden Item", "success")
+      userScript: 'SetQuestState("Sparkling Hidden Item", "success");
+
+        Variable["Level_6_Puzzle_Done"]
+        = true'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -33112,7 +33115,7 @@ MonoBehaviour:
         isConnector: 1
         priority: 2
       conditionsString: Variable["Level_6_Done"] == true and (CurrentQuestState("Sparkling
-        Hidden Item") == "active") and (Variable["HiddenItem.NumCollected"] < 5)
+        Hidden Item") == "active") and (Variable["HiddenItem.NumCollected"] < 3)
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -33471,8 +33474,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 324.98053, y: 50.112766}
-    canvasZoom: 0.9700004
+    canvasScrollPosition: {x: 486.57587, y: 483.8048}
+    canvasZoom: 0.7600005
   - id: 20
     fields:
     - title: Title
