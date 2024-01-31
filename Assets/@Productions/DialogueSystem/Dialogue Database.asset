@@ -17746,6 +17746,10 @@ MonoBehaviour:
           Iya..'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: b4a1a17c-4feb-442c-b423-e0d99b7d0241
+        type: 0
+        typeString: 
       conversationID: 11
       isRoot: 0
       isGroup: 0
@@ -17761,7 +17765,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_3_Intro_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -17808,7 +17812,7 @@ MonoBehaviour:
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 14fdd0d4-5544-4969-8ead-4727c1f02491
+        value: 
         type: 0
         typeString: 
       conversationID: 11
@@ -17820,7 +17824,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["Level_3_Intro_Done"] = true
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -17831,8 +17835,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 52.314407, y: 190.24391}
-    canvasZoom: 0.81999993
+    canvasScrollPosition: {x: 119.78596, y: 239.19707}
+    canvasZoom: 0.8499999
   - id: 12
     fields:
     - title: Title
@@ -20958,6 +20962,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 169db7cc-3fba-48f6-80ba-321af51511ae
+        type: 0
+        typeString: 
       conversationID: 12
       isRoot: 0
       isGroup: 0
@@ -21842,8 +21850,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 81.034424, y: 1156.8958}
-    canvasZoom: 0.5800004
+    canvasScrollPosition: {x: 431.8338, y: 1961.267}
+    canvasZoom: 0.96999973
   - id: 13
     fields:
     - title: Title

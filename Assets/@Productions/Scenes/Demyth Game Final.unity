@@ -505,6 +505,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 258635993799799919, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 739502889203897322, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Name
       value: Level Manager
@@ -557,9 +561,17 @@ PrefabInstance:
       propertyPath: _light2D
       value: 
       objectReference: {fileID: 557433475}
+    - target: {fileID: 1738427685664459109, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4039907704366123611, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508432403699505095, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7629947534802524601, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: _globalLight
@@ -1674,22 +1686,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - guid: 14fdd0d4-5544-4969-8ead-4727c1f02491
-    onExecute:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 260261638}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: SaveGameplayProgress
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - guid: 34dd512c-71ac-42bd-ac04-dff5dcb3bfce
     onExecute:
       m_PersistentCalls:
@@ -1922,10 +1918,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 260261638}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: SaveGameplayProgress
-          m_Mode: 1
+        - m_Target: {fileID: 292037602}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2329,6 +2325,38 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
+          m_CallState: 2
+  - guid: b4a1a17c-4feb-442c-b423-e0d99b7d0241
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 292037602}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - guid: 169db7cc-3fba-48f6-80ba-321af51511ae
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 260261638}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: SaveGameplayProgress
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
           m_CallState: 2
 --- !u!4 &667031192
 Transform:
