@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BrunoMikoski.AnimationSequencer;
 using CustomExtensions;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
@@ -14,6 +15,7 @@ namespace UISystem
         
         [SerializeField] private Button _showSkipButton;
         [SerializeField] private Button _skipButton;
+        [SerializeField] private AnimationSequencerController _skipButtonShowAnimation;
         [Space]
         [SerializeField] private float _skipButtonHideTimer;
 
