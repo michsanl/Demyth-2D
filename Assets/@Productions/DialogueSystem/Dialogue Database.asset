@@ -860,6 +860,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 32
+    fields:
+    - title: Name
+      value: Level_5_Intro_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 18
     fields:
     - title: Name
@@ -17746,6 +17760,10 @@ MonoBehaviour:
           Iya..'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: b4a1a17c-4feb-442c-b423-e0d99b7d0241
+        type: 0
+        typeString: 
       conversationID: 11
       isRoot: 0
       isGroup: 0
@@ -17761,7 +17779,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_3_Intro_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -17808,7 +17826,7 @@ MonoBehaviour:
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 14fdd0d4-5544-4969-8ead-4727c1f02491
+        value: 
         type: 0
         typeString: 
       conversationID: 11
@@ -17820,7 +17838,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["Level_3_Intro_Done"] = true
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -17831,8 +17849,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 52.314407, y: 190.24391}
-    canvasZoom: 0.81999993
+    canvasScrollPosition: {x: 119.78596, y: 239.19707}
+    canvasZoom: 0.8499999
   - id: 12
     fields:
     - title: Title
@@ -20958,6 +20976,10 @@ MonoBehaviour:
         value: 
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 169db7cc-3fba-48f6-80ba-321af51511ae
+        type: 0
+        typeString: 
       conversationID: 12
       isRoot: 0
       isGroup: 0
@@ -21842,8 +21864,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 81.034424, y: 1156.8958}
-    canvasZoom: 0.5800004
+    canvasScrollPosition: {x: 431.8338, y: 1961.267}
+    canvasZoom: 0.96999973
   - id: 13
     fields:
     - title: Title
@@ -28803,6 +28825,10 @@ MonoBehaviour:
           Baiklaah...'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 0b270945-3795-45a0-87aa-6e0a8f6ad454
+        type: 0
+        typeString: 
       conversationID: 15
       isRoot: 0
       isGroup: 0
@@ -28818,7 +28844,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_5_Intro_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -28884,8 +28910,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 221.41522, y: 559.1532}
-    canvasZoom: 0.803
+    canvasScrollPosition: {x: 382.44348, y: 621.9091}
+    canvasZoom: 0.83299994
   - id: 16
     fields:
     - title: Title
@@ -31518,7 +31544,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: (CurrentQuestState("Sparkling Hidden Item") == "active")
-        and (Variable["HiddenItem.NumCollected"] >= 5)
+        and (Variable["HiddenItem.NumCollected"] >= 3)
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -32051,11 +32077,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 9
         type: 5
@@ -32067,18 +32093,18 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=7]Yula
 
 
           But I think she can really scary you know..?'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=7]Yula
 
@@ -32086,6 +32112,10 @@ MonoBehaviour:
           Tapi tetap seram juga sih..'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32181,11 +32211,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 13
         type: 5
@@ -32197,18 +32227,18 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=9]Raine
 
 
           [em1]Good Luck![/em1]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=9]Raine
 
@@ -32219,7 +32249,7 @@ MonoBehaviour:
       - title: EventGuid
         value: dda3e467-4c80-41f4-b1c1-5bf64e70057f
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32235,7 +32265,10 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: SetQuestState("Sparkling Hidden Item", "success")
+      userScript: 'SetQuestState("Sparkling Hidden Item", "success");
+
+        Variable["Level_6_Puzzle_Done"]
+        = true'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -32250,11 +32283,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 7
         type: 5
@@ -32266,25 +32299,25 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[em5]...[/em5]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 'Continue();
 
           SetActive (Bg 6, false)@0.95;'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 
+        value: f9614d75-cae5-484f-87bb-96d0e3e9a4b6
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32300,7 +32333,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 922.59705
+        x: 923.8165
         y: 884.4888
         width: 160
         height: 30
@@ -32309,11 +32342,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 13
         type: 5
@@ -32325,7 +32358,7 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=2]Raine
 
@@ -32336,11 +32369,11 @@ MonoBehaviour:
 
           Here[/em1]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: SetPortrait(Ara, pic=1)
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=2]Raine
 
@@ -32826,6 +32859,10 @@ MonoBehaviour:
           Lima[/em1]'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: f7589e6b-31cd-4525-a44e-360bf0b90b59
+        type: 0
+        typeString: 
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32841,7 +32878,10 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: 'Variable["Level_6_Done"] = true;
+
+        SetQuestState("Sparkling
+        Hidden Item", "active")'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -32923,11 +32963,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 1
         type: 5
@@ -32939,18 +32979,18 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[pic=7]Ara
 
 
           Oh great..'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: '[pic=7]Ara
 
@@ -32959,9 +32999,9 @@ MonoBehaviour:
         type: 4
         typeString: CustomFieldType_Localization
       - title: EventGuid
-        value: 9529f203-67f6-4d4d-ad4b-61f6a4d1ce45
+        value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -32977,10 +33017,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 'Variable["Level_6_Done"] = true;
-
-        SetQuestState("Sparkling
-        Hidden Item", "active")'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -32995,11 +33032,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 7
         type: 5
@@ -33011,17 +33048,17 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: '[em5]...[/em5]'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 'Continue();
 
           SetActive (Bg 6, false)@0.95;'
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: id
         value: 
         type: 4
@@ -33029,7 +33066,7 @@ MonoBehaviour:
       - title: EventGuid
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       conversationID: 19
       isRoot: 0
       isGroup: 0
@@ -33112,7 +33149,7 @@ MonoBehaviour:
         isConnector: 1
         priority: 2
       conditionsString: Variable["Level_6_Done"] == true and (CurrentQuestState("Sparkling
-        Hidden Item") == "active") and (Variable["HiddenItem.NumCollected"] < 5)
+        Hidden Item") == "active") and (Variable["HiddenItem.NumCollected"] < 3)
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -33471,8 +33508,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 324.98053, y: 50.112766}
-    canvasZoom: 0.9700004
+    canvasScrollPosition: {x: 434.42346, y: 32.727272}
+    canvasZoom: 0.54999995
   - id: 20
     fields:
     - title: Title
