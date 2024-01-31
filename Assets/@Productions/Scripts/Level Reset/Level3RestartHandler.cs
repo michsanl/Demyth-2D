@@ -51,6 +51,9 @@ public class Level3RestartHandler : SceneService
     private void OnDisable() 
     {
         _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
+        
+        _inputController.EnablePauseInput();
+        _isRestarting = false;
 
         OnRestartHandlerDisabled?.Invoke();
     }

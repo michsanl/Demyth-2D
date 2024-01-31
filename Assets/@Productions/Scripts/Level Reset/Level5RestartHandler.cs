@@ -53,6 +53,9 @@ public class Level5RestartHandler : SceneService
     {
         _gameInput.OnRestartPerformed.RemoveListener(GameInput_OnRestartPerformed);
 
+        _inputController.EnablePauseInput();
+        _isRestarting = false;
+        
         OnRestartHandlerDisabled?.Invoke();
     }
 
