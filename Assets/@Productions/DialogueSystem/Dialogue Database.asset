@@ -860,6 +860,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 32
+    fields:
+    - title: Name
+      value: Level_5_Intro_Done
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
   - id: 18
     fields:
     - title: Name
@@ -28811,6 +28825,10 @@ MonoBehaviour:
           Baiklaah...'
         type: 4
         typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 0b270945-3795-45a0-87aa-6e0a8f6ad454
+        type: 0
+        typeString: 
       conversationID: 15
       isRoot: 0
       isGroup: 0
@@ -28826,7 +28844,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Level_5_Intro_Done"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -28892,8 +28910,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 221.41522, y: 559.1532}
-    canvasZoom: 0.803
+    canvasScrollPosition: {x: 382.44348, y: 621.9091}
+    canvasZoom: 0.83299994
   - id: 16
     fields:
     - title: Title
