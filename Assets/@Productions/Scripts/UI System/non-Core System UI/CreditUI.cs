@@ -18,8 +18,10 @@ namespace UISystem
         
         [SerializeField] private Button _showSkipButton;
         [SerializeField] private Button _skipButton;
+        [SerializeField] private GameObject _fadeOutPanel;
         [Space]
-        [SerializeField] private float _hideSkipButtonDelay;
+        [SerializeField] private float _enableShowSkipButtonDelay;
+        [SerializeField] private float _disableSkipButtonDelay;
         [SerializeField] private float _loadSceneDelay;
 
         private GameStateService _gameStateService;
@@ -31,21 +33,30 @@ namespace UISystem
 
             _showSkipButton.onClick.AddListener(() =>
             {
-                StartCoroutine(HideSkipButtonAfterDelay(_hideSkipButtonDelay));
+                StartCoroutine(DisableSkipButtonAfterDelay(_disableSkipButtonDelay));
                 _skipButton.gameObject.SetActive(true);
             });
             _skipButton.onClick.AddListener(() =>
             {
                 StartCoroutine(LoadSceneAfterDelay(_loadSceneDelay));
                 _showSkipButton.gameObject.SetActive(false);
-                _skipButton.gameObject.SetActive(false);
+                _skipButton.enabled = false;
+                _fadeOutPanel.SetActive(true);
             });
+        }
+
+        private void Start()
+        {
+            HidePage();
         }
 
         private void OnEnable()
         {
-            _showSkipButton.gameObject.SetActive(true);
+            _showSkipButton.gameObject.SetActive(false);
             _skipButton.gameObject.SetActive(false);
+            _fadeOutPanel.SetActive(false);
+
+            StartCoroutine(EnableShowSkipButtonAfterDelay(_enableShowSkipButtonDelay));
         }
 
         private void OnDisable()
@@ -68,7 +79,13 @@ namespace UISystem
             gameObject.SetActive(false);
         }
 
-        private IEnumerator HideSkipButtonAfterDelay(float delay)
+        private IEnumerator EnableShowSkipButtonAfterDelay(float delay)
+        {
+            yield return Helper.GetWaitForSeconds(delay);
+            _showSkipButton.SetActive(true);
+        }
+
+        private IEnumerator DisableSkipButtonAfterDelay(float delay)
         {
             yield return Helper.GetWaitForSeconds(delay);
             _skipButton.SetActive(false);

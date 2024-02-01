@@ -93,6 +93,7 @@ namespace Demyth.UI
         private void DialogueManager_OnConversationEnded(Transform t)
         {
             if (_gameStateService.CurrentState == GameState.GameOver) return;
+            if (_gameStateService.CurrentState == GameState.GameEnd) return;
 
             gameObject.SetActive(true);
             Open();
