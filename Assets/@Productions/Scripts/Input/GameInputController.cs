@@ -21,6 +21,7 @@ public class GameInputController : SceneService
         _gameStateService[GameState.Pause].onExit += OnPause_Exit;
         _gameStateService[GameState.GameOver].onEnter += OnGameOver_Enter;
         _gameStateService[GameState.GameOver].onExit += OnGameOver_Exit;
+        _gameStateService[GameState.GameEnd].onEnter += OnGameEnd_Enter;
     }
 
     private void Start()
@@ -85,6 +86,13 @@ public class GameInputController : SceneService
     {
         gameInput.EnablePlayerInput();
         gameInput.EnablePauseInput();
+    }
+
+    private void OnGameEnd_Enter(GameState state)
+    {
+        gameInput.DisablePlayerInput();
+        gameInput.DisablePauseInput();
+        gameInput.DisableRestartInput();
     }
     
     private void DialogueManager_OnConversationStarted(Transform t)

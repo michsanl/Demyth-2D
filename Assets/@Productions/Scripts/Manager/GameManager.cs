@@ -49,6 +49,11 @@ public class GameManager : SceneService
         _gameStateService.SetState(GameState.GameOver);
     }
 
+    public void SetGameStateToGameEnd()
+    {
+        _gameStateService.SetState(GameState.GameEnd);
+    }
+
     private void Pause_OnEnter(GameState state)
     {
         Pause();
