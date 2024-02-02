@@ -3,6 +3,7 @@ using Core;
 using Demyth.Gameplay;
 using PixelCrushers;
 using System;
+using DG.Tweening;
 
 public class GameManager : SceneService
 {
@@ -25,6 +26,7 @@ public class GameManager : SceneService
 
         _gameInput.OnPausePerformed.AddListener(GameInput_OnPausePerformed);
 
+        DOTween.timeScale = 1f;
         Time.timeScale = 1f;
         AudioListener.pause = false;
     }

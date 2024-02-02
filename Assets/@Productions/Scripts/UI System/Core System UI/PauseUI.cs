@@ -94,20 +94,12 @@ namespace UISystem
 
         private void ButtonMainMenu()
         {
-            // _musicController.StopMusic();
+            MMSoundManagerAllSoundsControlEvent.Trigger(MMSoundManagerAllSoundsControlEventTypes.FreeAllButPersistent);
+            DOTween.CompleteAll();
+            DOTween.timeScale = 0;
+            Time.timeScale = 1f;
 
-            // _gameStateService?.SetState(GameState.MainMenu);
-
-            // DialogueManager.StopAllConversations();
-            // DOTween.CompleteAll();
-            DOTween.KillAll();
-            LeanPool.DespawnAll();
-
-            // _levelManager.OpenLevel(_levelMenulId);
-            // _gameHUD.Close();
-            // _uiPage.OpenPage(_menuPageId);
-
-            SceneManager.LoadScene(0);
+            SceneLoadManager.Instance.LoadScene(0);
         }
 
         private void UpdateSettingsValue()
