@@ -689,6 +689,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2941173843257453593, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
   m_PrefabInstance: {fileID: 160455914}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &303012313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2618829250993678713, guid: f28ce82eb5bf51541b1e502923db4cc0, type: 3}
+  m_PrefabInstance: {fileID: 3760464331801763873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &318402998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1846,6 +1851,18 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 3760464331801763874}
+          m_TargetAssemblyTypeName: DeathDescriptionManager, Assembly-CSharp
+          m_MethodName: SetDeathDescMariaDialogueA
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SetGameStateToGameOver
@@ -1866,6 +1883,18 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 3760464331801763874}
+          m_TargetAssemblyTypeName: DeathDescriptionManager, Assembly-CSharp
+          m_MethodName: SetDeathDescSriDialgoueB
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SetGameStateToGameOver
@@ -1882,6 +1911,18 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 3760464331801763874}
+          m_TargetAssemblyTypeName: DeathDescriptionManager, Assembly-CSharp
+          m_MethodName: SetDeathDescSriDialogueA
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SetGameStateToGameOver
@@ -2058,6 +2099,18 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 3760464331801763874}
+          m_TargetAssemblyTypeName: DeathDescriptionManager, Assembly-CSharp
+          m_MethodName: SetDeathDescMariaDialogueB
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SetGameStateToGameOver
@@ -2871,6 +2924,7 @@ MonoBehaviour:
   - {fileID: 292037602}
   - {fileID: 1526500928}
   - {fileID: 282972403}
+  - {fileID: 303012313}
 --- !u!224 &938130206 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8989853664337860569, guid: b2e090e935ac0e441855adce42313e48, type: 3}
@@ -4026,6 +4080,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f28ce82eb5bf51541b1e502923db4cc0, type: 3}
+--- !u!114 &3760464331801763874 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6360263473968263486, guid: f28ce82eb5bf51541b1e502923db4cc0, type: 3}
+  m_PrefabInstance: {fileID: 3760464331801763873}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303012313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94a40252510824439c05d9916b54cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4661932636920009419
 PrefabInstance:
   m_ObjectHideFlags: 0

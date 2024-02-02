@@ -104,7 +104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -300}
+  m_AnchoredPosition: {x: 0, y: -399}
   m_SizeDelta: {x: 855.29474, y: 159.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3322632685239505969
@@ -135,18 +135,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Death description Death description Death description Death description
-    Death description Death description '
+  m_text: Death description
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0311e5384e5b04d4885b12263ec1b792, type: 2}
+  m_sharedMaterial: {fileID: -8570367562505811737, guid: 0311e5384e5b04d4885b12263ec1b792, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280490917
+  m_fontColor: {r: 0.64705884, g: 0.10588236, b: 0.13725491, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -404,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6663992293239534738}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Death Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +423,7 @@ RectTransform:
   m_Children:
   - {fileID: 8491107763490806200}
   m_Father: {fileID: 8551962754239887419}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -465,8 +464,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8551962754431947574}
-  - {fileID: 8551962754875949548}
   - {fileID: 6663992293239534738}
+  - {fileID: 8551962754875949548}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -540,6 +539,7 @@ MonoBehaviour:
   _uiClipSO: {fileID: 11400000, guid: 4555970013c9ba94898852ca822d423e, type: 2}
   _retryButton: {fileID: 8551962754875949547}
   _animator: {fileID: 8551962754431947571}
+  _deathText: {fileID: 8976176243827862799}
 --- !u!114 &1904856090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,7 +697,7 @@ RectTransform:
   m_Children:
   - {fileID: 3299032113700297091}
   m_Father: {fileID: 8551962754239887419}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
