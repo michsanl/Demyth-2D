@@ -5,6 +5,7 @@ using Core;
 using Core.UI;
 using CustomExtensions;
 using Demyth.Gameplay;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,12 +16,15 @@ namespace UISystem
         [SerializeField] private UIClipSO _uiClipSO;
         [SerializeField] private Button _retryButton;
         [SerializeField] private Animator _animator;
+        [SerializeField] private TextMeshProUGUI _deathText;
         
         private UIPage _uiPage;    
         private GameInputController _inputController;
         private LoadingUI _loadingUI;
         private GameStateService _gameStateService;
+        private DeathDescriptionManager _deathDescriptionManager;
         private bool _isRestarting;
+        private string _deathDescription;
 
         private void Awake()
         {
@@ -28,6 +32,7 @@ namespace UISystem
             _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
             _inputController = SceneServiceProvider.GetService<GameInputController>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
+            _deathDescriptionManager = SceneServiceProvider.GetService<DeathDescriptionManager>();
 
             _gameStateService[GameState.GameOver].onEnter += GameStateGameOver_OnEnter;
             _gameStateService[GameState.GameOver].onExit += GameStateGameOver_OnExit;
@@ -44,8 +49,8 @@ namespace UISystem
         private void OnRetryButtonClick()
         {
             if (_isRestarting) return;
-            
-            _retryButton.gameObject.SetActive(false);
+
+            DeactivateRetryButton();
             StartCoroutine(RestartLevel());
         }
 
@@ -84,10 +89,16 @@ namespace UISystem
         private IEnumerator OpenPageCoroutine()
         {
             _animator.SetTrigger("OpenPage");
+            _deathText.text = _deathDescriptionManager.SelectedDeathDescription;
             Helper.PlaySFX(_uiClipSO.GameOver, _uiClipSO.GameOverVolume);
 
             yield return Helper.GetWaitForSeconds(1f);
             _retryButton.gameObject.SetActive(true);
+        }
+
+        private void DeactivateRetryButton()
+        {
+            _retryButton.gameObject.SetActive(false);
         }
     }
 }
