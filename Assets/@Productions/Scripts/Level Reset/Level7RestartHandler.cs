@@ -19,6 +19,7 @@ public class Level7RestartHandler : MonoBehaviour
     private Health _playerHealth;
     private GameStateService _gameStateService;
     private GameHUD _gameHUD;
+    private DeathDescriptionManager _deathDescriptionManager;
     private bool _isPlayerDead;
     
     private void Awake()
@@ -27,6 +28,7 @@ public class Level7RestartHandler : MonoBehaviour
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
         _gameHUD = SceneServiceProvider.GetService<GameHUD>();
+        _deathDescriptionManager = SceneServiceProvider.GetService<DeathDescriptionManager>();
     }
 
     private void OnEnable()
@@ -57,6 +59,7 @@ public class Level7RestartHandler : MonoBehaviour
     {
         _isPlayerDead = true;
         LeanPool.DespawnAll();
+        _deathDescriptionManager.SetDeathDescSriFight();
 
         _gameStateService.SetState(GameState.GameOver);
     }

@@ -18,12 +18,14 @@ public class Level4RestartHandler : MonoBehaviour
     private Player _player;
     private Health _playerHealth;
     private GameStateService _gameStateService;
+    private DeathDescriptionManager _deathDescriptionManager;
     
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerHealth = _player.GetComponent<Health>();
+        _deathDescriptionManager = SceneServiceProvider.GetService<DeathDescriptionManager>();
     }
 
     private void OnEnable()
@@ -45,8 +47,10 @@ public class Level4RestartHandler : MonoBehaviour
 
     private void PlayerHealth_OnDeath()
     {
-        _gameStateService.SetState(GameState.GameOver);
         LeanPool.DespawnAll();
+        _deathDescriptionManager.SetDeathDescPetraFight();
+        
+        _gameStateService.SetState(GameState.GameOver);
     }
 
     public void RestartLevelBossFight()
