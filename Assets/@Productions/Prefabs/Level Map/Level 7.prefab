@@ -328,7 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242e392e6ff864f4b8a1769bfe002aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serviceId: {fileID: 11400000, guid: 2ee36f380e6cc454fa1493d6525f2d08, type: 2}
   _sriCombatBehaviour: {fileID: 6678796350286695659}
   _sriPreCombatCutscene: {fileID: 6304154146750096898}
 --- !u!1 &2561545502527352176
@@ -2010,6 +2009,10 @@ PrefabInstance:
     - target: {fileID: 2853056098254716925, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_Size.y
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853056099029274113, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.017
       objectReference: {fileID: 0}
     - target: {fileID: 2853056099029274113, guid: 7c5a3712ceb460242bfca044e8238dee, type: 3}
       propertyPath: m_LocalPosition.x
