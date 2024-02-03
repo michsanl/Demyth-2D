@@ -70,9 +70,6 @@ public class Level3RestartHandler : SceneService
 
         yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
         
-        DOTween.CompleteAll();
-        _playerModel.localScale = Vector3.one;
-        _player.SetAnimationToIdleNoPan();
         ResetPlayerPosition();
         ResetBoxCratePosition();
         ResetBoxCardboardOpenPosition();
@@ -88,6 +85,7 @@ public class Level3RestartHandler : SceneService
     private void ResetPlayerPosition()
     {
         _player.transform.position = _level3PuzzlePositionSO.PlayerPosition;
+        _playerModel.localScale = Vector3.one;
     }
 
     private void ResetBoxCratePosition()

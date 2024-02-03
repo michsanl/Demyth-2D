@@ -65,11 +65,9 @@ public class Player : MonoBehaviour, IBroadcaster
     [SerializeField] private Animator animator;
     [SerializeField] private Animator damagedAnimator;
     [SerializeField] private AraClipSO _araClipSO;
-    [SerializeField] private GameSettingsSO _gameSettingsSO;
 
     private GameStateService _gameStateService;
     private GameInput _gameInput;
-    private LevelManager _levelManager;
     private LookOrientation _lookOrientation;
     private HealthPotion _healthPotion;
     private Health _health;
@@ -92,7 +90,6 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _gameInput = SceneServiceProvider.GetService<GameInputController>().GameInput;
-        _levelManager = SceneServiceProvider.GetService<LevelManager>();
         _lookOrientation = GetComponent<LookOrientation>();
         _healthPotion = GetComponent<HealthPotion>();
         _health = GetComponent<Health>();
@@ -105,14 +102,6 @@ public class Player : MonoBehaviour, IBroadcaster
     private void Start()
     {
         Signaler.Instance.Broadcast(this, new PlayerSpawnEvent { Player = gameObject });
-        
-        if (_gameSettingsSO != null)
-        {
-            UsePan = _gameSettingsSO.UsePanOnStart;
-            IsLanternUnlocked = _gameSettingsSO.UnlockLanternOnStart;
-            IsHealthPotionUnlocked = _gameSettingsSO.UnlockPotionOnStart;
-            IsShieldUnlocked = _gameSettingsSO.UnlockShieldOnStart;
-        }
     }
 
     private void Update()
@@ -183,11 +172,6 @@ public class Player : MonoBehaviour, IBroadcaster
     {
         animator.SetTrigger("OnHit");
         StartCoroutine(HandleKnockBack(knockbackTargetPosition));
-    }
-
-    public void SetAnimationToIdleNoPan()
-    {
-        animator.Play("Idle_NoPan");
     }
     
     private void HandlePlayerAction()
