@@ -1,4 +1,5 @@
 using Core.UI;
+using PlasticPipe.Server;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,11 @@ namespace Core
 
             foreach (var serviceGO in servicesGameObjects)
             {
+                if (serviceGO == null)
+                {
+                    Debug.LogWarning("serviceGO is null! Check servicesGameObjects array in inspector.");
+                    continue;
+                }
                 var service = serviceGO.GetComponent<ISceneService>();
                 if (service == null)
                     continue;
