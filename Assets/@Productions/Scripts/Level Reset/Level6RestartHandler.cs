@@ -19,7 +19,6 @@ public class Level6RestartHandler : SceneService
     [SerializeField] private GameObject[] _hiddenItems;
 
     private GameStateService _gameStateService;
-    private LoadingUI _loadingUI;
     private GameInput _gameInput;
     private GameInputController _inputController;
     private Player _player;
@@ -29,7 +28,6 @@ public class Level6RestartHandler : SceneService
     private void Awake()
     {
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
-        _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
         _inputController = SceneServiceProvider.GetService<GameInputController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
         _playerModel = _player.PlayerModel;
@@ -67,17 +65,15 @@ public class Level6RestartHandler : SceneService
     private IEnumerator RestartLevel()
     {
         _isRestarting = true;
-        _loadingUI.OpenPage();
         
-        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+        yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
 
         ResetPlayer();
         ResetBoxPosition();
         ResetHiddenItem();
         _inputController.EnablePlayerInput();
-        _loadingUI.ClosePage();
 
-        yield return Helper.GetWaitForSeconds(_loadingUI.GetClosePageDuration());
+        yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
 
         _inputController.EnablePauseInput();
         _isRestarting = false;
