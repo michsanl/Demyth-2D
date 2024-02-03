@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoadManager : MyPersistanceSingleton<SceneLoadManager>
+public class SceneLoadManager : MyPersistenceSingleton<SceneLoadManager>
 {
     [SerializeField] private UIClipSO _uiClipSO;
     [SerializeField] private Animator _loadingAnimator;
