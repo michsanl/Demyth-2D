@@ -31,6 +31,9 @@ public class PersistenceSceneLoader : MyPersistenceSingleton<PersistenceSceneLoa
             yield break;
         }
 
+        var musicController = SceneServiceProvider.GetService<MusicController>();
+        musicController.FadeOutCurrentMusic(.9f);
+
         var loadAsync = SceneManager.LoadSceneAsync(0);
         loadAsync.allowSceneActivation = false;
 

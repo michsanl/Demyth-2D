@@ -20,6 +20,10 @@ namespace Demyth.UI
         [SerializeField] private float _barPositionRange = 205f;
 
         [Title("Components")]
+        [SerializeField] private AnimationSequencerController openPageAnimation;
+        [SerializeField] private AnimationSequencerController closePageAnimation;
+        [SerializeField] private AnimationSequencerController instantOpenPageAnimation;
+        [Space]
         [SerializeField] private RectTransform healthBarTransform;
         [SerializeField] private RectTransform shieldBarTransform;
         [Space]
@@ -77,11 +81,11 @@ namespace Demyth.UI
         {
             if (_showOnStart)
             {
-                Open();
+                InstantOpen();
             }
             else
             {
-                gameObject.SetActive(false);
+                InstantClose();
             }
         }
 
@@ -95,7 +99,6 @@ namespace Demyth.UI
             if (_gameStateService.CurrentState == GameState.GameOver) return;
             if (_gameStateService.CurrentState == GameState.GameEnd) return;
 
-            gameObject.SetActive(true);
             Open();
         }
 
@@ -103,26 +106,30 @@ namespace Demyth.UI
         {
             if (_isOpen) return;
             _isOpen = true;
-            DOTween.CompleteAll();
             Helper.PlaySFXIgnorePause(_uiClipSO.HUDOpen, _uiClipSO.HUDOpenVolume);
-
-            _pageAnimator?.PlayAnimation(() =>
-            {
-                
-            });
+            openPageAnimation.Play();
         }
 
         public void Close()
         {
             if (!_isOpen) return;
             _isOpen = false;
-            DOTween.CompleteAll();
             Helper.PlaySFXIgnorePause(_uiClipSO.HUDOpen, _uiClipSO.HUDOpenVolume);
+            closePageAnimation.Play();
+        }
 
-            _pageAnimator?.CloseAnimation(() =>
-            {
-                
-            });
+        public void InstantOpen()
+        {
+            _isOpen = true;
+            openPageAnimation.Play();
+            openPageAnimation.Complete();
+        }
+
+        public void InstantClose()
+        {
+            _isOpen = false;
+            closePageAnimation.Play();
+            closePageAnimation.Complete();
         }
 
         private void Player_OnLanternUnlockedChanged(bool isUnlocked)

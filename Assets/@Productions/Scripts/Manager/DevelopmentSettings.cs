@@ -16,14 +16,17 @@ public class DevelopmentSettings : MonoBehaviour
     private void Awake()
     {
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
-        
-        if (_gameSettingsSO != null)
-        {
-            _player.UsePan = _gameSettingsSO.UsePanOnStart;
-            _player.IsLanternUnlocked = _gameSettingsSO.UnlockLanternOnStart;
-            _player.IsHealthPotionUnlocked = _gameSettingsSO.UnlockPotionOnStart;
-            _player.IsShieldUnlocked = _gameSettingsSO.UnlockShieldOnStart;
-        }
+
+        SetupPlayerItems();
+        SetupLevelGate();
+    }
+
+    private void SetupPlayerItems()
+    {
+        _player.UsePan = _gameSettingsSO.UsePanOnStart;
+        _player.IsLanternUnlocked = _gameSettingsSO.UnlockLanternOnStart;
+        _player.IsHealthPotionUnlocked = _gameSettingsSO.UnlockPotionOnStart;
+        _player.IsShieldUnlocked = _gameSettingsSO.UnlockShieldOnStart;
     }
 
     private void SetupLevelGate()

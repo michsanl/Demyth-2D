@@ -58,22 +58,29 @@ namespace UISystem
 
         public void ContinueGame()
         {
+            StartCoroutine(ContinueGameCoroutine());
+        }
+
+        private IEnumerator ContinueGameCoroutine()
+        {
+            _musicController.FadeOutCurrentMusic(.9f);
+            yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
+
             _uiPage.Return();
-            _gameHUD.gameObject.SetActive(true);
-            _gameHUD.Open();
+            _gameHUD.InstantOpen();
 
             SaveSystem.LoadFromSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
 
             _musicController.PlayLevelBGM();
-            _musicController.FadeInCurrentMusic(1.5f);
+            _musicController.FadeInCurrentMusic(.9f);
+            yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
         }
 
         public void StartToLevel(EnumId levelId)
         {
             _levelManager.OpenLevel(levelId);
             _uiPage.Return();
-            _gameHUD.gameObject.SetActive(true);
             _gameHUD.Open();
 
             SaveSystem.SaveToSlot(1);
