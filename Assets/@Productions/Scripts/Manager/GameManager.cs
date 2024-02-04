@@ -7,10 +7,6 @@ using DG.Tweening;
 
 public class GameManager : SceneService
 {
-
-    [SerializeField] private GameSettingsSO _gameSettingsSO;
-    [SerializeField] private GameObject[] _levelGateArray;
-
     private GameStateService _gameStateService;
     private GameInputController _gameInputController;
     private GameInput _gameInput;
@@ -29,11 +25,6 @@ public class GameManager : SceneService
         DOTween.timeScale = 1f;
         Time.timeScale = 1f;
         AudioListener.pause = false;
-    }
-
-    private void Start()
-    {
-        SetupLevelGate();
     }
 
     public void SaveGameplayProgress()
@@ -93,13 +84,5 @@ public class GameManager : SceneService
     {
         Time.timeScale = 1f;
         AudioListener.pause = false;
-    }
-
-    private void SetupLevelGate()
-    {
-        foreach (var levelGate in _levelGateArray)
-        {
-            levelGate.SetActive(_gameSettingsSO.UnlockAllGateOnStart);
-        }
     }
 }

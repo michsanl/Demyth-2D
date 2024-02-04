@@ -99,7 +99,7 @@ namespace UISystem
             DOTween.timeScale = 0;
             Time.timeScale = 1f;
 
-            SceneLoadManager.Instance.LoadScene(0);
+            PersistenceSceneLoader.Instance.LoadScene(0);
         }
 
         private void UpdateSettingsValue()

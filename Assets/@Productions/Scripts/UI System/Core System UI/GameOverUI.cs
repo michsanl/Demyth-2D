@@ -20,7 +20,6 @@ namespace UISystem
         
         private UIPage _uiPage;    
         private GameInputController _inputController;
-        private LoadingUI _loadingUI;
         private GameStateService _gameStateService;
         private DeathDescriptionManager _deathDescriptionManager;
         private bool _isRestarting;
@@ -29,7 +28,6 @@ namespace UISystem
         private void Awake()
         {
             _uiPage = GetComponent<UIPage>();
-            _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
             _inputController = SceneServiceProvider.GetService<GameInputController>();
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _deathDescriptionManager = SceneServiceProvider.GetService<DeathDescriptionManager>();
@@ -57,15 +55,13 @@ namespace UISystem
         private IEnumerator RestartLevel()
         {
             _isRestarting = true;
-            _loadingUI.OpenPage();
 
-            yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+            yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
 
             _gameStateService.SetState(GameState.Gameplay);
             _inputController.EnablePlayerInput();
-            _loadingUI.ClosePage();
 
-            yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+            yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
             
             _inputController.EnablePauseInput();
             _isRestarting = false;

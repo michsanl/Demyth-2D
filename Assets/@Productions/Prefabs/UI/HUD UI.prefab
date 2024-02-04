@@ -85,7 +85,7 @@ MonoBehaviour:
     - rid: 4456677177422512129
       type: {class: RotateToEulerAnglesRotateDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
       data:
-        direction: 1
+        direction: 0
         ease:
           ease: 37
           curve:
@@ -124,7 +124,7 @@ MonoBehaviour:
         isRelative: 0
         local: 0
         rotationMode: 0
-        eulerAngles: {x: 0, y: 0, z: -90}
+        eulerAngles: {x: 0, y: 0, z: 0}
     - rid: 4456677177422512130
       type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
       data:
@@ -139,7 +139,7 @@ MonoBehaviour:
     - rid: 4456677177422512131
       type: {class: RotateToEulerAnglesRotateDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
       data:
-        direction: 1
+        direction: 0
         ease:
           ease: 37
           curve:
@@ -178,7 +178,7 @@ MonoBehaviour:
         isRelative: 0
         local: 0
         rotationMode: 0
-        eulerAngles: {x: 0, y: 0, z: 90}
+        eulerAngles: {x: 0, y: 0, z: 0}
     - rid: 4456677177422512132
       type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
       data:
@@ -193,7 +193,7 @@ MonoBehaviour:
     - rid: 4456677177422512133
       type: {class: RotateToEulerAnglesRotateDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
       data:
-        direction: 1
+        direction: 0
         ease:
           ease: 37
           curve:
@@ -232,7 +232,7 @@ MonoBehaviour:
         isRelative: 0
         local: 0
         rotationMode: 0
-        eulerAngles: {x: 0, y: 0, z: 90}
+        eulerAngles: {x: 0, y: 0, z: 0}
     - rid: 4456677177422512134
       type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
       data:
@@ -247,7 +247,7 @@ MonoBehaviour:
     - rid: 4456677177422512135
       type: {class: RotateToEulerAnglesRotateDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
       data:
-        direction: 1
+        direction: 0
         ease:
           ease: 37
           curve:
@@ -286,7 +286,7 @@ MonoBehaviour:
         isRelative: 0
         local: 0
         rotationMode: 0
-        eulerAngles: {x: 0, y: 0, z: -90}
+        eulerAngles: {x: 0, y: 0, z: 0}
 --- !u!1 &815299984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1163,9 @@ MonoBehaviour:
   _showOnStart: 0
   _barChangeDuration: 0.5
   _barPositionRange: 205
+  openPageAnimation: {fileID: 250374238}
+  closePageAnimation: {fileID: 815299986}
+  instantOpenPageAnimation: {fileID: 0}
   healthBarTransform: {fileID: 5825263702170508637}
   shieldBarTransform: {fileID: 5255048700284031295}
   healthPotionEmptyImage: {fileID: 4715767936999583685}

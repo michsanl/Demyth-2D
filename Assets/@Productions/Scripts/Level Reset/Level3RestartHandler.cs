@@ -22,7 +22,6 @@ public class Level3RestartHandler : SceneService
     
     private GameStateService _gameStateService;
     private GameInputController _inputController;
-    private LoadingUI _loadingUI;
     private Player _player;
     private Transform _playerModel;
     private GameInput _gameInput;
@@ -30,7 +29,6 @@ public class Level3RestartHandler : SceneService
 
     private void Awake()
     {
-        _loadingUI = SceneServiceProvider.GetService<LoadingUI>();
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _inputController = SceneServiceProvider.GetService<GameInputController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
@@ -69,21 +67,16 @@ public class Level3RestartHandler : SceneService
     private IEnumerator RestartLevel()
     {
         _isRestarting = true;
-        _loadingUI.OpenPage();
 
-        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+        yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
         
-        DOTween.CompleteAll();
-        _playerModel.localScale = Vector3.one;
-        _player.SetAnimationToIdleNoPan();
         ResetPlayerPosition();
         ResetBoxCratePosition();
         ResetBoxCardboardOpenPosition();
         ResetBoxCardboardClosedPosition();
         _inputController.EnablePlayerInput();
-        _loadingUI.ClosePage();
 
-        yield return Helper.GetWaitForSeconds(_loadingUI.GetOpenPageDuration());
+        yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
 
         _inputController.EnablePauseInput();
         _isRestarting = false;
@@ -92,6 +85,7 @@ public class Level3RestartHandler : SceneService
     private void ResetPlayerPosition()
     {
         _player.transform.position = _level3PuzzlePositionSO.PlayerPosition;
+        _playerModel.localScale = Vector3.one;
     }
 
     private void ResetBoxCratePosition()
