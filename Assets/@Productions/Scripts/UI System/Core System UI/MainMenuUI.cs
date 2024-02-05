@@ -64,17 +64,18 @@ namespace UISystem
         private IEnumerator ContinueGameCoroutine()
         {
             _musicController.FadeOutCurrentMusic(.9f);
+
             yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
 
+            SaveSystem.LoadFromSlot(1);
             _uiPage.Return();
             _gameHUD.InstantOpen();
-
-            SaveSystem.LoadFromSlot(1);
-            _gameStateService?.SetState(GameState.Gameplay);
-
             _musicController.PlayLevelBGM();
             _musicController.FadeInCurrentMusic(.9f);
+
             yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
+            
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
         public void StartToLevel(EnumId levelId)

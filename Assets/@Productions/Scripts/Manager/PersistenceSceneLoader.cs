@@ -45,6 +45,7 @@ public class PersistenceSceneLoader : MyPersistenceSingleton<PersistenceSceneLoa
         loadAsync.allowSceneActivation = true;
         yield return null;
         yield return null;
+        yield return null;
 
         // Loading HIDE
         yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
