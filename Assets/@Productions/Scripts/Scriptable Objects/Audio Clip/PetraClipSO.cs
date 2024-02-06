@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Audio Clip SO/New Petra Clip")]
-public class PetraClipSO : ScriptableObject
+public class PetraClipSO : BossClipSO
 {
     public AudioClip RunCharge;
     public AudioClip JumpSlam;
@@ -32,20 +32,24 @@ public class PetraClipSO : ScriptableObject
     [Range(0, 1)]
     public float Damage3Volume = 1f;
 
-    public float GetDamageVolume(int index)
+    public override AudioClip GetDamageAudioClip(int index)
     {
-        switch (index)
-        {
-            case 0:
-                return Damage1Volume;
-            case 1:
-                return Damage2Volume;
-            case 2:
-                return Damage3Volume;
-            default:
-                return 1f;
-        }
+        return Damage[index];
     }
-    
-    
+
+    public override int GetDamageAudioLength()
+    {
+        return Damage.Length;
+    }
+
+    public override float GetDamageVolume(int index)
+    {
+        return index switch
+        {
+            0 => Damage1Volume,
+            1 => Damage2Volume,
+            2 => Damage3Volume,
+            _ => 1f,
+        };
+    }
 }

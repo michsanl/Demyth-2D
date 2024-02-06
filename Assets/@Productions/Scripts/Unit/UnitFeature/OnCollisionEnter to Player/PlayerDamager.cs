@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
-using System.Linq;
-using CustomTools.Core;
 
-public class PlayerDamager : SceneService
+public class PlayerDamager : MonoBehaviour
 {
 
-    [SerializeField] public DamagerCharacter damagerCharacter;
     [SerializeField] private bool isKnockbackOnly;
-    [SerializeField] private PetraClipSO _petraClipSO;
-    [SerializeField] private SriClipSO _sriClipSO;
-
-    public enum DamagerCharacter { NotSet, Petra, Sri }
+    [SerializeField] private BossClipSO _bossClipSO;
 
     private Player player;
+
+    private void OnCollisionEnter(Collision other)
+    {
+        player = other.collider.GetComponent<Player>();
+    }
 
     private void OnCollisionStay(Collision other) 
     {
@@ -24,11 +22,11 @@ public class PlayerDamager : SceneService
         if (player == null)
             return;
             
-        if (TryGetComponent<KnockbackBase>(out KnockbackBase knockbackBase))
+        if (TryGetComponent(out KnockbackBase knockbackBase))
         {
             if (isKnockbackOnly)
             {
-                player.ApplyKnockBackToPlayer(knockbackBase.GetKnockbackTargetPosition(player));
+                KnockbackPlayer(knockbackBase);
             }
             else
             {
@@ -37,33 +35,31 @@ public class PlayerDamager : SceneService
         }
         else
         {
-            TryDamagePlayer(false, Vector2.zero);
+            TryDamagePlayer(false);
         }
     }
 
-    private void TryDamagePlayer(bool enableKnockback, Vector2 knockbackTargetPosition)
+    private void KnockbackPlayer(KnockbackBase knockbackBase)
     {
-        bool canDamagePlayer = player.ApplyDamageToPlayer(enableKnockback, knockbackTargetPosition);
-        int random;
+        player.ApplyKnockBackToPlayer(knockbackBase.GetKnockbackTargetPosition(player));
+        PlayRandomBossDamageSFX();
+    }
 
+    private void TryDamagePlayer(bool enableKnockback, Vector2 knockbackTargetPosition = default)
+    {
+        var canDamagePlayer = player.ApplyDamageToPlayer(enableKnockback, knockbackTargetPosition);
         if (canDamagePlayer)
         {
-            if (_petraClipSO != null)
-            {
-                random = Random.Range(0, _petraClipSO.Damage.Length);
-                Helper.PlaySFX(_petraClipSO.Damage[random], _petraClipSO.GetDamageVolume(random));
-            }
-            if (_sriClipSO != null)
-            {
-                random = Random.Range(0, _sriClipSO.Damage.Length);
-                Helper.PlaySFX(_sriClipSO.Damage[random], _sriClipSO.GetDamageVolume(random));
-            }
+            PlayRandomBossDamageSFX();
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void PlayRandomBossDamageSFX()
     {
-        player = other.collider.GetComponent<Player>();
+        if (_bossClipSO != null)
+        {
+            var randomIndex = Random.Range(0, _bossClipSO.GetDamageAudioLength());
+            Helper.PlaySFX(_bossClipSO.GetDamageAudioClip(randomIndex), _bossClipSO.GetDamageVolume(randomIndex));
+        }
     }
-
 }
