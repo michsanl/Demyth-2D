@@ -2222,6 +2222,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 980323506}
+          m_TargetAssemblyTypeName: SriPostCombatCutscene, Assembly-CSharp
+          m_MethodName: StartPostCombatCutscene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SaveGameplayProgress
@@ -2981,6 +2993,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1275323380287492344, guid: a1eebd354b2f7bd4092c82f09433e813, type: 3}
   m_PrefabInstance: {fileID: 613856650}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &980323506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7602407304078432500, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d23288daac746429af4fe7b8f9f60e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1135282161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 739502889203897322, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
