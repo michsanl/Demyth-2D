@@ -15,14 +15,16 @@ public class KnockbackSelectedDir : KnockbackBase
     {
         this.player = player;
         knockbackOrigin = GetKnockBackOrigin();
-        finalKnockbackDir = GetSelectedKnockBackDir();
+        knockbackDirection = GetSelectedKnockBackDir();
+        var knockbackTargetPosition = knockbackOrigin + knockbackDirection;
+        var knockbackTargetPositionRounded = GetRoundedVectorValue(knockbackTargetPosition);
 
-        if (isCheckBlockedDir && IsDirectionBlocked(finalKnockbackDir))
+        if (isCheckBlockedDir && IsDirectionBlocked(knockbackDirection))
         {
             return knockbackOrigin;
         }
 
-        return GetFinalKnockbackTargetPosition(finalKnockbackDir);
+        return knockbackTargetPositionRounded;
     }
 
     private Vector2 GetSelectedKnockBackDir()

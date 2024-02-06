@@ -11,7 +11,7 @@ public abstract class KnockbackBase : MonoBehaviour
     [SerializeField] protected LayerMask damagePlayerMask;
 
     protected Player player;
-    protected Vector2 finalKnockbackDir;
+    protected Vector2 knockbackDirection;
     protected Vector2 knockbackOrigin;
 
     protected enum KnockbackSource { ThisObject, Player }
@@ -23,10 +23,12 @@ public abstract class KnockbackBase : MonoBehaviour
     {
         return knockbackSource == KnockbackSource.ThisObject ? transform.position : player.LastMoveTargetPosition;
     }
-    
-    protected Vector2 GetFinalKnockbackTargetPosition(Vector2 knockBackDir)
+
+    protected Vector2 GetRoundedVectorValue(Vector2 targetVector)
     {
-        return new Vector2(Mathf.RoundToInt(knockBackDir.x + knockbackOrigin.x), Mathf.RoundToInt(knockBackDir.y + knockbackOrigin.y));
+        targetVector.x = Mathf.RoundToInt(targetVector.x);
+        targetVector.y = Mathf.RoundToInt(targetVector.y);
+        return targetVector;
     }
     
     protected bool IsDirectionBlocked(Vector2 knockBackDir)

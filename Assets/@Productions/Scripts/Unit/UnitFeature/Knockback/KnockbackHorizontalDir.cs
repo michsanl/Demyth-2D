@@ -8,9 +8,11 @@ public class KnockbackHorizontalDir : KnockbackBase
     {
         this.player = player;
         knockbackOrigin = GetKnockBackOrigin();
-        finalKnockbackDir = GetHorizontalKnockBackDir();
+        knockbackDirection = GetHorizontalKnockBackDir();
+        var knockbackTargetPosition = knockbackOrigin + knockbackDirection;
+        var knockbackTargetPositionRounded = GetRoundedVectorValue(knockbackTargetPosition);
 
-        return GetFinalKnockbackTargetPosition(finalKnockbackDir);
+        return knockbackTargetPositionRounded;
     }
 
     private Vector2 GetHorizontalKnockBackDir()
