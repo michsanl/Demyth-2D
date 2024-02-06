@@ -667,6 +667,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1245917910178099086, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
   m_PrefabInstance: {fileID: 160455914}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &224997125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7939950503536596689, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &225018706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3021996278455498057, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
@@ -1981,6 +1986,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 224997125}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1709136018}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SaveGameplayProgress
@@ -1997,18 +2026,6 @@ MonoBehaviour:
     onExecute:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1943620921}
-          m_TargetAssemblyTypeName: Player, Assembly-CSharp
-          m_MethodName: UnlockPotion
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 506682047}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -2520,6 +2537,38 @@ MonoBehaviour:
         - m_Target: {fileID: 260261638}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: SetGameStateToGameEnd
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: d8102451-63d5-4e66-9d86-2890ab5b1d06
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1943620921}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: UnlockPotion
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - guid: 25213918-ea5d-4920-8ee9-138434dfb39d
+    onExecute:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1943620921}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: UnlockPotion
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3713,6 +3762,11 @@ MonoBehaviour:
   m_target: {fileID: 0}
   m_usePlayerSpawnpoint: 0
   m_multiscene: 0
+--- !u!1 &1709136018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7592961193800758737, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+  m_PrefabInstance: {fileID: 160455914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1747661085
 GameObject:
   m_ObjectHideFlags: 0
