@@ -10,8 +10,6 @@ using PixelCrushers.DialogueSystem;
 
 public class SriPostCombatCutscene : MonoBehaviour
 {
-    [SerializeField] private TalkableOnCollision _talkableOnCollision;
-    [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
     [SerializeField] private GameObject[] _gameObjectsToActivate;
     [SerializeField] private GameObject[] _gameObjectsToDeactivate;
     
@@ -24,21 +22,6 @@ public class SriPostCombatCutscene : MonoBehaviour
         _gameStateService = SceneServiceProvider.GetService<GameStateService>();
         _musicController = SceneServiceProvider.GetService<MusicController>();
         _player = SceneServiceProvider.GetService<PlayerManager>().Player;
-    }
-
-    private void Start()
-    {
-        _talkableOnCollision.OnDeathSlashCollision += Sri_OnDeathSlashCollision;
-    }
-
-    public void OnConversationEnd()
-    {
-        StartPostCombatCutscene();
-    }
-
-    private void Sri_OnDeathSlashCollision()
-    {
-        _dialogueSystemTrigger.OnUse();
     }
 
     public void StartPostCombatCutscene()
@@ -57,14 +40,14 @@ public class SriPostCombatCutscene : MonoBehaviour
         _gameStateService.SetState(GameState.Gameplay);
         _player.ResetUnitCondition();
 
-        foreach (var item in _gameObjectsToActivate)
+        foreach (var gameObject in _gameObjectsToActivate)
         {
-            item.SetActive(true);
+            gameObject.SetActive(true);
         }
 
-        foreach (var item in _gameObjectsToDeactivate)
+        foreach (var gameObject in _gameObjectsToDeactivate)
         {
-            item.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         SaveSystem.SaveToSlot(1);

@@ -8,9 +8,11 @@ public class KnockbackCheckAllDir : KnockbackBase
     {
         this.player = player;
         knockbackOrigin = GetKnockBackOrigin();
-        finalKnockbackDir = GetAllKnockBackDir();
+        knockbackDirection = GetAllKnockBackDir();
+        var knockbackTargetPosition = knockbackOrigin + knockbackDirection;
+        var knockbackTargetPositionRounded = GetRoundedVectorValue(knockbackTargetPosition);
 
-        return GetFinalKnockbackTargetPosition(finalKnockbackDir);
+        return knockbackTargetPositionRounded;
     }
 
     private Vector2 GetAllKnockBackDir()

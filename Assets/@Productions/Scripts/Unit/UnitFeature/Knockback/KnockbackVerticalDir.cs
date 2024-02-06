@@ -8,9 +8,11 @@ public class KnockbackVerticalDir : KnockbackBase
     {
         this.player = player;
         knockbackOrigin = GetKnockBackOrigin();
-        finalKnockbackDir = GetVerticalKnockBackDir();
+        knockbackDirection = GetVerticalKnockBackDir();
+        var knockbackTargetPosition = knockbackOrigin + knockbackDirection;
+        var knockbackTargetPositionRounded = GetRoundedVectorValue(knockbackTargetPosition);
 
-        return GetFinalKnockbackTargetPosition(finalKnockbackDir);
+        return knockbackTargetPositionRounded;
     }
 
     private Vector2 GetVerticalKnockBackDir()
@@ -34,7 +36,7 @@ public class KnockbackVerticalDir : KnockbackBase
             return Vector2.up;
         if (player.transform.position.y < transform.position.y)
             return Vector2.down;
-        return UnityEngine.Random.Range(0, 2) == 0 ? Vector2.up : Vector2.down;
+        return Random.Range(0, 2) == 0 ? Vector2.up : Vector2.down;
     }
 
     private Vector2 GetOppositeDirection(Vector2 dir)
