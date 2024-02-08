@@ -23,7 +23,9 @@ namespace UISystem
         private GameStateService _gameStateService;
         private DeathDescriptionManager _deathDescriptionManager;
         private bool _isRestarting;
-        private string _deathDescription;
+        private float updateSelectedTimerMax = .2f;
+        private float updateSelectedTimer;
+        private bool canUpdateSelected;
 
         private void Awake()
         {
@@ -37,6 +39,7 @@ namespace UISystem
 
             _retryButton.onClick.AddListener(OnRetryButtonClick);
             _uiPage.OnOpen.AddListener(UIPage_OnOpen);
+            _uiPage.OnClose.AddListener(() => { canUpdateSelected = false; });
         }
 
         private void Start()
@@ -44,10 +47,16 @@ namespace UISystem
             _retryButton.gameObject.SetActive(false);
         }
 
+        private void Update()
+        {
+            UpdateSelectedButton();
+        }
+
         private void OnRetryButtonClick()
         {
             if (_isRestarting) return;
 
+            canUpdateSelected = false;
             DeactivateRetryButton();
             StartCoroutine(RestartLevel());
         }
@@ -82,6 +91,19 @@ namespace UISystem
             StartCoroutine(OpenPageCoroutine());
         }
 
+        private void UpdateSelectedButton()
+        {
+            if (!canUpdateSelected) return;
+
+            updateSelectedTimer += Time.deltaTime;
+
+            if (updateSelectedTimer >= updateSelectedTimerMax)
+            {
+                _retryButton.Select();
+                updateSelectedTimer = 0;
+            }
+        }
+
         private IEnumerator OpenPageCoroutine()
         {
             _animator.SetTrigger("OpenPage");
@@ -90,6 +112,7 @@ namespace UISystem
 
             yield return Helper.GetWaitForSeconds(1f);
             _retryButton.gameObject.SetActive(true);
+            canUpdateSelected = true;
         }
 
         private void DeactivateRetryButton()

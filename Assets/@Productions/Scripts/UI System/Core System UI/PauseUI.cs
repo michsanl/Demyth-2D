@@ -54,7 +54,11 @@ namespace UISystem
             _gameStateService[GameState.Pause].onEnter += Pause_OnEnter;
             _gameStateService[GameState.Pause].onExit += Pause_OnExit;
 
-            _uiPage.OnOpen.AddListener(UpdateSettingsValue);
+            _uiPage.OnOpen.AddListener(() => 
+            {
+                _resumeButton.Select();
+                UpdateSettingsValue();
+            });
             
             _resumeButton.onClick.AddListener(ButtonResume);
             _setLanguageButton.onClick.AddListener(ToggleLanguage);

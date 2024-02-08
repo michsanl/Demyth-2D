@@ -42,7 +42,12 @@ namespace UISystem
                 SetLanguageToDefault();
             }
 
-            _uiPage.OnOpen.AddListener(UpdateSettingsValue);
+            _uiPage.OnOpen.AddListener(() => 
+            {
+                _changeLanguageButton.Select();
+                UpdateSettingsValue();
+            });
+
             _changeLanguageButton.onClick.AddListener(ToggleLanguage);
             _masterVolumeSlider.onValueChanged.AddListener(SetMMSoundMasterVolume);
             _musicVolumeSlider.onValueChanged.AddListener(SetMMSoundMusicVolume);

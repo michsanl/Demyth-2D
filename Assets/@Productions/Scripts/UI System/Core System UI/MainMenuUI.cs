@@ -5,20 +5,20 @@ using Core;
 using Core.UI;
 using Demyth.Gameplay;
 using Demyth.UI;
-using MoreMountains.Tools;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UISystem
 {
     public class MainMenuUI : MonoBehaviour
     {
         [SerializeField] private GameSettingsSO _gameSettingsSO;
-        [SerializeField] private GameObject _mainButtons;
         [SerializeField] private GameObject _selectLevelButtons;
+        [SerializeField] private Button _newGameButton;
         [Header("Level")]
         [SerializeField] private EnumId newLevelId;
 
@@ -35,6 +35,8 @@ namespace UISystem
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _musicController = SceneServiceProvider.GetService<MusicController>();
             _gameHUD = SceneServiceProvider.GetService<GameHUD>();
+
+            _uiPage.OnOpen.AddListener(() => { _newGameButton.Select(); });
         }
 
         private void Start()
@@ -45,8 +47,6 @@ namespace UISystem
 
         public void StartNewGame()
         {
-            // SaveSystem.LoadFromSlot(0);
-
             _uiPage.Return();
             _levelManager.OpenLevel(newLevelId);
             
