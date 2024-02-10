@@ -39,6 +39,7 @@ namespace UISystem
         private LevelManager _levelManager;
         private MusicController _musicController;
         private GameHUD _gameHUD;
+        private GameInputController _gameInputController;
 
         private void Awake()
         {
@@ -47,6 +48,7 @@ namespace UISystem
             _gameStateService = SceneServiceProvider.GetService<GameStateService>();
             _musicController = SceneServiceProvider.GetService<MusicController>();
             _gameHUD = SceneServiceProvider.GetService<GameHUD>();
+            _gameInputController = SceneServiceProvider.GetService<GameInputController>();
         }
 
         private void Start()
@@ -94,6 +96,8 @@ namespace UISystem
 
         private void ButtonMainMenu()
         {
+            _gameInputController.DisablePauseInput();
+
             MMSoundManagerAllSoundsControlEvent.Trigger(MMSoundManagerAllSoundsControlEventTypes.FreeAllButPersistent);
             DOTween.CompleteAll();
             DOTween.timeScale = 0;
