@@ -147,8 +147,6 @@ public class MusicController : SceneService
 
     private IEnumerator StartSriCutsceneMusicCoroutine()
     {
-        if (_musicSource.clip == _musicClipSO.SriCutsceneBGM) yield break;
-
         float fadeDuration = 5f;
 
         FadeOutCurrentMusic(fadeDuration);
