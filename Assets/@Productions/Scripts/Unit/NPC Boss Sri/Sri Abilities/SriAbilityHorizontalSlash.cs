@@ -4,35 +4,39 @@ using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using System;
-using CustomTools.Core;
-using MoreMountains.Tools;
+using Core;
+using Demyth.Gameplay;
 
-public class SriAbilityHorizontalSlash : MonoBehaviour
+public class SriAbilityHorizontalSlash : Ability
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
     [SerializeField] private AnimationPropertiesSO _horSlashProp;
-    [SerializeField] private GameObject horizontalSlashCollider;
     [SerializeField] private SriClipSO _sriClipSO;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject horizontalSlashCollider;
     
+    private Player _player;
     private int rightArenaBorder = 6;
     private int leftArenaBorder = -6;
     protected int HORIZONTAL_SLASH = Animator.StringToHash("Horizontal_Slash");
 
-    public IEnumerator HorizontalSlash(Player player, Animator animator)
+    private void Awake()
     {
-        animator.SetFloat("Hor_Slash_Multiplier", _horSlashProp.AnimationSpeedMultiplier);
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
+    }
+
+    public override IEnumerator PlayAbility()
+    {
+        _animator.SetFloat("Hor_Slash_Multiplier", _horSlashProp.AnimationSpeedMultiplier);
         
-        float playerXPosition = player.transform.position.x;
+        float playerXPosition = _player.transform.position.x;
         float targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerXPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.SetTrigger(HORIZONTAL_SLASH);
+        _animator.SetTrigger(HORIZONTAL_SLASH);
         Helper.PlaySFX(_sriClipSO.HorizontalSlash, _sriClipSO.HorizontalSlashVolume);
 
         yield return Helper.GetWaitForSeconds(_horSlashProp.GetFrontSwingDuration());

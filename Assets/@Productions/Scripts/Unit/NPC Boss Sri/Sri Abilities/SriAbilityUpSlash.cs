@@ -6,30 +6,35 @@ using Sirenix.OdinInspector;
 using System;
 using CustomTools.Core;
 using MoreMountains.Tools;
+using Core;
+using Demyth.Gameplay;
 
-public class SriAbilityUpSlash : MonoBehaviour
+public class SriAbilityUpSlash : Ability
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
     [SerializeField] private AnimationPropertiesSO _upSlashProp;
+    [SerializeField] private SriClipSO _sriClipSO;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject upSlashCollider;
-    [SerializeField] private SriClipSO _sriClipSO;
     
+    private Player _player;
     private int topArenaBorder = 2;
     private int bottomArenaBorder = -4;
     private int UP_SLASH = Animator.StringToHash("Up_Slash");
 
-    public IEnumerator UpSlash(Player player, Animator animator)
+    private void Awake()
+    {
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
+    }
+
+    public override IEnumerator PlayAbility()
     {
         animator.SetFloat("Ver_Slash_Multiplier", _upSlashProp.AnimationSpeedMultiplier);
         
-        var playerYPosition = player.transform.position.y;
+        var playerYPosition = _player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
@@ -41,15 +46,6 @@ public class SriAbilityUpSlash : MonoBehaviour
         yield return transform.DOMoveY(finalTargetPosition, _upSlashProp.GetSwingDuration()).SetEase(animationCurve).WaitForCompletion();
         upSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(_upSlashProp.GetBackSwingDuration());
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float GetPositionWithIncrement(float playerYPosition)

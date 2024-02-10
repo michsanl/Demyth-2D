@@ -6,17 +6,16 @@ using CustomTools.Core;
 using MoreMountains.Tools;
 using Lean.Pool;
 
-public class SriAbilityWaveOutNailWave : MonoBehaviour
+public class SriAbilityWaveOutNailWave : Ability
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float animationDuration;
     [SerializeField] private float nailSpawnDelay;
     
     [Title("Components")]
     [SerializeField] private AnimationPropertiesSO _introProp;
-    [SerializeField] private Animator animator;
-    [SerializeField] private GameObject waveOutNailWave;
     [SerializeField] private SriClipSO _sriClipSO;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject waveOutNailWave;
     
     private float teleportStartDuration = 0.3f;
     private float teleportEndDuration = 0.4f;
@@ -24,13 +23,13 @@ public class SriAbilityWaveOutNailWave : MonoBehaviour
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
     private int NAIL_WAVE = Animator.StringToHash("Intro");
 
-    public IEnumerator WaveOutNailWave(Animator animator)
+    public override IEnumerator PlayAbility()
     {
-        animator.SetFloat("Nail_AOE_Multiplier", _introProp.AnimationSpeedMultiplier);
+        _animator.SetFloat("Nail_AOE_Multiplier", _introProp.AnimationSpeedMultiplier);
 
         yield return StartCoroutine(TeleportToMiddleArena());
 
-        animator.SetTrigger(NAIL_WAVE);
+        _animator.SetTrigger(NAIL_WAVE);
         Helper.PlaySFX(_sriClipSO.NailAOE, _sriClipSO.NailAOEVolume);
 
         StartCoroutine(SpawnNail());
@@ -38,23 +37,14 @@ public class SriAbilityWaveOutNailWave : MonoBehaviour
         yield return Helper.GetWaitForSeconds(_introProp.GetSwingDuration());
     }
 
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
-    }
-
     public IEnumerator TeleportToMiddleArena()
     {
-        animator.Play(TELEPORT_START);
+        _animator.Play(TELEPORT_START);
         yield return Helper.GetWaitForSeconds(teleportStartDuration);
 
         transform.position = new Vector3(0, -1, 0);
 
-        animator.Play(TELEPORT_END);
+        _animator.Play(TELEPORT_END);
         yield return Helper.GetWaitForSeconds(teleportEndDuration);
     }
 

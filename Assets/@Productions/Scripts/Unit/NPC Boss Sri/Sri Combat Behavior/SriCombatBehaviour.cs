@@ -9,42 +9,42 @@ using DG.Tweening;
 
 public class SriCombatBehaviour : MonoBehaviour
 {
-
-    private enum Ability
-    { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
-    VerticalNailWave, WaveOutNailWave, Teleport, DeathSlash }
-    private enum CombatMode 
-    { None, FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
-
     public Action OnPhaseTwoStart;
     public Action OnPhaseThreeStart;
+
+    private enum SelectedCombatMode 
+    { None, FirstPhase, SecondPhase, OldFirstPhase, AbilityLoop }
+    private enum SelectedAbility
+    { UpSlash, DownSlash, HorizontalSlash, SpinClaw, NailAOE, NailSummon, FireBall, HorizontalNailWave, 
+    VerticalNailWave, WaveOutNailWave, Teleport, DeathSlash }
 
     [SerializeField] private int _phaseTwoHPThreshold;
     [SerializeField] private int _phaseThreeHPThreshold;
     [SerializeField] private bool _combatTestMode;
     [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
-    private CombatMode _selectedCombatMode;
+    private SelectedCombatMode _selectedCombatMode;
     [SerializeField, EnumToggleButtons, ShowIf("_combatTestMode")] 
-    private Ability _abilityLoop;
+    private SelectedAbility _selectedAbility;
     [Space]
     [SerializeField] private Animator _animator;
     [SerializeField] private GameObject[] _attackColliderArray;
 
-    private SriAbilityUpSlash _upSlashAbility;
-    private SriAbilityDownSlash _downSlashAbility;
-    private SriAbilityHorizontalSlash _horizontalSlashAbility;
-    private SriAbilitySpinClaw _spinClawAbility;
-    private SriAbilityNailAOE _nailAOEAbility;
-    private SriAbilityNailSummon _nailSummonAbility;
-    private SriAbilityFireBall _fireBallAbility;
-    private SriAbilityTeleport _teleportAbility;
-    private SriAbilityHorizontalNailWave _horizontalNailWaveAbility;
-    private SriAbilityVerticalNailWave _verticalNailWaveAbility;
-    private SriAbilityWaveOutNailWave _waveOutNailWaveAbility;
-    private SriAbilityDeathSlash _deathSlashAbility;
+    private Ability _upSlash;
+    private Ability _downSlash;
+    private Ability _horizontalSlash;
+    private Ability _spinClaw;
+    private Ability _nailAOE;
+    private Ability _nailSummon;
+    private Ability _fireBall;
+    private Ability _teleport;
+    private Ability _teleportMiddleArena;
+    private Ability _horizontalNailWave;
+    private Ability _verticalNailWave;
+    private Ability _waveOutNailWave;
+    private Ability _deathSlash;
 
     private GameStateService _gameStateService;
-    private CombatMode _currentCombatMode;
+    private SelectedCombatMode _currentCombatMode;
     private PlayerManager _playerManager;
     private Player _player;
     private LookOrientation _lookOrientation;
@@ -61,18 +61,19 @@ public class SriCombatBehaviour : MonoBehaviour
         _health = GetComponent<Health>();
         _player = _playerManager.Player;
 
-        _upSlashAbility = GetComponent<SriAbilityUpSlash>();
-        _downSlashAbility = GetComponent<SriAbilityDownSlash>();
-        _horizontalSlashAbility = GetComponent<SriAbilityHorizontalSlash>();
-        _spinClawAbility = GetComponent<SriAbilitySpinClaw>();
-        _nailAOEAbility = GetComponent<SriAbilityNailAOE>();
-        _nailSummonAbility = GetComponent<SriAbilityNailSummon>();
-        _fireBallAbility = GetComponent<SriAbilityFireBall>();
-        _teleportAbility = GetComponent<SriAbilityTeleport>();
-        _horizontalNailWaveAbility = GetComponent<SriAbilityHorizontalNailWave>();
-        _verticalNailWaveAbility = GetComponent<SriAbilityVerticalNailWave>();
-        _waveOutNailWaveAbility = GetComponent<SriAbilityWaveOutNailWave>();
-        _deathSlashAbility = GetComponent<SriAbilityDeathSlash>();
+        _upSlash = GetComponent<SriAbilityUpSlash>();
+        _downSlash = GetComponent<SriAbilityDownSlash>();
+        _horizontalSlash = GetComponent<SriAbilityHorizontalSlash>();
+        _spinClaw = GetComponent<SriAbilitySpinClaw>();
+        _nailAOE = GetComponent<SriAbilityNailAOE>();
+        _nailSummon = GetComponent<SriAbilityNailSummon>();
+        _fireBall = GetComponent<SriAbilityFireBall>();
+        _teleport = GetComponent<SriAbilityTeleport>();
+        _teleportMiddleArena = GetComponent<SriTeleportToMiddleArena>();
+        _horizontalNailWave = GetComponent<SriAbilityHorizontalNailWave>();
+        _verticalNailWave = GetComponent<SriAbilityVerticalNailWave>();
+        _waveOutNailWave = GetComponent<SriAbilityWaveOutNailWave>();
+        _deathSlash = GetComponent<SriAbilityDeathSlash>();
     }
 
     private void Start()
@@ -149,7 +150,7 @@ public class SriCombatBehaviour : MonoBehaviour
         _gameStateService.SetState(GameState.BossDying);
         StopAbility();
 
-        StartCoroutine(StartDeathSlashAbility());
+        StartCoroutine(PlayDeathSlashAbility());
     }
 
     private void ResetUnitCondition()
@@ -181,18 +182,18 @@ public class SriCombatBehaviour : MonoBehaviour
 
         switch (_selectedCombatMode)
         {
-            case CombatMode.None:
+            case SelectedCombatMode.None:
                 break;
-            case CombatMode.FirstPhase:
+            case SelectedCombatMode.FirstPhase:
                 StartCoroutine(LoopCombatBehaviour(GetFirstPhaseAbility));
                 break;
-            case CombatMode.SecondPhase:
+            case SelectedCombatMode.SecondPhase:
                 StartCoroutine(LoopCombatBehaviour(GetSecondPhaseAbility));
                 break;
-            case CombatMode.OldFirstPhase:
+            case SelectedCombatMode.OldFirstPhase:
                 StartCoroutine(LoopCombatBehaviour(GetOldFirstPhaseAbility));
                 break;
-            case CombatMode.AbilityLoop:
+            case SelectedCombatMode.AbilityLoop:
                 StartCoroutine(LoopCombatBehaviour(GetAbilityTesterAbility));
                 break;
         }
@@ -284,32 +285,32 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private IEnumerator GetAbilityTesterAbility()
     {
-        switch (_abilityLoop)
+        switch (_selectedAbility)
         {
-            case Ability.UpSlash:
+            case SelectedAbility.UpSlash:
                 return StartUpSlashAbility();
-            case Ability.DownSlash:
+            case SelectedAbility.DownSlash:
                 return StartDownSlashAbility();
-            case Ability.HorizontalSlash:
+            case SelectedAbility.HorizontalSlash:
                 return StartHorizontalSlashAbility();
-            case Ability.SpinClaw:
+            case SelectedAbility.SpinClaw:
                 return StartSpinClawAbility();
-            case Ability.NailAOE:
+            case SelectedAbility.NailAOE:
                 return StartNailAOEAbility();
-            case Ability.NailSummon:
+            case SelectedAbility.NailSummon:
                 return StartNailSummonAbility();
-            case Ability.FireBall:
+            case SelectedAbility.FireBall:
                 return StartFireBallAbility();
-            case Ability.HorizontalNailWave:
+            case SelectedAbility.HorizontalNailWave:
                 return StartHorizontalNailWaveAbility();
-            case Ability.VerticalNailWave:
+            case SelectedAbility.VerticalNailWave:
                 return StartVerticalNailWaveAbility();
-            case Ability.WaveOutNailWave:
+            case SelectedAbility.WaveOutNailWave:
                 return StartWaveOutNailWaveAbility();
-            case Ability.Teleport:
+            case SelectedAbility.Teleport:
                 return StartTeleportAbility();
-            case Ability.DeathSlash:
-                return StartDeathSlashAbility();
+            case SelectedAbility.DeathSlash:
+                return PlayDeathSlashAbility();
             default:
                 return null;
         }
@@ -365,67 +366,67 @@ public class SriCombatBehaviour : MonoBehaviour
 
     private IEnumerator StartUpSlashAbility()
     {
-        yield return _upSlashAbility.UpSlash(_player, _animator);
+        yield return _upSlash.PlayAbility();
     }
 
     private IEnumerator StartDownSlashAbility()
     {
-        yield return _downSlashAbility.DownSlash(_player, _animator);
+        yield return _downSlash.PlayAbility();
     }
 
     private IEnumerator StartHorizontalSlashAbility()
     {
-        yield return _horizontalSlashAbility.HorizontalSlash(_player, _animator);
+        yield return _horizontalSlash.PlayAbility();
     }
 
     private IEnumerator StartSpinClawAbility()
     {
-        yield return _spinClawAbility.SpinClaw(_animator);
+        yield return _spinClaw.PlayAbility();
     }
 
     private IEnumerator StartNailAOEAbility()
     {
-        yield return _nailAOEAbility.NailAOE(_animator);
+        yield return _nailAOE.PlayAbility();
     }
 
     private IEnumerator StartNailSummonAbility()
     {
-        yield return _nailSummonAbility.NailSummon(_player, _animator);
+        yield return _nailSummon.PlayAbility();
     }
 
     private IEnumerator StartFireBallAbility()
     {
-        yield return _fireBallAbility.FireBall(_animator);
+        yield return _fireBall.PlayAbility();
     }
 
     private IEnumerator StartHorizontalNailWaveAbility()
     {
-        yield return _horizontalNailWaveAbility.HorizontalNailWave(_animator);
+        yield return _horizontalNailWave.PlayAbility();
     }
 
     private IEnumerator StartVerticalNailWaveAbility()
     {
-        yield return _verticalNailWaveAbility.VerticalNailWave(_animator);
+        yield return _verticalNailWave.PlayAbility();
     }
 
     private IEnumerator StartWaveOutNailWaveAbility()
     {
-        yield return _waveOutNailWaveAbility.WaveOutNailWave(_animator);
+        yield return _waveOutNailWave.PlayAbility();
     }
 
     private IEnumerator StartTeleportAbility()
     {
-        yield return _teleportAbility.Teleport(_player, _animator);
+        yield return _teleport.PlayAbility();;
     }
 
     private IEnumerator StartTeleportToMiddleArena()
     {
-        yield return _teleportAbility.Teleport(new Vector3(0, 1, 0), _animator);
+        yield return _teleportMiddleArena.PlayAbility();
     }
 
-    private IEnumerator StartDeathSlashAbility()
+    private IEnumerator PlayDeathSlashAbility()
     {
-        yield return _deathSlashAbility.DeathSlash(_animator);
+        yield return _deathSlash.PlayAbility();
     }
 
 #region Position to Player Checker

@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CustomTools.Core;
-using MoreMountains.Tools;
+using Core;
+using Demyth.Gameplay;
 
-public class SriAbilityTeleport : MonoBehaviour
+public class SriAbilityTeleport : Ability
 {
     [SerializeField] private AnimationPropertiesSO _teleportProp;
-    [SerializeField] private float teleportStartDuration;
-    [SerializeField] private float teleportEndDuration;
-    [SerializeField] private Animator animator;
     [SerializeField] private SriClipSO _sriClipSO;
+    [SerializeField] private Animator _animator;
     
     private int topBorder = 2;
     private int bottomBorder = -4;
@@ -22,31 +20,24 @@ public class SriAbilityTeleport : MonoBehaviour
     };
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
+    private Player _player;
 
-    public IEnumerator Teleport(Player player, Animator animator)
+    private void Awake()
     {
-        animator.SetFloat("Teleport_Multiplier", _teleportProp.AnimationSpeedMultiplier);
-        
-        animator.SetTrigger(TELEPORT_START);
-        yield return Helper.GetWaitForSeconds(_teleportProp.GetFrontSwingDuration());
-
-        var teleportTargetPosition = GetTeleportTargetPosition(player);
-        transform.position = teleportTargetPosition;
-
-        animator.SetTrigger(TELEPORT_END);
-        yield return Helper.GetWaitForSeconds(_teleportProp.GetBackSwingDuration());
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
     }
 
-    public IEnumerator Teleport(Vector3 targetPosition, Animator animator)
+    public override IEnumerator PlayAbility()
     {
-        animator.SetFloat("Teleport_Multiplier", _teleportProp.AnimationSpeedMultiplier);
-
-        animator.Play(TELEPORT_START);
+        _animator.SetFloat("Teleport_Multiplier", _teleportProp.AnimationSpeedMultiplier);
+        
+        _animator.SetTrigger(TELEPORT_START);
         yield return Helper.GetWaitForSeconds(_teleportProp.GetFrontSwingDuration());
 
-        transform.position = targetPosition;
+        var teleportTargetPosition = GetTeleportTargetPosition(_player);
+        transform.position = teleportTargetPosition;
 
-        animator.Play(TELEPORT_END);
+        _animator.SetTrigger(TELEPORT_END);
         yield return Helper.GetWaitForSeconds(_teleportProp.GetBackSwingDuration());
     }
 
