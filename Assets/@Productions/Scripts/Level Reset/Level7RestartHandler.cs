@@ -12,7 +12,7 @@ using System.Collections;
 public class Level7RestartHandler : MonoBehaviour
 {
 
-    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
+    [SerializeField] private SriBossController _sriCombatBehaviour;
     [SerializeField] private GameObject _sriPreCombatCutscene;
 
     private Player _player;

@@ -4,7 +4,7 @@ using Core;
 using Demyth.Gameplay;
 using UnityEngine;
 
-public class SriTeleportToMiddleArena : Ability
+public class SriAbilityTeleportToMiddleArena : Ability
 {
     [SerializeField] private AnimationPropertiesSO _teleportProp;
     [SerializeField] private SriClipSO _sriClipSO;
@@ -12,13 +12,7 @@ public class SriTeleportToMiddleArena : Ability
     
     private int TELEPORT_START = Animator.StringToHash("Teleport_Start");
     private int TELEPORT_END = Animator.StringToHash("Teleport_End");
-    private Player _player;
-    private Vector2 _targetPosition = new Vector2(0, 1);
-
-    private void Awake()
-    {
-        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
-    }
+    private Vector2 _teleportTargetPosition = new(0, 1);
 
     public override IEnumerator PlayAbility()
     {
@@ -27,7 +21,7 @@ public class SriTeleportToMiddleArena : Ability
         _animator.Play(TELEPORT_START);
         yield return Helper.GetWaitForSeconds(_teleportProp.GetFrontSwingDuration());
 
-        transform.position = _targetPosition;
+        transform.position = _teleportTargetPosition;
 
         _animator.Play(TELEPORT_END);
         yield return Helper.GetWaitForSeconds(_teleportProp.GetBackSwingDuration());
