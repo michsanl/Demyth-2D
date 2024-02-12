@@ -38373,8 +38373,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 496.8694, y: 517.04614}
-    canvasZoom: 0.84999996
+    canvasScrollPosition: {x: 297.97223, y: 0}
+    canvasZoom: 0.6100002
   - id: 21
     fields:
     - title: Title
@@ -39315,7 +39315,7 @@ MonoBehaviour:
       - originConversationID: 21
         originDialogueID: 26
         destinationConversationID: 21
-        destinationDialogueID: 27
+        destinationDialogueID: 33
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -39390,8 +39390,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 430.31845
-        y: 801.5462
+        x: 431.41733
+        y: 849.8978
         width: 160
         height: 30
     - id: 28
@@ -39459,8 +39459,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 430.31845
-        y: 851.5462
+        x: 431.41733
+        y: 899.8978
         width: 160
         height: 30
     - id: 29
@@ -39528,8 +39528,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 430.31845
-        y: 901.5462
+        x: 431.41733
+        y: 949.8978
         width: 160
         height: 30
     - id: 30
@@ -39597,8 +39597,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 430.31845
-        y: 951.5462
+        x: 431.41733
+        y: 999.8978
         width: 160
         height: 30
     - id: 31
@@ -39660,8 +39660,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 432.01334
-        y: 1054.0887
+        x: 433.1122
+        y: 1102.4395
         width: 160
         height: 30
     - id: 32
@@ -39725,13 +39725,78 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 431.16586
-        y: 1004.08856
+        x: 432.26474
+        y: 1052.4397
+        width: 160
+        height: 30
+    - id: 33
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]Ara
+
+
+          (<i>Accidentally</i> close the phone)'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: '[pic=18]Ara
+
+
+          (<i>Tidak sengaja</i> tutup telepon)'
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 21
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 21
+        originDialogueID: 33
+        destinationConversationID: 21
+        destinationDialogueID: 27
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 428.32553
+        y: 801.4934
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 203.81479, y: 800.7816}
-    canvasZoom: 1.1799997
+    canvasScrollPosition: {x: 0, y: 708.7794}
+    canvasZoom: 0.73000014
   - id: 22
     fields:
     - title: Title
@@ -44441,7 +44506,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: Haha.. Kamu lucu hantu itu tidak ada
+        value: 'Lati
+
+
+          Haha.. Kamu lucu hantu itu tidak ada'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 25
@@ -44698,7 +44766,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: '[pic=3]Lati\
+        value: '[pic=3]Lati
 
 
           Kira-kira apakah kita akan bertemu lagi?'
@@ -44980,7 +45048,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 183.65997, y: 76.75991}
+    canvasScrollPosition: {x: 152.08102, y: 186.84204}
     canvasZoom: 0.7600003
   - id: 26
     fields:
@@ -45932,7 +46000,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 55.275894, y: 227.63147}
+    canvasScrollPosition: {x: 0, y: 292.1052}
     canvasZoom: 0.7600002
   - id: 27
     fields:
@@ -46887,7 +46955,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 87.93097}
+    canvasScrollPosition: {x: 0, y: 112.06888}
     canvasZoom: 0.5800004
   - id: 28
     fields:
@@ -47845,7 +47913,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 214.11775, y: 302.35294}
+    canvasScrollPosition: {x: 89.41182, y: 252.9412}
     canvasZoom: 0.8500001
   - id: 29
     fields:
@@ -48280,7 +48348,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 529
-        y: 303
+        y: 304
         width: 160
         height: 30
     - id: 6
@@ -48469,8 +48537,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 218.81432, y: 97.938095}
-    canvasZoom: 0.97
+    canvasScrollPosition: {x: 135.13388, y: 172}
+    canvasZoom: 1
   - id: 30
     fields:
     - title: Title
@@ -49087,7 +49155,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 100.08736, y: 148.25241}
+    canvasScrollPosition: {x: 33.087357, y: 0}
     canvasZoom: 1
   - id: 31
     fields:
@@ -50123,7 +50191,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 447
-        y: 722
+        y: 723.1765
         width: 160
         height: 30
     - id: 15
@@ -50249,7 +50317,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 135.29416, y: 448.23532}
+    canvasScrollPosition: {x: 0, y: 408.23535}
     canvasZoom: 0.8500001
   - id: 32
     fields:
@@ -51953,7 +52021,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 4.2857056, y: 264.28577}
+    canvasScrollPosition: {x: 0, y: 317.1427}
     canvasZoom: 0.7000003
   syncInfo:
     syncActors: 0

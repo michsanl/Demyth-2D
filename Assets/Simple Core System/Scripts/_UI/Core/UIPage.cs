@@ -31,8 +31,10 @@ namespace Core.UI
         [Header("Events Hook")]
         public UnityEvent<PageData> OnPushed;
         public UnityEvent OnOpen;
+        public UnityEvent OnOpened;
         public UnityEvent OnRefresh;
         public UnityEvent OnClose;
+        public UnityEvent OnClosed;
 
         private SceneUI _sceneUI;
         private PageData _pageData;
@@ -68,6 +70,7 @@ namespace Core.UI
                 _pageAnimator.PlayAnimation(() =>
                 {
                     SetRaycast(true);
+                    OnOpened?.Invoke();
                 });
             }
 
@@ -87,6 +90,7 @@ namespace Core.UI
                 _pageAnimator.CloseAnimation(() =>
                 {
                     SetPageVisibility(false);
+                    OnClosed?.Invoke();
                 });
             }
             else
