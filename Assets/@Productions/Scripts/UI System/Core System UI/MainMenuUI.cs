@@ -45,37 +45,19 @@ namespace UISystem
 
         public void StartNewGame()
         {
-            // SaveSystem.LoadFromSlot(0);
-
+            _uiPage.OnClosed.AddListener(NewGameButton);
             _uiPage.Return();
-            _levelManager.OpenLevel(newLevelId);
-            
-            SaveSystem.SaveToSlot(1);
-            _gameStateService?.SetState(GameState.Gameplay);
-
-            DialogueManager.StartConversation("Intro");
         }
 
         public void ContinueGame()
         {
-            StartCoroutine(ContinueGameCoroutine());
+            _uiPage.OnClosed.AddListener(ContinueButton);
+            _uiPage.Return();
         }
 
-        private IEnumerator ContinueGameCoroutine()
+        public void QuitGame()
         {
-            _musicController.FadeOutCurrentMusic(.9f);
-
-            yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
-
-            SaveSystem.LoadFromSlot(1);
-            _uiPage.Return();
-            _gameHUD.InstantOpen();
-            _musicController.PlayLevelBGM();
-            _musicController.FadeInCurrentMusic(.9f);
-
-            yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
-            
-            _gameStateService?.SetState(GameState.Gameplay);
+            Application.Quit();
         }
 
         public void StartToLevel(EnumId levelId)
@@ -91,9 +73,32 @@ namespace UISystem
             _musicController.FadeInCurrentMusic(1.5f);
         }
 
-        public void QuitGame()
+        private void NewGameButton()
         {
-            Application.Quit();
+            SaveSystem.SaveToSlot(1);
+            _gameStateService?.SetState(GameState.Gameplay);
+            DialogueManager.StartConversation("Intro");
+        }
+
+        private void ContinueButton()
+        {
+            StartCoroutine(ContinueGameCoroutine());
+        }
+
+        private IEnumerator ContinueGameCoroutine()
+        {
+            _musicController.FadeOutCurrentMusic(.9f);
+
+            yield return StartCoroutine(PersistenceLoadingUI.Instance.OpenLoadingPage());
+
+            SaveSystem.LoadFromSlot(1);
+            _gameHUD.InstantOpen();
+            _musicController.PlayLevelBGM();
+            _musicController.FadeInCurrentMusic(.9f);
+
+            yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
+            
+            _gameStateService?.SetState(GameState.Gameplay);
         }
 
         public void GoToGameplayScene()
