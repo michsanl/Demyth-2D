@@ -8,16 +8,19 @@ using Demyth.UI;
 using MoreMountains.Tools;
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UISystem
 {
     public class MainMenuUI : MonoBehaviour
     {
         [SerializeField] private GameSettingsSO _gameSettingsSO;
-        [SerializeField] private GameObject _mainButtons;
+        [SerializeField] private Button _continueButton;
+        [SerializeField] private TextMeshProUGUI _continueButtonText;
         [SerializeField] private GameObject _selectLevelButtons;
         [Header("Level")]
         [SerializeField] private EnumId newLevelId;
@@ -41,6 +44,7 @@ namespace UISystem
         {
             _selectLevelButtons.SetActive(_gameSettingsSO.ShowLevelSelect);
             _musicController.PlayMainMenuBGM();
+            SetupContinueButtonVisual();
         }
 
         public void StartNewGame()
@@ -101,9 +105,18 @@ namespace UISystem
             _gameStateService?.SetState(GameState.Gameplay);
         }
 
-        public void GoToGameplayScene()
+        private void SetupContinueButtonVisual()
         {
-            SceneManager.LoadSceneAsync(1);
+            if (SaveSystem.HasSavedGameInSlot(1))
+            {
+                _continueButton.enabled = true;
+                _continueButtonText.alpha = 1f;
+            }
+            else
+            {
+                _continueButton.enabled = false;
+                _continueButtonText.alpha = 0.5f;
+            }
         }
     }
 }
