@@ -17,7 +17,7 @@ public class SriPreCombatCutscene : MonoBehaviour
     [SerializeField] private float _cameraMoveDownSequenceDuration;
     [Space]
     [SerializeField] private DialogueSystemTrigger _dialogueSystemTrigger;
-    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
+    [SerializeField] private SriBossController _sriCombatBehaviour;
     [SerializeField] private GameObject _prevLevelGate;
 
     private CameraController _cameraController;

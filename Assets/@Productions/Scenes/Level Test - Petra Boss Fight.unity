@@ -1534,6 +1534,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049553536}
     m_Modifications:
+    - target: {fileID: 4661932636920009421, guid: 95137a5e365ffad43b4d3885eb5a8882, type: 3}
+      propertyPath: enablePauseOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661932636920009421, guid: 95137a5e365ffad43b4d3885eb5a8882, type: 3}
+      propertyPath: enablePlayerOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4661932637759007360, guid: 95137a5e365ffad43b4d3885eb5a8882, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1581,6 +1589,10 @@ PrefabInstance:
     - target: {fileID: 4661932637759007361, guid: 95137a5e365ffad43b4d3885eb5a8882, type: 3}
       propertyPath: m_Name
       value: Game Input Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661932637759007361, guid: 95137a5e365ffad43b4d3885eb5a8882, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95137a5e365ffad43b4d3885eb5a8882, type: 3}

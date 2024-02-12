@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sirenix.OdinInspector;
-using CustomTools.Core;
-using MoreMountains.Tools;
+using Core;
+using Demyth.Gameplay;
 
-public class SriAbilityDownSlash : MonoBehaviour
+public class SriAbilityDownSlash : Ability
 {
     [Title("Parameter Settings")]
-    [SerializeField] private float frontSwingDuration;
-    [SerializeField] private float swingDuration;
-    [SerializeField] private float backSwingDuration;
     [SerializeField] private AnimationCurve animationCurve;
     
     [Title("Components")]
     [SerializeField] private AnimationPropertiesSO _downSlashProp;
-    [SerializeField] private GameObject downSlashCollider;
     [SerializeField] private SriClipSO _sriClipSO;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject downSlashCollider;
     
+    private Player _player;
     private int topArenaBorder = 2;
     private int bottomArenaBorder = -4;
     private int DOWN_SLASH = Animator.StringToHash("Down_Slash");
 
-    public IEnumerator DownSlash(Player player, Animator animator)
+    private void Awake()
     {
-        animator.SetFloat("Ver_Slash_Multiplier", _downSlashProp.AnimationSpeedMultiplier);
+        _player = SceneServiceProvider.GetService<PlayerManager>().Player;
+    }
+
+    public override IEnumerator PlayAbility()
+    {
+        _animator.SetFloat("Ver_Slash_Multiplier", _downSlashProp.AnimationSpeedMultiplier);
         
-        var playerYPosition = player.transform.position.y;
+        var playerYPosition = _player.transform.position.y;
         var targetPosition = ClampValueToBattleArenaBorder(GetPositionWithIncrement(playerYPosition));
         int finalTargetPosition = Mathf.RoundToInt(targetPosition);
 
-        animator.SetTrigger(DOWN_SLASH);
+        _animator.SetTrigger(DOWN_SLASH);
         Helper.PlaySFX(_sriClipSO.VerticalSlash, _sriClipSO.VerticalSlashVolume);
 
         yield return Helper.GetWaitForSeconds(_downSlashProp.GetFrontSwingDuration());
@@ -39,15 +43,6 @@ public class SriAbilityDownSlash : MonoBehaviour
         yield return transform.DOMoveY(finalTargetPosition, _downSlashProp.GetSwingDuration()).SetEase(animationCurve).WaitForCompletion();
         downSlashCollider.SetActive(false);
         yield return Helper.GetWaitForSeconds(_downSlashProp.GetBackSwingDuration());
-    }
-
-    private void PlayAudio(AudioClip abilitySFX)
-    {
-        MMSoundManagerPlayOptions playOptions = MMSoundManagerPlayOptions.Default;
-        playOptions.Volume = 1f;
-        playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
-
-        MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
     }
 
     private float GetPositionWithIncrement(float playerYPosition)
