@@ -79,7 +79,6 @@ namespace UISystem
 
         private void NewGameButton()
         {
-            SaveSystem.SaveToSlot(1);
             _gameStateService?.SetState(GameState.Gameplay);
             DialogueManager.StartConversation("Intro");
         }
