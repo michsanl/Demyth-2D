@@ -154,7 +154,7 @@ public class Player : MonoBehaviour, IBroadcaster
         IsShieldUnlocked = true;
     }
 
-    public bool ApplyDamageToPlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
+    public bool TryDamagePlayer(bool enableKnockBack, Vector2 knockbackTargetPosition)
     {
         if (_gameStateService.CurrentState == GameState.BossDying) return false;
         if (_isTakeDamageOnCooldown) return false;
@@ -164,11 +164,11 @@ public class Player : MonoBehaviour, IBroadcaster
             _isKnocked = true;
         }
 
-        StartCoroutine(ApplyDamageToPlayerCoroutine(enableKnockBack, knockbackTargetPosition));
+        StartCoroutine(HandleDamagePlayer(enableKnockBack, knockbackTargetPosition));
         return true;
     }
 
-    public void ApplyKnockBackToPlayer(Vector2 knockbackTargetPosition)
+    public void KnockbackPlayer(Vector2 knockbackTargetPosition)
     {
         animator.SetTrigger("OnHit");
         StartCoroutine(HandleKnockBack(knockbackTargetPosition));
@@ -260,7 +260,7 @@ public class Player : MonoBehaviour, IBroadcaster
         _isBusy = false;
     }  
 
-    private IEnumerator ApplyDamageToPlayerCoroutine(bool knockBackPlayer, Vector2 knockbackTargetPosition)
+    private IEnumerator HandleDamagePlayer(bool knockBackPlayer, Vector2 knockbackTargetPosition)
     {
         _isTakeDamageOnCooldown = true;
 
@@ -335,17 +335,17 @@ public class Player : MonoBehaviour, IBroadcaster
 
     private void PlayAttackHitAudio()
     {
-        int random;
+        int randIndex;
 
         if (_usePan)
         {
-            random = UnityEngine.Random.Range(0, _araClipSO.PanHit.Length);
-            PlayAudio(_araClipSO.PanHit[random], _araClipSO.GetPanHitVolume(random));
+            randIndex = UnityEngine.Random.Range(0, _araClipSO.PanHit.Length);
+            PlayAudio(_araClipSO.PanHit[randIndex], _araClipSO.GetPanHitVolume(randIndex));
         }
         else
         {
-            random = UnityEngine.Random.Range(0, _araClipSO.MoveBox.Length);
-            PlayAudio(_araClipSO.MoveBox[random], _araClipSO.GetMoveBoxVolume(random));
+            randIndex = UnityEngine.Random.Range(0, _araClipSO.MoveBox.Length);
+            PlayAudio(_araClipSO.MoveBox[randIndex], _araClipSO.GetMoveBoxVolume(randIndex));
         }
     }
 
@@ -356,6 +356,11 @@ public class Player : MonoBehaviour, IBroadcaster
         playOptions.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
 
         MMSoundManagerSoundPlayEvent.Trigger(abilitySFX, playOptions);
+    }
+    
+    private bool IsInputVectorDiagonal(Vector2 direction)
+    {
+        return direction.x != 0 && direction.y != 0;
     }
 
     private Vector2 GetMoveTargetPosition()
@@ -371,10 +376,5 @@ public class Player : MonoBehaviour, IBroadcaster
         dir.x = Mathf.RoundToInt(dir.x * -1f); 
         dir.y = Mathf.RoundToInt(dir.y * -1f);
         return dir;
-    }
-    
-    private bool IsInputVectorDiagonal(Vector2 direction)
-    {
-        return direction.x != 0 && direction.y != 0;
     }
 }
