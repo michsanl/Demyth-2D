@@ -41,13 +41,13 @@ public class PlayerDamager : MonoBehaviour
 
     private void KnockbackPlayer(KnockbackBase knockbackBase)
     {
-        player.ApplyKnockBackToPlayer(knockbackBase.GetKnockbackTargetPosition(player));
+        player.KnockbackPlayer(knockbackBase.GetKnockbackTargetPosition(player));
         PlayRandomBossDamageSFX();
     }
 
     private void TryDamagePlayer(bool enableKnockback, Vector2 knockbackTargetPosition = default)
     {
-        var canDamagePlayer = player.ApplyDamageToPlayer(enableKnockback, knockbackTargetPosition);
+        var canDamagePlayer = player.TryDamagePlayer(enableKnockback, knockbackTargetPosition);
         if (canDamagePlayer)
         {
             PlayRandomBossDamageSFX();
