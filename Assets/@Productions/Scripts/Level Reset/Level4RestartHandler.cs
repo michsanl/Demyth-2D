@@ -59,6 +59,7 @@ public class Level4RestartHandler : MonoBehaviour
         SaveSystem.LoadFromSlot(1);
         
         _player.ResetUnitCondition();
+        _player.UsePan = true;
         _petraPreCombatCutscene.SetActive(false);
         
         StartCoroutine(ActivateBossCombatMode());

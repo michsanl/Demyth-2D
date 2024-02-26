@@ -12,7 +12,7 @@ public class SriCombatEvent : MonoBehaviour
     [SerializeField] private float _globalLightsOffDelay;
     [SerializeField] private float _lightsOffInterval;
     [Space]
-    [SerializeField] private SriCombatBehaviour _sriCombatBehaviour;
+    [SerializeField] private SriBossController _sriCombatBehaviour;
     [SerializeField] private Light2D _light2D;
     [SerializeField] private PillarLight[] _pillarLightArray;
 
