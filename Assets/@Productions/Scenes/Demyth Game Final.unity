@@ -572,7 +572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2084580017448373030, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374398509341285568, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2692612190158961910, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -610,6 +614,10 @@ PrefabInstance:
       propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2990920200680278448, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4039907704366123611, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -626,13 +634,25 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4646054346686707865, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4926672763889475611, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973234842480106759, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6508432403699505095, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544182614343383059, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7186460242710890279, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
@@ -3970,6 +3990,18 @@ PrefabInstance:
     - target: {fileID: 8551962754239887420, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
       propertyPath: m_Name
       value: Credit UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551962754431947573, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.17254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551962754431947573, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.10980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551962754431947573, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.09411766
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
