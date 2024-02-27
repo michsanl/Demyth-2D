@@ -5182,7 +5182,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 127.86808, y: 25.94473}
+    canvasScrollPosition: {x: 18.49311, y: 0}
     canvasZoom: 0.6400002
   - id: 8
     fields:
@@ -9293,8 +9293,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 1299.766}
-    canvasZoom: 0.43000004
+    canvasScrollPosition: {x: 135.1565, y: 1192.8932}
+    canvasZoom: 0.58
   - id: 9
     fields:
     - title: Title
@@ -16512,7 +16512,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 767.85803
+        x: 768.9569
         y: 1362.1958
         width: 160
         height: 30
@@ -30347,7 +30347,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 702.5316
+        x: 704.17096
         y: 66.32912
         width: 160
         height: 30
@@ -31298,7 +31298,7 @@ MonoBehaviour:
       - originConversationID: 18
         originDialogueID: 132
         destinationConversationID: 18
-        destinationDialogueID: 133
+        destinationDialogueID: 141
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -31367,8 +31367,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 705.689
-        y: 632.7771
+        x: 704.79614
+        y: 688.13434
         width: 160
         height: 30
     - id: 134
@@ -31697,9 +31697,74 @@ MonoBehaviour:
         y: 326.6972
         width: 160
         height: 30
+    - id: 141
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 8
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '
+
+
+          (You get a lantern! Press "Q" to use the lantern)'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: '
+
+
+          (Kamu dapat lentera! Tekan "Q" untuk menggunakan lentera)'
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 18
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 18
+        originDialogueID: 141
+        destinationConversationID: 18
+        destinationDialogueID: 133
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 702.43787
+        y: 636.1087
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 160.18706, y: 0}
-    canvasZoom: 0.6099997
+    canvasScrollPosition: {x: 449.33658, y: 513.4149}
+    canvasZoom: 0.8199996
   - id: 19
     fields:
     - title: Title
@@ -31806,13 +31871,13 @@ MonoBehaviour:
       - originConversationID: 19
         originDialogueID: 0
         destinationConversationID: 19
-        destinationDialogueID: 148
+        destinationDialogueID: 1
         isConnector: 0
         priority: 2
       - originConversationID: 19
         originDialogueID: 0
         destinationConversationID: 19
-        destinationDialogueID: 1
+        destinationDialogueID: 154
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -33225,7 +33290,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 555.49084
-        y: 806.6977
+        y: 805.3819
         width: 160
         height: 30
     - id: 145
@@ -33844,9 +33909,75 @@ MonoBehaviour:
         y: 130.39944
         width: 160
         height: 30
+    - id: 154
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=13]Ara
+
+
+          What is it again?'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: SetActive(Bg 6, true);
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: '[pic=13]Ara
+
+
+          Gimana tadi?'
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 154
+        destinationConversationID: 19
+        destinationDialogueID: 148
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["Level_6_Done"] == true and (CurrentQuestState("Sparkling
+        Hidden Item") == "active") and (Variable["HiddenItem.NumCollected"] < 3)
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 733.3541
+        y: 803.6586
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 346.48215, y: 543.8324}
-    canvasZoom: 0.75999975
+    canvasScrollPosition: {x: 281.99976, y: 0}
+    canvasZoom: 0.6999998
   - id: 20
     fields:
     - title: Title
@@ -37863,7 +37994,7 @@ MonoBehaviour:
         value: '[pic=13]Ara
 
 
-          Um.. What kind of entertain-'
+          Um.. how to-'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -37876,7 +38007,7 @@ MonoBehaviour:
         value: '[pic=13]Ara
 
 
-          Um.. Hiburan macam apah-'
+          Um.. gimanah-'
         type: 4
         typeString: CustomFieldType_Localization
       - title: Response Menu Sequence
@@ -38005,7 +38136,7 @@ MonoBehaviour:
         value: '[em3][pic=8]K.R. Sri
 
 
-          PREPARE YOURSELF[/em3]'
+          USE EVERYTHING YOU LEARN[/em3]'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -38018,7 +38149,7 @@ MonoBehaviour:
         value: '[em3][pic=8]K.R. Sri
 
 
-          BERSIAPLAH[/em3]'
+          GUNAKAN SEMUA YANG KAU PELAJARI[/em3]'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 20
@@ -38373,7 +38504,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 297.97223, y: 0}
+    canvasScrollPosition: {x: 476.28607, y: 606.32275}
     canvasZoom: 0.6100002
   - id: 21
     fields:
@@ -38510,9 +38641,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'AnimatorPlay (Intro_1, Intro);
-
-'
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: 
       - title: id
@@ -38577,7 +38706,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (Intro_2, Intro);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -38608,8 +38737,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 430.31845
-        y: 323.46796
+        x: 431.3823
+        y: 322.40414
         width: 160
         height: 30
     - id: 16
@@ -38673,7 +38802,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 432.8501
+        x: 434.21997
         y: 215.2401
         width: 160
         height: 30
@@ -38728,7 +38857,7 @@ MonoBehaviour:
       - originConversationID: 21
         originDialogueID: 17
         destinationConversationID: 21
-        destinationDialogueID: 13
+        destinationDialogueID: 35
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -38738,7 +38867,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 432.8501
+        x: 435.28375
         y: 266.50592
         width: 160
         height: 30
@@ -38795,7 +38924,7 @@ MonoBehaviour:
       - originConversationID: 21
         originDialogueID: 18
         destinationConversationID: 21
-        destinationDialogueID: 1
+        destinationDialogueID: 34
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -39380,7 +39509,7 @@ MonoBehaviour:
       - originConversationID: 21
         originDialogueID: 27
         destinationConversationID: 21
-        destinationDialogueID: 28
+        destinationDialogueID: 36
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -39424,7 +39553,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (Intro_3, Intro);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -39459,7 +39588,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 431.41733
+        x: 432.7872
         y: 899.8978
         width: 160
         height: 30
@@ -39631,7 +39760,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (Intro_4, Intro);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -39715,7 +39844,7 @@ MonoBehaviour:
       - originConversationID: 21
         originDialogueID: 32
         destinationConversationID: 21
-        destinationDialogueID: 31
+        destinationDialogueID: 37
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -39794,9 +39923,279 @@ MonoBehaviour:
         y: 801.4934
         width: 160
         height: 30
+    - id: 34
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 'AnimatorPlay (Intro_1, Intro);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 21
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 21
+        originDialogueID: 34
+        destinationConversationID: 21
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 246.02725
+        y: 167.12318
+        width: 160
+        height: 30
+    - id: 35
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (Intro_2, Intro);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 21
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 21
+        originDialogueID: 35
+        destinationConversationID: 21
+        destinationDialogueID: 13
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 243.2875
+        y: 324.65738
+        width: 160
+        height: 30
+    - id: 36
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (Intro_3, Intro);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 9075684e-da3f-43d5-b941-a9f1e6c29e8d
+        type: 0
+        typeString: 
+      conversationID: 21
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 21
+        originDialogueID: 36
+        destinationConversationID: 21
+        destinationDialogueID: 28
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 235.06833
+        y: 901.3694
+        width: 160
+        height: 30
+    - id: 37
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]Ara
+
+
+          <b>Shit..</b>'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (Intro_4, Intro);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: '[pic=18]Ara
+
+
+          <b>Shit..</b>'
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 21553a9b-617e-42e5-9e43-70cbcff4f371
+        type: 0
+        typeString: 
+      conversationID: 21
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 21
+        originDialogueID: 37
+        destinationConversationID: 21
+        destinationDialogueID: 31
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 235.06837
+        y: 1104.1091
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 334.20453, y: 880.143}
-    canvasZoom: 1.0899999
+    canvasScrollPosition: {x: 4.109619, y: 0}
+    canvasZoom: 0.7300003
   - id: 22
     fields:
     - title: Title
@@ -39967,7 +40366,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 1
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40003,7 +40408,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: The second paper
+        value: '[pic=2]The second paper'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -40011,7 +40416,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: Kertas kedua
+        value: '[pic=2]Kertas kedua'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 22
@@ -40021,7 +40426,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 2
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40057,7 +40468,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: The third paper
+        value: '[pic=3]The third paper'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -40065,7 +40476,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: Kertas ketiga
+        value: '[pic=3]Kertas ketiga'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 22
@@ -40075,7 +40486,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 3
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40111,7 +40528,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: The fourth paper
+        value: '[pic=4]The fourth paper'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -40119,7 +40536,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: Kertas keempat
+        value: '[pic=4]Kertas keempat'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 22
@@ -40129,7 +40546,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 4
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40139,7 +40562,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 638.86523
-        y: 209.593
+        y: 211.02159
         width: 160
         height: 30
     - id: 5
@@ -40165,7 +40588,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: The fifth paper
+        value: '[pic=5]The fifth paper'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -40173,7 +40596,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: Kertas kelima
+        value: '[pic=5]Kertas kelima'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 22
@@ -40183,7 +40606,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 5
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40226,7 +40655,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40254,8 +40688,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 31.663841
-        y: 137.61653
+        x: 33.092415
+        y: 139.04512
         width: 160
         height: 30
     - id: 7
@@ -40288,7 +40722,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40317,7 +40756,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 237.14325
-        y: 136.18796
+        y: 134.75937
         width: 160
         height: 30
     - id: 8
@@ -40350,7 +40789,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40412,7 +40856,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40474,7 +40923,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40502,8 +40956,67 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 831.7224
+        x: 830.2938
         y: 137.55782
+        width: 160
+        height: 30
+    - id: 134
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'Continue();
+
+          SetActive (Bg 6, false)@0.95;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 68a7b99b-a676-4550-a627-1f6d61279b34
+        type: 0
+        typeString: 
+      conversationID: 22
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: Variable["Level_6_Intro_Done"] = true
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 441.42844
+        y: 284.2856
         width: 160
         height: 30
     entryGroups: []
@@ -43111,7 +43624,7 @@ MonoBehaviour:
       - originConversationID: 24
         originDialogueID: 0
         destinationConversationID: 24
-        destinationDialogueID: 16
+        destinationDialogueID: 37
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -43155,12 +43668,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: 'SetActive (Blank, true);
-
-          SetActive (Bg 7, false);
-
-          AnimatorPlay
-          (End_1, End);'
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: 
       - title: id
@@ -43312,7 +43820,7 @@ MonoBehaviour:
       - originConversationID: 24
         originDialogueID: 22
         destinationConversationID: 24
-        destinationDialogueID: 23
+        destinationDialogueID: 39
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -43356,7 +43864,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (End_2, End);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -43442,7 +43950,7 @@ MonoBehaviour:
       - originConversationID: 24
         originDialogueID: 24
         destinationConversationID: 24
-        destinationDialogueID: 25
+        destinationDialogueID: 40
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -43486,7 +43994,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (End_3, End);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -43637,7 +44145,7 @@ MonoBehaviour:
       - originConversationID: 24
         originDialogueID: 27
         destinationConversationID: 24
-        destinationDialogueID: 28
+        destinationDialogueID: 41
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -43681,7 +44189,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (End_4, End);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -43844,7 +44352,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 538.31287
+        x: 539.74146
         y: 577.22876
         width: 160
         height: 30
@@ -44233,9 +44741,333 @@ MonoBehaviour:
         y: 877.22876
         width: 160
         height: 30
+    - id: 37
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=18]Ara
+
+
+          Aw shit..'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 'SetActive (Blank, true);
+
+          SetActive (Bg 7, false);
+
+          AnimatorPlay
+          (End_1, End);
+
+          SetActive (Text Panel, false);
+
+          Continue()@2;'
+        type: 0
+        typeString: 
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 24
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 24
+        originDialogueID: 37
+        destinationConversationID: 24
+        destinationDialogueID: 16
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 351.0946
+        y: 81.01263
+        width: 160
+        height: 30
+    - id: 38
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[pic=18]Ara
+
+
+          Aw shit..'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 'SetActive (Blank, true);
+
+          SetActive (Bg 7, false);
+
+          AnimatorPlay
+          (End_1, End);'
+        type: 0
+        typeString: 
+      - title: id
+        value: '[pic=18]Ara
+
+
+          Agh sial..'
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 24
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 809.32227
+        y: 75.94934
+        width: 160
+        height: 30
+    - id: 39
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (End_2, End);
+
+          SetActive (Text Panel, false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 24
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 24
+        originDialogueID: 39
+        destinationConversationID: 24
+        destinationDialogueID: 23
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 348.56296
+        y: 226.58218
+        width: 160
+        height: 30
+    - id: 40
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (End_3, End);
+
+          SetActive (Text Panel, false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 24
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 24
+        originDialogueID: 40
+        destinationConversationID: 24
+        destinationDialogueID: 25
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 354.89212
+        y: 330.37958
+        width: 160
+        height: 30
+    - id: 41
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (End_4, End);
+
+          SetActive (Text Panel, false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 24
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 24
+        originDialogueID: 41
+        destinationConversationID: 24
+        destinationDialogueID: 28
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 354.89206
+        y: 477.2151
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 248.81624, y: 546.3876}
-    canvasZoom: 0.7900003
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.5800005
   - id: 25
     fields:
     - title: Title
@@ -50775,7 +51607,7 @@ MonoBehaviour:
         value: '[pic=18]A
 
 
-          Take this.. Go back..'
+          Take this key.. Go back..'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -50786,7 +51618,7 @@ MonoBehaviour:
         value: '[pic=18]A
 
 
-          Ambil ini.. Kembalilah..'
+          Ambil kunci ini.. Kembalilah..'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 32
@@ -50873,8 +51705,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 70.95456, y: 0}
-    canvasZoom: 0.8800001
+    canvasScrollPosition: {x: 9.319111, y: 0}
+    canvasZoom: 0.73000026
   - id: 33
     fields:
     - title: Title
@@ -50966,7 +51798,7 @@ MonoBehaviour:
       - originConversationID: 33
         originDialogueID: 0
         destinationConversationID: 33
-        destinationDialogueID: 1
+        destinationDialogueID: 17
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -51010,12 +51842,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 'SetActive (Blank, true);
-
-          SetActive (Bg 7, false);
-
-          AnimatorPlay
-          (Epilog_1, Epilog);'
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -51046,8 +51873,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 313
-        y: 76
+        x: 318.5172
+        y: 77.37932
         width: 160
         height: 30
     - id: 2
@@ -51111,8 +51938,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 313
-        y: 126
+        x: 318.51724
+        y: 128.75862
         width: 160
         height: 30
     - id: 3
@@ -51176,8 +52003,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 313
-        y: 176
+        x: 317.82758
+        y: 178.06897
         width: 160
         height: 30
     - id: 4
@@ -51296,7 +52123,7 @@ MonoBehaviour:
       - originConversationID: 33
         originDialogueID: 5
         destinationConversationID: 33
-        destinationDialogueID: 6
+        destinationDialogueID: 18
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -51306,7 +52133,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 313
+        x: 314
         y: 276
         width: 160
         height: 30
@@ -51340,7 +52167,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (Epilog_2, Epilog);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -51371,7 +52198,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 314.42856
+        x: 315.79843
         y: 326
         width: 160
         height: 30
@@ -51556,7 +52383,7 @@ MonoBehaviour:
       - originConversationID: 33
         originDialogueID: 9
         destinationConversationID: 33
-        destinationDialogueID: 10
+        destinationDialogueID: 19
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -51600,7 +52427,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (Epilog_3, Epilog);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -51816,7 +52643,7 @@ MonoBehaviour:
       - originConversationID: 33
         originDialogueID: 13
         destinationConversationID: 33
-        destinationDialogueID: 14
+        destinationDialogueID: 20
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -51860,7 +52687,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (Epilog_4, Epilog);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -51947,7 +52774,7 @@ MonoBehaviour:
       - originConversationID: 33
         originDialogueID: 15
         destinationConversationID: 33
-        destinationDialogueID: 16
+        destinationDialogueID: 21
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -51957,8 +52784,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 313
-        y: 776.8929
+        x: 313.80646
+        y: 776.08636
         width: 160
         height: 30
     - id: 16
@@ -51991,7 +52818,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: AnimatorPlay (Epilog_5, Epilog);
+        value: SetActive (Text Panel, true);
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -52016,13 +52843,340 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 313
+        x: 315.41934
         y: 826
         width: 160
         height: 30
+    - id: 17
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=18]Ara
+
+
+          Soo I go there?'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'SetActive (Blank, true);
+
+          SetActive (Bg 7, false);
+
+          AnimatorPlay
+          (Epilog_1, Epilog);
+
+          SetActive (Text Panel, false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 33
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 33
+        originDialogueID: 17
+        destinationConversationID: 33
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 114.285645
+        y: 77.14282
+        width: 160
+        height: 30
+    - id: 18
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (Epilog_2, Epilog);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 33
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 33
+        originDialogueID: 18
+        destinationConversationID: 33
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 109
+        y: 327
+        width: 160
+        height: 30
+    - id: 19
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (Epilog_3, Epilog);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 33
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 33
+        originDialogueID: 19
+        destinationConversationID: 33
+        destinationDialogueID: 10
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 111
+        y: 527.2028
+        width: 160
+        height: 30
+    - id: 20
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (Epilog_4, Epilog);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 33
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 33
+        originDialogueID: 20
+        destinationConversationID: 33
+        destinationDialogueID: 14
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 118
+        y: 726.2028
+        width: 160
+        height: 30
+    - id: 21
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 15
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'AnimatorPlay (Epilog_5, Epilog);
+
+          SetActive (Text Panel,
+          false);
+
+          Continue()@2;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 33
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 33
+        originDialogueID: 21
+        destinationConversationID: 33
+        destinationDialogueID: 16
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 120.96767
+        y: 827.1063
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 317.1427}
-    canvasZoom: 0.7000003
+    canvasScrollPosition: {x: 58.135, y: 366.6098}
+    canvasZoom: 0.6700003
   syncInfo:
     syncActors: 0
     syncItems: 0
