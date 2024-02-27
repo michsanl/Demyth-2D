@@ -554,6 +554,14 @@ PrefabInstance:
       propertyPath: _light2D
       value: 
       objectReference: {fileID: 557433475}
+    - target: {fileID: 1180872992660334122, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991120468320084421, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2084580017448373030, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -566,10 +574,6 @@ PrefabInstance:
       propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 260261638}
-    - target: {fileID: 2990920200680278448, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
-      propertyPath: maxHealth
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3479441864565972153, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: _boxArray.Array.size
       value: 21
@@ -582,17 +586,13 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4267192960048533094, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
-      propertyPath: maxHealth
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4364417740110055539, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6367640258402613469, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: _phaseTwoHPTreshold
-      value: 28
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6508432403699505095, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
@@ -606,6 +606,30 @@ PrefabInstance:
       propertyPath: _globalLight
       value: 
       objectReference: {fileID: 557433475}
+    - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7936932396755003932, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
