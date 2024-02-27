@@ -2086,6 +2086,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1634480722567003756}
     m_Modifications:
+    - target: {fileID: 1257030523530888709, guid: 3df2daeaa98b36a4f9c51c88dad4c781, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257030523530888709, guid: 3df2daeaa98b36a4f9c51c88dad4c781, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2987776300429326815, guid: 3df2daeaa98b36a4f9c51c88dad4c781, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2216,6 +2224,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1634480722567003756}
     m_Modifications:
+    - target: {fileID: 1082958180, guid: d4c82146d1475644cbaf970a8eb859d9, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082958180, guid: d4c82146d1475644cbaf970a8eb859d9, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1144340889970604897, guid: d4c82146d1475644cbaf970a8eb859d9, type: 3}
       propertyPath: m_Name
       value: Pillar 2
@@ -2356,11 +2372,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 278691031, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: _phaseTwoHPThreshold
-      value: 29
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 278691031, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: _phaseThreeHPThreshold
-      value: 28
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: m_RootOrder
@@ -2416,7 +2432,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182001827861331906, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182001827861331906, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
+      propertyPath: currentHealth
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837205aae2d4a0c41b1303a5cf43aad2, type: 3}
@@ -2443,6 +2463,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1634480722567003756}
     m_Modifications:
+    - target: {fileID: 1749689581, guid: d40b2a994f0e07f4a93ec91edfa6e387, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749689581, guid: d40b2a994f0e07f4a93ec91edfa6e387, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4969346425133806241, guid: d40b2a994f0e07f4a93ec91edfa6e387, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2639,6 +2667,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1634480722567003756}
     m_Modifications:
+    - target: {fileID: 218150346, guid: accea0b234c7f4544ab792daa2cf3724, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 218150346, guid: accea0b234c7f4544ab792daa2cf3724, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1031129220624517793, guid: accea0b234c7f4544ab792daa2cf3724, type: 3}
       propertyPath: m_RootOrder
       value: 7
