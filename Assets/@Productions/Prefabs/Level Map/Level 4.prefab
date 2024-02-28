@@ -580,6 +580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _petraCombatBehaviour: {fileID: 5916985431247403359}
   _petraPreCombatCutscene: {fileID: 1510132072300972832}
+  _prevLevelGate: {fileID: 7086826357579465669}
 --- !u!1 &3806629825586358243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,6 +1438,10 @@ PrefabInstance:
     - target: {fileID: 2877365730248291971, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078929448484905812, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7673398050621169836, guid: 8bcc91cdda771a3409b325d5630d3524, type: 3}
       propertyPath: m_RootOrder
