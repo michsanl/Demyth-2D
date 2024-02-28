@@ -14,6 +14,7 @@ public class Level4RestartHandler : MonoBehaviour
     
     [SerializeField] private PetraCombatBehaviour _petraCombatBehaviour;
     [SerializeField] private GameObject _petraPreCombatCutscene;
+    [SerializeField] private GameObject _prevLevelGate;
 
     private Player _player;
     private Health _playerHealth;
@@ -61,6 +62,7 @@ public class Level4RestartHandler : MonoBehaviour
         _player.ResetUnitCondition();
         _player.UsePan = true;
         _petraPreCombatCutscene.SetActive(false);
+        _prevLevelGate.SetActive(false);
         
         StartCoroutine(ActivateBossCombatMode());
     }
