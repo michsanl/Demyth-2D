@@ -5487,7 +5487,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 641.3761
-        y: 115.92622
+        y: 117.650345
         width: 160
         height: 30
     - id: 3
@@ -8109,7 +8109,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 328.4021
+        x: 330.12622
         y: 676.9248
         width: 160
         height: 30
@@ -9293,7 +9293,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 135.1565, y: 1192.8932}
+    canvasScrollPosition: {x: 0, y: 377.58627}
     canvasZoom: 0.58
   - id: 9
     fields:
@@ -11396,7 +11396,7 @@ MonoBehaviour:
         value: '[pic=2]Ara
 
 
-          Hmm not I really I''m looking for my aunt,
+          Hmm not really I''m looking for my aunt,
 
           she
           is a tall human late 30s like wearing purple dress and..'
@@ -16280,7 +16280,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: 
+        value: '[pic=7]Maria
+
+
+          Ayo pergilah~ Tantemu pasti menunggu'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 10
@@ -16342,7 +16345,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: 
+        value: '[pic=16]Ara
+
+
+          Baiklah'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 10
@@ -16512,7 +16518,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 767.85803
+        x: 768.9569
         y: 1362.1958
         width: 160
         height: 30
@@ -16550,7 +16556,10 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: 
+        value: '
+
+
+          (Kamu dapat lentera! Tekan "Q" untuk menggunakan lentera)'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 10
@@ -17006,8 +17015,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 606.46515, y: 1131.5496}
-    canvasZoom: 0.91000026
+    canvasScrollPosition: {x: 337.7744, y: 473.17047}
+    canvasZoom: 0.82000035
   - id: 11
     fields:
     - title: Title
@@ -20337,7 +20346,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 522.6138
-        y: 1745.432
+        y: 1746.6516
         width: 160
         height: 30
     - id: 32
@@ -21035,7 +21044,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: id
-        value: 
+        value: "Susy \n\nApa  kamu yakin tidak ingin mengambilnya?"
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 12
@@ -21066,7 +21075,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 501.9452
+        x: 500.72565
         y: 1578.7784
         width: 160
         height: 30
@@ -21875,8 +21884,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 345.60858, y: 584.1458}
-    canvasZoom: 0.8199994
+    canvasScrollPosition: {x: 0, y: 1388.8655}
+    canvasZoom: 0.30999967
   - id: 13
     fields:
     - title: Title
@@ -30347,7 +30356,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 702.5316
+        x: 704.17096
         y: 66.32912
         width: 160
         height: 30
@@ -31298,7 +31307,7 @@ MonoBehaviour:
       - originConversationID: 18
         originDialogueID: 132
         destinationConversationID: 18
-        destinationDialogueID: 133
+        destinationDialogueID: 141
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -31367,8 +31376,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 705.689
-        y: 632.7771
+        x: 704.79614
+        y: 688.13434
         width: 160
         height: 30
     - id: 134
@@ -31697,9 +31706,74 @@ MonoBehaviour:
         y: 326.6972
         width: 160
         height: 30
+    - id: 141
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 8
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '
+
+
+          (You get a lantern! Press "Q" to use the lantern)'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: '
+
+
+          (Kamu dapat lentera! Tekan "Q" untuk menggunakan lentera)'
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 18
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 18
+        originDialogueID: 141
+        destinationConversationID: 18
+        destinationDialogueID: 133
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 702.43787
+        y: 636.1087
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 160.18706, y: 0}
-    canvasZoom: 0.6099997
+    canvasScrollPosition: {x: 449.33658, y: 513.4149}
+    canvasZoom: 0.8199996
   - id: 19
     fields:
     - title: Title
@@ -31806,13 +31880,13 @@ MonoBehaviour:
       - originConversationID: 19
         originDialogueID: 0
         destinationConversationID: 19
-        destinationDialogueID: 148
+        destinationDialogueID: 1
         isConnector: 0
         priority: 2
       - originConversationID: 19
         originDialogueID: 0
         destinationConversationID: 19
-        destinationDialogueID: 1
+        destinationDialogueID: 154
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -33225,7 +33299,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 555.49084
-        y: 806.6977
+        y: 805.3819
         width: 160
         height: 30
     - id: 145
@@ -33844,9 +33918,75 @@ MonoBehaviour:
         y: 130.39944
         width: 160
         height: 30
+    - id: 154
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 13
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: '[pic=13]Ara
+
+
+          What is it again?'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: SetActive(Bg 6, true);
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: '[pic=13]Ara
+
+
+          Gimana tadi?'
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 19
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 19
+        originDialogueID: 154
+        destinationConversationID: 19
+        destinationDialogueID: 148
+        isConnector: 0
+        priority: 2
+      conditionsString: Variable["Level_6_Done"] == true and (CurrentQuestState("Sparkling
+        Hidden Item") == "active") and (Variable["HiddenItem.NumCollected"] < 3)
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 733.3541
+        y: 803.6586
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 346.48215, y: 543.8324}
-    canvasZoom: 0.75999975
+    canvasScrollPosition: {x: 281.99976, y: 0}
+    canvasZoom: 0.6999998
   - id: 20
     fields:
     - title: Title
@@ -37863,7 +38003,7 @@ MonoBehaviour:
         value: '[pic=13]Ara
 
 
-          Um.. What kind of entertain-'
+          Um.. how to-'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -37876,7 +38016,7 @@ MonoBehaviour:
         value: '[pic=13]Ara
 
 
-          Um.. Hiburan macam apah-'
+          Um.. gimanah-'
         type: 4
         typeString: CustomFieldType_Localization
       - title: Response Menu Sequence
@@ -38005,7 +38145,7 @@ MonoBehaviour:
         value: '[em3][pic=8]K.R. Sri
 
 
-          PREPARE YOURSELF[/em3]'
+          USE EVERYTHING YOU LEARN[/em3]'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -38018,7 +38158,7 @@ MonoBehaviour:
         value: '[em3][pic=8]K.R. Sri
 
 
-          BERSIAPLAH[/em3]'
+          GUNAKAN SEMUA YANG KAU PELAJARI[/em3]'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 20
@@ -38373,7 +38513,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 297.97223, y: 0}
+    canvasScrollPosition: {x: 476.28607, y: 606.32275}
     canvasZoom: 0.6100002
   - id: 21
     fields:
@@ -40235,7 +40375,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 1
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40289,7 +40435,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 2
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40343,7 +40495,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 3
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40397,7 +40555,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 4
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40451,7 +40615,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 22
+        originDialogueID: 5
+        destinationConversationID: 22
+        destinationDialogueID: 134
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: Variable["HiddenItem.NumCollected"] = Variable["HiddenItem.NumCollected"]
         + 1
@@ -40494,7 +40664,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40556,7 +40731,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40585,7 +40765,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 237.14325
-        y: 136.18796
+        y: 134.75937
         width: 160
         height: 30
     - id: 8
@@ -40618,7 +40798,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40680,7 +40865,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40742,7 +40932,12 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: Continue()@0.1
+        value: 'Continue()@0.1;
+
+          SetActive (Bg 6, true);
+
+          SetActive
+          (Intro, false);'
         type: 0
         typeString: CustomFieldType_Text
       - title: id
@@ -40770,8 +40965,67 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 831.7224
+        x: 830.2938
         y: 137.55782
+        width: 160
+        height: 30
+    - id: 134
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 7
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 'Continue();
+
+          SetActive (Bg 6, false)@0.95;'
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: id
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: EventGuid
+        value: 68a7b99b-a676-4550-a627-1f6d61279b34
+        type: 0
+        typeString: 
+      conversationID: 22
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: Variable["Level_6_Intro_Done"] = true
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 441.42844
+        y: 284.2856
         width: 160
         height: 30
     entryGroups: []
@@ -51362,7 +51616,7 @@ MonoBehaviour:
         value: '[pic=18]A
 
 
-          Take this.. Go back..'
+          Take this key.. Go back..'
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -51373,7 +51627,7 @@ MonoBehaviour:
         value: '[pic=18]A
 
 
-          Ambil ini.. Kembalilah..'
+          Ambil kunci ini.. Kembalilah..'
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 32
@@ -51460,8 +51714,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 70.95456, y: 0}
-    canvasZoom: 0.8800001
+    canvasScrollPosition: {x: 9.319111, y: 0}
+    canvasZoom: 0.73000026
   - id: 33
     fields:
     - title: Title
@@ -52240,7 +52494,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: '[pic=18]A
+        value: '[pic=18]Ara
 
 
           Agh fucking demon!'
@@ -52251,7 +52505,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: id
-        value: '[pic=18]A
+        value: '[pic=18]Ara
 
 
           Agh setan bangsat!'
@@ -52930,8 +53184,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 2, y: 0}
-    canvasZoom: 1
+    canvasScrollPosition: {x: 34.254383, y: 336.75906}
+    canvasZoom: 0.6700003
   syncInfo:
     syncActors: 0
     syncItems: 0

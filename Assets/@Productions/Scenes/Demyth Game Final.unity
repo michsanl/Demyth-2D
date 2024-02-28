@@ -574,6 +574,10 @@ PrefabInstance:
       propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 260261638}
+    - target: {fileID: 2990920200680278448, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: maxHealth
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 3479441864565972153, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: _boxArray.Array.size
       value: 21
@@ -590,9 +594,13 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6263631943383091877, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
+      propertyPath: _phaseTwoHPThreshold
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6367640258402613469, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: _phaseTwoHPTreshold
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6508432403699505095, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_IsActive
@@ -608,15 +616,15 @@ PrefabInstance:
       objectReference: {fileID: 557433475}
     - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_LocalPosition.x
@@ -624,7 +632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.79
+      value: 4.85
       objectReference: {fileID: 0}
     - target: {fileID: 7709349173936410208, guid: 3be1e540fdd13cc4e8fb96e113561e94, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -1427,6 +1435,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
+    - target: {fileID: 591033955233139268, guid: a1eebd354b2f7bd4092c82f09433e813, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1275323378259579242, guid: a1eebd354b2f7bd4092c82f09433e813, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3517,7 +3529,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3931,6 +3943,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1500366414}
     m_Modifications:
+    - target: {fileID: 1411300117855893260, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_text
+      value: THANK YOU FOR PLAYING~ SEE YOU ON THE NEXT SEQUEL!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830012802938095482, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_text
+      value: 'MUHAMMAD HARYOMURTI
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528995595050516126, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528995595050516126, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528995595050516126, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3301
+      objectReference: {fileID: 0}
+    - target: {fileID: 5863051892370932342, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5365
+      objectReference: {fileID: 0}
     - target: {fileID: 7974542522555545670, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -204.00012
@@ -4022,6 +4060,10 @@ PrefabInstance:
     - target: {fileID: 8551962754239887420, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
       propertyPath: m_Name
       value: Credit UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551962754431947574, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 7290.86
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c3ea3812510b934d87cde6b3a162df3, type: 3}
