@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08772a5024b1b38439f58224ebd94add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 10
   currentHealth: 0
   status: 0
 --- !u!114 &1289367315621703064
@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544ac43213f06a544999d6c9cdf94c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPotionAmount: 2
-  currentPotionAmount: 2
+  maxPotionAmount: 3
+  currentPotionAmount: 3
 --- !u!114 &6545709953532637698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,8 +935,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.75
-  m_PointLightOuterRadius: 1.5
+  m_PointLightInnerRadius: 1.5
+  m_PointLightOuterRadius: 3
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
