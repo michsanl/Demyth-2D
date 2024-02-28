@@ -14,6 +14,7 @@ public class Level7RestartHandler : MonoBehaviour
 
     [SerializeField] private SriBossController _sriCombatBehaviour;
     [SerializeField] private GameObject _sriPreCombatCutscene;
+    [SerializeField] private GameObject _prevLevelGate;
 
     private Player _player;
     private Health _playerHealth;
@@ -77,6 +78,7 @@ public class Level7RestartHandler : MonoBehaviour
         DOTween.CompleteAll();
         SaveSystem.LoadFromSlot(1);
         _sriPreCombatCutscene.SetActive(false);
+        _prevLevelGate.SetActive(false);
         _player.ResetUnitCondition();
         _isPlayerDead = false;
         StartCoroutine(ActivateBossCombatMode());
