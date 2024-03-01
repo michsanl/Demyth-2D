@@ -6,6 +6,7 @@ using Core;
 using System;
 using Demyth.Gameplay;
 using UISystem;
+using UnityEngine.Rendering.Universal;
 
 public class Level6RestartHandler : SceneService
 {
@@ -15,6 +16,8 @@ public class Level6RestartHandler : SceneService
 
     [Space]
     [SerializeField] private Level6PuzzlePositionSO _level6PositionSO;
+    [SerializeField] private Light2D _globalLight;
+    [SerializeField] private GameObject[] _gates;
     [SerializeField] private Transform[] _boxArray;
     [SerializeField] private GameObject[] _hiddenItems;
 
@@ -71,6 +74,9 @@ public class Level6RestartHandler : SceneService
         ResetPlayer();
         ResetBoxPosition();
         ResetHiddenItem();
+        ResetQuest();
+        ResetLight();
+        DeactivateGate();
         _inputController.EnablePlayerInput();
 
         yield return StartCoroutine(PersistenceLoadingUI.Instance.CloseLoadingPage());
@@ -83,6 +89,7 @@ public class Level6RestartHandler : SceneService
     {
         _playerModel.localScale = new Vector3(-1, 1, 1);
         _player.transform.position = _level6PositionSO.PlayerPosition;
+        _player.IsShieldUnlocked = false;
     }
 
     private void ResetHiddenItem()
@@ -101,6 +108,25 @@ public class Level6RestartHandler : SceneService
         for (int i = 0; i < _boxArray.Length; i++)
         {
             _boxArray[i].transform.position = _level6PositionSO.BoxPositions[i];
+        }
+    }
+
+    private void ResetQuest()
+    {
+        QuestLog.SetQuestState("Sparkling Hidden Item", QuestState.Active);
+        DialogueLua.SetVariable("Level_6_Puzzle_Done", false);
+    }
+
+    private void ResetLight()
+    {
+        _globalLight.intensity = 0f;
+    }
+
+    private void DeactivateGate()
+    {
+        foreach (var gate in _gates)
+        {
+            gate.SetActive(false);
         }
     }
 }
