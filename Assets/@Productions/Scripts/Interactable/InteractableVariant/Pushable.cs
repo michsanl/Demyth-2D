@@ -1,5 +1,6 @@
 using UnityEngine;
 using MoreMountains.Feedbacks;
+using PixelCrushers.DialogueSystem;
 
 public class Pushable : Interactable
 {
@@ -20,8 +21,8 @@ public class Pushable : Interactable
     {
         BoxHitMMFeedback();
 
-        if (IsMoveDirectionBlocked(direction))
-            return;
+        if (DialogueLua.GetVariable("Moved_To_Level_7").asBool) return;
+        if (IsMoveDirectionBlocked(direction)) return;
             
         Move(direction);
     }
